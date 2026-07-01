@@ -55,6 +55,14 @@ const PRODUCTS = [
     link: "https://www.dropbox.com/scl/fo/gjjl69xfmfxqdxg87vym9/h?rlkey=q17pigcl81qcvr7rzcv2xpne3&st=wok0w9o7&dl=0",
     flat: "Logos",
   },
+  {
+    // Central library of retail POP display images — matched to each product's
+    // "Retail POP display" packaging card by filename (see assets.js).
+    name: "POP Displays",
+    slug: "pop-displays",
+    link: "https://www.dropbox.com/scl/fo/z31rov1tjw0rm2fy7qssw/ABSnVsz5hLjhid95WhqyajM?rlkey=jkld2f2m07jctowd5x1ao357b&st=lmrqshh4&dl=0",
+    flat: "POP Displays",
+  },
 ];
 
 const FOLDER_ORDER = ["Product Photos", "Lifestyle Photos", "Logos", "Social Videos", "TV Screen Videos", "Packaging", "In-Store Marketing", "Documents"];
