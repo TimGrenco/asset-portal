@@ -161,6 +161,9 @@
     "Misc": "Documents",
   };
   function typeLabel(t) { return TYPE_LABELS[t] || t; }
+  // Canonical Digital Assets tab order (matches the Dropbox-sync FOLDER_ORDER).
+  var FOLDER_TAB_ORDER = ["Product Photos", "E-Comm Render Photos", "Lifestyle Photos", "Web Banners", "Logos", "Social Videos", "TV Screen Videos", "Packaging", "Documents", "Misc"];
+  function folderRank(f) { var i = FOLDER_TAB_ORDER.indexOf(f); return i < 0 ? 99 : i; }
 
   function buildQuery() {
     var parts = [];
@@ -659,8 +662,9 @@
     recordRecent(p);
 
     // In-Store Marketing gets its own section below the gallery — keep it out of
-    // the Digital Assets folder tabs.
+    // the Digital Assets folder tabs. Tabs follow the canonical folder order.
     var folderNames = Object.keys(p.folders).filter(function (f) { return f !== "In-Store Marketing"; });
+    folderNames.sort(function (a, b) { return folderRank(a) - folderRank(b); });
     var active = folderNames[0];
     var selected = {};   // fileKey -> file object; persists while switching folder tabs
 
@@ -988,6 +992,12 @@
 
   function renderGallery(p, folder, selected, onToggle, onChange) {
     var files = p.folders[folder] || [];
+    if (!files.length) {
+      $("#gallery").innerHTML = '<div class="gallery-empty">' + icon("photo") +
+        "<p><strong>" + typeLabel(folder) + "</strong> are coming soon — check back shortly.</p></div>";
+      if (onChange) onChange();
+      return;
+    }
     var items = [];     // previewable assets in this folder: { src, name, url }
     var lastIdx = null; // anchor cell for shift-click range selection
     $("#gallery").innerHTML = files.map(function (file) {
