@@ -739,12 +739,15 @@
   function skuHTML(p) {
     if (p.isLogo) return "";
     var info = p.info || {};
-    if (!info.sku && !info.pop && !info.fullName && !info.upc && !info.innerPack && !info.masterCarton) return "";
+    if (!info.sku && !info.pop && !info.fullName && !info.upc && !info.innerPack && !info.masterCarton && !info.dimensions && !info.unitWeight) return "";
     function row(label, val) { return '<div class="sku-row"><span class="sku-l">' + label + '</span><span class="sku-v">' + val + "</span></div>"; }
-    // Always show SKU; show the rest only when there's a value.
+    // Always show SKU; show the rest only when there's a value. Product specs
+    // (dimensions/weight) first, then retail packaging / case quantities.
     var rows = row("Product SKU", info.sku || "—");
     if (info.fullName) rows += row("Full name", info.fullName);
     if (info.upc) rows += row("UPC", info.upc);
+    if (info.dimensions) rows += row("Product dimensions", info.dimensions);
+    if (info.unitWeight) rows += row("Unit weight", info.unitWeight);
     if (info.innerPack) rows += row(info.pop ? "Units per POP display" : "Inner pack", info.innerPack);
     if (info.masterCarton) rows += row("Units per master case", info.masterCarton);
     if (info.caseWeight) rows += row("Case weight", info.caseWeight);
@@ -793,10 +796,19 @@
   // Educational video hub (YouTube), separate from the downloadable files.
   function videoHubHTML(p) {
     if (!p.videos || !p.videos.length) return "";
-    var hasMp4 = false;
+    var hasMp4 = false, hasEmbed = false;
     var cards = p.videos.map(function (v) {
       var safe = v.title.replace(/"/g, "");
       var poster = v.thumb ? '<img src="' + v.thumb + '" alt="' + safe + '" loading="lazy"/>' : "";
+      if (v.embed) {
+        // Vimeo/YouTube embed — plays in the modal player (download comes later).
+        hasEmbed = true;
+        return '<div class="vcard">' +
+          '<div class="vthumb vplay" data-play="' + v.embed + '" data-title="' + safe + '" role="button" tabindex="0" aria-label="Watch ' + safe + '">' +
+            poster + '<span class="play-badge">' + icon("play") + '</span><span class="vthumb-hint">Click to watch</span></div>' +
+          '<div class="vmeta"><div class="vtitle">' + v.title + "</div></div>" +
+        "</div>";
+      }
       if (v.mp4) {
         hasMp4 = true;
         var raw = dropboxRaw(v.mp4), dl = dropboxZipUrl(v.mp4), dlname = safe.replace(/[^\w.-]+/g, "_") + ".mp4";
@@ -815,8 +827,10 @@
         '<div class="vmeta"><div class="vtitle">' + v.title + "</div></div>" +
       "</button>";
     }).join("");
+    var note = hasMp4 ? " Click a video to watch it in your browser, or use <strong>Download</strong> to save the file."
+      : hasEmbed ? " Click a video to watch it in your browser. Downloadable versions coming soon." : "";
     return '<div class="section-head"><h2>How to use videos</h2><span class="badge">' + p.videos.length + " video" + (p.videos.length > 1 ? "s" : "") + "</span></div>" +
-      (hasMp4 ? '<p class="vhub-note">' + icon("eye") + " Click a video to watch it in your browser, or use <strong>Download</strong> to save the file." + "</p>" : "") +
+      (note ? '<p class="vhub-note">' + icon("eye") + note + "</p>" : "") +
       '<div class="vhub">' + cards + "</div>";
   }
   // Dropbox shared-file link → inline-streamable URL (raw=1) for <video>.
@@ -829,9 +843,14 @@
     closeVideoModal();
     var ov = document.createElement("div");
     ov.className = "vlb"; ov.id = "vlb";
+    // Vimeo/YouTube embeds play in an iframe; real MP4s use a <video> element.
+    var isEmbed = /player\.vimeo\.com|youtube\.com\/embed/.test(src);
+    var media = isEmbed
+      ? '<iframe src="' + src + (src.indexOf("?") === -1 ? "?" : "&") + 'autoplay=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>'
+      : '<video src="' + src + '" controls autoplay playsinline></video>';
     ov.innerHTML =
       '<button class="vlb-close" aria-label="Close">' + icon("x") + "</button>" +
-      '<div class="vlb-stage"><video src="' + src + '" controls autoplay playsinline></video></div>' +
+      '<div class="vlb-stage">' + media + "</div>" +
       '<div class="vlb-bar"><span class="vlb-name">' + (title || "") + "</span>" +
         (dlUrl ? '<button class="btn vlb-dl">' + icon("download") + " Download video</button>" : "") + "</div>";
     document.body.appendChild(ov);

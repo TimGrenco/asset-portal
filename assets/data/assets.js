@@ -371,17 +371,27 @@ var PRODUCT_VIDEOS = {
   "Roam": [
     ["l6QSb4Obox4", "G Pen x Lemonnade Roam"],
   ],
+  // How-to-use / how-to-clean tutorials pulled from the gpen.com product pages
+  // (Vimeo). Placeholders until Dropbox MP4s arrive so they can be downloaded.
   "510 Original": [
-    ["_SF_4zkbZdI", "How to Use: G Pen 510 Original"],
-    ["W9AabKNvaH8", "Introducing the G Pen 510 Original"],
+    { title: "How to Use: G Pen 510 Original", vimeo: "1149053260", thumb: "https://i.vimeocdn.com/video/2099496548-9f356818ba8ca793122dcf45c0911332ea2271f63bb31116c6e0da05b66d0b83-d_640?region=us" },
+    { title: "How to Clean: G Pen 510 Original", vimeo: "1198848006", thumb: "https://i.vimeocdn.com/video/2165544391-c70c4c689b5becbd372bd32b6bf431be5c8442a4b1e6875cf85ed96e636747b5-d_640?region=us" },
+  ],
+  "510 Original — Retro": [
+    { title: "How to Use: G Pen 510 Original", vimeo: "1149053260", thumb: "https://i.vimeocdn.com/video/2099496548-9f356818ba8ca793122dcf45c0911332ea2271f63bb31116c6e0da05b66d0b83-d_640?region=us" },
+    { title: "How to Clean: G Pen 510 Original", vimeo: "1198848006", thumb: "https://i.vimeocdn.com/video/2165544391-c70c4c689b5becbd372bd32b6bf431be5c8442a4b1e6875cf85ed96e636747b5-d_640?region=us" },
   ],
   "Hydout": [
-    ["WK3EXouKwGs", "How to Use: G Pen Hydout"],
-    ["xSsQoR1L2R0", "Introducing the G Pen Hydout"],
+    { title: "How to Use: G Pen Hydout", vimeo: "1105906397", thumb: "https://i.vimeocdn.com/video/2042536830-ad33a7ce448923a860282dcd9a0acade12fd6a9a18bf61116b68ea3954b4655c-d_640?region=us" },
+    { title: "How to Clean: G Pen Hydout", vimeo: "1105958727", hash: "59fe004ad8", thumb: "https://i.vimeocdn.com/video/2042601767-c1a1df4b3c5e2f524fbdf5eab7af78886897186ff84062dcc1f01a49e8600c9a-d_640?region=us" },
   ],
   "Hydout — Retro": [
-    ["vG13gjhbwUQ", "Introducing the G Pen Retro Hydout"],
-    ["n5Nwgjs4hs8", "Purple G Pen Hydout"],
+    { title: "How to Use: G Pen Hydout", vimeo: "1105906397", thumb: "https://i.vimeocdn.com/video/2042536830-ad33a7ce448923a860282dcd9a0acade12fd6a9a18bf61116b68ea3954b4655c-d_640?region=us" },
+    { title: "How to Clean: G Pen Hydout", vimeo: "1105958727", hash: "59fe004ad8", thumb: "https://i.vimeocdn.com/video/2042601767-c1a1df4b3c5e2f524fbdf5eab7af78886897186ff84062dcc1f01a49e8600c9a-d_640?region=us" },
+  ],
+  "Dash+": [
+    { title: "How to Use: G Pen Dash+", vimeo: "989095151", hash: "ebbe638ab0", thumb: "https://i.vimeocdn.com/video/1904791595-274b91c5aa41aa688212f27f78b73f010482b21cc15d9935379b05d73e63f851-d_640?region=us" },
+    { title: "How to Clean: G Pen Dash+", vimeo: "989096678", hash: "38d053dfc5", thumb: "https://i.vimeocdn.com/video/1904792226-ecd92a819e1074a45154a6dff6b558c242612cf8c6a2bbd099d17f25a451d949-d_640?region=us" },
   ],
   "Hyer": [
     ["L5pIGbmtLU8", "Tyson 2.0 x G Pen Hyer"],
@@ -416,6 +426,15 @@ window.PORTAL_PRODUCTS.forEach(function (p) {
         id: v[0], title: v[1],
         url: "https://www.youtube.com/watch?v=" + v[0],
         thumb: "https://i.ytimg.com/vi/" + v[0] + "/hqdefault.jpg",
+      };
+    }
+    // Vimeo form: {title, vimeo:"id", hash?:"privacyhash", thumb:"url"} — plays
+    // in the modal via iframe (from gpen.com product pages; download TBD via Dropbox).
+    if (v.vimeo) {
+      return {
+        title: v.title, thumb: v.thumb || null,
+        embed: "https://player.vimeo.com/video/" + v.vimeo + "?" + (v.hash ? "h=" + v.hash + "&" : "") + "title=0&byline=0&portrait=0&dnt=1",
+        url: "https://vimeo.com/" + v.vimeo + (v.hash ? "/" + v.hash : ""),
       };
     }
     // Object form: a real MP4 (Dropbox) that plays in-browser + downloads.
@@ -474,36 +493,42 @@ var PRODUCT_INFO = {
     description: "The smallest and most affordable G Pen battery ever, the 510 Original reimagines Grenco's very first 2012 battery with modern breath-activated, ultra-portable performance for 510 cartridges.",
     highlights: ["Smallest G Pen battery ever", "Breath activation — just inhale and go", "Three preset voltages (3.2 / 3.6 / 3.8V)", "1.8V 10-second pre-heat mode", "400mAh battery", "USB-C pass-through charging", "Digital display", "24 × 21.1 × 56.7 mm"],
     warranty: "Limited warranty — see policy",
+    manual: "https://cdn.shopify.com/s/files/1/0185/1576/files/20251218_GPen_510_Original_Manual-2.pdf?v=1767623021",
     productUrl: "https://www.gpen.com/products/g-pen-510-original",
   },
   "510 Original — Retro": {
     description: "The Retro Collection edition of the 510 Original pairs a smooth, vintage translucent finish with the same breath-activated, ultra-portable 510 performance inspired by G Pen's original 2012 battery.",
     highlights: ["Translucent retro finish", "Breath activation", "Three preset voltages (3.2 / 3.6 / 3.8V)", "1.8V 10-second pre-heat mode", "400mAh battery", "USB-C pass-through charging", "Digital display", "24 × 21.1 × 56.7 mm"],
     warranty: "Limited warranty — see policy",
+    manual: "https://cdn.shopify.com/s/files/1/0185/1576/files/20251218_GPen_510_Original_Manual-2.pdf?v=1767623021",
     productUrl: "https://www.gpen.com/products/g-pen-510-original-purple-translucent",
   },
   "Hydout": {
     description: "The G Pen Hydout is a compact, discreet 510 cartridge battery with a hidden magnetic mouthpiece cover, adjustable voltage, and LED display for smooth, customizable low-key sessions.",
     highlights: ["Hidden magnetic mouthpiece cover", "5 heat settings (2.4V – 3.8V)", "1.8V preheat mode", "400mAh rechargeable battery", "Bright LED display", "USB-C charging", "Fits 510 carts up to 2g", "90 × 37.5 × 18.5 mm"],
     warranty: "Limited warranty — see policy",
+    manual: "https://cdn.shopify.com/s/files/1/0185/1576/files/20250528_GPen_Hydout_Manual.pdf?v=1749240232",
     productUrl: "https://www.gpen.com/products/g-pen-hydout",
   },
   "Hydout — Retro": {
     description: "The Retro edition of the G Pen Hydout brings a see-through, 90s-inspired translucent finish to the discreet 510 cartridge battery, adding breath activation alongside variable voltage and USB-C charging.",
     highlights: ["See-through 90s-inspired finish", "Breath activation", "Adjustable variable voltage", "1.8V preheat mode", "400mAh rechargeable battery", "USB-C pass-through charging", "Fits most 510 cartridges", "Hidden magnetic mouthpiece cover"],
     warranty: "Limited warranty — see policy",
+    manual: "https://cdn.shopify.com/s/files/1/0185/1576/files/GPEN_Retro_Hydout_Manual.pdf?v=1765208154",
     productUrl: "https://www.gpen.com/products/g-pen-hydout-purple-translucent",
   },
   "Melt Hot Knife": {
     description: "The G Pen Melt is the smallest hot knife on the market — a compact, ceramic-tipped dab tool for fast, clean, zero-mess concentrate scooping and drops.",
     highlights: ["Smallest hot knife on the market", "Rapid-heat ceramic tip", "USB-C pass-through charging", "Sleek aluminum body", "Ultra-compact: 3.94 × 0.5 × 0.25 in", "Zero-mess scooping and drops", "Pocket & travel-kit friendly", "Works with rigs, Micro+, Hyer"],
     warranty: "Limited warranty — see policy",
+    manual: "https://cdn.shopify.com/s/files/1/0185/1576/files/20251203_GPen_MELT_Manual.pdf?v=1764795290",
     productUrl: "https://www.gpen.com/products/g-pen-melt",
   },
   "Dash+": {
     description: "The G Pen Dash+ is a next-generation portable dry herb vaporizer using hybrid convection-conduction heating in a titanium chamber to reach vaporization temperatures in about 20 seconds.",
     highlights: ["Hybrid convection + conduction heating", "Titanium heating chamber", "Heats up in ~20 seconds", "1,800mAh rechargeable Li-ion battery", "USB-C charging", "Full-color LED display", "Haptic feedback, 3-button interface", "Zinc-alloy casing"],
     warranty: "Limited warranty — see policy",
+    manual: "https://cdn.shopify.com/s/files/1/0185/1576/files/gpen-dash-plus_quick-start-guide_web_mobile.jpg?v=1692910503",
     productUrl: "https://www.gpen.com/products/g-pen-dash-plus-vaporizer",
   },
   "Dash": {
@@ -691,13 +716,15 @@ var PRODUCT_DESCRIPTION = {
      boxImg/popImg/cartonImg : packaging image URLs (Dropbox) — placeholder
                       tiles show until these are set */
 var PRODUCT_SKU = {
-  "Dash II":              { sku: "GPD-001-APZZ", pop: true, fullName: "DASH II VAPORIZER", upc: "852570004441", innerPack: "10", masterCarton: "200", caseWeight: "16.07 kg", caseDimensions: "580 × 280 × 245 mm" },
-  "Melt Hot Knife":       { sku: "GHK-001-AOZZ", pop: true },
-  "510 Original":         { sku: "GSB-001-AOZZ", pop: true },
-  "510 Original — Retro": { sku: "GSB-005-APZZ", pop: true },
-  "Hydout":               { sku: "GHO-001-AOZZ", pop: true },
-  "Hydout — Retro":       { sku: "GHO-006-AOZZ", pop: true },
-  "Dash+":                { sku: "GPD-001-AMZZ" },
+  // dimensions = single-unit product size (from gpen.com). unitWeight to be
+  // supplied by ops (scraped store weights are ship weight, not bare unit).
+  "Dash II":              { sku: "GPD-001-APZZ", pop: true, fullName: "DASH II VAPORIZER", upc: "852570004441", dimensions: "97 × 35 × 21 mm", innerPack: "10", masterCarton: "200", caseWeight: "16.07 kg", caseDimensions: "580 × 280 × 245 mm" },
+  "Melt Hot Knife":       { sku: "GHK-001-AOZZ", pop: true, dimensions: "3.94 × 0.5 × 0.25 in" },
+  "510 Original":         { sku: "GSB-001-AOZZ", pop: true, dimensions: "24 × 21.1 × 56.7 mm" },
+  "510 Original — Retro": { sku: "GSB-005-APZZ", pop: true, dimensions: "24 × 21.1 × 56.7 mm" },
+  "Hydout":               { sku: "GHO-001-AOZZ", pop: true, dimensions: "90 × 37.5 × 18.5 mm" },
+  "Hydout — Retro":       { sku: "GHO-006-AOZZ", pop: true, dimensions: "90 × 37.5 × 18.5 mm" },
+  "Dash+":                { sku: "GPD-001-AMZZ", dimensions: "4.3 × 1.6 × 0.8 in" },
   "Connect":              { sku: "GPC-100-AJZZ" },
   "Roam":                 { sku: "GPR-001-AIZZ" },
   "Hyer":                 { sku: "GPH-001-ALZZ" },
