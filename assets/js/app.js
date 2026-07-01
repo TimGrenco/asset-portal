@@ -876,9 +876,12 @@
       // POP-display / packaging image → enlarge in the lightbox.
       $$("[data-lbimg]", d).forEach(function (b) {
         b.addEventListener("click", function () {
-          var u = b.getAttribute("data-lbimg");
-          openLightbox([{ src: u, name: b.getAttribute("data-lbname"), url: u }], 0);
+          var u = b.getAttribute("data-lbimg"), dl = b.getAttribute("data-lbdl") || u;
+          openLightbox([{ src: u, name: b.getAttribute("data-lbname"), url: dl, file: dl }], 0);
         });
+      });
+      $$("[data-pkgdl]", d).forEach(function (b) {
+        b.addEventListener("click", function (e) { e.stopPropagation(); directDownload(b.getAttribute("data-pkgdl"), b.getAttribute("data-pkgname")); });
       });
       // In-store marketing tiles → enlarge in the lightbox.
       var ismItems = inStoreItems(p).items.map(function (x) {
@@ -950,10 +953,21 @@
   }
 
   function pkgCard(label, url) {
-    var media = url
-      ? '<button class="pkg-media pkg-zoom" data-lbimg="' + url + '" data-lbname="' + label + '" title="Click to enlarge"><img src="' + url + '" alt="' + label + '" loading="lazy"/></button>'
-      : '<div class="pkg-media"><div class="pkg-ph">' + icon("photo") + "<span>Image coming soon</span></div></div>";
-    return '<div class="pkg-card">' + media + '<div class="pkg-label">' + label + "</div></div>";
+    if (!url) {
+      return '<div class="pkg-card"><div class="pkg-media"><div class="pkg-ph">' + icon("photo") +
+        "<span>Image coming soon</span></div></div><div class=\"pkg-label\"><span>" + label + "</span></div></div>";
+    }
+    // Dropbox file links → raw for inline display, dl=1 for download.
+    var dbox = /dropbox\.com/.test(url);
+    var src = dbox ? dropboxRaw(url) : url;
+    var dl = dbox ? dropboxZipUrl(url) : url;
+    var name = label.replace(/[^\w.-]+/g, "_") + (/\.png/i.test(url) ? ".png" : /\.jpe?g/i.test(url) ? ".jpg" : "");
+    return '<div class="pkg-card">' +
+      '<button class="pkg-media pkg-zoom" data-lbimg="' + src + '" data-lbname="' + label + '" data-lbdl="' + dl + '" title="Click to enlarge">' +
+        '<img src="' + src + '" alt="' + label + '" loading="lazy"/></button>' +
+      '<div class="pkg-label"><span>' + label + "</span>" +
+        '<button class="pkg-dl" data-pkgdl="' + dl + '" data-pkgname="' + name + '" title="Download ' + label + '">' + icon("download") + "</button>" +
+      "</div></div>";
   }
   function packagingHTML(p) {
     if (p.isLogo) return "";
