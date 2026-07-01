@@ -436,7 +436,7 @@
     return (
       '<article class="card" data-id="' + pid(p) + '" tabindex="0" role="button" aria-label="Open ' + p.name + '">' +
         '<div class="card-frame">' +
-          (isNew(p) && !p.isLogo ? '<span class="tag-new">New</span>' : "") +
+          ((isNew(p) || p.newBadge) && !p.isLogo ? '<span class="tag-new' + (p.newBadge ? " tag-new-" + p.newBadge : "") + '">New</span>' : "") +
           (showBrand ? '<span class="tag-brand">' + BRANDS[p.brand].name + "</span>" : "") +
           coverHTML(p) +
           '<div class="quick">' +
@@ -454,7 +454,7 @@
       '<article class="card row" data-id="' + pid(p) + '" tabindex="0" role="button" aria-label="Open ' + p.name + '">' +
         '<div class="row-thumb">' + coverHTML(p) + "</div>" +
         '<div class="row-main">' +
-          '<div class="row-name">' + p.name + (isNew(p) && !p.isLogo ? ' <span class="row-new">New</span>' : "") + "</div>" +
+          '<div class="row-name">' + p.name + ((isNew(p) || p.newBadge) && !p.isLogo ? ' <span class="row-new' + (p.newBadge ? " row-new-" + p.newBadge : "") + '">New</span>' : "") + "</div>" +
           '<div class="row-sub">' + (p.isLogo ? p.total + " logo files" : p.total + " assets · " + p.category) + "</div>" +
         "</div>" +
         (showBrand ? '<span class="row-brand">' + BRANDS[p.brand].name + "</span>" : "") +

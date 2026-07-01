@@ -192,7 +192,7 @@ window.PORTAL_PRODUCTS = [
   {
     name: "510 Original — Retro", brand: "gpen", category: "510 Battery", type: "510 Cartridge Battery",
     cover: CDN + "Purple510O_thumb_01.jpg?v=1779898107",
-    added: "2026-05-19",
+    added: "2026-05-19", newBadge: "purple",
     oneSheet: "#",
     folders: mkFolders(CDN + "Purple510O_thumb_01.jpg?v=1779898107", "G Pen", "510 Original Retro",
       { "E-Comm Render Photos": 8, "Lifestyle Photos": 4, "Logos": 3, "Video": 1, "Misc": 0 }),
