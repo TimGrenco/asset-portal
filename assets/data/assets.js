@@ -840,13 +840,17 @@ window.PORTAL_INSTORE_GENERAL = (function () {
     Object.keys(g.folders).forEach(function (f) { (g.folders[f] || []).forEach(function (x) { out.push(x); }); });
     if (out.length) return out;
   }
-  // Placeholder items until the "In-Store Marketing General" Dropbox folder is
-  // connected — keeps the ordering page functional. Real photos replace these
-  // automatically once the folder syncs (thumb: null → shows a photo icon).
+  // Real in-store marketing materials (hosted on Dropbox). thumb uses ?raw=1 for
+  // inline display; url uses ?dl=1 so the ordering page / lightbox can download.
+  // These are replaced automatically once the "In-Store Marketing General"
+  // Dropbox folder syncs.
   return [
-    { name: "G Pen Napkins", type: "image", format: "", thumb: null, url: "#", file: null },
-    { name: "G Pen Lanyard", type: "image", format: "", thumb: null, url: "#", file: null },
-    { name: "G Pen Standee Display", type: "image", format: "", thumb: null, url: "#", file: null },
+    { name: "In-Store Display Poster", type: "image", format: "PNG",
+      thumb: "https://www.dropbox.com/scl/fi/swkse3o9iepvmi4d1hstb/Screenshot-2026-07-01-at-11.29.12-AM.png?rlkey=0mpik0cnto272id2zh9acnbs8&st=1t2uy5ot&raw=1",
+      url: "https://www.dropbox.com/scl/fi/swkse3o9iepvmi4d1hstb/Screenshot-2026-07-01-at-11.29.12-AM.png?rlkey=0mpik0cnto272id2zh9acnbs8&st=1t2uy5ot&dl=1", file: null },
+    { name: "Dash II Table Tent", type: "image", format: "JPG",
+      thumb: "https://www.dropbox.com/scl/fi/puy77nx2r0i6ljhd7qpqn/DashII_Table_Tent.jpg?rlkey=f0ulmqqc544c6nit7ns8qo9u0&st=22dss4rm&raw=1",
+      url: "https://www.dropbox.com/scl/fi/puy77nx2r0i6ljhd7qpqn/DashII_Table_Tent.jpg?rlkey=f0ulmqqc544c6nit7ns8qo9u0&st=22dss4rm&dl=1", file: null },
   ];
 })();
 
