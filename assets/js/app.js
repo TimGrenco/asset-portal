@@ -25,6 +25,8 @@
       download: '<path d="M12 3v12"/><path d="m7 12 5 5 5-5"/><path d="M5 21h14"/>',
       eye: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>',
       mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+      youtube: '<rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3z"/>',
+      share: '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/>',
       arrowLeft: '<path d="M19 12H5"/><path d="m12 19-7-7 7-7"/>',
       file: '<path d="M14 3v5h5"/><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/>',
       photo: '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/>',
@@ -736,9 +738,6 @@
         videoHubHTML(p);
 
       renderGallery(p, active, selected, toggle, syncSelection);
-      $$(".vcard[data-yt]", d).forEach(function (c) {
-        c.addEventListener("click", function () { downloadOne(c.getAttribute("data-yt")); });
-      });
       $$("[data-play]", d).forEach(function (el) {
         el.addEventListener("click", function () {
           openVideoModal(el.getAttribute("data-play"), el.getAttribute("data-title"), el.getAttribute("data-dl"), el.getAttribute("data-dlname"));
@@ -746,6 +745,9 @@
       });
       $$("[data-vdl]", d).forEach(function (b) {
         b.addEventListener("click", function (e) { e.stopPropagation(); directDownload(b.getAttribute("data-vdl"), b.getAttribute("data-vname")); });
+      });
+      $$("[data-soon]", d).forEach(function (b) {
+        b.addEventListener("click", function (e) { e.stopPropagation(); toast("Downloadable file coming soon — Dropbox link on the way"); });
       });
       $("#back-btn").addEventListener("click", navHome);
       var heroCover = $("#hero-cover");
@@ -864,44 +866,41 @@
     "</div>";
   }
 
-  // Educational video hub (YouTube), separate from the downloadable files.
+  // Educational video hub. Each card: click to watch in the large player, a
+  // Download button (real Dropbox MP4, or a placeholder until we have the link),
+  // and a "Share on YouTube" link when a matching channel video exists.
   function videoHubHTML(p) {
     if (!p.videos || !p.videos.length) return "";
-    var hasMp4 = false, hasEmbed = false;
+    var placeholderDl = false;
     var cards = p.videos.map(function (v) {
       var safe = v.title.replace(/"/g, "");
       var poster = v.thumb ? '<img src="' + v.thumb + '" alt="' + safe + '" loading="lazy"/>' : "";
-      if (v.embed) {
-        // Vimeo/YouTube embed — plays in the modal player (download comes later).
-        hasEmbed = true;
-        return '<div class="vcard">' +
-          '<div class="vthumb vplay" data-play="' + v.embed + '" data-title="' + safe + '" role="button" tabindex="0" aria-label="Watch ' + safe + '">' +
-            poster + '<span class="play-badge">' + icon("play") + '</span><span class="vthumb-hint">Click to watch</span></div>' +
-          '<div class="vmeta"><div class="vtitle">' + v.title + "</div></div>" +
-        "</div>";
-      }
-      if (v.mp4) {
-        hasMp4 = true;
-        var raw = dropboxRaw(v.mp4), dl = dropboxZipUrl(v.mp4), dlname = safe.replace(/[^\w.-]+/g, "_") + ".mp4";
-        // Opens a large player on click; the labelled button downloads the file.
-        return '<div class="vcard">' +
-          '<div class="vthumb vplay" data-play="' + raw + '" data-title="' + safe + '" data-dl="' + dl + '" data-dlname="' + dlname + '" role="button" tabindex="0" aria-label="Watch ' + safe + '">' +
-            poster + '<span class="play-badge">' + icon("play") + '</span><span class="vthumb-hint">Click to watch</span></div>' +
-          '<div class="vmeta">' +
-            '<div class="vtitle">' + v.title + "</div>" +
-            '<button class="vdl" data-vdl="' + dl + '" data-vname="' + dlname + '">' + icon("download") + " Download</button>" +
-          "</div>" +
-        "</div>";
-      }
-      return '<button class="vcard" data-yt="' + v.url + '">' +
-        '<div class="vthumb">' + poster + '<span class="play-badge">' + icon("play") + "</span></div>" +
-        '<div class="vmeta"><div class="vtitle">' + v.title + "</div></div>" +
-      "</button>";
+      var dlname = safe.replace(/[^\w.-]+/g, "_") + ".mp4";
+      // Play source: a real Dropbox MP4 takes priority; else the Vimeo/YouTube embed.
+      var playSrc = v.mp4 ? dropboxRaw(v.mp4) : (v.embed || v.url || "");
+      var dl = v.mp4 ? dropboxZipUrl(v.mp4) : "";
+
+      var thumb = '<div class="vthumb' + (playSrc ? " vplay" : "") + '"' +
+        (playSrc ? ' data-play="' + playSrc + '" data-title="' + safe + '"' + (dl ? ' data-dl="' + dl + '" data-dlname="' + dlname + '"' : "") + ' role="button" tabindex="0" aria-label="Watch ' + safe + '"' : "") + ">" +
+        poster + '<span class="play-badge">' + icon("play") + "</span>" + (playSrc ? '<span class="vthumb-hint">Click to watch</span>' : "") + "</div>";
+
+      var dlBtn = v.mp4
+        ? '<button class="vbtn" data-vdl="' + dl + '" data-vname="' + dlname + '">' + icon("download") + " Download</button>"
+        : (placeholderDl = true, '<button class="vbtn vbtn-soon" data-soon="1" title="Downloadable file coming soon">' + icon("download") + " Download</button>");
+      var ytBtn = v.youtube
+        ? '<a class="vbtn" href="' + v.youtube + '" target="_blank" rel="noopener noreferrer" title="Share on YouTube">' + icon("youtube") + " YouTube</a>"
+        : "";
+
+      return '<div class="vcard">' + thumb +
+        '<div class="vmeta">' +
+          '<div class="vtitle">' + v.title + "</div>" +
+          '<div class="vactions">' + dlBtn + ytBtn + "</div>" +
+        "</div>" +
+      "</div>";
     }).join("");
-    var note = hasMp4 ? " Click a video to watch it in your browser, or use <strong>Download</strong> to save the file."
-      : hasEmbed ? " Click a video to watch it in your browser. Downloadable versions coming soon." : "";
     return '<div class="section-head"><h2>How to use videos</h2><span class="badge">' + p.videos.length + " video" + (p.videos.length > 1 ? "s" : "") + "</span></div>" +
-      (note ? '<p class="vhub-note">' + icon("eye") + note + "</p>" : "") +
+      '<p class="vhub-note">' + icon("eye") + " Click a video to watch it, download the file, or open it on YouTube to share." +
+        (placeholderDl ? " <em>Downloadable files are being added.</em>" : "") + "</p>" +
       '<div class="vhub">' + cards + "</div>";
   }
   // Dropbox shared-file link → inline-streamable URL (raw=1) for <video>.

@@ -279,7 +279,7 @@ a { color: inherit; text-decoration: none; }
 
 /* product hub: video education hub */
 .vhub { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin-bottom: 10px; }
-.vcard { text-align: left; border: 1px solid var(--hair); border-radius: var(--radius); overflow: hidden; background: var(--paper); cursor: pointer; padding: 0; transition: border-color 0.14s, box-shadow 0.14s, transform 0.14s; }
+.vcard { text-align: left; border: 1px solid var(--hair); border-radius: var(--radius); overflow: hidden; background: var(--paper); padding: 0; transition: border-color 0.14s, box-shadow 0.14s, transform 0.14s; }
 .vcard:hover { border-color: var(--ink); box-shadow: var(--shadow); transform: translateY(-2px); }
 .vthumb { position: relative; aspect-ratio: 16/9; background: var(--ink); }
 .vthumb.vplay { cursor: pointer; }
@@ -291,6 +291,12 @@ a { color: inherit; text-decoration: none; }
 .vdl { margin-top: 10px; display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: var(--radius-pill); border: 1px solid var(--hair); background: var(--paper); color: var(--ink); cursor: pointer; }
 .vdl svg { width: 14px; height: 14px; stroke: currentColor; }
 .vdl:hover { border-color: var(--ink); background: var(--mist); }
+.vactions { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+.vbtn { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; padding: 6px 13px; border-radius: var(--radius-pill); border: 1px solid var(--hair); background: var(--paper); color: var(--ink); cursor: pointer; text-decoration: none; }
+.vbtn svg { width: 14px; height: 14px; stroke: currentColor; }
+.vbtn:hover { border-color: var(--ink); background: var(--mist); }
+.vbtn-soon { color: var(--stone); cursor: default; }
+.vbtn-soon:hover { border-color: var(--hair); background: var(--paper); }
 .vhub-note { display: flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--stone); margin: -6px 0 16px; }
 .vhub-note svg { width: 15px; height: 15px; stroke: var(--ink); flex: 0 0 auto; }
 .vhub-note strong { color: var(--ink); font-weight: 700; }

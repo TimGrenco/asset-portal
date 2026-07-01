@@ -422,27 +422,33 @@ var PRODUCT_VIDEOS = {
 window.PORTAL_PRODUCTS.forEach(function (p) {
   var vids = PRODUCT_VIDEOS[p.name];
   if (!vids || !vids.length) return;
+  // `youtube` (a video id) on any form adds a "Share on YouTube" link.
+  var yt = function (id) { return id ? "https://www.youtube.com/watch?v=" + id : null; };
   p.videos = vids.map(function (v) {
     if (Array.isArray(v)) {
       return {
         id: v[0], title: v[1],
+        embed: "https://www.youtube.com/embed/" + v[0],
         url: "https://www.youtube.com/watch?v=" + v[0],
+        youtube: "https://www.youtube.com/watch?v=" + v[0],
         thumb: "https://i.ytimg.com/vi/" + v[0] + "/hqdefault.jpg",
       };
     }
-    // Vimeo form: {title, vimeo:"id", hash?:"privacyhash", thumb:"url"} — plays
-    // in the modal via iframe (from gpen.com product pages; download TBD via Dropbox).
+    // Vimeo form: {title, vimeo:"id", hash?:"privacyhash", thumb:"url", youtube?:"ytid"}
+    // — plays in the modal via iframe (from gpen.com; download TBD via Dropbox).
     if (v.vimeo) {
       return {
         title: v.title, thumb: v.thumb || null,
         embed: "https://player.vimeo.com/video/" + v.vimeo + "?" + (v.hash ? "h=" + v.hash + "&" : "") + "title=0&byline=0&portrait=0&dnt=1",
         url: "https://vimeo.com/" + v.vimeo + (v.hash ? "/" + v.hash : ""),
+        youtube: yt(v.youtube),
       };
     }
     // Object form: a real MP4 (Dropbox) that plays in-browser + downloads.
     return {
       title: v.title, mp4: v.mp4,
       thumb: v.thumbId ? "https://i.ytimg.com/vi/" + v.thumbId + "/hqdefault.jpg" : (v.thumb || null),
+      youtube: yt(v.youtube),
     };
   });
 });
