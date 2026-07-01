@@ -301,7 +301,7 @@
     var box = $("#social-hub"); if (!box) return;
     var bk = state.view;
     box.innerHTML =
-      '<div class="section-head"><h2>Follow ' + BRANDS[bk].name + "</h2><span class=\"badge\">Official accounts</span></div>" +
+      '<div class="section-head"><h2>Follow ' + BRANDS[bk].name + " On Socials</h2><span class=\"badge\">Official accounts</span></div>" +
       '<div class="hub-wrap"><div class="hub-brand">' + socialListHTML(bk) + "</div></div>";
     wireSocial(box);
   }
