@@ -70,11 +70,11 @@ a { color: inherit; text-decoration: none; }
   background: radial-gradient(ellipse 80% 140% at 50% -30%, #20201d 0%, var(--ink-2) 40%, var(--ink) 82%); }
 .hero::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
   background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: 0.7; }
-.hero-brands { display: inline-flex; align-items: center; gap: 18px; margin-bottom: 16px; }
+.hero-brands { display: inline-flex; align-items: center; gap: 26px; margin-bottom: 20px; }
 /* brand logos are monochrome → render them white on the dark hero */
 .hero-logo { display: block; width: auto; filter: brightness(0) invert(1); opacity: 0.95; }
-.hero-logo.gpen { height: 34px; }
-.hero-logo.sg { height: 20px; }
+.hero-logo.gpen { height: 54px; }
+.hero-logo.sg { height: 32px; }
 .hero-brands .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex: 0 0 auto; }
 .hero-eyebrow { font-size: 10.5px; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 700; color: var(--gold); margin-bottom: 11px; }
 .hero h1 { font-family: var(--serif); font-size: clamp(26px, 4.2vw, 38px); line-height: 1.04; letter-spacing: -0.03em; font-weight: 800; color: #fff; }
@@ -578,8 +578,8 @@ a.logo-tile { cursor: pointer; }
 @media (max-width: 600px) {
   .req-link span { display: none; }
   .hero-brands .nm { font-size: 17px; }
-  .hero-logo.gpen { height: 36px; }
-  .hero-logo.sg { height: 21px; }
+  .hero-logo.gpen { height: 60px; }
+  .hero-logo.sg { height: 35px; }
   .grid { grid-template-columns: repeat(2, 1fr); gap: 13px; }
   .toggle button { padding: 9px 16px; }
   .section-head { flex-wrap: wrap; }
