@@ -293,11 +293,21 @@ button.mat-thumb { padding: 0; }
 .ov-fact-l { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; color: var(--stone); }
 .ov-fact-v { font-size: 13px; font-weight: 600; }
 .ov-cta { display: flex; gap: 8px; flex-wrap: wrap; }
-.fulldesc { margin-top: 18px; border: 1px solid var(--hair); border-radius: var(--radius); padding: 18px 20px; }
+.fd-copy { order: 6; flex: 0 0 auto; }
+.fulldesc { margin-top: 0; border: 1px solid var(--hair); border-radius: var(--radius); padding: 18px 20px; }
 .fd-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
 .fd-head .ov-h { margin-bottom: 0; }
 .fd-body p { font-size: 13.5px; line-height: 1.6; color: var(--ink-2); margin-bottom: 9px; }
 .fd-body p:last-child { margin-bottom: 0; }
+/* What's In the Box? */
+.box-grid { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 34px; align-items: center; }
+.box-list { list-style: none; padding: 4px 0; margin: 0; }
+.box-list li { position: relative; padding-left: 20px; font-size: 15px; line-height: 1.5; margin-bottom: 13px; }
+.box-list li:last-child { margin-bottom: 0; }
+.box-list li::before { content: ""; position: absolute; left: 3px; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--ink); }
+.box-media { border: 1px solid var(--hair); border-radius: var(--radius); background: var(--mist); overflow: hidden; }
+.box-media img { width: 100%; display: block; object-fit: contain; padding: 24px; }
+@media (max-width: 720px) { .box-grid { grid-template-columns: 1fr; gap: 18px; } }
 
 /* product hub: packaging */
 .pkg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-bottom: 12px; }

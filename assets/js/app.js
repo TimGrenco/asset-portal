@@ -838,6 +838,7 @@
         "</div>" +
         highlightsHTML(p) +
         fullDescHTML(p) +
+        whatsInBoxHTML(p) +
         // ---- Documents (assets) — sits above Packaging, filters at the top ----
         '<div class="section-head" id="docs-head"><h2>Digital Assets</h2><span class="badge">' + activeCount + " file" + (activeCount === 1 ? "" : "s") + "</span></div>" +
         assetNav +
@@ -1031,11 +1032,22 @@
   function fullDescHTML(p) {
     var info = p.info || {};
     if (!(info.fullDescription && info.fullDescription.length)) return "";
-    return '<div class="fulldesc">' +
-      '<div class="fd-head"><h3 class="ov-h">Official product description</h3>' +
-        '<button class="btn ghost sm" id="copy-desc">' + icon("copy") + " Copy</button></div>" +
-      '<div class="fd-body">' + info.fullDescription.map(function (t) { return "<p>" + t + "</p>"; }).join("") + "</div>" +
-    "</div>";
+    return '<div class="section-head"><h2>Official Product Description</h2>' +
+        '<button class="btn ghost sm fd-copy" id="copy-desc">' + icon("copy") + " Copy</button></div>" +
+      '<div class="fulldesc"><div class="fd-body">' +
+        info.fullDescription.map(function (t) { return "<p>" + t + "</p>"; }).join("") +
+      "</div></div>";
+  }
+  // "What's In the Box?" — contents list + components image (from gpen.com).
+  function whatsInBoxHTML(p) {
+    if (p.isLogo) return "";
+    var b = p.info && p.info.box;
+    if (!b || !(b.contents && b.contents.length)) return "";
+    var list = '<ul class="box-list">' + b.contents.map(function (c) { return "<li>" + c + "</li>"; }).join("") + "</ul>";
+    var head = '<div class="section-head"><h2>What’s In the Box?</h2></div>';
+    if (!b.image) return head + '<div class="box-single">' + list + "</div>";
+    var img = '<div class="box-media"><img src="' + b.image + '" alt="What’s in the box" loading="lazy"/></div>';
+    return head + '<div class="box-grid">' + list + img + "</div>";
   }
 
   // Educational video hub. Each card: click to watch in the large player, a
