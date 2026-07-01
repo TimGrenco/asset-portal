@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brand Asset Portal — G Pen &amp; Stündenglass</title>
+  <meta name="description" content="Official brand &amp; product asset portal for G Pen and Stündenglass. Product photography, lifestyle imagery, logos, video and spec sheets." />
+
+  <!-- Social link previews (shown when the portal URL is shared) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="G Pen &amp; Stündenglass Brand Asset Portal" />
+  <meta property="og:title" content="Brand Asset Portal — G Pen &amp; Stündenglass" />
+  <meta property="og:description" content="Self-serve brand &amp; product assets: product photography, lifestyle, logos, video and spec sheets — organized by product, ready to download." />
+  <meta property="og:url" content="https://timgrenco.github.io/asset-portal/" />
+  <meta property="og:image" content="https://cdn.shopify.com/s/files/1/1419/1556/files/SG_thumb_02_24234b17-6488-4e0a-84dd-25bb2202ef5f.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Brand Asset Portal — G Pen &amp; Stündenglass" />
+  <meta name="twitter:description" content="Self-serve brand &amp; product assets, organized by product and ready to download." />
+  <meta name="twitter:image" content="https://cdn.shopify.com/s/files/1/1419/1556/files/SG_thumb_02_24234b17-6488-4e0a-84dd-25bb2202ef5f.png" />
+
+  <!-- Fonts: Archivo (display + body) — bold, modern sans to match gpen.com / stundenglass.com -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <!-- Brand-essentials type specimens (G Pen: Kanit/Lato · Stündenglass: Montserrat/Inter) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Kanit:wght@500;700&family=Lato:wght@400;700&family=Montserrat:wght@500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260624p" />
+</head>
+<body>
+  <h1 class="sr-only">G Pen and Stündenglass Brand Asset Portal</h1>
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <div class="brandmark" id="home-link" role="button" tabindex="0" aria-label="Back to home">
+        <span class="sq"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></svg></span>
+        <span class="lib">Brand Asset Portal</span>
+      </div>
+      <div class="nav-actions">
+        <button class="nav-link" id="nav-guides">Logos &amp; assets</button>
+        <a class="req-link req-mail" href="#"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span>Request an asset</span></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO (compact brand band) — home only -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="hero-brands">
+        <img class="hero-logo gpen" src="https://cdn.shopify.com/s/files/1/0185/1576/files/G_Logo.svg" alt="G Pen" />
+        <span class="dot"></span>
+        <img class="hero-logo sg" src="https://cdn.shopify.com/s/files/1/1419/1556/files/Vector.svg" alt="Stündenglass" />
+      </div>
+      <div class="hero-eyebrow">Official Brand &amp; Product Assets</div>
+      <h1 id="hero-tagline">Everything you need, in one place.</h1>
+    </div>
+  </section>
+
+  <!-- BROWSE BAR — primary navigation; sticks under the nav while scrolling -->
+  <section class="browse" id="browse">
+    <div class="wrap browse-inner">
+      <div class="browse-top">
+        <div class="toggle" id="view-toggle" role="group" aria-label="Brand filter">
+          <button class="on" data-view="gpen">G Pen</button>
+          <button data-view="stundenglass">Stündenglass</button>
+        </div>
+        <div class="browse-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input id="search" type="text" placeholder="Search products…" aria-label="Search assets" />
+        </div>
+        <span class="browse-count" id="browse-count"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <main class="wrap body">
+    <div id="home">
+      <div class="filterbar" id="active-filters"></div>
+
+      <div class="section-head">
+        <h2 id="all-title">Current products</h2>
+        <span class="badge" id="count-badge">0</span>
+        <div class="viewmode" id="view-mode" role="group" aria-label="Layout">
+          <button class="on" data-layout="grid" title="Grid view" aria-label="Grid view"></button>
+          <button data-layout="list" title="List view" aria-label="List view"></button>
+        </div>
+        <div class="sort" id="sort-toggle" role="group" aria-label="Sort products">
+          <button class="on" data-sort="featured">Featured</button>
+          <button data-sort="az">A–Z</button>
+        </div>
+      </div>
+      <div class="grid" id="all-grid"></div>
+
+      <!-- LOGOS & BRAND ASSETS — current brand's logos (in various formats) + social -->
+      <section id="resources">
+        <div class="section-head"><h2>Logos and Brand Assets</h2></div>
+        <div class="logo-assets" id="logo-assets"></div>
+        <div id="social-hub"></div>
+      </section>
+
+      <!-- ADDITIONAL / LEGACY PRODUCTS — a single box that opens a dedicated page -->
+      <div id="additional-entry"></div>
+    </div>
+
+    <div id="detail" class="detail" style="display:none;"></div>
+    <div id="styleguide" class="detail" style="display:none;"></div>
+    <div id="additional" class="detail" style="display:none;"></div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div class="wrap foot-inner">
+      <span class="l">Wholesale &amp; press asset requests welcome. Assets update as new products launch.</span>
+      <nav class="foot-links">
+        <a class="foot-link req-mail" href="#">Request an asset →</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX / ASSET VIEWER -->
+  <div class="lightbox" id="lightbox">
+    <button class="lb-close" id="lb-close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+    <button class="lb-nav lb-next" id="lb-next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+    <div class="lb-stage"><img src="" alt="Asset preview" /></div>
+    <div class="lb-bar">
+      <div class="lb-meta"><span class="lb-name" id="lb-name"></span><span class="lb-count" id="lb-count"></span></div>
+      <div class="lb-acts">
+        <button class="btn ghost sm" id="lb-copy"></button>
+        <button class="btn sm" id="lb-dl"></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="assets/data/synced.js?v=1782922710864"></script>
+  <script src="assets/data/assets.js?v=20260624p"></script>
+  <script src="assets/js/app.js?v=20260624p"></script>
+</body>
+</html>
