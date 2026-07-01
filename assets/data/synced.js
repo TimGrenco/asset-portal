@@ -597,6 +597,38 @@ window.PORTAL_SYNCED = {
       ],
       "Packaging": [
         {
+          "name": "Dash II Bloom Package 3-4 transparent",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/790a038b78bbdcf61a9f55014c46bad48830b4b5f26e1f315d2d140e9b412708.jpg",
+          "file": "assets/synced/dash-ii/files/790a038b78bbdcf61a9f55014c46bad48830b4b5f26e1f315d2d140e9b412708.png"
+        },
+        {
+          "name": "Dash II Bloom Package 3-4",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/04b596f545b1102e2eabdcf72bf97966379f050f79ce58d19ee59c64e1626b73.jpg",
+          "file": "assets/synced/dash-ii/files/04b596f545b1102e2eabdcf72bf97966379f050f79ce58d19ee59c64e1626b73.png"
+        },
+        {
+          "name": "Dash II Bloom Package front transparent",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/af5b6eca68b2b5bc8eec2e8b165d01b91bb5285a50b154ebaf244c53a30b16cc.jpg",
+          "file": "assets/synced/dash-ii/files/af5b6eca68b2b5bc8eec2e8b165d01b91bb5285a50b154ebaf244c53a30b16cc.png"
+        },
+        {
+          "name": "Dash II Bloom Package front",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/11bf50876e77f2c6ad83d37aa713ac1ddecfa365dd849e23f06fa77fcdc7a1c5.jpg",
+          "file": "assets/synced/dash-ii/files/11bf50876e77f2c6ad83d37aa713ac1ddecfa365dd849e23f06fa77fcdc7a1c5.png"
+        },
+        {
           "name": "Dash-Front-POP-Transparent",
           "type": "image",
           "format": "PNG",
@@ -653,6 +685,24 @@ window.PORTAL_SYNCED = {
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/d9c466345e94d377faf4cf72d40bcb583b9f6a95e71377ff7dc0beee5e83dc12.jpg",
           "file": "assets/synced/dash-ii/files/d9c466345e94d377faf4cf72d40bcb583b9f6a95e71377ff7dc0beee5e83dc12.pdf"
+        }
+      ],
+      "In Store Marketing Materials": [
+        {
+          "name": "DashII_Table_Tent",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/5b445228f87eec8b9ca1dbfc75a65e4c4330ee5dbff9b3f94b572311ac7382db.jpg",
+          "file": "assets/synced/dash-ii/files/5b445228f87eec8b9ca1dbfc75a65e4c4330ee5dbff9b3f94b572311ac7382db.jpg"
+        },
+        {
+          "name": "DashII_Table_Tent",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/47306d7a54172cb34be54c7404223512b7a145b195d358cb60e7e6bba80bc6fa.jpg",
+          "file": "assets/synced/dash-ii/files/47306d7a54172cb34be54c7404223512b7a145b195d358cb60e7e6bba80bc6fa.png"
         }
       ]
     },
@@ -2761,6 +2811,16 @@ window.PORTAL_SYNCED = {
           "format": "PDF",
           "url": "https://www.dropbox.com/scl/fo/5wps4y20eqmpbzj0j4ijq/h?rlkey=5bna5as30dz79lmqumcml47x7&st=xt8upom3&dl=0",
           "thumb": "assets/synced/dash-plus/4fa6b1f5a86802e71d1765b6a51ac34a07536ee1f1a51ab53765c9ad0518150c.jpg",
+          "file": null
+        }
+      ],
+      "In Store Marketing Materials": [
+        {
+          "name": "Screenshot 2026-07-01 at 1.40.48 PM",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/5wps4y20eqmpbzj0j4ijq/h?rlkey=5bna5as30dz79lmqumcml47x7&st=xt8upom3&dl=0",
+          "thumb": null,
           "file": null
         }
       ]
