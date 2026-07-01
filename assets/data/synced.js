@@ -4671,17 +4671,67 @@ window.PORTAL_SYNCED = {
           "file": null
         }
       ],
+      "TV Screen Videos": [
+        {
+          "name": "Luca Hyer Melt Wide",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fo/qvw93szg11i4ka3d9yuaq/AC8I-n2z09RvRGiA__rNYEs?rlkey=a0yhcy2ok0j1l4dnmk6ktwcoy&st=zx3371he&dl=0",
+          "thumb": "assets/synced/melt/e196d18cd74d0ec1e7361aad962c6a20b1ae2ef18767951ff597848b934d9546.jpg",
+          "file": null
+        },
+        {
+          "name": "Luca Recylcer2 Melt Wide",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fo/qvw93szg11i4ka3d9yuaq/AC8I-n2z09RvRGiA__rNYEs?rlkey=a0yhcy2ok0j1l4dnmk6ktwcoy&st=zx3371he&dl=0",
+          "thumb": "assets/synced/melt/18fe088fe7030ed469a7cfd035d8e20083139897da2f5c92ffa2d728600cb87f.jpg",
+          "file": null
+        }
+      ],
       "Packaging": [
         {
-          "name": "Melt-POP",
+          "name": "Melt-Front-POP-Transparent",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fo/qvw93szg11i4ka3d9yuaq/AC8I-n2z09RvRGiA__rNYEs?rlkey=a0yhcy2ok0j1l4dnmk6ktwcoy&st=zx3371he&dl=0",
+          "thumb": "assets/synced/melt/81b2a1722efa61447c794709e6882de9d4a8e6fcec4efa53a15f9e9146a43f8d.jpg",
+          "file": null
+        },
+        {
+          "name": "Melt-Front-POP-Transparent",
           "type": "image",
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/qvw93szg11i4ka3d9yuaq/AC8I-n2z09RvRGiA__rNYEs?rlkey=a0yhcy2ok0j1l4dnmk6ktwcoy&st=zx3371he&dl=0",
-          "thumb": "assets/synced/melt/a704afac0b39463ba9846fc26999166965268da2f68aca7b96f3444dc963aa5f.jpg",
+          "thumb": "assets/synced/melt/628e9f284fb810bfa05a760c85834f37860f0b0a153fa722d0be65289bf9df26.jpg",
+          "file": null
+        },
+        {
+          "name": "Melt-POP-Transparent",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fo/qvw93szg11i4ka3d9yuaq/AC8I-n2z09RvRGiA__rNYEs?rlkey=a0yhcy2ok0j1l4dnmk6ktwcoy&st=zx3371he&dl=0",
+          "thumb": "assets/synced/melt/f69d63da36b186fd27435bd0606c3271ea988970829ae9025f145573180e12ee.jpg",
+          "file": null
+        },
+        {
+          "name": "Melt-POP-Transparent",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/qvw93szg11i4ka3d9yuaq/AC8I-n2z09RvRGiA__rNYEs?rlkey=a0yhcy2ok0j1l4dnmk6ktwcoy&st=zx3371he&dl=0",
+          "thumb": "assets/synced/melt/8b037743f79f814059c3f0941350eb6adca2e853cc4dadd42986eaac8896e54f.jpg",
           "file": null
         }
       ],
       "Documents": [
+        {
+          "name": "20251203_GPen_MELT_Manual",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fo/qvw93szg11i4ka3d9yuaq/AC8I-n2z09RvRGiA__rNYEs?rlkey=a0yhcy2ok0j1l4dnmk6ktwcoy&st=zx3371he&dl=0",
+          "thumb": "assets/synced/melt/b04836d7c50e0d8873083efc27ea6aa6989de4fc263f6aa34bbe5b14124165a7.jpg",
+          "file": null
+        },
         {
           "name": "Hot-Knife-One-Sheet",
           "type": "pdf",
