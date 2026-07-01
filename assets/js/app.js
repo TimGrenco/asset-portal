@@ -938,7 +938,8 @@
       return '<button class="instore-tile" data-ism="' + i + '" title="' + fileLabel(x).replace(/"/g, "") + '">' +
         media + '<span class="instore-tile-fmt">' + (x.format || "") + "</span></button>";
     }).join("");
-    return head + note + '<div class="instore-grid">' + tiles + "</div>";
+    return head + note + '<div class="instore-grid">' + tiles + "</div>" +
+      '<div class="instore-order"><a class="btn" href="#materials">' + icon("mail") + " Order marketing materials</a></div>";
   }
 
   function pkgCard(label, url) {
