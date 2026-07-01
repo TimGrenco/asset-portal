@@ -801,10 +801,19 @@ window.PORTAL_PRODUCTS.forEach(function (p) {
    and as placeholders on any product page that has no product-specific pieces. */
 window.PORTAL_INSTORE_GENERAL = (function () {
   var g = (typeof window !== "undefined" && window.PORTAL_SYNCED && window.PORTAL_SYNCED["In-Store Marketing General"]) || null;
-  if (!g || !g.folders) return [];
-  var out = [];
-  Object.keys(g.folders).forEach(function (f) { (g.folders[f] || []).forEach(function (x) { out.push(x); }); });
-  return out;
+  if (g && g.folders) {
+    var out = [];
+    Object.keys(g.folders).forEach(function (f) { (g.folders[f] || []).forEach(function (x) { out.push(x); }); });
+    if (out.length) return out;
+  }
+  // Placeholder items until the "In-Store Marketing General" Dropbox folder is
+  // connected — keeps the ordering page functional. Real photos replace these
+  // automatically once the folder syncs (thumb: null → shows a photo icon).
+  return [
+    { name: "G Pen Napkins", type: "image", format: "", thumb: null, url: "#", file: null },
+    { name: "G Pen Lanyard", type: "image", format: "", thumb: null, url: "#", file: null },
+    { name: "G Pen Standee Display", type: "image", format: "", thumb: null, url: "#", file: null },
+  ];
 })();
 
 /* Hydout — Retro has no Product Photos in its Dropbox folder yet, so show all
