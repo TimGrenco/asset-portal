@@ -789,11 +789,14 @@
   function packagingHTML(p) {
     if (p.isLogo) return "";
     var info = p.info || {};
-    // Pull the POP-display image from the synced "Packaging" Dropbox folder.
+    // POP-display image: prefer the central POP Displays library (info.popImg),
+    // else fall back to an image in the product's own "Packaging" Dropbox folder.
     var popImg = info.popImg;
-    var pkgFolder = (p.folders && p.folders["Packaging"]) || [];
-    var pkgImg = pkgFolder.filter(function (f) { return f.thumb; })[0];
-    if (pkgImg) popImg = pkgImg.file || pkgImg.thumb;
+    if (!popImg) {
+      var pkgFolder = (p.folders && p.folders["Packaging"]) || [];
+      var pkgImg = pkgFolder.filter(function (f) { return f.thumb; })[0];
+      if (pkgImg) popImg = pkgImg.file || pkgImg.thumb;
+    }
     var cards = pkgCard("Retail packaging", info.boxImg);
     if (info.pop || popImg) cards += pkgCard("Retail POP display", popImg);
     if (info.cartonImg) cards += pkgCard("Master carton", info.cartonImg);

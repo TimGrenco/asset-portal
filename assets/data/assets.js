@@ -773,3 +773,25 @@ window.PORTAL_PRODUCTS.forEach(function (p) {
     }
   });
 })();
+
+/* Central POP-display library (synced from the "POP Displays" Dropbox folder) →
+   matched to each product's "Retail POP display" packaging card by filename.
+   Add a product + filename pattern here as new POP images arrive. */
+(function () {
+  var POP = (typeof window !== "undefined" && window.PORTAL_SYNCED && window.PORTAL_SYNCED["POP Displays"]) || null;
+  if (!POP || !POP.folders) return;
+  var pops = [];
+  Object.keys(POP.folders).forEach(function (f) { (POP.folders[f] || []).forEach(function (x) { pops.push(x); }); });
+  var MATCH = {
+    "510 Original": /^510-Original-Front-POP/i,
+    "510 Original — Retro": /^510-Retro-Front-POP/i,
+    "Hydout": /^Hydout-Front-POP/i,
+    "Melt Hot Knife": /^Melt-Front-POP/i,
+    "Dash II": /^Dash-Front-POP/i,
+  };
+  window.PORTAL_PRODUCTS.forEach(function (p) {
+    var re = MATCH[p.name]; if (!re || !p.info) return;
+    var img = pops.filter(function (x) { return re.test(x.name) && x.thumb; })[0];
+    if (img) { p.info.popImg = img.thumb; p.info.pop = true; }
+  });
+})();
