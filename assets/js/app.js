@@ -529,49 +529,42 @@
   function renderInStore() {
     var box = $("#instore"); if (!box) return;
     var bk = state.view, bname = BRANDS[bk].name;
-    var products = currentList(bk)
+    // All orderable materials for this brand: brand-level generics + per-product.
+    var mats = [];
+    (window.PORTAL_INSTORE_GENERAL || []).forEach(function (x) { mats.push(x); });
+    currentList(bk)
       .map(function (n) { return PRODUCTS.filter(function (p) { return p.name === n; })[0]; })
-      .filter(Boolean);
-    var groups = products
-      .map(function (p) { return { label: p.name, items: (p.folders && p.folders[INSTORE_FOLDER]) || [] }; })
-      .filter(function (g) { return g.items.length; });
-    var generic = window.PORTAL_INSTORE_GENERAL || [];
-    if (generic.length) groups.unshift({ label: "General " + bname + " materials", items: generic });
-    var total = groups.reduce(function (n, g) { return n + g.items.length; }, 0);
-    var orderCta = '<a class="btn" href="#materials">' + icon("mail") + " Order materials</a>";
+      .filter(Boolean)
+      .forEach(function (p) { ((p.folders && p.folders[INSTORE_FOLDER]) || []).forEach(function (x) { mats.push(x); }); });
 
-    if (!total) {
+    var orderCta = '<a class="btn" href="#materials">' + icon("mail") + " Order materials</a>";
+    if (!mats.length) {
       box.innerHTML =
         '<div class="instore-empty">' +
           "<p>Retail displays, posters, shelf talkers and other in-store materials for " + bname +
-            " will show here as they’re added — browse and order what you need for your shop.</p>" +
-          orderCta +
+            " will show here as they’re added — order what you need for your shop.</p>" + orderCta +
         "</div>";
       return;
     }
 
-    // Flat list for the lightbox (view larger); tiles reference it by index.
-    var flat = [];
-    groups.forEach(function (g) { g.items.forEach(function (x) { flat.push({ src: x.thumb || x.file || x.url, name: fileLabel(x) + " · " + g.label, url: x.file || x.url || "#" }); }); });
-    var idx = 0;
-    box.innerHTML =
-      '<p class="instore-lead">' + total + " material" + (total > 1 ? "s" : "") + " available to order across " +
-        groups.length + " product" + (groups.length > 1 ? "s" : "") + ". " + orderCta + "</p>" +
-      groups.map(function (g) {
-        return '<div class="instore-group"><div class="instore-group-h">' + g.label + "</div>" +
-          '<div class="instore-grid">' +
-          g.items.map(function (x) {
-            var i = idx++;
-            var media = x.thumb ? '<img src="' + x.thumb + '" alt="' + fileLabel(x).replace(/"/g, "") + '" loading="lazy"/>' : window.__icon("photo");
-            return '<button class="instore-tile" data-lbi="' + i + '" title="' + fileLabel(x).replace(/"/g, "") + '">' +
-              media + '<span class="instore-tile-fmt">' + (x.format || "") + "</span></button>";
-          }).join("") +
-          "</div></div>";
-      }).join("");
+    // Two preview tiles (like the logos card) — clicking goes to the order page.
+    var tiles = mats.slice(0, 2).map(function (x) {
+      var media = x.thumb ? '<img src="' + x.thumb + '" alt="' + fileLabel(x).replace(/"/g, "") + '" loading="lazy"/>' : window.__icon("photo");
+      return '<a class="logo-tile" href="#materials" title="Order marketing materials">' + media + "</a>";
+    }).join("");
 
-    $$(".instore-tile", box).forEach(function (t) {
-      t.addEventListener("click", function () { openLightbox(flat, +t.getAttribute("data-lbi")); });
-    });
+    box.innerHTML =
+      '<div class="logo-card">' +
+        '<div class="logo-card-info">' +
+          '<div class="logo-card-name">Retail Marketing Materials</div>' +
+          '<p class="logo-card-note">Retail displays, posters, shelf talkers and other in-store materials for ' + bname +
+            " — order what you need for your shop.</p>" +
+          '<div class="logo-card-actions">' + orderCta +
+            '<span class="instore-count">' + mats.length + " material" + (mats.length === 1 ? "" : "s") + " available</span>" +
+          "</div>" +
+        "</div>" +
+        '<div class="logo-preview">' + tiles + "</div>" +
+      "</div>";
   }
 
   // Store-locator sign-up callout — retailers request to be listed.
@@ -674,10 +667,19 @@
       return;
     }
 
+    var lbItems = [];   // enlargeable previews (materials that have a real image)
     var rows = mats.map(function (m, i) {
-      var media = m.thumb ? '<img src="' + m.thumb + '" alt="' + m.name.replace(/"/g, "") + '" loading="lazy"/>' : window.__icon("photo");
-      return '<div class="mat-row">' +
-        '<div class="mat-thumb">' + media + "</div>" +
+      var thumb;
+      if (m.thumb) {
+        var li = lbItems.length;
+        lbItems.push({ src: m.thumb, name: m.name, url: m.url || m.thumb });
+        thumb = '<button class="mat-thumb mat-thumb-zoom" data-lbi="' + li + '" title="Click preview to enlarge" aria-label="Enlarge ' + m.name.replace(/"/g, "") + '">' +
+          '<img src="' + m.thumb + '" alt="' + m.name.replace(/"/g, "") + '" loading="lazy"/>' +
+          '<span class="mat-zoom-badge">' + icon("search") + "</span></button>";
+      } else {
+        thumb = '<div class="mat-thumb">' + window.__icon("photo") + "</div>";
+      }
+      return '<div class="mat-row">' + thumb +
         '<div class="mat-name">' + m.name + "</div>" +
         '<div class="mat-qty"><button class="mat-step" data-step="-1" aria-label="Decrease">–</button>' +
           '<input type="number" min="0" value="0" data-mat="' + i + '" aria-label="Quantity for ' + m.name.replace(/"/g, "") + '"/>' +
@@ -686,7 +688,8 @@
     }).join("");
 
     pg.innerHTML = head +
-      '<p class="mat-lead">' + icon("info") + " Set a quantity for each item, add your store details, then send your request." + "</p>" +
+      '<p class="mat-lead">' + icon("info") + " Set a quantity for each item, add your store details, then send your request." +
+        (lbItems.length ? " Click a preview to enlarge it." : "") + "</p>" +
       '<div class="mat-layout">' +
         '<div class="mat-list">' + rows + "</div>" +
         '<aside class="mat-side">' +
@@ -715,6 +718,9 @@
       });
     });
     $$("[data-mat]", pg).forEach(function (inp) { inp.addEventListener("input", updateMatCount); });
+    $$("[data-lbi]", pg).forEach(function (t) {
+      t.addEventListener("click", function () { openLightbox(lbItems, +t.getAttribute("data-lbi")); });
+    });
     $("#mat-order").addEventListener("click", function () { submitMaterialOrder(mats); });
   }
   function submitMaterialOrder(mats) {
