@@ -233,10 +233,10 @@ window.PORTAL_PRODUCTS = [
   },
   {
     name: "Hydout — Retro", brand: "gpen", category: "510 Battery", type: "510 Cartridge Battery",
-    cover: CDN + "Purple_hydout_01_7ba93da8-20db-4862-8531-230c078bd976.png?v=1765490117",
+    cover: CDN + "Green_hydout_01_4b72ac42-025b-430e-937e-244203f17267.png?v=1765490119",
     added: "2025-12-03",
     oneSheet: "#",
-    folders: mkFolders(CDN + "Purple_hydout_01_7ba93da8-20db-4862-8531-230c078bd976.png?v=1765490117", "G Pen", "Hydout Retro",
+    folders: mkFolders(CDN + "Green_hydout_01_4b72ac42-025b-430e-937e-244203f17267.png?v=1765490119", "G Pen", "Hydout Retro",
       { "E-Comm Render Photos": 8, "Lifestyle Photos": 4, "Logos": 2, "Video": 0, "Misc": 0 }),
   },
   {

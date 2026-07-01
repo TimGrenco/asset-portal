@@ -685,8 +685,16 @@
     }).join("");
 
     pg.innerHTML = head +
-      '<p class="mat-lead">' + icon("info") + " Set a quantity for each item you’d like to order, then send your request — you’ll add your store details in the email.</p>" +
+      '<p class="mat-lead">' + icon("info") + " Set a quantity for each item, add your store details, then send your request.</p>" +
       '<div class="mat-list">' + rows + "</div>" +
+      '<div class="mat-store">' +
+        '<div class="section-head"><h2>Your details</h2></div>' +
+        '<div class="mat-fields">' +
+          '<label class="mat-field"><span>Store Name</span><input type="text" id="mat-store-name" placeholder="Store name"/></label>' +
+          '<label class="mat-field mat-field-wide"><span>Mailing Address</span><input type="text" id="mat-store-address" placeholder="Street, City, State, ZIP"/></label>' +
+          '<label class="mat-field"><span>Email Address</span><input type="email" id="mat-store-email" placeholder="you@store.com"/></label>' +
+        "</div>" +
+      "</div>" +
       '<div class="mat-actions"><button class="btn lg" id="mat-order">' + icon("mail") + " Order Marketing Materials</button></div>";
 
     $("#mat-back").addEventListener("click", navHome);
@@ -705,7 +713,11 @@
       if (q > 0) lines.push(mats[+inp.getAttribute("data-mat")].name + " — Qty: " + q);
     });
     if (!lines.length) { toast("Set a quantity for at least one item first"); return; }
-    var body = "Store Name:\nAddress:\nE-Mail Address:\n\nRequested Marketing Materials:\n" + lines.join("\n");
+    var v = function (id) { var el = $(id); return el ? el.value.trim() : ""; };
+    var body = "Store Name: " + v("#mat-store-name") +
+      "\nAddress: " + v("#mat-store-address") +
+      "\nE-Mail Address: " + v("#mat-store-email") +
+      "\n\nRequested Marketing Materials:\n" + lines.join("\n");
     window.location.href = "mailto:" + CFG.orderEmail + "?subject=" +
       encodeURIComponent("Marketing Material Request") + "&body=" + encodeURIComponent(body);
   }
