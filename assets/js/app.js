@@ -989,7 +989,8 @@
       row(info.pop ? "Units per POP display" : "Inner pack", info.innerPack) +
       row("Units per master case", info.masterCarton) +
       row("Case weight", info.caseWeight) +
-      row("Case dimensions", info.caseDimensions);
+      row("Case dimensions", info.caseDimensions) +
+      row("HTS (Harmonized Tariff Schedule) Code", info.htsCode);
     return '<div class="section-head"><h2>SKU details</h2></div>' +
       '<div class="sku-table">' + rows + "</div>" +
       (missing ? '<p class="pkg-note">' + icon("info") + " Fields shown as <strong>—</strong> are still to be confirmed." + "</p>" : "");
