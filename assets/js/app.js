@@ -656,7 +656,9 @@
     window.scrollTo(0, 0);
     recordRecent(p);
 
-    var folderNames = Object.keys(p.folders);
+    // In-Store Marketing gets its own section below the gallery — keep it out of
+    // the Digital Assets folder tabs.
+    var folderNames = Object.keys(p.folders).filter(function (f) { return f !== "In-Store Marketing"; });
     var active = folderNames[0];
     var selected = {};   // fileKey -> file object; persists while switching folder tabs
 
@@ -733,6 +735,7 @@
         "</div>" +
         (CFG.usageNote ? '<div class="usage usage-foot">' + icon("info") + "<span>" + CFG.usageNote + "</span></div>" : "") +
         // ---- product info below the assets ----
+        inStoreHTML(p) +
         packagingHTML(p) +
         skuHTML(p) +
         videoHubHTML(p);
@@ -748,6 +751,20 @@
       });
       $$("[data-soon]", d).forEach(function (b) {
         b.addEventListener("click", function (e) { e.stopPropagation(); toast("Downloadable file coming soon — Dropbox link on the way"); });
+      });
+      // POP-display / packaging image → enlarge in the lightbox.
+      $$("[data-lbimg]", d).forEach(function (b) {
+        b.addEventListener("click", function () {
+          var u = b.getAttribute("data-lbimg");
+          openLightbox([{ src: u, name: b.getAttribute("data-lbname"), url: u }], 0);
+        });
+      });
+      // In-store marketing tiles → enlarge in the lightbox.
+      var ismItems = ((p.folders && p.folders["In-Store Marketing"]) || []).map(function (x) {
+        return { src: x.thumb || x.file || x.url, name: fileLabel(x), url: x.file || x.url || "#" };
+      });
+      $$("[data-ism]", d).forEach(function (t) {
+        t.addEventListener("click", function () { openLightbox(ismItems, +t.getAttribute("data-ism")); });
       });
       $("#back-btn").addEventListener("click", navHome);
       var heroCover = $("#hero-cover");
@@ -780,11 +797,33 @@
   }
 
   // Packaging visuals: retail outer box + (for POP products) the POP display.
+  // In-store printed marketing materials for this product (its "In-Store
+  // Marketing" Dropbox folder) — a dedicated section under Digital Assets.
+  function inStoreHTML(p) {
+    if (p.isLogo) return "";
+    var items = (p.folders && p.folders["In-Store Marketing"]) || [];
+    var head = '<div class="section-head"><h2>In Store Marketing Materials</h2>' +
+      (items.length ? '<span class="badge">' + items.length + " item" + (items.length === 1 ? "" : "s") + "</span>" : "") + "</div>";
+    if (!items.length) {
+      return head + '<div class="instore-empty">' +
+        "<p>Printed in-store materials (posters, shelf talkers, displays) for this product will appear here as they’re added.</p>" +
+        '<a class="btn ghost sm" href="mailto:' + CFG.orderEmail + "?subject=" +
+          encodeURIComponent("In-store material request — " + p.name) + '">' + icon("mail") + " Request materials</a>" +
+      "</div>";
+    }
+    var tiles = items.map(function (x, i) {
+      var media = x.thumb ? '<img src="' + x.thumb + '" alt="' + fileLabel(x).replace(/"/g, "") + '" loading="lazy"/>' : window.__icon("photo");
+      return '<button class="instore-tile" data-ism="' + i + '" title="' + fileLabel(x).replace(/"/g, "") + '">' +
+        media + '<span class="instore-tile-fmt">' + (x.format || "") + "</span></button>";
+    }).join("");
+    return head + '<div class="instore-grid">' + tiles + "</div>";
+  }
+
   function pkgCard(label, url) {
     var media = url
-      ? '<img src="' + url + '" alt="' + label + '" loading="lazy"/>'
-      : '<div class="pkg-ph">' + icon("photo") + "<span>Image coming soon</span></div>";
-    return '<div class="pkg-card"><div class="pkg-media">' + media + '</div><div class="pkg-label">' + label + "</div></div>";
+      ? '<button class="pkg-media pkg-zoom" data-lbimg="' + url + '" data-lbname="' + label + '" title="Click to enlarge"><img src="' + url + '" alt="' + label + '" loading="lazy"/></button>'
+      : '<div class="pkg-media"><div class="pkg-ph">' + icon("photo") + "<span>Image coming soon</span></div></div>";
+    return '<div class="pkg-card">' + media + '<div class="pkg-label">' + label + "</div></div>";
   }
   function packagingHTML(p) {
     if (p.isLogo) return "";
