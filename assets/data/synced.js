@@ -205,6 +205,54 @@ window.PORTAL_SYNCED = {
           "file": "assets/synced/dash-ii/files/ab66e642d641e9502c32a1d53d7779df5850695d0e01ec00d78d5dbfb93df5f2.jpg"
         },
         {
+          "name": "_ALF2533",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/f7a63a1b8aa4f5761e2a044dc2e54d0b5a99cfb42acc8f83721d41b061eabf41.jpg",
+          "file": "assets/synced/dash-ii/files/f7a63a1b8aa4f5761e2a044dc2e54d0b5a99cfb42acc8f83721d41b061eabf41.jpg"
+        },
+        {
+          "name": "_ALF2540",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/fb8cc4167b9c866d028aa66c23aa0dd405050f3a13f4293944c56c89f7692e3c.jpg",
+          "file": "assets/synced/dash-ii/files/fb8cc4167b9c866d028aa66c23aa0dd405050f3a13f4293944c56c89f7692e3c.jpg"
+        },
+        {
+          "name": "_ALF2674",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/bf55167651e5a116e90cef3b590d284f98a4064aaed932492847b7e1132b8210.jpg",
+          "file": "assets/synced/dash-ii/files/bf55167651e5a116e90cef3b590d284f98a4064aaed932492847b7e1132b8210.jpg"
+        },
+        {
+          "name": "_ALF2690",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/75c30f4f8089259b848ed84d4eddf5497d2624d5ca2d7cddd6bbb5718a813d0d.jpg",
+          "file": "assets/synced/dash-ii/files/75c30f4f8089259b848ed84d4eddf5497d2624d5ca2d7cddd6bbb5718a813d0d.jpg"
+        },
+        {
+          "name": "_ALF2769",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/d66844edfb312e3bbda350180f8f04882bc33baebdeba0301d77d5d8ea9ed778.jpg",
+          "file": "assets/synced/dash-ii/files/d66844edfb312e3bbda350180f8f04882bc33baebdeba0301d77d5d8ea9ed778.jpg"
+        },
+        {
+          "name": "_ALF2891",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/a474d272023f2f48e7b73b7680b4e4a054bd0ab7461e7849cee45c3becc03d38.jpg",
+          "file": "assets/synced/dash-ii/files/a474d272023f2f48e7b73b7680b4e4a054bd0ab7461e7849cee45c3becc03d38.jpg"
+        },
+        {
           "name": "_GSH0138e",
           "type": "image",
           "format": "JPG",
@@ -537,16 +585,6 @@ window.PORTAL_SYNCED = {
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/d3998c328bcc382ab553d2e0933e5e3db9ad263f3efd336d2aef5dad67d6e2d7.jpg",
           "file": null
-        }
-      ],
-      "Packaging": [
-        {
-          "name": "GPEN_Dash2_POP_Mockup_",
-          "type": "image",
-          "format": "PNG",
-          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
-          "thumb": "assets/synced/dash-ii/9943445d99853d7f378444120c74c96408059d559e410a2ddc74899fe990d17b.jpg",
-          "file": "assets/synced/dash-ii/files/9943445d99853d7f378444120c74c96408059d559e410a2ddc74899fe990d17b.png"
         }
       ],
       "Documents": [
@@ -944,15 +982,55 @@ window.PORTAL_SYNCED = {
       ],
       "Packaging": [
         {
-          "name": "510-Pop-Display",
+          "name": "510 New copy",
           "type": "image",
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/mtuk2kb73ln5pv0qj68y5/AOnLPmrirA3wsvOdaA0v9rw?rlkey=e8svbeey6dql240rjqzch9qco&st=tvt2s0qf&dl=0",
-          "thumb": "assets/synced/510-original/c43ab9b3794707709e19068f6e39aed39e724baac3c452c7a52f9db670500c84.jpg",
+          "thumb": "assets/synced/510-original/fd7fcc2eb4f14df250655cd6d8ac78240fd099d932b8a5c15e3fbe26abaf4c8a.jpg",
+          "file": null
+        },
+        {
+          "name": "510 New Transparent",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/mtuk2kb73ln5pv0qj68y5/AOnLPmrirA3wsvOdaA0v9rw?rlkey=e8svbeey6dql240rjqzch9qco&st=tvt2s0qf&dl=0",
+          "thumb": "assets/synced/510-original/352549ebe0d8fb77a1ee783565b33f0eda073adb584fc998b8853c436f7ac52d.jpg",
+          "file": null
+        },
+        {
+          "name": "510-Original-Front-POP-Transparent",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/mtuk2kb73ln5pv0qj68y5/AOnLPmrirA3wsvOdaA0v9rw?rlkey=e8svbeey6dql240rjqzch9qco&st=tvt2s0qf&dl=0",
+          "thumb": "assets/synced/510-original/b471300e366540f54c406047aef242f5d4595c69186bcd662e58d126f06305ee.jpg",
+          "file": null
+        },
+        {
+          "name": "510-Original-Front-POP",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fo/mtuk2kb73ln5pv0qj68y5/AOnLPmrirA3wsvOdaA0v9rw?rlkey=e8svbeey6dql240rjqzch9qco&st=tvt2s0qf&dl=0",
+          "thumb": "assets/synced/510-original/97c99ee846af2e0ff3833804d029f130dec0f2af58cd246443fa8a5494b48f55.jpg",
+          "file": null
+        },
+        {
+          "name": "510-Original-Front-POP",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/mtuk2kb73ln5pv0qj68y5/AOnLPmrirA3wsvOdaA0v9rw?rlkey=e8svbeey6dql240rjqzch9qco&st=tvt2s0qf&dl=0",
+          "thumb": "assets/synced/510-original/ac5088648c59eb587ebfaaa74132eba95ba76c75d18af48e96c6015c1212c2b9.jpg",
           "file": null
         }
       ],
       "Documents": [
+        {
+          "name": "20251218_GPen_510_Original_Manual",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fo/mtuk2kb73ln5pv0qj68y5/AOnLPmrirA3wsvOdaA0v9rw?rlkey=e8svbeey6dql240rjqzch9qco&st=tvt2s0qf&dl=0",
+          "thumb": "assets/synced/510-original/d5502bb679179a173894680ec9e70a59e0c3b7bc04042965936273f324d0ecca.jpg",
+          "file": null
+        },
         {
           "name": "GPEN_510_Original_Onesheet",
           "type": "pdf",
@@ -1911,7 +1989,33 @@ window.PORTAL_SYNCED = {
           "file": null
         }
       ],
+      "Packaging": [
+        {
+          "name": "510-Retro-Front-POP",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
+          "thumb": "assets/synced/510-original-retro/5bf1e8190f26df8eee3e70aac886d000f6324845d11938f51f8790ad980c8251.jpg",
+          "file": null
+        },
+        {
+          "name": "510-Retro-Front-POP",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
+          "thumb": "assets/synced/510-original-retro/a624deaa350c04f8a5e17165f48db0a3f51785f5b95bc6dc25c109ab5692d65e.jpg",
+          "file": null
+        }
+      ],
       "Documents": [
+        {
+          "name": "20251218_GPen_510_Original_Manual",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
+          "thumb": "assets/synced/510-original-retro/d5502bb679179a173894680ec9e70a59e0c3b7bc04042965936273f324d0ecca.jpg",
+          "file": null
+        },
         {
           "name": "G Pen - One Sheet - 510 Original Retro",
           "type": "pdf",
@@ -4632,5 +4736,92 @@ window.PORTAL_SYNCED = {
       ]
     },
     "dropbox": "https://www.dropbox.com/scl/fo/gjjl69xfmfxqdxg87vym9/h?rlkey=q17pigcl81qcvr7rzcv2xpne3&st=wok0w9o7&dl=1"
+  },
+  "POP Displays": {
+    "folders": {
+      "POP Displays": [
+        {
+          "name": "510 New Transparent",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/z31rov1tjw0rm2fy7qssw/ABSnVsz5hLjhid95WhqyajM?rlkey=jkld2f2m07jctowd5x1ao357b&st=lmrqshh4&dl=0",
+          "thumb": "assets/synced/pop-displays/352549ebe0d8fb77a1ee783565b33f0eda073adb584fc998b8853c436f7ac52d.jpg",
+          "file": null
+        },
+        {
+          "name": "510-Original-Front-POP-Transparent",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/z31rov1tjw0rm2fy7qssw/ABSnVsz5hLjhid95WhqyajM?rlkey=jkld2f2m07jctowd5x1ao357b&st=lmrqshh4&dl=0",
+          "thumb": "assets/synced/pop-displays/b471300e366540f54c406047aef242f5d4595c69186bcd662e58d126f06305ee.jpg",
+          "file": null
+        },
+        {
+          "name": "510-Retro-Front-POP-Transparent",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/z31rov1tjw0rm2fy7qssw/ABSnVsz5hLjhid95WhqyajM?rlkey=jkld2f2m07jctowd5x1ao357b&st=lmrqshh4&dl=0",
+          "thumb": "assets/synced/pop-displays/a8fd9b44ac1b947768984a7e9788635b443023dfb701358981e67d200192bb08.jpg",
+          "file": null
+        },
+        {
+          "name": "510-Retro-POP-Transparent",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/z31rov1tjw0rm2fy7qssw/ABSnVsz5hLjhid95WhqyajM?rlkey=jkld2f2m07jctowd5x1ao357b&st=lmrqshh4&dl=0",
+          "thumb": "assets/synced/pop-displays/ebf8190d5d4bf635e7cf8f458abda25a57cdf2aba68a464671fb073cd2e0422d.jpg",
+          "file": null
+        },
+        {
+          "name": "Dash-Front-POP-Transparent",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/z31rov1tjw0rm2fy7qssw/ABSnVsz5hLjhid95WhqyajM?rlkey=jkld2f2m07jctowd5x1ao357b&st=lmrqshh4&dl=0",
+          "thumb": "assets/synced/pop-displays/dd8784cd916d19a371adfdf8d5b2033fd53acf067acc709ea2440151606b226e.jpg",
+          "file": null
+        },
+        {
+          "name": "Dash-POP-Transparent",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/z31rov1tjw0rm2fy7qssw/ABSnVsz5hLjhid95WhqyajM?rlkey=jkld2f2m07jctowd5x1ao357b&st=lmrqshh4&dl=0",
+          "thumb": "assets/synced/pop-displays/d05e4984661cfc9969a98184adfc1170b2cb5a4954b24346bf2319c70eb4100c.jpg",
+          "file": null
+        },
+        {
+          "name": "Hydout-Front-POP-Transparent",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/z31rov1tjw0rm2fy7qssw/ABSnVsz5hLjhid95WhqyajM?rlkey=jkld2f2m07jctowd5x1ao357b&st=lmrqshh4&dl=0",
+          "thumb": "assets/synced/pop-displays/4dd3325f11e6c39e2b1e8f0d35cfb243a6c941ad570a4f84f5171c82489fbd57.jpg",
+          "file": null
+        },
+        {
+          "name": "Hydout-New-Transparent",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/z31rov1tjw0rm2fy7qssw/ABSnVsz5hLjhid95WhqyajM?rlkey=jkld2f2m07jctowd5x1ao357b&st=lmrqshh4&dl=0",
+          "thumb": "assets/synced/pop-displays/07e0a19aa34188e9dceda7eeb61e960ab8752ae77adad0717892a783579d7bfd.jpg",
+          "file": null
+        },
+        {
+          "name": "Melt-Front-POP-Transparent",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/z31rov1tjw0rm2fy7qssw/ABSnVsz5hLjhid95WhqyajM?rlkey=jkld2f2m07jctowd5x1ao357b&st=lmrqshh4&dl=0",
+          "thumb": "assets/synced/pop-displays/628e9f284fb810bfa05a760c85834f37860f0b0a153fa722d0be65289bf9df26.jpg",
+          "file": null
+        },
+        {
+          "name": "Melt-POP-Transparent",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/z31rov1tjw0rm2fy7qssw/ABSnVsz5hLjhid95WhqyajM?rlkey=jkld2f2m07jctowd5x1ao357b&st=lmrqshh4&dl=0",
+          "thumb": "assets/synced/pop-displays/8b037743f79f814059c3f0941350eb6adca2e853cc4dadd42986eaac8896e54f.jpg",
+          "file": null
+        }
+      ]
+    },
+    "dropbox": "https://www.dropbox.com/scl/fo/z31rov1tjw0rm2fy7qssw/ABSnVsz5hLjhid95WhqyajM?rlkey=jkld2f2m07jctowd5x1ao357b&st=lmrqshh4&dl=1"
   }
 };
