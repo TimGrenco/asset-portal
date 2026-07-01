@@ -42,6 +42,9 @@
       copy: '<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/>',
       play: '<path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/>',
       x: '<path d="M18 6 6 18M6 6l12 12"/>',
+      mapPin: '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
+      plus: '<path d="M12 5v14M5 12h14"/>',
+      trash: '<path d="M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>',
     };
     return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (paths[name] || "") + "</svg>";
   }
@@ -134,9 +137,11 @@
   function route() {
     var parts = location.hash.replace(/^#/, "").split("/");
     var mp = $("#materials-page"); if (mp && parts[0] !== "materials") mp.style.display = "none";
+    var lp = $("#locator-page"); if (lp && parts[0] !== "locator") lp.style.display = "none";
     if (parts[0] === "style" && BRANDS[parts[1]]) { openStyleGuide(parts[1]); return; }
     if (parts[0] === "additional" && BRANDS[parts[1]]) { openAdditional(parts[1]); return; }
     if (parts[0] === "materials") { openMaterials(); return; }
+    if (parts[0] === "locator") { openLocator(); return; }
     var p = productFromHash();
     if (p) openDetail(p); else renderHome();
   }
@@ -577,10 +582,7 @@
           "<h2>Get your store on our Store Locator</h2>" +
           "<p>Carry G Pen or Stündenglass? Request to be added to our official store locator so customers can find your shop.</p>" +
         "</div>" +
-        '<a class="btn lg" href="mailto:' + CFG.locatorEmail + "?subject=" +
-          encodeURIComponent("Add to Store Locator") + "&body=" +
-          encodeURIComponent("Store Name:\nAddress:\nPhone Number: (Optional)") +
-          '">' + icon("mail") + " Request to be listed</a>" +
+        '<a class="btn lg" href="#locator">' + icon("mapPin") + " Request to be listed</a>" +
       "</div>";
   }
 
@@ -742,6 +744,121 @@
   function navMaterials() {
     openMaterials();
     if (location.hash !== "#materials") { ignoreHash = true; location.hash = "materials"; }
+  }
+
+  // ---- store locator request page ------------------------------------------
+  // A retailer fills in one or more store locations and submits them all as a
+  // single email to the PR team (CFG.locatorEmail).
+  function storeBlockHTML(n) {
+    return '<div class="loc-store" data-store>' +
+        '<div class="loc-store-h">' +
+          '<span class="loc-store-n">Store <span class="loc-store-i">' + n + "</span></span>" +
+          '<button class="loc-remove" data-remove title="Remove this store">' + icon("trash") + " Remove</button>" +
+        "</div>" +
+        '<div class="loc-fields">' +
+          '<label class="mat-field loc-wide"><span>Store Name</span><input type="text" data-f="name" placeholder="Store name"/></label>' +
+          '<label class="mat-field loc-wide"><span>Street Address</span><input type="text" data-f="street" placeholder="123 Main St"/></label>' +
+          '<div class="loc-row">' +
+            '<label class="mat-field"><span>City</span><input type="text" data-f="city" placeholder="City"/></label>' +
+            '<label class="mat-field"><span>State</span><input type="text" data-f="state" placeholder="State"/></label>' +
+            '<label class="mat-field"><span>ZIP</span><input type="text" data-f="zip" placeholder="ZIP"/></label>' +
+          "</div>" +
+          '<label class="mat-field loc-wide"><span>Store Phone <em>(optional)</em></span><input type="tel" data-f="phone" placeholder="(555) 555-5555"/></label>' +
+        "</div>" +
+      "</div>";
+  }
+  function openLocator() {
+    $("#home").style.display = "none";
+    $("#detail").style.display = "none";
+    $("#styleguide").style.display = "none";
+    $("#additional").style.display = "none";
+    $("#materials-page").style.display = "none";
+    var hero = $("#hero"); if (hero) hero.style.display = "none";
+    var browse = $("#browse"); if (browse) browse.style.display = "none";
+    var pg = $("#locator-page");
+    pg.style.display = "block";
+    window.scrollTo(0, 0);
+
+    pg.innerHTML =
+      '<button class="back" id="loc-back">' + icon("arrowLeft") + " Back to library</button>" +
+      '<div class="section-head"><h2>Store Locator Request</h2></div>' +
+      '<p class="mat-lead">' + icon("info") + "<span>Add each store you'd like listed on our official locator, then send your request. Have more than one location? Use <strong>Add another store</strong> to include them all.</span>" +
+      "</p>" +
+      '<div class="mat-layout">' +
+        '<div class="loc-left">' +
+          '<div class="loc-stores" id="loc-stores">' + storeBlockHTML(1) + "</div>" +
+          '<button class="btn ghost loc-add" id="loc-add">' + icon("plus") + " Add another store</button>" +
+        "</div>" +
+        '<aside class="mat-side">' +
+          '<div class="mat-side-h">Your contact info</div>' +
+          '<div class="mat-fields">' +
+            '<label class="mat-field"><span>Your Name</span><input type="text" id="loc-contact-name" placeholder="Full name"/></label>' +
+            '<label class="mat-field"><span>Email Address</span><input type="email" id="loc-contact-email" placeholder="you@company.com"/></label>' +
+            '<label class="mat-field"><span>Phone <em>(optional)</em></span><input type="tel" id="loc-contact-phone" placeholder="(555) 555-5555"/></label>' +
+          "</div>" +
+          '<button class="btn lg mat-order-btn" id="loc-submit">' + icon("mail") + ' Submit Request<span id="loc-count"></span></button>' +
+          '<p class="mat-side-note">You’ll confirm and send from your email app.</p>' +
+        "</aside>" +
+      "</div>";
+
+    var stores = $("#loc-stores");
+    function renumber() {
+      $$(".loc-store", stores).forEach(function (s, i) {
+        var n = s.querySelector(".loc-store-i"); if (n) n.textContent = i + 1;
+      });
+      var multi = $$(".loc-store", stores).length > 1;
+      stores.classList.toggle("has-multi", multi);
+      var c = $("#loc-count"); if (c) c.textContent = multi ? " · " + $$(".loc-store", stores).length + " stores" : "";
+    }
+    function bindRemove(ctx) {
+      $$("[data-remove]", ctx).forEach(function (b) {
+        if (b.__bound) return; b.__bound = true;
+        b.addEventListener("click", function () {
+          if ($$(".loc-store", stores).length <= 1) { toast("At least one store is required"); return; }
+          b.closest(".loc-store").remove();
+          renumber();
+        });
+      });
+    }
+    $("#loc-add").addEventListener("click", function () {
+      stores.insertAdjacentHTML("beforeend", storeBlockHTML($$(".loc-store", stores).length + 1));
+      bindRemove(stores);
+      renumber();
+      var last = stores.lastElementChild;
+      if (last) { var f = last.querySelector("input"); if (f) f.focus(); }
+    });
+
+    bindRemove(stores);
+    renumber();
+    $("#loc-back").addEventListener("click", navHome);
+    $("#loc-submit").addEventListener("click", submitLocatorRequest);
+  }
+  function submitLocatorRequest() {
+    var stores = $$("#loc-stores .loc-store");
+    var blocks = [], valid = 0;
+    stores.forEach(function (s, i) {
+      var g = function (f) { var el = s.querySelector('[data-f="' + f + '"]'); return el ? el.value.trim() : ""; };
+      var name = g("name"), street = g("street"), city = g("city"), st = g("state"), zip = g("zip"), phone = g("phone");
+      if (name || street || city || st || zip || phone) valid++;
+      var cityLine = [city, st].filter(Boolean).join(", ");
+      if (zip) cityLine = (cityLine ? cityLine + " " : "") + zip;
+      var addr = [street, cityLine].filter(Boolean).join(", ");
+      blocks.push(
+        "Store " + (i + 1) + ":" +
+        "\n  Store Name: " + name +
+        "\n  Address: " + addr +
+        "\n  Phone: " + phone
+      );
+    });
+    if (!valid) { toast("Add at least one store's details first"); return; }
+    var v = function (id) { var el = $(id); return el ? el.value.trim() : ""; };
+    var body = "Store Locator Request" +
+      "\n\nSubmitted by: " + v("#loc-contact-name") +
+      "\nContact Email: " + v("#loc-contact-email") +
+      "\nContact Phone: " + v("#loc-contact-phone") +
+      "\n\n" + blocks.join("\n\n");
+    window.location.href = "mailto:" + CFG.locatorEmail + "?subject=" +
+      encodeURIComponent("Add to Store Locator") + "&body=" + encodeURIComponent(body);
   }
   function emptyState() {
     return '<p style="grid-column:1/-1;color:var(--stone);font-size:14px;padding:30px 0;">No assets match your filters. <a href="mailto:' + CFG.requestEmail + '" style="text-decoration:underline;">Request one →</a></p>';
