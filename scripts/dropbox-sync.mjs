@@ -127,14 +127,13 @@ async function listFolder(tok, link, path) {
 let warned = {};
 function warnOnce(key, msg) { if (!warned[key]) { warned[key] = true; console.error(msg); } }
 
-// Dropbox-rendered thumbnail (raster images only) → writes to outFile.
-// `png` = request a PNG thumbnail (preserves transparency, e.g. logo marks).
-async function thumbV2(tok, link, path, outFile, png) {
+// Dropbox-rendered thumbnail (raster images only) → writes jpeg to outFile.
+async function thumbV2(tok, link, path, outFile) {
   const r = await fetch("https://content.dropboxapi.com/2/files/get_thumbnail_v2", {
     method: "POST",
     headers: {
       Authorization: "Bearer " + tok,
-      "Dropbox-API-Arg": JSON.stringify({ resource: { ".tag": "link", url: link, path }, format: png ? "png" : "jpeg", size: "w640h480", mode: "fitone_bestfit" }),
+      "Dropbox-API-Arg": JSON.stringify({ resource: { ".tag": "link", url: link, path }, format: "jpeg", size: "w640h480", mode: "fitone_bestfit" }),
     },
   });
   if (!r.ok) { warnOnce("thumbV2", "thumbnail failed " + r.status + ": " + (await r.text()).slice(0, 200)); return false; }
@@ -259,10 +258,22 @@ for (const p of PRODUCTS) {
           /* light composite done */
         } else if (type === "vector") {
           thumb = fileRel;  // the SVG itself renders as the preview
+        } else if (type === "image" && p.pngThumbs) {
+          // Logos: transparent PNG thumbnails. Dropbox's thumbnail service flattens
+          // alpha to white, so resize the original with ImageMagick to keep it.
+          const tn = hash + "-tr.png";
+          if (!existsSync(join(dir, tn))) {
+            const src = (await downloadFile(tok, p.link, path, tmp + "." + e)) ? tmp + "." + e : null;
+            if (src) {
+              try { execFileSync("convert", [src + "[0]", "-resize", "640x480>", join(dir, tn)], { stdio: "ignore" }); }
+              catch (e2) { warnOnce("pngthumb", "png thumb failed: " + e2.message); }
+              try { unlinkSync(src); } catch {}
+            }
+          }
+          if (existsSync(join(dir, tn))) { thumb = `assets/synced/${p.slug}/${tn}`; keep.add(tn); }
         } else if (type === "image") {
-          // Logos use transparent PNG thumbnails so marks sit cleanly on any bg.
-          const tn = hash + (p.pngThumbs ? ".png" : ".jpg");
-          if (!existsSync(join(dir, tn))) await thumbV2(tok, p.link, path, join(dir, tn), p.pngThumbs);
+          const tn = hash + ".jpg";
+          if (!existsSync(join(dir, tn))) await thumbV2(tok, p.link, path, join(dir, tn));
           if (existsSync(join(dir, tn))) { thumb = `assets/synced/${p.slug}/${tn}`; keep.add(tn); }
         } else if (type === "pdf" || e === "ai") {
           const tn = hash + ".jpg";
