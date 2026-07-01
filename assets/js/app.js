@@ -582,7 +582,9 @@
           "<p>Carry G Pen or Stündenglass? Request to be added to our official store locator so customers can find your shop.</p>" +
         "</div>" +
         '<a class="btn lg" href="mailto:' + CFG.locatorEmail + "?subject=" +
-          encodeURIComponent("Store Locator listing request") + '">' + icon("mail") + " Request to be listed</a>" +
+          encodeURIComponent("Add to Store Locator") + "&body=" +
+          encodeURIComponent("Store Name:\nAddress:\nPhone Number: (Optional)") +
+          '">' + icon("mail") + " Request to be listed</a>" +
       "</div>";
   }
 
