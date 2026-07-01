@@ -33,7 +33,7 @@ window.PORTAL_CONFIG = {
   tagline: "Everything you need, in one place.",
   intro:
     "The official asset portal for G Pen and Stündenglass. Product photography, lifestyle imagery, logos, video and spec sheets — organized by product, ready to download.",
-  requestEmail: "assets@grencoscience.com", // "Request an asset" mailto target
+  requestEmail: "pr@grencoscience.com", // "Request an asset" mailto target
   orderEmail: "assets@grencoscience.com",   // in-store material order requests (set to your wholesale/sales inbox)
   locatorEmail: "pr@grencoscience.com", // store-locator listing requests
   newWindowDays: 30,                          // how many days counts as "New"
