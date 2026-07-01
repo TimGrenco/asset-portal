@@ -111,8 +111,8 @@ window.PORTAL_SYNCED = {
           "type": "image",
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
-          "thumb": "assets/synced/dash-ii/2125b9e88ccc8f9bc8c2f6e8ca3495228b58d58db650c91ad4e59693a80d5886.jpg",
-          "file": "assets/synced/dash-ii/files/2125b9e88ccc8f9bc8c2f6e8ca3495228b58d58db650c91ad4e59693a80d5886.jpg"
+          "thumb": "assets/synced/dash-ii/072ffcfadda0e45841d9e4cebcf993c3f4aca3eff0848e908740cda53a1bde6b.jpg",
+          "file": "assets/synced/dash-ii/files/072ffcfadda0e45841d9e4cebcf993c3f4aca3eff0848e908740cda53a1bde6b.jpg"
         },
         {
           "name": "GPEN - Dash 2- Front",
@@ -1229,7 +1229,7 @@ window.PORTAL_SYNCED = {
           "type": "image",
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
-          "thumb": "assets/synced/510-original-retro/636633f108d809e13eb3c7d5952d498f813f6095787dc203203c341c640725da.jpg",
+          "thumb": "assets/synced/510-original-retro/3487318bec78954c8ce99e2334930c751385e64a653e50cf3db4caaeffe8e3c7.jpg",
           "file": null
         },
         {
@@ -1325,7 +1325,7 @@ window.PORTAL_SYNCED = {
           "type": "image",
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
-          "thumb": "assets/synced/510-original-retro/2552b2b9665e1652d361343c31f26f83a65d909d8e46d37ef0258851d29a8c74.jpg",
+          "thumb": "assets/synced/510-original-retro/662dfe527f1c6e17469b5424401452960d92b4b55d7b92df65136a2b929a1df3.jpg",
           "file": null
         }
       ],
@@ -2448,14 +2448,6 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
-          "name": "Dash+ Brian AVB",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fo/5wps4y20eqmpbzj0j4ijq/h?rlkey=5bna5as30dz79lmqumcml47x7&st=xt8upom3&dl=0",
-          "thumb": "assets/synced/dash-plus/6f9fafcd687b89c176604c80787492c2d11c8aa0ddc388772091970773934714.jpg",
-          "file": null
-        },
-        {
           "name": "Dash+ Brian Timer Change",
           "type": "video",
           "format": "MP4",
@@ -2557,14 +2549,6 @@ window.PORTAL_SYNCED = {
           "format": "MP4",
           "url": "https://www.dropbox.com/scl/fo/5wps4y20eqmpbzj0j4ijq/h?rlkey=5bna5as30dz79lmqumcml47x7&st=xt8upom3&dl=0",
           "thumb": "assets/synced/dash-plus/15c70ff569e0b7bc88d4bfc053cc2c7106b55bcc9831b69c58aa0b8b4b5470d9.jpg",
-          "file": null
-        },
-        {
-          "name": "Em Hash Beach Dash Orange",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fo/5wps4y20eqmpbzj0j4ijq/h?rlkey=5bna5as30dz79lmqumcml47x7&st=xt8upom3&dl=0",
-          "thumb": "assets/synced/dash-plus/7cdc7c957ff1680e60a3c67ed96dd0ae9cf2fdc37bfa639a82a0bc3aa4431fe1.jpg",
           "file": null
         },
         {
