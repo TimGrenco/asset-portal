@@ -845,7 +845,7 @@ window.PORTAL_INSTORE_GENERAL = (function () {
   // These are replaced automatically once the "In-Store Marketing General"
   // Dropbox folder syncs.
   return [
-    { name: "In-Store Display Poster", type: "image", format: "PNG",
+    { name: "In-Store Wooden Logo Sign", type: "image", format: "PNG",
       thumb: "https://www.dropbox.com/scl/fi/swkse3o9iepvmi4d1hstb/Screenshot-2026-07-01-at-11.29.12-AM.png?rlkey=0mpik0cnto272id2zh9acnbs8&st=1t2uy5ot&raw=1",
       url: "https://www.dropbox.com/scl/fi/swkse3o9iepvmi4d1hstb/Screenshot-2026-07-01-at-11.29.12-AM.png?rlkey=0mpik0cnto272id2zh9acnbs8&st=1t2uy5ot&dl=1", file: null },
     { name: "Dash II Table Tent", type: "image", format: "JPG",
