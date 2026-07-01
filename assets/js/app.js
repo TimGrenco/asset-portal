@@ -757,13 +757,11 @@
         "</div>" +
         '<div class="loc-fields">' +
           '<label class="mat-field loc-wide"><span>Store Name</span><input type="text" data-f="name" placeholder="Store name"/></label>' +
-          '<label class="mat-field loc-wide"><span>Street Address</span><input type="text" data-f="street" placeholder="123 Main St"/></label>' +
+          '<label class="mat-field loc-wide"><span>Address</span><input type="text" data-f="address" placeholder="123 Main St, City, State ZIP"/></label>' +
           '<div class="loc-row">' +
-            '<label class="mat-field"><span>City</span><input type="text" data-f="city" placeholder="City"/></label>' +
-            '<label class="mat-field"><span>State</span><input type="text" data-f="state" placeholder="State"/></label>' +
-            '<label class="mat-field"><span>ZIP</span><input type="text" data-f="zip" placeholder="ZIP"/></label>' +
+            '<label class="mat-field"><span>Phone</span><input type="tel" data-f="phone" placeholder="(555) 555-5555"/></label>' +
+            '<label class="mat-field"><span>Website</span><input type="text" data-f="website" placeholder="yourstore.com"/></label>' +
           "</div>" +
-          '<label class="mat-field loc-wide"><span>Store Phone <em>(optional)</em></span><input type="tel" data-f="phone" placeholder="(555) 555-5555"/></label>' +
         "</div>" +
       "</div>";
   }
@@ -838,16 +836,14 @@
     var blocks = [], valid = 0;
     stores.forEach(function (s, i) {
       var g = function (f) { var el = s.querySelector('[data-f="' + f + '"]'); return el ? el.value.trim() : ""; };
-      var name = g("name"), street = g("street"), city = g("city"), st = g("state"), zip = g("zip"), phone = g("phone");
-      if (name || street || city || st || zip || phone) valid++;
-      var cityLine = [city, st].filter(Boolean).join(", ");
-      if (zip) cityLine = (cityLine ? cityLine + " " : "") + zip;
-      var addr = [street, cityLine].filter(Boolean).join(", ");
+      var name = g("name"), address = g("address"), phone = g("phone"), website = g("website");
+      if (name || address || phone || website) valid++;
       blocks.push(
         "Store " + (i + 1) + ":" +
         "\n  Store Name: " + name +
-        "\n  Address: " + addr +
-        "\n  Phone: " + phone
+        "\n  Address: " + address +
+        "\n  Phone: " + phone +
+        "\n  Website: " + website
       );
     });
     if (!valid) { toast("Add at least one store's details first"); return; }
