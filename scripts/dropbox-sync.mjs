@@ -57,7 +57,7 @@ const PRODUCTS = [
   },
 ];
 
-const FOLDER_ORDER = ["Product Photos", "Lifestyle Photos", "Logos", "Social Videos", "TV Screen Videos", "Packaging", "Documents"];
+const FOLDER_ORDER = ["Product Photos", "Lifestyle Photos", "Logos", "Social Videos", "TV Screen Videos", "Packaging", "In-Store Marketing", "Documents"];
 // Normalize inconsistent Dropbox folder names to the canonical tab names above,
 // so a folder called "TV Screen" or "Video" still lands in the right section.
 const FOLDER_ALIAS = {
@@ -66,6 +66,10 @@ const FOLDER_ALIAS = {
   "Lifestyle": "Lifestyle Photos", "Lifestyle Photo": "Lifestyle Photos",
   "Product Photo": "Product Photos", "Product Images": "Product Photos", "E-Comm": "Product Photos",
   "Misc": "Documents", "Docs": "Documents", "Logo": "Logos",
+  "In Store Marketing": "In-Store Marketing", "Instore Marketing": "In-Store Marketing",
+  "In-Store Materials": "In-Store Marketing", "In Store Materials": "In-Store Marketing",
+  "POS": "In-Store Marketing", "POS Materials": "In-Store Marketing", "Point of Sale": "In-Store Marketing",
+  "Retail Marketing": "In-Store Marketing", "In Store": "In-Store Marketing",
 };
 const MAX_COMMIT = 50 * 1024 * 1024;   // commit originals up to 50 MB (bigger files → Dropbox)
 const RASTER = /\.(jpe?g|png|gif|webp|bmp|tiff?)$/i;   // Dropbox can thumbnail these directly

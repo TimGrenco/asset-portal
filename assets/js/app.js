@@ -506,9 +506,77 @@
 
     renderLogoAssets();
     renderSocialHub();
+    renderInStore();
+    renderStoreLocator();
     renderAdditionalEntry();
     bindCards($("#home"));
     syncURL();
+  }
+
+  // In-store marketing materials for the current brand — aggregated from each
+  // product's "In-Store Marketing" folder (synced from Dropbox). Retailers browse
+  // what's available and order via email.
+  var INSTORE_FOLDER = "In-Store Marketing";
+  function renderInStore() {
+    var box = $("#instore"); if (!box) return;
+    var bk = state.view, bname = BRANDS[bk].name;
+    var products = currentList(bk)
+      .map(function (n) { return PRODUCTS.filter(function (p) { return p.name === n; })[0]; })
+      .filter(Boolean);
+    var groups = products
+      .map(function (p) { return { p: p, items: (p.folders && p.folders[INSTORE_FOLDER]) || [] }; })
+      .filter(function (g) { return g.items.length; });
+    var total = groups.reduce(function (n, g) { return n + g.items.length; }, 0);
+    var orderCta = '<a class="btn" href="mailto:' + CFG.orderEmail + "?subject=" +
+      encodeURIComponent("In-store material order — " + bname) + '">' + icon("mail") + " Order materials</a>";
+
+    if (!total) {
+      box.innerHTML =
+        '<div class="instore-empty">' +
+          "<p>Retail displays, posters, shelf talkers and other in-store materials for " + bname +
+            " will show here as they’re added — browse and order what you need for your shop.</p>" +
+          orderCta +
+        "</div>";
+      return;
+    }
+
+    // Flat list for the lightbox (view larger); tiles reference it by index.
+    var flat = [];
+    groups.forEach(function (g) { g.items.forEach(function (x) { flat.push({ src: x.thumb || x.file || x.url, name: fileLabel(x) + " · " + g.p.name, url: x.file || x.url || "#" }); }); });
+    var idx = 0;
+    box.innerHTML =
+      '<p class="instore-lead">' + total + " material" + (total > 1 ? "s" : "") + " available to order across " +
+        groups.length + " product" + (groups.length > 1 ? "s" : "") + ". " + orderCta + "</p>" +
+      groups.map(function (g) {
+        return '<div class="instore-group"><div class="instore-group-h">' + g.p.name + "</div>" +
+          '<div class="instore-grid">' +
+          g.items.map(function (x) {
+            var i = idx++;
+            var media = x.thumb ? '<img src="' + x.thumb + '" alt="' + fileLabel(x).replace(/"/g, "") + '" loading="lazy"/>' : window.__icon("photo");
+            return '<button class="instore-tile" data-lbi="' + i + '" title="' + fileLabel(x).replace(/"/g, "") + '">' +
+              media + '<span class="instore-tile-fmt">' + (x.format || "") + "</span></button>";
+          }).join("") +
+          "</div></div>";
+      }).join("");
+
+    $$(".instore-tile", box).forEach(function (t) {
+      t.addEventListener("click", function () { openLightbox(flat, +t.getAttribute("data-lbi")); });
+    });
+  }
+
+  // Store-locator sign-up callout — retailers request to be listed.
+  function renderStoreLocator() {
+    var box = $("#store-locator"); if (!box) return;
+    box.innerHTML =
+      '<div class="locator-card">' +
+        '<div class="locator-copy">' +
+          '<div class="locator-eyebrow">Retailers</div>' +
+          "<h2>Get your store on our Store Locator</h2>" +
+          "<p>Carry G Pen or Stündenglass? Request to be added to our official store locator so customers can find your shop.</p>" +
+        "</div>" +
+        '<a class="btn lg" href="mailto:' + CFG.locatorEmail + "?subject=" +
+          encodeURIComponent("Store Locator listing request") + '">' + icon("mail") + " Request to be listed</a>" +
+      "</div>";
   }
 
   // Bottom-of-page entry box → opens the dedicated Additional Products page.
