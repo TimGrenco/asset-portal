@@ -633,12 +633,12 @@
   function availableMaterials() {
     var out = [];
     (window.PORTAL_INSTORE_GENERAL || []).forEach(function (x) {
-      out.push({ name: x.name, thumb: x.thumb, url: x.file || x.url || null });
+      out.push({ name: x.name, dim: x.dim || null, thumb: x.thumb, url: x.file || x.url || null });
     });
     PRODUCTS.forEach(function (p) {
       if (p.isLogo) return;
       ((p.folders && p.folders["In-Store Marketing"]) || []).forEach(function (x) {
-        out.push({ name: x.name + " — " + p.name, thumb: x.thumb, url: x.file || x.url || null });
+        out.push({ name: x.name + " — " + p.name, dim: x.dim || null, thumb: x.thumb, url: x.file || x.url || null });
       });
     });
     return out;
@@ -680,7 +680,8 @@
         thumb = '<div class="mat-thumb">' + window.__icon("photo") + "</div>";
       }
       return '<div class="mat-row">' + thumb +
-        '<div class="mat-name">' + m.name + "</div>" +
+        '<div class="mat-info"><div class="mat-name">' + m.name + "</div>" +
+          (m.dim ? '<div class="mat-dim">' + m.dim + "</div>" : "") + "</div>" +
         '<div class="mat-qty"><button class="mat-step" data-step="-1" aria-label="Decrease">–</button>' +
           '<input type="number" min="0" value="0" data-mat="' + i + '" aria-label="Quantity for ' + m.name.replace(/"/g, "") + '"/>' +
           '<button class="mat-step" data-step="1" aria-label="Increase">+</button></div>' +

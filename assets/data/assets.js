@@ -845,10 +845,10 @@ window.PORTAL_INSTORE_GENERAL = (function () {
   // These are replaced automatically once the "In-Store Marketing General"
   // Dropbox folder syncs.
   return [
-    { name: "In-Store Wooden Logo Sign", type: "image", format: "PNG",
+    { name: "In-Store Wooden Logo Sign", type: "image", format: "PNG", dim: "8\" W × 6\" H × 2\" D (placeholder)",
       thumb: "https://www.dropbox.com/scl/fi/swkse3o9iepvmi4d1hstb/Screenshot-2026-07-01-at-11.29.12-AM.png?rlkey=0mpik0cnto272id2zh9acnbs8&st=1t2uy5ot&raw=1",
       url: "https://www.dropbox.com/scl/fi/swkse3o9iepvmi4d1hstb/Screenshot-2026-07-01-at-11.29.12-AM.png?rlkey=0mpik0cnto272id2zh9acnbs8&st=1t2uy5ot&dl=1", file: null },
-    { name: "Dash II Table Tent", type: "image", format: "JPG",
+    { name: "Dash II Table Tent", type: "image", format: "JPG", dim: "4\" W × 6\" H (placeholder)",
       thumb: "https://www.dropbox.com/scl/fi/puy77nx2r0i6ljhd7qpqn/DashII_Table_Tent.jpg?rlkey=f0ulmqqc544c6nit7ns8qo9u0&st=22dss4rm&raw=1",
       url: "https://www.dropbox.com/scl/fi/puy77nx2r0i6ljhd7qpqn/DashII_Table_Tent.jpg?rlkey=f0ulmqqc544c6nit7ns8qo9u0&st=22dss4rm&dl=1", file: null },
   ];
