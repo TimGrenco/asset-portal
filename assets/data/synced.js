@@ -27,12 +27,28 @@ window.PORTAL_SYNCED = {
           "file": "assets/synced/dash-ii/files/9555a2bbe84dfe0b89f01b9ef38009575e7a0a8d1254a8562027775b172c7cb1.jpg"
         },
         {
+          "name": "dash2_thumb_02",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/5f87fc28b8a0161874126b7cfaf32f12d817e75c119f8e41da57913231d576a8.jpg",
+          "file": "assets/synced/dash-ii/files/5f87fc28b8a0161874126b7cfaf32f12d817e75c119f8e41da57913231d576a8.png"
+        },
+        {
           "name": "dash2_thumb_03",
           "type": "image",
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/da7081458fe45608c112d6b1348179badb2f6acfd7b812efce2ca909ba8d5a02.jpg",
           "file": "assets/synced/dash-ii/files/da7081458fe45608c112d6b1348179badb2f6acfd7b812efce2ca909ba8d5a02.jpg"
+        },
+        {
+          "name": "dash2_thumb_03",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/815f8bed0068c519d83b5d3ba946c939736732e63dd9efbd26695ee407abaec3.jpg",
+          "file": "assets/synced/dash-ii/files/815f8bed0068c519d83b5d3ba946c939736732e63dd9efbd26695ee407abaec3.png"
         },
         {
           "name": "dash2_thumb_04",
@@ -43,12 +59,28 @@ window.PORTAL_SYNCED = {
           "file": "assets/synced/dash-ii/files/c72125988771c4c4c6f2a6abdaa4c722667e272f5394d31512438576763e8409.jpg"
         },
         {
+          "name": "dash2_thumb_04",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/04e4ac8d63c49ce4ed056516228dc863ad631076fb487bb58cd6faee78a053d1.jpg",
+          "file": "assets/synced/dash-ii/files/04e4ac8d63c49ce4ed056516228dc863ad631076fb487bb58cd6faee78a053d1.png"
+        },
+        {
           "name": "dash2_thumb_05",
           "type": "image",
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/4858183f1e6cb1c7b7949ec67e506b5306c42f87f05c1777b4637bb296fed095.jpg",
           "file": "assets/synced/dash-ii/files/4858183f1e6cb1c7b7949ec67e506b5306c42f87f05c1777b4637bb296fed095.jpg"
+        },
+        {
+          "name": "dash2_thumb_05",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/c2e979f99323e461bacc2e558aa5c0361fff933313a569e1d54799dab37dee8c.jpg",
+          "file": "assets/synced/dash-ii/files/c2e979f99323e461bacc2e558aa5c0361fff933313a569e1d54799dab37dee8c.png"
         },
         {
           "name": "dash2_thumb_06",
@@ -59,12 +91,28 @@ window.PORTAL_SYNCED = {
           "file": "assets/synced/dash-ii/files/509db862bc0746e06699eff96ab9084a3e609a3835c287b5f00dad1b34954731.jpg"
         },
         {
+          "name": "dash2_thumb_06",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/3c5e3d2a6852a58f5dac32e51a497d0914f317e4253d4428693a1c4f083eae87.jpg",
+          "file": "assets/synced/dash-ii/files/3c5e3d2a6852a58f5dac32e51a497d0914f317e4253d4428693a1c4f083eae87.png"
+        },
+        {
           "name": "dash2_thumb_07",
           "type": "image",
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/9c71332db2e56f0a383ab323e89830e3dd162575a8b79efe8431c8b41119e69a.jpg",
           "file": "assets/synced/dash-ii/files/9c71332db2e56f0a383ab323e89830e3dd162575a8b79efe8431c8b41119e69a.jpg"
+        },
+        {
+          "name": "dash2_thumb_07",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/f9de34aa376db72f87fcf684ba7557dc789d1bc6f21af9b9fab4239c5e8a5d2f.jpg",
+          "file": "assets/synced/dash-ii/files/f9de34aa376db72f87fcf684ba7557dc789d1bc6f21af9b9fab4239c5e8a5d2f.png"
         },
         {
           "name": "dash2_thumb_08",
@@ -75,12 +123,28 @@ window.PORTAL_SYNCED = {
           "file": "assets/synced/dash-ii/files/7687d340d6ed1827e94ad38b339294e054695aac5c84de4824e441b97131d50f.jpg"
         },
         {
+          "name": "dash2_thumb_08",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/23d515887ec9c3177601890966670ec3420d8bfbc87d693c7f7e9385bcffce86.jpg",
+          "file": "assets/synced/dash-ii/files/23d515887ec9c3177601890966670ec3420d8bfbc87d693c7f7e9385bcffce86.png"
+        },
+        {
           "name": "dash2_thumb_09",
           "type": "image",
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/42d9ef7478b1bc89263b0bdf287284aca90dde0e931306b13343560042d51af9.jpg",
           "file": "assets/synced/dash-ii/files/42d9ef7478b1bc89263b0bdf287284aca90dde0e931306b13343560042d51af9.jpg"
+        },
+        {
+          "name": "dash2_thumb_09",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/51d4d396d607c4879b00d50318a60d4845d5a99c525d587effab3168e1dc6f13.jpg",
+          "file": "assets/synced/dash-ii/files/51d4d396d607c4879b00d50318a60d4845d5a99c525d587effab3168e1dc6f13.png"
         },
         {
           "name": "dash2_thumb_10",
@@ -91,12 +155,28 @@ window.PORTAL_SYNCED = {
           "file": "assets/synced/dash-ii/files/d41a199f9f6649d04c46d4b8eff76449f4ba7e5497f865ed88d600935e65e9cd.jpg"
         },
         {
+          "name": "dash2_thumb_10",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/c9266bf083319a954ee1773b4a2486080fefcc51ffbdabda737a81257ea25bdb.jpg",
+          "file": "assets/synced/dash-ii/files/c9266bf083319a954ee1773b4a2486080fefcc51ffbdabda737a81257ea25bdb.png"
+        },
+        {
           "name": "dash2_thumb_011",
           "type": "image",
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/efb3b9c37b04982608c4033d90d22ec019a47bb7dbcb1d33735ed814cd206e16.jpg",
           "file": "assets/synced/dash-ii/files/efb3b9c37b04982608c4033d90d22ec019a47bb7dbcb1d33735ed814cd206e16.jpg"
+        },
+        {
+          "name": "dash2_thumb_011",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/289420c0310ee4ed573683321889aaea0a7ace3e4f649d002c3297db121ca8bc.jpg",
+          "file": "assets/synced/dash-ii/files/289420c0310ee4ed573683321889aaea0a7ace3e4f649d002c3297db121ca8bc.png"
         },
         {
           "name": "dash2_thumb_012",
@@ -107,6 +187,14 @@ window.PORTAL_SYNCED = {
           "file": "assets/synced/dash-ii/files/8d37d09636252f878cd711b80f0a306f4d5f8a7f6cda7656b298f5f7a1be8e06.jpg"
         },
         {
+          "name": "dash2_thumb_012",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/7de350c4e932b8f5a69ede2547590e00a1787c19f01998dd4c3493c605a3b3b3.jpg",
+          "file": "assets/synced/dash-ii/files/7de350c4e932b8f5a69ede2547590e00a1787c19f01998dd4c3493c605a3b3b3.png"
+        },
+        {
           "name": "GPEN - Dash 2_Open_Tool",
           "type": "image",
           "format": "JPG",
@@ -115,28 +203,36 @@ window.PORTAL_SYNCED = {
           "file": "assets/synced/dash-ii/files/072ffcfadda0e45841d9e4cebcf993c3f4aca3eff0848e908740cda53a1bde6b.jpg"
         },
         {
+          "name": "GPEN - Dash 2_Open_Tool",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/24d44e51fddc919e481a0f97af16fe213fcf924f3bf29bfab89d6c59f3e52481.jpg",
+          "file": "assets/synced/dash-ii/files/24d44e51fddc919e481a0f97af16fe213fcf924f3bf29bfab89d6c59f3e52481.png"
+        },
+        {
           "name": "GPEN - Dash 2- Front",
           "type": "image",
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
-          "thumb": "assets/synced/dash-ii/822a99879db9eac8b461a8d4531e7212f95997a76b4629fa636613085de0465d.jpg",
-          "file": "assets/synced/dash-ii/files/822a99879db9eac8b461a8d4531e7212f95997a76b4629fa636613085de0465d.png"
+          "thumb": "assets/synced/dash-ii/31a93e31e61a95d2f24a2563bbe04f829b7d4b7aa8c08f6e3156fcbb59b028eb.jpg",
+          "file": "assets/synced/dash-ii/files/31a93e31e61a95d2f24a2563bbe04f829b7d4b7aa8c08f6e3156fcbb59b028eb.png"
         },
         {
           "name": "GPEN - Dash 2- Tool",
           "type": "image",
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
-          "thumb": "assets/synced/dash-ii/75f1430347ba35e448c8227959c2afa695562a36c2368cc4336f51b6fc21b823.jpg",
-          "file": "assets/synced/dash-ii/files/75f1430347ba35e448c8227959c2afa695562a36c2368cc4336f51b6fc21b823.png"
+          "thumb": "assets/synced/dash-ii/e1ef16f27afc19f92231572cfcfd773402e2da1f4d79d15515e505bf711eba20.jpg",
+          "file": "assets/synced/dash-ii/files/e1ef16f27afc19f92231572cfcfd773402e2da1f4d79d15515e505bf711eba20.png"
         },
         {
           "name": "GPEN - Dash 2-Heat",
           "type": "image",
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
-          "thumb": "assets/synced/dash-ii/7ab80dca5cc3357263fd01adfdd6b4bd25021c59608f45319c39237a442a7415.jpg",
-          "file": "assets/synced/dash-ii/files/7ab80dca5cc3357263fd01adfdd6b4bd25021c59608f45319c39237a442a7415.png"
+          "thumb": "assets/synced/dash-ii/6c75b3440010c3df9ab35d6e47fcb110d18a236bcef55dbf5056cfe7bd474928.jpg",
+          "file": "assets/synced/dash-ii/files/6c75b3440010c3df9ab35d6e47fcb110d18a236bcef55dbf5056cfe7bd474928.png"
         },
         {
           "name": "GPEN_Dash2_POP_Mockup_",
@@ -145,6 +241,14 @@ window.PORTAL_SYNCED = {
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/9943445d99853d7f378444120c74c96408059d559e410a2ddc74899fe990d17b.jpg",
           "file": "assets/synced/dash-ii/files/9943445d99853d7f378444120c74c96408059d559e410a2ddc74899fe990d17b.png"
+        },
+        {
+          "name": "GPEN_Dash2_POP_Mockup",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
+          "thumb": "assets/synced/dash-ii/724cced5aa650e369377feb04e9f49054c7c00ed936b48ef2ab813c98783cb49.jpg",
+          "file": "assets/synced/dash-ii/files/724cced5aa650e369377feb04e9f49054c7c00ed936b48ef2ab813c98783cb49.jpg"
         }
       ],
       "Lifestyle Photos": [
@@ -653,12 +757,12 @@ window.PORTAL_SYNCED = {
           "file": "assets/synced/dash-ii/files/d05e4984661cfc9969a98184adfc1170b2cb5a4954b24346bf2319c70eb4100c.png"
         },
         {
-          "name": "Dash-POP",
+          "name": "Dash-POPside",
           "type": "image",
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
-          "thumb": "assets/synced/dash-ii/724cced5aa650e369377feb04e9f49054c7c00ed936b48ef2ab813c98783cb49.jpg",
-          "file": "assets/synced/dash-ii/files/724cced5aa650e369377feb04e9f49054c7c00ed936b48ef2ab813c98783cb49.jpg"
+          "thumb": "assets/synced/dash-ii/872396b10fe4ebb9cf5fe879adb0f849768592624f703687b37dbafe45ee36b8.jpg",
+          "file": "assets/synced/dash-ii/files/872396b10fe4ebb9cf5fe879adb0f849768592624f703687b37dbafe45ee36b8.jpg"
         }
       ],
       "Documents": [
@@ -689,20 +793,20 @@ window.PORTAL_SYNCED = {
       ],
       "In Store Marketing Materials": [
         {
-          "name": "DashII_Table_Tent",
+          "name": "4afa24fe8551c06556ca9247a80e68dee51dbdc452bc7057ed0b7fdc49c400a9",
           "type": "image",
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
-          "thumb": "assets/synced/dash-ii/5b445228f87eec8b9ca1dbfc75a65e4c4330ee5dbff9b3f94b572311ac7382db.jpg",
-          "file": "assets/synced/dash-ii/files/5b445228f87eec8b9ca1dbfc75a65e4c4330ee5dbff9b3f94b572311ac7382db.jpg"
+          "thumb": "assets/synced/dash-ii/c19e0284b519c2e163c45fb2a0001a2fde8186427c998cd1eb6152af1121ffab.jpg",
+          "file": "assets/synced/dash-ii/files/c19e0284b519c2e163c45fb2a0001a2fde8186427c998cd1eb6152af1121ffab.jpg"
         },
         {
-          "name": "DashII_Table_Tent",
+          "name": "4afa24fe8551c06556ca9247a80e68dee51dbdc452bc7057ed0b7fdc49c400a9",
           "type": "image",
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
-          "thumb": "assets/synced/dash-ii/47306d7a54172cb34be54c7404223512b7a145b195d358cb60e7e6bba80bc6fa.jpg",
-          "file": "assets/synced/dash-ii/files/47306d7a54172cb34be54c7404223512b7a145b195d358cb60e7e6bba80bc6fa.png"
+          "thumb": "assets/synced/dash-ii/3e0578201b146d3d76de933a6fc295b54f98cab294993745c4785bcec2d6a53d.jpg",
+          "file": "assets/synced/dash-ii/files/3e0578201b146d3d76de933a6fc295b54f98cab294993745c4785bcec2d6a53d.png"
         }
       ]
     },
