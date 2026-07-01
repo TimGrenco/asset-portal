@@ -4172,6 +4172,14 @@ window.PORTAL_SYNCED = {
       ],
       "Documents": [
         {
+          "name": "GPEN_Hydout_Onesheet_8-5x11",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fo/fnsys0ijwhl2059nu45u5/AEE18ADvSJZ1RYdf0EDDk0Q?rlkey=2cz8o729ku9u1c9unhewv55wr&st=5lrpymts&dl=0",
+          "thumb": "assets/synced/hydout-retro/b4cdbf033f57153ec186ffee8d4ae122a188dffafa25a18cd3675f6ce22b363b.jpg",
+          "file": null
+        },
+        {
           "name": "GPEN_Retro_Hydout_Manual",
           "type": "pdf",
           "format": "PDF",
@@ -4702,7 +4710,7 @@ window.PORTAL_SYNCED = {
           "type": "image",
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/gjjl69xfmfxqdxg87vym9/h?rlkey=q17pigcl81qcvr7rzcv2xpne3&st=wok0w9o7&dl=0",
-          "thumb": "assets/synced/gpen-logos/b2eee6434e79173af73d8eeeb32511fcc208087d399d51e9fe02c7fd1fe9bb9c.png",
+          "thumb": "assets/synced/gpen-logos/b2eee6434e79173af73d8eeeb32511fcc208087d399d51e9fe02c7fd1fe9bb9c-tr.png",
           "file": null
         },
         {
@@ -4718,7 +4726,7 @@ window.PORTAL_SYNCED = {
           "type": "image",
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/gjjl69xfmfxqdxg87vym9/h?rlkey=q17pigcl81qcvr7rzcv2xpne3&st=wok0w9o7&dl=0",
-          "thumb": "assets/synced/gpen-logos/9b807c568959562edae830c0ecb5de93600a93e37e9440d7f90e886fd593f3de.png",
+          "thumb": "assets/synced/gpen-logos/9b807c568959562edae830c0ecb5de93600a93e37e9440d7f90e886fd593f3de-tr.png",
           "file": null
         },
         {
@@ -4766,7 +4774,7 @@ window.PORTAL_SYNCED = {
           "type": "image",
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/gjjl69xfmfxqdxg87vym9/h?rlkey=q17pigcl81qcvr7rzcv2xpne3&st=wok0w9o7&dl=0",
-          "thumb": "assets/synced/gpen-logos/b1c2c728b25c759afb864c548bab8350878afc37cfb7ea8f7f774fac780dc2ed.png",
+          "thumb": "assets/synced/gpen-logos/b1c2c728b25c759afb864c548bab8350878afc37cfb7ea8f7f774fac780dc2ed-tr.png",
           "file": null
         },
         {
@@ -4790,7 +4798,7 @@ window.PORTAL_SYNCED = {
           "type": "image",
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/gjjl69xfmfxqdxg87vym9/h?rlkey=q17pigcl81qcvr7rzcv2xpne3&st=wok0w9o7&dl=0",
-          "thumb": "assets/synced/gpen-logos/6534e974a4d53a0a98137f7cd20c3cea1392b3b6466d5bfd9ca0ead1a327b884.png",
+          "thumb": "assets/synced/gpen-logos/6534e974a4d53a0a98137f7cd20c3cea1392b3b6466d5bfd9ca0ead1a327b884-tr.png",
           "file": null
         },
         {
@@ -4822,7 +4830,7 @@ window.PORTAL_SYNCED = {
           "type": "image",
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/gjjl69xfmfxqdxg87vym9/h?rlkey=q17pigcl81qcvr7rzcv2xpne3&st=wok0w9o7&dl=0",
-          "thumb": "assets/synced/gpen-logos/91468a19fe319920ff3517a01fca55936cf661013db1c8c1e3f65346470deb40.png",
+          "thumb": "assets/synced/gpen-logos/91468a19fe319920ff3517a01fca55936cf661013db1c8c1e3f65346470deb40-tr.png",
           "file": null
         },
         {
