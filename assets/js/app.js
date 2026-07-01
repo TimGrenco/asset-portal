@@ -133,8 +133,10 @@
   }
   function route() {
     var parts = location.hash.replace(/^#/, "").split("/");
+    var mp = $("#materials-page"); if (mp && parts[0] !== "materials") mp.style.display = "none";
     if (parts[0] === "style" && BRANDS[parts[1]]) { openStyleGuide(parts[1]); return; }
     if (parts[0] === "additional" && BRANDS[parts[1]]) { openAdditional(parts[1]); return; }
+    if (parts[0] === "materials") { openMaterials(); return; }
     var p = productFromHash();
     if (p) openDetail(p); else renderHome();
   }
@@ -481,6 +483,7 @@
     $("#detail").style.display = "none";
     $("#styleguide").style.display = "none";
     $("#additional").style.display = "none";
+    $("#materials-page").style.display = "none";
     $("#home").style.display = "block";
     var browse = $("#browse"); if (browse) browse.style.display = "";
     var hero = $("#hero"); if (hero) hero.style.display = "";
@@ -534,8 +537,7 @@
     var generic = window.PORTAL_INSTORE_GENERAL || [];
     if (generic.length) groups.unshift({ label: "General " + bname + " materials", items: generic });
     var total = groups.reduce(function (n, g) { return n + g.items.length; }, 0);
-    var orderCta = '<a class="btn" href="mailto:' + CFG.orderEmail + "?subject=" +
-      encodeURIComponent("In-store material order — " + bname) + '">' + icon("mail") + " Order materials</a>";
+    var orderCta = '<a class="btn" href="#materials">' + icon("mail") + " Order materials</a>";
 
     if (!total) {
       box.innerHTML =
@@ -629,6 +631,87 @@
     openAdditional(bk);
     var h = "#additional/" + bk;
     if (location.hash !== h) { ignoreHash = true; location.hash = h; }
+  }
+
+  // ---- marketing materials order page --------------------------------------
+  // All orderable in-store materials: brand-level generics + any per-product
+  // "In-Store Marketing" pieces.
+  function availableMaterials() {
+    var out = [];
+    (window.PORTAL_INSTORE_GENERAL || []).forEach(function (x) {
+      out.push({ name: x.name, thumb: x.thumb, url: x.file || x.url || null });
+    });
+    PRODUCTS.forEach(function (p) {
+      if (p.isLogo) return;
+      ((p.folders && p.folders["In-Store Marketing"]) || []).forEach(function (x) {
+        out.push({ name: x.name + " — " + p.name, thumb: x.thumb, url: x.file || x.url || null });
+      });
+    });
+    return out;
+  }
+  function openMaterials() {
+    $("#home").style.display = "none";
+    $("#detail").style.display = "none";
+    $("#styleguide").style.display = "none";
+    $("#additional").style.display = "none";
+    var hero = $("#hero"); if (hero) hero.style.display = "none";
+    var browse = $("#browse"); if (browse) browse.style.display = "none";
+    var pg = $("#materials-page");
+    pg.style.display = "block";
+    window.scrollTo(0, 0);
+
+    var mats = availableMaterials();
+    var head = '<button class="back" id="mat-back">' + icon("arrowLeft") + " Back to library</button>" +
+      '<div class="section-head"><h2>Marketing Materials</h2>' +
+        (mats.length ? '<span class="badge">' + mats.length + " available</span>" : "") + "</div>";
+
+    if (!mats.length) {
+      pg.innerHTML = head +
+        '<div class="instore-empty"><p>Orderable in-store marketing materials will be listed here soon. In the meantime, reach out and we’ll let you know what’s available.</p>' +
+        '<a class="btn ghost sm" href="mailto:' + CFG.orderEmail + "?subject=" + encodeURIComponent("Marketing Material Request") + '">' + icon("mail") + " Contact us</a></div>";
+      $("#mat-back").addEventListener("click", navHome);
+      return;
+    }
+
+    var rows = mats.map(function (m, i) {
+      var media = m.thumb ? '<img src="' + m.thumb + '" alt="' + m.name.replace(/"/g, "") + '" loading="lazy"/>' : window.__icon("photo");
+      return '<div class="mat-row">' +
+        '<div class="mat-thumb">' + media + "</div>" +
+        '<div class="mat-name">' + m.name + "</div>" +
+        '<div class="mat-qty"><button class="mat-step" data-step="-1" aria-label="Decrease">–</button>' +
+          '<input type="number" min="0" value="0" data-mat="' + i + '" aria-label="Quantity for ' + m.name.replace(/"/g, "") + '"/>' +
+          '<button class="mat-step" data-step="1" aria-label="Increase">+</button></div>' +
+      "</div>";
+    }).join("");
+
+    pg.innerHTML = head +
+      '<p class="mat-lead">' + icon("info") + " Set a quantity for each item you’d like to order, then send your request — you’ll add your store details in the email.</p>" +
+      '<div class="mat-list">' + rows + "</div>" +
+      '<div class="mat-actions"><button class="btn lg" id="mat-order">' + icon("mail") + " Order Marketing Materials</button></div>";
+
+    $("#mat-back").addEventListener("click", navHome);
+    $$(".mat-step", pg).forEach(function (b) {
+      b.addEventListener("click", function () {
+        var inp = b.parentNode.querySelector("input");
+        inp.value = Math.max(0, (parseInt(inp.value, 10) || 0) + parseInt(b.getAttribute("data-step"), 10));
+      });
+    });
+    $("#mat-order").addEventListener("click", function () { submitMaterialOrder(mats); });
+  }
+  function submitMaterialOrder(mats) {
+    var lines = [];
+    $$("[data-mat]", $("#materials-page")).forEach(function (inp) {
+      var q = parseInt(inp.value, 10) || 0;
+      if (q > 0) lines.push(mats[+inp.getAttribute("data-mat")].name + " — Qty: " + q);
+    });
+    if (!lines.length) { toast("Set a quantity for at least one item first"); return; }
+    var body = "Store Name:\nAddress:\nE-Mail Address:\n\nRequested Marketing Materials:\n" + lines.join("\n");
+    window.location.href = "mailto:" + CFG.orderEmail + "?subject=" +
+      encodeURIComponent("Marketing Material Request") + "&body=" + encodeURIComponent(body);
+  }
+  function navMaterials() {
+    openMaterials();
+    if (location.hash !== "#materials") { ignoreHash = true; location.hash = "materials"; }
   }
   function emptyState() {
     return '<p style="grid-column:1/-1;color:var(--stone);font-size:14px;padding:30px 0;">No assets match your filters. <a href="mailto:' + CFG.requestEmail + '" style="text-decoration:underline;">Request one →</a></p>';
