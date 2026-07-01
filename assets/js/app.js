@@ -1056,11 +1056,12 @@
           encodeURIComponent("In-store material request — " + p.name) + '">' + icon("mail") + " Request materials</a>" +
       "</div>";
     }
-    var note = r.generic ? '<p class="pkg-note">General G Pen in-store materials — product-specific pieces coming soon.</p>' : "";
-    var tiles = items.map(function (x, i) {
+    var prodName = p.name.indexOf(BRANDS[p.brand].name) === 0 ? p.name : BRANDS[p.brand].name + " " + p.name;
+    var note = '<p class="pkg-note">' + prodName + " specific in-store materials.</p>";
+    var tiles = items.map(function (x) {
       var media = x.thumb ? '<img src="' + x.thumb + '" alt="' + fileLabel(x).replace(/"/g, "") + '" loading="lazy"/>' : window.__icon("photo");
-      return '<button class="instore-tile" data-ism="' + i + '" title="' + fileLabel(x).replace(/"/g, "") + '">' +
-        media + '<span class="instore-tile-fmt">' + (x.format || "") + "</span></button>";
+      return '<a class="instore-tile" href="#materials" title="Order ' + fileLabel(x).replace(/"/g, "") + '">' +
+        media + '<span class="instore-tile-order">' + icon("mail") + " Order</span></a>";
     }).join("");
     return head + note + '<div class="instore-grid">' + tiles + "</div>" +
       '<div class="instore-order"><a class="btn" href="#materials">' + icon("mail") + " Order marketing materials</a></div>";
