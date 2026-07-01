@@ -451,7 +451,8 @@
           "</div>" +
         "</div>" +
         '<div class="card-name">' + p.name + "</div>" +
-        '<div class="card-sub">' + (p.isLogo ? p.total + " logo files" : p.total + " assets · " + p.category) + "</div>" +
+        (p.label ? '<div class="card-label">' + p.label + "</div>" : "") +
+        '<div class="card-sub">' + (p.isLogo ? p.total + " logo files" : p.total + " assets" + (p.label ? "" : " · " + p.category)) + "</div>" +
       "</article>"
     );
   }
@@ -461,8 +462,8 @@
       '<article class="card row" data-id="' + pid(p) + '" tabindex="0" role="button" aria-label="Open ' + p.name + '">' +
         '<div class="row-thumb">' + coverHTML(p) + "</div>" +
         '<div class="row-main">' +
-          '<div class="row-name">' + p.name + ((isNew(p) || p.newBadge) && !p.isLogo ? ' <span class="row-new' + (p.newBadge ? " row-new-" + p.newBadge : "") + '">New</span>' : "") + "</div>" +
-          '<div class="row-sub">' + (p.isLogo ? p.total + " logo files" : p.total + " assets · " + p.category) + "</div>" +
+          '<div class="row-name">' + p.name + ((isNew(p) || p.newBadge) && !p.isLogo ? ' <span class="row-new' + (p.newBadge ? " row-new-" + p.newBadge : "") + '">New</span>' : "") + (p.label ? ' <span class="row-label">' + p.label + "</span>" : "") + "</div>" +
+          '<div class="row-sub">' + (p.isLogo ? p.total + " logo files" : p.total + " assets" + (p.label ? "" : " · " + p.category)) + "</div>" +
         "</div>" +
         (showBrand ? '<span class="row-brand">' + BRANDS[p.brand].name + "</span>" : "") +
         '<button class="row-dl" data-act="download" title="Download all">' + icon("download") + "</button>" +

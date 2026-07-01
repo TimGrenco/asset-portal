@@ -869,6 +869,20 @@ var HYDOUT_RETRO_PHOTOS = [
   }
 })();
 
+/* Product labels — short type tags shown on each current-product card. */
+(function () {
+  var LABELS = {
+    "Dash II": "Dry Herb Vape",
+    "Dash+": "Dry Herb Vape",
+    "Melt Hot Knife": "Concentrate Hot Knife",
+    "510 Original": "510 Battery",
+    "510 Original — Retro": "510 Battery",
+    "Hydout": "510 Battery",
+    "Hydout — Retro": "510 Battery",
+  };
+  window.PORTAL_PRODUCTS.forEach(function (p) { if (LABELS[p.name]) p.label = LABELS[p.name]; });
+})();
+
 /* Web Banners placeholder — show the tab on every product page even before its
    Dropbox "Web Banners" folder exists. When the synced folder appears (with real
    banners) it replaces this empty placeholder automatically. */
