@@ -795,3 +795,14 @@ window.PORTAL_PRODUCTS.forEach(function (p) {
     if (img) { p.info.popImg = img.thumb; p.info.pop = true; }
   });
 })();
+
+/* Generic (brand-level) in-store marketing materials — synced from the
+   "In-Store Marketing General" Dropbox folder. Shown on the home In-Store section
+   and as placeholders on any product page that has no product-specific pieces. */
+window.PORTAL_INSTORE_GENERAL = (function () {
+  var g = (typeof window !== "undefined" && window.PORTAL_SYNCED && window.PORTAL_SYNCED["In-Store Marketing General"]) || null;
+  if (!g || !g.folders) return [];
+  var out = [];
+  Object.keys(g.folders).forEach(function (f) { (g.folders[f] || []).forEach(function (x) { out.push(x); }); });
+  return out;
+})();

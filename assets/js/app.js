@@ -526,8 +526,10 @@
       .map(function (n) { return PRODUCTS.filter(function (p) { return p.name === n; })[0]; })
       .filter(Boolean);
     var groups = products
-      .map(function (p) { return { p: p, items: (p.folders && p.folders[INSTORE_FOLDER]) || [] }; })
+      .map(function (p) { return { label: p.name, items: (p.folders && p.folders[INSTORE_FOLDER]) || [] }; })
       .filter(function (g) { return g.items.length; });
+    var generic = window.PORTAL_INSTORE_GENERAL || [];
+    if (generic.length) groups.unshift({ label: "General " + bname + " materials", items: generic });
     var total = groups.reduce(function (n, g) { return n + g.items.length; }, 0);
     var orderCta = '<a class="btn" href="mailto:' + CFG.orderEmail + "?subject=" +
       encodeURIComponent("In-store material order — " + bname) + '">' + icon("mail") + " Order materials</a>";
@@ -544,13 +546,13 @@
 
     // Flat list for the lightbox (view larger); tiles reference it by index.
     var flat = [];
-    groups.forEach(function (g) { g.items.forEach(function (x) { flat.push({ src: x.thumb || x.file || x.url, name: fileLabel(x) + " · " + g.p.name, url: x.file || x.url || "#" }); }); });
+    groups.forEach(function (g) { g.items.forEach(function (x) { flat.push({ src: x.thumb || x.file || x.url, name: fileLabel(x) + " · " + g.label, url: x.file || x.url || "#" }); }); });
     var idx = 0;
     box.innerHTML =
       '<p class="instore-lead">' + total + " material" + (total > 1 ? "s" : "") + " available to order across " +
         groups.length + " product" + (groups.length > 1 ? "s" : "") + ". " + orderCta + "</p>" +
       groups.map(function (g) {
-        return '<div class="instore-group"><div class="instore-group-h">' + g.p.name + "</div>" +
+        return '<div class="instore-group"><div class="instore-group-h">' + g.label + "</div>" +
           '<div class="instore-grid">' +
           g.items.map(function (x) {
             var i = idx++;
@@ -760,7 +762,7 @@
         });
       });
       // In-store marketing tiles → enlarge in the lightbox.
-      var ismItems = ((p.folders && p.folders["In-Store Marketing"]) || []).map(function (x) {
+      var ismItems = inStoreItems(p).items.map(function (x) {
         return { src: x.thumb || x.file || x.url, name: fileLabel(x), url: x.file || x.url || "#" };
       });
       $$("[data-ism]", d).forEach(function (t) {
@@ -797,11 +799,18 @@
   }
 
   // Packaging visuals: retail outer box + (for POP products) the POP display.
-  // In-store printed marketing materials for this product (its "In-Store
-  // Marketing" Dropbox folder) — a dedicated section under Digital Assets.
+  // The materials to show for a product: its own "In-Store Marketing" folder if it
+  // has any, otherwise the generic brand-level pieces as placeholders.
+  function inStoreItems(p) {
+    var own = (p.folders && p.folders["In-Store Marketing"]) || [];
+    if (own.length) return { items: own, generic: false };
+    return { items: window.PORTAL_INSTORE_GENERAL || [], generic: true };
+  }
+  // In-store printed marketing materials for this product — a dedicated section
+  // under Digital Assets.
   function inStoreHTML(p) {
     if (p.isLogo) return "";
-    var items = (p.folders && p.folders["In-Store Marketing"]) || [];
+    var r = inStoreItems(p), items = r.items;
     var head = '<div class="section-head"><h2>In Store Marketing Materials</h2>' +
       (items.length ? '<span class="badge">' + items.length + " item" + (items.length === 1 ? "" : "s") + "</span>" : "") + "</div>";
     if (!items.length) {
@@ -811,12 +820,13 @@
           encodeURIComponent("In-store material request — " + p.name) + '">' + icon("mail") + " Request materials</a>" +
       "</div>";
     }
+    var note = r.generic ? '<p class="pkg-note">General G Pen in-store materials — product-specific pieces coming soon.</p>' : "";
     var tiles = items.map(function (x, i) {
       var media = x.thumb ? '<img src="' + x.thumb + '" alt="' + fileLabel(x).replace(/"/g, "") + '" loading="lazy"/>' : window.__icon("photo");
       return '<button class="instore-tile" data-ism="' + i + '" title="' + fileLabel(x).replace(/"/g, "") + '">' +
         media + '<span class="instore-tile-fmt">' + (x.format || "") + "</span></button>";
     }).join("");
-    return head + '<div class="instore-grid">' + tiles + "</div>";
+    return head + note + '<div class="instore-grid">' + tiles + "</div>";
   }
 
   function pkgCard(label, url) {
