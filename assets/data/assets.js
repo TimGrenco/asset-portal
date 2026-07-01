@@ -182,13 +182,13 @@ window.PORTAL_PRODUCTS = [
   /* ---------------------------------- G PEN -------------------------------- */
   {
     name: "Dash II", brand: "gpen", category: "Dry Herb", type: "Dry Herb Vaporizer",
-    cover: CDN + "dash2_thumb_01_953cdf69-8421-48a3-ad53-abcbb33fa9a6.jpg?v=1772827633",
+    cover: CDN + "Dash2_thumb_01.png?v=1782934099",
     added: "2026-06-02",
     oneSheet: "#",
     // Real Dropbox shared folder for Dash II (TEST). "Download all" pulls this
     // folder as a .zip. Full per-file sync comes via the Dropbox API job.
     dropbox: "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&st=24fyalcp&dl=0",
-    folders: mkFolders(CDN + "dash2_thumb_01_953cdf69-8421-48a3-ad53-abcbb33fa9a6.jpg?v=1772827633", "G Pen", "Dash II",
+    folders: mkFolders(CDN + "Dash2_thumb_01.png?v=1782934099", "G Pen", "Dash II",
       { "E-Comm Render Photos": 11, "Lifestyle Photos": 6, "Logos": 3, "Video": 2, "Misc": 1 }),
   },
   {
