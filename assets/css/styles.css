@@ -288,10 +288,13 @@ button.pkg-media { width: 100%; border: 0; padding: 0; font: inherit; }
 .vhub { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin-bottom: 10px; }
 .vcard { text-align: left; border: 1px solid var(--hair); border-radius: var(--radius); overflow: hidden; background: var(--paper); padding: 0; transition: border-color 0.14s, box-shadow 0.14s, transform 0.14s; }
 .vcard:hover { border-color: var(--ink); box-shadow: var(--shadow); transform: translateY(-2px); }
-.vthumb { position: relative; aspect-ratio: 16/9; background: var(--ink); }
+.vthumb { position: relative; aspect-ratio: 16/9; background: var(--ink); overflow: hidden; }
 .vthumb.vplay { cursor: pointer; }
 .vthumb img { width: 100%; height: 100%; object-fit: cover; }
-.vthumb-hint { position: absolute; bottom: 8px; left: 0; right: 0; text-align: center; font-size: 11px; font-weight: 700; color: #fff; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.65); opacity: 0; transition: opacity 0.14s; pointer-events: none; }
+/* Scrim so the play button reads clearly on any thumbnail */
+.vthumb.vplay::after { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.24); transition: background 0.16s; z-index: 1; }
+.vthumb.vplay:hover::after { background: rgba(0, 0, 0, 0.42); }
+.vthumb-hint { position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; font-size: 11.5px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.85); z-index: 2; pointer-events: none; }
 .vplay:hover .vthumb-hint { opacity: 1; }
 .vmeta { padding: 11px 13px 13px; }
 .vtitle { font-size: 13px; font-weight: 600; line-height: 1.35; }
@@ -333,9 +336,9 @@ button.pkg-media { width: 100%; border: 0; padding: 0; font: inherit; }
 .gthumb img { max-width: 100%; max-height: 100%; object-fit: contain; }
 .gthumb.is-video { padding: 0; background: var(--ink); }
 .gthumb.is-video img { width: 100%; height: 100%; object-fit: cover; }
-.play-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 46px; height: 46px; border-radius: 50%; background: rgba(10, 10, 10, 0.62); display: flex; align-items: center; justify-content: center; pointer-events: none; transition: background 0.14s; }
-.gthumb.is-video:hover .play-badge { background: rgba(10, 10, 10, 0.82); }
-.play-badge svg { width: 20px; height: 20px; fill: #fff; stroke: none; margin-left: 3px; }
+.play-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 62px; height: 62px; border-radius: 50%; background: #fff; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.42); display: flex; align-items: center; justify-content: center; pointer-events: none; z-index: 2; transition: transform 0.16s, background 0.16s; }
+.vthumb.vplay:hover .play-badge, .gthumb.is-video:hover .play-badge { transform: translate(-50%, -50%) scale(1.1); background: var(--gold); }
+.play-badge svg { width: 26px; height: 26px; fill: var(--ink); stroke: none; margin-left: 4px; }
 .gthumb svg { width: 30px; height: 30px; stroke: var(--stone-2); }
 .gfmt { position: absolute; bottom: 7px; left: 7px; z-index: 2; font-size: 9px; font-weight: 800; letter-spacing: 0.04em; color: #fff; background: rgba(10, 10, 10, 0.72); padding: 2px 6px; border-radius: 5px; pointer-events: none; }
 .gbar { display: flex; align-items: center; justify-content: space-between; padding: 9px 11px; border-top: 1px solid var(--hair); }

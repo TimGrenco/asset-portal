@@ -873,7 +873,7 @@
       return '<div class="sku-row"><span class="sku-l">' + label + "</span>" + v + "</div>";
     }
     var rows =
-      row("Product SKU", info.sku) +
+      row("Retail POP Display SKU", info.sku) +
       row("Full name", info.fullName) +
       row("UPC", info.upc) +
       row("Product dimensions", info.dimensions) +
