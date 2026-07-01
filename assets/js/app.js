@@ -490,6 +490,7 @@
     $("#styleguide").style.display = "none";
     $("#additional").style.display = "none";
     $("#materials-page").style.display = "none";
+    $("#locator-page").style.display = "none";
     $("#home").style.display = "block";
     var browse = $("#browse"); if (browse) browse.style.display = "";
     var hero = $("#hero"); if (hero) hero.style.display = "";
