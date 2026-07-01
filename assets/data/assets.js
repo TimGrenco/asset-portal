@@ -354,9 +354,9 @@ var PRODUCT_VIDEOS = {
   "Dash II": [
     // Real Dropbox MP4s — playable in-browser + downloadable. thumbId reuses an
     // existing YouTube frame for the poster image.
-    { title: "How to Use: G Pen Dash II", thumbId: "sqCdU8Kn5ek",
+    { title: "How to Use: G Pen Dash II", thumbId: "sqCdU8Kn5ek", youtube: "sqCdU8Kn5ek",
       mp4: "https://www.dropbox.com/scl/fi/75n3wv24t1f56dxnyvi49/G-Pen-Dash-2-Tutorial.mp4?rlkey=496dlhqzbmrhr01m882ar2sth&st=d16aeh6q&dl=0" },
-    { title: "How to Clean: Dash II", thumbId: "wBOzqPxDhd8",
+    { title: "How to Clean: Dash II", thumbId: "wBOzqPxDhd8", youtube: "wBOzqPxDhd8",
       mp4: "https://www.dropbox.com/scl/fi/yzqxtivxnhbdfr9g7jak9/How-to-Clean-Your-Dash-II.mp4?rlkey=cg2m8xjg7fsxz0on2rcy4l4iq&st=x982tzj8&dl=0" },
   ],
   "Dash": [
@@ -376,23 +376,23 @@ var PRODUCT_VIDEOS = {
   // How-to-use / how-to-clean tutorials pulled from the gpen.com product pages
   // (Vimeo). Placeholders until Dropbox MP4s arrive so they can be downloaded.
   "510 Original": [
-    { title: "How to Use: G Pen 510 Original", vimeo: "1149053260", thumb: "https://i.vimeocdn.com/video/2099496548-9f356818ba8ca793122dcf45c0911332ea2271f63bb31116c6e0da05b66d0b83-d_640?region=us" },
+    { title: "How to Use: G Pen 510 Original", vimeo: "1149053260", youtube: "_SF_4zkbZdI", thumb: "https://i.vimeocdn.com/video/2099496548-9f356818ba8ca793122dcf45c0911332ea2271f63bb31116c6e0da05b66d0b83-d_640?region=us" },
     { title: "How to Clean: G Pen 510 Original", vimeo: "1198848006", thumb: "https://i.vimeocdn.com/video/2165544391-c70c4c689b5becbd372bd32b6bf431be5c8442a4b1e6875cf85ed96e636747b5-d_640?region=us" },
   ],
   "510 Original — Retro": [
-    { title: "How to Use: G Pen 510 Original", vimeo: "1149053260", thumb: "https://i.vimeocdn.com/video/2099496548-9f356818ba8ca793122dcf45c0911332ea2271f63bb31116c6e0da05b66d0b83-d_640?region=us" },
+    { title: "How to Use: G Pen 510 Original", vimeo: "1149053260", youtube: "_SF_4zkbZdI", thumb: "https://i.vimeocdn.com/video/2099496548-9f356818ba8ca793122dcf45c0911332ea2271f63bb31116c6e0da05b66d0b83-d_640?region=us" },
     { title: "How to Clean: G Pen 510 Original", vimeo: "1198848006", thumb: "https://i.vimeocdn.com/video/2165544391-c70c4c689b5becbd372bd32b6bf431be5c8442a4b1e6875cf85ed96e636747b5-d_640?region=us" },
   ],
   "Hydout": [
-    { title: "How to Use: G Pen Hydout", vimeo: "1105906397", thumb: "https://i.vimeocdn.com/video/2042536830-ad33a7ce448923a860282dcd9a0acade12fd6a9a18bf61116b68ea3954b4655c-d_640?region=us" },
-    { title: "How to Clean: G Pen Hydout", vimeo: "1105958727", hash: "59fe004ad8", thumb: "https://i.vimeocdn.com/video/2042601767-c1a1df4b3c5e2f524fbdf5eab7af78886897186ff84062dcc1f01a49e8600c9a-d_640?region=us" },
+    { title: "How to Use: G Pen Hydout", vimeo: "1105906397", youtube: "WK3EXouKwGs", thumb: "https://i.vimeocdn.com/video/2042536830-ad33a7ce448923a860282dcd9a0acade12fd6a9a18bf61116b68ea3954b4655c-d_640?region=us" },
+    { title: "How to Clean: G Pen Hydout", vimeo: "1105958727", hash: "59fe004ad8", youtube: "e9oEXqNajh4", thumb: "https://i.vimeocdn.com/video/2042601767-c1a1df4b3c5e2f524fbdf5eab7af78886897186ff84062dcc1f01a49e8600c9a-d_640?region=us" },
   ],
   "Hydout — Retro": [
-    { title: "How to Use: G Pen Hydout", vimeo: "1105906397", thumb: "https://i.vimeocdn.com/video/2042536830-ad33a7ce448923a860282dcd9a0acade12fd6a9a18bf61116b68ea3954b4655c-d_640?region=us" },
-    { title: "How to Clean: G Pen Hydout", vimeo: "1105958727", hash: "59fe004ad8", thumb: "https://i.vimeocdn.com/video/2042601767-c1a1df4b3c5e2f524fbdf5eab7af78886897186ff84062dcc1f01a49e8600c9a-d_640?region=us" },
+    { title: "How to Use: G Pen Hydout", vimeo: "1105906397", youtube: "WK3EXouKwGs", thumb: "https://i.vimeocdn.com/video/2042536830-ad33a7ce448923a860282dcd9a0acade12fd6a9a18bf61116b68ea3954b4655c-d_640?region=us" },
+    { title: "How to Clean: G Pen Hydout", vimeo: "1105958727", hash: "59fe004ad8", youtube: "e9oEXqNajh4", thumb: "https://i.vimeocdn.com/video/2042601767-c1a1df4b3c5e2f524fbdf5eab7af78886897186ff84062dcc1f01a49e8600c9a-d_640?region=us" },
   ],
   "Dash+": [
-    { title: "How to Use: G Pen Dash+", vimeo: "989095151", hash: "ebbe638ab0", thumb: "https://i.vimeocdn.com/video/1904791595-274b91c5aa41aa688212f27f78b73f010482b21cc15d9935379b05d73e63f851-d_640?region=us" },
+    { title: "How to Use: G Pen Dash+", vimeo: "989095151", hash: "ebbe638ab0", youtube: "OzgMUHgEQao", thumb: "https://i.vimeocdn.com/video/1904791595-274b91c5aa41aa688212f27f78b73f010482b21cc15d9935379b05d73e63f851-d_640?region=us" },
     { title: "How to Clean: G Pen Dash+", vimeo: "989096678", hash: "38d053dfc5", thumb: "https://i.vimeocdn.com/video/1904792226-ecd92a819e1074a45154a6dff6b558c242612cf8c6a2bbd099d17f25a451d949-d_640?region=us" },
   ],
   "Hyer": [
