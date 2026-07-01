@@ -744,8 +744,32 @@ var PRODUCT_SKU = {
    { image: "<url>", contents: ["item", ...] } */
 var PRODUCT_BOX = {
   "Dash II": {
-    image: "",
+    image: CDN + "dash2_thumb_011.jpg?v=1772834595",
     contents: ["G Pen Dash II Dry Herb Vape", "Built in loading tool", "Silicone Mouthpiece Sleeve", "*USB-C Charging Cable Not Included"],
+  },
+  "Dash+": {
+    image: CDN + "dash_what_inc.png?v=1692903153",
+    contents: ["Dash+ Vaporizer", "Dash+ Mouthpiece Silicone Sleeve", "Loading Tool with Keychain", "USB-C Charging Cable"],
+  },
+  "Melt Hot Knife": {
+    image: CDN + "Melt_thumb_02.jpg?v=1772808678",
+    contents: ["G Pen Melt Hot Knife", "Protective Travel Cap", "*USB C Charging Cable Not Included"],
+  },
+  "510 Original": {
+    image: CDN + "510_thumb_01.jpg?v=1765987884",
+    contents: ["G Pen 510 Original Battery", "*USB C Charger Not Included", "*510 Cartridge Not Included"],
+  },
+  "510 Original — Retro": {
+    image: CDN + "Purple510O_thumb_01.jpg?v=1779898107",
+    contents: ["G Pen 510 Original Battery", "*USB C Charger Not Included", "*510 Cartridge Not Included"],
+  },
+  "Hydout": {
+    image: CDN + "Hydout_vape_thumb_02.jpg?v=1762461585",
+    contents: ["1x G Pen Hydout 510 Cartridge Battery", "1x Magnetic Mouthpiece Cover", "510 Cartridge not included", "USB-C Charging cable not included"],
+  },
+  "Hydout — Retro": {
+    image: CDN + "Purple_hydout_07.jpg?v=1765487537",
+    contents: ["G Pen Hydout 510 Thread Battery", "Magnetic Mouthpiece", "*USB-C Charging Cable Not Included", "*510 Cartridge Not Included"],
   },
 };
 
