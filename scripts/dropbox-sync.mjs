@@ -213,7 +213,19 @@ for (const p of PRODUCTS) {
       return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
     });
     for (const { raw, disp } of specs) {
-      const files = (await listFolder(tok, p.link, "/" + raw)).filter((e) => e[".tag"] === "file");
+      const entries = await listFolder(tok, p.link, "/" + raw);
+      const files = [];
+      for (const e of entries) if (e[".tag"] === "file") { e.relPath = "/" + raw + "/" + e.name; files.push(e); }
+      // Walk one nested level (e.g. per-color variant folders under Product Photos)
+      // and flatten those files into the parent group, labelled by their folder.
+      for (const ss of entries.filter((e) => e[".tag"] === "folder")) {
+        const nested = (await listFolder(tok, p.link, "/" + raw + "/" + ss.name)).filter((e) => e[".tag"] === "file");
+        for (const nf of nested) {
+          nf.relPath = "/" + raw + "/" + ss.name + "/" + nf.name;
+          nf.displayName = ss.name + " · " + nf.name.replace(/\.[^.]+$/, "");
+          files.push(nf);
+        }
+      }
       folderSpecs.push({ name: disp, prefix: "/" + raw, files });
     }
   } else {
@@ -227,10 +239,10 @@ for (const p of PRODUCTS) {
   const folders = {};
   for (const spec of folderSpecs) {
     const files = spec.files;
-    files.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
+    files.sort((a, b) => (a.displayName || a.name).localeCompare(b.displayName || b.name, undefined, { numeric: true }));
     const out = [];
     for (const f of files) {
-      const e = ext(f.name), type = typeOf(e), path = spec.prefix + "/" + f.name;
+      const e = ext(f.name), type = typeOf(e), path = f.relPath || (spec.prefix + "/" + f.name);
       const hash = f.content_hash, size = f.size || 0;
       let thumb = null, fileRel = null;
       try {
@@ -295,7 +307,7 @@ for (const p of PRODUCTS) {
         }
       } catch (err) { warnOnce("gen-" + type, "asset error (" + f.name + "): " + err.message); }
 
-      out.push({ name: f.name.replace(/\.[^.]+$/, ""), type, format: e.toUpperCase(), url: p.link, thumb, file: fileRel });
+      out.push({ name: f.displayName || f.name.replace(/\.[^.]+$/, ""), type, format: e.toUpperCase(), url: p.link, thumb, file: fileRel });
     }
     if (out.length) folders[spec.name] = (folders[spec.name] || []).concat(out);  // concat so aliased names merge
   }
