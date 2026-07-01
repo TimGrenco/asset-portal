@@ -105,12 +105,12 @@ window.PORTAL_BRANDS = {
 window.PORTAL_CURRENT = {
   gpen: [
     "Dash II",
-    "Melt Hot Knife",
-    "510 Original",
-    "510 Original — Retro",
-    "Hydout",
-    "Hydout — Retro",
     "Dash+",
+    "Melt Hot Knife",
+    "Hydout",
+    "510 Original",
+    "Hydout — Retro",
+    "510 Original — Retro",
   ],
   stundenglass: [
     "Kompact",
@@ -242,7 +242,7 @@ window.PORTAL_PRODUCTS = [
        Asset counts are placeholders — update when real files are available. */
     name: "Dash+", brand: "gpen", category: "Dry Herb", type: "Dry Herb Vaporizer",
     cover: CDN + "dash__vape_thumb_5e14bcb4-a63a-4cc3-8078-e57fc572e4da.png?v=1729247649",
-    added: "2026-06-10",
+    added: "2026-04-15",
     oneSheet: "#",
     folders: mkFolders(CDN + "dash__vape_thumb_5e14bcb4-a63a-4cc3-8078-e57fc572e4da.png?v=1729247649", "G Pen", "Dash+",
       { "E-Comm Render Photos": 6, "Lifestyle Photos": 3, "Logos": 2, "Video": 1, "Misc": 0 }),
