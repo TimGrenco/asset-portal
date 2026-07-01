@@ -686,25 +686,35 @@
     }).join("");
 
     pg.innerHTML = head +
-      '<p class="mat-lead">' + icon("info") + " Set a quantity for each item, add your store details, then send your request.</p>" +
-      '<div class="mat-list">' + rows + "</div>" +
-      '<div class="mat-store">' +
-        '<div class="section-head"><h2>Your details</h2></div>' +
-        '<div class="mat-fields">' +
-          '<label class="mat-field"><span>Store Name</span><input type="text" id="mat-store-name" placeholder="Store name"/></label>' +
-          '<label class="mat-field mat-field-wide"><span>Mailing Address</span><input type="text" id="mat-store-address" placeholder="Street, City, State, ZIP"/></label>' +
-          '<label class="mat-field"><span>Email Address</span><input type="email" id="mat-store-email" placeholder="you@store.com"/></label>' +
-        "</div>" +
-      "</div>" +
-      '<div class="mat-actions"><button class="btn lg" id="mat-order">' + icon("mail") + " Order Marketing Materials</button></div>";
+      '<p class="mat-lead">' + icon("info") + " Set a quantity for each item, add your store details, then send your request." + "</p>" +
+      '<div class="mat-layout">' +
+        '<div class="mat-list">' + rows + "</div>" +
+        '<aside class="mat-side">' +
+          '<div class="mat-side-h">Your details</div>' +
+          '<div class="mat-fields">' +
+            '<label class="mat-field"><span>Store Name</span><input type="text" id="mat-store-name" placeholder="Store name"/></label>' +
+            '<label class="mat-field"><span>Mailing Address</span><input type="text" id="mat-store-address" placeholder="Street, City, State, ZIP"/></label>' +
+            '<label class="mat-field"><span>Email Address</span><input type="email" id="mat-store-email" placeholder="you@store.com"/></label>' +
+          "</div>" +
+          '<button class="btn lg mat-order-btn" id="mat-order">' + icon("mail") + ' Order Materials<span id="mat-count"></span></button>' +
+          '<p class="mat-side-note">You’ll confirm and send from your email app.</p>' +
+        "</aside>" +
+      "</div>";
 
+    function updateMatCount() {
+      var n = 0;
+      $$("[data-mat]", pg).forEach(function (inp) { n += Math.max(0, parseInt(inp.value, 10) || 0); });
+      var c = $("#mat-count"); if (c) c.textContent = n ? " · " + n : "";
+    }
     $("#mat-back").addEventListener("click", navHome);
     $$(".mat-step", pg).forEach(function (b) {
       b.addEventListener("click", function () {
         var inp = b.parentNode.querySelector("input");
         inp.value = Math.max(0, (parseInt(inp.value, 10) || 0) + parseInt(b.getAttribute("data-step"), 10));
+        updateMatCount();
       });
     });
+    $$("[data-mat]", pg).forEach(function (inp) { inp.addEventListener("input", updateMatCount); });
     $("#mat-order").addEventListener("click", function () { submitMaterialOrder(mats); });
   }
   function submitMaterialOrder(mats) {
