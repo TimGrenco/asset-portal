@@ -127,6 +127,13 @@ a { color: inherit; text-decoration: none; }
 .section-head .badge { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; color: var(--stone); border: 1px solid var(--hair); border-radius: var(--radius-pill); padding: 3px 9px; }
 .section-head::after { content: ""; flex: 1; height: 1px; background: var(--hair); order: 5; }
 
+/* Product/detail pages: one consistent vertical rhythm all the way down —
+   ~40px between sections, 16px from each header to its content. Top-level
+   section headers carry the separation; the first one (after the hero) has
+   no top gap so it doesn't double up. */
+.detail > .section-head { margin: 40px 0 16px; }
+.detail-hero + .section-head { margin-top: 0; }
+
 /* additional / legacy products */
 .additional-note { font-size: 12.5px; color: var(--stone); margin: -10px 0 22px; max-width: 640px; }
 /* bottom-of-home entry box → opens the dedicated Additional Products page */
@@ -165,15 +172,15 @@ a { color: inherit; text-decoration: none; }
 /* two-column: materials list + sticky details panel */
 .mat-layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 26px; align-items: start; }
 .mat-list { border: 1px solid var(--hair); border-radius: var(--radius); overflow: hidden; background: var(--paper); }
-.mat-row { display: flex; align-items: center; gap: 14px; padding: 11px 16px; border-bottom: 1px solid var(--hair); transition: background 0.12s; }
+.mat-row { display: flex; align-items: center; gap: 16px; padding: 14px 16px; border-bottom: 1px solid var(--hair); transition: background 0.12s; }
 .mat-row:last-child { border-bottom: none; }
 .mat-row:hover { background: var(--paper-2, #fafaf8); }
-.mat-thumb { width: 74px; height: 74px; flex: 0 0 auto; border: 1px solid var(--hair); border-radius: 10px; background: var(--mist); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+.mat-thumb { width: 116px; height: 116px; flex: 0 0 auto; border: 1px solid var(--hair); border-radius: 12px; background: var(--mist); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
 button.mat-thumb { padding: 0; }
 .mat-thumb-zoom { cursor: zoom-in; }
 .mat-thumb-zoom:hover { border-color: var(--ink); }
-.mat-thumb img { width: 100%; height: 100%; object-fit: contain; padding: 8px; }
-.mat-thumb svg { width: 26px; height: 26px; stroke: #c8c8c3; }
+.mat-thumb img { width: 100%; height: 100%; object-fit: contain; padding: 10px; }
+.mat-thumb svg { width: 34px; height: 34px; stroke: #c8c8c3; }
 .mat-zoom-badge { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.34); opacity: 0; transition: opacity 0.14s; }
 .mat-thumb-zoom:hover .mat-zoom-badge { opacity: 1; }
 .mat-zoom-badge svg { width: 20px; height: 20px; stroke: #fff; }
@@ -260,7 +267,7 @@ button.mat-thumb { padding: 0; }
 .back:hover { border-color: var(--ink); }
 .back svg { width: 15px; height: 15px; stroke: currentColor; }
 /* product hero — large image + info column */
-.detail-hero { display: grid; grid-template-columns: minmax(280px, 360px) 1fr; gap: 36px; align-items: start; margin-bottom: 36px; }
+.detail-hero { display: grid; grid-template-columns: minmax(280px, 360px) 1fr; gap: 36px; align-items: start; margin-bottom: 40px; }
 .detail-cover-lg { aspect-ratio: 1 / 1; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--hair); background: var(--mist); display: flex; align-items: center; justify-content: center; padding: 32px; }
 .detail-cover-lg img { max-width: 100%; max-height: 100%; object-fit: contain; }
 .detail-cover-lg.clickable { cursor: zoom-in; transition: border-color 0.14s, box-shadow 0.14s; }

@@ -492,7 +492,7 @@
 
     // Current products in scope (brand + search), logos excluded.
     var vis = visibleProducts().filter(function (p) { return !p.isLogo; });
-    $("#all-title").textContent = "Current " + BRANDS[state.view].name + " products";
+    $("#all-title").textContent = "Featured " + BRANDS[state.view].name + " products";
 
     var curList = currentList(state.view);
     var byName = function (a, b) { return a.name.localeCompare(b.name); };
