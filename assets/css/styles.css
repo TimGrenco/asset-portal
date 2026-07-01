@@ -300,14 +300,16 @@ button.mat-thumb { padding: 0; }
 .fd-body p { font-size: 13.5px; line-height: 1.6; color: var(--ink-2); margin-bottom: 9px; }
 .fd-body p:last-child { margin-bottom: 0; }
 /* What's In the Box? */
-.box-grid { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 34px; align-items: center; }
-.box-list { list-style: none; padding: 4px 0; margin: 0; }
-.box-list li { position: relative; padding-left: 20px; font-size: 15px; line-height: 1.5; margin-bottom: 13px; }
-.box-list li:last-child { margin-bottom: 0; }
-.box-list li::before { content: ""; position: absolute; left: 3px; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--ink); }
-.box-media { border: 1px solid var(--hair); border-radius: var(--radius); background: var(--mist); overflow: hidden; }
-.box-media img { width: 100%; display: block; object-fit: contain; padding: 24px; }
-@media (max-width: 720px) { .box-grid { grid-template-columns: 1fr; gap: 18px; } }
+/* Contained card: contents on the left, components image on the right */
+.box-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: stretch; border: 1px solid var(--hair); border-radius: var(--radius); overflow: hidden; background: var(--paper); }
+.box-list { list-style: none; margin: 0; padding: 30px 34px; display: flex; flex-direction: column; justify-content: center; gap: 15px; }
+.box-list li { position: relative; padding-left: 21px; font-size: 15px; line-height: 1.4; }
+.box-list li::before { content: ""; position: absolute; left: 3px; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--ink); }
+.box-media { background: var(--mist); border-left: 1px solid var(--hair); display: flex; align-items: center; justify-content: center; padding: 22px; min-height: 240px; }
+.box-media img { max-height: 300px; max-width: 100%; width: auto; object-fit: contain; display: block; }
+.box-single { border: 1px solid var(--hair); border-radius: var(--radius); padding: 24px 28px; }
+.box-single .box-list { padding: 0; }
+@media (max-width: 720px) { .box-grid { grid-template-columns: 1fr; } .box-media { border-left: none; border-top: 1px solid var(--hair); min-height: 200px; } }
 
 /* product hub: packaging */
 .pkg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-bottom: 12px; }
