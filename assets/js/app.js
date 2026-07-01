@@ -332,21 +332,21 @@
       var dark = /white|reverse/i.test(x.name);
       var media = x.thumb ? '<img src="' + x.thumb + '" alt="' + x.name.replace(/"/g, "") + '" loading="lazy"/>' : window.__icon("photo");
       return '<button class="logo-tile' + (dark ? " dark" : "") + '" data-logodl="' + (x.file || "#") + '" data-logoname="' + fileLabel(x) + '" title="Download ' + fileLabel(x) + '">' +
-        media + '<span class="logo-tile-fmt">' + x.format + "</span></button>";
+        media + "</button>";
     }).join("");
 
     box.innerHTML =
       '<div class="logo-card">' +
-        '<div class="logo-card-head">' +
-          '<div class="logo-card-meta">' +
-            '<div class="logo-card-name">' + b.name + " Logos</div>" +
-            '<p class="logo-card-note">Official ' + b.name + " logos — black, white &amp; various versions. For approved partner, press &amp; retail use; please don’t alter, recolor, or distort the marks.</p>" +
-            (fmts ? '<div class="logo-card-fmts"><span class="logo-card-fmts-l">Formats</span>' + fmts + "</div>" : "") +
+        '<div class="logo-card-info">' +
+          '<div class="logo-card-name">' + b.name + " Logos</div>" +
+          '<p class="logo-card-note">Official ' + b.name + " logos — black, white &amp; various versions. For approved partner, press &amp; retail use; please don’t alter, recolor, or distort the marks.</p>" +
+          (fmts ? '<div class="logo-card-fmts"><span class="logo-card-fmts-l">Formats</span>' + fmts + "</div>" : "") +
+          '<div class="logo-card-actions">' +
+            '<button class="btn" id="logo-dl">' + icon("download") + " Download all logos</button>" +
+            '<button class="logo-browse-link" id="logo-browse">' + icon("eye") + " Browse all " + logoP.total + " logo files →</button>" +
           "</div>" +
-          '<button class="btn" id="logo-dl">' + icon("download") + " Download all logos</button>" +
         "</div>" +
-        (tiles ? '<div class="logo-grid">' + tiles + "</div>" : "") +
-        '<button class="logo-browse-link" id="logo-browse">' + icon("eye") + " Browse all " + logoP.total + " logo files →</button>" +
+        (tiles ? '<div class="logo-preview">' + tiles + "</div>" : "") +
       "</div>";
 
     $("#logo-dl").addEventListener("click", function () { downloadAll(logoP); });
