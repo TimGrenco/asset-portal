@@ -254,6 +254,7 @@ a { color: inherit; text-decoration: none; }
 .sku-row:last-child { border-bottom: none; }
 .sku-l { font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 600; color: var(--stone); }
 .sku-v { font-size: 13.5px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.sku-tbd { color: var(--stone); font-weight: 400; opacity: 0.55; }
 
 /* product hub: video education hub */
 .vhub { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin-bottom: 10px; }

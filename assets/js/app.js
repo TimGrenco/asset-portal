@@ -739,23 +739,26 @@
   function skuHTML(p) {
     if (p.isLogo) return "";
     var info = p.info || {};
-    if (!info.sku && !info.pop && !info.fullName && !info.upc && !info.innerPack && !info.masterCarton && !info.dimensions && !info.unitWeight) return "";
-    function row(label, val) { return '<div class="sku-row"><span class="sku-l">' + label + '</span><span class="sku-v">' + val + "</span></div>"; }
-    // Always show SKU; show the rest only when there's a value. Product specs
-    // (dimensions/weight) first, then retail packaging / case quantities.
-    var rows = row("Product SKU", info.sku || "—");
-    if (info.fullName) rows += row("Full name", info.fullName);
-    if (info.upc) rows += row("UPC", info.upc);
-    if (info.dimensions) rows += row("Product dimensions", info.dimensions);
-    if (info.unitWeight) rows += row("Unit weight", info.unitWeight);
-    if (info.innerPack) rows += row(info.pop ? "Units per POP display" : "Inner pack", info.innerPack);
-    if (info.masterCarton) rows += row("Units per master case", info.masterCarton);
-    if (info.caseWeight) rows += row("Case weight", info.caseWeight);
-    if (info.caseDimensions) rows += row("Case dimensions", info.caseDimensions);
-    var pending = !info.masterCarton || (info.pop && !info.innerPack);
+    // Every product shows the full SKU/packaging field set (like Dash II) so
+    // it's clear what still needs filling in — blanks render as a muted "—".
+    var missing = 0;
+    function row(label, val) {
+      var v = val ? '<span class="sku-v">' + val + "</span>" : (missing++, '<span class="sku-v sku-tbd">—</span>');
+      return '<div class="sku-row"><span class="sku-l">' + label + "</span>" + v + "</div>";
+    }
+    var rows =
+      row("Product SKU", info.sku) +
+      row("Full name", info.fullName) +
+      row("UPC", info.upc) +
+      row("Product dimensions", info.dimensions) +
+      row("Unit weight", info.unitWeight) +
+      row(info.pop ? "Units per POP display" : "Inner pack", info.innerPack) +
+      row("Units per master case", info.masterCarton) +
+      row("Case weight", info.caseWeight) +
+      row("Case dimensions", info.caseDimensions);
     return '<div class="section-head"><h2>SKU details</h2></div>' +
       '<div class="sku-table">' + rows + "</div>" +
-      (pending ? '<p class="pkg-note">' + icon("info") + " Pack &amp; case quantities to be confirmed.</p>" : "");
+      (missing ? '<p class="pkg-note">' + icon("info") + " Fields shown as <strong>—</strong> are still to be confirmed." + "</p>" : "");
   }
 
   // MSRP / warranty facts + FAQ/site CTAs (sits in the hero info column).
