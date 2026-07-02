@@ -583,7 +583,8 @@ a.logo-tile { cursor: pointer; }
   .detail-cover-lg { max-width: 360px; }
 }
 @media (max-width: 600px) {
-  .wrap { padding: 0 16px; }
+  /* horizontal only — a shorthand here would wipe .body's top/bottom padding */
+  .wrap { padding-left: 16px; padding-right: 16px; }
   .hero { padding: 30px 16px 28px; }
   .req-link span { display: none; }
   /* keep the nav on one tidy line: logo mark only, actions don't wrap */
