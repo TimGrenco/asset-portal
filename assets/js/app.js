@@ -2009,8 +2009,8 @@
     void el.offsetWidth;
     el.classList.add("page-anim");
   }
-  var DEFAULT_TITLE = "Official G Pen & Stündenglass Brand Assets Portal";
-  function setTitle(t) { document.title = t ? t + " — Brand Asset Portal" : DEFAULT_TITLE; }
+  var DEFAULT_TITLE = "Grenco Brand Assets Portal";
+  function setTitle(t) { document.title = t ? t + " — Grenco Brand Assets Portal" : DEFAULT_TITLE; }
 
   document.addEventListener("DOMContentLoaded", init);
 })();
