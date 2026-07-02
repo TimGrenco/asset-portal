@@ -1739,7 +1739,7 @@
     void el.offsetWidth;
     el.classList.add("page-anim");
   }
-  var DEFAULT_TITLE = "Brand Asset Portal — G Pen & Stündenglass";
+  var DEFAULT_TITLE = "Official G Pen & Stündenglass Brand Assets Portal";
   function setTitle(t) { document.title = t ? t + " — Brand Asset Portal" : DEFAULT_TITLE; }
 
   document.addEventListener("DOMContentLoaded", init);
