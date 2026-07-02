@@ -100,7 +100,8 @@ a { color: inherit; text-decoration: none; }
 .toggle button.on { background: var(--ink); color: #fff; }
 
 /* --------------------------------- BODY ----------------------------------- */
-.body { padding: 28px 0 10px; }
+/* vertical only — keep .wrap's horizontal gutters (a shorthand here would zero them) */
+.body { padding-top: 28px; padding-bottom: 10px; }
 .filters { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-start; }
 .chip { font-size: 12.5px; font-weight: 600; padding: 8px 16px; border-radius: var(--radius-pill); border: 1px solid var(--hair); background: var(--paper); color: var(--stone); transition: all 0.12s; }
 .chip:hover { border-color: var(--ink); color: var(--ink); }
@@ -578,10 +579,13 @@ a.logo-tile { cursor: pointer; }
   .detail-cover-lg { max-width: 360px; }
 }
 @media (max-width: 600px) {
+  .wrap { padding: 0 16px; }
+  .hero { padding: 30px 16px 28px; }
   .req-link span { display: none; }
+  .hero-brands { gap: 18px; }
   .hero-brands .nm { font-size: 17px; }
-  .hero-logo.gpen { height: 60px; }
-  .hero-logo.sg { height: 35px; }
+  .hero-logo.gpen { height: 44px; }
+  .hero-logo.sg { height: 26px; }
   .grid { grid-template-columns: repeat(2, 1fr); gap: 13px; }
   .toggle button { padding: 9px 16px; }
   .section-head { flex-wrap: wrap; }
