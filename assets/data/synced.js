@@ -3156,7 +3156,7 @@ window.PORTAL_SYNCED = {
           "type": "image",
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5wps4y20eqmpbzj0j4ijq/h?rlkey=5bna5as30dz79lmqumcml47x7&st=xt8upom3&dl=0",
-          "thumb": null,
+          "thumb": "assets/synced/dash-plus/e892350e181b23adcc8da778ee8d1e645fd6180c0e382e7f8edc0ea6fe615aa0.jpg",
           "file": null
         }
       ]
@@ -5225,7 +5225,7 @@ window.PORTAL_SYNCED = {
           "type": "video",
           "format": "MP4",
           "url": "https://www.dropbox.com/scl/fo/qvw93szg11i4ka3d9yuaq/AC8I-n2z09RvRGiA__rNYEs?rlkey=a0yhcy2ok0j1l4dnmk6ktwcoy&st=zx3371he&dl=0",
-          "thumb": null,
+          "thumb": "assets/synced/melt/5261f0df822c03053995c39471bc437d56be28fc435d5c98bdb0304800061c89.jpg",
           "file": null
         },
         {
