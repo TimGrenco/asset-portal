@@ -28,6 +28,7 @@
       youtube: '<rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3z"/>',
       share: '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/>',
       arrowLeft: '<path d="M19 12H5"/><path d="m12 19-7-7 7-7"/>',
+      arrowUp: '<path d="M12 19V5"/><path d="m5 12 7-7 7 7"/>',
       file: '<path d="M14 3v5h5"/><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/>',
       photo: '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/>',
       video: '<rect x="2" y="6" width="14" height="12" rx="2"/><path d="m22 8-6 4 6 4Z"/>',
@@ -400,6 +401,7 @@
     $("#additional").style.display = "none";
     var sg = $("#styleguide");
     sg.style.display = "block";
+    animateIn(sg);
     window.scrollTo(0, 0);
 
     sg.innerHTML =
@@ -492,6 +494,8 @@
     $("#materials-page").style.display = "none";
     $("#locator-page").style.display = "none";
     $("#home").style.display = "block";
+    animateIn($("#home"));
+    setTitle("");
     var browse = $("#browse"); if (browse) browse.style.display = "";
     var hero = $("#hero"); if (hero) hero.style.display = "";
     document.body.classList.remove("has-selection");
@@ -614,6 +618,7 @@
     var browse = $("#browse"); if (browse) browse.style.display = "none";
     var ad = $("#additional");
     ad.style.display = "block";
+    animateIn(ad);
     window.scrollTo(0, 0);
     var legacy = legacyProducts(bk).slice().sort(function (a, b) { return a.name.localeCompare(b.name); });
     ad.innerHTML =
@@ -655,6 +660,8 @@
     var browse = $("#browse"); if (browse) browse.style.display = "none";
     var pg = $("#materials-page");
     pg.style.display = "block";
+    animateIn(pg);
+    setTitle("Order Marketing Materials");
     window.scrollTo(0, 0);
 
     var mats = availableMaterials();
@@ -776,6 +783,8 @@
     var browse = $("#browse"); if (browse) browse.style.display = "none";
     var pg = $("#locator-page");
     pg.style.display = "block";
+    animateIn(pg);
+    setTitle("Store Locator Request");
     window.scrollTo(0, 0);
 
     pg.innerHTML =
@@ -887,6 +896,7 @@
     $("#additional").style.display = "none";
     var d = $("#detail");
     d.style.display = "block";
+    animateIn(d);
     window.scrollTo(0, 0);
     recordRecent(p);
 
@@ -925,7 +935,8 @@
       // Asset filters: friendly-labelled chips for this product's folders, sat
       // right at the top of the Documents section for quick filtering.
       var assetNav = '<div class="asset-nav" id="asset-nav">' + folderNames.map(function (f) {
-        return '<button class="anav ' + (f === active ? "on" : "") + '" data-folder="' + f + '">' + typeLabel(f) + '<span class="c">' + p.folders[f].length + "</span></button>";
+        var n = p.folders[f].length, empty = n === 0;
+        return '<button class="anav ' + (f === active ? "on " : "") + (empty ? "is-empty" : "") + '" data-folder="' + f + '"' + (empty ? " disabled" : "") + ">" + typeLabel(f) + '<span class="c">' + n + "</span></button>";
       }).join("") + "</div>";
       var activeCount = (p.folders[active] || []).length;
       // Eyebrow shows the product type (falls back to category); the title is the
@@ -933,6 +944,7 @@
       // names that already lead with the brand (e.g. "G Pen Logos").
       var typeLine = p.type || p.category || BRANDS[p.brand].name;
       var fullName = p.name.indexOf(BRANDS[p.brand].name) === 0 ? p.name : BRANDS[p.brand].name + " " + p.name;
+      setTitle(fullName);
 
       var stat = p.total + " assets" + (p.videos && p.videos.length ? " · " + p.videos.length + " videos" : "") + " · updated " + fmtDate(p.added);
       d.innerHTML =
@@ -1535,6 +1547,15 @@
       if (e.key === "/" && !typing) { e.preventDefault(); var s = $("#search"); if (s) s.focus(); }
     });
 
+    // floating scroll-to-top — shows once you're a screen or two down
+    var toTop = $("#to-top");
+    if (toTop) {
+      var onScroll = function () { toTop.classList.toggle("show", window.scrollY > 640); };
+      window.addEventListener("scroll", onScroll, { passive: true });
+      toTop.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: "smooth" }); });
+      onScroll();
+    }
+
     // restore filters from the URL (shareable views), then route to product/home
     parseURL();
     window.addEventListener("hashchange", function () {
@@ -1543,6 +1564,16 @@
     });
     route();
   }
+
+  // Re-trigger a subtle fade-in each time a page renders.
+  function animateIn(el) {
+    if (!el) return;
+    el.classList.remove("page-anim");
+    void el.offsetWidth;
+    el.classList.add("page-anim");
+  }
+  var DEFAULT_TITLE = "Brand Asset Portal — G Pen & Stündenglass";
+  function setTitle(t) { document.title = t ? t + " — Brand Asset Portal" : DEFAULT_TITLE; }
 
   document.addEventListener("DOMContentLoaded", init);
 })();
