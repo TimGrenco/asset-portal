@@ -28,7 +28,7 @@
   <!-- Favicon: brandmark stack glyph (black rounded square) -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3Crect%20width='24'%20height='24'%20rx='5'%20fill='%230a0a0a'/%3E%3Cg%20fill='none'%20stroke='white'%20stroke-width='1.6'%20stroke-linejoin='round'%20stroke-linecap='round'%3E%3Cpath%20d='m12%202%209%205-9%205-9-5%209-5Z'/%3E%3Cpath%20d='m3%2012%209%205%209-5'/%3E%3Cpath%20d='m3%2017%209%205%209-5'/%3E%3C/g%3E%3C/svg%3E" />
 
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260702a" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260702c" />
 </head>
 <body>
   <h1 class="sr-only">G Pen and Stündenglass Brand Asset Portal</h1>
@@ -70,7 +70,8 @@
         </div>
         <div class="browse-search">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-          <input id="search" type="text" placeholder="Search products…" aria-label="Search assets" />
+          <input id="search" type="text" placeholder="Search products, files, formats…" aria-label="Search all assets" />
+          <button id="search-clear" class="search-clear" type="button" aria-label="Clear search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
         </div>
         <span class="browse-count" id="browse-count"></span>
       </div>
@@ -95,6 +96,9 @@
         </div>
       </div>
       <div class="grid" id="all-grid"></div>
+
+      <!-- SEARCH: matching individual files across the portal (shown while searching) -->
+      <div id="search-files"></div>
 
       <!-- LOGOS & BRAND ASSETS — current brand's logos (in various formats) -->
       <section id="resources">
@@ -158,7 +162,7 @@
   </button>
 
   <script src="assets/data/synced.js?v=1783002852038"></script>
-  <script src="assets/data/assets.js?v=20260702a"></script>
-  <script src="assets/js/app.js?v=20260702a"></script>
+  <script src="assets/data/assets.js?v=20260702c"></script>
+  <script src="assets/js/app.js?v=20260702c"></script>
 </body>
 </html>

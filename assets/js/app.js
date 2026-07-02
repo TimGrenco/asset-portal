@@ -109,6 +109,7 @@
     return file.name + "." + f.toLowerCase();
   }
   function isExtVideo(file) { return file.type === "video" && /youtube\.com|youtu\.be|vimeo\.com/.test(file.url || ""); }
+  function escapeHTML(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
 
   // ---- shareable deep links ------------------------------------------------
   function slugify(s) {
@@ -253,6 +254,63 @@
       }
       return true;
     });
+  }
+
+  // ---- search: every product AND every individual file in the portal --------
+  // A query matches when ALL whitespace-separated terms are found (AND search),
+  // so "dash lifestyle png" narrows sensibly.
+  function matchTerms(hay, terms) {
+    for (var i = 0; i < terms.length; i++) { if (hay.indexOf(terms[i]) === -1) return false; }
+    return true;
+  }
+  function queryTerms(q) {
+    return q.toLowerCase().split(/\s+/).filter(Boolean);
+  }
+  // Flat, cached index of every file across every product/folder + how-to videos.
+  var _fileIndex = null;
+  function fileIndex() {
+    if (_fileIndex) return _fileIndex;
+    var out = [];
+    PRODUCTS.forEach(function (p) {
+      if (p.folders) Object.keys(p.folders).forEach(function (folder) {
+        (p.folders[folder] || []).forEach(function (file) {
+          out.push({
+            product: p, folder: folder, file: file,
+            label: fileLabel(file),
+            hay: (fileLabel(file) + " " + folder + " " + (file.format || "") + " " + p.name + " " + p.category + " " + BRANDS[p.brand].name).toLowerCase()
+          });
+        });
+      });
+      (p.videos || []).forEach(function (v) {
+        out.push({
+          product: p, folder: "How-to Videos", video: v,
+          file: { name: v.title, format: "Video", thumb: v.thumb, url: v.url, type: "video" },
+          label: v.title,
+          hay: (v.title + " video how to " + p.name + " " + BRANDS[p.brand].name).toLowerCase()
+        });
+      });
+    });
+    _fileIndex = out;
+    return out;
+  }
+  // Products (incl. logos + legacy) in the active brand matching the query.
+  function searchProducts(q) {
+    var terms = queryTerms(q), bk = state.view;
+    return PRODUCTS.filter(function (p) {
+      if (p.brand !== bk) return false;
+      var info = p.info || {};
+      var hay = (p.name + " " + (p.category || "") + " " + (p.type || "") + " " + (p.label || "") +
+        " " + BRANDS[p.brand].name + " " + p.formats.join(" ") + " " + (info.description || "") +
+        " " + (info.fullName || "") + " " + ((info.highlights || []).join(" "))).toLowerCase();
+      return matchTerms(hay, terms);
+    });
+  }
+  // Individual files in the active brand matching the query (capped for perf).
+  var SEARCH_FILE_CAP = 80;
+  function searchFiles(q) {
+    var terms = queryTerms(q), bk = state.view;
+    var hits = fileIndex().filter(function (r) { return r.product.brand === bk && matchTerms(r.hay, terms); });
+    return { total: hits.length, items: hits.slice(0, SEARCH_FILE_CAP) };
   }
 
   // ---- rendering: cover ----------------------------------------------------
@@ -487,20 +545,30 @@
   }
 
   // ---- rendering: home -----------------------------------------------------
-  function renderHome() {
+  function renderHome(noAnim) {
     $("#detail").style.display = "none";
     $("#styleguide").style.display = "none";
     $("#additional").style.display = "none";
     $("#materials-page").style.display = "none";
     $("#locator-page").style.display = "none";
     $("#home").style.display = "block";
-    animateIn($("#home"));
+    if (!noAnim) animateIn($("#home"));
     setTitle("");
     var browse = $("#browse"); if (browse) browse.style.display = "";
     var hero = $("#hero"); if (hero) hero.style.display = "";
     document.body.classList.remove("has-selection");
 
-    // Current products in scope (brand + search), logos excluded.
+    // While searching, the browsing sections give way to a results view.
+    var searching = !!state.query;
+    ["resources", "instore-section", "store-locator", "social-hub", "additional-entry"].forEach(function (id) {
+      var el = $(id.charAt(0) === "#" ? id : "#" + id); if (el) el.style.display = searching ? "none" : "";
+    });
+    if (searching) { renderSearch(); syncURL(); return; }
+
+    $("#search-files").innerHTML = "";
+    $("#search-files").style.display = "none";
+
+    // Featured products in scope (brand), logos excluded.
     var vis = visibleProducts().filter(function (p) { return !p.isLogo; });
     $("#all-title").textContent = "Featured " + BRANDS[state.view].name + " products";
 
@@ -530,6 +598,93 @@
     renderAdditionalEntry();
     bindCards($("#home"));
     syncURL();
+  }
+
+  // Friendly folder label for search result captions.
+  function folderLabel(f) { return (typeof typeLabel === "function" ? typeLabel(f) : f); }
+
+  // Search results view: matching products (cards) + matching individual files.
+  function renderSearch() {
+    var q = state.query;
+    var byName = function (a, b) { return a.name.localeCompare(b.name); };
+    var prods = searchProducts(q);
+    if (state.sort === "az") prods = prods.slice().sort(byName);
+    var fileRes = searchFiles(q);
+    var total = prods.length + fileRes.total;
+
+    $("#all-title").textContent = "Search results";
+    var label = total + (total === 1 ? " result" : " results");
+    var bc = $("#browse-count"); if (bc) bc.textContent = label;
+    $("#count-badge").textContent = label;
+    renderActiveFilters();
+
+    var allGrid = $("#all-grid");
+    allGrid.className = state.layout === "list" ? "grid list" : "grid";
+    allGrid.innerHTML = prods.length ? prods.map(function (p) { return cardHTML(p, state.layout); }).join("") : "";
+    bindCards($("#home"));
+
+    var sf = $("#search-files");
+    sf.style.display = "";
+    if (!total) {
+      allGrid.innerHTML = "";
+      sf.innerHTML =
+        '<div class="search-empty">' + icon("search") +
+          "<div><strong>No matches for “" + escapeHTML(q) + "”.</strong>" +
+          "<span>Try a product name (Dash), a file type (PNG, MP4), or a category (lifestyle, packaging).</span></div>" +
+          '<a class="btn ghost sm" href="mailto:' + CFG.requestEmail + "?subject=" +
+            encodeURIComponent("Asset request — " + q) + '">' + icon("mail") + " Request this asset</a>" +
+        "</div>";
+      return;
+    }
+
+    if (!fileRes.total) { sf.innerHTML = ""; return; }
+
+    var tiles = fileRes.items.map(searchFileTile).join("");
+    var more = fileRes.total > fileRes.items.length
+      ? '<p class="sf-more">Showing ' + fileRes.items.length + " of " + fileRes.total +
+        " matching files — refine your search to narrow it down.</p>"
+      : "";
+    sf.innerHTML =
+      '<div class="section-head"><h2>Matching files</h2><span class="badge">' + fileRes.total + "</span></div>" +
+      '<div class="sf-grid">' + tiles + "</div>" + more;
+    bindSearchFiles(sf);
+  }
+
+  function searchFileTile(r) {
+    var f = r.file, isVid = f.type === "video";
+    var safe = r.label.replace(/"/g, "");
+    var media = f.thumb
+      ? '<img src="' + f.thumb + '" alt="' + safe + '" loading="lazy"/>'
+      : icon(typeIcon[f.type] || "photo");
+    var dl = !isVid ? (f.file || f.url || "") : "";
+    var pName = r.product.name.indexOf(BRANDS[r.product.brand].name) === 0 ? r.product.name : BRANDS[r.product.brand].name + " " + r.product.name;
+    return '<div class="sf-cell">' +
+        '<button class="sf-open" data-pid="' + pid(r.product) + '" data-folder="' + r.folder + '" title="Open in ' + pName.replace(/"/g, "") + '">' +
+          '<span class="sf-thumb' + (isVid ? " is-video" : "") + '">' + media + (isVid ? '<span class="sf-play">' + icon("play") + "</span>" : "") + "</span>" +
+          '<span class="sf-meta"><span class="sf-name">' + r.label + "</span>" +
+            '<span class="sf-sub">' + pName + " · " + folderLabel(r.folder) + (f.format ? ' · <span class="sf-fmt">' + f.format + "</span>" : "") + "</span></span>" +
+        "</button>" +
+        (dl ? '<button class="sf-dl" data-sfdl="' + dl + '" data-sfname="' + safe + '"' + (f.file ? ' data-direct="1"' : "") + ' title="Download">' + icon("download") + "</button>" : "") +
+      "</div>";
+  }
+  function bindSearchFiles(ctx) {
+    $$(".sf-open", ctx).forEach(function (b) {
+      b.addEventListener("click", function () { navToFile(b.getAttribute("data-pid"), b.getAttribute("data-folder")); });
+    });
+    $$(".sf-dl", ctx).forEach(function (b) {
+      b.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (b.getAttribute("data-direct")) directDownload(b.getAttribute("data-sfdl"), b.getAttribute("data-sfname"));
+        else downloadOne(b.getAttribute("data-sfdl"));
+      });
+    });
+  }
+  function navToFile(pidStr, folder) {
+    var p = PRODUCTS.filter(function (x) { return pid(x) === pidStr; })[0];
+    if (!p) return;
+    openDetail(p, folder);
+    var h = productHash(p);
+    if (location.hash !== h) { ignoreHash = true; location.hash = h; }
   }
 
   // In-store marketing materials for the current brand — aggregated from each
@@ -888,7 +1043,7 @@
   }
 
   // ---- rendering: detail ---------------------------------------------------
-  function openDetail(p) {
+  function openDetail(p, initialFolder) {
     $("#home").style.display = "none";
     $("#styleguide").style.display = "none";
     var dBrowse = $("#browse"); if (dBrowse) dBrowse.style.display = "none";
@@ -904,7 +1059,8 @@
     // the Digital Assets folder tabs. Tabs follow the canonical folder order.
     var folderNames = Object.keys(p.folders).filter(function (f) { return f !== "In-Store Marketing"; });
     folderNames.sort(function (a, b) { return folderRank(a) - folderRank(b); });
-    var active = folderNames[0];
+    // Deep-link straight to a folder (e.g. from a file search result).
+    var active = (initialFolder && folderNames.indexOf(initialFolder) !== -1) ? initialFolder : folderNames[0];
     var selected = {};   // fileKey -> file object; persists while switching folder tabs
 
     function folderFiles() { return p.folders[active] || []; }
@@ -1510,8 +1666,19 @@
         renderHome();
       });
     });
-    // search
-    $("#search").addEventListener("input", function (e) { state.query = e.target.value.trim(); navHome(); });
+    // search — live results as you type (no page fade re-trigger per keystroke)
+    var searchEl = $("#search");
+    var clearEl = $("#search-clear");
+    var syncClear = function () { if (clearEl) clearEl.classList.toggle("show", !!searchEl.value); };
+    searchEl.addEventListener("input", function (e) {
+      state.query = e.target.value.trim();
+      syncClear();
+      renderHome(true);
+    });
+    if (clearEl) clearEl.addEventListener("click", function () {
+      searchEl.value = ""; state.query = ""; syncClear(); renderHome(true); searchEl.focus();
+    });
+    syncClear();
 
     // lightbox / asset viewer
     $("#lb-copy").innerHTML = icon("link") + " Copy link";
@@ -1536,7 +1703,7 @@
       if (e.key === "Escape") {
         if ($("#vlb")) { closeVideoModal(); return; }
         if (lbOpen()) { closeLightbox(); return; }
-        if (typing && el.id === "search") { el.value = ""; state.query = ""; el.blur(); navHome(); }
+        if (typing && el.id === "search") { el.value = ""; state.query = ""; var ce = $("#search-clear"); if (ce) ce.classList.remove("show"); el.blur(); renderHome(true); }
         return;
       }
       if (lbOpen()) {
