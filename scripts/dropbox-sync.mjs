@@ -130,13 +130,23 @@ async function listFolder(tok, link, path) {
 let warned = {};
 function warnOnce(key, msg) { if (!warned[key]) { warned[key] = true; console.error(msg); } }
 
+// Dropbox passes call parameters in the "Dropbox-API-Arg" HTTP header, which must
+// be ASCII. Filenames often contain non-ASCII (e.g. macOS screenshots use U+202F,
+// a narrow no-break space, before AM/PM), so escape every non-ASCII char to \uXXXX
+// per Dropbox's HTTP-header-safe JSON requirement.
+function apiArg(obj) {
+  return JSON.stringify(obj).replace(/[\u0080-\uffff]/g, function (c) {
+    return "\\u" + c.charCodeAt(0).toString(16).padStart(4, "0");
+  });
+}
+
 // Dropbox-rendered thumbnail (raster images only) → writes jpeg to outFile.
 async function thumbV2(tok, link, path, outFile) {
   const r = await fetch("https://content.dropboxapi.com/2/files/get_thumbnail_v2", {
     method: "POST",
     headers: {
       Authorization: "Bearer " + tok,
-      "Dropbox-API-Arg": JSON.stringify({ resource: { ".tag": "link", url: link, path }, format: "jpeg", size: "w640h480", mode: "fitone_bestfit" }),
+      "Dropbox-API-Arg": apiArg({ resource: { ".tag": "link", url: link, path }, format: "jpeg", size: "w640h480", mode: "fitone_bestfit" }),
     },
   });
   if (!r.ok) { warnOnce("thumbV2", "thumbnail failed " + r.status + ": " + (await r.text()).slice(0, 200)); return false; }
@@ -148,7 +158,7 @@ async function thumbV2(tok, link, path, outFile) {
 async function downloadFile(tok, link, path, outFile) {
   const r = await fetch("https://content.dropboxapi.com/2/sharing/get_shared_link_file", {
     method: "POST",
-    headers: { Authorization: "Bearer " + tok, "Dropbox-API-Arg": JSON.stringify({ url: link, path }) },
+    headers: { Authorization: "Bearer " + tok, "Dropbox-API-Arg": apiArg({ url: link, path }) },
   });
   if (!r.ok) { warnOnce("dl", "download failed " + r.status + ": " + (await r.text()).slice(0, 200)); return false; }
   await pipeline(Readable.fromWeb(r.body), createWriteStream(outFile));
