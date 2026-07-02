@@ -3108,6 +3108,14 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "Dash+ How to Clean",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fo/5wps4y20eqmpbzj0j4ijq/h?rlkey=5bna5as30dz79lmqumcml47x7&st=xt8upom3&dl=0",
+          "thumb": "assets/synced/dash-plus/26deeb240b7db5f44cd9358b942aef8c94bb22f371a0a3221af4d23b2df5d7dc.jpg",
+          "file": null
+        },
+        {
           "name": "Dash+ Tutorial",
           "type": "video",
           "format": "MP4",
