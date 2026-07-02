@@ -620,6 +620,11 @@ a.logo-tile { cursor: pointer; }
   .card .quick { opacity: 1; transform: none; }
   .instore-tile-order { opacity: 1; }
   .mat-thumb-zoom .mat-zoom-badge { opacity: 0.9; }
+  /* Bigger, easier tap targets for the gallery copy/download icons on touch. */
+  .gbar { padding: 7px 9px 7px 11px; }
+  .gbar .ga { gap: 6px; }
+  .gbar .ga > span { display: inline-flex; align-items: center; justify-content: center; padding: 7px; }
+  .gbar .ga svg { width: 17px; height: 17px; }
 }
 
 /* Empty (0-count) asset folders read as disabled instead of leading nowhere. */

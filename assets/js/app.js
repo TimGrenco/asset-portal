@@ -1168,10 +1168,17 @@
     x.fillStyle = "rgba(255,255,255,0.4)";
     x.font = "400 15px Archivo, Arial, sans-serif";
     x.fillText("gpen.com  ·  stundenglass.com", cx, 860);
-    var url = c.toDataURL("image/png");
-    var a = document.createElement("a");
-    a.href = url; a.download = product.replace(/[^\w.-]+/g, "_") + "_Certificate.png";
-    document.body.appendChild(a); a.click(); a.remove();
+    // Blob download is far more reliable than a huge data: URL on mobile Safari.
+    var fname = product.replace(/[^\w.-]+/g, "_") + "_Certificate.png";
+    if (c.toBlob) {
+      c.toBlob(function (blob) {
+        var href = URL.createObjectURL(blob);
+        directDownload(href, fname);
+        setTimeout(function () { URL.revokeObjectURL(href); }, 8000);
+      }, "image/png");
+    } else {
+      directDownload(c.toDataURL("image/png"), fname);
+    }
   }
 
   // ---- store locator request page ------------------------------------------
@@ -1770,10 +1777,22 @@
 
   // ---- downloads --------------------------------------------------------
   // Trigger a real browser download of a (same-origin or blob) URL.
+  // Robust across desktop, tablet, and mobile (incl. iOS Safari):
+  //  • same-origin / blob: / data:  → the download attribute is honored everywhere
+  //  • cross-origin (Dropbox dl=1)   → the download attr is ignored, so open in a
+  //    new tab and let Content-Disposition trigger the save (works on iOS/Android)
+  //  • the anchor is removed on a delay — removing it immediately can cancel the
+  //    download on some mobile browsers.
   function directDownload(href, name) {
+    if (!href || href === "#") { toast("Download coming soon"); return; }
+    var crossOrigin = /^https?:\/\//i.test(href) && href.indexOf(location.origin) !== 0;
     var a = document.createElement("a");
-    a.href = href; a.download = name || ""; a.rel = "noopener";
-    document.body.appendChild(a); a.click(); a.remove();
+    a.href = href;
+    if (crossOrigin) { a.target = "_blank"; a.rel = "noopener"; }
+    else { a.download = name || ""; }
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { a.remove(); }, 1500);
   }
   // Lazy-load JSZip from CDN only when a bundle download is requested.
   function loadJSZip(cb) {
