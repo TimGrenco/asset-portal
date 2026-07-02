@@ -968,3 +968,114 @@ var HYDOUT_RETRO_PHOTOS = [
     if (!p.folders["Web Banners"]) p.folders["Web Banners"] = [];
   });
 })();
+
+/* =============================================================================
+   PRODUCT TRAINING — self-serve "Product Specialist" certification courses.
+   Per product: intro, learn modules (grounded in official FAQ + manual + portal
+   copy), and a multiple-choice quiz. Videos are pulled from the product's own
+   `videos` array. Add a product key here to give it a training page.
+   ========================================================================== */
+window.PORTAL_TRAINING = {
+  "Dash II": {
+    tagline: "Learn the G Pen Dash II inside-out, then pass the quiz to become a certified Product Specialist.",
+    minutes: 8,
+    passPct: 80,
+    modules: [
+      {
+        title: "Product Overview",
+        points: [
+          "The Dash II is a pocket-sized <strong>dry herb vaporizer</strong> — the next evolution of the best-selling G Pen Dash.",
+          "It is for <strong>dry herb only</strong> — not compatible with concentrates, oils, or 510 carts.",
+          "Uses a <strong>conduction</strong> heating system for reliable vapor and ~30-second heat-up.",
+          "MSRP <strong>$49.95</strong>.",
+        ],
+      },
+      {
+        title: "Key Specs",
+        points: [
+          "<strong>0.4g ceramic</strong> heating chamber — larger than the original Dash and easier to load.",
+          "<strong>1,100mAh</strong> battery.",
+          "<strong>USB-C</strong> charging with <strong>pass-through charging</strong> — it can be used while plugged in.",
+          "<strong>OLED display</strong> shows real-time temperature and battery level.",
+          "Precise <strong>adjustable temperature control</strong>.",
+          "Dimensions <strong>97 × 35 × 21 mm</strong>, weight <strong>62 g</strong>.",
+          "Built-in <strong>pick tool</strong> for loading and cleaning.",
+        ],
+      },
+      {
+        title: "How to Use",
+        points: [
+          "<strong>Charge</strong> with any USB-C charger.",
+          "<strong>Load:</strong> remove the mouthpiece, fully load the chamber with dry material, and pack lightly with the pick tool — <strong>do not overpack</strong>.",
+          "<strong>Power on:</strong> hold the button for <strong>3 seconds</strong>.",
+          "Use <strong>– / +</strong> to adjust the session temperature.",
+          "<strong>Start a session:</strong> tap the button <strong>2× (within 2 seconds)</strong>. Tap <strong>2×</strong> again to cancel anytime.",
+          "Draw from the mouthpiece — <strong>long, sustained draws</strong> give the best results.",
+          "Tap the button <strong>5×</strong> to open the device settings menu.",
+        ],
+      },
+      {
+        title: "How to Clean & Maintain",
+        points: [
+          "<strong>After every use:</strong> clean the mouthpiece filter screen and bowl with the included pick tool.",
+          "<strong>Deep clean:</strong> remove the mouthpiece insert and clean with <strong>Isopropyl Alcohol</strong>.",
+          "Always let all parts <strong>dry completely</strong> before reassembling.",
+        ],
+      },
+      {
+        title: "Warranty & Registration",
+        points: [
+          "Backed by a <strong>6-month</strong> limited warranty.",
+          "Registering the device at <strong>gpen.com/register</strong> adds another 6 months — a full <strong>1-year</strong> limited warranty.",
+          "<strong>In the box:</strong> Dash II device, built-in loading (pick) tool, silicone mouthpiece sleeve. <strong>A USB-C charging cable is NOT included.</strong>",
+        ],
+      },
+      {
+        title: "Upgrades vs. the Original Dash",
+        points: [
+          "Lower MSRP ($49.95), adjustable <strong>temperature control</strong>, and an <strong>OLED display</strong>.",
+          "Larger <strong>0.4g</strong> chamber and a bigger <strong>1,100mAh</strong> battery.",
+          "Modern <strong>USB-C</strong> charging with pass-through, and an updated chamber design.",
+        ],
+      },
+    ],
+    quiz: [
+      { q: "What material is the G Pen Dash II designed to vaporize?",
+        choices: ["Dry herb only", "Concentrates and oils", "510 cartridges", "Any of the above"],
+        answer: 0, why: "The Dash II is a dry herb vaporizer only — it is not compatible with concentrates, oils, or 510 carts." },
+      { q: "How large is the Dash II's heating chamber?",
+        choices: ["0.2g", "0.4g ceramic", "1.0g", "It has no chamber"],
+        answer: 1, why: "The Dash II has an upgraded 0.4g ceramic chamber — larger than the original Dash and easier to load." },
+      { q: "What type of heating system does the Dash II use?",
+        choices: ["Convection", "Conduction", "Induction", "Open flame"],
+        answer: 1, why: "It uses a conduction heating system, with roughly a 30-second heat-up." },
+      { q: "Approximately how long does the Dash II take to heat up?",
+        choices: ["5 seconds", "30 seconds", "2 minutes", "5 minutes"],
+        answer: 1, why: "Heat-up is approximately 30 seconds." },
+      { q: "What is the Dash II's battery capacity?",
+        choices: ["650mAh", "900mAh", "1,100mAh", "2,200mAh"],
+        answer: 2, why: "The Dash II is powered by a 1,100mAh battery — an upgrade over the original Dash." },
+      { q: "Which statement about charging the Dash II is TRUE?",
+        choices: ["It uses Micro-USB", "It charges via USB-C and supports pass-through (use while plugged in)", "It charges wirelessly only", "It cannot be used while charging"],
+        answer: 1, why: "The Dash II charges via USB-C and supports pass-through charging, so it can be used while plugged in." },
+      { q: "How do you power the Dash II on?",
+        choices: ["Tap the button once", "Hold the button for 3 seconds", "Tap the button 5 times", "Slide the power switch"],
+        answer: 1, why: "Hold the button for 3 seconds to power on." },
+      { q: "After setting your temperature, how do you START a session?",
+        choices: ["Tap the button 2× within 2 seconds", "Hold for 10 seconds", "Blow into the mouthpiece", "It starts automatically"],
+        answer: 0, why: "Tap the button 2× (within 2 seconds) to start a session; tap 2× again to cancel." },
+      { q: "For a DEEP clean, what should you use on the removed mouthpiece insert?",
+        choices: ["Water and soap", "Isopropyl Alcohol", "Vinegar", "Just wipe it dry"],
+        answer: 1, why: "For a deep clean, remove the mouthpiece insert and clean it with Isopropyl Alcohol, then let it dry completely before reassembling." },
+      { q: "How does the Dash II's warranty work?",
+        choices: ["No warranty", "Lifetime warranty", "6-month limited, extended to 1 year if you register the device", "30-day returns only"],
+        answer: 2, why: "It's a 6-month limited warranty; registering at gpen.com/register adds 6 more months for a full year." },
+      { q: "What is the Dash II's MSRP?",
+        choices: ["$29.95", "$49.95", "$79.95", "$99.95"],
+        answer: 1, why: "The Dash II launched at a lower MSRP of $49.95." },
+      { q: "Which item is NOT included in the box?",
+        choices: ["The Dash II device", "Built-in pick/loading tool", "Silicone mouthpiece sleeve", "A USB-C charging cable"],
+        answer: 3, why: "A USB-C charging cable is not included — any USB-C charger can be used." },
+    ],
+  },
+};

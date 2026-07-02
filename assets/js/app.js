@@ -44,6 +44,10 @@
       play: '<path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/>',
       x: '<path d="M18 6 6 18M6 6l12 12"/>',
       mapPin: '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
+      check: '<path d="M20 6 9 17l-5-5"/>',
+      award: '<circle cx="12" cy="8" r="6"/><path d="M8.2 13.4 7 22l5-3 5 3-1.2-8.6"/>',
+      refresh: '<path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/>',
+      graduation: '<path d="m22 10-10-5L2 10l10 5 10-5Z"/><path d="M6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5"/>',
       plus: '<path d="M12 5v14M5 12h14"/>',
       trash: '<path d="M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>',
     };
@@ -140,10 +144,16 @@
     var parts = location.hash.replace(/^#/, "").split("/");
     var mp = $("#materials-page"); if (mp && parts[0] !== "materials") mp.style.display = "none";
     var lp = $("#locator-page"); if (lp && parts[0] !== "locator") lp.style.display = "none";
+    var trp = $("#training-page"); if (trp && parts[0] !== "train") trp.style.display = "none";
     if (parts[0] === "style" && BRANDS[parts[1]]) { openStyleGuide(parts[1]); return; }
     if (parts[0] === "additional" && BRANDS[parts[1]]) { openAdditional(parts[1]); return; }
     if (parts[0] === "materials") { openMaterials(); return; }
     if (parts[0] === "locator") { openLocator(); return; }
+    if (parts[0] === "train") {
+      var tp = PRODUCTS.filter(function (x) { return x.brand === parts[1] && slugify(x.name) === parts.slice(2).join("/"); })[0];
+      if (tp && window.PORTAL_TRAINING && window.PORTAL_TRAINING[tp.name]) { openTraining(tp); return; }
+      renderHome(); return;
+    }
     var p = productFromHash();
     if (p) openDetail(p); else renderHome();
   }
@@ -551,6 +561,7 @@
     $("#additional").style.display = "none";
     $("#materials-page").style.display = "none";
     $("#locator-page").style.display = "none";
+    var trHome = $("#training-page"); if (trHome) trHome.style.display = "none";
     $("#home").style.display = "block";
     if (!noAnim) animateIn($("#home"));
     setTitle("");
@@ -909,6 +920,260 @@
     if (location.hash !== "#materials") { ignoreHash = true; location.hash = "materials"; }
   }
 
+  // ---- product training / certification ------------------------------------
+  function hasTraining(p) { return !!(window.PORTAL_TRAINING && window.PORTAL_TRAINING[p.name]); }
+  // Entry banner on the product page → opens the training/certification course.
+  function trainingEntryHTML(p) {
+    if (p.isLogo || !hasTraining(p)) return "";
+    var cert = getCert(p);
+    return '<button class="trn-entry" id="train-entry">' +
+      '<span class="trn-entry-ic">' + icon("graduation") + "</span>" +
+      '<span class="trn-entry-txt">' +
+        '<span class="trn-entry-t">' + (cert ? "You’re a certified " + p.name + " Specialist" : "Become a " + p.name + " Product Specialist") + "</span>" +
+        '<span class="trn-entry-s">' + (cert ? "Certificate earned " + cert.date + " · review the course or retake anytime" : "Watch the videos, learn the product, and pass a short quiz to get certified.") + "</span>" +
+      "</span>" +
+      '<span class="trn-entry-go">' + (cert ? icon("check") + " Certified" : "Start training →") + "</span>" +
+    "</button>";
+  }
+  function trainingHash(p) { return "#train/" + p.brand + "/" + slugify(p.name); }
+  function certKey(p) { return "gp-cert-" + p.brand + "-" + slugify(p.name); }
+  function getCert(p) { try { return JSON.parse(localStorage.getItem(certKey(p)) || "null"); } catch (e) { return null; } }
+  function saveCert(p, data) { try { localStorage.setItem(certKey(p), JSON.stringify(data)); } catch (e) {} }
+  function navTraining(p) {
+    openTraining(p);
+    var h = trainingHash(p);
+    if (location.hash !== h) { ignoreHash = true; location.hash = h; }
+  }
+  function fullProductName(p) { return p.name.indexOf(BRANDS[p.brand].name) === 0 ? p.name : BRANDS[p.brand].name + " " + p.name; }
+
+  function openTraining(p) {
+    $("#home").style.display = "none";
+    $("#detail").style.display = "none";
+    $("#styleguide").style.display = "none";
+    $("#additional").style.display = "none";
+    $("#materials-page").style.display = "none";
+    $("#locator-page").style.display = "none";
+    var hero = $("#hero"); if (hero) hero.style.display = "none";
+    var browse = $("#browse"); if (browse) browse.style.display = "none";
+    var pg = $("#training-page");
+    pg.style.display = "block";
+    animateIn(pg);
+    window.scrollTo(0, 0);
+
+    var t = window.PORTAL_TRAINING[p.name];
+    var name = fullProductName(p);
+    setTitle(name + " Training");
+    var cert = getCert(p);
+
+    var modulesHTML = t.modules.map(function (m, i) {
+      return '<div class="trn-module">' +
+        '<div class="trn-module-h"><span class="trn-step-n">' + (i + 1) + "</span><h3>" + m.title + "</h3></div>" +
+        '<ul class="trn-points">' + m.points.map(function (pt) { return "<li>" + pt + "</li>"; }).join("") + "</ul>" +
+      "</div>";
+    }).join("");
+
+    pg.innerHTML =
+      '<button class="back" id="trn-back">' + icon("arrowLeft") + " Back to " + name + "</button>" +
+      '<div class="trn-hero">' +
+        '<div class="trn-badge">' + icon("graduation") + "</div>" +
+        '<div class="trn-hero-txt">' +
+          '<div class="trn-eyebrow">Product Specialist Training' + (cert ? " · <span class=\"trn-done\">" + icon("check") + " Certified</span>" : "") + "</div>" +
+          "<h2>" + name + "</h2>" +
+          "<p>" + t.tagline + "</p>" +
+          '<div class="trn-meta">' + icon("eye") + " " + p.videos.length + " videos · " + t.modules.length + " lessons · " + t.quiz.length + "-question quiz · ~" + t.minutes + " min</div>" +
+        "</div>" +
+      "</div>" +
+      // 1 — Watch
+      '<div class="section-head"><span class="trn-sec-n">1</span><h2>Watch</h2></div>' +
+      '<p class="trn-lead">' + icon("info") + " Watch the how-to-use and cleaning videos — click a video to play it in the large viewer, or download it.</p>" +
+      videoHubGridHTML(p) +
+      // 2 — Learn
+      '<div class="section-head"><span class="trn-sec-n">2</span><h2>Learn</h2></div>' +
+      '<div class="trn-modules">' + modulesHTML + "</div>" +
+      // 3 — Certify
+      '<div class="section-head"><span class="trn-sec-n">3</span><h2>Get Certified</h2></div>' +
+      '<p class="trn-lead">' + icon("info") + " Answer all " + t.quiz.length + " questions. Score " + t.passPct + "% or higher to earn your certificate.</p>" +
+      '<div id="trn-quiz"></div>';
+
+    $("#trn-back").addEventListener("click", function () { navTo(p); });
+    bindVideoHub(pg, p);
+    renderQuiz(p, t);
+  }
+
+  // Reuse the video-hub cards (play / download / YouTube) without its own heading.
+  function videoHubGridHTML(p) {
+    var html = videoHubHTML(p);
+    // strip the leading section-head + note so it sits under the training "Watch" head
+    return html.replace(/^<div class="section-head">[\s\S]*?<\/div>\s*<p class="vhub-note">[\s\S]*?<\/p>/, "");
+  }
+  function bindVideoHub(ctx, p) {
+    $$("[data-play]", ctx).forEach(function (el) {
+      el.addEventListener("click", function () {
+        openVideoModal(el.getAttribute("data-play"), el.getAttribute("data-title"), el.getAttribute("data-dl"), el.getAttribute("data-dlname"));
+      });
+    });
+    $$("[data-vdl]", ctx).forEach(function (b) {
+      b.addEventListener("click", function (e) { e.stopPropagation(); directDownload(b.getAttribute("data-vdl"), b.getAttribute("data-vname")); });
+    });
+    $$("[data-soon]", ctx).forEach(function (b) {
+      b.addEventListener("click", function (e) { e.stopPropagation(); toast("Downloadable file coming soon — Dropbox link on the way"); });
+    });
+  }
+
+  function renderQuiz(p, t) {
+    var box = $("#trn-quiz");
+    var questions = '<form id="trn-form" class="trn-quiz">' + t.quiz.map(function (item, qi) {
+      var choices = item.choices.map(function (c, ci) {
+        return '<label class="trn-choice"><input type="radio" name="q' + qi + '" value="' + ci + '"/>' +
+          '<span class="trn-choice-mark"></span><span class="trn-choice-t">' + c + "</span></label>";
+      }).join("");
+      return '<div class="trn-q" data-qi="' + qi + '">' +
+        '<div class="trn-q-n">Question ' + (qi + 1) + " of " + t.quiz.length + "</div>" +
+        '<div class="trn-q-t">' + item.q + "</div>" +
+        '<div class="trn-choices">' + choices + "</div>" +
+        '<div class="trn-why" hidden></div>' +
+      "</div>";
+    }).join("") +
+      '<div class="trn-actions"><button type="button" class="btn lg" id="trn-submit">' + icon("check") + " Submit Answers</button>" +
+        '<span class="trn-progress" id="trn-progress"></span></div>' +
+    "</form>" +
+      '<div id="trn-result"></div>';
+    box.innerHTML = questions;
+
+    function answered() { return t.quiz.filter(function (_, qi) { return $("#trn-form").querySelector('input[name="q' + qi + '"]:checked'); }).length; }
+    function updateProgress() { $("#trn-progress").textContent = answered() + " / " + t.quiz.length + " answered"; }
+    updateProgress();
+    $$('#trn-form input[type="radio"]', box).forEach(function (r) { r.addEventListener("change", updateProgress); });
+
+    $("#trn-submit").addEventListener("click", function () {
+      if (answered() < t.quiz.length) { toast("Please answer all " + t.quiz.length + " questions first"); return; }
+      var correct = 0;
+      t.quiz.forEach(function (item, qi) {
+        var qEl = box.querySelector('.trn-q[data-qi="' + qi + '"]');
+        var chosen = parseInt($("#trn-form").querySelector('input[name="q' + qi + '"]:checked').value, 10);
+        qEl.classList.add("graded");
+        $$(".trn-choice", qEl).forEach(function (lab, ci) {
+          lab.classList.remove("is-correct", "is-wrong");
+          if (ci === item.answer) lab.classList.add("is-correct");
+          else if (ci === chosen) lab.classList.add("is-wrong");
+          lab.querySelector("input").disabled = true;
+        });
+        if (chosen === item.answer) correct++;
+        var why = qEl.querySelector(".trn-why");
+        why.hidden = false;
+        why.innerHTML = (chosen === item.answer ? '<span class="trn-tag ok">' + icon("check") + " Correct</span> " : '<span class="trn-tag no">Incorrect</span> ') + item.why;
+      });
+      var pct = Math.round((correct / t.quiz.length) * 100);
+      var passed = pct >= t.passPct;
+      renderResult(p, t, correct, pct, passed);
+      $("#trn-result").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
+  function renderResult(p, t, correct, pct, passed) {
+    var res = $("#trn-result");
+    if (!passed) {
+      res.innerHTML = '<div class="trn-result fail">' +
+        '<div class="trn-score">' + pct + '%<span>' + correct + " / " + t.quiz.length + "</span></div>" +
+        '<div class="trn-result-txt"><strong>Not quite — you need ' + t.passPct + "% to certify.</strong>" +
+          "<span>Review the explanations above, then try again.</span></div>" +
+        '<button class="btn" id="trn-retry">' + icon("refresh") + " Retry quiz</button>" +
+      "</div>";
+      $("#trn-retry").addEventListener("click", function () { renderQuiz(p, t); window.scrollTo({ top: $("#trn-quiz").offsetTop - 80, behavior: "smooth" }); });
+      return;
+    }
+    res.innerHTML = '<div class="trn-result pass">' +
+      '<div class="trn-score">' + pct + '%<span>' + correct + " / " + t.quiz.length + "</span></div>" +
+      '<div class="trn-result-txt"><strong>' + icon("check") + " You passed!</strong>" +
+        "<span>Enter your name to generate your Product Specialist certificate.</span></div>" +
+    "</div>" +
+    '<div class="trn-certform">' +
+      '<label class="mat-field"><span>Your Name</span><input type="text" id="trn-name" placeholder="Full name" autocomplete="name"/></label>' +
+      '<button class="btn lg" id="trn-getcert">' + icon("award") + " Get My Certificate</button>" +
+    "</div>" +
+    '<div id="trn-cert"></div>';
+    $("#trn-getcert").addEventListener("click", function () {
+      var nm = ($("#trn-name").value || "").trim();
+      if (!nm) { toast("Enter your name for the certificate"); $("#trn-name").focus(); return; }
+      var d = new Date();
+      var dateStr = d.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+      saveCert(p, { name: nm, date: dateStr, score: pct });
+      showCertificate(p, t, nm, dateStr, pct);
+    });
+  }
+
+  function showCertificate(p, t, nm, dateStr, pct) {
+    var name = fullProductName(p);
+    var box = $("#trn-cert");
+    box.innerHTML =
+      '<div class="cert" id="cert-card">' +
+        '<div class="cert-inner">' +
+          '<div class="cert-top">' + icon("graduation") + '<span>Grenco Science · Certified Product Specialist</span></div>' +
+          '<div class="cert-award">Certificate of Completion</div>' +
+          '<div class="cert-name">' + escapeHTML(nm) + "</div>" +
+          '<div class="cert-desc">has completed the training and demonstrated product-specialist knowledge of the</div>' +
+          '<div class="cert-product">' + name + "</div>" +
+          '<div class="cert-foot"><span>Score: <strong>' + pct + '%</strong></span><span>' + dateStr + "</span></div>" +
+        "</div>" +
+      "</div>" +
+      '<div class="trn-certactions">' +
+        '<button class="btn" id="cert-dl">' + icon("download") + " Download certificate</button>" +
+        '<button class="btn ghost" id="cert-email">' + icon("mail") + " Email my certification</button>" +
+      "</div>";
+    $("#cert-dl").addEventListener("click", function () { downloadCertificate(name, nm, dateStr, pct); });
+    $("#cert-email").addEventListener("click", function () {
+      var body = "I completed the " + name + " Product Specialist training.\n\nName: " + nm +
+        "\nProduct: " + name + "\nScore: " + pct + "%\nDate: " + dateStr;
+      window.location.href = "mailto:" + CFG.orderEmail + "?subject=" +
+        encodeURIComponent(name + " — Product Specialist Certification") + "&body=" + encodeURIComponent(body);
+    });
+    box.scrollIntoView({ behavior: "smooth", block: "center" });
+    toast("Certified! 🎓");
+  }
+
+  // Draw the certificate to a canvas and download as PNG (no external deps).
+  function downloadCertificate(product, nm, dateStr, pct) {
+    var W = 1400, H = 990, c = document.createElement("canvas");
+    c.width = W; c.height = H;
+    var x = c.getContext("2d");
+    x.fillStyle = "#0a0a0a"; x.fillRect(0, 0, W, H);
+    // gold border
+    x.strokeStyle = "#FEC870"; x.lineWidth = 3; x.strokeRect(40, 40, W - 80, H - 80);
+    x.strokeStyle = "rgba(254,200,112,0.35)"; x.lineWidth = 1; x.strokeRect(52, 52, W - 104, H - 104);
+    var cx = W / 2;
+    x.textAlign = "center";
+    x.fillStyle = "#FEC870";
+    x.font = "700 22px Archivo, Arial, sans-serif";
+    x.fillText("GRENCO SCIENCE · CERTIFIED PRODUCT SPECIALIST", cx, 150);
+    x.fillStyle = "#ffffff";
+    x.font = "800 30px Archivo, Arial, sans-serif";
+    x.fillText("Certificate of Completion", cx, 250);
+    x.fillStyle = "rgba(255,255,255,0.6)";
+    x.font = "400 20px Archivo, Arial, sans-serif";
+    x.fillText("This certifies that", cx, 330);
+    x.fillStyle = "#ffffff";
+    x.font = "800 64px Archivo, Arial, sans-serif";
+    x.fillText(nm, cx, 420);
+    x.fillStyle = "#FEC870"; x.fillRect(cx - 120, 450, 240, 3);
+    x.fillStyle = "rgba(255,255,255,0.7)";
+    x.font = "400 22px Archivo, Arial, sans-serif";
+    x.fillText("has demonstrated product-specialist knowledge of the", cx, 520);
+    x.fillStyle = "#ffffff";
+    x.font = "800 42px Archivo, Arial, sans-serif";
+    x.fillText(product, cx, 585);
+    x.fillStyle = "rgba(255,255,255,0.85)";
+    x.font = "600 24px Archivo, Arial, sans-serif";
+    x.fillText("Score: " + pct + "%", cx - 180, 760);
+    x.fillText(dateStr, cx + 180, 760);
+    x.fillStyle = "rgba(255,255,255,0.4)";
+    x.font = "400 15px Archivo, Arial, sans-serif";
+    x.fillText("gpen.com  ·  stundenglass.com", cx, 860);
+    var url = c.toDataURL("image/png");
+    var a = document.createElement("a");
+    a.href = url; a.download = product.replace(/[^\w.-]+/g, "_") + "_Certificate.png";
+    document.body.appendChild(a); a.click(); a.remove();
+  }
+
   // ---- store locator request page ------------------------------------------
   // A retailer fills in one or more store locations and submits them all as a
   // single email to the PR team (CFG.locatorEmail).
@@ -1119,6 +1384,7 @@
             overviewFactsHTML(p) +
           "</div>" +
         "</div>" +
+        trainingEntryHTML(p) +
         highlightsHTML(p) +
         fullDescHTML(p) +
         whatsInBoxHTML(p) +
@@ -1174,6 +1440,7 @@
         t.addEventListener("click", function () { openLightbox(ismItems, +t.getAttribute("data-ism")); });
       });
       $("#back-btn").addEventListener("click", navHome);
+      var trainEntry = $("#train-entry"); if (trainEntry) trainEntry.addEventListener("click", function () { navTraining(p); });
       var heroCover = $("#hero-cover");
       if (heroCover) heroCover.addEventListener("click", function () { openLightbox([{ src: p.cover, name: fullName, url: p.cover }], 0); });
       $("#dl-all").addEventListener("click", function () { downloadAll(p); });
