@@ -1208,8 +1208,11 @@
   // has any, otherwise the generic brand-level pieces as placeholders.
   function inStoreItems(p) {
     var own = (p.folders && p.folders["In-Store Marketing"]) || [];
-    if (own.length) return { items: own, generic: false };
-    return { items: window.PORTAL_INSTORE_GENERAL || [], generic: true };
+    // Product pages only show materials genuinely tied to the product: its own
+    // synced folder + any general material explicitly tagged to it (e.g. the
+    // Dash II Table Tent). No generic fallback — blank shows what's still needed.
+    var tagged = (window.PORTAL_INSTORE_GENERAL || []).filter(function (x) { return x.product === p.name; });
+    return { items: own.concat(tagged), generic: false };
   }
   // In-store printed marketing materials for this product — a dedicated section
   // under Digital Assets.
