@@ -1,9 +1,10 @@
 name: Deploy to Pages
 
-# Replaces GitHub's legacy branch-based Pages build. Having our own workflow lets
-# us control concurrency: overlapping deploys (rapid pushes + the hourly Dropbox
-# sync) cancel the older run cleanly instead of piling up and emailing a failure
-# on every timeout/supersede.
+# Replaces GitHub's legacy branch-based Pages build. Owning the workflow lets us
+# (a) control concurrency and (b) auto-retry GitHub Pages' intermittent
+# "Deployment failed, try again later" API error so a transient hiccup self-heals
+# instead of emailing a failure. The content always ends up published either way;
+# this just stops the noise.
 on:
   push:
     branches: [main]
@@ -24,16 +25,19 @@ permissions:
   pages: write
   id-token: write
 
+# Don't cancel an in-progress deploy (GitHub's recommended setting) — cancelling
+# mid-deploy can itself fail. Overlapping runs queue; intermediate queued runs are
+# skipped, only the latest deploys.
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deploy1.outputs.page_url || steps.deploy2.outputs.page_url || steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -50,5 +54,21 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
+
+      # Deploy with up to 3 attempts. GitHub Pages occasionally returns a transient
+      # "Deployment failed, try again later" — retrying almost always succeeds, so
+      # the job only fails (and emails) if all three attempts hit it.
+      - id: deploy1
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+      - if: steps.deploy1.outcome == 'failure'
+        run: sleep 20
+      - id: deploy2
+        if: steps.deploy1.outcome == 'failure'
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+      - if: steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure'
+        run: sleep 30
       - id: deployment
+        if: steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure'
         uses: actions/deploy-pages@v4
