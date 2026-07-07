@@ -606,10 +606,9 @@ var PRODUCT_DESCRIPTION = {
     "Small size. Big power. Zero mess. Always ready.",
   ],
   "Dash+": [
-    "Grenco Science is proud to introduce the next generation of portable dry herb vaporizers with the G Pen Dash+. Following in the footsteps of its predecessor, the massively popular G Pen Dash, the Dash+ sports a similarly compact profile with notable upgrades, including hybrid heating technology, precise temperature control, and a full-color LED display.",
-    "The G Pen Dash+ features hybrid convection and conduction heating technology in a full Titanium chamber, capable of reaching vaporization temperatures in as little as 20 seconds. Outfitted with dual clean air intake channels and a magnetic mouthpiece with spiral ceramic air path, the Dash+ is designed to deliver superior vapor production and flavor.",
-    "Equipped with an easy-to-use 3-button interface, a full-color LED display, and haptic feedback, the Dash+ makes it easy to customize and view session status in real-time, all with intuitive alerts. Dressed in a zinc-alloy casing and powered by a rechargeable 1,800mAh lithium-ion battery with USB-C charging, the G Pen Dash+ was built for extended use and utmost durability.",
-    "Combining a high-tech, yet simple user interface with premium-grade materials in a sleek profile that is always ready for on-the-go use, the G Pen Dash+ was thoughtfully engineered to be the evolution in portable dry herb vaporization at a competitive price.",
+    "The G Pen Dash+ is a compact dry herb vaporizer designed for fast, flavorful, and customizable sessions. Featuring hybrid convection and conduction heating in a full titanium chamber, it reaches temperature in as little as 20 seconds for smooth, consistent vapor.",
+    "Dual clean air intake channels and a magnetic mouthpiece with a spiral ceramic air path help maximize airflow and flavor. A full-color LED display, three-button controls, haptic feedback, and precise temperature adjustment make it easy to personalize every session.",
+    "Built with a durable zinc-alloy body and powered by a rechargeable 1,800mAh battery with USB-C charging, the G Pen Dash+ delivers reliable performance in a sleek, portable design made for everyday use.",
     "*This Product is Not For Use With Tobacco, Nicotine-Containing E-liquids, or Any Synthetic Nicotine or Nicotine Substitute.",
   ],
 };
