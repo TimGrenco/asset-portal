@@ -956,4 +956,181 @@ window.PORTAL_TRAINING = {
         answer: 3, why: "A USB-C charging cable is not included — any USB-C charger can be used." },
     ],
   },
+
+  "Dash+": {
+    tagline: "Master the G Pen Dash+, then pass the quiz to become a certified Product Specialist.",
+    minutes: 8, passPct: 80,
+    modules: [
+      { title: "Product Overview", points: [
+        "The Dash+ is a compact, portable <strong>dry herb vaporizer</strong> — the plus-sized evolution of the best-selling G Pen Dash.",
+        "It uses <strong>hybrid convection + conduction</strong> heating for fast, flavorful, even sessions.",
+        "For <strong>dry herb only</strong>. MSRP <strong>$99.95</strong>.",
+      ] },
+      { title: "Key Specs", points: [
+        "Full <strong>titanium</strong> heating chamber.",
+        "Reaches vaporization temperature in as little as <strong>20 seconds</strong>.",
+        "<strong>1,800mAh</strong> rechargeable Li-ion battery with <strong>USB-C</strong> charging.",
+        "<strong>Full-color LED display</strong> with precise temperature control.",
+        "<strong>Haptic feedback</strong> and an intuitive <strong>3-button</strong> interface.",
+        "Durable <strong>zinc-alloy</strong> body.",
+      ] },
+      { title: "How to Use", points: [
+        "<strong>Load:</strong> remove the mouthpiece, load the chamber with ground dry herb, and re-attach the mouthpiece.",
+        "<strong>Power on/off:</strong> hold the power button for <strong>3 seconds</strong>.",
+        "<strong>Adjust temperature</strong> with the left (–) and right (+) buttons.",
+        "<strong>Start or cancel a session:</strong> press the power button <strong>2× within 2 seconds</strong>. It vibrates and the session timer begins once the temperature is reached.",
+        "When the session timer ends, heating shuts off automatically; the device powers off after about 1 minute of standby inactivity.",
+        "Press the power button <strong>5×</strong> to open the Settings menu (session timer, °F/°C, brightness, haptics).",
+      ] },
+      { title: "What's In the Box", points: [
+        "G Pen Dash+ vaporizer, mouthpiece silicone sleeve, loading tool with keychain, and a <strong>USB-C charging cable</strong> (included).",
+        "Register your device at <strong>gpen.com/register</strong>.",
+      ] },
+    ],
+    quiz: [
+      { q: "What type of heating does the Dash+ use?", choices: ["Conduction only", "Hybrid convection + conduction", "Open flame", "Induction"], answer: 1, why: "The Dash+ uses hybrid convection + conduction heating for fast, even, flavorful sessions." },
+      { q: "What is the Dash+'s heating chamber made of?", choices: ["Plastic", "Titanium", "Glass", "Stainless steel"], answer: 1, why: "It features a full titanium heating chamber." },
+      { q: "About how long does the Dash+ take to reach temperature?", choices: ["20 seconds", "2 minutes", "5 seconds", "45 seconds"], answer: 0, why: "The Dash+ reaches vaporization temperature in as little as 20 seconds." },
+      { q: "What is the Dash+'s battery capacity?", choices: ["650mAh", "1,100mAh", "1,800mAh", "3,000mAh"], answer: 2, why: "It's powered by an 1,800mAh rechargeable Li-ion battery." },
+      { q: "How do you power the Dash+ on?", choices: ["Tap once", "Hold the power button for 3 seconds", "Tap 5 times", "Shake it"], answer: 1, why: "Hold the power button for 3 seconds to power on or off." },
+      { q: "After setting temperature, how do you START a session?", choices: ["Press the power button 2× within 2 seconds", "Hold for 10 seconds", "Blow into it", "It starts on its own"], answer: 0, why: "Press the power button 2× within 2 seconds to start (or cancel) a session." },
+      { q: "How do you open the Settings menu?", choices: ["Press the power button 5×", "Hold both side buttons", "Tap once", "Plug in USB-C"], answer: 0, why: "Press the power button 5× to enter the Settings menu (timer, °F/°C, brightness, haptics)." },
+      { q: "What kind of display does the Dash+ have?", choices: ["No display", "Monochrome OLED", "Full-color LED", "E-ink"], answer: 2, why: "The Dash+ has a full-color LED display." },
+      { q: "What is the Dash+'s MSRP?", choices: ["$49.95", "$99.95", "$149.95", "$79.95"], answer: 1, why: "The Dash+ MSRP is $99.95." },
+      { q: "What is the Dash+'s body made of?", choices: ["Zinc-alloy", "Silicone", "Wood", "Carbon fiber"], answer: 0, why: "The Dash+ has a durable zinc-alloy body." },
+    ],
+  },
+
+  "Melt Hot Knife": {
+    tagline: "Learn the G Pen Melt, then pass the quiz to become a certified Product Specialist.",
+    minutes: 6, passPct: 80,
+    modules: [
+      { title: "Product Overview", points: [
+        "The Melt is the <strong>smallest hot knife on the market</strong> — an electric, ceramic-tipped <strong>dab tool</strong> for concentrates.",
+        "Designed for fast, clean, <strong>zero-mess</strong> scooping and drops.",
+        "MSRP <strong>$24.95</strong>.",
+      ] },
+      { title: "Key Specs", points: [
+        "<strong>Rapid-heat ceramic tip</strong>.",
+        "<strong>USB-C pass-through charging</strong> — it can be used while charging.",
+        "Sleek <strong>aluminum</strong> body.",
+        "Ultra-compact: <strong>3.94 × 0.5 × 0.25 in</strong>, pocket &amp; travel-kit friendly.",
+        "Pairs with rigs and the G Pen Micro+ / Hyer.",
+      ] },
+      { title: "How to Use", points: [
+        "<strong>Power on:</strong> press the button <strong>5×</strong>.",
+        "<strong>Heat:</strong> <strong>hold</strong> the button to start heating — it heats for a maximum of <strong>5 seconds</strong> per press.",
+        "Use the hot ceramic tip to scoop or drop your concentrate.",
+        "It can be operated <strong>while charging</strong> (always ready).",
+        "The device powers off automatically after <strong>10 minutes</strong> of inactivity; the LED blinks <strong>8 times</strong> when it needs a charge.",
+      ] },
+      { title: "What's In the Box", points: [
+        "G Pen Melt Hot Knife and a protective travel cap.",
+        "<strong>A USB-C charging cable is NOT included</strong> — any USB-C charger works.",
+      ] },
+    ],
+    quiz: [
+      { q: "What is the G Pen Melt?", choices: ["A dry herb vaporizer", "An electric hot knife (dab tool) for concentrates", "A 510 battery", "A water pipe"], answer: 1, why: "The Melt is an electric, ceramic-tipped hot knife for scooping and dropping concentrates." },
+      { q: "The Melt is marketed as the smallest ___ on the market.", choices: ["vaporizer", "hot knife", "battery", "rig"], answer: 1, why: "It's the smallest hot knife on the market." },
+      { q: "What is the Melt's heated tip made of?", choices: ["Ceramic", "Titanium", "Quartz", "Steel"], answer: 0, why: "The Melt has a rapid-heat ceramic tip." },
+      { q: "How do you START heating the Melt?", choices: ["Tap once", "Hold the button", "Press 5×", "It heats automatically"], answer: 1, why: "After powering on, hold the button to start heating." },
+      { q: "What is the maximum heat time per press?", choices: ["5 seconds", "30 seconds", "2 minutes", "10 seconds"], answer: 0, why: "The device heats for a maximum of 5 seconds per press." },
+      { q: "Can the Melt be used while it's charging?", choices: ["No", "Yes — USB-C pass-through", "Only on a special dock", "Only when full"], answer: 1, why: "Yes — it supports USB-C pass-through and can be operated while charging." },
+      { q: "How long until the Melt auto powers off from inactivity?", choices: ["1 minute", "10 minutes", "1 hour", "It never does"], answer: 1, why: "It powers off automatically after 10 minutes of inactivity." },
+      { q: "How do you power the Melt on?", choices: ["Press the button 5×", "Hold for 3 seconds", "Tap once", "Twist the cap"], answer: 0, why: "Press the button 5× to turn the Melt on." },
+      { q: "How does the Melt signal it needs a charge?", choices: ["It beeps", "The LED blinks 8 times", "It gets hot", "Nothing"], answer: 1, why: "The LED button blinks 8 times when it's time to charge." },
+      { q: "What is the Melt's MSRP?", choices: ["$12.95", "$24.95", "$49.95", "$99.95"], answer: 1, why: "The Melt MSRP is $24.95." },
+    ],
+  },
+
+  "Hydout": {
+    tagline: "Learn the G Pen Hydout, then pass the quiz to become a certified Product Specialist.",
+    minutes: 7, passPct: 80,
+    modules: [
+      { title: "Product Overview", points: [
+        "The Hydout is a compact, <strong>discreet 510 cartridge battery</strong> with a <strong>hidden magnetic mouthpiece cover</strong>.",
+        "Adjustable voltage plus an LED display for smooth, customizable, low-key sessions.",
+        "MSRP <strong>$24.95</strong>.",
+      ] },
+      { title: "Key Specs", points: [
+        "<strong>5 heat settings</strong> from <strong>2.4V to 3.8V</strong>.",
+        "<strong>1.8V</strong> 10-second preheat mode.",
+        "<strong>400mAh</strong> rechargeable battery, <strong>USB-C</strong> charging.",
+        "Bright <strong>LED display</strong>.",
+        "Fits <strong>510 cartridges up to 2g</strong>.",
+        "Dimensions: <strong>90 × 37.5 × 18.5 mm</strong>.",
+      ] },
+      { title: "How to Use", points: [
+        "<strong>Load:</strong> remove the mouthpiece, screw in a 510 cartridge, and replace the mouthpiece.",
+        "<strong>Power on/off:</strong> click the button <strong>5×</strong>.",
+        "<strong>Adjust voltage:</strong> click <strong>3×</strong> to cycle the heat settings.",
+        "<strong>Preheat:</strong> click <strong>2×</strong> for a 10-second 1.8V preheat.",
+        "<strong>Draw:</strong> <strong>hold</strong> the button to activate and draw.",
+        "Auto shut-off after <strong>2 minutes</strong> of inactivity.",
+      ] },
+      { title: "Care &amp; What's In the Box", points: [
+        "Clean the mouthpiece and battery/cartridge connection with a cotton swab and <strong>Isopropyl Alcohol</strong>. <strong>Do not soak the battery.</strong>",
+        "In the box: the Hydout 510 battery + magnetic mouthpiece cover. A 510 cartridge and USB-C cable are <strong>not included</strong>.",
+      ] },
+    ],
+    quiz: [
+      { q: "What is the G Pen Hydout?", choices: ["A dry herb vaporizer", "A 510 cartridge battery", "A hot knife", "A gravity infuser"], answer: 1, why: "The Hydout is a discreet 510 cartridge battery." },
+      { q: "What is the Hydout's signature discreet feature?", choices: ["A hidden magnetic mouthpiece cover", "A folding screen", "A silent motor", "A camo wrap"], answer: 0, why: "It has a hidden magnetic mouthpiece cover for a discreet look." },
+      { q: "What is the Hydout's voltage range?", choices: ["1.0V–2.0V", "2.4V–3.8V (5 settings)", "3.8V–4.8V", "A single fixed voltage"], answer: 1, why: "The Hydout offers 5 heat settings from 2.4V to 3.8V." },
+      { q: "What is the Hydout's battery capacity?", choices: ["200mAh", "400mAh", "900mAh", "1,800mAh"], answer: 1, why: "It has a 400mAh rechargeable battery." },
+      { q: "How do you power the Hydout on or off?", choices: ["Click the button 5×", "Hold for 3 seconds", "Click 2×", "Breathe in"], answer: 0, why: "Click the button 5× to turn the Hydout on or off." },
+      { q: "How do you change the voltage?", choices: ["Click 3×", "Click 5×", "Hold the button", "Twist the mouthpiece"], answer: 0, why: "Click the button 3× to cycle through the heat settings." },
+      { q: "How do you take a draw on the Hydout?", choices: ["Just inhale", "Hold the button while drawing", "Click 2×", "Press and release"], answer: 1, why: "Hold the button to activate and draw." },
+      { q: "What does clicking the button 2× do?", choices: ["Turns it off", "Starts a 10-second 1.8V preheat", "Locks it", "Nothing"], answer: 1, why: "Clicking 2× starts a 10-second 1.8V preheat." },
+      { q: "How long until the Hydout auto shuts off?", choices: ["2 minutes", "10 minutes", "30 seconds", "1 hour"], answer: 0, why: "The Hydout auto shuts off after 2 minutes of inactivity." },
+      { q: "What is the correct way to clean the Hydout?", choices: ["Soak the whole battery in alcohol", "Cotton swab + Isopropyl Alcohol on the connection — do NOT soak the battery", "Rinse under water", "It never needs cleaning"], answer: 1, why: "Use a cotton swab with Isopropyl Alcohol on the connection points; never soak the battery." },
+    ],
+  },
+
+  "510 Original": {
+    tagline: "Learn the G Pen 510 Original, then pass the quiz to become a certified Product Specialist.",
+    minutes: 6, passPct: 80,
+    modules: [
+      { title: "Product Overview", points: [
+        "The 510 Original is the <strong>smallest and most affordable G Pen battery ever</strong> — a modern remake of Grenco's very first 2012 battery.",
+        "An ultra-portable <strong>510 cartridge battery</strong> with <strong>breath activation</strong>.",
+        "MSRP <strong>$12.95</strong>.",
+      ] },
+      { title: "Key Specs", points: [
+        "<strong>Breath-activated</strong> — just inhale (or hold the button).",
+        "<strong>Three preset voltages: 3.2 / 3.6 / 3.8V</strong>.",
+        "<strong>1.8V</strong> 10-second preheat mode.",
+        "<strong>400mAh</strong> battery with <strong>USB-C pass-through</strong> charging.",
+        "Digital <strong>display</strong>.",
+        "Dimensions: <strong>24 × 21.1 × 56.7 mm</strong>.",
+      ] },
+      { title: "How to Use", points: [
+        "<strong>Load:</strong> screw in a 510 cartridge.",
+        "<strong>Power on/off:</strong> click the button <strong>5×</strong>.",
+        "<strong>Adjust voltage:</strong> click <strong>3×</strong> to cycle 3.2 / 3.6 / 3.8V.",
+        "<strong>Preheat:</strong> click <strong>2×</strong> for a 10-second 1.8V preheat.",
+        "<strong>Draw:</strong> simply <strong>breathe in</strong> (breath-activated) — or hold the button.",
+        "Auto shut-off after <strong>10 minutes</strong> of inactivity.",
+      ] },
+      { title: "Care &amp; What's In the Box", points: [
+        "Clean the battery/cartridge connection with a cotton swab and <strong>Isopropyl Alcohol</strong>. <strong>Do not soak the battery.</strong>",
+        "In the box: the 510 Original battery. A USB-C charger and 510 cartridge are <strong>not included</strong>.",
+      ] },
+    ],
+    quiz: [
+      { q: "What is notable about the 510 Original?", choices: ["It's the largest G Pen battery", "It's the smallest and most affordable G Pen battery ever (a remake of the 2012 original)", "It's a dry herb vaporizer", "It only works with G Pen carts"], answer: 1, why: "It's the smallest, most affordable G Pen battery ever — a modern remake of Grenco's first 2012 battery." },
+      { q: "How do you activate a draw on the 510 Original?", choices: ["Breathe in (it's breath-activated) — or hold the button", "Click 5×", "It won't draw without a screen tap", "Twist the cartridge"], answer: 0, why: "The 510 Original is breath-activated — just inhale, or hold the button." },
+      { q: "What are the three preset voltages?", choices: ["2.4 / 3.0 / 3.6V", "3.2 / 3.6 / 3.8V", "1.8 / 2.4 / 3.0V", "3.8 / 4.2 / 4.8V"], answer: 1, why: "It has three preset voltages: 3.2, 3.6, and 3.8V." },
+      { q: "What is the 510 Original's battery capacity?", choices: ["150mAh", "400mAh", "900mAh", "1,100mAh"], answer: 1, why: "It has a 400mAh battery with USB-C pass-through charging." },
+      { q: "How do you power the 510 Original on or off?", choices: ["Click the button 5×", "Hold for 3 seconds", "Click 3×", "Breathe out"], answer: 0, why: "Click the button 5× to turn it on or off." },
+      { q: "How do you change the voltage?", choices: ["Click 3×", "Click 5×", "Hold the button", "Screw the cart tighter"], answer: 0, why: "Click the button 3× to cycle through 3.2 / 3.6 / 3.8V." },
+      { q: "What does clicking 2× do?", choices: ["Turns it off", "Starts a 10-second 1.8V preheat", "Locks the battery", "Nothing"], answer: 1, why: "Clicking 2× starts a 10-second 1.8V preheat." },
+      { q: "How long until the 510 Original auto shuts off?", choices: ["2 minutes", "10 minutes", "30 seconds", "1 hour"], answer: 1, why: "It auto shuts off after 10 minutes of inactivity." },
+      { q: "How does the 510 Original charge?", choices: ["Micro-USB", "USB-C pass-through", "Wireless only", "Replaceable batteries"], answer: 1, why: "It charges via USB-C and supports pass-through charging." },
+      { q: "What is the 510 Original's MSRP?", choices: ["$12.95", "$24.95", "$49.95", "$9.95"], answer: 0, why: "At $12.95, it's the most affordable G Pen battery ever." },
+    ],
+  },
 };
+// The Retro colorways are the same device as the base model — reuse the same course.
+window.PORTAL_TRAINING["Hydout — Retro"] = window.PORTAL_TRAINING["Hydout"];
+window.PORTAL_TRAINING["510 Original — Retro"] = window.PORTAL_TRAINING["510 Original"];
