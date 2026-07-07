@@ -155,7 +155,7 @@ window.PORTAL_PRODUCTS = [
     oneSheet: "#",
     // Real Dropbox shared folder for Dash II (TEST). "Download all" pulls this
     // folder as a .zip. Full per-file sync comes via the Dropbox API job.
-    dropbox: "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&st=24fyalcp&dl=0",
+    dropbox: "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
     folders: mkFolders(CDN + "Dash2_thumb_01.png?v=1782934099", "G Pen", "Dash II",
       { "E-Comm Render Photos": 11, "Lifestyle Photos": 6, "Logos": 3, "Video": 2, "Misc": 1 }),
   },
@@ -277,9 +277,9 @@ var PRODUCT_VIDEOS = {
     // Real Dropbox MP4s — playable in-browser + downloadable. thumbId reuses an
     // existing YouTube frame for the poster image.
     { title: "How to Use: G Pen Dash II", thumbId: "sqCdU8Kn5ek", youtube: "sqCdU8Kn5ek",
-      mp4: "https://www.dropbox.com/scl/fi/75n3wv24t1f56dxnyvi49/G-Pen-Dash-2-Tutorial.mp4?rlkey=496dlhqzbmrhr01m882ar2sth&st=d16aeh6q&dl=0" },
+      mp4: "https://www.dropbox.com/scl/fi/75n3wv24t1f56dxnyvi49/G-Pen-Dash-2-Tutorial.mp4?rlkey=496dlhqzbmrhr01m882ar2sth&dl=0" },
     { title: "How to Clean: Dash II", thumbId: "wBOzqPxDhd8", youtube: "wBOzqPxDhd8",
-      mp4: "https://www.dropbox.com/scl/fi/yzqxtivxnhbdfr9g7jak9/How-to-Clean-Your-Dash-II.mp4?rlkey=cg2m8xjg7fsxz0on2rcy4l4iq&st=x982tzj8&dl=0" },
+      mp4: "https://www.dropbox.com/scl/fi/yzqxtivxnhbdfr9g7jak9/How-to-Clean-Your-Dash-II.mp4?rlkey=cg2m8xjg7fsxz0on2rcy4l4iq&dl=0" },
   ],
   "Dash": [
     ["yd3DBUOZJ-0", "Grateful Dead x G Pen Dash"],
@@ -302,48 +302,48 @@ var PRODUCT_VIDEOS = {
     // (use) YouTube link retained. Same videos used for 510 Original — Retro below.
     { title: "How to Use: G Pen 510 Original", youtube: "_SF_4zkbZdI",
       thumb: "https://i.vimeocdn.com/video/2099496548-9f356818ba8ca793122dcf45c0911332ea2271f63bb31116c6e0da05b66d0b83-d_640?region=us",
-      mp4: "https://www.dropbox.com/scl/fi/i5ydk989oftm54y5n8hty/Bianca-510-How-To-Horizontal.mp4?rlkey=gpkapx6dynv1utt4yya5ksoc9&st=atp5w8k5&dl=0" },
+      mp4: "https://www.dropbox.com/scl/fi/i5ydk989oftm54y5n8hty/Bianca-510-How-To-Horizontal.mp4?rlkey=gpkapx6dynv1utt4yya5ksoc9&dl=0" },
     { title: "How to Clean: G Pen 510 Original", youtube: "4aMKTqSw0bQ",
       thumb: "https://i.vimeocdn.com/video/2165544391-c70c4c689b5becbd372bd32b6bf431be5c8442a4b1e6875cf85ed96e636747b5-d_640?region=us",
-      mp4: "https://www.dropbox.com/scl/fi/xshnmbfruvrc021r6ykqs/510-Original-Cleaning.mp4?rlkey=om0u51vawgzdr4y13rqn3hnfc&st=v3dbyqmd&dl=0" },
+      mp4: "https://www.dropbox.com/scl/fi/xshnmbfruvrc021r6ykqs/510-Original-Cleaning.mp4?rlkey=om0u51vawgzdr4y13rqn3hnfc&dl=0" },
   ],
   "510 Original — Retro": [
     // Same how-to videos as 510 Original (Dropbox MP4s: play + download; use has a YouTube link).
     { title: "How to Use: G Pen 510 Original", youtube: "_SF_4zkbZdI",
       thumb: "https://i.vimeocdn.com/video/2099496548-9f356818ba8ca793122dcf45c0911332ea2271f63bb31116c6e0da05b66d0b83-d_640?region=us",
-      mp4: "https://www.dropbox.com/scl/fi/i5ydk989oftm54y5n8hty/Bianca-510-How-To-Horizontal.mp4?rlkey=gpkapx6dynv1utt4yya5ksoc9&st=atp5w8k5&dl=0" },
+      mp4: "https://www.dropbox.com/scl/fi/i5ydk989oftm54y5n8hty/Bianca-510-How-To-Horizontal.mp4?rlkey=gpkapx6dynv1utt4yya5ksoc9&dl=0" },
     { title: "How to Clean: G Pen 510 Original", youtube: "4aMKTqSw0bQ",
       thumb: "https://i.vimeocdn.com/video/2165544391-c70c4c689b5becbd372bd32b6bf431be5c8442a4b1e6875cf85ed96e636747b5-d_640?region=us",
-      mp4: "https://www.dropbox.com/scl/fi/xshnmbfruvrc021r6ykqs/510-Original-Cleaning.mp4?rlkey=om0u51vawgzdr4y13rqn3hnfc&st=v3dbyqmd&dl=0" },
+      mp4: "https://www.dropbox.com/scl/fi/xshnmbfruvrc021r6ykqs/510-Original-Cleaning.mp4?rlkey=om0u51vawgzdr4y13rqn3hnfc&dl=0" },
   ],
   "Hydout": [
     // Real Dropbox MP4s — play in-browser + downloadable; Vimeo poster thumbs and
     // YouTube links retained. Same videos used for Hydout — Retro below.
     { title: "How to Use: G Pen Hydout", youtube: "WK3EXouKwGs",
       thumb: "https://i.vimeocdn.com/video/2042536830-ad33a7ce448923a860282dcd9a0acade12fd6a9a18bf61116b68ea3954b4655c-d_640?region=us",
-      mp4: "https://www.dropbox.com/scl/fi/b7g4fnjmk6vmyljiryjr6/Hydout-How-To-Use.mp4?rlkey=7i0r0r10hpanwjcfjrgi5foc6&st=y9fsyo4m&dl=0" },
+      mp4: "https://www.dropbox.com/scl/fi/b7g4fnjmk6vmyljiryjr6/Hydout-How-To-Use.mp4?rlkey=7i0r0r10hpanwjcfjrgi5foc6&dl=0" },
     { title: "How to Clean: G Pen Hydout", youtube: "e9oEXqNajh4",
       thumb: "https://i.vimeocdn.com/video/2042601767-c1a1df4b3c5e2f524fbdf5eab7af78886897186ff84062dcc1f01a49e8600c9a-d_640?region=us",
-      mp4: "https://www.dropbox.com/scl/fi/j1uyo5dqf0nyjucqhjf6b/Hydout-How-To-Clean.mp4?rlkey=xw6pm2gur4rg5zv0effj8xi71&st=y0zz6wgk&dl=0" },
+      mp4: "https://www.dropbox.com/scl/fi/j1uyo5dqf0nyjucqhjf6b/Hydout-How-To-Clean.mp4?rlkey=xw6pm2gur4rg5zv0effj8xi71&dl=0" },
   ],
   "Hydout — Retro": [
     // Same how-to videos as Hydout (Dropbox MP4s: play + download + YouTube links).
     { title: "How to Use: G Pen Hydout", youtube: "WK3EXouKwGs",
       thumb: "https://i.vimeocdn.com/video/2042536830-ad33a7ce448923a860282dcd9a0acade12fd6a9a18bf61116b68ea3954b4655c-d_640?region=us",
-      mp4: "https://www.dropbox.com/scl/fi/b7g4fnjmk6vmyljiryjr6/Hydout-How-To-Use.mp4?rlkey=7i0r0r10hpanwjcfjrgi5foc6&st=y9fsyo4m&dl=0" },
+      mp4: "https://www.dropbox.com/scl/fi/b7g4fnjmk6vmyljiryjr6/Hydout-How-To-Use.mp4?rlkey=7i0r0r10hpanwjcfjrgi5foc6&dl=0" },
     { title: "How to Clean: G Pen Hydout", youtube: "e9oEXqNajh4",
       thumb: "https://i.vimeocdn.com/video/2042601767-c1a1df4b3c5e2f524fbdf5eab7af78886897186ff84062dcc1f01a49e8600c9a-d_640?region=us",
-      mp4: "https://www.dropbox.com/scl/fi/j1uyo5dqf0nyjucqhjf6b/Hydout-How-To-Clean.mp4?rlkey=xw6pm2gur4rg5zv0effj8xi71&st=y0zz6wgk&dl=0" },
+      mp4: "https://www.dropbox.com/scl/fi/j1uyo5dqf0nyjucqhjf6b/Hydout-How-To-Clean.mp4?rlkey=xw6pm2gur4rg5zv0effj8xi71&dl=0" },
   ],
   "Dash+": [
     // Real Dropbox MP4s — play in-browser + downloadable. Poster thumbs kept from
     // the Vimeo frames; YouTube link retained for the "Share on YouTube" button.
     { title: "How to Use: G Pen Dash+", youtube: "OzgMUHgEQao",
       thumb: "https://i.vimeocdn.com/video/1904791595-274b91c5aa41aa688212f27f78b73f010482b21cc15d9935379b05d73e63f851-d_640?region=us",
-      mp4: "https://www.dropbox.com/scl/fi/dvo07vnvh54bdfpbrep59/Dash-Tutorial.mp4?rlkey=jkcrentnbxsfn4hruo6tf3ki4&st=erj93mws&dl=0" },
+      mp4: "https://www.dropbox.com/scl/fi/dvo07vnvh54bdfpbrep59/Dash-Tutorial.mp4?rlkey=jkcrentnbxsfn4hruo6tf3ki4&dl=0" },
     { title: "How to Clean: G Pen Dash+", youtube: "vSAc8WPkUpY",
       thumb: "https://i.vimeocdn.com/video/1904792226-ecd92a819e1074a45154a6dff6b558c242612cf8c6a2bbd099d17f25a451d949-d_640?region=us",
-      mp4: "https://www.dropbox.com/scl/fi/dl8q275uioal7vdu6phey/Dash-How-to-Clean.mp4?rlkey=10jzsg9wg7bvhk3skqgpxxy7d&st=gb9q84gw&dl=0" },
+      mp4: "https://www.dropbox.com/scl/fi/dl8q275uioal7vdu6phey/Dash-How-to-Clean.mp4?rlkey=10jzsg9wg7bvhk3skqgpxxy7d&dl=0" },
   ],
   "Hyer": [
     ["L5pIGbmtLU8", "Tyson 2.0 x G Pen Hyer"],
