@@ -745,12 +745,18 @@ window.PORTAL_INSTORE_GENERAL = (function () {
   // These are replaced automatically once the "In-Store Marketing General"
   // Dropbox folder syncs.
   return [
-    { name: "In-Store Wooden Logo Sign", type: "image", format: "PNG", dim: "8\" W × 6\" H × 2\" D (placeholder)",
-      thumb: "assets/materials/wooden-g-sign.png",
-      url: "assets/materials/wooden-g-sign.png", file: "assets/materials/wooden-g-sign.png" },
-    { name: "Dash II Table Tent", type: "image", format: "JPG", dim: "4\" W × 6\" H (placeholder)", product: "Dash II",
-      thumb: "assets/materials/dash-ii-table-tent.jpg",
-      url: "assets/materials/dash-ii-table-tent.jpg", file: "assets/materials/dash-ii-table-tent.jpg" },
+    { name: "Channel Letter", type: "image", format: "PNG", dim: "12\" L × 12\" W × 2\" D",
+      thumb: "assets/materials/channel-letter.png", url: "assets/materials/channel-letter.png", file: "assets/materials/channel-letter.png" },
+    { name: "Die-Cut Window Cling", type: "image", format: "PNG", dim: "8\" L × 8\" W",
+      thumb: "assets/materials/die-cut-window-cling.png", url: "assets/materials/die-cut-window-cling.png", file: "assets/materials/die-cut-window-cling.png" },
+    { name: "Fridge Magnet", type: "image", format: "PNG", dim: "2.5\" L × 2.5\" W",
+      thumb: "assets/materials/fridge-magnet.png", url: "assets/materials/fridge-magnet.png", file: "assets/materials/fridge-magnet.png" },
+    { name: "Lanyard", type: "image", format: "PNG", dim: "With vape holder",
+      thumb: "assets/materials/lanyard.png", url: "assets/materials/lanyard.png", file: "assets/materials/lanyard.png" },
+    { name: "Sticky Notes", type: "image", format: "PNG", dim: "2.5\" L × 2.5\" W · 25 notes per pad",
+      thumb: "assets/materials/sticky-notes.png", url: "assets/materials/sticky-notes.png", file: "assets/materials/sticky-notes.png" },
+    { name: "Dash II Table Tent", type: "image", format: "JPG", dim: "4\" W × 6\" H", product: "Dash II",
+      thumb: "assets/materials/dash-ii-table-tent.jpg", url: "assets/materials/dash-ii-table-tent.jpg", file: "assets/materials/dash-ii-table-tent.jpg" },
   ];
 })();
 
