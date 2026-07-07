@@ -12,6 +12,7 @@ on:
       - "index.html"
       - "assets/**"
       - ".nojekyll"
+      - "CNAME"
       - ".github/workflows/deploy-pages.yml"
   workflow_dispatch:
   # Publish after the Dropbox sync commits fresh assets (its commit carries
@@ -41,14 +42,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Publish only the static site — index.html + assets/** + .nojekyll —
-      # not scripts/, .github/, or any local-only helpers.
+      # Publish only the static site — index.html + assets/** + .nojekyll + CNAME —
+      # not scripts/, .github/, or any local-only helpers. CNAME must be published
+      # or GitHub Pages drops the custom domain (assets.gpen.com) on every deploy.
       - name: Assemble site
         run: |
           mkdir -p _site
           cp index.html _site/
           cp -R assets _site/assets
           [ -f .nojekyll ] && cp .nojekyll _site/.nojekyll || touch _site/.nojekyll
+          [ -f CNAME ] && cp CNAME _site/CNAME || true
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
