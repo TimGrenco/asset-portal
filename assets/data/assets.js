@@ -749,8 +749,8 @@ window.PORTAL_INSTORE_GENERAL = (function () {
       thumb: "assets/materials/wooden-g-sign.png",
       url: "assets/materials/wooden-g-sign.png", file: "assets/materials/wooden-g-sign.png" },
     { name: "Dash II Table Tent", type: "image", format: "JPG", dim: "4\" W × 6\" H (placeholder)", product: "Dash II",
-      thumb: "https://www.dropbox.com/scl/fi/i9k26wlyc16y9qogb75g7/4afa24fe8551c06556ca9247a80e68dee51dbdc452bc7057ed0b7fdc49c400a9.jpg?rlkey=2x45zd6cwz33yq0qgsadok822&st=9g2dreaq&raw=1",
-      url: "https://www.dropbox.com/scl/fi/i9k26wlyc16y9qogb75g7/4afa24fe8551c06556ca9247a80e68dee51dbdc452bc7057ed0b7fdc49c400a9.jpg?rlkey=2x45zd6cwz33yq0qgsadok822&st=9g2dreaq&dl=1", file: null },
+      thumb: "assets/materials/dash-ii-table-tent.jpg",
+      url: "assets/materials/dash-ii-table-tent.jpg", file: "assets/materials/dash-ii-table-tent.jpg" },
   ];
 })();
 
