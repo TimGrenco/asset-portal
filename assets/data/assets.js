@@ -628,7 +628,7 @@ var PRODUCT_DESCRIPTION = {
 var PRODUCT_SKU = {
   // dimensions = single-unit product size (from gpen.com). unitWeight to be
   // supplied by ops (scraped store weights are ship weight, not bare unit).
-  "Dash II":              { sku: "GPD-001-APZZ", pop: true, fullName: "DASH II VAPORIZER", upc: "852570004441", dimensions: "97 × 35 × 21 mm", innerPack: "10", masterCarton: "200", caseWeight: "16.07 kg", caseDimensions: "580 × 280 × 245 mm", boxImg: "https://www.dropbox.com/scl/fi/994jzbzmnbz4qxjikunzf/Dash-II-Bloom-Package-3-4.png?rlkey=wa2iy1kjlvqpia64ezir76n7v&st=juuo3xah&dl=0", popImg: "https://www.dropbox.com/scl/fi/yqku2px3kfdkbhb7b5ahf/Dash-POP-Transparent.png?rlkey=v1tgr8ripr5eq1afl736gqtic&st=cucw5wfp&dl=0" },
+  "Dash II":              { sku: "GPD-001-APZZ", pop: true, fullName: "DASH II VAPORIZER", upc: "852570004441", dimensions: "97 × 35 × 21 mm", innerPack: "10", masterCarton: "200", caseWeight: "16.07 kg", caseDimensions: "580 × 280 × 245 mm", boxImg: "assets/materials/dash-ii-retail-packaging.png", popImg: "assets/materials/dash-ii-pop-display.png" },
   "Melt Hot Knife":       { sku: "GHK-001-AOZZ", pop: true, dimensions: "3.94 × 0.5 × 0.25 in" },
   "510 Original":         { sku: "GSB-001-AOZZ", pop: true, dimensions: "24 × 21.1 × 56.7 mm" },
   "510 Original — Retro": { sku: "GSB-005-APZZ", pop: true, dimensions: "24 × 21.1 × 56.7 mm" },
