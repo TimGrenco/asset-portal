@@ -337,11 +337,11 @@ window.PORTAL_PRODUCTS = [
   },
   {
     name: "Hyer", brand: "gpen", category: "E-Nail",
-    cover: CDN + "GlassCap_thumb_05_81ca4328-c1dc-49d1-8fad-cea56312b869.png?v=1765563306",
+    cover: CDN + "hyer_vape_thumb_1b7bd3f0-7aea-4fcb-b900-cbb5a43dc3cf.png?v=1729247638",
     added: "2025-11-20",
     oneSheet: "#",
     dropbox: "https://www.dropbox.com/scl/fo/a6lmzsjiawgjeiwklvho0/h?rlkey=vhqm2y94vgv2kvakwvbl39fvq&dl=0",
-    folders: mkFiles("Hyer", CDN + "GlassCap_thumb_05_81ca4328-c1dc-49d1-8fad-cea56312b869.png?v=1765563306", "https://www.dropbox.com/scl/fo/a6lmzsjiawgjeiwklvho0/h?rlkey=vhqm2y94vgv2kvakwvbl39fvq&dl=0"),
+    folders: mkFiles("Hyer", CDN + "hyer_vape_thumb_1b7bd3f0-7aea-4fcb-b900-cbb5a43dc3cf.png?v=1729247638", "https://www.dropbox.com/scl/fo/a6lmzsjiawgjeiwklvho0/h?rlkey=vhqm2y94vgv2kvakwvbl39fvq&dl=0"),
   },
   {
     name: "Roam", brand: "gpen", category: "E-Rig",
@@ -361,11 +361,11 @@ window.PORTAL_PRODUCTS = [
   },
   {
     name: "Elite II", brand: "gpen", category: "Dry Herb",
-    cover: CDNP + "Elite2_Web_Mouthpiece_ortho.png?v=1692903123",
+    cover: CDN + "elite_II_vape_thumb_40c473ea-29da-49bf-9b94-37eb591e46ed.png?v=1729247643",
     added: "2025-10-12",
     oneSheet: "#",
     dropbox: "https://www.dropbox.com/scl/fo/4i3r2lru6bt3xnnx0nhh2/APkJPwAV7QjeMGe6Rs-WSZg?rlkey=bn0ejx8ho4t0m8ea7jztlx7ni&dl=0",
-    folders: mkFiles("Elite II", CDNP + "Elite2_Web_Mouthpiece_ortho.png?v=1692903123", "https://www.dropbox.com/scl/fo/4i3r2lru6bt3xnnx0nhh2/APkJPwAV7QjeMGe6Rs-WSZg?rlkey=bn0ejx8ho4t0m8ea7jztlx7ni&dl=0"),
+    folders: mkFiles("Elite II", CDN + "elite_II_vape_thumb_40c473ea-29da-49bf-9b94-37eb591e46ed.png?v=1729247643", "https://www.dropbox.com/scl/fo/4i3r2lru6bt3xnnx0nhh2/APkJPwAV7QjeMGe6Rs-WSZg?rlkey=bn0ejx8ho4t0m8ea7jztlx7ni&dl=0"),
   },
   {
     name: "Micro+", brand: "gpen", category: "Concentrate", type: "Concentrate Vaporizer",
