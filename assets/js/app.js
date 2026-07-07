@@ -1817,10 +1817,14 @@
     s.onerror = function () { cb(null); };
     document.head.appendChild(s);
   }
-  // A single file: synced files download directly; anything else opens its link.
+  // A single file: force a direct download from its Dropbox link (dl=1) so the
+  // browser saves the file instead of opening Dropbox's preview page.
   function downloadOne(url) {
     if (!url || url === "#") { toast("Connect storage to enable downloads"); return; }
-    window.open(url, "_blank");
+    // Per-file Dropbox links (scl/fi) → force a direct download. Leave folder
+    // links (scl/fo) alone so a single-file click never pulls the whole folder.
+    if (/dropbox\.com\/scl\/fi\//.test(url)) url = dropboxZipUrl(url);
+    window.open(url, "_blank", "noopener");
   }
   // A folder / selection: fetch the real synced files and bundle them into a
   // .zip in the browser. Files too large to host (big videos) come via the

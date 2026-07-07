@@ -14,7 +14,7 @@
    under assets/synced/<slug>/, so unchanged files are never re-downloaded.
    Writes window.PORTAL_SYNCED into assets/data/synced.js.
    ========================================================================== */
-import { writeFileSync, mkdirSync, existsSync, readdirSync, unlinkSync, createWriteStream } from "node:fs";
+import { writeFileSync, readFileSync, mkdirSync, existsSync, readdirSync, unlinkSync, createWriteStream } from "node:fs";
 import { join } from "node:path";
 import { execFileSync } from "node:child_process";
 import { Readable } from "node:stream";
@@ -31,13 +31,11 @@ if (!APP_KEY || !APP_SECRET || !REFRESH) {
 // Products to sync: portal product name → its public Dropbox shared-folder link.
 const PRODUCTS = [
   {
-    // `commitFiles` = commit the real originals so the browser can download/zip
-    // them in-portal. Only Dash II (the launch showcase) does this; other
-    // products stay thumbnail-only and download via "Download all" / Dropbox,
-    // which keeps the published site well under GitHub Pages' 1 GB ceiling.
+    // Nothing is hosted on GitHub anymore — every file downloads straight from
+    // Dropbox via a per-file share link (see sharedFileLink). Only tiny SVG logos
+    // are still committed since the vector itself IS the thumbnail preview.
     name: "Dash II",
     slug: "dash-ii",
-    commitFiles: true,
     link: "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
   },
   { name: "510 Original", slug: "510-original", link: "https://www.dropbox.com/scl/fo/mtuk2kb73ln5pv0qj68y5/AOnLPmrirA3wsvOdaA0v9rw?rlkey=e8svbeey6dql240rjqzch9qco&st=tvt2s0qf&dl=0" },
@@ -125,6 +123,38 @@ async function rpc(tok, endpoint, body) {
   });
   if (!r.ok) throw new Error(endpoint + " " + r.status + " " + (await r.text()));
   return r.json();
+}
+
+// Create (or fetch the existing) direct download link for ONE file, so the portal
+// downloads it straight from Dropbox — nothing large is hosted on GitHub. `id` is
+// the file's Dropbox id ("id:..."). Retries once on rate-limit; returns null on
+// failure (caller falls back to the folder link).
+async function sharedFileLink(tok, id) {
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const r = await fetch("https://api.dropboxapi.com/2/sharing/create_shared_link_with_settings", {
+      method: "POST",
+      headers: { Authorization: "Bearer " + tok, "Content-Type": "application/json" },
+      body: JSON.stringify({ path: id }),
+    });
+    if (r.ok) return (await r.json()).url;
+    const e = await r.json().catch(() => ({}));
+    const tag = e && e.error && e.error[".tag"];
+    if (tag === "shared_link_already_exists") {
+      const meta = e.error.shared_link_already_exists && e.error.shared_link_already_exists.metadata;
+      if (meta && meta.url) return meta.url;
+      const r2 = await fetch("https://api.dropboxapi.com/2/sharing/list_shared_links", {
+        method: "POST",
+        headers: { Authorization: "Bearer " + tok, "Content-Type": "application/json" },
+        body: JSON.stringify({ path: id, direct_only: true }),
+      });
+      if (r2.ok) { const j = await r2.json(); if (j.links && j.links[0]) return j.links[0].url; }
+      return null;
+    }
+    if (r.status === 429) { await new Promise((s) => setTimeout(s, 1500 * (attempt + 1))); continue; }
+    warnOnce("link", "shared link failed " + r.status + ": " + JSON.stringify(e).slice(0, 160));
+    return null;
+  }
+  return null;
 }
 
 async function listFolder(tok, link, path) {
@@ -280,6 +310,12 @@ for (const p of PRODUCTS) {
   mkdirSync(filesDir, { recursive: true });
   const keepFiles = new Set();   // committed original filenames (under files/)
 
+  // Per-file Dropbox download links, cached by file id so we only hit the sharing
+  // API for new/changed files (not every file every run). Committed as _links.json.
+  const linkCacheFile = join(dir, "_links.json");
+  const linkCache = existsSync(linkCacheFile) ? JSON.parse(readFileSync(linkCacheFile, "utf8")) : {};
+  keep.add("_links.json");
+
   const folders = {};
   for (const spec of folderSpecs) {
     const files = spec.files;
@@ -351,7 +387,15 @@ for (const p of PRODUCTS) {
         }
       } catch (err) { warnOnce("gen-" + type, "asset error (" + f.name + "): " + err.message); }
 
-      out.push({ name: f.displayName || f.name.replace(/\.[^.]+$/, ""), type, format: e.toUpperCase(), url: p.link, thumb, file: fileRel });
+      // Per-file download link (cached). Every file downloads straight from
+      // Dropbox; if the link can't be made, fall back to the folder link.
+      let dlUrl = linkCache[f.id];
+      if (!dlUrl && f.id) {
+        try { dlUrl = await sharedFileLink(tok, f.id); } catch { dlUrl = null; }
+        if (dlUrl) linkCache[f.id] = dlUrl;
+      }
+
+      out.push({ name: f.displayName || f.name.replace(/\.[^.]+$/, ""), type, format: e.toUpperCase(), url: dlUrl || p.link, thumb, file: fileRel });
     }
     if (out.length) folders[spec.name] = (folders[spec.name] || []).concat(out);  // concat so aliased names merge
   }
@@ -360,11 +404,13 @@ for (const p of PRODUCTS) {
   for (const fn of readdirSync(dir)) if (fn !== "files" && !keep.has(fn)) { try { unlinkSync(join(dir, fn)); } catch {} }
   for (const fn of readdirSync(filesDir)) if (!keepFiles.has(fn)) { try { unlinkSync(join(filesDir, fn)); } catch {} }
 
+  writeFileSync(linkCacheFile, JSON.stringify(linkCache));
+
   synced[p.name] = { folders, dropbox: dlLink(p.link) };
   const total = Object.values(folders).reduce((n, a) => n + a.length, 0);
   const withThumb = Object.values(folders).reduce((n, a) => n + a.filter((x) => x.thumb).length, 0);
-  const withFile = Object.values(folders).reduce((n, a) => n + a.filter((x) => x.file).length, 0);
-  console.log(`${p.name}: ${folderSpecs.length} folders, ${total} files, ${withThumb} thumbnails, ${withFile} downloadable`);
+  const withLink = Object.values(folders).reduce((n, a) => n + a.filter((x) => /scl\/fi\//.test(x.url)).length, 0);
+  console.log(`${p.name}: ${folderSpecs.length} folders, ${total} files, ${withThumb} thumbnails, ${withLink} per-file links`);
 }
 
 writeFileSync("assets/data/synced.js", "window.PORTAL_SYNCED = " + JSON.stringify(synced, null, 2) + ";\n");
