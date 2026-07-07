@@ -5332,6 +5332,40 @@ window.PORTAL_SYNCED = {
           "file": null
         }
       ],
+      "Logos": [
+        {
+          "name": "GPEN_Hydout_Logo_Black",
+          "type": "file",
+          "format": "AI",
+          "url": "https://www.dropbox.com/scl/fo/fnsys0ijwhl2059nu45u5/AEE18ADvSJZ1RYdf0EDDk0Q?rlkey=2cz8o729ku9u1c9unhewv55wr&st=5lrpymts&dl=0",
+          "thumb": "assets/synced/hydout-retro/e1aa163a8b8935057e7ab794d375d353dcd194b5709cbdc301fa10a9cb18aeaf.jpg",
+          "file": null
+        },
+        {
+          "name": "GPEN_Hydout_Logo_Black",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/fnsys0ijwhl2059nu45u5/AEE18ADvSJZ1RYdf0EDDk0Q?rlkey=2cz8o729ku9u1c9unhewv55wr&st=5lrpymts&dl=0",
+          "thumb": "assets/synced/hydout-retro/7c4b53a2e8b7e279811ffd788f0988c8b87b6e360672e49005d483e962fbbed4.jpg",
+          "file": null
+        },
+        {
+          "name": "GPEN_Hydout_Logo_White",
+          "type": "file",
+          "format": "AI",
+          "url": "https://www.dropbox.com/scl/fo/fnsys0ijwhl2059nu45u5/AEE18ADvSJZ1RYdf0EDDk0Q?rlkey=2cz8o729ku9u1c9unhewv55wr&st=5lrpymts&dl=0",
+          "thumb": "assets/synced/hydout-retro/3427e58bdcfaebc6f638f76ac2853ebc933a360891808d5fe19860a35ccaa76f-lt2.jpg",
+          "file": null
+        },
+        {
+          "name": "GPEN_Hydout_Logo_White",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/fnsys0ijwhl2059nu45u5/AEE18ADvSJZ1RYdf0EDDk0Q?rlkey=2cz8o729ku9u1c9unhewv55wr&st=5lrpymts&dl=0",
+          "thumb": "assets/synced/hydout-retro/942ca0150ff25996883da58b4e504b447e8609fa65d3744a715628ace3310818-lt2.jpg",
+          "file": null
+        }
+      ],
       "Social Videos": [
         {
           "name": "coco.loco.crochet pink retro hydout june",
