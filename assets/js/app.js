@@ -85,7 +85,7 @@
 
   // ---- state ---------------------------------------------------------------
   var state = {
-    view: "gpen",      // gpen | stundenglass  (focused on one brand at a time)
+    view: "gpen",      // single-brand portal (G Pen)
     type: "all",       // all | E-Comm Render Photos | Lifestyle Photos | Logos | Video | Misc
     query: "",
     sort: "featured",  // featured (curated order) | az
@@ -225,7 +225,7 @@
     copyText(location.origin + location.pathname + (qs ? "?" + qs : ""), "View link copied");
   }
   function clearFilter(k) {
-    // Brand is a primary toggle (always G Pen or Stündenglass), never a clearable
+    // Brand is fixed to G Pen for this portal, never a clearable
     // filter — so only type/query are reset here.
     if (k === "all") { state.type = "all"; state.query = ""; }
     else if (k === "type") state.type = "all";
@@ -751,7 +751,7 @@
         '<div class="locator-copy">' +
           '<div class="locator-eyebrow">Retailers</div>' +
           "<h2>Get your store on our Store Locator</h2>" +
-          "<p>Carry G Pen or Stündenglass? Request to be added to our official store locator so customers can find your shop.</p>" +
+          "<p>Carry G Pen? Request to be added to our official store locator so customers can find your shop.</p>" +
         "</div>" +
         '<a class="btn lg" href="#locator">' + icon("mapPin") + " Request to be listed</a>" +
       "</div>";
@@ -1167,7 +1167,7 @@
     x.fillText(dateStr, cx + 180, 760);
     x.fillStyle = "rgba(255,255,255,0.4)";
     x.font = "400 15px Archivo, Arial, sans-serif";
-    x.fillText("gpen.com  ·  stundenglass.com", cx, 860);
+    x.fillText("gpen.com", cx, 860);
     // Blob download is far more reliable than a huge data: URL on mobile Safari.
     var fname = product.replace(/[^\w.-]+/g, "_") + "_Certificate.png";
     if (c.toBlob) {
@@ -2028,8 +2028,8 @@
     void el.offsetWidth;
     el.classList.add("page-anim");
   }
-  var DEFAULT_TITLE = "Grenco Brand Assets Portal";
-  function setTitle(t) { document.title = t ? t + " — Grenco Brand Assets Portal" : DEFAULT_TITLE; }
+  var DEFAULT_TITLE = "G Pen Brand Assets Portal";
+  function setTitle(t) { document.title = t ? t + " — G Pen Brand Assets Portal" : DEFAULT_TITLE; }
 
   document.addEventListener("DOMContentLoaded", init);
 })();

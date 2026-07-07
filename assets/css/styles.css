@@ -19,7 +19,7 @@
   --radius-pill: 999px;
   --maxw: 1200px;
   /* Display + body are both Archivo — bold, modern sans matching gpen.com /
-     stundenglass.com. (--serif kept as the variable name so existing rules that
+     the brand sites. (--serif kept as the variable name so existing rules that
      reference it become the display weight without a sweep.) */
   --serif: "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --sans: "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -64,7 +64,7 @@ a { color: inherit; text-decoration: none; }
 .req-link:hover { color: var(--ink); }
 
 /* ---------------------------------- HERO ---------------------------------- */
-/* Compact dark brand band — premium feel of gpen.com / stundenglass.com, kept
+/* Compact dark brand band — premium feel of gpen.com, kept
    short so the asset library sits high on the page. */
 .hero { text-align: center; padding: 38px 24px 34px; color: #fff; position: relative; overflow: hidden;
   background: radial-gradient(ellipse 80% 140% at 50% -30%, #20201d 0%, var(--ink-2) 40%, var(--ink) 82%); }
@@ -73,7 +73,7 @@ a { color: inherit; text-decoration: none; }
 .hero-brands { display: inline-flex; align-items: center; gap: 26px; margin-bottom: 20px; }
 /* brand logos are monochrome → render them white on the dark hero */
 .hero-logo { display: block; width: auto; filter: brightness(0) invert(1); opacity: 0.95; }
-.hero-logo.gpen { height: 54px; }
+.hero-logo.gpen { height: 66px; }
 .hero-logo.sg { height: 32px; }
 .hero-brands .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex: 0 0 auto; }
 .hero-eyebrow { font-size: 10.5px; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 700; color: var(--gold); margin-bottom: 11px; }
@@ -85,7 +85,7 @@ a { color: inherit; text-decoration: none; }
 .browse { background: rgba(255, 255, 255, 0.92); backdrop-filter: saturate(180%) blur(14px); border-bottom: 1px solid var(--hair); }
 .browse-inner { display: flex; flex-direction: column; gap: 11px; padding-top: 13px; padding-bottom: 13px; }
 .browse-top { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-.browse-search { position: relative; flex: 1 1 240px; min-width: 200px; max-width: 460px; }
+.browse-search { position: relative; flex: 1 1 240px; min-width: 200px; }
 .browse-search input { width: 100%; padding: 10px 38px 10px 40px; border-radius: var(--radius-pill); border: 1px solid var(--hair); background: var(--paper); color: var(--ink); font-size: 14px; font-family: inherit; }
 .browse-search input::placeholder { color: var(--stone-2); }
 .browse-search input:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 3px rgba(254, 200, 112, 0.35); }
@@ -594,7 +594,7 @@ a.logo-tile { cursor: pointer; }
   .nav-link { white-space: nowrap; font-size: 13px; }
   .hero-brands { gap: 18px; }
   .hero-brands .nm { font-size: 17px; }
-  .hero-logo.gpen { height: 44px; }
+  .hero-logo.gpen { height: 52px; }
   .hero-logo.sg { height: 26px; }
   .grid { grid-template-columns: repeat(2, 1fr); gap: 13px; }
   /* asset filter chips become a single swipeable strip instead of stacking */

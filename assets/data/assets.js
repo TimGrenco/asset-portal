@@ -12,7 +12,7 @@
 
    FIELD GUIDE (per product)
      name      : Product name shown in the UI (e.g. "Dash II")
-     brand     : "gpen" or "stundenglass"  (must match a brand key below)
+     brand     : "gpen" (brand key below)
      category  : Short label shown under the name (e.g. "Dry Herb")
      cover     : Image URL for the product tile (Shopify CDN or any https URL)
      added     : ISO date the assets were added/updated "YYYY-MM-DD"
@@ -29,10 +29,10 @@
    ========================================================================== */
 
 window.PORTAL_CONFIG = {
-  title: "Brand Asset Portal",
+  title: "G Pen Brand Assets Portal",
   tagline: "Everything you need, in one place.",
   intro:
-    "The official asset portal for G Pen and Stündenglass. Product photography, lifestyle imagery, logos, video and spec sheets — organized by product, ready to download.",
+    "The official asset portal for G Pen. Product photography, lifestyle imagery, logos, video and spec sheets — organized by product, ready to download.",
   requestEmail: "pr@grencoscience.com", // "Request an asset" mailto target
   orderEmail: "pr@grencoscience.com",   // marketing-material order requests
   locatorEmail: "pr@grencoscience.com", // store-locator listing requests
@@ -43,7 +43,7 @@ window.PORTAL_CONFIG = {
 };
 
 /* Brand essentials (colors + fonts) power the "Brand essentials" panel.
-   NOTE: these values are PLACEHOLDERS pulled from gpen.com / stundenglass.com
+   NOTE: these values are PLACEHOLDERS pulled from gpen.com
    to get the section looking right — replace with the official brand-guide
    values when they're provided. Colors: add { name, hex }. Fonts: add
    { name, role, stack }. `logoProduct` is the product name to deep-link the
@@ -73,30 +73,6 @@ window.PORTAL_BRANDS = {
     faqUrl: "https://www.gpen.com/pages/faq",
     warrantyUrl: "https://www.gpen.com/pages/warranty",
   },
-  stundenglass: {
-    key: "stundenglass", name: "Stündenglass", wordmark: "STÜNDENGLASS",
-    logoProduct: "Stündenglass Logos",
-    colors: [
-      { name: "Black", hex: "#000000" },
-      { name: "Midnight", hex: "#1B1C30" },
-      { name: "Paper", hex: "#FFFFFF" },
-      { name: "Violet", hex: "#642AC9" },
-      { name: "Stone", hex: "#E8E8E1" },
-    ],
-    fonts: [
-      { name: "Montserrat", role: "Display / Headlines", stack: "'Montserrat', sans-serif" },
-      { name: "Inter", role: "Body", stack: "'Inter', sans-serif" },
-    ],
-    // Official accounts (scraped from stundenglass.com — verify before launch).
-    social: [
-      { network: "Instagram", handle: "@stundenglass", url: "https://www.instagram.com/stundenglass" },
-      { network: "X", handle: "@stundenglass", url: "https://x.com/stundenglass" },
-      { network: "Facebook", handle: "Stündenglass", url: "https://www.facebook.com/stundenglass" },
-      { network: "YouTube", handle: "Stündenglass", url: "https://www.youtube.com/channel/UCJv-OGIfGxTHHaQXubwuiUg" },
-    ],
-    faqUrl: "https://www.stundenglass.com/pages/faq-1",
-    warrantyUrl: "https://www.stundenglass.com/pages/warranty",
-  },
 };
 
 /* CURRENT PRODUCT LINEUP (per brand, in display order).
@@ -113,11 +89,6 @@ window.PORTAL_CURRENT = {
     "510 Original",
     "Hydout — Retro",
     "510 Original — Retro",
-  ],
-  stundenglass: [
-    "Kompact",
-    "Gravity Infuser",
-    "Studio Kit",
   ],
 };
 
@@ -174,9 +145,6 @@ function mkFolders(cover, brandName, productName, counts, images) {
 
 var CDN = "https://cdn.shopify.com/s/files/1/0185/1576/files/";
 var CDNP = "https://cdn.shopify.com/s/files/1/0185/1576/products/";
-// Stündenglass store CDN (stundenglass.com). Placeholder imagery until the
-// Stündenglass Dropbox/store is formally connected.
-var SG = "https://cdn.shopify.com/s/files/1/1419/1556/files/";
 
 window.PORTAL_PRODUCTS = [
   /* ---------------------------------- G PEN -------------------------------- */
@@ -294,52 +262,6 @@ window.PORTAL_PRODUCTS = [
     },
   },
 
-  /* ------------------------------ STÜNDENGLASS ----------------------------- */
-  /* Placeholder imagery pulled from stundenglass.com (separate store, not yet
-     formally connected). Replace `cover`/file urls once the Stündenglass
-     Dropbox/store is connected. */
-  {
-    name: "Kompact", brand: "stundenglass", category: "Gravity",
-    cover: SG + "Pink_Kompact_thumb_01.png", added: "2026-06-02", oneSheet: "#",
-    folders: mkFolders(SG + "Pink_Kompact_thumb_01.png", "Stündenglass", "Kompact",
-      { "E-Comm Render Photos": 6, "Lifestyle Photos": 3, "Logos": 2, "Video": 1, "Misc": 0 },
-      [
-        SG + "Pink_Kompact_thumb_01.png", SG + "Pink_Kompact_thumb_03.png",
-        SG + "Pink_Kompact_thumb_02.png", SG + "Pink_Kompact_thumb_06.png",
-        SG + "webPinkKompactStraightwithTravelCase.png", SG + "Pink_Kompact_thumb_05.png",
-      ]),
-  },
-  {
-    name: "Gravity Infuser", brand: "stundenglass", category: "Gravity",
-    cover: SG + "SG_thumb_02_24234b17-6488-4e0a-84dd-25bb2202ef5f.png", added: "2025-09-15", oneSheet: "#",
-    folders: mkFolders(SG + "SG_thumb_02_24234b17-6488-4e0a-84dd-25bb2202ef5f.png", "Stündenglass", "Gravity Infuser",
-      { "E-Comm Render Photos": 12, "Lifestyle Photos": 6, "Logos": 3, "Video": 3, "Misc": 1 },
-      [
-        SG + "SG_thumb_02_24234b17-6488-4e0a-84dd-25bb2202ef5f.png", SG + "SG_thumb_01_0ce0f45e-2381-496b-8303-9f20a1791cbe.png",
-        SG + "SG_thumb_05_2083262a-20fa-4c0e-b360-a1c349508b61.png", SG + "SG_thumb_07_2fd3ef28-63f8-4a36-bda9-186fd1fd77e4.png",
-        SG + "SG_thumb_08_06d59fdd-631f-42ea-bd54-8e867a4ab527.png", SG + "SG_thumb_06_e35be35d-44f8-4dd7-886f-906aec5ddff9.png",
-      ]),
-  },
-  {
-    name: "Studio Kit", brand: "stundenglass", category: "Accessory",
-    cover: SG + "Clear_DTS_thumb_04_cd0a66cb-75f6-47dc-8898-e84ecde0c902.png", added: "2026-05-20", oneSheet: "#",
-    folders: mkFolders(SG + "Clear_DTS_thumb_04_cd0a66cb-75f6-47dc-8898-e84ecde0c902.png", "Stündenglass", "Studio Kit",
-      { "E-Comm Render Photos": 5, "Lifestyle Photos": 2, "Logos": 1, "Video": 0, "Misc": 0 },
-      [
-        SG + "Clear_DTS_thumb_04_cd0a66cb-75f6-47dc-8898-e84ecde0c902.png", SG + "Clear_DTS_thumb_01_10d6e837-ff40-445b-80b8-5916172b5a73.png",
-        SG + "Clear_DTS_thumb_03_0dd69e0b-f81f-4ef5-b0f2-fc2a77f36654.png", SG + "DokTravelCaseOpenedFlatClear_8746ab5c-651f-4f4f-8e93-b73d9b19ae0d.png",
-        SG + "webDOKDeluxetravelkitlayflatClear.png",
-      ]),
-  },
-  {
-    name: "Stündenglass Logos", brand: "stundenglass", category: "Brand", isLogo: true,
-    cover: null, added: "2026-06-05", oneSheet: "",
-    folders: {
-      "Logos": (function () {
-        var arr = []; for (var i = 1; i <= 14; i++) arr.push({ name: "sg_logo_" + i, type: "vector", format: i % 2 ? "SVG" : "PNG", url: "#" }); return arr;
-      })(),
-    },
-  },
 ];
 
 /* =============================================================================
@@ -426,22 +348,6 @@ var PRODUCT_VIDEOS = {
   "Hyer": [
     ["L5pIGbmtLU8", "Tyson 2.0 x G Pen Hyer"],
   ],
-  // ---- Stündenglass ----
-  "Gravity Infuser": [
-    ["ZjST1m7crrs", "Getting Started with Your Stündenglass"],
-    ["mi4t9DHKAoE", "How to Use Stündenglass Classic"],
-    ["HinNP7St1Bg", "How to Clean Your Stündenglass"],
-    ["w0XQWHg2Ff0", "Stündenglass Classic for Hookah"],
-    ["dES3TIvA4ms", "Stündenglass Classic for Concentrate"],
-    ["6zIZSCq2QDo", "Stündenglass Classic with Dry Material"],
-  ],
-  "Kompact": [
-    ["mBuS1Vehvrw", "Kompact — Ready to Go Where You Go"],
-  ],
-  "Studio Kit": [
-    ["dCbzXIiCyNI", "Modül Dok Deluxe Travel Set"],
-    ["34wA6KJDi7g", "How to Use Stündenglass Modül Dok"],
-  ],
 };
 
 // Inject videos into a product-level `videos` array (the educational video hub,
@@ -483,7 +389,7 @@ window.PORTAL_PRODUCTS.forEach(function (p) {
 
 /* =============================================================================
    PRODUCT INFO — official copy for each product hub (description, highlights,
-   warranty, links). PLACEHOLDER content scraped from gpen.com / stundenglass.com
+   warranty, links). PLACEHOLDER content scraped from gpen.com
    — replace with official brand copy when provided. Per product:
      description : short overview paragraph
      highlights  : array of key selling points (bullets)
@@ -577,27 +483,10 @@ var PRODUCT_INFO = {
     highlights: ["Full-convection heating", "Precision temperature control", "Large capacity ceramic chamber"],
     warranty: "2-year limited warranty",
   },
-  // ---- Stündenglass ----
-  "Gravity Infuser": {
-    description: "A sophisticated 360° rotating glass infuser that generates kinetic motion via cascading water displacement, opposing airflow technology, and the natural force of gravity.",
-    highlights: ["Patented 360° rotational design", "Cascading water displacement + opposing airflow", "Contactless, fully kinetic experience", "For hookah, concentrate, dry material, or food & beverage infusion"],
-    warranty: "Extended 10-year limited warranty. Glass components not covered.",
-    productUrl: "https://www.stundenglass.com/products/stundenglass-gravity-infuser",
-  },
-  "Kompact": {
-    description: "The Kompact Gravity Infuser brings Stündenglass's patented 360° gravity system and immersive experience into a more refined, portable size.",
-    highlights: ["Patented 360° gravity system", "More portable, refined size", "Same immersive Stündenglass experience"],
-    warranty: "Extended 10-year limited warranty. Glass components not covered.",
-    productUrl: "https://www.stundenglass.com/products/stundenglass-kompact-gravity-infuser",
-  },
-  "Studio Kit": {
-    description: "Placeholder product hub for a Stündenglass accessory kit — official description and highlights to come.",
-    warranty: "1-year limited warranty (365 days). Glass components not covered.",
-  },
 };
 
 /* MSRP per product (pulled from the live store feeds — VERIFY before launch;
-   e.g. confirm the Kompact price). Shown in the product hub. */
+   e.g. confirm a price). Shown in the product hub. */
 var PRODUCT_MSRP = {
   "Dash II": "$49.95",
   "Connect": "$74.95",
@@ -609,8 +498,6 @@ var PRODUCT_MSRP = {
   "Hydout": "$24.95",
   "Hydout — Retro": "$24.95",
   "Melt Hot Knife": "$24.95",
-  "Gravity Infuser": "$599.95",
-  "Kompact": "$599.95",
 };
 
 /* Full official product descriptions (scraped from the Shopify product
@@ -725,18 +612,6 @@ var PRODUCT_DESCRIPTION = {
     "Combining a high-tech, yet simple user interface with premium-grade materials in a sleek profile that is always ready for on-the-go use, the G Pen Dash+ was thoughtfully engineered to be the evolution in portable dry herb vaporization at a competitive price.",
     "*This Product is Not For Use With Tobacco, Nicotine-Containing E-liquids, or Any Synthetic Nicotine or Nicotine Substitute.",
   ],
-  "Gravity Infuser": [
-    "Stündenglass® is honored to introduce the Gravity Infuser, a sophisticated and elegantly designed 360° rotating glass infuser that generates kinetic motion activation via cascading water displacement, opposing airflow technology and the natural force of gravity. Constructed using the highest quality materials, including borosilicate glass globes and aircraft-grade anodized aluminum, the Stündenglass Gravity Infuser elicits an immersive experience while delivering smooth, consistent and vaporous draws.",
-    "Designed for functional versatility, the Stündenglass Gravity Infuser is a complete set that includes an aluminum bowl kit and a glass liner, but can also connect to any smoking or vaporization device with a 14mm male joint. Using only fluid physics, a steady stream of smoke is force-air delivered through a 45° adjustable mouthpiece, providing an entirely contactless consumption.",
-    "A patented design backed by an extended 10-year warranty, the Stündenglass Gravity Infuser comes packaged in a reusable craft box with a handle, allowing for safe storage and transportation. Durable, futuristic in design and superb function, the Stündenglass Gravity Infuser stands alone at the pinnacle of smoking and vaporization devices.",
-  ],
-  "Kompact": [
-    "Introducing the newest sensation from Stündenglass, the Kompact Gravity Infuser. The Kompact features the same patented 360° gravity system, dynamic design, and immersive experience as the original, now available in a more refined, portable size that includes a custom-fit travel case.",
-    "Coming in at just under a foot tall, the Kompact is exactly what you need to enjoy the benefits of Stündenglass in an easy to handle package. The smaller globes hold about two thirds of the volume, or 2 cups, compared to the full size, which creates cooler and faster pulls.",
-    "The travel case is carefully crafted with high grade fabric and form-fitted to cradle the Kompact Stündenglass, which arrives full assembled. A beautiful metal inlayed logo plate adorns the front with an easy to use zipper, carrying handle and strap for over the shoulder use. Inside, there is space for accessories including a handy pocket to store anything extra you want to bring along with you.",
-    "Designed for functional versatility, the Kompact Gravity Infuser is a complete set that includes an aluminum bowl kit and a glass liner but can also connect to any smoking or vaporization device with a 14mm male joint. Also included is a 3-foot silicone hose that can be connected to the 45° adjustable mouthpiece for direct draws or a steady stream of smoke for contactless consumption.",
-    "The Kompact is a sophisticated and elegantly designed 360° rotating glass device that generates kinetic motion activation via cascading water displacement, opposing airflow technology, and the natural force of gravity. It is constructed using the highest quality materials, including borosilicate glass globes and aircraft-grade anodized aluminum.",
-  ],
 };
 
 /* SKU + packaging details per product (shown in the "SKU details" and
@@ -764,8 +639,6 @@ var PRODUCT_SKU = {
   "Connect":              { sku: "GPC-100-AJZZ" },
   "Roam":                 { sku: "GPR-001-AIZZ" },
   "Hyer":                 { sku: "GPH-001-ALZZ" },
-  "Gravity Infuser":      { sku: "SG2-KIT-STBK-02" },
-  "Kompact":              { sku: "SG3-KIT-STBK-02" },
 };
 
 /* "What's In the Box?" contents + components image per product (from gpen.com).
