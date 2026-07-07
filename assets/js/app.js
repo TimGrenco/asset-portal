@@ -1331,8 +1331,14 @@
     // the Digital Assets folder tabs. Tabs follow the canonical folder order.
     var folderNames = Object.keys(p.folders).filter(function (f) { return f !== "In-Store Marketing"; });
     folderNames.sort(function (a, b) { return folderRank(a) - folderRank(b); });
+    // Default to a folder with content — prefer the one holding the cover image
+    // (has a thumb), else the first non-empty folder — so the gallery never opens
+    // on an empty placeholder tab (e.g. the blank "Web Banners" on legacy products).
+    var withCover = folderNames.filter(function (f) { return (p.folders[f] || []).some(function (x) { return x.thumb; }); });
+    var nonEmpty = folderNames.filter(function (f) { return (p.folders[f] || []).length; });
     // Deep-link straight to a folder (e.g. from a file search result).
-    var active = (initialFolder && folderNames.indexOf(initialFolder) !== -1) ? initialFolder : folderNames[0];
+    var active = (initialFolder && folderNames.indexOf(initialFolder) !== -1)
+      ? initialFolder : (withCover[0] || nonEmpty[0] || folderNames[0]);
     var selected = {};   // fileKey -> file object; persists while switching folder tabs
 
     function folderFiles() { return p.folders[active] || []; }
@@ -1703,7 +1709,12 @@
     }
     var items = [];     // previewable assets in this folder: { src, name, url }
     var lastIdx = null; // anchor cell for shift-click range selection
-    $("#gallery").innerHTML = files.map(function (file) {
+    // Some folders hold hundreds of files. Render a clean preview and point at
+    // "Download all" for the rest instead of painting a wall of placeholder tiles.
+    var CAP = 24;
+    var overflow = files.length - CAP;
+    var shown = overflow > 0 ? files.slice(0, CAP) : files;
+    $("#gallery").innerHTML = shown.map(function (file) {
       var key = fileKey(folder, file);
       var on = selected && selected[key];
       var ext = isExtVideo(file);   // YouTube (or other external) video link
@@ -1731,7 +1742,10 @@
           "</span></div>" +
         "</div>"
       );
-    }).join("");
+    }).join("") + (overflow > 0
+      ? '<div class="gcell gcell-more"><div class="gmore">' + icon("folder") +
+        "<strong>+" + overflow + " more</strong><span>Use “Download all” for the full folder</span></div></div>"
+      : "");
     $$(".gthumb", $("#gallery")).forEach(function (t) {
       var idx = t.getAttribute("data-lbidx");
       if (idx === null) return;
@@ -1742,7 +1756,7 @@
     });
     // per-asset selection checkboxes (with Dropbox-style shift-click range)
     $$(".gcell", $("#gallery")).forEach(function (cell, idx) {
-      var file = files[idx];
+      var file = shown[idx];
       var cb = $(".gcheck", cell);
       var label = $(".gselect", cell);
       if (!cb || !file) return;
@@ -1751,7 +1765,7 @@
       cb.addEventListener("change", function () {
         if (shiftHeld && lastIdx !== null) {
           var a = Math.min(lastIdx, idx), b = Math.max(lastIdx, idx);
-          for (var j = a; j <= b; j++) onToggle(files[j], cb.checked);
+          for (var j = a; j <= b; j++) onToggle(shown[j], cb.checked);
         } else {
           onToggle(file, cb.checked);
         }

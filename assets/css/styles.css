@@ -420,6 +420,12 @@ button.pkg-media { width: 100%; border: 0; padding: 0; font: inherit; }
 
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
 .gcell { border: 1px solid var(--hair); border-radius: 10px; overflow: hidden; background: var(--paper); }
+/* Overflow tile: shown when a folder holds more files than the gallery previews. */
+.gcell-more { border-style: dashed; background: var(--mist); }
+.gmore { aspect-ratio: 1/1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-align: center; padding: 12px; }
+.gmore svg { width: 26px; height: 26px; stroke: #b6b6af; }
+.gmore strong { font-size: 15px; color: var(--ink); }
+.gmore span { font-size: 11px; color: var(--stone); line-height: 1.3; }
 .gthumb { position: relative; aspect-ratio: 1/1; background: var(--mist); display: flex; align-items: center; justify-content: center; padding: 16px; cursor: pointer; }
 .gthumb img { max-width: 100%; max-height: 100%; object-fit: contain; }
 .gthumb.is-video { padding: 0; background: var(--ink); }

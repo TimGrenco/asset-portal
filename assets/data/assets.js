@@ -143,6 +143,31 @@ function mkFolders(cover, brandName, productName, counts, images) {
   return f;
 }
 
+/* Like mkFolders, but for products whose Dropbox uses its OWN folder names
+   (e.g. colorway-first: "Black / Renders", "Cookies / Lifestyle Photos").
+   `sections` is an array of [folderName, type, format, count]. The first
+   image section's first cell shows the product `cover`; every other cell is a
+   placeholder tile (real files download via the folder-level "Download all").
+   This mirrors how the current products render, just with different folder names. */
+function mkNamedFolders(cover, productName, sections) {
+  var f = {}, usedCover = false;
+  sections.forEach(function (s) {
+    var folderName = s[0], type = s[1], fmt = s[2], n = s[3] || 0;
+    var files = [];
+    for (var i = 1; i <= n; i++) {
+      var img = null;
+      if (type === "image" && !usedCover && i === 1 && cover) { img = cover; usedCover = true; }
+      files.push({
+        name: productName.replace(/\s+/g, "_").toLowerCase() + "_" +
+              folderName.replace(/[^\w]+/g, "_").toLowerCase() + "_" + i,
+        type: type, format: fmt, url: img || "#", thumb: img,
+      });
+    }
+    if (n > 0) f[folderName] = files;
+  });
+  return f;
+}
+
 var CDN = "https://cdn.shopify.com/s/files/1/0185/1576/files/";
 var CDNP = "https://cdn.shopify.com/s/files/1/0185/1576/products/";
 
@@ -180,8 +205,27 @@ window.PORTAL_PRODUCTS = [
     cover: CDN + "connect_vape_thumb_797e6d48-f3e6-44f4-8bc8-da33a02b129c.png?v=1729247667",
     added: "2026-04-27",
     oneSheet: "#",
-    folders: mkFolders(CDN + "connect_vape_thumb_797e6d48-f3e6-44f4-8bc8-da33a02b129c.png?v=1729247667", "G Pen", "Connect",
-      { "E-Comm Render Photos": 14, "Lifestyle Photos": 5, "Logos": 3, "Video": 2, "Misc": 1 }),
+    // Real Dropbox folder (durable rlkey link, no expiring st= token). "Download
+    // all" pulls the whole folder as a .zip. Folders mirror the Dropbox names.
+    dropbox: "https://www.dropbox.com/scl/fo/108b34jrd9bxryx34qil6/AHQA1sD2FzvZM4XjSUvv6E8?rlkey=rjxv6cytizy3d4ffk7i5f26dq&dl=0",
+    folders: mkNamedFolders(CDN + "connect_vape_thumb_797e6d48-f3e6-44f4-8bc8-da33a02b129c.png?v=1729247667", "Connect", [
+      ["Logo", "vector", "EPS", 2],
+      ["Black / Renders", "image", "PNG", 34],
+      ["Black / Lifestyle Photos", "image", "JPG", 21],
+      ["Black / Videos", "video", "MP4", 10],
+      ["Cookies / Renders", "image", "PNG", 8],
+      ["Cookies / Lifestyle Photos", "image", "JPG", 11],
+      ["Cookies / Product Photos", "image", "JPG", 7],
+      ["Lemonnade / Renders", "image", "PNG", 6],
+      ["Lemonnade / Lifestyle Photos", "image", "JPG", 10],
+      ["Lemonnade / Product Photos", "image", "JPG", 8],
+      ["Lemonnade / Video", "video", "MP4", 2],
+      ["Lemonnade / 1-Sheet", "pdf", "PDF", 2],
+      ["Dr. Greenthumb's / Renders", "image", "PNG", 6],
+      ["Dr. Greenthumb's / Lifestyle Photos", "image", "JPG", 10],
+      ["Dr. Greenthumb's / Videos", "video", "MP4", 4],
+      ["Dr. Greenthumb's / Product Photos", "image", "JPG", 7],
+    ]),
   },
   {
     name: "510 Original", brand: "gpen", category: "510 Battery", type: "510 Cartridge Battery",
@@ -222,32 +266,107 @@ window.PORTAL_PRODUCTS = [
     cover: CDN + "GlassCap_thumb_05_81ca4328-c1dc-49d1-8fad-cea56312b869.png?v=1765563306",
     added: "2025-11-20",
     oneSheet: "#",
-    folders: mkFolders(CDN + "GlassCap_thumb_05_81ca4328-c1dc-49d1-8fad-cea56312b869.png?v=1765563306", "G Pen", "Hyer",
-      { "E-Comm Render Photos": 7, "Lifestyle Photos": 4, "Logos": 3, "Video": 1, "Misc": 0 }),
+    dropbox: "https://www.dropbox.com/scl/fo/a6lmzsjiawgjeiwklvho0/h?rlkey=vhqm2y94vgv2kvakwvbl39fvq&dl=0",
+    folders: mkNamedFolders(CDN + "GlassCap_thumb_05_81ca4328-c1dc-49d1-8fad-cea56312b869.png?v=1765563306", "Hyer", [
+      ["Black / Logos", "vector", "AI", 2],
+      ["Black / Renders", "image", "PNG", 72],
+      ["Black / Photos", "image", "JPG", 335],
+      ["Black / Video", "video", "MP4", 125],
+      ["Tyson 2.0 / Web Renders", "image", "PNG", 16],
+      ["Tyson 2.0 / Photos", "image", "JPG", 91],
+      ["Tyson 2.0 / Video", "video", "MP4", 14],
+    ]),
   },
   {
     name: "Roam", brand: "gpen", category: "E-Rig",
     cover: CDN + "LemonnadeRoam_thumb_01.png?v=1768493533",
     added: "2026-03-30",
     oneSheet: "#",
-    folders: mkFolders(CDN + "LemonnadeRoam_thumb_01.png?v=1768493533", "G Pen", "Roam",
-      { "E-Comm Render Photos": 12, "Lifestyle Photos": 6, "Logos": 3, "Video": 2, "Misc": 1 }),
+    dropbox: "https://www.dropbox.com/scl/fo/hhscck78va88q3vriroup/AMtRY-P0vRv-cS1tHGklYVo?rlkey=hvjp5u49etu2j078wvl2e91bg&dl=0",
+    folders: mkNamedFolders(CDN + "LemonnadeRoam_thumb_01.png?v=1768493533", "Roam", [
+      ["Logos", "vector", "AI", 2],
+      ["Black / Renders", "image", "PNG", 17],
+      ["Black / Lifestyle Photos", "image", "JPG", 33],
+      ["Black / Videos", "video", "MP4", 11],
+      ["Cookies / Renders", "image", "PNG", 6],
+      ["Cookies / Lifestyle Photos", "image", "JPG", 20],
+      ["Lemonnade / Renders", "image", "PNG", 2],
+      ["Lemonnade / Lifestyle Photos", "image", "JPG", 16],
+      ["Lemonnade / Video", "video", "MP4", 3],
+      ["Lemonnade / 1-Sheet", "pdf", "PDF", 2],
+      ["Dr. Greenthumb's / Renders", "image", "PNG", 9],
+      ["Dr. Greenthumb's / Lifestyle Photos", "image", "JPG", 16],
+      ["Dr. Greenthumb's / Videos", "video", "MP4", 4],
+    ]),
   },
   {
     name: "Dash", brand: "gpen", category: "Dry Herb",
     cover: CDN + "GD_dash_vape_thumb_9a82df65-c9a7-4128-8767-e979e2f46efc.png?v=1729247627",
     added: "2025-09-01",
     oneSheet: "#",
-    folders: mkFolders(CDN + "GD_dash_vape_thumb_9a82df65-c9a7-4128-8767-e979e2f46efc.png?v=1729247627", "G Pen", "Dash",
-      { "E-Comm Render Photos": 10, "Lifestyle Photos": 5, "Logos": 3, "Video": 1, "Misc": 1 }),
+    dropbox: "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=0",
+    folders: mkNamedFolders(CDN + "GD_dash_vape_thumb_9a82df65-c9a7-4128-8767-e979e2f46efc.png?v=1729247627", "Dash", [
+      ["Logos", "vector", "AI", 2],
+      ["Black / Renders", "image", "PNG", 5],
+      ["Black / Lifestyle Photos", "image", "JPG", 96],
+      ["Black / Product Photos", "image", "JPG", 10],
+      ["Black / Videos", "video", "MP4", 25],
+      ["Cookies / Renders", "image", "PNG", 5],
+      ["Cookies / Lifestyle Photos", "image", "JPG", 20],
+      ["Lemonnade / Renders", "image", "PNG", 3],
+      ["Lemonnade / Lifestyle Photos", "image", "JPG", 7],
+      ["Lemonnade / Videos", "video", "MP4", 2],
+      ["Lemonnade / 1-Sheet", "pdf", "PDF", 2],
+      ["Dr. Greenthumb's / Renders", "image", "PNG", 5],
+      ["Dr. Greenthumb's / Lifestyle Photos", "image", "JPG", 13],
+      ["Dr. Greenthumb's / Videos", "video", "MP4", 2],
+      ["Grateful Dead / Web Renders", "image", "PNG", 18],
+      ["Grateful Dead / Photos", "image", "JPG", 121],
+      ["Grateful Dead / Videos", "video", "MP4", 15],
+      ["Tyson 2.0 / Renders", "image", "PNG", 4],
+      ["Tyson 2.0 / Photos", "image", "JPG", 47],
+      ["Tyson 2.0 / Video", "video", "MP4", 4],
+    ]),
   },
   {
     name: "Elite II", brand: "gpen", category: "Dry Herb",
     cover: CDNP + "Elite2_Web_Mouthpiece_ortho.png?v=1692903123",
     added: "2025-10-12",
     oneSheet: "#",
-    folders: mkFolders(CDNP + "Elite2_Web_Mouthpiece_ortho.png?v=1692903123", "G Pen", "Elite II",
-      { "E-Comm Render Photos": 8, "Lifestyle Photos": 4, "Logos": 3, "Video": 1, "Misc": 0 }),
+    dropbox: "https://www.dropbox.com/scl/fo/4i3r2lru6bt3xnnx0nhh2/APkJPwAV7QjeMGe6Rs-WSZg?rlkey=bn0ejx8ho4t0m8ea7jztlx7ni&dl=0",
+    folders: mkNamedFolders(CDNP + "Elite2_Web_Mouthpiece_ortho.png?v=1692903123", "Elite II", [
+      ["Renders", "image", "JPG", 1],
+      ["Renders / Web", "image", "PNG", 13],
+      ["Media / Photos", "image", "JPG", 160],
+      ["Media / Video", "video", "MP4", 19],
+      ["Video / Social Videos", "video", "MP4", 25],
+      ["Video / TV Screen", "video", "MP4", 2],
+      ["Branding", "vector", "AI", 3],
+      ["Sales Sheet", "pdf", "PDF", 1],
+      ["Tech Specs", "pdf", "PDF", 1],
+    ]),
+  },
+  {
+    name: "Micro+", brand: "gpen", category: "Concentrate", type: "Concentrate Vaporizer",
+    cover: CDN + "micro__vape_thumb_77792dea-cdec-4453-9a99-e051615123c2.png?v=1729247631",
+    added: "2025-08-15",
+    oneSheet: "#",
+    dropbox: "https://www.dropbox.com/scl/fo/2428y3p4kiyvgm9bj55x8/AECLTfW3qJHVAAAdzDuI8p8?rlkey=y343whyn7o9kj7p8t5mfwo7sx&dl=0",
+    folders: mkNamedFolders(CDN + "micro__vape_thumb_77792dea-cdec-4453-9a99-e051615123c2.png?v=1729247631", "Micro+", [
+      ["Logos", "vector", "PDF", 2],
+      ["Black / Renders", "image", "PNG", 11],
+      ["Black / Photos", "image", "JPG", 234],
+      ["Black / Videos", "video", "MP4", 18],
+      ["Cookies / Renders", "image", "PNG", 10],
+      ["Cookies / Photos", "image", "JPG", 18],
+      ["Cookies / Videos", "video", "MP4", 4],
+      ["Lemonnade / Renders", "image", "PNG", 9],
+      ["Lemonnade / Photos", "image", "JPG", 19],
+      ["Lemonnade / Video", "video", "MP4", 3],
+      ["Dr. Greenthumb's / Renders", "image", "PNG", 9],
+      ["Dr. Greenthumb's / Photo", "image", "JPG", 29],
+      ["Dr. Greenthumb's / Video", "video", "MP4", 3],
+    ]),
   },
   {
     /* A pure brand-asset folder (no product) — set isLogo:true */
