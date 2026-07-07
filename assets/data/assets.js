@@ -474,6 +474,18 @@ var PRODUCT_VIDEOS = {
   "Hyer": [
     ["L5pIGbmtLU8", "Tyson 2.0 x G Pen Hyer"],
   ],
+  // Official Grenco Science tutorials (YouTube).
+  "Elite II": [
+    ["ZLL3oAI-J2c", "How To Use Your G Pen Elite II"],
+    ["X7j7LP8lfic", "Using the Elite II"],
+  ],
+  // Official how-to videos embedded on gpen.com (Vimeo).
+  "Micro+": [
+    { title: "How to Use: G Pen Micro+", vimeo: "989157950", hash: "0257076fb0",
+      thumb: "https://i.vimeocdn.com/video/1904866054-bee3d5ede62b81c88132243572e6a765f55d169208730f7ff4c37cbe290332e6-d_640?region=us" },
+    { title: "How to Clean: G Pen Micro+", vimeo: "989157776", hash: "76399b5d24",
+      thumb: "https://i.vimeocdn.com/video/1904853742-511f7849a60a2167cb3436177b1aa86fe72ea269f2793c1341942626ad89f83b-d_640?region=us" },
+  ],
 };
 
 // Inject videos into a product-level `videos` array (the educational video hub,
