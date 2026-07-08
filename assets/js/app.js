@@ -52,10 +52,12 @@
       graduation: '<path d="m22 10-10-5L2 10l10 5 10-5Z"/><path d="M6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5"/>',
       plus: '<path d="M12 5v14M5 12h14"/>',
       trash: '<path d="M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>',
+      printer: '<path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8" rx="1"/>',
     };
     return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (paths[name] || "") + "</svg>";
   }
   var typeIcon = { image: "photo", video: "video", vector: "vector", pdf: "file" };
+  var GPEN_LOGO_D = "M51.0273179,27.4819797 L50.1349371,27.6652401 L50.1349371,31.1308145 L48.8040952,27.9382414 L48.0061834,28.1019793 L48.0061834,33.9363994 L48.8988765,33.7518794 L48.8988765,30.2867774 L50.2381504,33.4768314 L51.0273179,33.3152977 L51.0273179,27.4819797 Z M46.8327378,28.3453819 L44.4496204,28.8351784 L44.4496204,34.668339 L46.8327378,34.1785425 L46.8327378,33.3513515 L45.3409082,33.6572579 L45.3409082,31.9613117 L46.624906,31.6980716 L46.624906,30.8708806 L45.3409082,31.1342781 L45.3409082,29.479109 L46.8327378,29.1725729 L46.8327378,28.3453819 Z M43.2878858,30.8460051 C43.2878858,29.6250561 42.8578567,29.1648583 41.8290033,29.3753559 L40.4024432,29.6691394 L40.4024432,35.5016702 L41.2954486,35.3188821 L41.2954486,33.0408794 L41.8290033,32.9306712 C42.9054815,32.7111995 43.2878858,32.0255473 43.2878858,30.8460051 L43.2878858,30.8460051 Z M60,22.7334248 L60,34.540655 L55.1530372,35.5400856 L55.1530372,59.3464656 L43.7374334,59.3464656 L43.7374334,56.4708198 C39.4582215,58.771179 34.6532623,60 29.7546148,60 C13.347456,60 0,46.5426388 0,30.0003936 C0,13.4573612 13.347456,0 29.7546148,0 C34.8095656,0 39.7417847,1.29746495 44.1078144,3.72566564 L44.1078144,0.589298787 L54.7030212,0.589298787 L54.7030212,21.3345684 L44.1078144,21.3345684 L44.1078144,17.988806 C40.5401649,13.6483363 35.3648247,11.1801457 29.7546148,11.1801457 C19.4620211,11.1801457 11.0887879,19.6225633 11.0887879,30.0003936 C11.0887879,40.377909 19.4620211,48.8193819 29.7546148,48.8193819 C35.1423151,48.8193819 40.1819634,46.5057977 43.7374334,42.4367549 L43.7374334,37.8933447 L31.4172694,40.4328557 L31.4172694,28.624366 L60,22.7334248 Z M42.3961296,31.0377673 C42.3961296,31.5536989 42.324302,32.002561 41.8452426,32.1006463 L41.2954486,32.2132161 L41.2954486,30.3130699 L41.8452426,30.1998704 C42.324302,30.1017851 42.3961296,30.5218356 42.3961296,31.0377673 L42.3961296,31.0377673 Z";   // G Pen brand logo path (viewBox 0 0 60 60)
 
   // Category icon for a folder tab, chosen from the folder name (handles canonical
   // names and colorway/type names like "Black / Renders").
@@ -1118,25 +1120,55 @@
     });
   }
 
+  // Short deterministic certificate ID from the recipient + product + date.
+  function certId(seed) {
+    var h = 2166136261 >>> 0;
+    for (var i = 0; i < seed.length; i++) { h ^= seed.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; }
+    var b = h.toString(36).toUpperCase(); while (b.length < 6) b = "0" + b;
+    return "GP-" + b.slice(0, 3) + "-" + b.slice(3, 6);
+  }
+  // Gold foil seal (SVG): curved "CERTIFIED PRODUCT SPECIALIST" ring + score.
+  function certSealHTML(pct) {
+    return '<div class="cert-seal" aria-hidden="true">' +
+      '<svg viewBox="0 0 132 132">' +
+        '<defs><path id="cert-seal-arc" d="M66 66 m-49 0 a49 49 0 1 1 98 0"/></defs>' +
+        '<circle class="cs-ring" cx="66" cy="66" r="62"/>' +
+        '<circle class="cs-ring cs-ring2" cx="66" cy="66" r="50"/>' +
+        '<text class="cs-arc"><textPath href="#cert-seal-arc" startOffset="50%">CERTIFIED · PRODUCT SPECIALIST</textPath></text>' +
+        '<text class="cs-star" x="66" y="46">★</text>' +
+        '<text class="cs-score" x="66" y="76">' + pct + '%</text>' +
+        '<text class="cs-sub" x="66" y="94">G PEN</text>' +
+      "</svg></div>";
+  }
   function showCertificate(p, t, nm, dateStr, pct) {
     var name = fullProductName(p);
+    var cid = certId(nm + "|" + name + "|" + dateStr);
     var box = $("#trn-cert");
     box.innerHTML =
       '<div class="cert" id="cert-card">' +
         '<div class="cert-inner">' +
-          '<div class="cert-top">' + icon("graduation") + '<span>Grenco Science · Certified Product Specialist</span></div>' +
-          '<div class="cert-award">Certificate of Completion</div>' +
+          '<div class="cert-logo"><svg viewBox="0 0 60 60" aria-hidden="true"><path fill="currentColor" d="' + GPEN_LOGO_D + '"/></svg></div>' +
+          '<div class="cert-eyebrow">G Pen · Product Specialist Program</div>' +
+          '<h3 class="cert-award">Certificate of Completion</h3>' +
+          '<div class="cert-presented">This certifies that</div>' +
           '<div class="cert-name">' + escapeHTML(nm) + "</div>" +
-          '<div class="cert-desc">has completed the training and demonstrated product-specialist knowledge of the</div>' +
+          '<div class="cert-desc">has successfully completed the Product Specialist training and demonstrated expert product knowledge of the</div>' +
           '<div class="cert-product">' + name + "</div>" +
-          '<div class="cert-foot"><span>Score: <strong>' + pct + '%</strong></span><span>' + dateStr + "</span></div>" +
+          certSealHTML(pct) +
+          '<div class="cert-foot">' +
+            '<div class="cert-fcol"><span class="cert-fv">' + dateStr + '</span><span class="cert-fl">Date Issued</span></div>' +
+            '<div class="cert-fcol"><span class="cert-fv cert-sig">Grenco Science</span><span class="cert-fl">Authorized By</span></div>' +
+            '<div class="cert-fcol"><span class="cert-fv">' + cid + '</span><span class="cert-fl">Certificate ID</span></div>' +
+          "</div>" +
         "</div>" +
       "</div>" +
-      '<div class="trn-certactions">' +
-        '<button class="btn" id="cert-dl">' + icon("download") + " Download certificate</button>" +
+      '<div class="trn-certactions cert-print-hide">' +
+        '<button class="btn lg" id="cert-print">' + icon("printer") + " Print certificate</button>" +
+        '<button class="btn ghost" id="cert-dl">' + icon("download") + " Download image</button>" +
         '<button class="btn ghost" id="cert-email">' + icon("mail") + " Email my certification</button>" +
       "</div>";
-    $("#cert-dl").addEventListener("click", function () { downloadCertificate(name, nm, dateStr, pct); });
+    $("#cert-print").addEventListener("click", function () { window.print(); });
+    $("#cert-dl").addEventListener("click", function () { downloadCertificate(name, nm, dateStr, pct, cid); });
     $("#cert-email").addEventListener("click", function () {
       var body = "I completed the " + name + " Product Specialist training.\n\nName: " + nm +
         "\nProduct: " + name + "\nScore: " + pct + "%\nDate: " + dateStr;
@@ -1147,44 +1179,43 @@
     toast("Certified! 🎓");
   }
 
-  // Draw the certificate to a canvas and download as PNG (no external deps).
-  function downloadCertificate(product, nm, dateStr, pct) {
-    var W = 1400, H = 990, c = document.createElement("canvas");
+  // Draw the (light, print-style) certificate to a canvas and download as PNG.
+  function downloadCertificate(product, nm, dateStr, pct, cid) {
+    var W = 1650, H = 1170, c = document.createElement("canvas");
     c.width = W; c.height = H;
     var x = c.getContext("2d");
-    x.fillStyle = "#0a0a0a"; x.fillRect(0, 0, W, H);
-    // gold border
-    x.strokeStyle = "#FEC870"; x.lineWidth = 3; x.strokeRect(40, 40, W - 80, H - 80);
-    x.strokeStyle = "rgba(254,200,112,0.35)"; x.lineWidth = 1; x.strokeRect(52, 52, W - 104, H - 104);
-    var cx = W / 2;
-    x.textAlign = "center";
-    x.fillStyle = "#FEC870";
-    x.font = "700 22px Archivo, Arial, sans-serif";
-    x.fillText("GRENCO SCIENCE · CERTIFIED PRODUCT SPECIALIST", cx, 150);
-    x.fillStyle = "#ffffff";
-    x.font = "800 30px Archivo, Arial, sans-serif";
-    x.fillText("Certificate of Completion", cx, 250);
-    x.fillStyle = "rgba(255,255,255,0.6)";
-    x.font = "400 20px Archivo, Arial, sans-serif";
-    x.fillText("This certifies that", cx, 330);
-    x.fillStyle = "#ffffff";
-    x.font = "800 64px Archivo, Arial, sans-serif";
-    x.fillText(nm, cx, 420);
-    x.fillStyle = "#FEC870"; x.fillRect(cx - 120, 450, 240, 3);
-    x.fillStyle = "rgba(255,255,255,0.7)";
-    x.font = "400 22px Archivo, Arial, sans-serif";
-    x.fillText("has demonstrated product-specialist knowledge of the", cx, 520);
-    x.fillStyle = "#ffffff";
-    x.font = "800 42px Archivo, Arial, sans-serif";
-    x.fillText(product, cx, 585);
-    x.fillStyle = "rgba(255,255,255,0.85)";
-    x.font = "600 24px Archivo, Arial, sans-serif";
-    x.fillText("Score: " + pct + "%", cx - 180, 760);
-    x.fillText(dateStr, cx + 180, 760);
-    x.fillStyle = "rgba(255,255,255,0.4)";
-    x.font = "400 15px Archivo, Arial, sans-serif";
-    x.fillText("gpen.com", cx, 860);
-    // Blob download is far more reliable than a huge data: URL on mobile Safari.
+    var GOLD = "#B8892E", INK = "#15150F", CREAM = "#FBF9F2", MUTE = "#6E6E62", cx = W / 2;
+    function ls(v) { try { x.letterSpacing = v; } catch (e) {} }
+    x.fillStyle = CREAM; x.fillRect(0, 0, W, H);
+    x.strokeStyle = INK; x.lineWidth = 6; x.strokeRect(46, 46, W - 92, H - 92);
+    x.strokeStyle = GOLD; x.lineWidth = 2; x.strokeRect(64, 64, W - 128, H - 128);
+    x.textAlign = "center"; x.textBaseline = "alphabetic";
+    // logo (viewBox 0 0 60 60) → ~132px, centered near the top
+    x.save(); var s = 132 / 60; x.translate(cx - 66, 96); x.scale(s, s); x.fillStyle = INK; x.fill(new Path2D(GPEN_LOGO_D)); x.restore();
+    ls("4px"); x.fillStyle = GOLD; x.font = "700 22px Archivo, Arial, sans-serif";
+    x.fillText("G PEN · PRODUCT SPECIALIST PROGRAM", cx, 322); ls("0px");
+    x.fillStyle = INK; x.font = "800 46px Archivo, Arial, sans-serif"; x.fillText("Certificate of Completion", cx, 388);
+    x.fillStyle = MUTE; x.font = "400 24px Archivo, Arial, sans-serif"; x.fillText("This certifies that", cx, 462);
+    x.fillStyle = INK; x.font = "800 78px Archivo, Arial, sans-serif"; x.fillText(nm, cx, 552);
+    x.fillStyle = GOLD; x.fillRect(cx - 150, 582, 300, 3);
+    x.fillStyle = MUTE; x.font = "400 23px Archivo, Arial, sans-serif";
+    x.fillText("has successfully completed the Product Specialist training", cx, 648);
+    x.fillText("and demonstrated expert product knowledge of the", cx, 682);
+    x.fillStyle = INK; x.font = "800 46px Archivo, Arial, sans-serif"; x.fillText(product, cx, 748);
+    // gold seal
+    var scy = 872, r = 70;
+    x.strokeStyle = GOLD; x.lineWidth = 3; x.beginPath(); x.arc(cx, scy, r, 0, 7); x.stroke();
+    x.lineWidth = 1.5; x.beginPath(); x.arc(cx, scy, r - 10, 0, 7); x.stroke();
+    x.fillStyle = GOLD; x.font = "700 26px Archivo, Arial, sans-serif"; x.fillText("★", cx, scy - 16);
+    x.fillStyle = INK; x.font = "800 34px Archivo, Arial, sans-serif"; x.fillText(pct + "%", cx, scy + 12);
+    ls("2px"); x.fillStyle = GOLD; x.font = "700 12px Archivo, Arial, sans-serif"; x.fillText("G PEN", cx, scy + 38); ls("0px");
+    // footer columns
+    var fy = 1035, cols = [[dateStr, "DATE ISSUED"], ["Grenco Science", "AUTHORIZED BY"], [cid || "", "CERTIFICATE ID"]], xs = [cx - 400, cx, cx + 400];
+    cols.forEach(function (col, i) {
+      x.strokeStyle = GOLD; x.lineWidth = 1; x.beginPath(); x.moveTo(xs[i] - 120, fy - 34); x.lineTo(xs[i] + 120, fy - 34); x.stroke();
+      x.fillStyle = INK; x.font = "700 24px Archivo, Arial, sans-serif"; x.fillText(col[0], xs[i], fy);
+      ls("2px"); x.fillStyle = MUTE; x.font = "600 13px Archivo, Arial, sans-serif"; x.fillText(col[1], xs[i], fy + 28); ls("0px");
+    });
     var fname = product.replace(/[^\w.-]+/g, "_") + "_Certificate.png";
     if (c.toBlob) {
       c.toBlob(function (blob) {
