@@ -1718,11 +1718,9 @@
     }
     var items = [];     // previewable assets in this folder: { src, name, url }
     var lastIdx = null; // anchor cell for shift-click range selection
-    // Some folders hold hundreds of files. Render a clean preview and point at
-    // "Download all" for the rest instead of painting a wall of placeholder tiles.
-    var CAP = 24;
-    var overflow = files.length - CAP;
-    var shown = overflow > 0 ? files.slice(0, CAP) : files;
+    // Show every file in the folder (thumbnails are lazy-loaded, so even large
+    // folders stay responsive).
+    var shown = files;
     $("#gallery").innerHTML = shown.map(function (file) {
       var key = fileKey(folder, file);
       var on = selected && selected[key];
@@ -1751,10 +1749,7 @@
           "</span></div>" +
         "</div>"
       );
-    }).join("") + (overflow > 0
-      ? '<div class="gcell gcell-more"><div class="gmore">' + icon("folder") +
-        "<strong>+" + overflow + " more</strong><span>Use “Download all” for the full folder</span></div></div>"
-      : "");
+    }).join("");
     $$(".gthumb", $("#gallery")).forEach(function (t) {
       var idx = t.getAttribute("data-lbidx");
       if (idx === null) return;

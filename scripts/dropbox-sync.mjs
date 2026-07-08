@@ -44,16 +44,16 @@ const PRODUCTS = [
   { name: "Hydout", slug: "hydout", link: "https://www.dropbox.com/scl/fo/n9ddtzpx0x057qsdmfwoy/AHXmj-4gwaME5kQLZSmcBgw?rlkey=jy88uxm10tctjt6759gw015r4&st=frr8irpc&dl=0" },
   { name: "Hydout — Retro", slug: "hydout-retro", link: "https://www.dropbox.com/scl/fo/fnsys0ijwhl2059nu45u5/AEE18ADvSJZ1RYdf0EDDk0Q?rlkey=2cz8o729ku9u1c9unhewv55wr&st=5lrpymts&dl=0" },
   { name: "Melt Hot Knife", slug: "melt", link: "https://www.dropbox.com/scl/fo/qvw93szg11i4ka3d9yuaq/AC8I-n2z09RvRGiA__rNYEs?rlkey=a0yhcy2ok0j1l4dnmk6ktwcoy&st=zx3371he&dl=0" },
-  // Additional (legacy) products. `deep` = recurse the colorway/type/shoot nesting;
-  // `skipVideoThumbs` = don't download their (very large) video sets just to grab a
-  // frame — those tiles keep the video icon. Thumbnail-only (no commitFiles), so the
-  // published site stays small; files download via "Download all" from Dropbox.
-  { name: "Connect", slug: "connect", deep: true, skipVideoThumbs: true, link: "https://www.dropbox.com/scl/fo/108b34jrd9bxryx34qil6/AHQA1sD2FzvZM4XjSUvv6E8?rlkey=rjxv6cytizy3d4ffk7i5f26dq&dl=0" },
-  { name: "Dash", slug: "dash", deep: true, skipVideoThumbs: true, link: "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=0" },
-  { name: "Elite II", slug: "elite-ii", deep: true, skipVideoThumbs: true, link: "https://www.dropbox.com/scl/fo/4i3r2lru6bt3xnnx0nhh2/APkJPwAV7QjeMGe6Rs-WSZg?rlkey=bn0ejx8ho4t0m8ea7jztlx7ni&dl=0" },
-  { name: "Hyer", slug: "hyer", deep: true, skipVideoThumbs: true, link: "https://www.dropbox.com/scl/fo/a6lmzsjiawgjeiwklvho0/h?rlkey=vhqm2y94vgv2kvakwvbl39fvq&dl=0" },
-  { name: "Micro+", slug: "micro-plus", deep: true, skipVideoThumbs: true, link: "https://www.dropbox.com/scl/fo/2428y3p4kiyvgm9bj55x8/AECLTfW3qJHVAAAdzDuI8p8?rlkey=y343whyn7o9kj7p8t5mfwo7sx&dl=0" },
-  { name: "Roam", slug: "roam", deep: true, skipVideoThumbs: true, link: "https://www.dropbox.com/scl/fo/hhscck78va88q3vriroup/AMtRY-P0vRv-cS1tHGklYVo?rlkey=hvjp5u49etu2j078wvl2e91bg&dl=0" },
+  // Additional (legacy) products. `deep` = group by colorway/type and recurse the
+  // shoot-folder nesting. Thumbnail-only (no commitFiles) incl. a frame for every
+  // video, so every file has a thumbnail; the site stays small (files come from
+  // per-file Dropbox links).
+  { name: "Connect", slug: "connect", deep: true, link: "https://www.dropbox.com/scl/fo/108b34jrd9bxryx34qil6/AHQA1sD2FzvZM4XjSUvv6E8?rlkey=rjxv6cytizy3d4ffk7i5f26dq&dl=0" },
+  { name: "Dash", slug: "dash", deep: true, link: "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=0" },
+  { name: "Elite II", slug: "elite-ii", deep: true, link: "https://www.dropbox.com/scl/fo/4i3r2lru6bt3xnnx0nhh2/APkJPwAV7QjeMGe6Rs-WSZg?rlkey=bn0ejx8ho4t0m8ea7jztlx7ni&dl=0" },
+  { name: "Hyer", slug: "hyer", deep: true, link: "https://www.dropbox.com/scl/fo/a6lmzsjiawgjeiwklvho0/h?rlkey=vhqm2y94vgv2kvakwvbl39fvq&dl=0" },
+  { name: "Micro+", slug: "micro-plus", deep: true, link: "https://www.dropbox.com/scl/fo/2428y3p4kiyvgm9bj55x8/AECLTfW3qJHVAAAdzDuI8p8?rlkey=y343whyn7o9kj7p8t5mfwo7sx&dl=0" },
+  { name: "Roam", slug: "roam", deep: true, link: "https://www.dropbox.com/scl/fo/hhscck78va88q3vriroup/AMtRY-P0vRv-cS1tHGklYVo?rlkey=hvjp5u49etu2j078wvl2e91bg&dl=0" },
   {
     // Overall G Pen brand logos (black/white/various). Powers the homepage
     // "Logos and Brand Assets" section. `flat` = folder name to bucket files
@@ -281,23 +281,33 @@ for (const p of PRODUCTS) {
       return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
     });
     for (const { raw, disp } of specs) {
-      let files;
       if (p.deep) {
-        // Recurse the whole subtree (colorway → type → shoot → files).
-        files = await collectDeep(tok, p.link, "/" + raw, "");
-      } else {
+        // Depth-2 grouping: one folder per "Colorway / Type" so a big product isn't
+        // one giant mixed folder. Files nested deeper (shoot folders) flatten into
+        // their type, labelled by sub-path.
         const entries = await listFolder(tok, p.link, "/" + raw);
-        files = [];
-        for (const e of entries) if (e[".tag"] === "file") { e.relPath = "/" + raw + "/" + e.name; files.push(e); }
-        // Walk one nested level (e.g. per-color variant folders under Product Photos)
-        // and flatten those files into the parent group, labelled by their folder.
+        const direct = entries.filter((e) => e[".tag"] === "file");
+        if (direct.length) {
+          direct.forEach((f) => { f.relPath = "/" + raw + "/" + f.name; f.displayName = f.name.replace(/\.[^.]+$/, ""); });
+          folderSpecs.push({ name: disp, prefix: "/" + raw, files: direct });
+        }
         for (const ss of entries.filter((e) => e[".tag"] === "folder")) {
-          const nested = (await listFolder(tok, p.link, "/" + raw + "/" + ss.name)).filter((e) => e[".tag"] === "file");
-          for (const nf of nested) {
-            nf.relPath = "/" + raw + "/" + ss.name + "/" + nf.name;
-            nf.displayName = ss.name + " · " + nf.name.replace(/\.[^.]+$/, "");
-            files.push(nf);
-          }
+          const sub = await collectDeep(tok, p.link, "/" + raw + "/" + ss.name, "");
+          if (sub.length) folderSpecs.push({ name: disp + " / " + ss.name, prefix: "/" + raw + "/" + ss.name, files: sub });
+        }
+        continue;
+      }
+      const entries = await listFolder(tok, p.link, "/" + raw);
+      const files = [];
+      for (const e of entries) if (e[".tag"] === "file") { e.relPath = "/" + raw + "/" + e.name; files.push(e); }
+      // Walk one nested level (e.g. per-color variant folders under Product Photos)
+      // and flatten those files into the parent group, labelled by their folder.
+      for (const ss of entries.filter((e) => e[".tag"] === "folder")) {
+        const nested = (await listFolder(tok, p.link, "/" + raw + "/" + ss.name)).filter((e) => e[".tag"] === "file");
+        for (const nf of nested) {
+          nf.relPath = "/" + raw + "/" + ss.name + "/" + nf.name;
+          nf.displayName = ss.name + " · " + nf.name.replace(/\.[^.]+$/, "");
+          files.push(nf);
         }
       }
       folderSpecs.push({ name: disp, prefix: "/" + raw, files });
@@ -377,7 +387,7 @@ for (const p of PRODUCTS) {
             if (src) { pdfFirstPage(src, join(dir, hash)); if (src === tmp + ".pdf") unlinkSync(src); }
           }
           if (existsSync(join(dir, tn))) { thumb = `assets/synced/${p.slug}/${tn}`; keep.add(tn); }
-        } else if (type === "video" && !p.skipVideoThumbs) {
+        } else if (type === "video") {
           const tn = hash + ".jpg";
           if (!existsSync(join(dir, tn))) {
             const src = localOrig || (await downloadFile(tok, p.link, path, tmp + "." + e) ? tmp + "." + e : null);
