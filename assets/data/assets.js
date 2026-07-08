@@ -36,7 +36,6 @@ window.PORTAL_CONFIG = {
   requestEmail: "pr@grencoscience.com", // "Request an asset" mailto target
   orderEmail: "pr@grencoscience.com",   // marketing-material order requests
   locatorEmail: "pr@grencoscience.com", // store-locator listing requests
-  newWindowDays: 30,                          // how many days counts as "New"
   // Shown on each product page. Edit freely (or set to "" to hide).
   usageNote:
     "These assets are provided for approved partner, press, and retail use. Please don't alter logos or product imagery. Need something specific or a different format? Use “Request an asset.”",
@@ -92,56 +91,6 @@ window.PORTAL_CURRENT = {
   ],
 };
 
-/* Helper so the demo data stays short: builds the 5 standard folders.
-   In real use you can also just write the folders object out by hand.
-
-   `images` (optional) is an array of real image URLs. When provided, the
-   image files (E-Comm + Lifestyle) get real thumbnails cycled from that list
-   so the gallery looks populated. Without it, the first E-Comm image uses the
-   `cover` and the rest fall back to icon placeholders. */
-function mkFolders(cover, brandName, productName, counts, images) {
-  var f = {};
-  var defs = [
-    ["E-Comm Render Photos", "image", "PNG"],
-    ["Lifestyle Photos", "image", "JPG"],
-    ["Logos", "vector", "SVG"],
-    ["Social Videos", "video", "MP4"],
-    ["TV Screen Videos", "video", "MP4"],
-    ["Misc", "pdf", "PDF"],
-  ];
-  var pool = images && images.length ? images : null;
-  var pick = 0;
-  defs.forEach(function (d) {
-    var folderName = d[0], type = d[1], fmt = d[2];
-    var n = counts[folderName];
-    // Back-compat: a single "Video" count fans out to both video folders.
-    // Set "Social Videos" / "TV Screen Videos" explicitly to override per folder.
-    if (n == null && (folderName === "Social Videos" || folderName === "TV Screen Videos")) n = counts["Video"];
-    n = n || 0;
-    var files = [];
-    for (var i = 1; i <= n; i++) {
-      var img = null, firstEComm = folderName.indexOf("E-Comm") === 0 && i === 1;
-      if (type === "image") {
-        if (pool) {
-          // Real gallery: first E-Comm cell uses the cover, the rest cycle the pool.
-          img = (firstEComm && cover) ? cover : pool[pick++ % pool.length];
-        } else if (firstEComm) {
-          // No image list given: only the first E-Comm cell previews (the cover).
-          img = cover;
-        }
-      }
-      files.push({
-        name: productName.replace(/\s+/g, "_").toLowerCase() + "_" + folderName.split(" ")[0].toLowerCase() + "_" + i,
-        type: type,
-        format: fmt,
-        url: img || "#",
-        thumb: img,
-      });
-    }
-    if (n > 0) f[folderName] = files;
-  });
-  return f;
-}
 
 var CDN = "https://cdn.shopify.com/s/files/1/0185/1576/files/";
 var CDNP = "https://cdn.shopify.com/s/files/1/0185/1576/products/";
@@ -159,24 +108,21 @@ window.PORTAL_PRODUCTS = [
     // Real Dropbox shared folder for Dash II (TEST). "Download all" pulls this
     // folder as a .zip. Full per-file sync comes via the Dropbox API job.
     dropbox: "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
-    folders: mkFolders(CDN + "Dash2_thumb_01.png?v=1782934099", "G Pen", "Dash II",
-      { "E-Comm Render Photos": 11, "Lifestyle Photos": 6, "Logos": 3, "Video": 2, "Misc": 1 }),
+    folders: {},   // real folders + thumbnails come from synced.js (Dropbox sync)
   },
   {
     name: "510 Original — Retro", brand: "gpen", category: "510 Battery", type: "510 Cartridge Battery",
     cover: CDN + "Purple510O_thumb_01.png?v=1779898092",
     added: "2026-05-19", newBadge: "purple",
     oneSheet: "#",
-    folders: mkFolders(CDN + "Purple510O_thumb_01.png?v=1779898092", "G Pen", "510 Original Retro",
-      { "E-Comm Render Photos": 8, "Lifestyle Photos": 4, "Logos": 3, "Video": 1, "Misc": 0 }),
+    folders: {},   // real folders + thumbnails come from synced.js (Dropbox sync)
   },
   {
     name: "Melt Hot Knife", brand: "gpen", category: "Accessory", type: "Electric Hot Knife",
     cover: CDN + "Melt_thumbA.png?v=1772813232",
     added: "2026-05-24",
     oneSheet: "#",
-    folders: mkFolders(CDN + "Melt_thumbA.png?v=1772813232", "G Pen", "Melt",
-      { "E-Comm Render Photos": 6, "Lifestyle Photos": 3, "Logos": 2, "Video": 1, "Misc": 1 }),
+    folders: {},   // real folders + thumbnails come from synced.js (Dropbox sync)
   },
   {
     name: "Connect", brand: "gpen", category: "Concentrate",
@@ -193,24 +139,21 @@ window.PORTAL_PRODUCTS = [
     cover: CDN + "510_on_white_01.png?v=1767045174",
     added: "2026-01-15",
     oneSheet: "#",
-    folders: mkFolders(CDN + "510_on_white_01.png?v=1767045174", "G Pen", "510 Original",
-      { "E-Comm Render Photos": 9, "Lifestyle Photos": 4, "Logos": 3, "Video": 1, "Misc": 0 }),
+    folders: {},   // real folders + thumbnails come from synced.js (Dropbox sync)
   },
   {
     name: "Hydout", brand: "gpen", category: "510 Battery", type: "510 Cartridge Battery",
     cover: CDN + "Hydout_vape_01.png?v=1762467078",
     added: "2025-12-10",
     oneSheet: "#",
-    folders: mkFolders(CDN + "Hydout_vape_01.png?v=1762467078", "G Pen", "Hydout",
-      { "E-Comm Render Photos": 10, "Lifestyle Photos": 5, "Logos": 3, "Video": 2, "Misc": 1 }),
+    folders: {},   // real folders + thumbnails come from synced.js (Dropbox sync)
   },
   {
     name: "Hydout — Retro", brand: "gpen", category: "510 Battery", type: "510 Cartridge Battery",
     cover: CDN + "Green_hydout_01_4b72ac42-025b-430e-937e-244203f17267.png?v=1765490119",
     added: "2025-12-03",
     oneSheet: "#",
-    folders: mkFolders(CDN + "Green_hydout_01_4b72ac42-025b-430e-937e-244203f17267.png?v=1765490119", "G Pen", "Hydout Retro",
-      { "E-Comm Render Photos": 8, "Lifestyle Photos": 4, "Logos": 2, "Video": 0, "Misc": 0 }),
+    folders: {},   // real folders + thumbnails come from synced.js (Dropbox sync)
   },
   {
     /* Cover pulled from gpen.com/products/g-pen-dash-plus-vaporizer.
@@ -219,8 +162,7 @@ window.PORTAL_PRODUCTS = [
     cover: CDN + "dash__vape_thumb_5e14bcb4-a63a-4cc3-8078-e57fc572e4da.png?v=1729247649",
     added: "2026-04-15",
     oneSheet: "#",
-    folders: mkFolders(CDN + "dash__vape_thumb_5e14bcb4-a63a-4cc3-8078-e57fc572e4da.png?v=1729247649", "G Pen", "Dash+",
-      { "E-Comm Render Photos": 6, "Lifestyle Photos": 3, "Logos": 2, "Video": 1, "Misc": 0 }),
+    folders: {},   // real folders + thumbnails come from synced.js (Dropbox sync)
   },
   {
     name: "Hyer", brand: "gpen", category: "E-Nail",

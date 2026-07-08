@@ -1554,10 +1554,7 @@
   }
 
   function pkgCard(label, url) {
-    if (!url) {
-      return '<div class="pkg-card"><div class="pkg-media"><div class="pkg-ph">' + icon("photo") +
-        "<span>Image coming soon</span></div></div><div class=\"pkg-label\"><span>" + label + "</span></div></div>";
-    }
+    if (!url) return "";   // no placeholder — only show packaging cards that have an image
     // Dropbox file links → raw for inline display, dl=1 for download.
     var dbox = /dropbox\.com/.test(url);
     var src = dbox ? dropboxRaw(url) : url;
@@ -1581,14 +1578,12 @@
       var pkgImg = pkgFolder.filter(function (f) { return f.thumb; })[0];
       if (pkgImg) popImg = pkgImg.file || pkgImg.thumb;
     }
-    var cards = pkgCard("Retail packaging", info.boxImg);
-    if (info.pop || popImg) cards += pkgCard("Retail POP display", popImg);
-    if (info.cartonImg) cards += pkgCard("Master carton", info.cartonImg);
+    var cards = pkgCard("Retail packaging", info.boxImg) + pkgCard("Retail POP display", popImg) + pkgCard("Master carton", info.cartonImg);
     var note = info.pop
       ? "Ships in a retail-ready POP display — see SKU details for inner-pack &amp; master-carton quantities."
       : "Ships in retail packaging — see SKU details for master-carton quantities.";
     return '<div class="section-head"><h2>Packaging</h2>' + (info.pop ? '<span class="badge">Ships in POP display</span>' : "") + "</div>" +
-      '<div class="pkg-grid">' + cards + "</div>" +
+      (cards ? '<div class="pkg-grid">' + cards + "</div>" : "") +
       '<p class="pkg-note">' + note + "</p>";
   }
 
@@ -1671,7 +1666,6 @@
   // and a "Share on YouTube" link when a matching channel video exists.
   function videoHubHTML(p) {
     if (!p.videos || !p.videos.length) return "";
-    var placeholderDl = false;
     var cards = p.videos.map(function (v) {
       var safe = v.title.replace(/"/g, "");
       var poster = v.thumb ? '<img src="' + v.thumb + '" alt="' + safe + '" loading="lazy"/>' : "";
@@ -1684,9 +1678,11 @@
         (playSrc ? ' data-play="' + playSrc + '" data-title="' + safe + '"' + (dl ? ' data-dl="' + dl + '" data-dlname="' + dlname + '"' : "") + ' role="button" tabindex="0" aria-label="Watch ' + safe + '"' : "") + ">" +
         poster + '<span class="play-badge">' + icon("play") + "</span>" + (playSrc ? '<span class="vthumb-hint">Click to watch</span>' : "") + "</div>";
 
+      // Only offer a download when there's a real downloadable file; watch-only
+      // tutorials (YouTube/Vimeo) just show Watch + the YouTube link.
       var dlBtn = v.mp4
         ? '<button class="vbtn" data-vdl="' + dl + '" data-vname="' + dlname + '">' + icon("download") + " Download</button>"
-        : (placeholderDl = true, '<button class="vbtn vbtn-soon" data-soon="1" title="Downloadable file coming soon">' + icon("download") + " Download</button>");
+        : "";
       var ytBtn = v.youtube
         ? '<a class="vbtn" href="' + v.youtube + '" target="_blank" rel="noopener noreferrer" title="Share on YouTube">' + icon("youtube") + " YouTube</a>"
         : "";
@@ -1699,8 +1695,7 @@
       "</div>";
     }).join("");
     return '<div class="section-head"><h2>How to use videos</h2><span class="badge">' + p.videos.length + " video" + (p.videos.length > 1 ? "s" : "") + "</span></div>" +
-      '<p class="vhub-note">' + icon("eye") + " Click a video to watch it, download the file, or open it on YouTube to share." +
-        (placeholderDl ? " <em>Downloadable files are being added.</em>" : "") + "</p>" +
+      '<p class="vhub-note">' + icon("eye") + " Click a video to watch it, and download it or open it on YouTube where available.</p>" +
       '<div class="vhub">' + cards + "</div>";
   }
   // Dropbox shared-file link → inline-streamable URL (raw=1) for <video>.
