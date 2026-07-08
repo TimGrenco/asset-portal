@@ -8,7 +8,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/c75de22e4d88a25ec5bd21f4411d36603692e1b956995e831b79bd1e8fb2b9c1.jpg",
-          "file": "assets/synced/dash-ii/files/c75de22e4d88a25ec5bd21f4411d36603692e1b956995e831b79bd1e8fb2b9c1.jpg"
+          "file": null
         },
         {
           "name": "Dash2_thumb_01",
@@ -16,7 +16,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/1e682cdd7675d2e9f0482883e316c83565751f48027e9202fc64bccb1e8d0f7e.jpg",
-          "file": "assets/synced/dash-ii/files/1e682cdd7675d2e9f0482883e316c83565751f48027e9202fc64bccb1e8d0f7e.png"
+          "file": null
         },
         {
           "name": "dash2_thumb_02",
@@ -24,7 +24,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/9555a2bbe84dfe0b89f01b9ef38009575e7a0a8d1254a8562027775b172c7cb1.jpg",
-          "file": "assets/synced/dash-ii/files/9555a2bbe84dfe0b89f01b9ef38009575e7a0a8d1254a8562027775b172c7cb1.jpg"
+          "file": null
         },
         {
           "name": "dash2_thumb_02",
@@ -32,7 +32,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/5f87fc28b8a0161874126b7cfaf32f12d817e75c119f8e41da57913231d576a8.jpg",
-          "file": "assets/synced/dash-ii/files/5f87fc28b8a0161874126b7cfaf32f12d817e75c119f8e41da57913231d576a8.png"
+          "file": null
         },
         {
           "name": "dash2_thumb_03",
@@ -40,7 +40,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/da7081458fe45608c112d6b1348179badb2f6acfd7b812efce2ca909ba8d5a02.jpg",
-          "file": "assets/synced/dash-ii/files/da7081458fe45608c112d6b1348179badb2f6acfd7b812efce2ca909ba8d5a02.jpg"
+          "file": null
         },
         {
           "name": "dash2_thumb_03",
@@ -48,7 +48,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/815f8bed0068c519d83b5d3ba946c939736732e63dd9efbd26695ee407abaec3.jpg",
-          "file": "assets/synced/dash-ii/files/815f8bed0068c519d83b5d3ba946c939736732e63dd9efbd26695ee407abaec3.png"
+          "file": null
         },
         {
           "name": "dash2_thumb_04",
@@ -56,7 +56,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/c72125988771c4c4c6f2a6abdaa4c722667e272f5394d31512438576763e8409.jpg",
-          "file": "assets/synced/dash-ii/files/c72125988771c4c4c6f2a6abdaa4c722667e272f5394d31512438576763e8409.jpg"
+          "file": null
         },
         {
           "name": "dash2_thumb_04",
@@ -64,7 +64,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/04e4ac8d63c49ce4ed056516228dc863ad631076fb487bb58cd6faee78a053d1.jpg",
-          "file": "assets/synced/dash-ii/files/04e4ac8d63c49ce4ed056516228dc863ad631076fb487bb58cd6faee78a053d1.png"
+          "file": null
         },
         {
           "name": "dash2_thumb_05",
@@ -72,7 +72,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/4858183f1e6cb1c7b7949ec67e506b5306c42f87f05c1777b4637bb296fed095.jpg",
-          "file": "assets/synced/dash-ii/files/4858183f1e6cb1c7b7949ec67e506b5306c42f87f05c1777b4637bb296fed095.jpg"
+          "file": null
         },
         {
           "name": "dash2_thumb_05",
@@ -80,7 +80,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/c2e979f99323e461bacc2e558aa5c0361fff933313a569e1d54799dab37dee8c.jpg",
-          "file": "assets/synced/dash-ii/files/c2e979f99323e461bacc2e558aa5c0361fff933313a569e1d54799dab37dee8c.png"
+          "file": null
         },
         {
           "name": "dash2_thumb_06",
@@ -88,7 +88,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/509db862bc0746e06699eff96ab9084a3e609a3835c287b5f00dad1b34954731.jpg",
-          "file": "assets/synced/dash-ii/files/509db862bc0746e06699eff96ab9084a3e609a3835c287b5f00dad1b34954731.jpg"
+          "file": null
         },
         {
           "name": "dash2_thumb_06",
@@ -96,7 +96,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/3c5e3d2a6852a58f5dac32e51a497d0914f317e4253d4428693a1c4f083eae87.jpg",
-          "file": "assets/synced/dash-ii/files/3c5e3d2a6852a58f5dac32e51a497d0914f317e4253d4428693a1c4f083eae87.png"
+          "file": null
         },
         {
           "name": "dash2_thumb_07",
@@ -104,7 +104,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/9c71332db2e56f0a383ab323e89830e3dd162575a8b79efe8431c8b41119e69a.jpg",
-          "file": "assets/synced/dash-ii/files/9c71332db2e56f0a383ab323e89830e3dd162575a8b79efe8431c8b41119e69a.jpg"
+          "file": null
         },
         {
           "name": "dash2_thumb_07",
@@ -112,7 +112,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/f9de34aa376db72f87fcf684ba7557dc789d1bc6f21af9b9fab4239c5e8a5d2f.jpg",
-          "file": "assets/synced/dash-ii/files/f9de34aa376db72f87fcf684ba7557dc789d1bc6f21af9b9fab4239c5e8a5d2f.png"
+          "file": null
         },
         {
           "name": "dash2_thumb_08",
@@ -120,7 +120,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/7687d340d6ed1827e94ad38b339294e054695aac5c84de4824e441b97131d50f.jpg",
-          "file": "assets/synced/dash-ii/files/7687d340d6ed1827e94ad38b339294e054695aac5c84de4824e441b97131d50f.jpg"
+          "file": null
         },
         {
           "name": "dash2_thumb_08",
@@ -128,7 +128,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/23d515887ec9c3177601890966670ec3420d8bfbc87d693c7f7e9385bcffce86.jpg",
-          "file": "assets/synced/dash-ii/files/23d515887ec9c3177601890966670ec3420d8bfbc87d693c7f7e9385bcffce86.png"
+          "file": null
         },
         {
           "name": "dash2_thumb_09",
@@ -136,7 +136,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/42d9ef7478b1bc89263b0bdf287284aca90dde0e931306b13343560042d51af9.jpg",
-          "file": "assets/synced/dash-ii/files/42d9ef7478b1bc89263b0bdf287284aca90dde0e931306b13343560042d51af9.jpg"
+          "file": null
         },
         {
           "name": "dash2_thumb_09",
@@ -144,7 +144,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/51d4d396d607c4879b00d50318a60d4845d5a99c525d587effab3168e1dc6f13.jpg",
-          "file": "assets/synced/dash-ii/files/51d4d396d607c4879b00d50318a60d4845d5a99c525d587effab3168e1dc6f13.png"
+          "file": null
         },
         {
           "name": "dash2_thumb_10",
@@ -152,7 +152,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/d41a199f9f6649d04c46d4b8eff76449f4ba7e5497f865ed88d600935e65e9cd.jpg",
-          "file": "assets/synced/dash-ii/files/d41a199f9f6649d04c46d4b8eff76449f4ba7e5497f865ed88d600935e65e9cd.jpg"
+          "file": null
         },
         {
           "name": "dash2_thumb_10",
@@ -160,7 +160,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/c9266bf083319a954ee1773b4a2486080fefcc51ffbdabda737a81257ea25bdb.jpg",
-          "file": "assets/synced/dash-ii/files/c9266bf083319a954ee1773b4a2486080fefcc51ffbdabda737a81257ea25bdb.png"
+          "file": null
         },
         {
           "name": "dash2_thumb_011",
@@ -168,7 +168,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/efb3b9c37b04982608c4033d90d22ec019a47bb7dbcb1d33735ed814cd206e16.jpg",
-          "file": "assets/synced/dash-ii/files/efb3b9c37b04982608c4033d90d22ec019a47bb7dbcb1d33735ed814cd206e16.jpg"
+          "file": null
         },
         {
           "name": "dash2_thumb_011",
@@ -176,7 +176,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/289420c0310ee4ed573683321889aaea0a7ace3e4f649d002c3297db121ca8bc.jpg",
-          "file": "assets/synced/dash-ii/files/289420c0310ee4ed573683321889aaea0a7ace3e4f649d002c3297db121ca8bc.png"
+          "file": null
         },
         {
           "name": "dash2_thumb_012",
@@ -184,7 +184,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/8d37d09636252f878cd711b80f0a306f4d5f8a7f6cda7656b298f5f7a1be8e06.jpg",
-          "file": "assets/synced/dash-ii/files/8d37d09636252f878cd711b80f0a306f4d5f8a7f6cda7656b298f5f7a1be8e06.jpg"
+          "file": null
         },
         {
           "name": "dash2_thumb_012",
@@ -192,7 +192,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/7de350c4e932b8f5a69ede2547590e00a1787c19f01998dd4c3493c605a3b3b3.jpg",
-          "file": "assets/synced/dash-ii/files/7de350c4e932b8f5a69ede2547590e00a1787c19f01998dd4c3493c605a3b3b3.png"
+          "file": null
         },
         {
           "name": "GPEN - Dash 2_Open_Tool",
@@ -200,7 +200,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/072ffcfadda0e45841d9e4cebcf993c3f4aca3eff0848e908740cda53a1bde6b.jpg",
-          "file": "assets/synced/dash-ii/files/072ffcfadda0e45841d9e4cebcf993c3f4aca3eff0848e908740cda53a1bde6b.jpg"
+          "file": null
         },
         {
           "name": "GPEN - Dash 2_Open_Tool",
@@ -208,7 +208,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/24d44e51fddc919e481a0f97af16fe213fcf924f3bf29bfab89d6c59f3e52481.jpg",
-          "file": "assets/synced/dash-ii/files/24d44e51fddc919e481a0f97af16fe213fcf924f3bf29bfab89d6c59f3e52481.png"
+          "file": null
         },
         {
           "name": "GPEN - Dash 2- Front",
@@ -216,7 +216,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/31a93e31e61a95d2f24a2563bbe04f829b7d4b7aa8c08f6e3156fcbb59b028eb.jpg",
-          "file": "assets/synced/dash-ii/files/31a93e31e61a95d2f24a2563bbe04f829b7d4b7aa8c08f6e3156fcbb59b028eb.png"
+          "file": null
         },
         {
           "name": "GPEN - Dash 2- Tool",
@@ -224,7 +224,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/e1ef16f27afc19f92231572cfcfd773402e2da1f4d79d15515e505bf711eba20.jpg",
-          "file": "assets/synced/dash-ii/files/e1ef16f27afc19f92231572cfcfd773402e2da1f4d79d15515e505bf711eba20.png"
+          "file": null
         },
         {
           "name": "GPEN - Dash 2-Heat",
@@ -232,7 +232,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/6c75b3440010c3df9ab35d6e47fcb110d18a236bcef55dbf5056cfe7bd474928.jpg",
-          "file": "assets/synced/dash-ii/files/6c75b3440010c3df9ab35d6e47fcb110d18a236bcef55dbf5056cfe7bd474928.png"
+          "file": null
         },
         {
           "name": "GPEN_Dash2_POP_Mockup_",
@@ -240,7 +240,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/9943445d99853d7f378444120c74c96408059d559e410a2ddc74899fe990d17b.jpg",
-          "file": "assets/synced/dash-ii/files/9943445d99853d7f378444120c74c96408059d559e410a2ddc74899fe990d17b.png"
+          "file": null
         },
         {
           "name": "GPEN_Dash2_POP_Mockup",
@@ -248,7 +248,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/724cced5aa650e369377feb04e9f49054c7c00ed936b48ef2ab813c98783cb49.jpg",
-          "file": "assets/synced/dash-ii/files/724cced5aa650e369377feb04e9f49054c7c00ed936b48ef2ab813c98783cb49.jpg"
+          "file": null
         }
       ],
       "Lifestyle Photos": [
@@ -258,7 +258,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/fa7d18dfeb95a3e64c1463c8b71f8a14fda9385f98cac0edf10939e3f33446c8.jpg",
-          "file": "assets/synced/dash-ii/files/fa7d18dfeb95a3e64c1463c8b71f8a14fda9385f98cac0edf10939e3f33446c8.jpg"
+          "file": null
         },
         {
           "name": "_ALF2045",
@@ -266,7 +266,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/42bb8f1cadd8dd7897be569375064bf7fabcb4e2907c2a6c288887d96646064e.jpg",
-          "file": "assets/synced/dash-ii/files/42bb8f1cadd8dd7897be569375064bf7fabcb4e2907c2a6c288887d96646064e.jpg"
+          "file": null
         },
         {
           "name": "_ALF2058",
@@ -274,7 +274,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/b08463827e7a0a5fbfcbc79bccff4a3d7cfe01ddfeb97989004c40f24ca9b543.jpg",
-          "file": "assets/synced/dash-ii/files/b08463827e7a0a5fbfcbc79bccff4a3d7cfe01ddfeb97989004c40f24ca9b543.jpg"
+          "file": null
         },
         {
           "name": "_ALF2062",
@@ -282,7 +282,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/4007e8c2e84b1cf9febb80024bdadd2480c1a229846d5417d69a566eb0c6903a.jpg",
-          "file": "assets/synced/dash-ii/files/4007e8c2e84b1cf9febb80024bdadd2480c1a229846d5417d69a566eb0c6903a.jpg"
+          "file": null
         },
         {
           "name": "_ALF2065",
@@ -290,7 +290,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/f37d082035ae142949fa4dfe33aeebf6d9b556a2745187c26db91bc2ca08a020.jpg",
-          "file": "assets/synced/dash-ii/files/f37d082035ae142949fa4dfe33aeebf6d9b556a2745187c26db91bc2ca08a020.jpg"
+          "file": null
         },
         {
           "name": "_ALF2142",
@@ -298,7 +298,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/4538295a5dae9dfa39f29ccada0ae6dedd2c45d9fe1a9e8fcef6ab3b7b7570a6.jpg",
-          "file": "assets/synced/dash-ii/files/4538295a5dae9dfa39f29ccada0ae6dedd2c45d9fe1a9e8fcef6ab3b7b7570a6.jpg"
+          "file": null
         },
         {
           "name": "_ALF2177",
@@ -306,7 +306,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/6b976072b2bcecda96d568766d247ea394a09dd9658a115a4455a37329eff4b7.jpg",
-          "file": "assets/synced/dash-ii/files/6b976072b2bcecda96d568766d247ea394a09dd9658a115a4455a37329eff4b7.jpg"
+          "file": null
         },
         {
           "name": "_ALF2218",
@@ -314,7 +314,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/ab66e642d641e9502c32a1d53d7779df5850695d0e01ec00d78d5dbfb93df5f2.jpg",
-          "file": "assets/synced/dash-ii/files/ab66e642d641e9502c32a1d53d7779df5850695d0e01ec00d78d5dbfb93df5f2.jpg"
+          "file": null
         },
         {
           "name": "_ALF2533",
@@ -322,7 +322,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/f7a63a1b8aa4f5761e2a044dc2e54d0b5a99cfb42acc8f83721d41b061eabf41.jpg",
-          "file": "assets/synced/dash-ii/files/f7a63a1b8aa4f5761e2a044dc2e54d0b5a99cfb42acc8f83721d41b061eabf41.jpg"
+          "file": null
         },
         {
           "name": "_ALF2540",
@@ -330,7 +330,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/fb8cc4167b9c866d028aa66c23aa0dd405050f3a13f4293944c56c89f7692e3c.jpg",
-          "file": "assets/synced/dash-ii/files/fb8cc4167b9c866d028aa66c23aa0dd405050f3a13f4293944c56c89f7692e3c.jpg"
+          "file": null
         },
         {
           "name": "_ALF2674",
@@ -338,7 +338,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/bf55167651e5a116e90cef3b590d284f98a4064aaed932492847b7e1132b8210.jpg",
-          "file": "assets/synced/dash-ii/files/bf55167651e5a116e90cef3b590d284f98a4064aaed932492847b7e1132b8210.jpg"
+          "file": null
         },
         {
           "name": "_ALF2690",
@@ -346,7 +346,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/75c30f4f8089259b848ed84d4eddf5497d2624d5ca2d7cddd6bbb5718a813d0d.jpg",
-          "file": "assets/synced/dash-ii/files/75c30f4f8089259b848ed84d4eddf5497d2624d5ca2d7cddd6bbb5718a813d0d.jpg"
+          "file": null
         },
         {
           "name": "_ALF2769",
@@ -354,7 +354,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/d66844edfb312e3bbda350180f8f04882bc33baebdeba0301d77d5d8ea9ed778.jpg",
-          "file": "assets/synced/dash-ii/files/d66844edfb312e3bbda350180f8f04882bc33baebdeba0301d77d5d8ea9ed778.jpg"
+          "file": null
         },
         {
           "name": "_ALF2891",
@@ -362,7 +362,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/a474d272023f2f48e7b73b7680b4e4a054bd0ab7461e7849cee45c3becc03d38.jpg",
-          "file": "assets/synced/dash-ii/files/a474d272023f2f48e7b73b7680b4e4a054bd0ab7461e7849cee45c3becc03d38.jpg"
+          "file": null
         },
         {
           "name": "_GSH0138e",
@@ -370,7 +370,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/49700fbdab535be63bc991f31c13cdc37d427e7fa0cc47641eff63c717eacb64.jpg",
-          "file": "assets/synced/dash-ii/files/49700fbdab535be63bc991f31c13cdc37d427e7fa0cc47641eff63c717eacb64.jpg"
+          "file": null
         },
         {
           "name": "_GSH0150",
@@ -378,7 +378,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/6d949914d2f21dac4e7351d8266d1b81b7d0c59dc8ef31bbada7f44518653759.jpg",
-          "file": "assets/synced/dash-ii/files/6d949914d2f21dac4e7351d8266d1b81b7d0c59dc8ef31bbada7f44518653759.jpg"
+          "file": null
         },
         {
           "name": "GPEN - Dash 2-10",
@@ -386,7 +386,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/0fc25da2ddbe6fa73f51a84087a988cc73d648103dad3a21323ca55d082af2f9.jpg",
-          "file": "assets/synced/dash-ii/files/0fc25da2ddbe6fa73f51a84087a988cc73d648103dad3a21323ca55d082af2f9.png"
+          "file": null
         },
         {
           "name": "GPEN - Dash 2-13_screen",
@@ -394,7 +394,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/c26e55a764b27c13f2057d6e34ee24eee9cb3553aa1212a225a04c36823df368.jpg",
-          "file": "assets/synced/dash-ii/files/c26e55a764b27c13f2057d6e34ee24eee9cb3553aa1212a225a04c36823df368.png"
+          "file": null
         },
         {
           "name": "GPEN - Dash 2-19",
@@ -402,7 +402,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/198ce6cd822eea077cf59a68869af019388c327d0689ce85b8e00390cfdf9e20.jpg",
-          "file": "assets/synced/dash-ii/files/198ce6cd822eea077cf59a68869af019388c327d0689ce85b8e00390cfdf9e20.png"
+          "file": null
         },
         {
           "name": "GPEN - Dash 2-20",
@@ -410,7 +410,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/a142ed08ad94299fdae88ba9b4e897cdae753893600e37c5a71ae326f853033e.jpg",
-          "file": "assets/synced/dash-ii/files/a142ed08ad94299fdae88ba9b4e897cdae753893600e37c5a71ae326f853033e.png"
+          "file": null
         },
         {
           "name": "GPEN - Dash 2-22",
@@ -418,7 +418,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/241c51e6ed5831f81918227bcc2b0905c02cdfbd93392f74a76eaab7c9eb1bf0.jpg",
-          "file": "assets/synced/dash-ii/files/241c51e6ed5831f81918227bcc2b0905c02cdfbd93392f74a76eaab7c9eb1bf0.png"
+          "file": null
         },
         {
           "name": "GPEN - Dash 2-24",
@@ -426,7 +426,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/09256782ae0a84ba542c4592ceb5db684e0b6ca182e457facfe05d30664ae9f3.jpg",
-          "file": "assets/synced/dash-ii/files/09256782ae0a84ba542c4592ceb5db684e0b6ca182e457facfe05d30664ae9f3.png"
+          "file": null
         },
         {
           "name": "GPEN - Dash 2-29",
@@ -434,7 +434,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/06cc569f35abef032a0f7962a787706e398c45c300c64547b0b11135a15d92b7.jpg",
-          "file": "assets/synced/dash-ii/files/06cc569f35abef032a0f7962a787706e398c45c300c64547b0b11135a15d92b7.png"
+          "file": null
         },
         {
           "name": "GPEN - Dash 2-36",
@@ -442,7 +442,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/3f74cdb4ad25ec8e137f89f045f52345fe558ff698575fd08fcc4be94857a75a.jpg",
-          "file": "assets/synced/dash-ii/files/3f74cdb4ad25ec8e137f89f045f52345fe558ff698575fd08fcc4be94857a75a.png"
+          "file": null
         },
         {
           "name": "GPEN - Dash 2-44_screen",
@@ -450,7 +450,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/24a285331b7a522850237e6c9e323bb3e7b2b0f3e65b522c0925afa566e7d7cb.jpg",
-          "file": "assets/synced/dash-ii/files/24a285331b7a522850237e6c9e323bb3e7b2b0f3e65b522c0925afa566e7d7cb.png"
+          "file": null
         },
         {
           "name": "GPEN - Dash 2-47_screen",
@@ -458,7 +458,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/9350bf6e7b43f3dffd789d7aaeceacd2fea86f5ba3262ad213546982b5321317.jpg",
-          "file": "assets/synced/dash-ii/files/9350bf6e7b43f3dffd789d7aaeceacd2fea86f5ba3262ad213546982b5321317.png"
+          "file": null
         },
         {
           "name": "GPEN - Dash 2-green_Redhead_girl",
@@ -466,7 +466,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/3ba6bb16e5e594bbbaaefee80b4ecab40752aa2a4907771c7ebb17c0fff8dd9a.jpg",
-          "file": "assets/synced/dash-ii/files/3ba6bb16e5e594bbbaaefee80b4ecab40752aa2a4907771c7ebb17c0fff8dd9a.png"
+          "file": null
         }
       ],
       "Logos": [
@@ -476,7 +476,7 @@ window.PORTAL_SYNCED = {
           "format": "AI",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/1a8c89630cf6bf661228dfe3d765064afa80f9c4e6e743a0ee8884b1a4ed51a4.jpg",
-          "file": "assets/synced/dash-ii/files/1a8c89630cf6bf661228dfe3d765064afa80f9c4e6e743a0ee8884b1a4ed51a4.ai"
+          "file": null
         },
         {
           "name": "GPEN_Dash_II_Logo_Black_Reverse",
@@ -484,7 +484,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/3ed1e64a534761e7c4fa22f1408835454b54d69453a7022707a6c9cdd77f5a2e.jpg",
-          "file": "assets/synced/dash-ii/files/3ed1e64a534761e7c4fa22f1408835454b54d69453a7022707a6c9cdd77f5a2e.png"
+          "file": null
         },
         {
           "name": "GPEN_Dash_II_Logo_Black",
@@ -492,7 +492,7 @@ window.PORTAL_SYNCED = {
           "format": "AI",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/08425c4150fefa6da910ba072e95d375022fa985ac6389b2c75c15e8bb2c5537.jpg",
-          "file": "assets/synced/dash-ii/files/08425c4150fefa6da910ba072e95d375022fa985ac6389b2c75c15e8bb2c5537.ai"
+          "file": null
         },
         {
           "name": "GPEN_Dash_II_Logo_Black",
@@ -500,7 +500,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/a3ac00b720a7a0f04a241e906411d412e37bab92dd47efd805e82f1e3a3a70bc.jpg",
-          "file": "assets/synced/dash-ii/files/a3ac00b720a7a0f04a241e906411d412e37bab92dd47efd805e82f1e3a3a70bc.png"
+          "file": null
         },
         {
           "name": "GPEN_Dash_II_Logo_White_Reverse",
@@ -508,7 +508,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/91e6e38fc73c1b647ab1cc425642417199832bba8ac669e972d4c661a8d47ba8-lt2.jpg",
-          "file": "assets/synced/dash-ii/files/91e6e38fc73c1b647ab1cc425642417199832bba8ac669e972d4c661a8d47ba8.png"
+          "file": null
         },
         {
           "name": "GPEN_Dash_II_Logo_White",
@@ -516,7 +516,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/750a4f6292fa8d02283086a5573f2972fd1136d31ba9e99ecdd392ca62a94d15-lt2.jpg",
-          "file": "assets/synced/dash-ii/files/750a4f6292fa8d02283086a5573f2972fd1136d31ba9e99ecdd392ca62a94d15.png"
+          "file": null
         },
         {
           "name": "GPEN_Dash_II_Symbol_Black",
@@ -524,7 +524,7 @@ window.PORTAL_SYNCED = {
           "format": "AI",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/dee3c978b738ea257675de83fc8d3ef4382d54f4f95a8e63b48d7bbe529cf3f5.jpg",
-          "file": "assets/synced/dash-ii/files/dee3c978b738ea257675de83fc8d3ef4382d54f4f95a8e63b48d7bbe529cf3f5.ai"
+          "file": null
         },
         {
           "name": "GPEN_Dash_II_Symbol_Black",
@@ -532,7 +532,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/d95cefce60fb5b7c62e8afb9f21e52e99fcc22c5448abd8a0081b1e6f8be5c3b.jpg",
-          "file": "assets/synced/dash-ii/files/d95cefce60fb5b7c62e8afb9f21e52e99fcc22c5448abd8a0081b1e6f8be5c3b.png"
+          "file": null
         },
         {
           "name": "GPEN_Dash_II_Symbol_White",
@@ -540,7 +540,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/4a72c0ae338c377f63ceb0867b2f7b524ca2aef12e2a407d7615aaf4f891be69-lt2.jpg",
-          "file": "assets/synced/dash-ii/files/4a72c0ae338c377f63ceb0867b2f7b524ca2aef12e2a407d7615aaf4f891be69.png"
+          "file": null
         }
       ],
       "Social Videos": [
@@ -706,7 +706,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/790a038b78bbdcf61a9f55014c46bad48830b4b5f26e1f315d2d140e9b412708.jpg",
-          "file": "assets/synced/dash-ii/files/790a038b78bbdcf61a9f55014c46bad48830b4b5f26e1f315d2d140e9b412708.png"
+          "file": null
         },
         {
           "name": "Dash II Bloom Package 3-4",
@@ -714,7 +714,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/04b596f545b1102e2eabdcf72bf97966379f050f79ce58d19ee59c64e1626b73.jpg",
-          "file": "assets/synced/dash-ii/files/04b596f545b1102e2eabdcf72bf97966379f050f79ce58d19ee59c64e1626b73.png"
+          "file": null
         },
         {
           "name": "Dash II Bloom Package front transparent",
@@ -722,7 +722,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/af5b6eca68b2b5bc8eec2e8b165d01b91bb5285a50b154ebaf244c53a30b16cc.jpg",
-          "file": "assets/synced/dash-ii/files/af5b6eca68b2b5bc8eec2e8b165d01b91bb5285a50b154ebaf244c53a30b16cc.png"
+          "file": null
         },
         {
           "name": "Dash II Bloom Package front",
@@ -730,7 +730,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/11bf50876e77f2c6ad83d37aa713ac1ddecfa365dd849e23f06fa77fcdc7a1c5.jpg",
-          "file": "assets/synced/dash-ii/files/11bf50876e77f2c6ad83d37aa713ac1ddecfa365dd849e23f06fa77fcdc7a1c5.png"
+          "file": null
         },
         {
           "name": "Dash-Front-POP-Transparent",
@@ -738,7 +738,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/dd8784cd916d19a371adfdf8d5b2033fd53acf067acc709ea2440151606b226e.jpg",
-          "file": "assets/synced/dash-ii/files/dd8784cd916d19a371adfdf8d5b2033fd53acf067acc709ea2440151606b226e.png"
+          "file": null
         },
         {
           "name": "Dash-Front-POP",
@@ -746,7 +746,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/724cced5aa650e369377feb04e9f49054c7c00ed936b48ef2ab813c98783cb49.jpg",
-          "file": "assets/synced/dash-ii/files/724cced5aa650e369377feb04e9f49054c7c00ed936b48ef2ab813c98783cb49.jpg"
+          "file": null
         },
         {
           "name": "Dash-POP-Transparent",
@@ -754,7 +754,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/d05e4984661cfc9969a98184adfc1170b2cb5a4954b24346bf2319c70eb4100c.jpg",
-          "file": "assets/synced/dash-ii/files/d05e4984661cfc9969a98184adfc1170b2cb5a4954b24346bf2319c70eb4100c.png"
+          "file": null
         },
         {
           "name": "Dash-POPside",
@@ -762,7 +762,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/872396b10fe4ebb9cf5fe879adb0f849768592624f703687b37dbafe45ee36b8.jpg",
-          "file": "assets/synced/dash-ii/files/872396b10fe4ebb9cf5fe879adb0f849768592624f703687b37dbafe45ee36b8.jpg"
+          "file": null
         }
       ],
       "Documents": [
@@ -772,7 +772,7 @@ window.PORTAL_SYNCED = {
           "format": "PDF",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/e3c5b706210385f3ba1c5f146b720d2c0cb3a331e5f89510b0aeba34f0ad2f4f.jpg",
-          "file": "assets/synced/dash-ii/files/e3c5b706210385f3ba1c5f146b720d2c0cb3a331e5f89510b0aeba34f0ad2f4f.pdf"
+          "file": null
         },
         {
           "name": "G Pen - One Sheet - Dash II - UK",
@@ -780,7 +780,7 @@ window.PORTAL_SYNCED = {
           "format": "PDF",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/f07f38294a5708375b930a2012876f2c81e2ed0fd3606bd73d150d1530da73ab.jpg",
-          "file": "assets/synced/dash-ii/files/f07f38294a5708375b930a2012876f2c81e2ed0fd3606bd73d150d1530da73ab.pdf"
+          "file": null
         },
         {
           "name": "G Pen - One Sheet - Dash II",
@@ -788,7 +788,7 @@ window.PORTAL_SYNCED = {
           "format": "PDF",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/d9c466345e94d377faf4cf72d40bcb583b9f6a95e71377ff7dc0beee5e83dc12.jpg",
-          "file": "assets/synced/dash-ii/files/d9c466345e94d377faf4cf72d40bcb583b9f6a95e71377ff7dc0beee5e83dc12.pdf"
+          "file": null
         }
       ],
       "In Store Marketing Materials": [
@@ -798,7 +798,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/c19e0284b519c2e163c45fb2a0001a2fde8186427c998cd1eb6152af1121ffab.jpg",
-          "file": "assets/synced/dash-ii/files/c19e0284b519c2e163c45fb2a0001a2fde8186427c998cd1eb6152af1121ffab.jpg"
+          "file": null
         },
         {
           "name": "4afa24fe8551c06556ca9247a80e68dee51dbdc452bc7057ed0b7fdc49c400a9",
@@ -806,7 +806,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/3e0578201b146d3d76de933a6fc295b54f98cab294993745c4785bcec2d6a53d.jpg",
-          "file": "assets/synced/dash-ii/files/3e0578201b146d3d76de933a6fc295b54f98cab294993745c4785bcec2d6a53d.png"
+          "file": null
         },
         {
           "name": "DashII_Postcard",
@@ -814,7 +814,7 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/0c80bdbb32a2b942083f9dc668e63a53239cfd607915072405757d559c33fae6.jpg",
-          "file": "assets/synced/dash-ii/files/0c80bdbb32a2b942083f9dc668e63a53239cfd607915072405757d559c33fae6.jpg"
+          "file": null
         },
         {
           "name": "DashII_Postcard",
@@ -822,7 +822,7 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
           "thumb": "assets/synced/dash-ii/389b1b5cde9431893a577fc5bddd3c3e19784daba015fcca6e94c7447ccc9a01.jpg",
-          "file": "assets/synced/dash-ii/files/389b1b5cde9431893a577fc5bddd3c3e19784daba015fcca6e94c7447ccc9a01.png"
+          "file": null
         }
       ]
     },
@@ -2571,6 +2571,158 @@ window.PORTAL_SYNCED = {
       ],
       "Packaging": [
         {
+          "name": "510-blue-3-4_1",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
+          "thumb": "assets/synced/510-original-retro/be052047a185b08493db935bc4af3740247314b4bd89dfead0d087adada0359d.jpg",
+          "file": null
+        },
+        {
+          "name": "510-blue-3-4",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
+          "thumb": "assets/synced/510-original-retro/ae947c8ab90331c8e32a17c9ffd459f11a1ca32a9b76db0e75c0f7544c63243f.jpg",
+          "file": null
+        },
+        {
+          "name": "510-blue-front_1",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
+          "thumb": "assets/synced/510-original-retro/be2b677531b1a6de7423f40aedee88c13d68c780c338f246fcd1c6fbb61facbe.jpg",
+          "file": null
+        },
+        {
+          "name": "510-blue-front",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
+          "thumb": "assets/synced/510-original-retro/5e340a99acaa2cbe017ac830e281532f08a80840d541dbbdb98440725944440f.jpg",
+          "file": null
+        },
+        {
+          "name": "510-green-front-transparent",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
+          "thumb": "assets/synced/510-original-retro/c1877360bad8de92449946fb939bdb5a5171564009b2219934a7275e9d8f69e5.jpg",
+          "file": null
+        },
+        {
+          "name": "510-green-front",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
+          "thumb": "assets/synced/510-original-retro/d428ac484ddd142d04eedd8eada3d2c638a03a6e31bcc72a84b045daddc91004.jpg",
+          "file": null
+        },
+        {
+          "name": "510-pink-3-4_1",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
+          "thumb": "assets/synced/510-original-retro/d32f38c33d6adf5448765c316c231e0e5e7bd1c88f6d389d8399260fdc3f1cca.jpg",
+          "file": null
+        },
+        {
+          "name": "510-pink-3-4",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
+          "thumb": "assets/synced/510-original-retro/1a1f71648194531c584c877ac7f81e115f40cb7e035cd7607cc29d9429d4a51f.jpg",
+          "file": null
+        },
+        {
+          "name": "510-pink-front_1",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
+          "thumb": "assets/synced/510-original-retro/22586b302876a20109a8ae7cf0be43d79b11bfb4a6b78892d58dc6467bee76db.jpg",
+          "file": null
+        },
+        {
+          "name": "510-pink-front",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
+          "thumb": "assets/synced/510-original-retro/04de466862b36894bbd5fbc894f655d1d0bece5608b0bf9d9786a51699bd6184.jpg",
+          "file": null
+        },
+        {
+          "name": "510-purple-3-4_1",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
+          "thumb": "assets/synced/510-original-retro/3c31de606fe4dc129bbaba26cd0e5a64914670db81952954a75058e604588689.jpg",
+          "file": null
+        },
+        {
+          "name": "510-purple-3-4",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
+          "thumb": "assets/synced/510-original-retro/a7306fda44e7b0d3c51141c99dfb4ec5c16e6b0536eeabd1fe02806dba27abdb.jpg",
+          "file": null
+        },
+        {
+          "name": "510-purple-front_1",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
+          "thumb": "assets/synced/510-original-retro/020bc237451920169b1a12520453147c5a33005fef5b3aaf14247bf76ff81967.jpg",
+          "file": null
+        },
+        {
+          "name": "510-purple-front",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
+          "thumb": "assets/synced/510-original-retro/b0fb8dbba4b142b9633bc0c9d84eddb2a9b2066337834a493aa0126906992625.jpg",
+          "file": null
+        },
+        {
+          "name": "510-red-3-4_1",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
+          "thumb": "assets/synced/510-original-retro/eedb4b889c42aec2344f099cf6d3d749bc0f542def71a6748b5b7efb32a27643.jpg",
+          "file": null
+        },
+        {
+          "name": "510-red-front_1",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
+          "thumb": "assets/synced/510-original-retro/7cf0b54f0cb7503e1216211d2e86af19256ef1c7cb5ba218c136b6b346ac38ec.jpg",
+          "file": null
+        },
+        {
+          "name": "510-red-front",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
+          "thumb": "assets/synced/510-original-retro/ab9db74d0aeb244ab5e4a1c73e96f19c762eaa2585dfea43db603138eb87369b.jpg",
+          "file": null
+        },
+        {
+          "name": "510-retro-3-4-transparent",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
+          "thumb": "assets/synced/510-original-retro/09a5d7bfc729ebb460ddb9227c4ca1495dc2a3ac25e60f643907af3dcc08e65b.jpg",
+          "file": null
+        },
+        {
+          "name": "510-retro-3-4",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
+          "thumb": "assets/synced/510-original-retro/43634ac4f5a674ec31d5512f76eb0b94917ec29b0fcace6eb8236401adca2a89.jpg",
+          "file": null
+        },
+        {
           "name": "510-Retro-Front-POP-Transparent",
           "type": "image",
           "format": "PNG",
@@ -2600,6 +2752,14 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
           "thumb": "assets/synced/510-original-retro/2ee7a9b63217ed06eaa46b436d21ea8d861002a3b280c14a2110e7a31b1861e4.jpg",
+          "file": null
+        },
+        {
+          "name": "510-retro-red-3-4",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0",
+          "thumb": "assets/synced/510-original-retro/d74ea46343271d2c562453f84e2137497c48f942ec7ac9d170d8c4b85235f113.jpg",
           "file": null
         }
       ],
@@ -20098,7 +20258,7 @@ window.PORTAL_SYNCED = {
           "type": "image",
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fo/2428y3p4kiyvgm9bj55x8/AECLTfW3qJHVAAAdzDuI8p8?rlkey=y343whyn7o9kj7p8t5mfwo7sx&dl=0",
-          "thumb": null,
+          "thumb": "assets/synced/micro-plus/7f5c7abc2ea766c378f784968c27e8fc374944066206ec9288582b873ba22247.jpg",
           "file": null
         },
         {
