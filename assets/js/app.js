@@ -131,6 +131,7 @@
   // keyed by synced filename. Overrides the raw filename wherever the piece shows.
   var INSTORE_LABELS = {
     "DashII_Postcard":                { name: "Dash II Postcard",              dim: '6" L × 4" W' },
+    "dash-Tent":                      { name: "G Pen Dash+ Table Tent",        dim: '6" L × 6" W' },
     "510-Tent":                       { name: "510 Original Table Tent",       dim: '6" L × 6" W' },
     "GPEN-Retro-window-cling-mockup": { name: "Retro Collection Window Cling", dim: '8" L × 8" W' },
     "Melt-Tent":                      { name: "G Pen Melt Table Tent",         dim: '6" L × 6" W' },
