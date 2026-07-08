@@ -3592,6 +3592,14 @@ window.PORTAL_SYNCED = {
       ],
       "Documents": [
         {
+          "name": "20250304_GPen_Dash-Plus_Manual_US",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/ilxuzqy59soox5b4rgosg/20250304_GPen_Dash-Plus_Manual_US.pdf?rlkey=yn5ku29edb5yvaxdfs4ym501a&dl=0",
+          "thumb": "assets/synced/dash-plus/c26dcf72121fb7abc98ccee6a30d6d4413846f93fb4f8ec73c8b2bce868ae95d.jpg",
+          "file": null
+        },
+        {
           "name": "G Pen - One Sheet - Dash+",
           "type": "pdf",
           "format": "PDF",
@@ -3602,11 +3610,11 @@ window.PORTAL_SYNCED = {
       ],
       "In Store Marketing Materials": [
         {
-          "name": "Screenshot 2026-07-01 at 1.40.48 PM",
+          "name": "dash-Tent",
           "type": "image",
-          "format": "PNG",
-          "url": "https://www.dropbox.com/scl/fi/stik1eyay99x71t6bb1c7/Screenshot-2026-07-01-at-1.40.48-PM.png?rlkey=p41omlk5hn71efr1hk4pvrqol&dl=0",
-          "thumb": "assets/synced/dash-plus/e892350e181b23adcc8da778ee8d1e645fd6180c0e382e7f8edc0ea6fe615aa0.jpg",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/pmc0bxekmr1fvl1aip4fp/dash-Tent.jpg?rlkey=newdviytvj2t9hr2poja52mcw&dl=0",
+          "thumb": "assets/synced/dash-plus/07eaff8ef619a36993b4cc8d22d10ad542be47dae18e767036b386d946d0bee6.jpg",
           "file": null
         }
       ]
@@ -4530,6 +4538,16 @@ window.PORTAL_SYNCED = {
           "format": "PDF",
           "url": "https://www.dropbox.com/scl/fi/ky7s4m8hjn77i2a1ukqkx/GPEN_Hydout_Onesheet_8-5x11.pdf?rlkey=pc960xd3nv8m9t73ib59wu6vr&dl=0",
           "thumb": "assets/synced/hydout/b4cdbf033f57153ec186ffee8d4ae122a188dffafa25a18cd3675f6ce22b363b.jpg",
+          "file": null
+        }
+      ],
+      "In Store Marketing Materials": [
+        {
+          "name": "hydout-Tent",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/a8igaqaqy5srp24myi9mx/hydout-Tent.jpg?rlkey=qqp7cg69pxk7aj1e49wxr2mf0&dl=0",
+          "thumb": "assets/synced/hydout/2aef7f4e4b687cc705d5eb1985d6ad7c19a02a1296efa57f2a4abb279d3e1a4b.jpg",
           "file": null
         }
       ]
@@ -5919,6 +5937,24 @@ window.PORTAL_SYNCED = {
           "thumb": "assets/synced/hydout-retro/4bfe5254fe2bc4da1d9e7af303ac4efd40ce8818c1b956636e7656ff25ee6212.jpg",
           "file": null
         }
+      ],
+      "In Store Marketing Materials": [
+        {
+          "name": "GPEN-Retro-window-cling-mockup",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/aj0zir93wwrffs5i0d4nr/GPEN-Retro-window-cling-mockup.jpg?rlkey=kzsq3u1u3nxag6l57wrcp1k09&dl=0",
+          "thumb": "assets/synced/hydout-retro/ab5cce214e799303cf98a6e0657c19555f78eeca3b82375fb7114ed801b88639.jpg",
+          "file": null
+        },
+        {
+          "name": "hydout-Tent",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/mc7yciwpwnho466olzkps/hydout-Tent.jpg?rlkey=m3vjt4imz20333ehazf9j5lry&dl=0",
+          "thumb": "assets/synced/hydout-retro/2aef7f4e4b687cc705d5eb1985d6ad7c19a02a1296efa57f2a4abb279d3e1a4b.jpg",
+          "file": null
+        }
       ]
     },
     "dropbox": "https://www.dropbox.com/scl/fo/fnsys0ijwhl2059nu45u5/AEE18ADvSJZ1RYdf0EDDk0Q?rlkey=2cz8o729ku9u1c9unhewv55wr&st=5lrpymts&dl=1"
@@ -6600,6 +6636,16 @@ window.PORTAL_SYNCED = {
           "format": "PDF",
           "url": "https://www.dropbox.com/scl/fi/ch7ap122mw1jkpymyhhn4/Hot-Knife-One-Sheet.pdf?rlkey=e7scppx87p0rtz8amtdqlfzn2&dl=0",
           "thumb": "assets/synced/melt/08d29d31bccaa921962279b112b3cb10eb75d5e2d5e0dbc2c7648fbb64050a09.jpg",
+          "file": null
+        }
+      ],
+      "In Store Marketing Materials": [
+        {
+          "name": "Melt-Tent",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/lox9v1uetk0ohvt261dvn/Melt-Tent.jpg?rlkey=mwkytjqtav468mf6itpygzqdo&dl=0",
+          "thumb": "assets/synced/melt/7a9086c992d85d4bac15e29cd8fc7b2b2216784289ea6af23d32a9430a4a498f.jpg",
           "file": null
         }
       ]
