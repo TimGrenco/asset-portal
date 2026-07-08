@@ -154,6 +154,7 @@ window.PORTAL_PRODUCTS = [
     name: "Dash II", brand: "gpen", category: "Dry Herb", type: "Dry Herb Vaporizer",
     cover: CDN + "Dash2_thumb_01.png?v=1782934099",
     added: "2026-06-02",
+    newBadge: true,   // force the "New" flag on the home card (past the 30-day auto window)
     oneSheet: "#",
     // Real Dropbox shared folder for Dash II (TEST). "Download all" pulls this
     // folder as a .zip. Full per-file sync comes via the Dropbox API job.
