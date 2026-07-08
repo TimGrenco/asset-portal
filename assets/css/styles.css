@@ -411,12 +411,24 @@ button.pkg-media { width: 100%; border: 0; padding: 0; font: inherit; }
 .vlb-close { position: absolute; top: 22px; right: 22px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.12); border: none; display: flex; align-items: center; justify-content: center; }
 .vlb-close svg { width: 20px; height: 20px; stroke: #fff; }
 
-/* product-page asset filters — at the top of the Documents section */
-.asset-nav { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: -2px 0 18px; }
-.anav { font-size: 12.5px; font-weight: 600; padding: 8px 16px; border-radius: var(--radius-pill); border: 1px solid var(--hair); background: var(--paper); color: var(--stone); transition: all 0.12s; }
-.anav:hover { border-color: var(--ink); color: var(--ink); }
-.anav.on { background: var(--ink); color: #fff; border-color: var(--ink); }
-.anav .c { opacity: 0.55; margin-left: 5px; }
+/* product-page category tabs — card style with a type icon per folder */
+.catgrid { display: flex; flex-wrap: wrap; gap: 8px; align-items: stretch; margin: -2px 0 16px; }
+.catcard { display: flex; align-items: center; gap: 9px; padding: 9px 13px 9px 9px; border-radius: 12px; border: 1px solid var(--hair); background: var(--paper); color: var(--ink); transition: border-color 0.14s, background 0.14s; text-align: left; }
+.catcard:hover { border-color: var(--ink); }
+.catcard.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+.catcard-ic { flex: 0 0 auto; width: 30px; height: 30px; border-radius: 8px; background: var(--mist); display: flex; align-items: center; justify-content: center; color: var(--ink); }
+.catcard-ic svg { width: 17px; height: 17px; }
+.catcard.on .catcard-ic { background: rgba(255, 255, 255, 0.16); color: #fff; }
+.catcard-tx { display: flex; flex-direction: column; line-height: 1.2; }
+.catcard-name { font-size: 13px; font-weight: 600; }
+.catcard-c { font-size: 9.5px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--stone); margin-top: 1px; }
+.catcard.on .catcard-c { color: rgba(255, 255, 255, 0.72); }
+/* "Swipe to see more folders" — mobile only (see media query) */
+.catgrid-hint { display: none; }
+/* Active-folder row above the gallery */
+.folder-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin: 0 0 12px; }
+.folder-title { font-family: var(--serif); font-size: 17px; font-weight: 700; color: var(--ink); display: flex; align-items: baseline; gap: 10px; margin: 0; }
+.folder-title .ft-count { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--stone); }
 
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
 .gcell { border: 1px solid var(--hair); border-radius: 10px; overflow: hidden; background: var(--paper); }
@@ -604,9 +616,12 @@ a.logo-tile { cursor: pointer; }
   .hero-logo.sg { height: 26px; }
   .grid { grid-template-columns: repeat(2, 1fr); gap: 13px; }
   /* asset filter chips become a single swipeable strip instead of stacking */
-  .asset-nav { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; scroll-snap-type: x proximity; padding-bottom: 2px; margin-right: -16px; padding-right: 16px; }
-  .asset-nav::-webkit-scrollbar { display: none; }
-  .anav { flex: 0 0 auto; scroll-snap-align: start; }
+  .catgrid { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; scroll-snap-type: x proximity; padding-bottom: 2px; margin-right: -16px; padding-right: 16px; }
+  .catgrid::-webkit-scrollbar { display: none; }
+  .catcard { flex: 0 0 auto; scroll-snap-align: start; }
+  /* swipe affordance — mobile only */
+  .catgrid-hint { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: var(--stone); margin: 0 0 9px; }
+  .catgrid-hint svg { width: 15px; height: 15px; color: var(--gold-ink); }
   .sku-row { flex-direction: column; align-items: flex-start; gap: 4px; }
   .toggle button { padding: 9px 16px; }
   .section-head { flex-wrap: wrap; }
@@ -634,8 +649,8 @@ a.logo-tile { cursor: pointer; }
 }
 
 /* Empty (0-count) asset folders read as disabled instead of leading nowhere. */
-.anav.is-empty { opacity: 0.4; cursor: default; }
-.anav.is-empty:hover { border-color: var(--hair); color: var(--stone); }
+.catcard.is-empty { opacity: 0.4; cursor: default; }
+.catcard.is-empty:hover { border-color: var(--hair); }
 
 /* Floating scroll-to-top — appears once you're a screen or two down. */
 .to-top { position: fixed; right: 20px; bottom: 20px; width: 46px; height: 46px; border-radius: 50%; background: var(--ink); color: #fff; border: none; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(0,0,0,0.22); opacity: 0; pointer-events: none; transform: translateY(10px) scale(0.9); transition: opacity 0.2s, transform 0.2s; z-index: 95; cursor: pointer; }

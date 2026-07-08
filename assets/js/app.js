@@ -29,6 +29,7 @@
       share: '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/>',
       arrowLeft: '<path d="M19 12H5"/><path d="m12 19-7-7 7-7"/>',
       arrowUp: '<path d="M12 19V5"/><path d="m5 12 7-7 7 7"/>',
+      arrowRight: '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
       file: '<path d="M14 3v5h5"/><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/>',
       photo: '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/>',
       video: '<rect x="2" y="6" width="14" height="12" rx="2"/><path d="m22 8-6 4 6 4Z"/>',
@@ -54,6 +55,20 @@
     return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (paths[name] || "") + "</svg>";
   }
   var typeIcon = { image: "photo", video: "video", vector: "vector", pdf: "file" };
+
+  // Category icon for a folder tab, chosen from the folder name (handles canonical
+  // names and colorway/type names like "Black / Renders").
+  function folderIcon(f) {
+    var s = String(f).toLowerCase();
+    if (/video|reel|tv screen/.test(s)) return "video";
+    if (/logo|brand/.test(s)) return "vector";
+    if (/packag|carton|box/.test(s)) return "stack";
+    if (/banner/.test(s)) return "photo";
+    if (/lifestyle/.test(s)) return "eye";
+    if (/marketing|in.?store|point of sale|\bpos\b|\bpop\b|display|retail/.test(s)) return "tag";
+    if (/doc|sheet|spec|manual|misc|catalog|guide/.test(s)) return "file";
+    return "photo";   // product photos / renders / e-comm / default
+  }
 
   // Simplified brand glyphs for the social hub (filled marks).
   function socialIcon(net) {
@@ -1329,7 +1344,7 @@
 
     // In-Store Marketing gets its own section below the gallery — keep it out of
     // the Digital Assets folder tabs. Tabs follow the canonical folder order.
-    var folderNames = Object.keys(p.folders).filter(function (f) { return f !== "In-Store Marketing"; });
+    var folderNames = Object.keys(p.folders).filter(function (f) { return f !== "In-Store Marketing" && (p.folders[f] || []).length; });
     // Canonical folders keep their fixed order (Product Photos first, etc.). Folders
     // outside that list (e.g. legacy products' colorway folders, all equal rank) sort
     // by size — largest first — so a product opens on its richest folder, not a
@@ -1377,11 +1392,18 @@
     function render() {
       // Asset filters: friendly-labelled chips for this product's folders, sat
       // right at the top of the Documents section for quick filtering.
-      var assetNav = '<div class="asset-nav" id="asset-nav">' + folderNames.map(function (f) {
-        var n = p.folders[f].length, empty = n === 0;
-        return '<button class="anav ' + (f === active ? "on " : "") + (empty ? "is-empty" : "") + '" data-folder="' + f + '"' + (empty ? " disabled" : "") + ">" + typeLabel(f) + '<span class="c">' + n + "</span></button>";
-      }).join("") + "</div>";
+      var assetNav =
+        (folderNames.length > 3 ? '<div class="catgrid-hint"><span>Swipe to see more folders</span>' + icon("arrowRight") + "</div>" : "") +
+        '<div class="catgrid" id="asset-nav">' + folderNames.map(function (f) {
+          var n = p.folders[f].length, empty = n === 0;
+          return '<button class="catcard ' + (f === active ? "on " : "") + (empty ? "is-empty" : "") + '" data-folder="' + f + '"' + (empty ? " disabled" : "") + ">" +
+            '<span class="catcard-ic">' + icon(folderIcon(f)) + "</span>" +
+            '<span class="catcard-tx"><span class="catcard-name">' + typeLabel(f) + "</span>" +
+            '<span class="catcard-c">' + n + " file" + (n === 1 ? "" : "s") + "</span></span>" +
+          "</button>";
+        }).join("") + "</div>";
       var activeCount = (p.folders[active] || []).length;
+      var catTotal = folderNames.reduce(function (s, f) { return s + p.folders[f].length; }, 0);
       // Eyebrow shows the product type (falls back to category); the title is the
       // full brand-prefixed name (e.g. "G Pen Dash II"), without double-prefixing
       // names that already lead with the brand (e.g. "G Pen Logos").
@@ -1411,11 +1433,14 @@
         fullDescHTML(p) +
         whatsInBoxHTML(p) +
         // ---- Documents (assets) — sits above Packaging, filters at the top ----
-        '<div class="section-head" id="docs-head"><h2>Digital Assets</h2><span class="badge">' + activeCount + " file" + (activeCount === 1 ? "" : "s") + "</span></div>" +
+        '<div class="section-head" id="docs-head"><h2>Download assets by category</h2><span class="badge">' + catTotal + " file" + (catTotal === 1 ? "" : "s") + "</span></div>" +
         assetNav +
-        '<div class="gallery-toolbar">' +
-          '<label class="selectall"><input type="checkbox" id="sel-all"/> Select all in this folder</label>' +
-          '<button class="btn ghost sm" id="dl-folder">' + icon("download") + " Download folder</button>" +
+        '<div class="folder-toolbar">' +
+          '<h3 class="folder-title">' + typeLabel(active) + '<span class="ft-count">' + activeCount + " file" + (activeCount === 1 ? "" : "s") + "</span></h3>" +
+          '<div class="gallery-toolbar">' +
+            '<label class="selectall"><input type="checkbox" id="sel-all"/> Select all</label>' +
+            '<button class="btn ghost sm" id="dl-folder">' + icon("download") + " Download folder</button>" +
+          "</div>" +
         "</div>" +
         '<div class="gallery" id="gallery"></div>' +
         '<div class="selbar" id="selbar">' +
@@ -1482,9 +1507,8 @@
       });
       $("#sel-clear").addEventListener("click", function () { selected = {}; syncSelection(); });
       $("#sel-dl").addEventListener("click", function () { downloadFiles(selectedList(), selectedList().length + " selected"); });
-      $$(".anav", d).forEach(function (t) {
-        // Filters sit directly above the gallery, so switching folders just
-        // updates the gallery in place — no scrolling needed.
+      $$(".catcard", d).forEach(function (t) {
+        // Switching folders re-renders the detail with the new active folder.
         t.addEventListener("click", function () { active = t.getAttribute("data-folder"); render(); });
       });
       syncSelection();

@@ -285,15 +285,17 @@ for (const p of PRODUCTS) {
         // Depth-2 grouping: one folder per "Colorway / Type" so a big product isn't
         // one giant mixed folder. Files nested deeper (shoot folders) flatten into
         // their type, labelled by sub-path.
+        // Use the raw Dropbox folder names here (not the canonical alias) so an
+        // aliased parent + same-named child don't collapse to "X / X".
         const entries = await listFolder(tok, p.link, "/" + raw);
         const direct = entries.filter((e) => e[".tag"] === "file");
         if (direct.length) {
           direct.forEach((f) => { f.relPath = "/" + raw + "/" + f.name; f.displayName = f.name.replace(/\.[^.]+$/, ""); });
-          folderSpecs.push({ name: disp, prefix: "/" + raw, files: direct });
+          folderSpecs.push({ name: raw, prefix: "/" + raw, files: direct });
         }
         for (const ss of entries.filter((e) => e[".tag"] === "folder")) {
           const sub = await collectDeep(tok, p.link, "/" + raw + "/" + ss.name, "");
-          if (sub.length) folderSpecs.push({ name: disp + " / " + ss.name, prefix: "/" + raw + "/" + ss.name, files: sub });
+          if (sub.length) folderSpecs.push({ name: raw + " / " + ss.name, prefix: "/" + raw + "/" + ss.name, files: sub });
         }
         continue;
       }
