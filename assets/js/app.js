@@ -1392,14 +1392,18 @@
     window.scrollTo(0, 0);
     recordRecent(p);
 
-    // In-Store Marketing gets its own section below the gallery — keep it out of
-    // the Digital Assets folder tabs. Tabs follow the canonical folder order.
-    var folderNames = Object.keys(p.folders).filter(function (f) { return f !== INSTORE_FOLDER && (p.folders[f] || []).length; });
-    // Canonical folders keep their fixed order (Product Photos first, etc.). Folders
-    // outside that list (e.g. legacy products' colorway folders, all equal rank) sort
-    // by size — largest first — so a product opens on its richest folder, not a
-    // 2-file "Logo" tab.
+    // The In-Store Marketing folder also has its own section below the gallery. In
+    // the gallery it's PNG-de-duplicated (no white-bg doubles) and pinned as the
+    // last tab.
+    if ((p.folders[INSTORE_FOLDER] || []).length) p.folders[INSTORE_FOLDER] = instoreOwn(p);
+    var folderNames = Object.keys(p.folders).filter(function (f) { return (p.folders[f] || []).length; });
+    // Canonical folders keep their fixed order (Product Photos first, etc.); the
+    // In-Store Marketing tab is always pinned last. Other non-canonical folders
+    // (e.g. legacy products' colorway folders) sort by size — largest first — so a
+    // product opens on its richest folder, not a 2-file "Logo" tab.
     folderNames.sort(function (a, b) {
+      if (a === INSTORE_FOLDER) return 1;
+      if (b === INSTORE_FOLDER) return -1;
       return (folderRank(a) - folderRank(b)) || ((p.folders[b] || []).length - (p.folders[a] || []).length);
     });
     // Default to a folder with content — prefer the one holding the cover image
