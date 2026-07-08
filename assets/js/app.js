@@ -729,6 +729,8 @@
     var list = (p.folders && p.folders[INSTORE_FOLDER]) || [];
     var seen = {}, out = [];
     list.forEach(function (x) {
+      // Skip unnamed files (bare 64-char content-hash names) — not real materials.
+      if (/^[0-9a-f]{64}$/i.test(x.name || "")) return;
       var i = seen[x.name];
       if (i === undefined) { seen[x.name] = out.length; out.push(x); }
       else if (/png/i.test(x.format) && !/png/i.test(out[i].format)) out[i] = x;
