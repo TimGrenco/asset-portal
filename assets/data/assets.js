@@ -645,6 +645,7 @@ window.PORTAL_PRODUCTS.forEach(function (p) {
     if (s && s.folders && Object.keys(s.folders).length) {
       p.folders = s.folders;
       if (s.dropbox) p.dropbox = s.dropbox;
+      if (s.folderLinks) p.folderLinks = s.folderLinks;
       p.synced = true;
       p.syncedAt = s.syncedAt;
       // Logo folders have no product shot — use the main black G monogram

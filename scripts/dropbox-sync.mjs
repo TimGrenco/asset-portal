@@ -268,6 +268,10 @@ for (const p of PRODUCTS) {
 
   const top = await listFolder(tok, p.link, "");
   const subs = top.filter((e) => e[".tag"] === "folder").map((e) => e.name);
+  // Dropbox id per top-level subfolder — used to mint a per-folder shared link so
+  // "Download folder" pulls that whole folder as a .zip (not just the first file).
+  const folderId = {};
+  top.filter((e) => e[".tag"] === "folder").forEach((e) => { folderId[e.name] = e.id; });
 
   // Folders with subfolders use them as asset groups (like Dash II); a flat
   // folder buckets its files under `flat` (e.g. the logo set).
@@ -312,7 +316,7 @@ for (const p of PRODUCTS) {
           files.push(nf);
         }
       }
-      folderSpecs.push({ name: disp, prefix: "/" + raw, files });
+      folderSpecs.push({ name: disp, prefix: "/" + raw, files, id: folderId[raw] });
     }
   } else {
     folderSpecs.push({ name: p.flat || "Files", prefix: "", files: top.filter((e) => e[".tag"] === "file") });
@@ -412,13 +416,27 @@ for (const p of PRODUCTS) {
     if (out.length) folders[spec.name] = (folders[spec.name] || []).concat(out);  // concat so aliased names merge
   }
 
+  // Per-folder Dropbox share link (cached by folder id) so "Download folder"
+  // zips exactly that folder. Falls back to the whole-product link when a folder
+  // has no id (deep/nested groupings) or the link can't be created.
+  const folderLinks = {};
+  for (const spec of folderSpecs) {
+    if (!folders[spec.name] || folderLinks[spec.name]) continue;
+    let fl = spec.id ? linkCache[spec.id] : null;
+    if (!fl && spec.id) {
+      try { fl = await sharedFileLink(tok, spec.id); } catch { fl = null; }
+      if (fl) linkCache[spec.id] = fl;
+    }
+    folderLinks[spec.name] = dlLink(fl || p.link);
+  }
+
   // Prune thumbnails / originals for files that no longer exist.
   for (const fn of readdirSync(dir)) if (fn !== "files" && !keep.has(fn)) { try { unlinkSync(join(dir, fn)); } catch {} }
   for (const fn of readdirSync(filesDir)) if (!keepFiles.has(fn)) { try { unlinkSync(join(filesDir, fn)); } catch {} }
 
   writeFileSync(linkCacheFile, JSON.stringify(linkCache));
 
-  synced[p.name] = { folders, dropbox: dlLink(p.link) };
+  synced[p.name] = { folders, dropbox: dlLink(p.link), folderLinks };
   const total = Object.values(folders).reduce((n, a) => n + a.length, 0);
   const withThumb = Object.values(folders).reduce((n, a) => n + a.filter((x) => x.thumb).length, 0);
   const withLink = Object.values(folders).reduce((n, a) => n + a.filter((x) => /scl\/fi\//.test(x.url)).length, 0);
