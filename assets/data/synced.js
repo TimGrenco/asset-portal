@@ -6582,7 +6582,7 @@ window.PORTAL_SYNCED = {
   },
   "Connect": {
     "folders": {
-      "Logos": [
+      "Logo": [
         {
           "name": "GS_Connect_Logo",
           "type": "file",
@@ -11096,7 +11096,7 @@ window.PORTAL_SYNCED = {
   },
   "Elite II": {
     "folders": {
-      "Social Videos / Social Videos": [
+      "Video / Social Videos": [
         {
           "name": "Alyssa Elite II Bathrub",
           "type": "video",
@@ -11298,7 +11298,7 @@ window.PORTAL_SYNCED = {
           "file": null
         }
       ],
-      "Social Videos / TV Screen": [
+      "Video / TV Screen": [
         {
           "name": "Elite II Tess Logo",
           "type": "video",
