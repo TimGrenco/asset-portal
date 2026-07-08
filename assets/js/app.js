@@ -721,7 +721,20 @@
   // In-store marketing materials for the current brand — aggregated from each
   // product's "In-Store Marketing" folder (synced from Dropbox). Retailers browse
   // what's available and order via email.
-  var INSTORE_FOLDER = "In-Store Marketing";
+  var INSTORE_FOLDER = "In Store Marketing Materials";
+  // A product's own in-store materials, de-duplicated by base name: when a
+  // transparent PNG and a white-background copy both exist, keep only the PNG so
+  // retailers don't see doubles.
+  function instoreOwn(p) {
+    var list = (p.folders && p.folders[INSTORE_FOLDER]) || [];
+    var seen = {}, out = [];
+    list.forEach(function (x) {
+      var i = seen[x.name];
+      if (i === undefined) { seen[x.name] = out.length; out.push(x); }
+      else if (/png/i.test(x.format) && !/png/i.test(out[i].format)) out[i] = x;
+    });
+    return out;
+  }
   function renderInStore() {
     var box = $("#instore"); if (!box) return;
     var bk = state.view, bname = BRANDS[bk].name;
@@ -731,7 +744,7 @@
     currentList(bk)
       .map(function (n) { return PRODUCTS.filter(function (p) { return p.name === n; })[0]; })
       .filter(Boolean)
-      .forEach(function (p) { ((p.folders && p.folders[INSTORE_FOLDER]) || []).forEach(function (x) { mats.push(x); }); });
+      .forEach(function (p) { instoreOwn(p).forEach(function (x) { mats.push(x); }); });
 
     var orderCta = '<a class="btn" href="#materials">' + icon("mail") + " Order materials</a>";
     if (!mats.length) {
@@ -831,7 +844,7 @@
     });
     PRODUCTS.forEach(function (p) {
       if (p.isLogo) return;
-      ((p.folders && p.folders["In-Store Marketing"]) || []).forEach(function (x) {
+      instoreOwn(p).forEach(function (x) {
         out.push({ name: x.name + " — " + p.name, dim: x.dim || null, thumb: x.thumb, url: x.file || x.url || null });
       });
     });
@@ -1381,7 +1394,7 @@
 
     // In-Store Marketing gets its own section below the gallery — keep it out of
     // the Digital Assets folder tabs. Tabs follow the canonical folder order.
-    var folderNames = Object.keys(p.folders).filter(function (f) { return f !== "In-Store Marketing" && (p.folders[f] || []).length; });
+    var folderNames = Object.keys(p.folders).filter(function (f) { return f !== INSTORE_FOLDER && (p.folders[f] || []).length; });
     // Canonical folders keep their fixed order (Product Photos first, etc.). Folders
     // outside that list (e.g. legacy products' colorway folders, all equal rank) sort
     // by size — largest first — so a product opens on its richest folder, not a
@@ -1558,12 +1571,10 @@
   // The materials to show for a product: its own "In-Store Marketing" folder if it
   // has any, otherwise the generic brand-level pieces as placeholders.
   function inStoreItems(p) {
-    var own = (p.folders && p.folders["In-Store Marketing"]) || [];
-    // Product pages only show materials genuinely tied to the product: its own
-    // synced folder + any general material explicitly tagged to it (e.g. the
-    // Dash II Table Tent). No generic fallback — blank shows what's still needed.
-    var tagged = (window.PORTAL_INSTORE_GENERAL || []).filter(function (x) { return x.product === p.name; });
-    return { items: own.concat(tagged), generic: false };
+    // Product pages show the product's own synced "In Store Marketing Materials"
+    // folder (PNG-deduped). No generic/tagged fallback — those live in the
+    // brand-level section and would otherwise double up the synced pieces.
+    return { items: instoreOwn(p), generic: false };
   }
   // In-store printed marketing materials for this product — a dedicated section
   // under Digital Assets.
