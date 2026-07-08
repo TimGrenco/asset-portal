@@ -1609,7 +1609,8 @@
       row("UPC", info.upc) +
       row("Product dimensions", info.dimensions) +
       row("Unit weight", info.unitWeight) +
-      row(info.pop ? "Units per POP display" : "Inner pack", info.innerPack) +
+      row("Ships in retail POP display", info.pop === true ? "Yes" : info.pop === false ? "No" : "") +
+      row("Units per POP display", info.innerPack) +
       row("Units per master case", info.masterCarton) +
       row("Case weight", info.caseWeight) +
       row("Case dimensions", info.caseDimensions) +
