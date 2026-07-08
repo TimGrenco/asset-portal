@@ -1637,11 +1637,30 @@
       if (file) return pkgCard(label, file.thumb, file.url);
       return "";
     }
+    // Multi-colour collections (Retro) list one retail box per colourway.
+    function colorBoxCards() {
+      var COLORS = [["Red", /red/i], ["Blue", /blue/i], ["Green", /green/i], ["Pink", /pink|pin/i], ["Purple", /purple|pueple/i]];
+      var nonpop = imgs.filter(function (f) { return !/pop/i.test(f.name); });
+      function s(f) { var n = 0, nm = f.name; if (/3-?4/i.test(nm)) n += 3; if (/front/i.test(nm)) n += 2; if (/transparent/i.test(nm)) n += 1; if (/\bside\b|-side/i.test(nm)) n -= 2; return n; }
+      var out = "";
+      COLORS.forEach(function (cp) {
+        var pool = nonpop.filter(function (f) { return cp[1].test(f.name); });
+        pool.sort(function (a, b) { return s(b) - s(a); });
+        if (pool[0]) out += pkgCard("Single Retail Packaging — " + cp[0], pool[0].thumb, pool[0].url);
+      });
+      return out;
+    }
+    var popLabel = (info.innerPack && info.innerPack !== "N/A")
+      ? info.innerPack + "-Pack Retail POP Display" : "Retail POP display";
     var cards, note;
-    if (info.pop) {
+    var colorCards = /retro/i.test(p.name) ? colorBoxCards() : "";
+    if (colorCards) {
+      // Retro collection: one retail box per colourway, then the collection POP display.
+      cards = colorCards + boxCard(popLabel, info.popImg, info.popImgDl, popFile) +
+        pkgCard("Master carton", info.cartonImg);
+      note = "Ships in a retail-ready POP display — one retail box shown per colorway. See SKU details for inner-pack &amp; master-carton quantities.";
+    } else if (info.pop) {
       // Ships in a retail-ready POP display. Label the POP card with its pack count.
-      var popLabel = (info.innerPack && info.innerPack !== "N/A")
-        ? info.innerPack + "-Pack Retail POP Display" : "Retail POP display";
       cards = boxCard("Single Retail Packaging", info.boxImg, null, boxFile) +
         boxCard(popLabel, info.popImg, info.popImgDl, popFile) +
         pkgCard("Master carton", info.cartonImg);
