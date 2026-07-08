@@ -727,8 +727,7 @@ window.PORTAL_INSTORE_GENERAL = (function () {
       thumb: "assets/materials/lanyard.png", url: "assets/materials/lanyard.png", file: "assets/materials/lanyard.png" },
     { name: "Sticky Notes", type: "image", format: "PNG", dim: "2.5\" L × 2.5\" W · 25 notes per pad",
       thumb: "assets/materials/sticky-notes.png", url: "assets/materials/sticky-notes.png", file: "assets/materials/sticky-notes.png" },
-    { name: "Dash II Table Tent", type: "image", format: "JPG", dim: "4\" W × 6\" H", product: "Dash II",
-      thumb: "assets/materials/dash-ii-table-tent.jpg", url: "assets/materials/dash-ii-table-tent.jpg", file: "assets/materials/dash-ii-table-tent.jpg" },
+    // (Dash II Table Tent removed — superseded by the synced "Dash II Postcard".)
   ];
 })();
 

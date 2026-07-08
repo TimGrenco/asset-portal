@@ -160,12 +160,16 @@ a { color: inherit; text-decoration: none; }
 .instore-group { margin-bottom: 26px; }
 .instore-group-h { font-family: var(--serif); font-size: 15px; font-weight: 800; margin-bottom: 12px; }
 .instore-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
-.instore-tile { position: relative; display: block; aspect-ratio: 1; border: 1px solid var(--hair); border-radius: var(--radius); background: var(--mist); overflow: hidden; cursor: pointer; padding: 0; transition: border-color 0.14s, transform 0.14s; }
+.instore-tile { position: relative; display: block; border: 1px solid var(--hair); border-radius: var(--radius); background: var(--mist); overflow: hidden; cursor: pointer; padding: 0; transition: border-color 0.14s, transform 0.14s; }
 .instore-tile:hover { border-color: var(--ink); transform: translateY(-2px); }
+.instore-tile-media { position: relative; display: block; aspect-ratio: 1; }
 .instore-tile img { width: 100%; height: 100%; object-fit: contain; padding: 10px; }
 .instore-tile-order { position: absolute; bottom: 8px; left: 8px; display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.02em; background: var(--ink); color: #fff; padding: 4px 9px; border-radius: var(--radius-pill); opacity: 0.92; transition: opacity 0.14s; }
 .instore-tile-order svg { width: 12px; height: 12px; stroke: #fff; }
 .instore-tile:hover .instore-tile-order { opacity: 1; }
+.instore-tile-cap { display: flex; flex-direction: column; gap: 1px; padding: 9px 11px 11px; background: #fff; border-top: 1px solid var(--hair); }
+.instore-tile-nm { font-size: 12px; font-weight: 700; color: var(--ink); line-height: 1.25; }
+.instore-tile-dim { font-size: 10.5px; color: var(--stone); }
 /* Store locator sign-up */
 #store-locator { margin-top: 40px; }
 .locator-card { display: flex; align-items: center; justify-content: space-between; gap: 22px; flex-wrap: wrap; padding: 30px 32px; border-radius: var(--radius); background: var(--ink); color: #fff; }

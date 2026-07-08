@@ -127,7 +127,19 @@
       localStorage.setItem("portal_recent", JSON.stringify(arr.slice(0, 8)));
     } catch (e) {}
   }
+  // Curated display names + print dimensions for in-store marketing materials,
+  // keyed by synced filename. Overrides the raw filename wherever the piece shows.
+  var INSTORE_LABELS = {
+    "DashII_Postcard":                { name: "Dash II Postcard",              dim: '6" L × 4" W' },
+    "510-Tent":                       { name: "510 Original Table Tent",       dim: '6" L × 6" W' },
+    "GPEN-Retro-window-cling-mockup": { name: "Retro Collection Window Cling", dim: '8" L × 8" W' },
+    "Melt-Tent":                      { name: "G Pen Melt Table Tent",         dim: '6" L × 6" W' },
+    "hydout-Tent":                    { name: "G Pen Hydout Table Tent",       dim: '6" L × 4" W' },
+  };
+  function instoreLabel(file) { return INSTORE_LABELS[file && file.name] || null; }
   function fileLabel(file) {
+    var lbl = INSTORE_LABELS[file.name];
+    if (lbl) return lbl.name;   // curated in-store material name (no extension)
     var f = file.format || "";
     if (!f || f === "YouTube" || f === "Link") return file.name;  // links keep their title, no fake extension
     return file.name + "." + f.toLowerCase();
@@ -844,10 +856,18 @@
     (window.PORTAL_INSTORE_GENERAL || []).forEach(function (x) {
       out.push({ name: x.name, dim: x.dim || null, thumb: x.thumb, url: x.file || x.url || null });
     });
+    var seen = {};
     PRODUCTS.forEach(function (p) {
       if (p.isLogo) return;
       instoreOwn(p).forEach(function (x) {
-        out.push({ name: x.name + " — " + p.name, dim: x.dim || null, thumb: x.thumb, url: x.file || x.url || null });
+        if (seen[x.name]) return;    // shared pieces (e.g. Retro window cling) listed once
+        seen[x.name] = true;
+        var lbl = instoreLabel(x);
+        out.push({
+          name: lbl ? lbl.name : x.name + " — " + p.name,
+          dim: lbl ? lbl.dim : (x.dim || null),
+          thumb: x.thumb, url: x.file || x.url || null
+        });
       });
     });
     return out;
@@ -1600,8 +1620,12 @@
     var note = '<p class="pkg-note">' + prodName + " specific in-store materials.</p>";
     var tiles = items.map(function (x) {
       var media = x.thumb ? '<img src="' + x.thumb + '" alt="' + fileLabel(x).replace(/"/g, "") + '" loading="lazy"/>' : window.__icon("photo");
-      return '<a class="instore-tile" href="#materials" title="Order ' + fileLabel(x).replace(/"/g, "") + '">' +
-        media + '<span class="instore-tile-order">' + icon("mail") + " Order</span></a>";
+      var lbl = instoreLabel(x);
+      var cap = lbl ? '<span class="instore-tile-cap"><span class="instore-tile-nm">' + escapeHTML(lbl.name) +
+        "</span><span class=\"instore-tile-dim\">" + escapeHTML(lbl.dim) + "</span></span>" : "";
+      return '<a class="instore-tile' + (lbl ? " has-cap" : "") + '" href="#materials" title="Order ' + fileLabel(x).replace(/"/g, "") + '">' +
+        '<span class="instore-tile-media">' + media + '<span class="instore-tile-order">' + icon("mail") + " Order</span></span>" +
+        cap + "</a>";
     }).join("");
     return head + note + '<div class="instore-grid">' + tiles + "</div>" +
       '<div class="instore-order"><a class="btn" href="#materials">' + icon("mail") + " Order marketing materials</a></div>";
