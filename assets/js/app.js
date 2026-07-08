@@ -1584,13 +1584,15 @@
       '<div class="instore-order"><a class="btn" href="#materials">' + icon("mail") + " Order marketing materials</a></div>";
   }
 
-  function pkgCard(label, url) {
+  function pkgCard(label, url, dlUrl) {
     if (!url) return "";   // no placeholder — only show packaging cards that have an image
-    // Dropbox file links → raw for inline display, dl=1 for download.
+    // Dropbox file links → raw for inline display, dl=1 for download. dlUrl lets
+    // us show a same-origin thumbnail but download the full-res Dropbox file.
     var dbox = /dropbox\.com/.test(url);
     var src = dbox ? dropboxRaw(url) : url;
-    var dl = dbox ? dropboxZipUrl(url) : url;
-    var name = label.replace(/[^\w.-]+/g, "_") + (/\.png/i.test(url) ? ".png" : /\.jpe?g/i.test(url) ? ".jpg" : "");
+    var dsrc = dlUrl || url;
+    var dl = /dropbox\.com/.test(dsrc) ? dropboxZipUrl(dsrc) : dsrc;
+    var name = label.replace(/[^\w.-]+/g, "_") + (/\.png/i.test(dsrc) ? ".png" : /\.jpe?g/i.test(dsrc) ? ".jpg" : "");
     return '<div class="pkg-card">' +
       '<button class="pkg-media pkg-zoom" data-lbimg="' + src + '" data-lbname="' + label + '" data-lbdl="' + dl + '" title="Click to enlarge">' +
         '<img src="' + src + '" alt="' + label + '" loading="lazy"/></button>' +
@@ -1601,19 +1603,40 @@
   function packagingHTML(p) {
     if (p.isLogo) return "";
     var info = p.info || {};
-    // Fallback packaging image from the product's own "Packaging" Dropbox folder.
-    var pkgImg = null;
+    // Auto-detect the single-box shot vs the POP-display shot from the product's
+    // own "Packaging" Dropbox folder by filename. "POP" in the name → the display;
+    // everything else → the single retail box. Prefer transparent renders, and the
+    // 3/4 hero angle for the box.
     var pkgFolder = (p.folders && p.folders["Packaging"]) || [];
-    var found = pkgFolder.filter(function (f) { return f.thumb; })[0];
-    if (found) pkgImg = found.file || found.thumb;
+    var imgs = pkgFolder.filter(function (f) { return f.thumb; });
+    function pick(wantPop) {
+      var pool = imgs.filter(function (f) { return wantPop === /pop/i.test(f.name); });
+      pool.sort(function (a, b) {
+        function s(f) { var n = 0; if (/transparent/i.test(f.name)) n += 2; if (!wantPop && /3-?4/i.test(f.name)) n += 2; if (/front/i.test(f.name)) n += 1; return n; }
+        return s(b) - s(a);
+      });
+      return pool[0];
+    }
+    var boxFile = pick(false), popFile = pick(true);
+    // Card image: explicit material override (info.boxImg/popImg) wins; else the
+    // synced file — thumbnail for display, full-res Dropbox file for download.
+    function boxCard(label, override, overrideDl, file) {
+      if (override) return pkgCard(label, override, overrideDl);
+      if (file) return pkgCard(label, file.thumb, file.url);
+      return "";
+    }
     var cards, note;
     if (info.pop) {
-      // Ships in a retail-ready POP display.
-      cards = pkgCard("Retail packaging", info.boxImg) + pkgCard("Retail POP display", info.popImg || pkgImg) + pkgCard("Master carton", info.cartonImg);
+      // Ships in a retail-ready POP display. Label the POP card with its pack count.
+      var popLabel = (info.innerPack && info.innerPack !== "N/A")
+        ? info.innerPack + "-Pack POP Retail Display" : "Retail POP display";
+      cards = boxCard("Retail packaging", info.boxImg, null, boxFile) +
+        boxCard(popLabel, info.popImg, info.popImgDl, popFile) +
+        pkgCard("Master carton", info.cartonImg);
       note = "Ships in a retail-ready POP display — see SKU details for inner-pack &amp; master-carton quantities.";
     } else {
       // Ships in single retail boxes — no POP display for this product.
-      cards = pkgCard("Retail packaging", info.boxImg || pkgImg) + pkgCard("Master carton", info.cartonImg);
+      cards = boxCard("Retail packaging", info.boxImg, null, boxFile) + pkgCard("Master carton", info.cartonImg);
       note = "Ships in single retail boxes — no POP display. See SKU details for master-carton quantities.";
     }
     return '<div class="section-head"><h2>Packaging</h2>' + (info.pop ? '<span class="badge">Ships in POP display</span>' : "") + "</div>" +
