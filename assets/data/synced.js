@@ -826,7 +826,17 @@ window.PORTAL_SYNCED = {
         }
       ]
     },
-    "dropbox": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=1"
+    "dropbox": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=1",
+    "folderLinks": {
+      "Product Photos": "https://www.dropbox.com/scl/fo/ox57qipx07xvtozyv911j/ABW0KVoKfwFudwcj7YTvowE?rlkey=kzcr1wm0mk0r8xykawbh4lu4f&dl=1",
+      "Lifestyle Photos": "https://www.dropbox.com/scl/fo/b4mtr37yt8qaafcbez4b4/AILjsiNmenPMzob5vIzstp4?rlkey=893bjng6o522eq7z39e0m6p4i&dl=1",
+      "Logos": "https://www.dropbox.com/scl/fo/ivtpyrxrujoin15jumqya/AALwtVW_C0can99dVVI5t04?rlkey=rzphfxnvwjucgo13vljhzkc0e&dl=1",
+      "Social Videos": "https://www.dropbox.com/scl/fo/93alu9d12nq54g99k0mnw/AJdh5F6P3h8oKeHO6zXSeQM?rlkey=8mhhw4sifhzh9358wj51uunc8&dl=1",
+      "TV Screen Videos": "https://www.dropbox.com/scl/fo/3jwmjghzmg4d0o7e93xwo/ANyqtbYR_sMlmWe8BeiWW80?rlkey=1hc8gbotkhe546myageh4a7z5&dl=1",
+      "Packaging": "https://www.dropbox.com/scl/fo/j4l4996uts9ut6ex1bsvt/APEJJJdU-oGFf_TU0Bkn-H4?rlkey=gwbc64fzubwwt5cr0yx9ge7e0&dl=1",
+      "Documents": "https://www.dropbox.com/scl/fo/vt7c8gwxyw3p8t2cr51tb/AP1rJU_rRyf43cXm12n_88g?rlkey=8eraicte8138ha2pkbeu780yx&dl=1",
+      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/3rc18jy9dpk2vdzwm0vzd/AJ-eyktmRpU3jcZaN3d8KY8?rlkey=ldbjknlj2qyo8danjifpabcmx&dl=1"
+    }
   },
   "510 Original": {
     "folders": {
@@ -1365,7 +1375,16 @@ window.PORTAL_SYNCED = {
         }
       ]
     },
-    "dropbox": "https://www.dropbox.com/scl/fo/mtuk2kb73ln5pv0qj68y5/AOnLPmrirA3wsvOdaA0v9rw?rlkey=e8svbeey6dql240rjqzch9qco&st=tvt2s0qf&dl=1"
+    "dropbox": "https://www.dropbox.com/scl/fo/mtuk2kb73ln5pv0qj68y5/AOnLPmrirA3wsvOdaA0v9rw?rlkey=e8svbeey6dql240rjqzch9qco&st=tvt2s0qf&dl=1",
+    "folderLinks": {
+      "Product Photos": "https://www.dropbox.com/scl/fo/4jysxekfkxxa3kfzidxv8/AF_xtYQdIDGWJRVB1cqk2fw?rlkey=1bp0oy0q7v5kp8r5k1u93vqrv&dl=1",
+      "Lifestyle Photos": "https://www.dropbox.com/scl/fo/4lpq3zz1qynqyfoeyybbp/AI2sdZb7xTFcZz374xO6Gw4?rlkey=py53vn25sg3p3crqh6rthl8gl&dl=1",
+      "Logos": "https://www.dropbox.com/scl/fo/meo0yj4uobffwbuu6ty5v/AHiCwLyZFjvCr-8sQVrn-gw?rlkey=nwmsqcutlrgjq0dvvq1q9k1bk&dl=1",
+      "Social Videos": "https://www.dropbox.com/scl/fo/y44fevxuqaoqan9bef4by/AI1_36QvGEeCOc54QnAzC8c?rlkey=8c0wlcld4ewmto6nn2zduzqtr&dl=1",
+      "TV Screen Videos": "https://www.dropbox.com/scl/fo/8rl000ytt7jxinh8zbj1u/AByQMtGRjwNFGQ_ntRhhK40?rlkey=5grh12c8l4kryrv3pa4g6r67n&dl=1",
+      "Packaging": "https://www.dropbox.com/scl/fo/o8o1mmk7nr029a66z3sad/AE0gg5cFF3rJFkpNvXnHH70?rlkey=rt245v76qjnezw5ev0i8aex9t&dl=1",
+      "Documents": "https://www.dropbox.com/scl/fo/o3atp3bw7zziy848vrxz3/ANZwAjN6-94KYmjH0ZDfO2Y?rlkey=4y1jny03913bgymoawt6obgoa&dl=1"
+    }
   },
   "510 Original — Retro": {
     "folders": {
@@ -2800,7 +2819,16 @@ window.PORTAL_SYNCED = {
         }
       ]
     },
-    "dropbox": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=1"
+    "dropbox": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=1",
+    "folderLinks": {
+      "Product Photos": "https://www.dropbox.com/scl/fo/1sykqh6de7cbvjz67fsj2/ADWlIzzEFu9Q4-gqZ2uESps?rlkey=pmj35z0gdj8ifqcc6a88wxdlt&dl=1",
+      "Lifestyle Photos": "https://www.dropbox.com/scl/fo/4d4adxz02dtzpdk0p5el1/AOfe5yKsKnz-7BJD_p11Q_0?rlkey=csdmhhhpe27ws6u6h4npraxne&dl=1",
+      "Social Videos": "https://www.dropbox.com/scl/fo/mqsivgsoyz1q3ahtn07nf/ADrHIGBECk2fA9Ad06ofpeY?rlkey=xpd7gg4jusyzhc3zdeebd5u5q&dl=1",
+      "TV Screen Videos": "https://www.dropbox.com/scl/fo/5o4mpm3mzotv7jr17wsme/AAyqFrrIhUhhR8_7mmMsUdY?rlkey=8q11mrt80gtv1629sjdc8tlni&dl=1",
+      "Packaging": "https://www.dropbox.com/scl/fo/3x0ivw8f46sg5rea2ur1n/AM0zF2GfFoWmVlMXaOEIQN0?rlkey=wb6x26ol6bpez32hzmralzxl0&dl=1",
+      "Documents": "https://www.dropbox.com/scl/fo/9j1vn1j2rhpoaezdppsq0/AAwzQ8Z0aXMg1RrfvqWKdLM?rlkey=ia8knrnxm5osphfyh2hddw3bk&dl=1",
+      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/dnm010ew08nacj5o8rtdv/AMHk1ucb2uw651uWoO5l468?rlkey=l6hw918fkxsfgojj2dy1k6l5j&dl=1"
+    }
   },
   "Dash+": {
     "folders": {
@@ -3637,7 +3665,17 @@ window.PORTAL_SYNCED = {
         }
       ]
     },
-    "dropbox": "https://www.dropbox.com/scl/fo/5wps4y20eqmpbzj0j4ijq/h?rlkey=5bna5as30dz79lmqumcml47x7&st=xt8upom3&dl=1"
+    "dropbox": "https://www.dropbox.com/scl/fo/5wps4y20eqmpbzj0j4ijq/h?rlkey=5bna5as30dz79lmqumcml47x7&st=xt8upom3&dl=1",
+    "folderLinks": {
+      "Product Photos": "https://www.dropbox.com/scl/fo/w9dioscm6kz1lqj0ga90v/AP0_Wh0MusZph0A1DBXFQUI?rlkey=bpx11qug026cne2kb2t5kdaay&dl=1",
+      "Lifestyle Photos": "https://www.dropbox.com/scl/fo/7xdiebrco898l2qck3zq5/AE2gclyPWqfuUeQZ5Kk9ZqA?rlkey=ssqu7n9e1jkhctaha3b9a2o7d&dl=1",
+      "Logos": "https://www.dropbox.com/scl/fo/b1iam72yinso0mz7gfuaz/AHnLnChdjGzPpdQrfCynrpM?rlkey=ay6ublpw8wz6xwmdplgril4qg&dl=1",
+      "Social Videos": "https://www.dropbox.com/scl/fo/7xzeyle0pehqu8iim5jq6/APtVDiYNppo07jjZD61757g?rlkey=b0alusrz7c0m0lqsbwi3w7das&dl=1",
+      "TV Screen Videos": "https://www.dropbox.com/scl/fo/mzcgj8v9t8ybaj3xsmkpi/AC9TgAXxJlouCPt2QQ85qng?rlkey=4d63q6wee409artdignb2mnit&dl=1",
+      "Packaging": "https://www.dropbox.com/scl/fo/e1ci8uad1eqkrtzlz24ib/AFfmiwFlTHe6KMykuwC2IbM?rlkey=ckhxvz6yp5vw5p5g05q1jeg09&dl=1",
+      "Documents": "https://www.dropbox.com/scl/fo/e8f1pwhsmb4kglz4ikie3/ACinlb4iLIQ2cVHKqofKuZw?rlkey=g7ke7xpuzz3apbgdkfzts4xnw&dl=1",
+      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/p4ipqa1un5pexeb80tbdk/AOJcGN9Du8Sw_fK3ODVMYX8?rlkey=bey7o5p4faalwnfh2z3k1l4ki&dl=1"
+    }
   },
   "Hydout": {
     "folders": {
@@ -4570,7 +4608,17 @@ window.PORTAL_SYNCED = {
         }
       ]
     },
-    "dropbox": "https://www.dropbox.com/scl/fo/n9ddtzpx0x057qsdmfwoy/AHXmj-4gwaME5kQLZSmcBgw?rlkey=jy88uxm10tctjt6759gw015r4&st=frr8irpc&dl=1"
+    "dropbox": "https://www.dropbox.com/scl/fo/n9ddtzpx0x057qsdmfwoy/AHXmj-4gwaME5kQLZSmcBgw?rlkey=jy88uxm10tctjt6759gw015r4&st=frr8irpc&dl=1",
+    "folderLinks": {
+      "Product Photos": "https://www.dropbox.com/scl/fo/etrbr3toszgmh1vjppt8y/ACwQGQJ7APuiPCTeO3-4QG4?rlkey=5un7s5nljql2tiw2oj3re41qu&dl=1",
+      "Lifestyle Photos": "https://www.dropbox.com/scl/fo/tf46cdz5m3w4oi9y015vq/APV45qUYA9wkjOqc6gPeB58?rlkey=o6l7pqqqw0t7xt4kk2ooogqwm&dl=1",
+      "Logos": "https://www.dropbox.com/scl/fo/i35118i2s2oshaj3tolsk/AD228t1O1XND6FwmT5zJhIQ?rlkey=14lp86eu1lqaf3mf3gbiu15tn&dl=1",
+      "Social Videos": "https://www.dropbox.com/scl/fo/n4mvacwmlest7byq9n4pd/AFqUgl4MX8ytEUpDMXxspaA?rlkey=6dc1s6jy7xzcyreoodan9t0o2&dl=1",
+      "TV Screen Videos": "https://www.dropbox.com/scl/fo/hue93zwqoto5xiyrp6v8v/ABK8x96z_8l3CazUaHRL0dg?rlkey=ogd8zhxh8dlifbtw6utwgqhqb&dl=1",
+      "Packaging": "https://www.dropbox.com/scl/fo/q71t1cdi882vijx2y6yl2/AN_q2Z7gviv3FZXBGPr2fWg?rlkey=8gecjmlgv76d33mnyfdaemk6f&dl=1",
+      "Documents": "https://www.dropbox.com/scl/fo/aihjn42h0sicrlxfmgort/ACUA7vF5ICwgxGjJzM8C1bQ?rlkey=ric2rgozyhss6ybrkcr0y679b&dl=1",
+      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/exoxjg1o9c9ga7a00n2bs/APP-rGanWwPWI86XLGoPe5I?rlkey=zwz3xlmysbcawxiz2bcfvnvdi&dl=1"
+    }
   },
   "Hydout — Retro": {
     "folders": {
@@ -5975,7 +6023,17 @@ window.PORTAL_SYNCED = {
         }
       ]
     },
-    "dropbox": "https://www.dropbox.com/scl/fo/fnsys0ijwhl2059nu45u5/AEE18ADvSJZ1RYdf0EDDk0Q?rlkey=2cz8o729ku9u1c9unhewv55wr&st=5lrpymts&dl=1"
+    "dropbox": "https://www.dropbox.com/scl/fo/fnsys0ijwhl2059nu45u5/AEE18ADvSJZ1RYdf0EDDk0Q?rlkey=2cz8o729ku9u1c9unhewv55wr&st=5lrpymts&dl=1",
+    "folderLinks": {
+      "Product Photos": "https://www.dropbox.com/scl/fo/lb3zzammjjsehbbq4db8c/AJm4YccLPQr0hTLYEiN6pRs?rlkey=ufilalnt8t84aese7jepmc3z3&dl=1",
+      "Lifestyle Photos": "https://www.dropbox.com/scl/fo/owy116e59g8l78nsn1uxk/AL2ihDvoFZMB84cC7xOainQ?rlkey=u7wrklonxqwwth56m1vmii3fg&dl=1",
+      "Logos": "https://www.dropbox.com/scl/fo/its04wgor4tff9bttwudp/AHc9Z5ZGEUgwMrlKSTRh1sE?rlkey=qymo4v7q0169wmcdpias4w09y&dl=1",
+      "Social Videos": "https://www.dropbox.com/scl/fo/5vb7o3nu5ivsfvm2grpo1/AAYQkXHmLD87tffhHfpVz3A?rlkey=icgtfkxf8nqbvhajml6y86hls&dl=1",
+      "TV Screen Videos": "https://www.dropbox.com/scl/fo/93qcrpktdv64is5nj5i28/AB2mcbXJTNjGAMHLG28W5XA?rlkey=2a4mlyz12aosrk89nykj6m5nu&dl=1",
+      "Packaging": "https://www.dropbox.com/scl/fo/25wwnw5dw2nqc450h69f3/ADt6mYq_iObLo13Balr7b-8?rlkey=nkvworwgmk0kgb5k1wyyn9eup&dl=1",
+      "Documents": "https://www.dropbox.com/scl/fo/w4jlorkg87a7b4ctpyuc4/AIjD0tyD39HVigyzoElkCvY?rlkey=1pwev1fqvz1d25lcjyxycjat6&dl=1",
+      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/js0iplvvoapl4ciauih9l/AIhGt4o5N4BAJhR0ppoiTSs?rlkey=wotyti3ickyxnxitk0al1kez5&dl=1"
+    }
   },
   "Melt Hot Knife": {
     "folders": {
@@ -6668,7 +6726,17 @@ window.PORTAL_SYNCED = {
         }
       ]
     },
-    "dropbox": "https://www.dropbox.com/scl/fo/qvw93szg11i4ka3d9yuaq/AC8I-n2z09RvRGiA__rNYEs?rlkey=a0yhcy2ok0j1l4dnmk6ktwcoy&st=zx3371he&dl=1"
+    "dropbox": "https://www.dropbox.com/scl/fo/qvw93szg11i4ka3d9yuaq/AC8I-n2z09RvRGiA__rNYEs?rlkey=a0yhcy2ok0j1l4dnmk6ktwcoy&st=zx3371he&dl=1",
+    "folderLinks": {
+      "Product Photos": "https://www.dropbox.com/scl/fo/dhqlfzny1f34mba7xzepi/AIRQLum24mM9BALBLi6j_4Q?rlkey=spripvhy6giyoq4q0tx3ky1oa&dl=1",
+      "Lifestyle Photos": "https://www.dropbox.com/scl/fo/hrhfoi4gvezkd44ylk5dh/AGPZihYz4GgJTRxl8t08n3Y?rlkey=xsw31wvennzo9fjmz9zmenva4&dl=1",
+      "Logos": "https://www.dropbox.com/scl/fo/l5ygbnxedcjc6mykhki8q/AHRp2XqM8PRkzpVoosDNN4I?rlkey=ujy5o0079zpedc54ebbs4k9ut&dl=1",
+      "Social Videos": "https://www.dropbox.com/scl/fo/tviosdiuive9487wr8gne/AJtpRu9sY3WcR28BXLl2p4g?rlkey=4rs3m9a9yokf6jk9pvfmpve5f&dl=1",
+      "TV Screen Videos": "https://www.dropbox.com/scl/fo/7wex0bihhedbhkbxy096b/AGugHcwteO4kMvxD4IUiuYo?rlkey=my992ahs1dchliw31yfd6pb2a&dl=1",
+      "Packaging": "https://www.dropbox.com/scl/fo/3dixucbe75rggzfb67e23/AGg3BDqBDYQbQUf5JJDxbXk?rlkey=z3x745eumkrkhrcdk2jyl7xdl&dl=1",
+      "Documents": "https://www.dropbox.com/scl/fo/nuubnhqd8d0eq0ne2vdrd/AAf562CAZcnMVr72B6NvyuE?rlkey=2wxclel98k6c3cxwuoqeiz8li&dl=1",
+      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/ba61fxdq8janqa07o4q2y/AC3law8SSuhKq58KyUsaeY4?rlkey=ptqh04v7y6osfcupkcahy63eu&dl=1"
+    }
   },
   "Connect": {
     "folders": {
@@ -7889,7 +7957,25 @@ window.PORTAL_SYNCED = {
         }
       ]
     },
-    "dropbox": "https://www.dropbox.com/scl/fo/108b34jrd9bxryx34qil6/AHQA1sD2FzvZM4XjSUvv6E8?rlkey=rjxv6cytizy3d4ffk7i5f26dq&dl=1"
+    "dropbox": "https://www.dropbox.com/scl/fo/108b34jrd9bxryx34qil6/AHQA1sD2FzvZM4XjSUvv6E8?rlkey=rjxv6cytizy3d4ffk7i5f26dq&dl=1",
+    "folderLinks": {
+      "Logo": "https://www.dropbox.com/scl/fo/108b34jrd9bxryx34qil6/AHQA1sD2FzvZM4XjSUvv6E8?rlkey=rjxv6cytizy3d4ffk7i5f26dq&dl=1",
+      "Black / Videos": "https://www.dropbox.com/scl/fo/108b34jrd9bxryx34qil6/AHQA1sD2FzvZM4XjSUvv6E8?rlkey=rjxv6cytizy3d4ffk7i5f26dq&dl=1",
+      "Black / Renders": "https://www.dropbox.com/scl/fo/108b34jrd9bxryx34qil6/AHQA1sD2FzvZM4XjSUvv6E8?rlkey=rjxv6cytizy3d4ffk7i5f26dq&dl=1",
+      "Black / Lifestyle Photos": "https://www.dropbox.com/scl/fo/108b34jrd9bxryx34qil6/AHQA1sD2FzvZM4XjSUvv6E8?rlkey=rjxv6cytizy3d4ffk7i5f26dq&dl=1",
+      "Cookies / Lifestyle Photos": "https://www.dropbox.com/scl/fo/108b34jrd9bxryx34qil6/AHQA1sD2FzvZM4XjSUvv6E8?rlkey=rjxv6cytizy3d4ffk7i5f26dq&dl=1",
+      "Cookies / Renders": "https://www.dropbox.com/scl/fo/108b34jrd9bxryx34qil6/AHQA1sD2FzvZM4XjSUvv6E8?rlkey=rjxv6cytizy3d4ffk7i5f26dq&dl=1",
+      "Cookies / Product Photos": "https://www.dropbox.com/scl/fo/108b34jrd9bxryx34qil6/AHQA1sD2FzvZM4XjSUvv6E8?rlkey=rjxv6cytizy3d4ffk7i5f26dq&dl=1",
+      "Dr. Greenthumb's / Videos": "https://www.dropbox.com/scl/fo/108b34jrd9bxryx34qil6/AHQA1sD2FzvZM4XjSUvv6E8?rlkey=rjxv6cytizy3d4ffk7i5f26dq&dl=1",
+      "Dr. Greenthumb's / Lifestyle Photos": "https://www.dropbox.com/scl/fo/108b34jrd9bxryx34qil6/AHQA1sD2FzvZM4XjSUvv6E8?rlkey=rjxv6cytizy3d4ffk7i5f26dq&dl=1",
+      "Dr. Greenthumb's / Renders": "https://www.dropbox.com/scl/fo/108b34jrd9bxryx34qil6/AHQA1sD2FzvZM4XjSUvv6E8?rlkey=rjxv6cytizy3d4ffk7i5f26dq&dl=1",
+      "Dr. Greenthumb's / Product Photos": "https://www.dropbox.com/scl/fo/108b34jrd9bxryx34qil6/AHQA1sD2FzvZM4XjSUvv6E8?rlkey=rjxv6cytizy3d4ffk7i5f26dq&dl=1",
+      "Lemonnade / Renders": "https://www.dropbox.com/scl/fo/108b34jrd9bxryx34qil6/AHQA1sD2FzvZM4XjSUvv6E8?rlkey=rjxv6cytizy3d4ffk7i5f26dq&dl=1",
+      "Lemonnade / Lifestyle Photos": "https://www.dropbox.com/scl/fo/108b34jrd9bxryx34qil6/AHQA1sD2FzvZM4XjSUvv6E8?rlkey=rjxv6cytizy3d4ffk7i5f26dq&dl=1",
+      "Lemonnade / 1-Sheet": "https://www.dropbox.com/scl/fo/108b34jrd9bxryx34qil6/AHQA1sD2FzvZM4XjSUvv6E8?rlkey=rjxv6cytizy3d4ffk7i5f26dq&dl=1",
+      "Lemonnade / Video": "https://www.dropbox.com/scl/fo/108b34jrd9bxryx34qil6/AHQA1sD2FzvZM4XjSUvv6E8?rlkey=rjxv6cytizy3d4ffk7i5f26dq&dl=1",
+      "Lemonnade / Product Photos": "https://www.dropbox.com/scl/fo/108b34jrd9bxryx34qil6/AHQA1sD2FzvZM4XjSUvv6E8?rlkey=rjxv6cytizy3d4ffk7i5f26dq&dl=1"
+    }
   },
   "Dash": {
     "folders": {
@@ -11182,7 +11268,29 @@ window.PORTAL_SYNCED = {
         }
       ]
     },
-    "dropbox": "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=1"
+    "dropbox": "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=1",
+    "folderLinks": {
+      "Logos": "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=1",
+      "Black / Lifestyle Photos": "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=1",
+      "Black / Renders": "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=1",
+      "Black / Videos": "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=1",
+      "Black / Product Photos": "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=1",
+      "Cookies / Lifestyle Photos": "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=1",
+      "Cookies / Renders": "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=1",
+      "Dr. Greenthumb's / Renders": "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=1",
+      "Dr. Greenthumb's / Videos": "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=1",
+      "Dr. Greenthumb's / Lifestyle Photos": "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=1",
+      "Lemonnade / Renders": "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=1",
+      "Lemonnade / 1-Sheet": "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=1",
+      "Lemonnade / Lifestyle Photos": "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=1",
+      "Lemonnade / Videos": "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=1",
+      "Grateful Dead / Web Renders": "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=1",
+      "Grateful Dead / Videos": "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=1",
+      "Grateful Dead / Photos": "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=1",
+      "Tyson 2.0 / Photos": "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=1",
+      "Tyson 2.0 / Video": "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=1",
+      "Tyson 2.0 / Renders": "https://www.dropbox.com/scl/fo/o9sllao2v19zj39rge8yt/ALWHLAjR4-DxIJ5TaRfYw4Q?rlkey=z82vipxgfln478zz40p9lwn1s&dl=1"
+    }
   },
   "Elite II": {
     "folders": {
@@ -12995,7 +13103,17 @@ window.PORTAL_SYNCED = {
         }
       ]
     },
-    "dropbox": "https://www.dropbox.com/scl/fo/4i3r2lru6bt3xnnx0nhh2/APkJPwAV7QjeMGe6Rs-WSZg?rlkey=bn0ejx8ho4t0m8ea7jztlx7ni&dl=1"
+    "dropbox": "https://www.dropbox.com/scl/fo/4i3r2lru6bt3xnnx0nhh2/APkJPwAV7QjeMGe6Rs-WSZg?rlkey=bn0ejx8ho4t0m8ea7jztlx7ni&dl=1",
+    "folderLinks": {
+      "Video / Social Videos": "https://www.dropbox.com/scl/fo/4i3r2lru6bt3xnnx0nhh2/APkJPwAV7QjeMGe6Rs-WSZg?rlkey=bn0ejx8ho4t0m8ea7jztlx7ni&dl=1",
+      "Video / TV Screen": "https://www.dropbox.com/scl/fo/4i3r2lru6bt3xnnx0nhh2/APkJPwAV7QjeMGe6Rs-WSZg?rlkey=bn0ejx8ho4t0m8ea7jztlx7ni&dl=1",
+      "Branding": "https://www.dropbox.com/scl/fo/4i3r2lru6bt3xnnx0nhh2/APkJPwAV7QjeMGe6Rs-WSZg?rlkey=bn0ejx8ho4t0m8ea7jztlx7ni&dl=1",
+      "Media / Photos": "https://www.dropbox.com/scl/fo/4i3r2lru6bt3xnnx0nhh2/APkJPwAV7QjeMGe6Rs-WSZg?rlkey=bn0ejx8ho4t0m8ea7jztlx7ni&dl=1",
+      "Media / Video": "https://www.dropbox.com/scl/fo/4i3r2lru6bt3xnnx0nhh2/APkJPwAV7QjeMGe6Rs-WSZg?rlkey=bn0ejx8ho4t0m8ea7jztlx7ni&dl=1",
+      "Renders": "https://www.dropbox.com/scl/fo/4i3r2lru6bt3xnnx0nhh2/APkJPwAV7QjeMGe6Rs-WSZg?rlkey=bn0ejx8ho4t0m8ea7jztlx7ni&dl=1",
+      "Renders / Web": "https://www.dropbox.com/scl/fo/4i3r2lru6bt3xnnx0nhh2/APkJPwAV7QjeMGe6Rs-WSZg?rlkey=bn0ejx8ho4t0m8ea7jztlx7ni&dl=1",
+      "Sales Sheet": "https://www.dropbox.com/scl/fo/4i3r2lru6bt3xnnx0nhh2/APkJPwAV7QjeMGe6Rs-WSZg?rlkey=bn0ejx8ho4t0m8ea7jztlx7ni&dl=1"
+    }
   },
   "Hyer": {
     "folders": {
@@ -18254,7 +18372,16 @@ window.PORTAL_SYNCED = {
         }
       ]
     },
-    "dropbox": "https://www.dropbox.com/scl/fo/a6lmzsjiawgjeiwklvho0/h?rlkey=vhqm2y94vgv2kvakwvbl39fvq&dl=1"
+    "dropbox": "https://www.dropbox.com/scl/fo/a6lmzsjiawgjeiwklvho0/h?rlkey=vhqm2y94vgv2kvakwvbl39fvq&dl=1",
+    "folderLinks": {
+      "Tyson 2.0 / Web Renders": "https://www.dropbox.com/scl/fo/a6lmzsjiawgjeiwklvho0/h?rlkey=vhqm2y94vgv2kvakwvbl39fvq&dl=1",
+      "Tyson 2.0 / Photos": "https://www.dropbox.com/scl/fo/a6lmzsjiawgjeiwklvho0/h?rlkey=vhqm2y94vgv2kvakwvbl39fvq&dl=1",
+      "Tyson 2.0 / Video": "https://www.dropbox.com/scl/fo/a6lmzsjiawgjeiwklvho0/h?rlkey=vhqm2y94vgv2kvakwvbl39fvq&dl=1",
+      "Black / Renders": "https://www.dropbox.com/scl/fo/a6lmzsjiawgjeiwklvho0/h?rlkey=vhqm2y94vgv2kvakwvbl39fvq&dl=1",
+      "Black / Video": "https://www.dropbox.com/scl/fo/a6lmzsjiawgjeiwklvho0/h?rlkey=vhqm2y94vgv2kvakwvbl39fvq&dl=1",
+      "Black / Logos": "https://www.dropbox.com/scl/fo/a6lmzsjiawgjeiwklvho0/h?rlkey=vhqm2y94vgv2kvakwvbl39fvq&dl=1",
+      "Black / Photos": "https://www.dropbox.com/scl/fo/a6lmzsjiawgjeiwklvho0/h?rlkey=vhqm2y94vgv2kvakwvbl39fvq&dl=1"
+    }
   },
   "Micro+": {
     "folders": {
@@ -21237,7 +21364,22 @@ window.PORTAL_SYNCED = {
         }
       ]
     },
-    "dropbox": "https://www.dropbox.com/scl/fo/2428y3p4kiyvgm9bj55x8/AECLTfW3qJHVAAAdzDuI8p8?rlkey=y343whyn7o9kj7p8t5mfwo7sx&dl=1"
+    "dropbox": "https://www.dropbox.com/scl/fo/2428y3p4kiyvgm9bj55x8/AECLTfW3qJHVAAAdzDuI8p8?rlkey=y343whyn7o9kj7p8t5mfwo7sx&dl=1",
+    "folderLinks": {
+      "Logos": "https://www.dropbox.com/scl/fo/2428y3p4kiyvgm9bj55x8/AECLTfW3qJHVAAAdzDuI8p8?rlkey=y343whyn7o9kj7p8t5mfwo7sx&dl=1",
+      "Black / Photos": "https://www.dropbox.com/scl/fo/2428y3p4kiyvgm9bj55x8/AECLTfW3qJHVAAAdzDuI8p8?rlkey=y343whyn7o9kj7p8t5mfwo7sx&dl=1",
+      "Black / Renders": "https://www.dropbox.com/scl/fo/2428y3p4kiyvgm9bj55x8/AECLTfW3qJHVAAAdzDuI8p8?rlkey=y343whyn7o9kj7p8t5mfwo7sx&dl=1",
+      "Black / Videos": "https://www.dropbox.com/scl/fo/2428y3p4kiyvgm9bj55x8/AECLTfW3qJHVAAAdzDuI8p8?rlkey=y343whyn7o9kj7p8t5mfwo7sx&dl=1",
+      "Cookies / Photos": "https://www.dropbox.com/scl/fo/2428y3p4kiyvgm9bj55x8/AECLTfW3qJHVAAAdzDuI8p8?rlkey=y343whyn7o9kj7p8t5mfwo7sx&dl=1",
+      "Cookies / Videos": "https://www.dropbox.com/scl/fo/2428y3p4kiyvgm9bj55x8/AECLTfW3qJHVAAAdzDuI8p8?rlkey=y343whyn7o9kj7p8t5mfwo7sx&dl=1",
+      "Cookies / Renders": "https://www.dropbox.com/scl/fo/2428y3p4kiyvgm9bj55x8/AECLTfW3qJHVAAAdzDuI8p8?rlkey=y343whyn7o9kj7p8t5mfwo7sx&dl=1",
+      "Lemonnade / Photos": "https://www.dropbox.com/scl/fo/2428y3p4kiyvgm9bj55x8/AECLTfW3qJHVAAAdzDuI8p8?rlkey=y343whyn7o9kj7p8t5mfwo7sx&dl=1",
+      "Lemonnade / Video": "https://www.dropbox.com/scl/fo/2428y3p4kiyvgm9bj55x8/AECLTfW3qJHVAAAdzDuI8p8?rlkey=y343whyn7o9kj7p8t5mfwo7sx&dl=1",
+      "Lemonnade / Renders": "https://www.dropbox.com/scl/fo/2428y3p4kiyvgm9bj55x8/AECLTfW3qJHVAAAdzDuI8p8?rlkey=y343whyn7o9kj7p8t5mfwo7sx&dl=1",
+      "Dr. Greenthumb's / Photo": "https://www.dropbox.com/scl/fo/2428y3p4kiyvgm9bj55x8/AECLTfW3qJHVAAAdzDuI8p8?rlkey=y343whyn7o9kj7p8t5mfwo7sx&dl=1",
+      "Dr. Greenthumb's / Video": "https://www.dropbox.com/scl/fo/2428y3p4kiyvgm9bj55x8/AECLTfW3qJHVAAAdzDuI8p8?rlkey=y343whyn7o9kj7p8t5mfwo7sx&dl=1",
+      "Dr. Greenthumb's / Renders": "https://www.dropbox.com/scl/fo/2428y3p4kiyvgm9bj55x8/AECLTfW3qJHVAAAdzDuI8p8?rlkey=y343whyn7o9kj7p8t5mfwo7sx&dl=1"
+    }
   },
   "Roam": {
     "folders": {
@@ -22396,7 +22538,22 @@ window.PORTAL_SYNCED = {
         }
       ]
     },
-    "dropbox": "https://www.dropbox.com/scl/fo/hhscck78va88q3vriroup/AMtRY-P0vRv-cS1tHGklYVo?rlkey=hvjp5u49etu2j078wvl2e91bg&dl=1"
+    "dropbox": "https://www.dropbox.com/scl/fo/hhscck78va88q3vriroup/AMtRY-P0vRv-cS1tHGklYVo?rlkey=hvjp5u49etu2j078wvl2e91bg&dl=1",
+    "folderLinks": {
+      "Logos": "https://www.dropbox.com/scl/fo/hhscck78va88q3vriroup/AMtRY-P0vRv-cS1tHGklYVo?rlkey=hvjp5u49etu2j078wvl2e91bg&dl=1",
+      "Black / Videos": "https://www.dropbox.com/scl/fo/hhscck78va88q3vriroup/AMtRY-P0vRv-cS1tHGklYVo?rlkey=hvjp5u49etu2j078wvl2e91bg&dl=1",
+      "Black / Renders": "https://www.dropbox.com/scl/fo/hhscck78va88q3vriroup/AMtRY-P0vRv-cS1tHGklYVo?rlkey=hvjp5u49etu2j078wvl2e91bg&dl=1",
+      "Black / Lifestyle Photos": "https://www.dropbox.com/scl/fo/hhscck78va88q3vriroup/AMtRY-P0vRv-cS1tHGklYVo?rlkey=hvjp5u49etu2j078wvl2e91bg&dl=1",
+      "Dr. Greenthumb's / Renders": "https://www.dropbox.com/scl/fo/hhscck78va88q3vriroup/AMtRY-P0vRv-cS1tHGklYVo?rlkey=hvjp5u49etu2j078wvl2e91bg&dl=1",
+      "Dr. Greenthumb's / Lifestyle Photos": "https://www.dropbox.com/scl/fo/hhscck78va88q3vriroup/AMtRY-P0vRv-cS1tHGklYVo?rlkey=hvjp5u49etu2j078wvl2e91bg&dl=1",
+      "Dr. Greenthumb's / Videos": "https://www.dropbox.com/scl/fo/hhscck78va88q3vriroup/AMtRY-P0vRv-cS1tHGklYVo?rlkey=hvjp5u49etu2j078wvl2e91bg&dl=1",
+      "Cookies / Lifestyle Photos": "https://www.dropbox.com/scl/fo/hhscck78va88q3vriroup/AMtRY-P0vRv-cS1tHGklYVo?rlkey=hvjp5u49etu2j078wvl2e91bg&dl=1",
+      "Cookies / Renders": "https://www.dropbox.com/scl/fo/hhscck78va88q3vriroup/AMtRY-P0vRv-cS1tHGklYVo?rlkey=hvjp5u49etu2j078wvl2e91bg&dl=1",
+      "Lemonnade / Renders": "https://www.dropbox.com/scl/fo/hhscck78va88q3vriroup/AMtRY-P0vRv-cS1tHGklYVo?rlkey=hvjp5u49etu2j078wvl2e91bg&dl=1",
+      "Lemonnade / Lifestyle Photos": "https://www.dropbox.com/scl/fo/hhscck78va88q3vriroup/AMtRY-P0vRv-cS1tHGklYVo?rlkey=hvjp5u49etu2j078wvl2e91bg&dl=1",
+      "Lemonnade / 1-Sheet": "https://www.dropbox.com/scl/fo/hhscck78va88q3vriroup/AMtRY-P0vRv-cS1tHGklYVo?rlkey=hvjp5u49etu2j078wvl2e91bg&dl=1",
+      "Lemonnade / Video": "https://www.dropbox.com/scl/fo/hhscck78va88q3vriroup/AMtRY-P0vRv-cS1tHGklYVo?rlkey=hvjp5u49etu2j078wvl2e91bg&dl=1"
+    }
   },
   "G Pen Logos": {
     "folders": {
@@ -22547,7 +22704,10 @@ window.PORTAL_SYNCED = {
         }
       ]
     },
-    "dropbox": "https://www.dropbox.com/scl/fo/gjjl69xfmfxqdxg87vym9/h?rlkey=q17pigcl81qcvr7rzcv2xpne3&st=wok0w9o7&dl=1"
+    "dropbox": "https://www.dropbox.com/scl/fo/gjjl69xfmfxqdxg87vym9/h?rlkey=q17pigcl81qcvr7rzcv2xpne3&st=wok0w9o7&dl=1",
+    "folderLinks": {
+      "Logos": "https://www.dropbox.com/scl/fo/gjjl69xfmfxqdxg87vym9/h?rlkey=q17pigcl81qcvr7rzcv2xpne3&st=wok0w9o7&dl=1"
+    }
   },
   "POP Displays": {
     "folders": {
@@ -22658,6 +22818,9 @@ window.PORTAL_SYNCED = {
         }
       ]
     },
-    "dropbox": "https://www.dropbox.com/scl/fo/z31rov1tjw0rm2fy7qssw/ABSnVsz5hLjhid95WhqyajM?rlkey=jkld2f2m07jctowd5x1ao357b&st=lmrqshh4&dl=1"
+    "dropbox": "https://www.dropbox.com/scl/fo/z31rov1tjw0rm2fy7qssw/ABSnVsz5hLjhid95WhqyajM?rlkey=jkld2f2m07jctowd5x1ao357b&st=lmrqshh4&dl=1",
+    "folderLinks": {
+      "POP Displays": "https://www.dropbox.com/scl/fo/z31rov1tjw0rm2fy7qssw/ABSnVsz5hLjhid95WhqyajM?rlkey=jkld2f2m07jctowd5x1ao357b&st=lmrqshh4&dl=1"
+    }
   }
 };
