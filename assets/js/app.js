@@ -1601,18 +1601,21 @@
   function packagingHTML(p) {
     if (p.isLogo) return "";
     var info = p.info || {};
-    // POP-display image: prefer the central POP Displays library (info.popImg),
-    // else fall back to an image in the product's own "Packaging" Dropbox folder.
-    var popImg = info.popImg;
-    if (!popImg) {
-      var pkgFolder = (p.folders && p.folders["Packaging"]) || [];
-      var pkgImg = pkgFolder.filter(function (f) { return f.thumb; })[0];
-      if (pkgImg) popImg = pkgImg.file || pkgImg.thumb;
+    // Fallback packaging image from the product's own "Packaging" Dropbox folder.
+    var pkgImg = null;
+    var pkgFolder = (p.folders && p.folders["Packaging"]) || [];
+    var found = pkgFolder.filter(function (f) { return f.thumb; })[0];
+    if (found) pkgImg = found.file || found.thumb;
+    var cards, note;
+    if (info.pop) {
+      // Ships in a retail-ready POP display.
+      cards = pkgCard("Retail packaging", info.boxImg) + pkgCard("Retail POP display", info.popImg || pkgImg) + pkgCard("Master carton", info.cartonImg);
+      note = "Ships in a retail-ready POP display — see SKU details for inner-pack &amp; master-carton quantities.";
+    } else {
+      // Ships in single retail boxes — no POP display for this product.
+      cards = pkgCard("Retail packaging", info.boxImg || pkgImg) + pkgCard("Master carton", info.cartonImg);
+      note = "Ships in single retail boxes — no POP display. See SKU details for master-carton quantities.";
     }
-    var cards = pkgCard("Retail packaging", info.boxImg) + pkgCard("Retail POP display", popImg) + pkgCard("Master carton", info.cartonImg);
-    var note = info.pop
-      ? "Ships in a retail-ready POP display — see SKU details for inner-pack &amp; master-carton quantities."
-      : "Ships in retail packaging — see SKU details for master-carton quantities.";
     return '<div class="section-head"><h2>Packaging</h2>' + (info.pop ? '<span class="badge">Ships in POP display</span>' : "") + "</div>" +
       (cards ? '<div class="pkg-grid">' + cards + "</div>" : "") +
       '<p class="pkg-note">' + note + "</p>";
