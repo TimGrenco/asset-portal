@@ -12,8 +12,6 @@
   // ---- tiny helpers --------------------------------------------------------
   var $ = function (sel, ctx) { return (ctx || document).querySelector(sel); };
   var $$ = function (sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); };
-  var today = new Date();
-  function daysSince(iso) { return Math.floor((today - new Date(iso)) / 86400000); }
   // "New" badges are now fully manual — set `newBadge: true` (or a colour) on any
   // product in assets.js. (No longer auto-shown by upload date.)
   function fmtDate(iso) {
@@ -57,7 +55,6 @@
     return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (paths[name] || "") + "</svg>";
   }
   var typeIcon = { image: "photo", video: "video", vector: "vector", pdf: "file" };
-  var GPEN_LOGO_D = "M51.0273179,27.4819797 L50.1349371,27.6652401 L50.1349371,31.1308145 L48.8040952,27.9382414 L48.0061834,28.1019793 L48.0061834,33.9363994 L48.8988765,33.7518794 L48.8988765,30.2867774 L50.2381504,33.4768314 L51.0273179,33.3152977 L51.0273179,27.4819797 Z M46.8327378,28.3453819 L44.4496204,28.8351784 L44.4496204,34.668339 L46.8327378,34.1785425 L46.8327378,33.3513515 L45.3409082,33.6572579 L45.3409082,31.9613117 L46.624906,31.6980716 L46.624906,30.8708806 L45.3409082,31.1342781 L45.3409082,29.479109 L46.8327378,29.1725729 L46.8327378,28.3453819 Z M43.2878858,30.8460051 C43.2878858,29.6250561 42.8578567,29.1648583 41.8290033,29.3753559 L40.4024432,29.6691394 L40.4024432,35.5016702 L41.2954486,35.3188821 L41.2954486,33.0408794 L41.8290033,32.9306712 C42.9054815,32.7111995 43.2878858,32.0255473 43.2878858,30.8460051 L43.2878858,30.8460051 Z M60,22.7334248 L60,34.540655 L55.1530372,35.5400856 L55.1530372,59.3464656 L43.7374334,59.3464656 L43.7374334,56.4708198 C39.4582215,58.771179 34.6532623,60 29.7546148,60 C13.347456,60 0,46.5426388 0,30.0003936 C0,13.4573612 13.347456,0 29.7546148,0 C34.8095656,0 39.7417847,1.29746495 44.1078144,3.72566564 L44.1078144,0.589298787 L54.7030212,0.589298787 L54.7030212,21.3345684 L44.1078144,21.3345684 L44.1078144,17.988806 C40.5401649,13.6483363 35.3648247,11.1801457 29.7546148,11.1801457 C19.4620211,11.1801457 11.0887879,19.6225633 11.0887879,30.0003936 C11.0887879,40.377909 19.4620211,48.8193819 29.7546148,48.8193819 C35.1423151,48.8193819 40.1819634,46.5057977 43.7374334,42.4367549 L43.7374334,37.8933447 L31.4172694,40.4328557 L31.4172694,28.624366 L60,22.7334248 Z M42.3961296,31.0377673 C42.3961296,31.5536989 42.324302,32.002561 41.8452426,32.1006463 L41.2954486,32.2132161 L41.2954486,30.3130699 L41.8452426,30.1998704 C42.324302,30.1017851 42.3961296,30.5218356 42.3961296,31.0377673 L42.3961296,31.0377673 Z";   // G Pen brand logo path (kept for reference; UI now uses the PNG brandmark)
   // Official G Pen brandmark, preloaded so the certificate-download canvas can draw it synchronously.
   var CERT_LOGO = new Image(); CERT_LOGO.src = "assets/img/gpen-g-black.png";
 
@@ -100,7 +97,6 @@
     });
     p.total = total;
     p.formats = Object.keys(fmts);
-    p.days = daysSince(p.added);
   });
 
   // ---- state ---------------------------------------------------------------
@@ -212,7 +208,15 @@
     "Logos": "Logos", "Social Videos": "Social Videos", "TV Screen Videos": "TV Screen Videos",
     "Misc": "Documents",
   };
-  function typeLabel(t) { return TYPE_LABELS[t] || t; }
+  function typeLabel(t) { return t ? (TYPE_LABELS[t] || t) : "Assets"; }
+  // Bind click + keyboard (Enter/Space) so role="button" elements are operable
+  // by keyboard, not just mouse.
+  function clickKey(el, fn) {
+    el.addEventListener("click", fn);
+    el.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") { e.preventDefault(); fn(e); }
+    });
+  }
   // Canonical Digital Assets tab order (matches the Dropbox-sync FOLDER_ORDER).
   var FOLDER_TAB_ORDER = ["Product Photos", "E-Comm Render Photos", "Lifestyle Photos", "Web Banners", "Logos", "Social Videos", "TV Screen Videos", "Packaging", "Documents", "Misc"];
   function folderRank(f) { var i = FOLDER_TAB_ORDER.indexOf(f); return i < 0 ? 99 : i; }
@@ -551,7 +555,7 @@
     return (
       '<article class="card" data-id="' + pid(p) + '" tabindex="0" role="button" aria-label="Open ' + p.name + '">' +
         '<div class="card-frame">' +
-          (p.newBadge && !p.isLogo ? '<span class="tag-new' + (p.newBadge ? " tag-new-" + p.newBadge : "") + '">New</span>' : "") +
+          (p.newBadge && !p.isLogo ? '<span class="tag-new' + (typeof p.newBadge === "string" ? " tag-new-" + p.newBadge : "") + '">New</span>' : "") +
           (showBrand ? '<span class="tag-brand">' + BRANDS[p.brand].name + "</span>" : "") +
           coverHTML(p) +
           '<div class="quick">' +
@@ -570,7 +574,7 @@
       '<article class="card row" data-id="' + pid(p) + '" tabindex="0" role="button" aria-label="Open ' + p.name + '">' +
         '<div class="row-thumb">' + coverHTML(p) + "</div>" +
         '<div class="row-main">' +
-          '<div class="row-name">' + p.name + (p.newBadge && !p.isLogo ? ' <span class="row-new' + (p.newBadge ? " row-new-" + p.newBadge : "") + '">New</span>' : "") + (p.label ? ' <span class="row-label">' + p.label + "</span>" : "") + "</div>" +
+          '<div class="row-name">' + p.name + (p.newBadge && !p.isLogo ? ' <span class="row-new' + (typeof p.newBadge === "string" ? " row-new-" + p.newBadge : "") + '">New</span>' : "") + (p.label ? ' <span class="row-label">' + p.label + "</span>" : "") + "</div>" +
           '<div class="row-sub">' + (p.isLogo ? p.total + " logo files" : p.total + " assets" + (p.label ? "" : " · " + p.category)) + "</div>" +
         "</div>" +
         (showBrand ? '<span class="row-brand">' + BRANDS[p.brand].name + "</span>" : "") +
@@ -780,7 +784,7 @@
     box.innerHTML =
       '<div class="logo-card">' +
         '<div class="logo-card-info">' +
-          '<div class="logo-card-name">Retail Marketing Materials</div>' +
+          '<div class="logo-card-name">In-Store Marketing Materials</div>' +
           '<p class="logo-card-note">Retail displays, posters, shelf talkers and other in-store materials for ' + bname +
             " — order what you need for your shop.</p>" +
           '<div class="logo-card-actions">' + orderCta +
@@ -888,7 +892,7 @@
 
     var mats = availableMaterials();
     var head = '<button class="back" id="mat-back">' + icon("arrowLeft") + " Back to library</button>" +
-      '<div class="section-head"><h2>Marketing Materials</h2>' +
+      '<div class="section-head"><h2>In-Store Marketing Materials</h2>' +
         (mats.length ? '<span class="badge">' + mats.length + " available</span>" : "") + "</div>";
 
     if (!mats.length) {
@@ -1398,7 +1402,7 @@
         }
         navTo(p);
       });
-      card.addEventListener("keydown", function (e) { if (e.key === "Enter") navTo(p); });
+      card.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); navTo(p); } });
     });
   }
 
@@ -1608,7 +1612,7 @@
   function inStoreHTML(p) {
     if (p.isLogo) return "";
     var r = inStoreItems(p), items = r.items;
-    var head = '<div class="section-head"><h2>In Store Marketing Materials</h2>' +
+    var head = '<div class="section-head"><h2>In-Store Marketing Materials</h2>' +
       (items.length ? '<span class="badge">' + items.length + " item" + (items.length === 1 ? "" : "s") + "</span>" : "") + "</div>";
     if (!items.length) {
       return head + '<div class="instore-empty">' +
@@ -1871,7 +1875,7 @@
     // Vimeo/YouTube embeds play in an iframe; real MP4s use a <video> element.
     var isEmbed = /player\.vimeo\.com|youtube\.com\/embed/.test(src);
     var media = isEmbed
-      ? '<iframe src="' + src + (src.indexOf("?") === -1 ? "?" : "&") + 'autoplay=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>'
+      ? '<iframe src="' + src + (src.indexOf("?") === -1 ? "?" : "&") + 'autoplay=1" title="' + escapeHTML(title || "Video player") + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>'
       : '<video src="' + src + '" controls autoplay playsinline></video>';
     ov.innerHTML =
       '<button class="vlb-close" aria-label="Close">' + icon("x") + "</button>" +
@@ -1921,12 +1925,12 @@
       return (
         '<div class="gcell' + (on ? " sel" : "") + '" data-key="' + key + '">' +
           '<label class="gselect"><input type="checkbox" class="gcheck"' + (on ? " checked" : "") + ' aria-label="Select ' + fileLabel(file) + '"/></label>' +
-          '<div class="gthumb' + (ext ? " is-video" : "") + '"' + lbAttr + ytAttr + ">" + thumb +
+          '<div class="gthumb' + (ext ? " is-video" : "") + '" role="button" tabindex="0" aria-label="' + (ext ? "Play " : "Enlarge ") + fileLabel(file).replace(/"/g, "") + '"' + lbAttr + ytAttr + ">" + thumb +
             (file.format ? '<span class="gfmt">' + file.format + "</span>" : "") + "</div>" +
           '<div class="gbar"><span class="gn">' + fileLabel(file) + '</span>' +
           '<span class="ga">' +
-            '<span data-copy="' + (file.url || "#") + '" title="Copy link">' + icon("link") + "</span>" +
-            '<span data-dl="' + (file.file || file.url || "#") + '" data-name="' + fileLabel(file) + '"' + (file.file ? ' data-direct="1"' : "") + ' title="' + (ext ? "Watch on YouTube" : "Download") + '">' + icon(ext ? "play" : "download") + "</span>" +
+            '<span role="button" tabindex="0" data-copy="' + (file.url || "#") + '" aria-label="Copy link to ' + fileLabel(file).replace(/"/g, "") + '" title="Copy link">' + icon("link") + "</span>" +
+            '<span role="button" tabindex="0" data-dl="' + (file.file || file.url || "#") + '" data-name="' + fileLabel(file) + '"' + (file.file ? ' data-direct="1"' : "") + ' aria-label="' + (ext ? "Watch " : "Download ") + fileLabel(file).replace(/"/g, "") + '" title="' + (ext ? "Watch on YouTube" : "Download") + '">' + icon(ext ? "play" : "download") + "</span>" +
           "</span></div>" +
         "</div>"
       );
@@ -1934,10 +1938,10 @@
     $$(".gthumb", $("#gallery")).forEach(function (t) {
       var idx = t.getAttribute("data-lbidx");
       if (idx === null) return;
-      t.addEventListener("click", function () { openLightbox(items, +idx); });
+      clickKey(t, function () { openLightbox(items, +idx); });
     });
     $$(".gthumb[data-yt]", $("#gallery")).forEach(function (t) {
-      t.addEventListener("click", function () { downloadOne(t.getAttribute("data-yt")); });
+      clickKey(t, function () { downloadOne(t.getAttribute("data-yt")); });
     });
     // per-asset selection checkboxes (with Dropbox-style shift-click range)
     $$(".gcell", $("#gallery")).forEach(function (cell, idx) {
@@ -1959,13 +1963,13 @@
       });
     });
     $$("[data-dl]", $("#gallery")).forEach(function (b) {
-      b.addEventListener("click", function () {
+      clickKey(b, function () {
         if (b.getAttribute("data-direct")) directDownload(b.getAttribute("data-dl"), b.getAttribute("data-name"));
         else downloadOne(b.getAttribute("data-dl"));
       });
     });
     $$("[data-copy]", $("#gallery")).forEach(function (b) {
-      b.addEventListener("click", function () {
+      clickKey(b, function () {
         var url = b.getAttribute("data-copy");
         if (!url || url === "#") { toast("No link yet"); return; }
         copyText(url, "Link copied");

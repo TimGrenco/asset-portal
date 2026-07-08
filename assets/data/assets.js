@@ -808,16 +808,6 @@ var HYDOUT_RETRO_PHOTOS = [
   window.PORTAL_PRODUCTS.forEach(function (p) { if (LABELS[p.name]) p.label = LABELS[p.name]; });
 })();
 
-/* Web Banners placeholder — show the tab on every product page even before its
-   Dropbox "Web Banners" folder exists. When the synced folder appears (with real
-   banners) it replaces this empty placeholder automatically. */
-(function () {
-  window.PORTAL_PRODUCTS.forEach(function (p) {
-    if (p.isLogo) return;
-    if (!p.folders) p.folders = {};
-    if (!p.folders["Web Banners"]) p.folders["Web Banners"] = [];
-  });
-})();
 
 /* =============================================================================
    PRODUCT TRAINING — self-serve "Product Specialist" certification courses.
@@ -848,7 +838,7 @@ window.PORTAL_TRAINING = {
           "<strong>USB-C</strong> charging with <strong>pass-through charging</strong> — it can be used while plugged in.",
           "<strong>OLED display</strong> shows real-time temperature and battery level.",
           "Precise <strong>adjustable temperature control</strong>.",
-          "Dimensions <strong>97 × 35 × 21 mm</strong>, weight <strong>62 g</strong>.",
+          "Dimensions <strong>97 × 35 × 21 mm</strong>, weight <strong>59.5 g</strong>.",
           "Built-in <strong>pick tool</strong> for loading and cleaning.",
         ],
       },
