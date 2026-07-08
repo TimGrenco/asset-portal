@@ -1669,10 +1669,14 @@
     }
     var rows =
       row("Product Name", info.fullName) +
-      row("Product SKU", info.productSku) +
+      row("Product SKU", info.sku) +
       row("Product UPC", info.upc) +
-      row("Retail POP Display SKU", info.sku) +
-      row("Retail POP Display UPC", info.popUpc) +
+      // Retail POP display SKU/UPC only apply to products that ship in a POP
+      // display; the values themselves are still to be supplied (render as "—").
+      (info.pop === true
+        ? row("Retail POP Display SKU", info.popSku) +
+          row("Retail POP Display UPC", info.popUpc)
+        : "") +
       row("Product Dimensions", info.dimensions) +
       row("Unit Weight", info.unitWeight) +
       row("Ships In Retail POP Display", info.pop === true ? "Yes" : info.pop === false ? "No" : "") +
