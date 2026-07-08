@@ -1612,7 +1612,14 @@
     function pick(wantPop) {
       var pool = imgs.filter(function (f) { return wantPop === /pop/i.test(f.name); });
       pool.sort(function (a, b) {
-        function s(f) { var n = 0; if (/transparent/i.test(f.name)) n += 2; if (!wantPop && /3-?4/i.test(f.name)) n += 2; if (/front/i.test(f.name)) n += 1; return n; }
+        function s(f) {
+          var n = 0, nm = f.name;
+          if (/3-?4/i.test(nm)) n += 3;          // 3/4 hero angle — strongest signal
+          if (/front/i.test(nm)) n += 2;
+          if (/transparent/i.test(nm)) n += 1;
+          if (/\bside\b|-side/i.test(nm)) n -= 2; // side angles are secondary
+          return n;
+        }
         return s(b) - s(a);
       });
       return pool[0];
@@ -1629,14 +1636,14 @@
     if (info.pop) {
       // Ships in a retail-ready POP display. Label the POP card with its pack count.
       var popLabel = (info.innerPack && info.innerPack !== "N/A")
-        ? info.innerPack + "-Pack POP Retail Display" : "Retail POP display";
-      cards = boxCard("Retail packaging", info.boxImg, null, boxFile) +
+        ? info.innerPack + "-Pack Retail POP Display" : "Retail POP display";
+      cards = boxCard("Single Retail Packaging", info.boxImg, null, boxFile) +
         boxCard(popLabel, info.popImg, info.popImgDl, popFile) +
         pkgCard("Master carton", info.cartonImg);
       note = "Ships in a retail-ready POP display — see SKU details for inner-pack &amp; master-carton quantities.";
     } else {
       // Ships in single retail boxes — no POP display for this product.
-      cards = boxCard("Retail packaging", info.boxImg, null, boxFile) + pkgCard("Master carton", info.cartonImg);
+      cards = boxCard("Single Retail Packaging", info.boxImg, null, boxFile) + pkgCard("Master carton", info.cartonImg);
       note = "Ships in single retail boxes — no POP display. See SKU details for master-carton quantities.";
     }
     return '<div class="section-head"><h2>Packaging</h2>' + (info.pop ? '<span class="badge">Ships in POP display</span>' : "") + "</div>" +
