@@ -1663,16 +1663,18 @@
       return '<div class="sku-row"><span class="sku-l">' + label + "</span>" + v + "</div>";
     }
     var rows =
+      row("Product Name", info.fullName) +
+      row("Product SKU", info.productSku) +
+      row("Product UPC", info.upc) +
       row("Retail POP Display SKU", info.sku) +
-      row("Full name", info.fullName) +
-      row("UPC", info.upc) +
-      row("Product dimensions", info.dimensions) +
-      row("Unit weight", info.unitWeight) +
-      row("Ships in retail POP display", info.pop === true ? "Yes" : info.pop === false ? "No" : "") +
-      row("Units per POP display", info.innerPack) +
-      row("Units per master case", info.masterCarton) +
-      row("Case weight", info.caseWeight) +
-      row("Case dimensions", info.caseDimensions) +
+      row("Retail POP Display UPC", info.popUpc) +
+      row("Product Dimensions", info.dimensions) +
+      row("Unit Weight", info.unitWeight) +
+      row("Ships In Retail POP Display", info.pop === true ? "Yes" : info.pop === false ? "No" : "") +
+      row("Units Per POP Display", info.innerPack) +
+      row("Units Per Master Case", info.masterCarton) +
+      row("Case Weight", info.caseWeight) +
+      row("Case Dimensions", info.caseDimensions) +
       row("HTS (Harmonized Tariff Schedule) Code", info.htsCode);
     return '<div class="section-head"><h2>SKU details</h2></div>' +
       '<div class="sku-table">' + rows + "</div>" +
