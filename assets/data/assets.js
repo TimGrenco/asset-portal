@@ -650,18 +650,22 @@ var PRODUCT_DESCRIPTION = {
      boxImg/popImg/cartonImg : packaging image URLs (Dropbox) — placeholder
                       tiles show until these are set */
 var PRODUCT_SKU = {
-  // dimensions = single-unit product size (from gpen.com). unitWeight to be
-  // supplied by ops (scraped store weights are ship weight, not bare unit).
-  "Dash II":              { sku: "GPD-001-APZZ", pop: true, fullName: "DASH II VAPORIZER", upc: "852570004441", dimensions: "97 × 35 × 21 mm", innerPack: "10", masterCarton: "200", caseWeight: "16.07 kg", caseDimensions: "580 × 280 × 245 mm", boxImg: "assets/materials/dash-ii-retail-packaging.png", popImg: "assets/materials/dash-ii-pop-display.png" },
-  "Melt Hot Knife":       { sku: "GHK-001-AOZZ", pop: true, dimensions: "3.94 × 0.5 × 0.25 in" },
-  "510 Original":         { sku: "GSB-001-AOZZ", pop: true, dimensions: "24 × 21.1 × 56.7 mm" },
-  "510 Original — Retro": { sku: "GSB-005-APZZ", pop: true, dimensions: "24 × 21.1 × 56.7 mm" },
-  "Hydout":               { sku: "GHO-001-AOZZ", pop: true, dimensions: "90 × 37.5 × 18.5 mm" },
-  "Hydout — Retro":       { sku: "GHO-006-AOZZ", pop: true, dimensions: "90 × 37.5 × 18.5 mm" },
-  "Dash+":                { sku: "GPD-001-AMZZ", dimensions: "4.3 × 1.6 × 0.8 in" },
-  "Connect":              { sku: "GPC-100-AJZZ" },
+  // Values supplied by ops (SKU worksheet). dimensions/unitWeight = single unit;
+  // innerPack/masterCarton/caseWeight/caseDimensions = retail packaging. Retro
+  // rows use the collection-level POP SKU/UPC (per-colour SKUs live in the sheet).
+  "Dash II":              { sku: "GPD-001-APZZ", pop: true, fullName: "DASH II VAPORIZER", upc: "852570004441", dimensions: "97 × 35 × 21 mm", unitWeight: "59.5 g", innerPack: "10", masterCarton: "200", caseWeight: "16.07 kg", caseDimensions: "580 × 280 × 245 mm", boxImg: "assets/materials/dash-ii-retail-packaging.png", popImg: "assets/materials/dash-ii-pop-display.png" },
+  "Dash+":                { sku: "GPD-001-AMZZ", fullName: "DASH+ VAPORIZER", upc: "811736027489", dimensions: "4.3 × 1.6 × 0.8 in", unitWeight: "276 g", masterCarton: "48", caseWeight: "14.3 kg" },
+  "Melt Hot Knife":       { sku: "GHK-001-AOZZ", pop: true, fullName: "MELT", upc: "811736029711", dimensions: "3.94 × 0.5 × 0.25 in", innerPack: "20", masterCarton: "720" },
+  "Hydout":               { sku: "GHO-001-AOZZ", pop: true, fullName: "HYDOUT", upc: "811736029254", dimensions: "55 × 20 × 105 mm", unitWeight: "50 g", innerPack: "10", masterCarton: "300", caseWeight: "16 kg", caseDimensions: "580 × 380 × 250 mm" },
+  "510 Original":         { sku: "GSB-001-AOZZ", pop: true, fullName: "510 ORIGINAL", upc: "811736029742", dimensions: "24 × 21.1 × 56.7 mm", unitWeight: "30 g", innerPack: "20", masterCarton: "400", caseWeight: "13.4 kg", caseDimensions: "510 × 330 × 310 mm" },
+  "Hydout — Retro":       { sku: "GHO-006-AOZZ", pop: true, fullName: "HYDOUT — RETRO COLLECTION", upc: "00811736029889", dimensions: "55 × 20 × 105 mm", unitWeight: "50 g", innerPack: "10", masterCarton: "300", caseWeight: "16 kg", caseDimensions: "580 × 380 × 250 mm" },
+  "510 Original — Retro": { sku: "GSB-006-APZZ", pop: true, fullName: "510 ORIGINAL — RETRO COLLECTION", upc: "00811736021791", dimensions: "24 × 21.1 × 56.7 mm", unitWeight: "30 g", innerPack: "20", masterCarton: "400", caseWeight: "13.4 kg", caseDimensions: "510 × 330 × 310 mm" },
+  "Connect":              { sku: "GPC-100-AJZZ", fullName: "CONNECT", upc: "811736023986", dimensions: "158 × 117 × 48 mm", unitWeight: "362 g", masterCarton: "50", caseWeight: "19.1 kg", caseDimensions: "625 × 330 × 265 mm" },
+  "Dash":                 { sku: "GPD-003-ANZZ", fullName: "DASH", upc: "811736029025", dimensions: "122 × 78 × 28 mm", unitWeight: "131 g", masterCarton: "80", caseWeight: "12 kg", caseDimensions: "570 × 320 × 246 mm" },
+  "Elite II":             { sku: "GPE-001-AKZZ", fullName: "ELITE II", upc: "811736026154", dimensions: "190 × 90 × 60 mm", unitWeight: "396 g", masterCarton: "30", caseWeight: "13.04 kg", caseDimensions: "400 × 310 × 325 mm" },
+  "Hyer":                 { sku: "GPH-001-ALZZ", fullName: "HYER", upc: "811736026475", dimensions: "165 × 137 × 70 mm", unitWeight: "670 g", masterCarton: "20", caseWeight: "14 kg", caseDimensions: "375 × 375 × 305 mm" },
+  "Micro+":               { sku: "GPM-001-AKZZ", fullName: "MICRO+", upc: "811736025362", dimensions: "177 × 69 × 42 mm", unitWeight: "190 g", masterCarton: "80", caseWeight: "16 kg", caseDimensions: "400 × 350 × 450 mm" },
   "Roam":                 { sku: "GPR-001-AIZZ" },
-  "Hyer":                 { sku: "GPH-001-ALZZ" },
 };
 
 /* "What's In the Box?" contents + components image per product (from gpen.com).
