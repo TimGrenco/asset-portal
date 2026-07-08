@@ -2780,6 +2780,24 @@ window.PORTAL_SYNCED = {
           "thumb": "assets/synced/510-original-retro/82aa7fee72786e396b286a3447738512fdac1b0b4d1a6f5d4cb54e6a6e3a4438.jpg",
           "file": null
         }
+      ],
+      "In Store Marketing Materials": [
+        {
+          "name": "510-Tent",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/9fic5lnqnw3p620mb8r26/510-Tent.jpg?rlkey=3hytxsff9af013wwh7onj5enh&dl=0",
+          "thumb": "assets/synced/510-original-retro/cc90d1b30af7120c129f79f6dda7801a08903c32c32affde2300a37754295225.jpg",
+          "file": null
+        },
+        {
+          "name": "GPEN-Retro-window-cling-mockup",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/rcypogl6dkd313o41zjvp/GPEN-Retro-window-cling-mockup.jpg?rlkey=h93vh4ae0vsiuy3rngmoh00ok&dl=0",
+          "thumb": "assets/synced/510-original-retro/ab5cce214e799303cf98a6e0657c19555f78eeca3b82375fb7114ed801b88639.jpg",
+          "file": null
+        }
       ]
     },
     "dropbox": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=1"
