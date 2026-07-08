@@ -1577,7 +1577,7 @@
       if (copyDesc) copyDesc.addEventListener("click", function () {
         copyText(((p.info && p.info.fullDescription) || []).join("\n\n"), "Description copied");
       });
-      $("#dl-folder").addEventListener("click", function () { downloadFiles(folderFiles(), active); });
+      $("#dl-folder").addEventListener("click", function () { downloadFolder(p, active); });
       $("#sel-all").addEventListener("change", function (e) {
         var on = e.target.checked;
         folderFiles().forEach(function (f) { toggle(f, on); });
@@ -2016,30 +2016,49 @@
   // Dropbox "Download all" instead.
   function downloadFiles(files, label) {
     if (!files || !files.length) { toast("Select at least one asset first"); return; }
-    var dl = files.filter(function (f) { return f && f.file; });
-    var skipped = files.length - dl.length;
-    if (!dl.length) {
-      var u = (files.find(function (f) { return f && f.url; }) || {}).url;
-      if (u) { toast("Opening these in Dropbox — or use “Download all” for the full folder"); downloadOne(u); }
-      else toast("Use “Download all” to get these from Dropbox");
+    var committed = files.filter(function (f) { return f && f.file; });
+    // Same-origin committed files → bundle into a .zip in the browser.
+    if (committed.length) {
+      if (files.length === 1) { directDownload(committed[0].file, fileLabel(committed[0])); return; }
+      var skipped = files.length - committed.length;
+      toast("Preparing " + committed.length + " files as a .zip…");
+      loadJSZip(function (JSZip) {
+        if (!JSZip) { toast("Couldn’t load the zipper — try again"); return; }
+        var zip = new JSZip();
+        Promise.all(committed.map(function (f) {
+          return fetch(f.file).then(function (r) { return r.blob(); }).then(function (b) { zip.file(fileLabel(f), b); });
+        })).then(function () { return zip.generateAsync({ type: "blob" }); })
+          .then(function (blob) {
+            var href = URL.createObjectURL(blob);
+            directDownload(href, String(label || "assets").replace(/[^\w.-]+/g, "_") + ".zip");
+            setTimeout(function () { URL.revokeObjectURL(href); }, 8000);
+            toast("Downloaded " + committed.length + " files" + (skipped ? " · " + skipped + " from Dropbox separately" : ""));
+          })
+          .catch(function () { toast("Couldn’t build the zip"); });
+      });
       return;
     }
-    if (dl.length === 1) { directDownload(dl[0].file, fileLabel(dl[0])); return; }
-    toast("Preparing " + dl.length + " files as a .zip…");
-    loadJSZip(function (JSZip) {
-      if (!JSZip) { toast("Couldn’t load the zipper — try again"); return; }
-      var zip = new JSZip();
-      Promise.all(dl.map(function (f) {
-        return fetch(f.file).then(function (r) { return r.blob(); }).then(function (b) { zip.file(fileLabel(f), b); });
-      })).then(function () { return zip.generateAsync({ type: "blob" }); })
-        .then(function (blob) {
-          var href = URL.createObjectURL(blob);
-          directDownload(href, String(label || "assets").replace(/[^\w.-]+/g, "_") + ".zip");
-          setTimeout(function () { URL.revokeObjectURL(href); }, 8000);
-          toast("Downloaded " + dl.length + " files" + (skipped ? " · " + skipped + " too large (use Download all)" : ""));
-        })
-        .catch(function () { toast("Couldn’t build the zip"); });
+    // Dropbox-hosted files: browsers can't zip cross-origin content, so pull each
+    // one straight from Dropbox. A hidden iframe per file dodges the popup blocker.
+    var links = files.map(function (f) { return f && f.url ? dropboxZipUrl(f.url) : null; }).filter(Boolean);
+    if (!links.length) { toast("Use “Download all” to get these from Dropbox"); return; }
+    if (links.length === 1) { downloadOne(files[0].url); return; }
+    toast("Downloading " + links.length + " files from Dropbox…");
+    links.forEach(function (u, i) {
+      setTimeout(function () {
+        var f = document.createElement("iframe");
+        f.style.display = "none"; f.src = u;
+        document.body.appendChild(f);
+        setTimeout(function () { try { f.remove(); } catch (e) {} }, 90000);
+      }, i * 800);
     });
+  }
+  // A whole category folder: prefer the folder's Dropbox share link (one .zip);
+  // fall back to the product link, then to bundling committed files.
+  function downloadFolder(p, folderName) {
+    var link = (p.folderLinks && p.folderLinks[folderName]) || p.dropbox;
+    if (link) { toast("Opening Dropbox download…"); window.open(dropboxZipUrl(link), "_blank", "noopener"); return; }
+    downloadFiles((p.folders && p.folders[folderName]) || [], folderName);
   }
   // Turn a Dropbox shared-folder link into a direct "download whole folder as
   // .zip" URL (forces dl=1).
