@@ -14,7 +14,8 @@
   var $$ = function (sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); };
   var today = new Date();
   function daysSince(iso) { return Math.floor((today - new Date(iso)) / 86400000); }
-  function isNew(p) { return daysSince(p.added) <= CFG.newWindowDays; }
+  // "New" badges are now fully manual — set `newBadge: true` (or a colour) on any
+  // product in assets.js. (No longer auto-shown by upload date.)
   function fmtDate(iso) {
     // Parse as local midnight so an ISO date doesn't shift a day in US timezones.
     return new Date(iso + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
@@ -533,7 +534,7 @@
     return (
       '<article class="card" data-id="' + pid(p) + '" tabindex="0" role="button" aria-label="Open ' + p.name + '">' +
         '<div class="card-frame">' +
-          ((isNew(p) || p.newBadge) && !p.isLogo ? '<span class="tag-new' + (p.newBadge ? " tag-new-" + p.newBadge : "") + '">New</span>' : "") +
+          (p.newBadge && !p.isLogo ? '<span class="tag-new' + (p.newBadge ? " tag-new-" + p.newBadge : "") + '">New</span>' : "") +
           (showBrand ? '<span class="tag-brand">' + BRANDS[p.brand].name + "</span>" : "") +
           coverHTML(p) +
           '<div class="quick">' +
@@ -552,7 +553,7 @@
       '<article class="card row" data-id="' + pid(p) + '" tabindex="0" role="button" aria-label="Open ' + p.name + '">' +
         '<div class="row-thumb">' + coverHTML(p) + "</div>" +
         '<div class="row-main">' +
-          '<div class="row-name">' + p.name + ((isNew(p) || p.newBadge) && !p.isLogo ? ' <span class="row-new' + (p.newBadge ? " row-new-" + p.newBadge : "") + '">New</span>' : "") + (p.label ? ' <span class="row-label">' + p.label + "</span>" : "") + "</div>" +
+          '<div class="row-name">' + p.name + (p.newBadge && !p.isLogo ? ' <span class="row-new' + (p.newBadge ? " row-new-" + p.newBadge : "") + '">New</span>' : "") + (p.label ? ' <span class="row-label">' + p.label + "</span>" : "") + "</div>" +
           '<div class="row-sub">' + (p.isLogo ? p.total + " logo files" : p.total + " assets" + (p.label ? "" : " · " + p.category)) + "</div>" +
         "</div>" +
         (showBrand ? '<span class="row-brand">' + BRANDS[p.brand].name + "</span>" : "") +
