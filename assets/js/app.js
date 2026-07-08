@@ -1708,12 +1708,14 @@
       var v = val ? '<span class="sku-v">' + val + "</span>" : (missing++, '<span class="sku-v sku-tbd">—</span>');
       return '<div class="sku-row"><span class="sku-l">' + label + "</span>" + v + "</div>";
     }
+    // Multi-colour collections list per-colour SKU/UPC in the Colorways section,
+    // so the collection-level Product SKU/UPC rows are omitted here to avoid
+    // duplicating the POP-display codes.
+    var multiColor = !!(window.PORTAL_COLORWAYS && window.PORTAL_COLORWAYS[p.name]);
     var rows =
       row("Product Name", info.fullName) +
-      row("Product SKU", info.sku) +
-      row("Product UPC", info.upc) +
-      // Retail POP display SKU/UPC only apply to products that ship in a POP
-      // display; the values themselves are still to be supplied (render as "—").
+      (multiColor ? "" : row("Product SKU", info.sku) + row("Product UPC", info.upc)) +
+      // Retail POP display SKU/UPC only apply to products that ship in a POP display.
       (info.pop === true
         ? row("Retail POP Display SKU", info.popSku) +
           row("Retail POP Display UPC", info.popUpc)
