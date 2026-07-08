@@ -1330,15 +1330,24 @@
     // In-Store Marketing gets its own section below the gallery — keep it out of
     // the Digital Assets folder tabs. Tabs follow the canonical folder order.
     var folderNames = Object.keys(p.folders).filter(function (f) { return f !== "In-Store Marketing"; });
-    folderNames.sort(function (a, b) { return folderRank(a) - folderRank(b); });
+    // Canonical folders keep their fixed order (Product Photos first, etc.). Folders
+    // outside that list (e.g. legacy products' colorway folders, all equal rank) sort
+    // by size — largest first — so a product opens on its richest folder, not a
+    // 2-file "Logo" tab.
+    folderNames.sort(function (a, b) {
+      return (folderRank(a) - folderRank(b)) || ((p.folders[b] || []).length - (p.folders[a] || []).length);
+    });
     // Default to a folder with content — prefer the one holding the cover image
     // (has a thumb), else the first non-empty folder — so the gallery never opens
     // on an empty placeholder tab (e.g. the blank "Web Banners" on legacy products).
     var withCover = folderNames.filter(function (f) { return (p.folders[f] || []).some(function (x) { return x.thumb; }); });
+    // Prefer a substantial folder (≥ 4 files) so we don't open on a tiny 2-file
+    // "Logos" tab when a rich photo/render folder is available.
+    var rich = withCover.filter(function (f) { return (p.folders[f] || []).length >= 4; });
     var nonEmpty = folderNames.filter(function (f) { return (p.folders[f] || []).length; });
     // Deep-link straight to a folder (e.g. from a file search result).
     var active = (initialFolder && folderNames.indexOf(initialFolder) !== -1)
-      ? initialFolder : (withCover[0] || nonEmpty[0] || folderNames[0]);
+      ? initialFolder : (rich[0] || withCover[0] || nonEmpty[0] || folderNames[0]);
     var selected = {};   // fileKey -> file object; persists while switching folder tabs
 
     function folderFiles() { return p.folders[active] || []; }
