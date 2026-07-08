@@ -1491,6 +1491,7 @@
         // ---- product info below the assets ----
         inStoreHTML(p) +
         packagingHTML(p) +
+        colorwaysHTML(p) +
         skuHTML(p) +
         videoHubHTML(p);
 
@@ -1673,6 +1674,27 @@
     return '<div class="section-head"><h2>Packaging</h2>' + (info.pop ? '<span class="badge">Ships in POP display</span>' : "") + "</div>" +
       (cards ? '<div class="pkg-grid">' + cards + "</div>" : "") +
       '<p class="pkg-note">' + note + "</p>";
+  }
+
+  // Collection Colorways — per-colour SKU/UPC/name for the multi-colour Retro
+  // collections, in a fun, colour-coded card grid.
+  function colorwaysHTML(p) {
+    var ways = (window.PORTAL_COLORWAYS || {})[p.name];
+    if (!ways || !ways.length) return "";
+    var cards = ways.map(function (w) {
+      var code = function (l, v) {
+        return '<div class="cway-code"><span class="cway-cl">' + l + "</span>" +
+          '<span class="cway-cv">' + (v || "—") + "</span></div>";
+      };
+      return '<div class="cway-card" style="--c:' + w.hex + '">' +
+        '<div class="cway-top"><span class="cway-dot"></span><span class="cway-color">' + w.color + "</span></div>" +
+        '<div class="cway-name">' + escapeHTML(w.name) + "</div>" +
+        '<div class="cway-codes">' + code("SKU", w.sku) + code("UPC", w.upc) + "</div>" +
+      "</div>";
+    }).join("");
+    return '<div class="section-head cways-head"><h2>Collection Colorways</h2>' +
+      '<span class="badge">' + ways.length + " colors</span></div>" +
+      '<div class="cways">' + cards + "</div>";
   }
 
   // SKU details: identifiers + the pack/case breakdown for stores & ops.

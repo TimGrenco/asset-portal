@@ -365,6 +365,26 @@ button.pkg-media { width: 100%; border: 0; padding: 0; font: inherit; }
 .pkg-note { font-size: 12px; color: var(--stone); display: flex; align-items: center; gap: 7px; margin-bottom: 26px; }
 .pkg-note svg { width: 14px; height: 14px; stroke: var(--ink); flex: 0 0 auto; }
 
+/* Collection Colorways — fun, colour-coded per-colourway SKU/UPC cards (Retro) */
+.cways { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 4px 0 26px; }
+.cway-card { position: relative; border-radius: 14px; padding: 17px 15px 15px; overflow: hidden;
+  background: linear-gradient(162deg, color-mix(in srgb, var(--c) 13%, #fff) 0%, #fff 62%);
+  border: 1px solid color-mix(in srgb, var(--c) 32%, var(--hair));
+  box-shadow: 0 6px 16px -12px color-mix(in srgb, var(--c) 60%, transparent); }
+.cway-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+  background: linear-gradient(90deg, var(--c), color-mix(in srgb, var(--c) 45%, #fff)); }
+.cway-top { display: flex; align-items: center; gap: 8px; margin-top: 3px; }
+.cway-dot { width: 13px; height: 13px; border-radius: 50%; background: var(--c); flex: 0 0 auto;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 22%, transparent); }
+.cway-color { font-weight: 800; font-size: 15px; text-transform: uppercase; letter-spacing: 0.02em;
+  color: color-mix(in srgb, var(--c) 80%, #171713); }
+.cway-name { margin: 9px 0 13px; font-size: 11px; line-height: 1.35; font-weight: 600; color: var(--stone); }
+.cway-codes { display: flex; flex-direction: column; gap: 8px; }
+.cway-code { display: flex; flex-direction: column; gap: 1px; }
+.cway-cl { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--stone); }
+.cway-cv { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; font-weight: 600; color: var(--ink); }
+@media (max-width: 720px) { .cways { grid-template-columns: repeat(2, 1fr); } }
+
 /* product hub: SKU details */
 .sku-table { border: 1px solid var(--hair); border-radius: var(--radius); overflow: hidden; margin-bottom: 10px; max-width: 460px; }
 .sku-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 11px 16px; border-bottom: 1px solid var(--hair); }

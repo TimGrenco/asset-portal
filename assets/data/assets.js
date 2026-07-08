@@ -660,6 +660,26 @@ window.PORTAL_PRODUCTS.forEach(function (p) {
   });
 })();
 
+/* Per-colourway SKU/UPC for the multi-colour Retro collections. Shown as the
+   "Collection Colorways" section on those product pages. `hex` drives the fun,
+   colour-coded card design. */
+window.PORTAL_COLORWAYS = {
+  "Hydout — Retro": [
+    { color: "Red",    hex: "#E23B34", sku: "GHO-002-AOZZ", upc: "811736029605", name: "Hydout Retro Collection — Red" },
+    { color: "Blue",   hex: "#2F6BE0", sku: "GHO-003-AOZZ", upc: "811736029612", name: "Hydout Retro Collection — Blue" },
+    { color: "Green",  hex: "#57B733", sku: "GHO-004-AOZZ", upc: "811736029629", name: "Hydout Retro Collection — Green" },
+    { color: "Pink",   hex: "#E8479E", sku: "GHO-005-AOZZ", upc: "811736029636", name: "Hydout Retro Collection — Pink" },
+    { color: "Purple", hex: "#8B4AD6", sku: "GHO-006-AOZZ", upc: "811736029643", name: "Hydout Retro Collection — Purple" },
+  ],
+  "510 Original — Retro": [
+    { color: "Red",    hex: "#E23B34", sku: "GSB-001-APZZ", upc: "852570004298", name: "510 Original Retro Collection — Red" },
+    { color: "Blue",   hex: "#2F6BE0", sku: "GSB-002-APZZ", upc: "852570004816", name: "510 Original Retro Collection — Blue" },
+    { color: "Green",  hex: "#57B733", sku: "GSB-003-APZZ", upc: "852570004465", name: "510 Original Retro Collection — Green" },
+    { color: "Pink",   hex: "#E8479E", sku: "GSB-004-APZZ", upc: "852570004779", name: "510 Original Retro Collection — Pink" },
+    { color: "Purple", hex: "#8B4AD6", sku: "GSB-005-APZZ", upc: "852570004878", name: "510 Original Retro Collection — Purple" },
+  ],
+};
+
 /* Central POP-display library (synced from the "POP Displays" Dropbox folder) →
    matched to each product's "Retail POP display" packaging card by filename.
    Add a product + filename pattern here as new POP images arrive. */
