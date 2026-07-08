@@ -3592,19 +3592,11 @@ window.PORTAL_SYNCED = {
       ],
       "Documents": [
         {
-          "name": "20250304_GPen_Dash-Plus_Manual",
+          "name": "G Pen - One Sheet - Dash+",
           "type": "pdf",
           "format": "PDF",
-          "url": "https://www.dropbox.com/scl/fi/1081upz3zslt2g632nrgx/20250304_GPen_Dash-Plus_Manual.pdf?rlkey=ffxlzaz8b5r8o7qj8s87k0j7s&dl=0",
-          "thumb": "assets/synced/dash-plus/30b769a085be94e8e67239ff274b45502faa8d40fce580612ee1a875513b14d5.jpg",
-          "file": null
-        },
-        {
-          "name": "gpen_dash-plus_one-sheet",
-          "type": "pdf",
-          "format": "PDF",
-          "url": "https://www.dropbox.com/scl/fi/4ifejejzi1zsxbgi894so/gpen_dash-plus_one-sheet.pdf?rlkey=hu9fq9idw8gew3ebqvqzjcwxe&dl=0",
-          "thumb": "assets/synced/dash-plus/4fa6b1f5a86802e71d1765b6a51ac34a07536ee1f1a51ab53765c9ad0518150c.jpg",
+          "url": "https://www.dropbox.com/scl/fi/gxztwrql2sysgxt6ugefk/G-Pen-One-Sheet-Dash.pdf?rlkey=xckr69uq3pufaxlyyn3ls2iki&dl=0",
+          "thumb": "assets/synced/dash-plus/6fffa3bc81231f5af95f79ea5b16e1cc36dc6da37d321485cc113ddc3d5a2307.jpg",
           "file": null
         }
       ],
@@ -6230,6 +6222,40 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fi/2aznvaj9lvbirrrisiu36/_STZ8891.jpg?rlkey=n0d6zl2vgd3zxyn3mfsyy8ih6&dl=0",
           "thumb": "assets/synced/melt/20c1f3cf065461079cd3a09e8b7dd851f9e648a6ac3665bee513746a8836abe2.jpg",
+          "file": null
+        }
+      ],
+      "Logos": [
+        {
+          "name": "Melt-Logo-Black",
+          "type": "file",
+          "format": "AI",
+          "url": "https://www.dropbox.com/scl/fi/2n9hlavvrzqudajf9yyfi/Melt-Logo-Black.ai?rlkey=upgapt3htjoz0v1d5hh3y7tln&dl=0",
+          "thumb": "assets/synced/melt/8bac745fe87d508582781b289605581a038846377e8420f1b46fab36458a1fdf.jpg",
+          "file": null
+        },
+        {
+          "name": "Melt-Logo-Black",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/qe8plx6w2vonk76els3ax/Melt-Logo-Black.png?rlkey=bcq5uz9sj9c1a73lf4qiyg7yv&dl=0",
+          "thumb": "assets/synced/melt/f1c5486361d5a04b60e827c7ec2e15076e651d03a889bb83e325f1263ac6b49b.jpg",
+          "file": null
+        },
+        {
+          "name": "Melt-Logo-White",
+          "type": "file",
+          "format": "AI",
+          "url": "https://www.dropbox.com/scl/fi/efaogi9q2db75radi9gz1/Melt-Logo-White.ai?rlkey=jy3ee65ja9enm25uvbpwcuku8&dl=0",
+          "thumb": "assets/synced/melt/6cfc4dbac561971a460164b6a0aa187106837ae72bd5ea2b2dddacf1fb6336ed-lt2.jpg",
+          "file": null
+        },
+        {
+          "name": "Melt-Logo-White",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/4eecu4h0iswpzho1h5cmi/Melt-Logo-White.png?rlkey=bk0w0um1j76e5ejevorseeevg&dl=0",
+          "thumb": "assets/synced/melt/f9503163673306a1694ce5d19e808ce8d75bc2451b941396cf54030cd0475cc5-lt2.jpg",
           "file": null
         }
       ],
