@@ -13,6 +13,10 @@ on:
       - "assets/**"
       - ".nojekyll"
       - "CNAME"
+      - "robots.txt"
+      - "sitemap.xml"
+      - "404.html"
+      - "apple-touch-icon.png"
       - ".github/workflows/deploy-pages.yml"
   workflow_dispatch:
   # Publish after the Dropbox sync commits fresh assets (its commit carries
@@ -52,6 +56,7 @@ jobs:
           cp -R assets _site/assets
           [ -f .nojekyll ] && cp .nojekyll _site/.nojekyll || touch _site/.nojekyll
           [ -f CNAME ] && cp CNAME _site/CNAME || true
+          for f in robots.txt sitemap.xml 404.html apple-touch-icon.png; do [ -f "$f" ] && cp "$f" _site/; done
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
