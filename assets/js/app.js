@@ -900,6 +900,7 @@
     if (!ov) return;
     if (ov.__key) document.removeEventListener("keydown", ov.__key);
     if (ov.__resize) window.removeEventListener("resize", ov.__resize);
+    if (ov.__doc) { try { ov.__doc.destroy(); } catch (e) {} ov.__doc = null; }
     ov.remove();
     document.body.style.overflow = "";
     if (/^#catalog\//.test(location.hash)) history.replaceState(null, "", location.pathname);
@@ -970,10 +971,28 @@
       }).catch(function () { busy = false; toast("Couldn’t render that page"); });
     }
 
+    // If the viewer can't come up (blocked script, bad PDF, slow device), don't sit
+    // on "Loading catalog…" forever — hand the user the PDF instead.
+    var settled = false;
+    var giveUp = setTimeout(function () {
+      if (settled || doc) return;
+      settled = true;
+      toast("Viewer is taking too long — downloading instead");
+      catalogDownload(c); closeCatalog();
+    }, 20000);
+    function bail(msg) {
+      if (settled) return;
+      settled = true; clearTimeout(giveUp);
+      toast(msg); catalogDownload(c); closeCatalog();
+    }
     loadPdfJs(function (lib) {
-      if (!lib) { toast("Viewer unavailable — downloading instead"); catalogDownload(c); closeCatalog(); return; }
-      lib.getDocument(c.file).promise.then(function (d) { doc = d; render(); })
-        .catch(function () { toast("Couldn’t open the catalog"); closeCatalog(); });
+      if (settled) return;
+      if (!lib) return bail("Viewer unavailable — downloading instead");
+      lib.getDocument(c.file).promise.then(function (d) {
+        if (settled) { try { d.destroy(); } catch (e) {} return; }
+        settled = true; clearTimeout(giveUp);
+        doc = d; ov.__doc = d; render();
+      }).catch(function () { bail("Couldn’t open the catalog — downloading instead"); });
     });
   }
 
@@ -2197,15 +2216,16 @@
   }
   // Lazy-load PDF.js (only when a catalog is opened) so the page-by-page viewer
   // renders on every device — an <iframe> PDF is unusable on iOS.
-  var PDFJS_V = "3.11.174";
+  // Self-hosted on purpose: a cross-origin worker URL throws SecurityError, which
+  // silently drops PDF.js onto a main-thread "fake worker" and freezes the UI while
+  // it parses a 10 MB catalog. Same-origin gives us a real, off-main-thread worker.
   function loadPdfJs(cb) {
     if (window.pdfjsLib) return cb(window.pdfjsLib);
     var s = document.createElement("script");
-    s.src = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/" + PDFJS_V + "/pdf.min.js";
+    s.src = "assets/vendor/pdfjs/pdf.min.js";
     s.onload = function () {
       if (!window.pdfjsLib) return cb(null);
-      window.pdfjsLib.GlobalWorkerOptions.workerSrc =
-        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/" + PDFJS_V + "/pdf.worker.min.js";
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc = "assets/vendor/pdfjs/pdf.worker.min.js";
       cb(window.pdfjsLib);
     };
     s.onerror = function () { cb(null); };
