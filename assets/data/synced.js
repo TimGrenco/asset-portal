@@ -1373,6 +1373,16 @@ window.PORTAL_SYNCED = {
           "thumb": "assets/synced/510-original/18d7909a928d38c5d461683c1eb1b3263a3c6a8536425728e81aa1a37777a4bb.jpg",
           "file": null
         }
+      ],
+      "In Store Marketing Materials": [
+        {
+          "name": "510-Tent",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/44d7cwtr72i2n4tb11lo4/510-Tent.jpg?rlkey=g2bdspvvnclvg3jbzo689jxyc&dl=0",
+          "thumb": "assets/synced/510-original/cc90d1b30af7120c129f79f6dda7801a08903c32c32affde2300a37754295225.jpg",
+          "file": null
+        }
       ]
     },
     "dropbox": "https://www.dropbox.com/scl/fo/mtuk2kb73ln5pv0qj68y5/AOnLPmrirA3wsvOdaA0v9rw?rlkey=e8svbeey6dql240rjqzch9qco&st=tvt2s0qf&dl=1",
@@ -1383,7 +1393,8 @@ window.PORTAL_SYNCED = {
       "Social Videos": "https://www.dropbox.com/scl/fo/y44fevxuqaoqan9bef4by/AI1_36QvGEeCOc54QnAzC8c?rlkey=8c0wlcld4ewmto6nn2zduzqtr&dl=1",
       "TV Screen Videos": "https://www.dropbox.com/scl/fo/8rl000ytt7jxinh8zbj1u/AByQMtGRjwNFGQ_ntRhhK40?rlkey=5grh12c8l4kryrv3pa4g6r67n&dl=1",
       "Packaging": "https://www.dropbox.com/scl/fo/o8o1mmk7nr029a66z3sad/AE0gg5cFF3rJFkpNvXnHH70?rlkey=rt245v76qjnezw5ev0i8aex9t&dl=1",
-      "Documents": "https://www.dropbox.com/scl/fo/o3atp3bw7zziy848vrxz3/ANZwAjN6-94KYmjH0ZDfO2Y?rlkey=4y1jny03913bgymoawt6obgoa&dl=1"
+      "Documents": "https://www.dropbox.com/scl/fo/o3atp3bw7zziy848vrxz3/ANZwAjN6-94KYmjH0ZDfO2Y?rlkey=4y1jny03913bgymoawt6obgoa&dl=1",
+      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/x329gmo76oo3jq87y6r9k/AI9oiFVm9G475ETKxDf3b6c?rlkey=9dvno9yxhbzafrmldxdnagh2e&dl=1"
     }
   },
   "510 Original — Retro": {
