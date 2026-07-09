@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page not found — G Pen Brand Assets Portal</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=2" />
+  <!-- Redirect to the portal home; preserve any hash route (e.g. #detail/...). -->
+  <script>
+    (function () {
+      var hash = window.location.hash || "";
+      window.location.replace("/" + hash);
+    })();
+  </script>
+  <style>
+    html, body { margin: 0; height: 100%; }
+    body {
+      background: radial-gradient(ellipse 80% 120% at 50% -20%, #24241f 0%, #141410 42%, #0a0a0a 84%);
+      color: #fff; font-family: Archivo, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 24px; box-sizing: border-box;
+    }
+    img { height: 72px; width: auto; opacity: 0.97; margin-bottom: 26px; }
+    h1 { font-size: 22px; font-weight: 800; letter-spacing: -0.01em; margin: 0 0 8px; }
+    p { color: rgba(255, 255, 255, 0.72); font-size: 14px; margin: 0 0 24px; }
+    a.btn {
+      display: inline-block; background: #fff; color: #0a0a0a; text-decoration: none;
+      font-weight: 700; font-size: 14px; padding: 11px 22px; border-radius: 999px;
+    }
+  </style>
+</head>
+<body>
+  <img src="/assets/img/gpen-g-white.png" alt="G Pen" />
+  <h1>This page moved.</h1>
+  <p>Taking you to the G Pen Brand Assets Portal&hellip;</p>
+  <a class="btn" href="/">Go to the portal</a>
+</body>
+</html>
