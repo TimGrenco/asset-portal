@@ -438,10 +438,13 @@ button.pkg-media { width: 100%; border: 0; padding: 0; font: inherit; }
   .catlb-bar { flex-wrap: wrap; }
   .catlb-acts .btn.ghost span, .catlb-acts .btn.ghost { font-size: 11px; }
   .cat-grid { grid-template-columns: 1fr; gap: 14px; }
+  /* comfortable touch targets on phones */
+  .cat-pill { padding: 10px 14px; font-size: 10.5px; }
+  .cat-act { padding: 10px 8px; font-size: 11.5px; }
 }
 
 /* Collection Colorways — fun, colour-coded per-colourway SKU/UPC cards (Retro) */
-.cways { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 4px 0 26px; }
+.cways { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 4px 0 26px; }
 .cway-card { position: relative; border-radius: 14px; padding: 17px 15px 15px; overflow: hidden;
   background: linear-gradient(162deg, color-mix(in srgb, var(--c) 13%, #fff) 0%, #fff 62%);
   border: 1px solid color-mix(in srgb, var(--c) 32%, var(--hair));
@@ -458,7 +461,6 @@ button.pkg-media { width: 100%; border: 0; padding: 0; font: inherit; }
 .cway-code { display: flex; flex-direction: column; gap: 1px; }
 .cway-cl { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--stone); }
 .cway-cv { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; font-weight: 600; color: var(--ink); }
-@media (max-width: 720px) { .cways { grid-template-columns: repeat(2, 1fr); } }
 
 /* product hub: SKU details */
 .sku-table { border: 1px solid var(--hair); border-radius: var(--radius); overflow: hidden; margin-bottom: 10px; max-width: 460px; }
@@ -680,6 +682,17 @@ a.logo-tile { cursor: pointer; }
 @media (max-width: 860px) {
   .support-inner { grid-template-columns: 1fr; gap: 26px; padding: 38px 0 40px; }
 }
+
+
+/* Keyboard focus — a visible ring on every interactive element. Ink reads on the
+   light page; the dark surfaces below switch it to brand gold so it stays visible. */
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.hero :focus-visible,
+.support :focus-visible,
+.lightbox :focus-visible,
+.catlb :focus-visible,
+.trn-hero :focus-visible { outline-color: var(--gold); }
+/* Mouse users never see it (browsers only match :focus-visible for keyboard/AT). */
 
 .foot { border-top: 1px solid var(--hair); padding: 26px 0; margin-top: 20px; }
 .foot-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
