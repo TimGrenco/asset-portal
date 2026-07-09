@@ -367,7 +367,7 @@
   function coverHTML(p) {
     if (p.cover) {
       var safe = p.name.replace(/"/g, "");
-      return '<img src="' + p.cover + '" alt="' + safe + '" loading="lazy" onerror="window.__fallback(this,\'' + safe + '\')"/>';
+      return '<img src="' + p.cover + '" alt="' + safe + '" loading="lazy" decoding="async" onerror="window.__fallback(this,\'' + safe + '\')"/>';
     }
     if (p.isLogo) return '<div class="logo-tile"><span>' + BRANDS[p.brand].wordmark + "</span></div>";
     return fallbackHTML(p.name);
@@ -449,7 +449,7 @@
     if (!preview.length) preview = logos.filter(function (x) { return x.thumb; }).slice(0, 2);
     var tiles = preview.map(function (x) {
       var dark = /white|reverse/i.test(x.name);
-      var media = x.thumb ? '<img src="' + x.thumb + '" alt="' + x.name.replace(/"/g, "") + '" loading="lazy"/>' : window.__icon("photo");
+      var media = x.thumb ? '<img src="' + x.thumb + '" alt="' + x.name.replace(/"/g, "") + '" loading="lazy" decoding="async"/>' : window.__icon("photo");
       return '<button class="logo-tile' + (dark ? " dark" : "") + '" data-logodl="' + (x.file || "#") + '" data-logoname="' + fileLabel(x) + '" title="Download ' + fileLabel(x) + '">' +
         media + "</button>";
     }).join("");
@@ -706,7 +706,7 @@
     var f = r.file, isVid = f.type === "video";
     var safe = r.label.replace(/"/g, "");
     var media = f.thumb
-      ? '<img src="' + f.thumb + '" alt="' + safe + '" loading="lazy"/>'
+      ? '<img src="' + f.thumb + '" alt="' + safe + '" loading="lazy" decoding="async"/>'
       : icon(typeIcon[f.type] || "photo");
     var dl = !isVid ? (f.file || f.url || "") : "";
     var pName = r.product.name.indexOf(BRANDS[r.product.brand].name) === 0 ? r.product.name : BRANDS[r.product.brand].name + " " + r.product.name;
@@ -781,7 +781,7 @@
 
     // Two preview tiles (like the logos card) — clicking goes to the order page.
     var tiles = mats.slice(0, 2).map(function (x) {
-      var media = x.thumb ? '<img src="' + x.thumb + '" alt="' + fileLabel(x).replace(/"/g, "") + '" loading="lazy"/>' : window.__icon("photo");
+      var media = x.thumb ? '<img src="' + x.thumb + '" alt="' + fileLabel(x).replace(/"/g, "") + '" loading="lazy" decoding="async"/>' : window.__icon("photo");
       return '<a class="logo-tile" href="#materials" title="Order marketing materials">' + media + "</a>";
     }).join("");
 
@@ -831,7 +831,7 @@
   function catalogCard(f) {
     var c = f.primary, alt = escapeHTML(f.title);
     var cover = c.thumb
-      ? '<img class="cat-img" src="' + c.thumb + '" alt="' + alt + ' cover" loading="lazy"/>'
+      ? '<img class="cat-img" src="' + c.thumb + '" alt="' + alt + ' cover" loading="lazy" decoding="async"/>'
       : window.__icon("file");
     var multi = f.variants.length > 1;
     var regions = multi
@@ -1110,7 +1110,7 @@
         var li = lbItems.length;
         lbItems.push({ src: m.thumb, name: m.name, url: m.url || m.thumb });
         thumb = '<button class="mat-thumb mat-thumb-zoom" data-lbi="' + li + '" title="Click preview to enlarge" aria-label="Enlarge ' + m.name.replace(/"/g, "") + '">' +
-          '<img src="' + m.thumb + '" alt="' + m.name.replace(/"/g, "") + '" loading="lazy"/>' +
+          '<img src="' + m.thumb + '" alt="' + m.name.replace(/"/g, "") + '" loading="lazy" decoding="async"/>' +
           '<span class="mat-zoom-badge">' + icon("search") + "</span></button>";
       } else {
         thumb = '<div class="mat-thumb">' + window.__icon("photo") + "</div>";
@@ -1824,7 +1824,7 @@
     var prodName = p.name.indexOf(BRANDS[p.brand].name) === 0 ? p.name : BRANDS[p.brand].name + " " + p.name;
     var note = '<p class="pkg-note">' + prodName + " specific in-store materials.</p>";
     var tiles = items.map(function (x) {
-      var media = x.thumb ? '<img src="' + x.thumb + '" alt="' + fileLabel(x).replace(/"/g, "") + '" loading="lazy"/>' : window.__icon("photo");
+      var media = x.thumb ? '<img src="' + x.thumb + '" alt="' + fileLabel(x).replace(/"/g, "") + '" loading="lazy" decoding="async"/>' : window.__icon("photo");
       var lbl = instoreLabel(x);
       var cap = lbl ? '<span class="instore-tile-cap"><span class="instore-tile-nm">' + escapeHTML(lbl.name) +
         "</span><span class=\"instore-tile-dim\">" + escapeHTML(lbl.dim) + "</span></span>" : "";
@@ -1847,7 +1847,7 @@
     var name = label.replace(/[^\w.-]+/g, "_") + (/\.png/i.test(dsrc) ? ".png" : /\.jpe?g/i.test(dsrc) ? ".jpg" : "");
     return '<div class="pkg-card">' +
       '<button class="pkg-media pkg-zoom" data-lbimg="' + src + '" data-lbname="' + label + '" data-lbdl="' + dl + '" title="Click to enlarge">' +
-        '<img src="' + src + '" alt="' + label + '" loading="lazy"/></button>' +
+        '<img src="' + src + '" alt="' + label + '" loading="lazy" decoding="async"/></button>' +
       '<div class="pkg-label"><span>' + label + "</span>" +
         '<button class="pkg-dl" data-pkgdl="' + dl + '" data-pkgname="' + name + '" title="Download ' + label + '">' + icon("download") + "</button>" +
       "</div></div>";
@@ -2029,7 +2029,7 @@
     var list = '<ul class="box-list">' + b.contents.map(function (c) { return "<li>" + c + "</li>"; }).join("") + "</ul>";
     var head = '<div class="section-head"><h2>What’s In the Box?</h2></div>';
     if (!b.image) return head + '<div class="box-single">' + list + "</div>";
-    var img = '<div class="box-media"><img src="' + b.image + '" alt="What’s in the box" loading="lazy"/></div>';
+    var img = '<div class="box-media"><img src="' + b.image + '" alt="What’s in the box" loading="lazy" decoding="async"/></div>';
     return head + '<div class="box-grid">' + list + img + "</div>";
   }
 
@@ -2040,7 +2040,7 @@
     if (!p.videos || !p.videos.length) return "";
     var cards = p.videos.map(function (v) {
       var safe = v.title.replace(/"/g, "");
-      var poster = v.thumb ? '<img src="' + v.thumb + '" alt="' + safe + '" loading="lazy"/>' : "";
+      var poster = v.thumb ? '<img src="' + v.thumb + '" alt="' + safe + '" loading="lazy" decoding="async"/>' : "";
       var dlname = safe.replace(/[^\w.-]+/g, "_") + ".mp4";
       // Play source: a real Dropbox MP4 takes priority; else the Vimeo/YouTube embed.
       var playSrc = v.mp4 ? dropboxRaw(v.mp4) : (v.embed || v.url || "");
@@ -2128,7 +2128,7 @@
         items.push({ src: file.thumb, name: fileLabel(file), url: file.url || "#", file: file.file || null });
       }
       var thumb = hasImg
-        ? '<img src="' + file.thumb + '" alt="' + file.name + '" loading="lazy" onerror="this.parentNode.innerHTML=window.__icon(\'' + (typeIcon[file.type] || "file") + '\')"/>' + badge
+        ? '<img src="' + file.thumb + '" alt="' + file.name + '" loading="lazy" decoding="async" onerror="this.parentNode.innerHTML=window.__icon(\'' + (typeIcon[file.type] || "file") + '\')"/>' + badge
         : window.__icon(typeIcon[file.type] || "file");
       return (
         '<div class="gcell' + (on ? " sel" : "") + '" data-key="' + key + '">' +
