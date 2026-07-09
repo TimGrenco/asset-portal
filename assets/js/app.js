@@ -808,19 +808,50 @@
   function catalogShareUrl(c) { return location.origin + location.pathname + "#catalog/" + c.slug; }
   function catalogDownload(c) { if (c.file) directDownload(c.file, catalogFileName(c)); else downloadOne(c.url); }
 
-  function catalogCard(c) {
-    var alt = escapeHTML(c.title + (c.region ? " — " + c.region : ""));
+  // One card per document family (e.g. "G Pen 2026 Catalog"); its regional
+  // editions live behind a region toggle on the card, defaulting to US.
+  var CAT_REGION_ORDER = ["US", "UK", "EU", "CAD"];
+  function catalogFamilies() {
+    var list = window.PORTAL_CATALOGS || [], byTitle = {}, order = [];
+    list.forEach(function (c) {
+      if (!byTitle[c.title]) { byTitle[c.title] = { title: c.title, group: c.group, variants: [] }; order.push(c.title); }
+      byTitle[c.title].variants.push(c);
+    });
+    return order.map(function (t) {
+      var f = byTitle[t];
+      f.variants.sort(function (a, b) {
+        var ia = CAT_REGION_ORDER.indexOf(a.region), ib = CAT_REGION_ORDER.indexOf(b.region);
+        return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+      });
+      f.primary = f.variants.filter(function (v) { return v.region === "US"; })[0] || f.variants[0];
+      return f;
+    });
+  }
+
+  function catalogCard(f) {
+    var c = f.primary, alt = escapeHTML(f.title);
     var cover = c.thumb
-      ? '<img src="' + c.thumb + '" alt="' + alt + '" loading="lazy"/>'
+      ? '<img class="cat-img" src="' + c.thumb + '" alt="' + alt + ' cover" loading="lazy"/>'
       : window.__icon("file");
-    return '<div class="cat-card">' +
-      '<div class="cat-cover" role="button" tabindex="0" data-catopen="' + c.slug + '" aria-label="View ' + alt + '">' +
+    var multi = f.variants.length > 1;
+    var regions = multi
+      ? '<div class="cat-pills" role="group" aria-label="Region for ' + alt + '">' +
+          f.variants.map(function (v) {
+            var on = v === c;
+            return '<button class="cat-pill' + (on ? " on" : "") + '" data-slug="' + v.slug + '"' +
+              ' data-thumb="' + escapeHTML(v.thumb || "") + '" aria-pressed="' + on + '">' +
+              escapeHTML(v.region) + "</button>";
+          }).join("") + "</div>"
+      : (c.region ? '<div class="cat-pills"><span class="cat-region">' + escapeHTML(c.region) + "</span></div>" : "");
+    return '<div class="cat-card" data-cur="' + c.slug + '">' +
+      '<div class="cat-cover" role="button" tabindex="0" data-catopen aria-label="View ' + alt + '">' +
         cover + '<span class="cat-view">' + icon("eye") + " View</span></div>" +
-      '<div class="cat-meta"><span class="cat-title">' + escapeHTML(c.title) + "</span>" +
-        (c.region ? '<span class="cat-region">' + escapeHTML(c.region) + "</span>" : "") + "</div>" +
+      '<div class="cat-meta"><span class="cat-grp">' + escapeHTML(f.group) + "</span>" +
+        '<span class="cat-title">' + escapeHTML(f.title) + "</span></div>" +
+      regions +
       '<div class="cat-acts">' +
-        '<button class="cat-act" data-catdl="' + c.slug + '">' + icon("download") + " Download</button>" +
-        '<button class="cat-act" data-catshare="' + c.slug + '">' + icon("link") + " Share</button>" +
+        '<button class="cat-act" data-catdl>' + icon("download") + " Download</button>" +
+        '<button class="cat-act" data-catshare>' + icon("link") + " Share</button>" +
       "</div></div>";
   }
 
@@ -832,26 +863,34 @@
     sec.style.display = "";
     var cnt = $("#catalog-count");
     if (cnt) cnt.textContent = list.length + " document" + (list.length === 1 ? "" : "s");
-    var groups = [];
-    list.forEach(function (c) { if (groups.indexOf(c.group) === -1) groups.push(c.group); });
-    box.innerHTML = groups.map(function (g) {
-      return '<div class="cat-group"><div class="cat-group-h">' + escapeHTML(g) + "</div>" +
-        '<div class="cat-grid">' + list.filter(function (c) { return c.group === g; }).map(catalogCard).join("") + "</div></div>";
-    }).join("");
-    $$("[data-catopen]", box).forEach(function (b) {
-      clickKey(b, function () { openCatalog(b.getAttribute("data-catopen")); });
-    });
-    $$("[data-catdl]", box).forEach(function (b) {
-      b.addEventListener("click", function (e) {
-        e.stopPropagation();
-        var c = catalogBySlug(b.getAttribute("data-catdl")); if (c) catalogDownload(c);
+    var fams = catalogFamilies();
+    box.innerHTML = '<div class="cat-grid">' + fams.map(catalogCard).join("") + "</div>";
+
+    $$(".cat-card", box).forEach(function (card) {
+      var cover = $(".cat-cover", card), img = $(".cat-img", card);
+      function cur() { return catalogBySlug(card.getAttribute("data-cur")); }
+      clickKey(cover, function () { openCatalog(card.getAttribute("data-cur")); });
+      $$(".cat-pill", card).forEach(function (p) {
+        p.addEventListener("click", function (e) {
+          e.stopPropagation();
+          card.setAttribute("data-cur", p.getAttribute("data-slug"));
+          $$(".cat-pill", card).forEach(function (q) {
+            var on = q === p;
+            q.classList.toggle("on", on);
+            q.setAttribute("aria-pressed", on);
+          });
+          var t = p.getAttribute("data-thumb");
+          if (img && t) img.src = t;
+          var c = cur();
+          if (c && cover) cover.setAttribute("aria-label", "View " + c.title + " — " + c.region);
+        });
       });
-    });
-    $$("[data-catshare]", box).forEach(function (b) {
-      b.addEventListener("click", function (e) {
+      var dl = $("[data-catdl]", card);
+      if (dl) dl.addEventListener("click", function (e) { e.stopPropagation(); var c = cur(); if (c) catalogDownload(c); });
+      var sh = $("[data-catshare]", card);
+      if (sh) sh.addEventListener("click", function (e) {
         e.stopPropagation();
-        var c = catalogBySlug(b.getAttribute("data-catshare"));
-        if (c) copyText(catalogShareUrl(c), "Catalog link copied");
+        var c = cur(); if (c) copyText(catalogShareUrl(c), "Catalog link copied");
       });
     });
   }
