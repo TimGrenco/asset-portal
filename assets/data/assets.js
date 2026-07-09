@@ -369,7 +369,7 @@ var PRODUCT_INFO = {
   "Dash II": {
     description: "The next evolution of the best-selling Dash — a pocket-sized dry herb vaporizer upgraded across the board with faster heat-up, improved airflow, and refined temperature control.",
     highlights: ["Pocket Sized Dry Herb Vaporizer", "30-second heat-up", "Precise temperature control", "OLED display", "Upgraded 0.4g ceramic chamber (easier loading)", "Pick Tool", "1,100mAh battery", "USB-C pass-through charging"],
-    warranty: "1-year limited warranty",
+    warranty: "6-month limited warranty, extended to 1 year if registered",
     manual: "https://cdn.shopify.com/s/files/1/0185/1576/files/20260309_GPen_Dash2_Manual.pdf?v=1773074467",
     faqUrl: "https://gpen.com/pages/dash-ii-faq",
     productUrl: "https://www.gpen.com/products/g-pen-dash-ii-vaporizer",
