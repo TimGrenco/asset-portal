@@ -22890,16 +22890,16 @@ window.PORTAL_SYNCED = {
           "type": "pdf",
           "format": "PDF",
           "url": "https://www.dropbox.com/scl/fi/49d25iet90dmkeihk8u8p/G-Pen-Catalog-2026-EU.pdf?rlkey=e2lq88oxiv425sa4sigwt4ll8&dl=0",
-          "thumb": "assets/synced/catalogs/b5e51e91dd490154ed367852c7bd92ec988cfc29c353c595cd076d6000383d0a.jpg",
-          "file": "assets/synced/catalogs/files/b5e51e91dd490154ed367852c7bd92ec988cfc29c353c595cd076d6000383d0a.pdf"
+          "thumb": "assets/synced/catalogs/bd07b3630c53648da10ce196353970a38644c67ab353eaa7e06d8fc080367dc3.jpg",
+          "file": "assets/synced/catalogs/files/bd07b3630c53648da10ce196353970a38644c67ab353eaa7e06d8fc080367dc3.pdf"
         },
         {
           "name": "G Pen Catalog - 2026 - UK",
           "type": "pdf",
           "format": "PDF",
           "url": "https://www.dropbox.com/scl/fi/2zjnth58wse20i60w9mhx/G-Pen-Catalog-2026-UK.pdf?rlkey=hfebtrnv49daes1avy5nmx8g9&dl=0",
-          "thumb": "assets/synced/catalogs/c369a47284638a48229d6e33193bb99e38448d31d5746ddf8ab58489edc150e1.jpg",
-          "file": "assets/synced/catalogs/files/c369a47284638a48229d6e33193bb99e38448d31d5746ddf8ab58489edc150e1.pdf"
+          "thumb": "assets/synced/catalogs/59254a7abb033cac96dff5ff0805a91f4b0aa128298bb9f9e274339f4fe61990.jpg",
+          "file": "assets/synced/catalogs/files/59254a7abb033cac96dff5ff0805a91f4b0aa128298bb9f9e274339f4fe61990.pdf"
         },
         {
           "name": "G Pen Catalog - 2026 - US",
