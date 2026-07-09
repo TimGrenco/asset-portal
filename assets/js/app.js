@@ -1757,7 +1757,15 @@
     // Multi-colour collections list per-colour SKU/UPC in the Colorways section,
     // so the collection-level Product SKU/UPC rows are omitted here to avoid
     // duplicating the POP-display codes.
-    var multiColor = !!(window.PORTAL_COLORWAYS && window.PORTAL_COLORWAYS[p.name]);
+    var colorways = (window.PORTAL_COLORWAYS && window.PORTAL_COLORWAYS[p.name]) || null;
+    var multiColor = !!colorways;
+    // For multi-colour collections, annotate the POP-display count with its
+    // colourway breakdown, e.g. "20 (4 × 5 colorways)".
+    var perPop = info.innerPack;
+    if (colorways && colorways.length && info.innerPack && info.innerPack !== "N/A") {
+      var nUnits = parseInt(info.innerPack, 10), nCol = colorways.length;
+      if (nUnits && nUnits % nCol === 0) perPop = nUnits + " (" + (nUnits / nCol) + " × " + nCol + " colorways)";
+    }
     var rows =
       row("Product Name", info.fullName) +
       (multiColor ? "" : row("Product SKU", info.sku) + row("Product UPC", info.upc)) +
@@ -1769,7 +1777,7 @@
       row("Product Dimensions", info.dimensions) +
       row("Unit Weight", info.unitWeight) +
       row("Ships In Retail POP Display", info.pop === true ? "Yes" : info.pop === false ? "No" : "") +
-      row("Units Per POP Display", info.innerPack) +
+      row("Units Per POP Display", perPop) +
       row("Units Per Master Case", info.masterCarton) +
       row("Case Weight", info.caseWeight) +
       row("Case Dimensions", info.caseDimensions) +

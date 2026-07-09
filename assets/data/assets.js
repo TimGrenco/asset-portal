@@ -666,18 +666,18 @@ window.PORTAL_PRODUCTS.forEach(function (p) {
    colour-coded card design. */
 window.PORTAL_COLORWAYS = {
   "Hydout — Retro": [
-    { color: "Red",    hex: "#E23B34", sku: "GHO-002-AOZZ", upc: "811736029605", name: "Hydout Retro Collection — Red" },
-    { color: "Blue",   hex: "#2F6BE0", sku: "GHO-003-AOZZ", upc: "811736029612", name: "Hydout Retro Collection — Blue" },
-    { color: "Green",  hex: "#57B733", sku: "GHO-004-AOZZ", upc: "811736029629", name: "Hydout Retro Collection — Green" },
-    { color: "Pink",   hex: "#E8479E", sku: "GHO-005-AOZZ", upc: "811736029636", name: "Hydout Retro Collection — Pink" },
-    { color: "Purple", hex: "#8B4AD6", sku: "GHO-006-AOZZ", upc: "811736029643", name: "Hydout Retro Collection — Purple" },
+    { color: "Red",    hex: "#E23B34", sku: "GHO-002-AOZZ", upc: "811736029605", name: "Retro Collection Hydout — Red" },
+    { color: "Blue",   hex: "#2F6BE0", sku: "GHO-003-AOZZ", upc: "811736029612", name: "Retro Collection Hydout — Blue" },
+    { color: "Green",  hex: "#57B733", sku: "GHO-004-AOZZ", upc: "811736029629", name: "Retro Collection Hydout — Green" },
+    { color: "Pink",   hex: "#E8479E", sku: "GHO-005-AOZZ", upc: "811736029636", name: "Retro Collection Hydout — Pink" },
+    { color: "Purple", hex: "#8B4AD6", sku: "GHO-006-AOZZ", upc: "811736029643", name: "Retro Collection Hydout — Purple" },
   ],
   "510 Original — Retro": [
-    { color: "Red",    hex: "#E23B34", sku: "GSB-001-APZZ", upc: "852570004298", name: "510 Original Retro Collection — Red" },
-    { color: "Blue",   hex: "#2F6BE0", sku: "GSB-002-APZZ", upc: "852570004816", name: "510 Original Retro Collection — Blue" },
-    { color: "Green",  hex: "#57B733", sku: "GSB-003-APZZ", upc: "852570004465", name: "510 Original Retro Collection — Green" },
-    { color: "Pink",   hex: "#E8479E", sku: "GSB-004-APZZ", upc: "852570004779", name: "510 Original Retro Collection — Pink" },
-    { color: "Purple", hex: "#8B4AD6", sku: "GSB-005-APZZ", upc: "852570004878", name: "510 Original Retro Collection — Purple" },
+    { color: "Red",    hex: "#E23B34", sku: "GSB-001-APZZ", upc: "852570004298", name: "Retro Collection 510 Original — Red" },
+    { color: "Blue",   hex: "#2F6BE0", sku: "GSB-002-APZZ", upc: "852570004816", name: "Retro Collection 510 Original — Blue" },
+    { color: "Green",  hex: "#57B733", sku: "GSB-003-APZZ", upc: "852570004465", name: "Retro Collection 510 Original — Green" },
+    { color: "Pink",   hex: "#E8479E", sku: "GSB-004-APZZ", upc: "852570004779", name: "Retro Collection 510 Original — Pink" },
+    { color: "Purple", hex: "#8B4AD6", sku: "GSB-005-APZZ", upc: "852570004878", name: "Retro Collection 510 Original — Purple" },
   ],
 };
 
