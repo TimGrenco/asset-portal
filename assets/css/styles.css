@@ -691,7 +691,9 @@ a.logo-tile { cursor: pointer; }
 .support :focus-visible,
 .lightbox :focus-visible,
 .catlb :focus-visible,
-.trn-hero :focus-visible { outline-color: var(--gold); }
+.trn-hero :focus-visible,
+.locator-card :focus-visible,
+.selbar :focus-visible { outline-color: var(--gold); }
 /* Mouse users never see it (browsers only match :focus-visible for keyboard/AT). */
 
 .foot { border-top: 1px solid var(--hair); padding: 26px 0; margin-top: 20px; }
