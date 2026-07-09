@@ -72,6 +72,17 @@ const PRODUCTS = [
     link: "https://www.dropbox.com/scl/fo/z31rov1tjw0rm2fy7qssw/ABSnVsz5hLjhid95WhqyajM?rlkey=jkld2f2m07jctowd5x1ao357b&st=lmrqshh4&dl=0",
     flat: "POP Displays",
   },
+  {
+    // Regional catalogs + general B2B brand documents (not product-specific).
+    // commitFiles: the PDFs are served same-origin so the in-site page viewer can
+    // render them — Dropbox blocks both iframe embedding (frame-ancestors) and
+    // cross-origin fetch (no CORS), so a Dropbox link alone can't be viewed here.
+    name: "Catalogs",
+    slug: "catalogs",
+    link: "https://www.dropbox.com/scl/fo/dih80hjue27zsimr49uc7/AMJvOe4GB3SMc_DtFaG_2KY?rlkey=veatg0r4e2nkze7dxkxwwdgnc&dl=0",
+    flat: "Catalogs",
+    commitFiles: true,
+  },
 ];
 
 const FOLDER_ORDER = ["Product Photos", "Lifestyle Photos", "Web Banners", "Logos", "Social Videos", "TV Screen Videos", "Packaging", "In-Store Marketing", "Documents"];
