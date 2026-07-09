@@ -6626,6 +6626,22 @@ window.PORTAL_SYNCED = {
       ],
       "TV Screen Videos": [
         {
+          "name": "G Pen Melt Cleaning",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/iiesknqgb111b6h1bhtk5/G-Pen-Melt-Cleaning.mp4?rlkey=zpb0x3wu92p3pvuies0b27mb6&dl=0",
+          "thumb": "assets/synced/melt/8c42edc1a83f93335746bd5c1c61f4b707d231f6d04779917e05cce55397f303.jpg",
+          "file": null
+        },
+        {
+          "name": "G Pen Melt Tutorial",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/y25ps2y33b7ktz3ptwavj/G-Pen-Melt-Tutorial.mp4?rlkey=nsru0hc5rlnqfkaj5pfhuc6gw&dl=0",
+          "thumb": "assets/synced/melt/a856f7a351d9b1451fdda2922f32016d138d9a0523890ad39e2e288ea16e0a2a.jpg",
+          "file": null
+        },
+        {
           "name": "Luca Hyer Melt Wide",
           "type": "video",
           "format": "MP4",
@@ -22832,6 +22848,80 @@ window.PORTAL_SYNCED = {
     "dropbox": "https://www.dropbox.com/scl/fo/z31rov1tjw0rm2fy7qssw/ABSnVsz5hLjhid95WhqyajM?rlkey=jkld2f2m07jctowd5x1ao357b&st=lmrqshh4&dl=1",
     "folderLinks": {
       "POP Displays": "https://www.dropbox.com/scl/fo/z31rov1tjw0rm2fy7qssw/ABSnVsz5hLjhid95WhqyajM?rlkey=jkld2f2m07jctowd5x1ao357b&st=lmrqshh4&dl=1"
+    }
+  },
+  "Catalogs": {
+    "folders": {
+      "Catalogs": [
+        {
+          "name": "G Pen - Dispensary Essentials - CAD",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/9s4lumvoi066ya6feqbju/G-Pen-Dispensary-Essentials-CAD.pdf?rlkey=dkh95c6zwp71dwzxug58hbgzw&dl=0",
+          "thumb": "assets/synced/catalogs/f3954fdbe45dcf2a840d822b31e592c8e6f6e80c1633f7f0d974b05f455802be.jpg",
+          "file": "assets/synced/catalogs/files/f3954fdbe45dcf2a840d822b31e592c8e6f6e80c1633f7f0d974b05f455802be.pdf"
+        },
+        {
+          "name": "G Pen - Dispensary Essentials - EU",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/5o8kxxey7gb4bfaz84wwq/G-Pen-Dispensary-Essentials-EU.pdf?rlkey=befy3iun49b8ezscm1pvguk8a&dl=0",
+          "thumb": "assets/synced/catalogs/6b99dbee62e0de8dcd44248d1ac1f959775c86f8ab6c0c7f2c8e4cef0ec0c018.jpg",
+          "file": "assets/synced/catalogs/files/6b99dbee62e0de8dcd44248d1ac1f959775c86f8ab6c0c7f2c8e4cef0ec0c018.pdf"
+        },
+        {
+          "name": "G Pen - Dispensary Essentials - UK",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/wadoozyv5syiw90cdqcow/G-Pen-Dispensary-Essentials-UK.pdf?rlkey=fzoapmsgz5kr0q6x42f04oppe&dl=0",
+          "thumb": "assets/synced/catalogs/dd45eb0fff37381e898af8709dd0994cc8d9d543bc8114f226ac9f45f69f040f.jpg",
+          "file": "assets/synced/catalogs/files/dd45eb0fff37381e898af8709dd0994cc8d9d543bc8114f226ac9f45f69f040f.pdf"
+        },
+        {
+          "name": "G Pen - Dispensary Essentials",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/toem3idwvsgtrpx9k3je4/G-Pen-Dispensary-Essentials.pdf?rlkey=cf1dbpxc0f8fdg49hw9fvi5uh&dl=0",
+          "thumb": "assets/synced/catalogs/1e3f6397391d372c2971cb1a53d564005d53a17a779cc53afb712ac0602e89f0.jpg",
+          "file": "assets/synced/catalogs/files/1e3f6397391d372c2971cb1a53d564005d53a17a779cc53afb712ac0602e89f0.pdf"
+        },
+        {
+          "name": "G Pen Catalog - 2026 - EU",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/49d25iet90dmkeihk8u8p/G-Pen-Catalog-2026-EU.pdf?rlkey=e2lq88oxiv425sa4sigwt4ll8&dl=0",
+          "thumb": "assets/synced/catalogs/b5e51e91dd490154ed367852c7bd92ec988cfc29c353c595cd076d6000383d0a.jpg",
+          "file": "assets/synced/catalogs/files/b5e51e91dd490154ed367852c7bd92ec988cfc29c353c595cd076d6000383d0a.pdf"
+        },
+        {
+          "name": "G Pen Catalog - 2026 - UK",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/2zjnth58wse20i60w9mhx/G-Pen-Catalog-2026-UK.pdf?rlkey=hfebtrnv49daes1avy5nmx8g9&dl=0",
+          "thumb": "assets/synced/catalogs/c369a47284638a48229d6e33193bb99e38448d31d5746ddf8ab58489edc150e1.jpg",
+          "file": "assets/synced/catalogs/files/c369a47284638a48229d6e33193bb99e38448d31d5746ddf8ab58489edc150e1.pdf"
+        },
+        {
+          "name": "G Pen Catalog - 2026 - US",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/0uz654jxbwz8ne61wal4h/G-Pen-Catalog-2026-US.pdf?rlkey=sisbsnyik6qk5xx9syx0kw1xo&dl=0",
+          "thumb": "assets/synced/catalogs/09f8a003c02ed77ae0b746af5103bec0c6c6ba94b1f27a5058df7f5b699d6f19.jpg",
+          "file": "assets/synced/catalogs/files/09f8a003c02ed77ae0b746af5103bec0c6c6ba94b1f27a5058df7f5b699d6f19.pdf"
+        },
+        {
+          "name": "GPEN_Catalog_CAD",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/jwjl1ec235qgc6w9om6zt/GPEN_Catalog_CAD.pdf?rlkey=melkdkoe8ie7qqnc780e82wqx&dl=0",
+          "thumb": "assets/synced/catalogs/6a9b0d6253b1c570b033bb39bfbb852ddd9b1007754d77662df36df3cb926e7c.jpg",
+          "file": "assets/synced/catalogs/files/6a9b0d6253b1c570b033bb39bfbb852ddd9b1007754d77662df36df3cb926e7c.pdf"
+        }
+      ]
+    },
+    "dropbox": "https://www.dropbox.com/scl/fo/dih80hjue27zsimr49uc7/AMJvOe4GB3SMc_DtFaG_2KY?rlkey=veatg0r4e2nkze7dxkxwwdgnc&dl=1",
+    "folderLinks": {
+      "Catalogs": "https://www.dropbox.com/scl/fo/dih80hjue27zsimr49uc7/AMJvOe4GB3SMc_DtFaG_2KY?rlkey=veatg0r4e2nkze7dxkxwwdgnc&dl=1"
     }
   }
 };
