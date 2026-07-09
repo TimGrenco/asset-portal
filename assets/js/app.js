@@ -174,6 +174,9 @@
     var mp = $("#materials-page"); if (mp && parts[0] !== "materials") mp.style.display = "none";
     var lp = $("#locator-page"); if (lp && parts[0] !== "locator") lp.style.display = "none";
     var trp = $("#training-page"); if (trp && parts[0] !== "train") trp.style.display = "none";
+    if (parts[0] !== "catalog") closeCatalog();
+    // Shared catalog deep link: render home behind it, then open the viewer.
+    if (parts[0] === "catalog" && parts[1]) { renderHome(); openCatalog(parts[1]); return; }
     if (parts[0] === "style" && BRANDS[parts[1]]) { openStyleGuide(parts[1]); return; }
     if (parts[0] === "additional" && BRANDS[parts[1]]) { openAdditional(parts[1]); return; }
     if (parts[0] === "materials") { openMaterials(); return; }
@@ -639,6 +642,7 @@
     allGrid.className = layoutClass;
     allGrid.innerHTML = current.map(function (p) { return cardHTML(p, state.layout); }).join("") || emptyState();
 
+    renderCatalogs();
     renderLogoAssets();
     renderSocialHub();
     renderInStore();
@@ -796,6 +800,144 @@
   }
 
   // Store-locator sign-up callout — retailers request to be listed.
+  // ---- Catalogs & brand documents ------------------------------------------
+  // Not product-specific: regional catalogs + B2B resources, each with an in-site
+  // page viewer, a direct PDF download, and a shareable deep link.
+  function catalogBySlug(s) { return (window.PORTAL_CATALOGS || []).filter(function (x) { return x.slug === s; })[0]; }
+  function catalogFileName(c) { return (c.title + (c.region ? " - " + c.region : "")).replace(/[^\w.-]+/g, "_") + ".pdf"; }
+  function catalogShareUrl(c) { return location.origin + location.pathname + "#catalog/" + c.slug; }
+  function catalogDownload(c) { if (c.file) directDownload(c.file, catalogFileName(c)); else downloadOne(c.url); }
+
+  function catalogCard(c) {
+    var alt = escapeHTML(c.title + (c.region ? " — " + c.region : ""));
+    var cover = c.thumb
+      ? '<img src="' + c.thumb + '" alt="' + alt + '" loading="lazy"/>'
+      : window.__icon("file");
+    return '<div class="cat-card">' +
+      '<div class="cat-cover" role="button" tabindex="0" data-catopen="' + c.slug + '" aria-label="View ' + alt + '">' +
+        cover + '<span class="cat-view">' + icon("eye") + " View</span></div>" +
+      '<div class="cat-meta"><span class="cat-title">' + escapeHTML(c.title) + "</span>" +
+        (c.region ? '<span class="cat-region">' + escapeHTML(c.region) + "</span>" : "") + "</div>" +
+      '<div class="cat-acts">' +
+        '<button class="cat-act" data-catdl="' + c.slug + '">' + icon("download") + " Download</button>" +
+        '<button class="cat-act" data-catshare="' + c.slug + '">' + icon("link") + " Share</button>" +
+      "</div></div>";
+  }
+
+  function renderCatalogs() {
+    var sec = $("#catalogs-section"), box = $("#catalogs");
+    if (!sec || !box) return;
+    var list = window.PORTAL_CATALOGS || [];
+    if (!list.length) { sec.style.display = "none"; return; }
+    sec.style.display = "";
+    var cnt = $("#catalog-count");
+    if (cnt) cnt.textContent = list.length + " document" + (list.length === 1 ? "" : "s");
+    var groups = [];
+    list.forEach(function (c) { if (groups.indexOf(c.group) === -1) groups.push(c.group); });
+    box.innerHTML = groups.map(function (g) {
+      return '<div class="cat-group"><div class="cat-group-h">' + escapeHTML(g) + "</div>" +
+        '<div class="cat-grid">' + list.filter(function (c) { return c.group === g; }).map(catalogCard).join("") + "</div></div>";
+    }).join("");
+    $$("[data-catopen]", box).forEach(function (b) {
+      clickKey(b, function () { openCatalog(b.getAttribute("data-catopen")); });
+    });
+    $$("[data-catdl]", box).forEach(function (b) {
+      b.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var c = catalogBySlug(b.getAttribute("data-catdl")); if (c) catalogDownload(c);
+      });
+    });
+    $$("[data-catshare]", box).forEach(function (b) {
+      b.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var c = catalogBySlug(b.getAttribute("data-catshare"));
+        if (c) copyText(catalogShareUrl(c), "Catalog link copied");
+      });
+    });
+  }
+
+  function closeCatalog() {
+    var ov = document.getElementById("catlb");
+    if (!ov) return;
+    if (ov.__key) document.removeEventListener("keydown", ov.__key);
+    if (ov.__resize) window.removeEventListener("resize", ov.__resize);
+    ov.remove();
+    document.body.style.overflow = "";
+    if (/^#catalog\//.test(location.hash)) history.replaceState(null, "", location.pathname);
+  }
+
+  function openCatalog(slug) {
+    var c = catalogBySlug(slug);
+    if (!c) { toast("Catalog not found"); return; }
+    if (!c.file) { catalogDownload(c); return; }   // not committed yet → Dropbox
+    closeCatalog();
+    var ov = document.createElement("div");
+    ov.className = "catlb"; ov.id = "catlb";
+    ov.innerHTML =
+      '<div class="catlb-bar">' +
+        '<div class="catlb-t">' + escapeHTML(c.title) +
+          (c.region ? ' <span class="cat-region">' + escapeHTML(c.region) + "</span>" : "") + "</div>" +
+        '<div class="catlb-acts">' +
+          '<button class="btn ghost sm" id="catlb-dl">' + icon("download") + " Download PDF</button>" +
+          '<button class="btn ghost sm" id="catlb-share">' + icon("link") + " Share</button>" +
+          '<button class="catlb-x" id="catlb-x" aria-label="Close viewer">' + icon("x") + "</button>" +
+        "</div></div>" +
+      '<div class="catlb-stage"><div class="catlb-load" id="catlb-load">Loading catalog…</div>' +
+        '<canvas id="catlb-canvas"></canvas></div>' +
+      '<div class="catlb-nav">' +
+        '<button class="btn ghost sm" id="catlb-prev">' + icon("arrowLeft") + " Prev</button>" +
+        '<span class="catlb-page" id="catlb-page">–</span>' +
+        '<button class="btn ghost sm" id="catlb-next">Next ' + icon("arrowRight") + "</button>" +
+      "</div>";
+    document.body.appendChild(ov);
+    document.body.style.overflow = "hidden";
+
+    var doc = null, page = 1, busy = false;
+    $("#catlb-x").addEventListener("click", closeCatalog);
+    ov.addEventListener("click", function (e) { if (e.target === ov) closeCatalog(); });
+    $("#catlb-dl").addEventListener("click", function () { catalogDownload(c); });
+    $("#catlb-share").addEventListener("click", function () { copyText(catalogShareUrl(c), "Catalog link copied"); });
+    $("#catlb-prev").addEventListener("click", function () { go(page - 1); });
+    $("#catlb-next").addEventListener("click", function () { go(page + 1); });
+    ov.__key = function (e) {
+      if (e.key === "Escape") closeCatalog();
+      else if (e.key === "ArrowLeft") go(page - 1);
+      else if (e.key === "ArrowRight") go(page + 1);
+    };
+    document.addEventListener("keydown", ov.__key);
+    var rt = null;
+    ov.__resize = function () { clearTimeout(rt); rt = setTimeout(function () { if (doc && !busy) render(); }, 180); };
+    window.addEventListener("resize", ov.__resize);
+
+    function go(n) { if (doc && !busy && n >= 1 && n <= doc.numPages) { page = n; render(); } }
+    function render() {
+      busy = true;
+      doc.getPage(page).then(function (pg) {
+        var canvas = $("#catlb-canvas"), stage = canvas.parentNode;
+        var base = pg.getViewport({ scale: 1 });
+        var scale = Math.min((stage.clientWidth - 24) / base.width, (stage.clientHeight - 24) / base.height);
+        var dpr = Math.min(window.devicePixelRatio || 1, 2);
+        var vp = pg.getViewport({ scale: scale * dpr });
+        canvas.width = vp.width; canvas.height = vp.height;
+        canvas.style.width = Math.round(vp.width / dpr) + "px";
+        canvas.style.height = Math.round(vp.height / dpr) + "px";
+        return pg.render({ canvasContext: canvas.getContext("2d"), viewport: vp }).promise;
+      }).then(function () {
+        busy = false;
+        var l = $("#catlb-load"); if (l) l.style.display = "none";
+        $("#catlb-page").textContent = page + " / " + doc.numPages;
+        $("#catlb-prev").disabled = page <= 1;
+        $("#catlb-next").disabled = page >= doc.numPages;
+      }).catch(function () { busy = false; toast("Couldn’t render that page"); });
+    }
+
+    loadPdfJs(function (lib) {
+      if (!lib) { toast("Viewer unavailable — downloading instead"); catalogDownload(c); closeCatalog(); return; }
+      lib.getDocument(c.file).promise.then(function (d) { doc = d; render(); })
+        .catch(function () { toast("Couldn’t open the catalog"); closeCatalog(); });
+    });
+  }
+
   function renderStoreLocator() {
     var box = $("#store-locator"); if (!box) return;
     box.innerHTML =
@@ -2014,6 +2156,22 @@
     s.onerror = function () { cb(null); };
     document.head.appendChild(s);
   }
+  // Lazy-load PDF.js (only when a catalog is opened) so the page-by-page viewer
+  // renders on every device — an <iframe> PDF is unusable on iOS.
+  var PDFJS_V = "3.11.174";
+  function loadPdfJs(cb) {
+    if (window.pdfjsLib) return cb(window.pdfjsLib);
+    var s = document.createElement("script");
+    s.src = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/" + PDFJS_V + "/pdf.min.js";
+    s.onload = function () {
+      if (!window.pdfjsLib) return cb(null);
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/" + PDFJS_V + "/pdf.worker.min.js";
+      cb(window.pdfjsLib);
+    };
+    s.onerror = function () { cb(null); };
+    document.head.appendChild(s);
+  }
   // A single file: force a direct download from its Dropbox link (dl=1) so the
   // browser saves the file instead of opening Dropbox's preview page.
   function downloadOne(url) {
@@ -2138,6 +2296,12 @@
     var heroIntro = $("#hero-intro"); if (heroIntro) heroIntro.textContent = CFG.intro;
     $$(".req-mail").forEach(function (a) { a.href = "mailto:" + CFG.requestEmail; });
 
+    // nav "Catalogs" link scrolls to the catalogs & brand documents section.
+    var navCatalogs = $("#nav-catalogs");
+    if (navCatalogs) navCatalogs.addEventListener("click", function () {
+      navHome();
+      var s = $("#catalogs-section"); if (s) s.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
     // nav "Logos & assets" link scrolls down to the de-emphasized resources strip.
     var navGuides = $("#nav-guides");
     if (navGuides) navGuides.addEventListener("click", function () {

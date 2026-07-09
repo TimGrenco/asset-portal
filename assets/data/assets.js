@@ -703,6 +703,57 @@ window.PORTAL_COLORWAYS = {
   });
 })();
 
+/* =============================================================================
+   CATALOGS & B2B BRAND DOCUMENTS — synced from the "Catalog" Dropbox folder.
+   These aren't product-specific, so they get their own home-page section with an
+   in-site page viewer, a download, and a shareable deep link.
+
+   Map a synced filename → display title / region / group below. Anything not
+   mapped still appears (titled by its filename), so new drops show up on the
+   next sync without a code change.
+   ========================================================================== */
+window.PORTAL_CATALOG_GROUPS = ["Regional Catalogs", "B2B Resources"];
+window.PORTAL_CATALOG_META = {
+  "G Pen Catalog - 2026 - US":           { title: "G Pen 2026 Catalog",    region: "US",  group: "Regional Catalogs", order: 1 },
+  "G Pen Catalog - 2026 - UK":           { title: "G Pen 2026 Catalog",    region: "UK",  group: "Regional Catalogs", order: 2 },
+  "G Pen Catalog - 2026 - EU":           { title: "G Pen 2026 Catalog",    region: "EU",  group: "Regional Catalogs", order: 3 },
+  "GPEN_Catalog_CAD":                    { title: "G Pen 2026 Catalog",    region: "CAD", group: "Regional Catalogs", order: 4 },
+  "G Pen - Dispensary Essentials":       { title: "Dispensary Essentials", region: "US",  group: "B2B Resources",     order: 1 },
+  "G Pen - Dispensary Essentials - UK":  { title: "Dispensary Essentials", region: "UK",  group: "B2B Resources",     order: 2 },
+  "G Pen - Dispensary Essentials - EU":  { title: "Dispensary Essentials", region: "EU",  group: "B2B Resources",     order: 3 },
+  "G Pen - Dispensary Essentials - CAD": { title: "Dispensary Essentials", region: "CAD", group: "B2B Resources",     order: 4 },
+};
+
+window.PORTAL_CATALOGS = (function () {
+  var src = (typeof window !== "undefined" && window.PORTAL_SYNCED && window.PORTAL_SYNCED["Catalogs"]) || null;
+  if (!src || !src.folders) return [];
+  function slugify(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, ""); }
+  var out = [];
+  Object.keys(src.folders).forEach(function (f) {
+    (src.folders[f] || []).forEach(function (x) {
+      if (!/^pdf$/i.test(x.format || "")) return;
+      var m = window.PORTAL_CATALOG_META[x.name] || {};
+      var title = m.title || x.name;
+      out.push({
+        title: title,
+        region: m.region || "",
+        group: m.group || "Brand Documents",
+        order: m.order || 99,
+        slug: slugify(title) + (m.region ? "-" + slugify(m.region) : ""),
+        thumb: x.thumb || null,   // first-page cover
+        file: x.file || null,     // same-origin PDF → in-site viewer + download
+        url: x.url || null,       // Dropbox link (fallback)
+      });
+    });
+  });
+  var G = window.PORTAL_CATALOG_GROUPS;
+  out.sort(function (a, b) {
+    var ga = G.indexOf(a.group), gb = G.indexOf(b.group);
+    return (ga < 0 ? 99 : ga) - (gb < 0 ? 99 : gb) || a.order - b.order || a.title.localeCompare(b.title);
+  });
+  return out;
+})();
+
 /* Generic (brand-level) in-store marketing materials — synced from the
    "In-Store Marketing General" Dropbox folder. Shown on the home In-Store section
    and as placeholders on any product page that has no product-specific pieces. */
