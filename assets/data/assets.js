@@ -717,6 +717,7 @@ window.PORTAL_CATALOG_META = {
   "G Pen Catalog - 2026 - US":           { title: "G Pen 2026 Catalog",    region: "US",  group: "Regional Catalogs", order: 1 },
   "G Pen Catalog - 2026 - UK":           { title: "G Pen 2026 Catalog",    region: "UK",  group: "Regional Catalogs", order: 2 },
   "G Pen Catalog - 2026 - EU":           { title: "G Pen 2026 Catalog",    region: "EU",  group: "Regional Catalogs", order: 3 },
+  "G Pen Catalog - 2026 - CAD":          { title: "G Pen 2026 Catalog",    region: "CAD", group: "Regional Catalogs", order: 4 },
   "GPEN_Catalog_CAD":                    { title: "G Pen 2026 Catalog",    region: "CAD", group: "Regional Catalogs", order: 4 },
   "G Pen - Dispensary Essentials":       { title: "Dispensary Essentials", region: "US",  group: "B2B Resources",     order: 1 },
   "G Pen - Dispensary Essentials - UK":  { title: "Dispensary Essentials", region: "UK",  group: "B2B Resources",     order: 2 },
