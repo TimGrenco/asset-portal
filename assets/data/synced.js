@@ -22886,6 +22886,14 @@ window.PORTAL_SYNCED = {
           "file": "assets/synced/catalogs/files/1e3f6397391d372c2971cb1a53d564005d53a17a779cc53afb712ac0602e89f0.pdf"
         },
         {
+          "name": "G Pen Catalog - 2026 - CAD",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/z6p9b6bhoiv198dk7qmj3/G-Pen-Catalog-2026-CAD.pdf?rlkey=wppfza9hqeksq8215yo89k2s7&dl=0",
+          "thumb": "assets/synced/catalogs/7adac423d9db60d7ea289a68ffc8d01a683ecb42531fe9273d9b47fd14bceebc.jpg",
+          "file": "assets/synced/catalogs/files/7adac423d9db60d7ea289a68ffc8d01a683ecb42531fe9273d9b47fd14bceebc.pdf"
+        },
+        {
           "name": "G Pen Catalog - 2026 - EU",
           "type": "pdf",
           "format": "PDF",
@@ -22908,14 +22916,6 @@ window.PORTAL_SYNCED = {
           "url": "https://www.dropbox.com/scl/fi/0uz654jxbwz8ne61wal4h/G-Pen-Catalog-2026-US.pdf?rlkey=sisbsnyik6qk5xx9syx0kw1xo&dl=0",
           "thumb": "assets/synced/catalogs/09f8a003c02ed77ae0b746af5103bec0c6c6ba94b1f27a5058df7f5b699d6f19.jpg",
           "file": "assets/synced/catalogs/files/09f8a003c02ed77ae0b746af5103bec0c6c6ba94b1f27a5058df7f5b699d6f19.pdf"
-        },
-        {
-          "name": "GPEN_Catalog_CAD",
-          "type": "pdf",
-          "format": "PDF",
-          "url": "https://www.dropbox.com/scl/fi/jwjl1ec235qgc6w9om6zt/GPEN_Catalog_CAD.pdf?rlkey=melkdkoe8ie7qqnc780e82wqx&dl=0",
-          "thumb": "assets/synced/catalogs/6a9b0d6253b1c570b033bb39bfbb852ddd9b1007754d77662df36df3cb926e7c.jpg",
-          "file": "assets/synced/catalogs/files/6a9b0d6253b1c570b033bb39bfbb852ddd9b1007754d77662df36df3cb926e7c.pdf"
         }
       ]
     },
