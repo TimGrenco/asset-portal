@@ -33,7 +33,7 @@ window.PORTAL_CONFIG = {
   tagline: "Everything you need, in one place.",
   intro:
     "The official asset portal for G Pen. Product photography, lifestyle imagery, logos, video and spec sheets — organized by product, ready to download.",
-  requestEmail: "pr@grencoscience.com", // "Request an asset" mailto target
+  requestEmail: "marketing@grencoscience.com", // "Request an asset" mailto target
   orderEmail: "pr@grencoscience.com",   // marketing-material order requests
   locatorEmail: "pr@grencoscience.com", // store-locator listing requests
   // Shown on each product page. Edit freely (or set to "" to hide).
