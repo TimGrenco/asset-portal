@@ -1893,6 +1893,7 @@
           '<h3 class="folder-title">' + typeLabel(active) + '<span class="ft-count">' + activeCount + " file" + (activeCount === 1 ? "" : "s") + "</span></h3>" +
           '<div class="gallery-toolbar">' +
             '<label class="selectall"><input type="checkbox" id="sel-all"/> Select all</label>' +
+            '<button class="btn ghost sm" id="copy-folder">' + icon("link") + " Copy folder link</button>" +
             '<button class="btn ghost sm" id="dl-folder">' + icon("download") + " Download folder</button>" +
           "</div>" +
         "</div>" +
@@ -1955,6 +1956,7 @@
         copyText(((p.info && p.info.fullDescription) || []).join("\n\n"), "Description copied");
       });
       $("#dl-folder").addEventListener("click", function () { downloadFolder(p, active); });
+      $("#copy-folder").addEventListener("click", function () { copyFolderLink(p, active); });
       $("#sel-all").addEventListener("change", function (e) {
         var on = e.target.checked;
         folderFiles().forEach(function (f) { toggle(f, on); });
@@ -2485,6 +2487,19 @@
   function dropboxZipUrl(link) {
     if (/[?&]dl=/.test(link)) return link.replace(/([?&]dl=)\d/, "$11");
     return link + (link.indexOf("?") === -1 ? "?dl=1" : "&dl=1");
+  }
+  // The same shared-folder link, but as a *viewable* Dropbox page (dl=0). This is
+  // what gets copied to share with someone — a dl=1 link would fire a download at
+  // them the moment they open it.
+  function dropboxViewUrl(link) {
+    if (/[?&]dl=/.test(link)) return link.replace(/([?&]dl=)\d/, "$10");
+    return link + (link.indexOf("?") === -1 ? "?dl=0" : "&dl=0");
+  }
+  // Copy a shareable link to one category folder (Product Photos, Logos, …).
+  function copyFolderLink(p, folderName) {
+    var link = (p.folderLinks && p.folderLinks[folderName]) || p.dropbox;
+    if (!link) { toast("No shareable link for this folder yet"); return; }
+    copyText(dropboxViewUrl(link), "Copied link to " + typeLabel(folderName));
   }
   function downloadAll(p) {
     // Real Dropbox: download the whole product folder as a .zip from the shared
