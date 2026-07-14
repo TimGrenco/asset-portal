@@ -2877,6 +2877,14 @@ window.PORTAL_SYNCED = {
     "folders": {
       "Product Photos": [
         {
+          "name": "Dash+ Filter Screens",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/ezayx7stcimehbne7l6e5/Dash-Filter-Screens.jpg?rlkey=z01gkghtl6e09lp5vz0kn2muy&dl=0",
+          "thumb": "assets/synced/dash-plus/72cc8099c788ab11f9e61d16e4c1eb6e76135cb2b6623e4370261bd7d8003fe5.jpg",
+          "file": null
+        },
+        {
           "name": "dash+_vape_thumb_01",
           "type": "image",
           "format": "JPG",
