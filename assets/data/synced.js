@@ -1401,6 +1401,38 @@ window.PORTAL_SYNCED = {
     "folders": {
       "Product Photos": [
         {
+          "name": "510-Retro-Front-POP-Transparent",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/fcs3vbt1hxdn085mzjqz4/510-Retro-Front-POP-Transparent.png?rlkey=lo9igrtryztfqjcc6mehe6350&dl=0",
+          "thumb": "assets/synced/510-original-retro/a8fd9b44ac1b947768984a7e9788635b443023dfb701358981e67d200192bb08.jpg",
+          "file": null
+        },
+        {
+          "name": "510-Retro-Front-POP",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/o0lrcseomk4zvxek3iwbh/510-Retro-Front-POP.jpg?rlkey=l11l7u78lrp9ipo9ov8up2sd6&dl=0",
+          "thumb": "assets/synced/510-original-retro/5bf1e8190f26df8eee3e70aac886d000f6324845d11938f51f8790ad980c8251.jpg",
+          "file": null
+        },
+        {
+          "name": "510-Retro-POP-Transparent",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/f1cfkq4lu6w90mh4lyvvt/510-Retro-POP-Transparent.png?rlkey=l1x53xq9rlerr0b0mkg8yah02&dl=0",
+          "thumb": "assets/synced/510-original-retro/ebf8190d5d4bf635e7cf8f458abda25a57cdf2aba68a464671fb073cd2e0422d.jpg",
+          "file": null
+        },
+        {
+          "name": "510-Retro-POP",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/2xngtvwrskoto1srqka16/510-Retro-POP.jpg?rlkey=cytw0rax4iy5e7sb7k87msnil&dl=0",
+          "thumb": "assets/synced/510-original-retro/2ee7a9b63217ed06eaa46b436d21ea8d861002a3b280c14a2110e7a31b1861e4.jpg",
+          "file": null
+        },
+        {
           "name": "Blue 510 O_thumb_01",
           "type": "image",
           "format": "PNG",
@@ -3938,6 +3970,22 @@ window.PORTAL_SYNCED = {
           "url": "https://www.dropbox.com/scl/fi/7dcmpohmia1p3feqq0752/Hydoutout_vape_web_014.jpg?rlkey=4kkj4koh6rcl66t0to2vcn0fy&dl=0",
           "thumb": "assets/synced/hydout/dffc917fb3803bcdf2edaa2f439acf0b1b4e52d4f591912544e089762d05563d.jpg",
           "file": null
+        },
+        {
+          "name": "web_hydeout_Display_Case v2",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/jcyfown32w1oghik0zk2x/web_hydeout_Display_Case-v2.jpg?rlkey=vy8vpezmkuq0a60a6le6xv5dm&dl=0",
+          "thumb": "assets/synced/hydout/4b286daecf43efb514ca00581012286429b4a54befac856dcb27ca44a59515be.jpg",
+          "file": null
+        },
+        {
+          "name": "web_hydeout_Display_Case v2",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/5ak9ypsfwige90jfpw7p1/web_hydeout_Display_Case-v2.png?rlkey=gwojf6930w1cd0cpvd3jzsame&dl=0",
+          "thumb": "assets/synced/hydout/9a919bb3e6e6f6073f0dc9936df41d2811a88782290ef8451f3f1f8b18858e6d.jpg",
+          "file": null
         }
       ],
       "Lifestyle Photos": [
@@ -4856,6 +4904,54 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fi/gzfjdbgyaun5qt87w9lml/Green_hydout_016.png?rlkey=fu6tuzl2o1iqv2opp677zxhm6&dl=0",
           "thumb": "assets/synced/hydout-retro/8a1ff9b4e40a7a126f364cc590338b5794f38d1b7b1d1aba3e409d9f49cb5289.jpg",
+          "file": null
+        },
+        {
+          "name": "Hydout-Retro-POP-side-2",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/djm80bs6tft94vfy14syw/Hydout-Retro-POP-side-2.jpg?rlkey=sgunc8t4heoaimb8z1wt4ymrg&dl=0",
+          "thumb": "assets/synced/hydout-retro/75f7dd63c403c29977c0544614e066f7975375bb5eea16e284600db7338dacd7.jpg",
+          "file": null
+        },
+        {
+          "name": "Hydout-Retro-POP-side-2",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/s0u2g361ti6yf8fj9flzy/Hydout-Retro-POP-side-2.png?rlkey=n9cnadis4qoppfpwblsxco4a6&dl=0",
+          "thumb": "assets/synced/hydout-retro/d2332b626c786d2fe46ee44f0b2f96d9a2d709dfcee58093567a9391369f1902.jpg",
+          "file": null
+        },
+        {
+          "name": "Hydout-Retro-POP-side",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/s2e8cl4gp2xlerkzxclfa/Hydout-Retro-POP-side.jpg?rlkey=c5rrjnorovccuve78u4nldd3a&dl=0",
+          "thumb": "assets/synced/hydout-retro/4eba23b22a4020005012ff7e09a8489aee2790435d2d38743d063f38a0a7426d.jpg",
+          "file": null
+        },
+        {
+          "name": "Hydout-Retro-POP-side",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/k5axtw5gqgpj1fefmyfzi/Hydout-Retro-POP-side.png?rlkey=75h6lmswqdnge9cp1s4qjgwwg&dl=0",
+          "thumb": "assets/synced/hydout-retro/219184a5abc73f3f314d0aaff8057ef878218cbb303b868d6d6c30c3a1513062.jpg",
+          "file": null
+        },
+        {
+          "name": "Hydout-Retro-POP",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/ix16bfysreds92y5tnh64/Hydout-Retro-POP.jpg?rlkey=3bs94udnnauhjwgbxfxoa3rpm&dl=0",
+          "thumb": "assets/synced/hydout-retro/13d4556355b8099ff4b19fc594b5f85f098988c5a3ff331af0ff9e81d1daf6fa.jpg",
+          "file": null
+        },
+        {
+          "name": "Hydout-Retro-POP",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/cd7u83sbp9uokltzl2bcs/Hydout-Retro-POP.png?rlkey=pkuu8nedrbj4x9xchegje8pr9&dl=0",
+          "thumb": "assets/synced/hydout-retro/4e229a80137c09db3b92f979203b058505fc78a33b1ba6f83ed84b3142d43a80.jpg",
           "file": null
         },
         {
