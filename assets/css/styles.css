@@ -779,6 +779,23 @@ a.logo-tile { cursor: pointer; }
   .gbar .ga { gap: 6px; }
   .gbar .ga > span { display: inline-flex; align-items: center; justify-content: center; padding: 7px; }
   .gbar .ga svg { width: 17px; height: 17px; }
+
+  /* Everything below grows the *hit area* only — the icon/label keeps its size,
+     so nothing looks different; it just stops being a 16px dot to thumb. */
+  /* "Request an asset" collapses to a bare 16px mail icon on phones. */
+  .req-link { padding: 11px; margin: -11px; }
+  /* Gallery multi-select checkbox: 16px box → ~38px tappable. */
+  .gselect { padding: 10px; }
+  /* Card quick-actions (download/copy on a product card). */
+  .qbtn { width: 38px; height: 38px; }
+  .qbtn svg { width: 17px; height: 17px; }
+  /* Header nav + inline text buttons. */
+  .nav-link { padding: 11px 0; }
+  .logo-browse-link { padding: 10px 0; }
+  .foot-link { display: inline-block; padding: 6px 0; }
+  /* Grid/list and Featured/A–Z toggles. */
+  .viewmode button { min-width: 38px; min-height: 38px; }
+  .sort button { padding: 9px 14px; }
 }
 
 /* Empty (0-count) asset folders read as disabled instead of leading nowhere. */

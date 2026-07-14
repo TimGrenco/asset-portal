@@ -2416,44 +2416,62 @@
   // A folder / selection: fetch the real synced files and bundle them into a
   // .zip in the browser. Files too large to host (big videos) come via the
   // Dropbox "Download all" instead.
+  // Dropbox-hosted files can't be zipped in the browser (no CORS), so pull each
+  // one straight from Dropbox. A hidden iframe per file dodges the popup blocker.
+  function pullFromDropbox(remote) {
+    remote.forEach(function (f, i) {
+      setTimeout(function () {
+        var fr = document.createElement("iframe");
+        fr.style.display = "none"; fr.src = dropboxZipUrl(f.url);
+        document.body.appendChild(fr);
+        setTimeout(function () { try { fr.remove(); } catch (e) {} }, 90000);
+      }, i * 800);
+    });
+  }
+  // Same-origin committed files → bundle into a single .zip in the browser.
+  function zipCommitted(committed, label, alsoFromDropbox) {
+    toast("Preparing " + committed.length + " files as a .zip…");
+    loadJSZip(function (JSZip) {
+      if (!JSZip) { toast("Couldn’t load the zipper — try again"); return; }
+      var zip = new JSZip();
+      Promise.all(committed.map(function (f) {
+        return fetch(f.file).then(function (r) { return r.blob(); }).then(function (b) { zip.file(fileLabel(f), b); });
+      })).then(function () { return zip.generateAsync({ type: "blob" }); })
+        .then(function (blob) {
+          var href = URL.createObjectURL(blob);
+          directDownload(href, String(label || "assets").replace(/[^\w.-]+/g, "_") + ".zip");
+          setTimeout(function () { URL.revokeObjectURL(href); }, 8000);
+          toast("Downloaded " + committed.length + " files" +
+            (alsoFromDropbox ? " · " + alsoFromDropbox + " more coming from Dropbox" : ""));
+        })
+        .catch(function () { toast("Couldn’t build the zip"); });
+    });
+  }
+  // A folder / selection. Files live in two places — same-origin (committed to the
+  // repo) and Dropbox — and a selection can mix the two, so handle BOTH sets:
+  // zip what we can, and pull the rest from Dropbox. Never silently drop a file.
   function downloadFiles(files, label) {
     if (!files || !files.length) { toast("Select at least one asset first"); return; }
     var committed = files.filter(function (f) { return f && f.file; });
-    // Same-origin committed files → bundle into a .zip in the browser.
-    if (committed.length) {
-      if (files.length === 1) { directDownload(committed[0].file, fileLabel(committed[0])); return; }
-      var skipped = files.length - committed.length;
-      toast("Preparing " + committed.length + " files as a .zip…");
-      loadJSZip(function (JSZip) {
-        if (!JSZip) { toast("Couldn’t load the zipper — try again"); return; }
-        var zip = new JSZip();
-        Promise.all(committed.map(function (f) {
-          return fetch(f.file).then(function (r) { return r.blob(); }).then(function (b) { zip.file(fileLabel(f), b); });
-        })).then(function () { return zip.generateAsync({ type: "blob" }); })
-          .then(function (blob) {
-            var href = URL.createObjectURL(blob);
-            directDownload(href, String(label || "assets").replace(/[^\w.-]+/g, "_") + ".zip");
-            setTimeout(function () { URL.revokeObjectURL(href); }, 8000);
-            toast("Downloaded " + committed.length + " files" + (skipped ? " · " + skipped + " from Dropbox separately" : ""));
-          })
-          .catch(function () { toast("Couldn’t build the zip"); });
-      });
+    var remote = files.filter(function (f) { return f && !f.file && f.url; });
+    var n = committed.length + remote.length;
+    if (!n) { toast("Use “Download all” to get these from Dropbox"); return; }
+
+    // A single file either way → save it directly; no point zipping one file.
+    if (n === 1) {
+      if (committed.length) directDownload(committed[0].file, fileLabel(committed[0]));
+      else downloadOne(remote[0].url);
       return;
     }
-    // Dropbox-hosted files: browsers can't zip cross-origin content, so pull each
-    // one straight from Dropbox. A hidden iframe per file dodges the popup blocker.
-    var links = files.map(function (f) { return f && f.url ? dropboxZipUrl(f.url) : null; }).filter(Boolean);
-    if (!links.length) { toast("Use “Download all” to get these from Dropbox"); return; }
-    if (links.length === 1) { downloadOne(files[0].url); return; }
-    toast("Downloading " + links.length + " files from Dropbox…");
-    links.forEach(function (u, i) {
-      setTimeout(function () {
-        var f = document.createElement("iframe");
-        f.style.display = "none"; f.src = u;
-        document.body.appendChild(f);
-        setTimeout(function () { try { f.remove(); } catch (e) {} }, 90000);
-      }, i * 800);
-    });
+    if (remote.length) pullFromDropbox(remote);
+    if (committed.length === 1) {
+      directDownload(committed[0].file, fileLabel(committed[0]));
+      if (remote.length) toast("Downloading " + n + " files…");
+    } else if (committed.length) {
+      zipCommitted(committed, label, remote.length);
+    } else {
+      toast("Downloading " + remote.length + " files from Dropbox…");
+    }
   }
   // A whole category folder: prefer the folder's Dropbox share link (one .zip);
   // fall back to the product link, then to bundling committed files.
@@ -2499,7 +2517,8 @@
   function lbCurrent() { return lbItems[lbIdx] || {}; }
   function showLb() {
     var it = lbCurrent();
-    $("#lightbox img").src = it.src || "";
+    var lbImg = $("#lightbox img");
+    if (it.src) lbImg.src = it.src; else lbImg.removeAttribute("src");
     $("#lb-name").textContent = it.name || "";
     $("#lb-count").textContent = lbItems.length > 1 ? (lbIdx + 1) + " / " + lbItems.length : "";
     var multi = lbItems.length > 1 ? "flex" : "none";
@@ -2511,7 +2530,8 @@
     lbIdx = (lbIdx + d + lbItems.length) % lbItems.length;
     showLb();
   }
-  function closeLightbox() { $("#lightbox").classList.remove("open"); $("#lightbox img").src = ""; lbItems = []; }
+  // removeAttribute, not src="" — an empty src makes the browser re-request the page URL.
+  function closeLightbox() { $("#lightbox").classList.remove("open"); $("#lightbox img").removeAttribute("src"); lbItems = []; }
   function lbOpen() { return $("#lightbox").classList.contains("open"); }
 
   // ---- toast ---------------------------------------------------------------
