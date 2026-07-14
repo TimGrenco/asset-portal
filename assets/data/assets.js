@@ -34,8 +34,8 @@ window.PORTAL_CONFIG = {
   intro:
     "The official asset portal for G Pen. Product photography, lifestyle imagery, logos, video and spec sheets — organized by product, ready to download.",
   requestEmail: "marketing@grencoscience.com", // "Request an asset" mailto target
-  orderEmail: "pr@grencoscience.com",   // marketing-material order requests
-  locatorEmail: "pr@grencoscience.com", // store-locator listing requests
+  orderEmail: "marketing@grencoscience.com",   // marketing-material order requests
+  locatorEmail: "marketing@grencoscience.com", // store-locator listing requests
   // Shown on each product page. Edit freely (or set to "" to hide).
   usageNote:
     "These assets are provided for approved partner, press, and retail use. Please don't alter logos or product imagery. Need something specific or a different format? Use “Request an asset.”",
