@@ -90,7 +90,13 @@
   }
 
   // ---- derived per-product stats -------------------------------------------
+  // Folder name for a product's own in-store materials (declared up here so the
+  // stats pass can de-dupe it before counting — see below).
+  var INSTORE_FOLDER = "In Store Marketing Materials";
   PRODUCTS.forEach(function (p) {
+    // De-dupe the in-store folder up front (drops PNG-vs-white-bg doubles and
+    // hash-named files) so p.total matches the count the product page shows.
+    if (p.folders && (p.folders[INSTORE_FOLDER] || []).length) p.folders[INSTORE_FOLDER] = instoreOwn(p);
     var total = 0, fmts = {};
     Object.keys(p.folders).forEach(function (f) {
       p.folders[f].forEach(function (file) { total++; if (file.format) fmts[file.format] = 1; });
@@ -112,18 +118,6 @@
   function pid(p) { return p.brand + "::" + p.name; }
   function fileKey(folder, file) { return folder + "::" + file.name + "." + (file.format || ""); }
 
-  // ---- recently viewed (local to the browser) ------------------------------
-  function loadRecent() {
-    try { return JSON.parse(localStorage.getItem("portal_recent") || "[]"); } catch (e) { return []; }
-  }
-  function recordRecent(p) {
-    try {
-      var id = pid(p);
-      var arr = loadRecent().filter(function (x) { return x !== id; });
-      arr.unshift(id);
-      localStorage.setItem("portal_recent", JSON.stringify(arr.slice(0, 8)));
-    } catch (e) {}
-  }
   // Curated display names + print dimensions for in-store marketing materials,
   // keyed by synced filename. Overrides the raw filename wherever the piece shows.
   var INSTORE_LABELS = {
@@ -239,7 +233,9 @@
   // history entries and never fires hashchange.
   function syncURL() {
     var qs = buildQuery();
-    try { history.replaceState(null, "", location.pathname + (qs ? "?" + qs : "")); } catch (e) {}
+    // Preserve the fragment — otherwise a shared #catalog/<slug> deep link loses its
+    // hash the moment renderHome() runs behind the viewer, breaking refresh/bookmark.
+    try { history.replaceState(null, "", location.pathname + (qs ? "?" + qs : "") + (location.hash || "")); } catch (e) {}
   }
   function parseURL() {
     var q = location.search.replace(/^\?/, "");
@@ -255,8 +251,6 @@
   }
   // Reflect state into the toggle / chips / sort / view / search controls.
   function syncControls() {
-    $$("#view-toggle button").forEach(function (b) { b.classList.toggle("on", b.getAttribute("data-view") === state.view); });
-    $$("#type-filters .chip").forEach(function (c) { c.classList.toggle("on", c.getAttribute("data-type") === state.type); });
     $$("#sort-toggle button").forEach(function (b) { b.classList.toggle("on", b.getAttribute("data-sort") === state.sort); });
     $$("#view-mode button").forEach(function (b) { b.classList.toggle("on", b.getAttribute("data-layout") === state.layout); });
     var s = $("#search"); if (s && s.value !== state.query) s.value = state.query;
@@ -282,7 +276,8 @@
     // Nothing filtered → keep the top clean (the bar hides itself when empty).
     if (!chips.length) { box.innerHTML = ""; return; }
     var left = chips.map(function (c) {
-      return '<button class="fchip" data-clear="' + c.k + '">' + c.label + ' <span class="x">' + icon("x") + "</span></button>";
+      // escapeHTML: c.label can include the raw ?q= URL param — never inject it unescaped.
+      return '<button class="fchip" data-clear="' + c.k + '">' + escapeHTML(c.label) + ' <span class="x">' + icon("x") + "</span></button>";
     }).join("") + '<button class="fclear" data-clear="all">Clear all</button>';
     box.innerHTML =
       '<div class="fb-left">' + left + "</div>" +
@@ -768,7 +763,7 @@
 
     // While searching, the browsing sections give way to a results view.
     var searching = !!state.query;
-    ["resources", "instore-section", "store-locator", "social-hub", "additional-entry"].forEach(function (id) {
+    ["resources", "catalogs-section", "instore-section", "store-locator", "social-hub", "additional-entry"].forEach(function (id) {
       var el = $(id.charAt(0) === "#" ? id : "#" + id); if (el) el.style.display = searching ? "none" : "";
     });
     if (searching) { renderSearch(); syncURL(); return; }
@@ -895,22 +890,25 @@
 
   function searchFileTile(r) {
     var f = r.file, isVid = f.type === "video";
-    var safe = r.label.replace(/"/g, "");
+    var safe = escapeHTML(r.label.replace(/"/g, ""));
+    // Download filename WITH extension — catalogs/in-store entries carry a bare
+    // title, so fileLabel() appends the format (.pdf/.png) instead of a no-ext save.
+    var dlName = escapeHTML(fileLabel(f).replace(/"/g, ""));
     var media = f.thumb
-      ? '<img src="' + f.thumb + '" alt="' + safe + '" loading="lazy" decoding="async"/>'
+      ? '<img src="' + escapeHTML(f.thumb) + '" alt="' + safe + '" loading="lazy" decoding="async"/>'
       : icon(typeIcon[f.type] || "photo");
     var dl = !isVid ? (f.file || f.url || "") : "";
     var openAttr = r.openHash
       ? ' data-open="' + escapeHTML(r.openHash) + '"'
       : ' data-pid="' + pid(r.product) + '" data-folder="' + escapeHTML(r.folder) + '"';
-    var title = r.openHash ? "Open " + safe : "Open in " + (r.sub || r.label).replace(/"/g, "");
+    var title = r.openHash ? "Open " + safe : "Open in " + escapeHTML((r.sub || r.label).replace(/"/g, ""));
     return '<div class="sf-cell">' +
         '<button class="sf-open"' + openAttr + ' title="' + title + '">' +
           '<span class="sf-thumb' + (isVid ? " is-video" : "") + '">' + media + (isVid ? '<span class="sf-play">' + icon("play") + "</span>" : "") + "</span>" +
           '<span class="sf-meta"><span class="sf-name">' + highlight(r.label, state.query) + "</span>" +
             '<span class="sf-sub">' + highlight(r.sub || "", state.query) + (f.format ? ' · <span class="sf-fmt">' + escapeHTML(f.format) + "</span>" : "") + "</span></span>" +
         "</button>" +
-        (dl ? '<button class="sf-dl" data-sfdl="' + escapeHTML(dl) + '" data-sfname="' + safe + '"' + (f.file ? ' data-direct="1"' : "") + ' title="Download">' + icon("download") + "</button>" : "") +
+        (dl ? '<button class="sf-dl" data-sfdl="' + escapeHTML(dl) + '" data-sfname="' + dlName + '"' + (f.file ? ' data-direct="1"' : "") + ' title="Download">' + icon("download") + "</button>" : "") +
       "</div>";
   }
   function bindSearchFiles(ctx) {
@@ -961,8 +959,8 @@
 
   // In-store marketing materials for the current brand — aggregated from each
   // product's "In-Store Marketing" folder (synced from Dropbox). Retailers browse
-  // what's available and order via email.
-  var INSTORE_FOLDER = "In Store Marketing Materials";
+  // what's available and order via email. (INSTORE_FOLDER is declared up top so the
+  // per-product stats pass can de-dupe it before counting.)
   // A product's own in-store materials, de-duplicated by base name: when a
   // transparent PNG and a white-background copy both exist, keep only the PNG so
   // retailers don't see doubles.
@@ -1395,11 +1393,6 @@
     window.location.href = "mailto:" + CFG.orderEmail + "?subject=" +
       encodeURIComponent("Marketing Material Request") + "&body=" + encodeURIComponent(body);
   }
-  function navMaterials() {
-    openMaterials();
-    if (location.hash !== "#materials") { ignoreHash = true; location.hash = "materials"; }
-  }
-
   // ---- product training / certification ------------------------------------
   function hasTraining(p) { return !!(window.PORTAL_TRAINING && window.PORTAL_TRAINING[p.name]); }
   // Entry banner on the product page → opens the training/certification course.
@@ -1837,7 +1830,6 @@
     d.style.display = "block";
     animateIn(d);
     window.scrollTo(0, 0);
-    recordRecent(p);
 
     // The In-Store Marketing folder also has its own section below the gallery. In
     // the gallery it's PNG-de-duplicated (no white-bg doubles) and pinned as the
@@ -2010,7 +2002,17 @@
         syncSelection();
       });
       $("#sel-clear").addEventListener("click", function () { selected = {}; syncSelection(); });
-      $("#sel-dl").addEventListener("click", function () { downloadFiles(selectedList(), selectedList().length + " selected"); });
+      $("#sel-dl").addEventListener("click", function () {
+        var sel = selectedList(), whole = folderFiles();
+        // "Select all → Download selected" on an all-Dropbox folder: one folder .zip
+        // is far more reliable than N hidden-iframe pulls (browsers gate those after
+        // the first). Route the whole-folder case to the zip when we have the link.
+        var allRemote = sel.length && sel.every(function (f) { return !f.file && f.url; });
+        if (allRemote && whole.length && sel.length === whole.length && p.folderLinks && p.folderLinks[active]) {
+          downloadFolder(p, active); return;
+        }
+        downloadFiles(sel, typeLabel(active) + " · " + sel.length + " selected");
+      });
       $$(".catcard", d).forEach(function (t) {
         // Switching folders re-renders the detail with the new active folder.
         t.addEventListener("click", function () { active = t.getAttribute("data-folder"); render(); });
@@ -2341,26 +2343,29 @@
       var on = selected && selected[key];
       var ext = isExtVideo(file);   // YouTube (or other external) video link
       var hasImg = !!file.thumb;
+      // Everything below is escaped before going into markup: synced filenames and
+      // Dropbox URLs (which contain &) are data, never trusted HTML.
+      var nm = escapeHTML(fileLabel(file)), fmt = escapeHTML(file.format || "");
       var lbAttr = "", ytAttr = "", badge = "";
       if (ext && hasImg) {
-        ytAttr = ' data-yt="' + file.url + '"';
+        ytAttr = ' data-yt="' + escapeHTML(file.url) + '"';
         badge = '<span class="play-badge">' + icon("play") + "</span>";
       } else if (hasImg) {
         lbAttr = ' data-lbidx="' + items.length + '"';
         items.push({ src: file.thumb, name: fileLabel(file), url: file.url || "#", file: file.file || null });
       }
       var thumb = hasImg
-        ? '<img src="' + file.thumb + '" alt="' + file.name + '" loading="lazy" decoding="async" onerror="this.parentNode.innerHTML=window.__icon(\'' + (typeIcon[file.type] || "file") + '\')"/>' + badge
+        ? '<img src="' + escapeHTML(file.thumb) + '" alt="' + escapeHTML(file.name) + '" loading="lazy" decoding="async" onerror="this.parentNode.innerHTML=window.__icon(\'' + (typeIcon[file.type] || "file") + '\')"/>' + badge
         : window.__icon(typeIcon[file.type] || "file");
       return (
-        '<div class="gcell' + (on ? " sel" : "") + '" data-key="' + key + '">' +
-          '<label class="gselect"><input type="checkbox" class="gcheck"' + (on ? " checked" : "") + ' aria-label="Select ' + fileLabel(file) + '"/></label>' +
-          '<div class="gthumb' + (ext ? " is-video" : "") + '" role="button" tabindex="0" aria-label="' + (ext ? "Play " : "Enlarge ") + fileLabel(file).replace(/"/g, "") + '"' + lbAttr + ytAttr + ">" + thumb +
-            (file.format ? '<span class="gfmt">' + file.format + "</span>" : "") + "</div>" +
-          '<div class="gbar"><span class="gn">' + fileLabel(file) + '</span>' +
+        '<div class="gcell' + (on ? " sel" : "") + '" data-key="' + escapeHTML(key) + '">' +
+          '<label class="gselect"><input type="checkbox" class="gcheck"' + (on ? " checked" : "") + ' aria-label="Select ' + nm + '"/></label>' +
+          '<div class="gthumb' + (ext ? " is-video" : "") + '" role="button" tabindex="0" aria-label="' + (ext ? "Play " : "Enlarge ") + nm + '"' + lbAttr + ytAttr + ">" + thumb +
+            (file.format ? '<span class="gfmt">' + fmt + "</span>" : "") + "</div>" +
+          '<div class="gbar"><span class="gn">' + nm + '</span>' +
           '<span class="ga">' +
-            '<span role="button" tabindex="0" data-copy="' + (file.url || "#") + '" aria-label="Copy link to ' + fileLabel(file).replace(/"/g, "") + '" title="Copy link">' + icon("link") + "</span>" +
-            '<span role="button" tabindex="0" data-dl="' + (file.file || file.url || "#") + '" data-name="' + fileLabel(file) + '"' + (file.file ? ' data-direct="1"' : "") + ' aria-label="' + (ext ? "Watch " : "Download ") + fileLabel(file).replace(/"/g, "") + '" title="' + (ext ? "Watch on YouTube" : "Download") + '">' + icon(ext ? "play" : "download") + "</span>" +
+            '<span role="button" tabindex="0" data-copy="' + escapeHTML(file.url || "#") + '" aria-label="Copy link to ' + nm + '" title="Copy link">' + icon("link") + "</span>" +
+            '<span role="button" tabindex="0" data-dl="' + escapeHTML(file.file || file.url || "#") + '" data-name="' + nm + '"' + (file.file ? ' data-direct="1"' : "") + ' aria-label="' + (ext ? "Watch " : "Download ") + nm + '" title="' + (ext ? "Watch on YouTube" : "Download") + '">' + icon(ext ? "play" : "download") + "</span>" +
           "</span></div>" +
         "</div>"
       );
@@ -2521,7 +2526,10 @@
     } else if (committed.length) {
       zipCommitted(committed, label, remote.length);
     } else {
-      toast("Downloading " + remote.length + " files from Dropbox…");
+      // Partial all-Dropbox selection: can't zip cross-origin, so each file pulls
+      // separately. Browsers ask permission for multiple downloads — say so, and
+      // point at the folder .zip for grabbing everything in one go.
+      toast(remote.length + " downloads starting — allow multiple if your browser asks, or use “Download folder”.");
     }
   }
   // A whole category folder: prefer the folder's Dropbox share link (one .zip);
@@ -2567,7 +2575,7 @@
   }
   window.__open = function (url) {
     if (!url || url === "#") { toast("Document coming soon"); return; }
-    window.open(url, "_blank");
+    window.open(url, "_blank", "noopener");
   };
 
   // ---- lightbox / asset viewer ---------------------------------------------
@@ -2630,26 +2638,6 @@
       homeLink.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); navHome(); } });
     }
 
-    // brand toggle
-    $$("#view-toggle button").forEach(function (b) {
-      b.addEventListener("click", function () {
-        $$("#view-toggle button").forEach(function (x) { x.classList.remove("on"); });
-        b.classList.add("on");
-        state.view = b.getAttribute("data-view");
-        navHome();
-      });
-    });
-    // type filter chips (no "All assets" chip — clicking an active chip clears it)
-    $$("#type-filters .chip").forEach(function (c) {
-      c.addEventListener("click", function () {
-        var t = c.getAttribute("data-type");
-        var deselect = state.type === t;
-        state.type = deselect ? "all" : t;
-        $$("#type-filters .chip").forEach(function (x) { x.classList.remove("on"); });
-        if (!deselect) c.classList.add("on");
-        navHome();
-      });
-    });
     // sort toggle
     $$("#sort-toggle button").forEach(function (b) {
       b.addEventListener("click", function () {
