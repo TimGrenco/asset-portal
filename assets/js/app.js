@@ -703,6 +703,54 @@
     return PRODUCTS.filter(function (p) { return p.brand === bk && !p.isLogo && !isCurrentName(bk, p.name); });
   }
 
+  // ---- product families: group the featured grid by use-case -----------------
+  // Each current product falls into one colour-coded family so a retailer can see
+  // at a glance what a device is for. Order here is the order the bands render in.
+  var PRODUCT_FAMILIES = [
+    { key: "510",         name: "510 Batteries",       blurb: "510-thread cartridge batteries",
+      icon: '<svg viewBox="0 0 24 24"><rect x="2" y="7" width="15" height="10" rx="2"/><path d="M20 10.5v3"/><path d="m9.5 9-2 3.2h2.8l-2 2.8"/></svg>' },
+    { key: "dryherb",     name: "Dry Herb Vaporizers", blurb: "Portable dry-herb devices",
+      icon: '<svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 4 13C4 7 9 3 20 3c0 11-4 16-9 16Z"/><path d="M11 20c0-6 3-10 8-13"/></svg>' },
+    { key: "concentrate", name: "Concentrate",         blurb: "Concentrate tools & accessories",
+      icon: '<svg viewBox="0 0 24 24"><path d="M12 3s6.5 6.8 6.5 11.5a6.5 6.5 0 0 1-13 0C5.5 9.8 12 3 12 3Z"/></svg>' },
+    { key: "other",       name: "More products",       blurb: "",
+      icon: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>' },
+  ];
+  // Derive a product's family from its category / label / type (no per-product
+  // hardcoding — a new product slots itself in automatically).
+  function familyOf(p) {
+    var s = ((p.category || "") + " " + (p.label || "") + " " + (p.type || "")).toLowerCase();
+    if (/510/.test(s)) return "510";
+    if (/concentrate|hot knife|dab|wax|e-?nail|e-?rig|nectar/.test(s)) return "concentrate";
+    if (/dry ?herb/.test(s)) return "dryherb";
+    return "other";
+  }
+  // Render the featured products as colour-coded family bands (keeps the same
+  // cards, just grouped). Sort order within a band follows the incoming list.
+  function groupedProductsHTML(list, layout) {
+    var byFam = {};
+    list.forEach(function (p) { (byFam[familyOf(p)] = byFam[familyOf(p)] || []).push(p); });
+    var gridClass = layout === "list" ? "grid list fam-grid" : "grid fam-grid";
+    return PRODUCT_FAMILIES.map(function (f) {
+      var items = byFam[f.key];
+      if (!items || !items.length) return "";
+      // Small groups (≤2 products) pair up side-by-side on desktop so they don't
+      // leave a full-width band of empty space; they go full-width on narrower screens.
+      var narrow = items.length <= 2 ? " fam-narrow" : "";
+      return '<section class="famgroup fam-' + f.key + narrow + '">' +
+          '<div class="fam-head">' +
+            '<span class="fam-ic" aria-hidden="true">' + (f.icon || "") + "</span>" +
+            '<h3 class="fam-name">' + f.name + "</h3>" +
+            '<span class="fam-count">' + items.length + "</span>" +
+            (f.blurb ? '<span class="fam-blurb">' + f.blurb + "</span>" : "") +
+          "</div>" +
+          '<div class="fam-body">' +
+            '<div class="' + gridClass + '">' + items.map(function (p) { return cardHTML(p, layout); }).join("") + "</div>" +
+          "</div>" +
+        "</section>";
+    }).join("");
+  }
+
   // ---- rendering: home -----------------------------------------------------
   function renderHome(noAnim) {
     $("#detail").style.display = "none";
@@ -730,7 +778,7 @@
 
     // Featured products in scope (brand), logos excluded.
     var vis = visibleProducts().filter(function (p) { return !p.isLogo; });
-    $("#all-title").textContent = "Featured " + BRANDS[state.view].name + " products";
+    $("#all-title").textContent = "Browse " + BRANDS[state.view].name + " by category";
 
     var curList = currentList(state.view);
     var byName = function (a, b) { return a.name.localeCompare(b.name); };
@@ -746,10 +794,9 @@
 
     renderActiveFilters();
 
-    var layoutClass = state.layout === "list" ? "grid list" : "grid";
     var allGrid = $("#all-grid");
-    allGrid.className = layoutClass;
-    allGrid.innerHTML = current.map(function (p) { return cardHTML(p, state.layout); }).join("") || emptyState();
+    allGrid.className = "prodgroups";
+    allGrid.innerHTML = current.length ? groupedProductsHTML(current, state.layout) : emptyState();
 
     renderCatalogs();
     renderLogoAssets();

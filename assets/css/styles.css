@@ -246,6 +246,50 @@ button.mat-thumb { padding: 0; }
 
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 18px; margin-bottom: 38px; }
 
+/* ---- product family panels (colour-coded groups on the home grid) --------- */
+/* A titled panel per category: a colour-tinted header strip (where the category
+   colour lives, bold and obvious) over a white card body — so a band with only
+   one or two products reads as normal whitespace, never an empty colour box. */
+.prodgroups { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 18px; margin-bottom: 38px; }
+.famgroup {
+  --fam: #8a8a8a; --fam-ink: #5f5f5f; --fam-tint: rgba(138,138,138,0.08); --fam-line: rgba(138,138,138,0.20);
+  flex: 1 1 100%; border: 1px solid var(--hair); border-radius: 16px; overflow: hidden;
+}
+/* On desktop, small groups (≤2 products) sit two-up so a one-product section
+   like Concentrate rides alongside Dry Herb instead of spanning an empty row. */
+@media (min-width: 1100px) {
+  .famgroup.fam-narrow { flex: 1 1 calc(50% - 9px); }
+}
+.fam-dryherb     { --fam: #1f8a4c; --fam-ink: #15703c; --fam-tint: rgba(31,138,76,0.09);  --fam-line: rgba(31,138,76,0.20); }
+.fam-510         { --fam: #2b2b2b; --fam-ink: #1c1c1c; --fam-tint: rgba(30,30,30,0.055); --fam-line: rgba(30,30,30,0.16); }
+.fam-concentrate { --fam: #d98324; --fam-ink: #a5620f; --fam-tint: rgba(217,131,36,0.12); --fam-line: rgba(217,131,36,0.24); }
+.fam-head {
+  display: flex; align-items: center; gap: 12px; padding: 13px 18px;
+  background: var(--fam-tint); border-bottom: 1px solid var(--fam-line);
+}
+.fam-ic {
+  flex: 0 0 auto; width: 44px; height: 44px; border-radius: 12px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: #fff; border: 1px solid var(--fam-line); color: var(--fam);
+  box-shadow: 0 1px 2px rgba(15,15,15,0.05);
+}
+.fam-ic svg { width: 27px; height: 27px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.fam-name { font-family: var(--serif); font-size: 16px; font-weight: 800; letter-spacing: -0.01em; margin: 0; color: var(--fam-ink); }
+.fam-count {
+  flex: 0 0 auto; min-width: 20px; height: 20px; padding: 0 7px; border-radius: 999px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800; color: #fff; background: var(--fam);
+}
+.fam-blurb { margin-left: auto; font-size: 12.5px; font-weight: 500; color: var(--fam-ink); opacity: 0.75; }
+.fam-body { padding: 20px 18px; background: var(--paper); }
+.fam-grid { margin-bottom: 0; }
+@media (max-width: 600px) {
+  .famgroup { border-radius: 14px; }
+  .fam-head { padding: 12px 14px; }
+  .fam-body { padding: 16px 14px; }
+  .fam-blurb { display: none; }
+}
+
 /* product card */
 .card { cursor: pointer; }
 .card-frame { position: relative; aspect-ratio: 1/1; background: var(--mist); border: 1px solid var(--hair); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; padding: 26px; overflow: hidden; transition: border-color 0.16s, box-shadow 0.16s, transform 0.16s; }
