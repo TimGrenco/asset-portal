@@ -2380,11 +2380,13 @@
     a.click();
     setTimeout(function () { a.remove(); }, 1500);
   }
-  // Lazy-load JSZip from CDN only when a bundle download is requested.
+  // Lazy-load JSZip only when a bundle download is requested. Self-hosted (like
+  // PDF.js) so multi-file downloads keep working on store networks that block
+  // third-party CDNs.
   function loadJSZip(cb) {
     if (window.JSZip) return cb(window.JSZip);
     var s = document.createElement("script");
-    s.src = "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js";
+    s.src = "assets/vendor/jszip/jszip.min.js";
     s.onload = function () { cb(window.JSZip || null); };
     s.onerror = function () { cb(null); };
     document.head.appendChild(s);
