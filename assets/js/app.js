@@ -1695,17 +1695,17 @@
       '<div class="cert" id="cert-card">' +
         '<div class="cert-inner">' +
           '<div class="cert-logo"><img src="assets/img/gpen-g-black.png" alt="G Pen" /></div>' +
-          '<div class="cert-eyebrow">G Pen · Product Specialist Program</div>' +
-          '<h3 class="cert-award">Certificate of Completion</h3>' +
-          '<div class="cert-presented">This certifies that</div>' +
+          '<div class="cert-eyebrow">' + tr("G Pen · Product Specialist Program") + '</div>' +
+          '<h3 class="cert-award">' + tr("Certificate of Completion") + '</h3>' +
+          '<div class="cert-presented">' + tr("This certifies that") + '</div>' +
           '<div class="cert-name">' + escapeHTML(nm) + "</div>" +
-          '<div class="cert-desc">has successfully completed the Product Specialist training and demonstrated expert product knowledge of the</div>' +
+          '<div class="cert-desc">' + tr("has successfully completed the Product Specialist training and demonstrated expert product knowledge of the") + '</div>' +
           '<div class="cert-product">' + name + "</div>" +
           certSealHTML(pct) +
           '<div class="cert-foot">' +
-            '<div class="cert-fcol"><span class="cert-fv">' + dateStr + '</span><span class="cert-fl">Date Issued</span></div>' +
-            '<div class="cert-fcol"><span class="cert-fv cert-sig">Grenco Science</span><span class="cert-fl">Authorized By</span></div>' +
-            '<div class="cert-fcol"><span class="cert-fv">' + cid + '</span><span class="cert-fl">Certificate ID</span></div>' +
+            '<div class="cert-fcol"><span class="cert-fv">' + dateStr + '</span><span class="cert-fl">' + tr("Date Issued") + '</span></div>' +
+            '<div class="cert-fcol"><span class="cert-fv cert-sig">Grenco Science</span><span class="cert-fl">' + tr("Authorized By") + '</span></div>' +
+            '<div class="cert-fcol"><span class="cert-fv">' + cid + '</span><span class="cert-fl">' + tr("Certificate ID") + '</span></div>' +
           "</div>" +
         "</div>" +
       "</div>" +
@@ -1743,14 +1743,14 @@
       x.drawImage(CERT_LOGO, cx - lw / 2, 96, lw, lh);
     }
     ls("4px"); x.fillStyle = GOLD; x.font = "700 22px Archivo, Arial, sans-serif";
-    x.fillText("G PEN · PRODUCT SPECIALIST PROGRAM", cx, 322); ls("0px");
-    x.fillStyle = INK; x.font = "800 46px Archivo, Arial, sans-serif"; x.fillText("Certificate of Completion", cx, 388);
-    x.fillStyle = MUTE; x.font = "400 24px Archivo, Arial, sans-serif"; x.fillText("This certifies that", cx, 462);
+    x.fillText(tr("G PEN · PRODUCT SPECIALIST PROGRAM"), cx, 322); ls("0px");
+    x.fillStyle = INK; x.font = "800 46px Archivo, Arial, sans-serif"; x.fillText(tr("Certificate of Completion"), cx, 388);
+    x.fillStyle = MUTE; x.font = "400 24px Archivo, Arial, sans-serif"; x.fillText(tr("This certifies that"), cx, 462);
     x.fillStyle = INK; x.font = "800 78px Archivo, Arial, sans-serif"; x.fillText(nm, cx, 552);
     x.fillStyle = GOLD; x.fillRect(cx - 150, 582, 300, 3);
     x.fillStyle = MUTE; x.font = "400 23px Archivo, Arial, sans-serif";
-    x.fillText("has successfully completed the Product Specialist training", cx, 648);
-    x.fillText("and demonstrated expert product knowledge of the", cx, 682);
+    x.fillText(tr("has successfully completed the Product Specialist training"), cx, 648);
+    x.fillText(tr("and demonstrated expert product knowledge of the"), cx, 682);
     x.fillStyle = INK; x.font = "800 46px Archivo, Arial, sans-serif"; x.fillText(product, cx, 748);
     // gold seal
     var scy = 872, r = 70;
@@ -2364,7 +2364,7 @@
 
       var thumb = '<div class="vthumb' + (playSrc ? " vplay" : "") + '"' +
         (playSrc ? ' data-play="' + playSrc + '" data-title="' + safe + '"' + (dl ? ' data-dl="' + dl + '" data-dlname="' + dlname + '"' : "") + ' role="button" tabindex="0" aria-label="Watch ' + safe + '"' : "") + ">" +
-        poster + '<span class="play-badge">' + icon("play") + "</span>" + (playSrc ? '<span class="vthumb-hint">Click to watch</span>' : "") + "</div>";
+        poster + '<span class="play-badge">' + icon("play") + "</span>" + (playSrc ? '<span class="vthumb-hint">' + tr("Click to watch") + "</span>" : "") + "</div>";
 
       // Only offer a download when there's a real downloadable file; watch-only
       // tutorials (YouTube/Vimeo) just show Watch + the YouTube link.
