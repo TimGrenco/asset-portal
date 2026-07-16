@@ -17,10 +17,14 @@
   var LANGS = { en: "English", es: "Español" };
   function readLang() {
     try {
+      // A ?lang= link wins, and it STICKS: persist it, otherwise a recipient of a
+      // Spanish link drops back to English the moment they refresh or navigate.
       var q = (location.search.match(/[?&]lang=(en|es)\b/) || [])[1];
-      if (q) return q;
+      if (q) { try { localStorage.setItem("portal_lang", q); } catch (e2) {} return q; }
       var s = localStorage.getItem("portal_lang");
-      if (LANGS[s]) return s;
+      // Strict compare, not LANGS[s] — a stored value of "constructor"/"toString"
+      // is truthy against Object.prototype and would boot into a broken language.
+      if (s === "en" || s === "es") return s;
     } catch (e) {}
     return "en";
   }
@@ -69,13 +73,40 @@
     return out;
   }
   function setLang(l) {
-    if (!LANGS[l] || l === state.lang) return;
+    if ((l !== "en" && l !== "es") || l === state.lang) return;
+    // Re-rendering the page throws away transient DOM state, so carry the two
+    // things a user would be upset to lose across a language switch: the answers
+    // they've already picked in a quiz, and how far down the page they were.
+    var quiz = captureQuizState();
+    var y = window.pageYOffset;
     state.lang = l;
     try { localStorage.setItem("portal_lang", l); } catch (e) {}
     document.documentElement.lang = l;
     syncLangToggle();
     applyStaticI18n();
     route();   // re-render whatever view is open, in the new language
+    restoreQuizState(quiz);
+    if (y) window.scrollTo(0, y);
+  }
+  // Snapshot / restore in-progress quiz answers around a language switch.
+  // Answers are stored as choice INDEXES, which are language-independent — the
+  // whole point of keeping the English answer key — so they carry over exactly.
+  function captureQuizState() {
+    var form = $("#trn-form"); if (!form) return null;
+    var picked = {}, n = 0;
+    $$('input[type="radio"]:checked', form).forEach(function (r) { picked[r.name] = r.value; n++; });
+    return n ? { picked: picked, graded: !!$(".trn-q.graded") } : null;
+  }
+  function restoreQuizState(s) {
+    if (!s) return;
+    var form = $("#trn-form"); if (!form) return;
+    Object.keys(s.picked).forEach(function (name) {
+      var r = form.querySelector('input[name="' + name + '"][value="' + s.picked[name] + '"]');
+      if (r) { r.checked = true; r.dispatchEvent(new Event("change", { bubbles: true })); }
+    });
+    // If they'd already submitted, re-grade so the score and the (now translated)
+    // explanations come straight back instead of silently vanishing.
+    if (s.graded) { var b = $("#trn-submit"); if (b) b.click(); }
   }
   function syncLangToggle() {
     $$("#lang-toggle button").forEach(function (b) {
@@ -320,6 +351,9 @@
     if (state.query) parts.push("q=" + encodeURIComponent(state.query));
     if (state.sort !== "featured") parts.push("s=" + state.sort);
     if (state.layout !== "grid") parts.push("l=" + state.layout);
+    // Carry the language so "Share view" / a copied URL opens in the same language
+    // (and so ?lang=es isn't stripped out of the address bar on first render).
+    if (state.lang !== "en") parts.push("lang=" + state.lang);
     return parts.join("&");
   }
   // Keep the address bar in sync with the current filters (home view only, so
@@ -526,10 +560,16 @@
     var groups = queryAliasGroups(q), bk = state.view, rawQ = q.toLowerCase().trim();
     return PRODUCTS.map(function (p) {
       if (p.brand !== bk) return null;
-      var info = infoOf(p);
+      // Index BOTH languages, always: a Spanish visitor must still find a product
+      // by an English term (and shared ?q= links are usually English), while an
+      // English visitor can paste a Spanish word. Searching only the active
+      // language made English links return 0 results in ES mode.
+      var en = p.info || {}, es = (window.PORTAL_PRODUCT_ES || {})[p.name] || {};
+      function prose(i) {
+        return (i.description || "") + " " + (i.fullName || "") + " " + ((i.highlights || []).join(" "));
+      }
       var hay = (p.name + " " + (p.category || "") + " " + (p.type || "") + " " + (p.label || "") +
-        " " + BRANDS[p.brand].name + " " + (info.description || "") +
-        " " + (info.fullName || "") + " " + ((info.highlights || []).join(" "))).toLowerCase();
+        " " + BRANDS[p.brand].name + " " + prose(en) + " " + prose(es)).toLowerCase();
       if (!matchTerms(hay, groups)) return null;
       return { p: p, score: relScore(p.name, hay, groups, rawQ) };
     }).filter(Boolean).sort(function (a, b) {
@@ -1181,7 +1221,7 @@
     $$(".cat-card", box).forEach(function (card) {
       var cover = $(".cat-cover", card), img = $(".cat-img", card);
       function cur() { return catalogBySlug(card.getAttribute("data-cur")); }
-      clickKey(cover, function () { openCatalog(card.getAttribute("data-cur")); });
+      clickKey(cover, function () { navCatalog(card.getAttribute("data-cur")); });
       $$(".cat-pill", card).forEach(function (p) {
         p.addEventListener("click", function (e) {
           e.stopPropagation();
@@ -1207,7 +1247,10 @@
     });
   }
 
-  function closeCatalog() {
+  // Tear the viewer down WITHOUT touching the URL. openCatalog() uses this to
+  // replace an existing viewer — clearing the hash there would delete the very
+  // route that is re-opening it (e.g. on a language switch).
+  function teardownCatalog() {
     var ov = document.getElementById("catlb");
     if (!ov) return;
     if (ov.__key) document.removeEventListener("keydown", ov.__key);
@@ -1215,14 +1258,30 @@
     if (ov.__doc) { try { ov.__doc.destroy(); } catch (e) {} ov.__doc = null; }
     ov.remove();
     document.body.style.overflow = "";
-    if (/^#catalog\//.test(location.hash)) history.replaceState(null, "", location.pathname);
+  }
+  // The user actually closing the viewer: tear down AND drop the catalog route.
+  function closeCatalog() {
+    if (!document.getElementById("catlb")) return;
+    teardownCatalog();
+    // Keep location.search — dropping it wiped the user's ?q=/?t= filters (and
+    // ?lang=) just because they closed a catalog.
+    if (/^#catalog\//.test(location.hash)) history.replaceState(null, "", location.pathname + location.search);
   }
 
+  // Open a catalog by routing through the hash, so the URL is the source of truth.
+  // Without this the viewer is pure DOM state: any re-render (e.g. switching
+  // language) would drop the user back to the homepage, and the open catalog
+  // couldn't be shared or survive a refresh.
+  function navCatalog(slug) {
+    var h = "#catalog/" + slug;
+    if (location.hash !== h) location.hash = h;   // hashchange → route() → openCatalog
+    else openCatalog(slug);
+  }
   function openCatalog(slug) {
     var c = catalogBySlug(slug);
     if (!c) { toast(tr("Catalog not found")); return; }
     if (!c.file) { catalogDownload(c); return; }   // not committed yet → Dropbox
-    closeCatalog();
+    teardownCatalog();   // replace any open viewer, but keep the #catalog/ route
     var ov = document.createElement("div");
     ov.className = "catlb"; ov.id = "catlb";
     ov.innerHTML =
