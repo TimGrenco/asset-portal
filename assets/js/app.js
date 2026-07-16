@@ -9,59 +9,105 @@
   var BRANDS = window.PORTAL_BRANDS;
   var PRODUCTS = window.PORTAL_PRODUCTS;
 
-  /* ---- i18n: portal-wide English / Spanish toggle ---------------------------
-     Strings are keyed by their ENGLISH SOURCE TEXT (see assets/data/i18n.js), so
-     anything not yet translated simply renders in English rather than showing a
-     raw key. To revise the Spanish, edit i18n.js / the *_ES data — no code change.
-     Product names, filenames, SKUs and units are never translated. */
-  var LANGS = { en: "English", es: "Español" };
+  /* ---- i18n: portal-wide language selector ----------------------------------
+     English is the source and needs no pack. Every other language lives in its
+     own file (assets/data/i18n/<code>.js) that is LAZY-LOADED the first time the
+     language is selected — so English visitors download zero translation bytes,
+     and adding a language never slows the default experience.
+
+     A pack is { ui, training, products }:
+       ui        keyed by the ENGLISH source string; a missing key falls back to
+                 English rather than showing a raw key.
+       training  courses/quizzes mirroring PORTAL_TRAINING (answers stay on the
+                 English data — see trainingOf).
+       products  description / highlights / warranty / fullDescription.
+     Product names, brand names, filenames, SKUs, units and prices are never
+     translated. To revise a language, edit only its pack — no code change. */
+  var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français" };
+  function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
+  var LANG_VER = "20260711m";   // bump with the other asset tokens
+  // Load a language pack once. English is a no-op (it IS the source).
+  var _langLoading = {};
+  function loadLangPack(l, cb) {
+    if (l === "en" || (window.PORTAL_I18N && window.PORTAL_I18N[l])) return cb(true);
+    if (_langLoading[l]) { _langLoading[l].push(cb); return; }
+    _langLoading[l] = [cb];
+    var s = document.createElement("script");
+    s.src = "assets/data/i18n/" + l + ".js?v=" + LANG_VER;
+    function done(ok) {
+      var q = _langLoading[l] || []; _langLoading[l] = null;
+      q.forEach(function (f) { f(ok); });
+    }
+    s.onload = function () { done(!!(window.PORTAL_I18N && window.PORTAL_I18N[l])); };
+    // If a pack fails to load we stay in English rather than render half-broken.
+    s.onerror = function () { done(false); };
+    document.head.appendChild(s);
+  }
+  function pack() { return (window.PORTAL_I18N && window.PORTAL_I18N[state.lang]) || null; }
   function readLang() {
     try {
       // A ?lang= link wins, and it STICKS: persist it, otherwise a recipient of a
-      // Spanish link drops back to English the moment they refresh or navigate.
-      var q = (location.search.match(/[?&]lang=(en|es)\b/) || [])[1];
-      if (q) { try { localStorage.setItem("portal_lang", q); } catch (e2) {} return q; }
+      // translated link drops back to English the moment they refresh or navigate.
+      var q = (location.search.match(/[?&]lang=([a-z]{2})\b/) || [])[1];
+      if (q && isLang(q)) { try { localStorage.setItem("portal_lang", q); } catch (e2) {} return q; }
       var s = localStorage.getItem("portal_lang");
-      // Strict compare, not LANGS[s] — a stored value of "constructor"/"toString"
-      // is truthy against Object.prototype and would boot into a broken language.
-      if (s === "en" || s === "es") return s;
+      // hasOwnProperty, not LANGS[s] — a stored "constructor"/"toString" is truthy
+      // against Object.prototype and would boot into a broken language.
+      if (isLang(s)) return s;
     } catch (e) {}
     return "en";
   }
-  // Has the visitor made an explicit choice (clicked the toggle, followed a
-  // ?lang= link, or dismissed the offer)? If not, we may offer Spanish once.
+  // Has the visitor made an explicit choice (picked a language, followed a
+  // ?lang= link, or dismissed the offer)? If not, we may offer once.
   function hasLangPreference() {
     try {
-      var s = localStorage.getItem("portal_lang");
-      return s === "en" || s === "es" || localStorage.getItem("portal_lang_asked") === "1";
+      return isLang(localStorage.getItem("portal_lang")) || localStorage.getItem("portal_lang_asked") === "1";
     } catch (e) { return false; }
   }
-  function browserPrefersSpanish() {
+  // Which supported language does this browser prefer, if any? Returns "" when
+  // English (or nothing we support) is ranked highest — we only offer to people
+  // who'd actually want it.
+  function browserLang() {
     var list = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ""]);
     for (var i = 0; i < list.length; i++) {
-      var l = String(list[i] || "").toLowerCase();
-      if (l.indexOf("es") === 0) return true;   // es, es-MX, es-419, es-ES…
-      if (l.indexOf("en") === 0) return false;  // an English preference ranked higher wins
+      var l = String(list[i] || "").toLowerCase().slice(0, 2);
+      if (l === "en") return "";              // an English preference ranked higher wins
+      if (l !== "en" && isLang(l)) return l;  // es / de / it / fr
     }
-    return false;
+    return "";
   }
   function dismissLangBar() {
     var bar = $("#lang-bar"); if (!bar) return;
     try { localStorage.setItem("portal_lang_asked", "1"); } catch (e) {}
     bar.classList.remove("show"); bar.hidden = true;
   }
+  // The language the offer bar is proposing (set when we decide to show it).
+  var _offerLang = "";
   // Wiring is bound once at init, independent of whether the bar is shown, so the
   // buttons behave the same however the bar came to be visible.
   function bindLangBar() {
     var yes = $("#lang-bar-yes"), no = $("#lang-bar-no");
-    if (yes) yes.addEventListener("click", function () { dismissLangBar(); setLang("es"); });
+    if (yes) yes.addEventListener("click", function () { dismissLangBar(); setLang(_offerLang || "es"); });
     if (no) no.addEventListener("click", dismissLangBar);
   }
-  // Offer Spanish once, to Spanish-preferring browsers only. Deliberately does
-  // NOT auto-switch: flipping a retailer's portal under them is worse than asking.
-  function maybeOfferSpanish() {
+  // Offer the visitor's own language once, and only to browsers that actually
+  // prefer one we support. Deliberately does NOT auto-switch: flipping a
+  // retailer's portal under them is worse than asking.
+  var OFFER_COPY = {
+    es: { q: "¿Prefiere ver este portal en español?", yes: "Ver en español", no: "No, gracias" },
+    de: { q: "Möchten Sie dieses Portal auf Deutsch ansehen?", yes: "Auf Deutsch ansehen", no: "Nein, danke" },
+    it: { q: "Preferisce visualizzare questo portale in italiano?", yes: "Visualizza in italiano", no: "No, grazie" },
+    fr: { q: "Préférez-vous consulter ce portail en français ?", yes: "Voir en français", no: "Non, merci" },
+  };
+  function maybeOfferLang() {
     var bar = $("#lang-bar"); if (!bar) return;
-    if (hasLangPreference() || state.lang !== "en" || !browserPrefersSpanish()) return;
+    if (hasLangPreference() || state.lang !== "en") return;
+    var l = browserLang(); if (!l || !OFFER_COPY[l]) return;
+    _offerLang = l;
+    var c = OFFER_COPY[l];
+    $("#lang-bar-txt").textContent = c.q;
+    $("#lang-bar-yes").textContent = c.yes;
+    $("#lang-bar-no").textContent = c.no;
     bar.hidden = false;
     bar.classList.add("show");
   }
@@ -69,23 +115,24 @@
   // (Named tr, not t — the training code already uses `t` for the course object.)
   function tr(s) {
     if (state.lang === "en") return s;
-    var d = window.PORTAL_I18N && window.PORTAL_I18N[state.lang];
-    return (d && d.ui && d.ui[s]) || s;
+    var p = pack();
+    return (p && p.ui && p.ui[s]) || s;
   }
   // Localized training course for a product (falls back to English).
   function trainingOf(p) {
     var en = (window.PORTAL_TRAINING || {})[p.name];
     if (state.lang === "en") return en;
-    var es = (window.PORTAL_TRAINING_ES || {})[p.name];
-    if (!es || !en) return en;
+    var pk = pack();
+    var loc = pk && pk.training && pk.training[p.name];
+    if (!loc || !en) return en;
     // Merge so anything untranslated still renders, and the stored answer indexes
     // (which live only on the English data) always win.
     return {
-      tagline: es.tagline || en.tagline,
+      tagline: loc.tagline || en.tagline,
       minutes: en.minutes, passPct: en.passPct,
-      modules: (es.modules && es.modules.length === en.modules.length) ? es.modules : en.modules,
+      modules: (loc.modules && loc.modules.length === en.modules.length) ? loc.modules : en.modules,
       quiz: en.quiz.map(function (q, i) {
-        var e = es.quiz && es.quiz[i];
+        var e = loc.quiz && loc.quiz[i];
         if (!e || !e.choices || e.choices.length !== q.choices.length) return q;
         return { q: e.q || q.q, choices: e.choices, why: e.why || q.why, answer: q.answer };
       }),
@@ -95,22 +142,31 @@
   function infoOf(p) {
     var en = p.info || {};
     if (state.lang === "en") return en;
-    var es = (window.PORTAL_PRODUCT_ES || {})[p.name];
-    if (!es) return en;
+    var pk = pack();
+    var loc = pk && pk.products && pk.products[p.name];
+    if (!loc) return en;
     var out = {}; for (var k in en) out[k] = en[k];
-    if (es.description) out.description = es.description;
-    if (es.highlights && es.highlights.length) out.highlights = es.highlights;
-    if (es.warranty) out.warranty = es.warranty;
+    if (loc.description) out.description = loc.description;
+    if (loc.highlights && loc.highlights.length) out.highlights = loc.highlights;
+    if (loc.warranty) out.warranty = loc.warranty;
     // Long-form "Official Product Description" — the copy stores paste into their
     // own menus. Only swap when the paragraph count matches, so a partial
     // translation can never drop or duplicate a paragraph.
-    if (es.fullDescription && en.fullDescription && es.fullDescription.length === en.fullDescription.length) {
-      out.fullDescription = es.fullDescription;
+    if (loc.fullDescription && en.fullDescription && loc.fullDescription.length === en.fullDescription.length) {
+      out.fullDescription = loc.fullDescription;
     }
     return out;
   }
   function setLang(l) {
-    if ((l !== "en" && l !== "es") || l === state.lang) return;
+    if (!isLang(l) || l === state.lang) return;
+    // Fetch the pack BEFORE switching, so we never render a half-translated page.
+    // If it fails to load we stay put rather than degrade.
+    loadLangPack(l, function (ok) {
+      if (!ok && l !== "en") { toast("Couldn’t load that language — staying in " + LANGS[state.lang]); return; }
+      applyLang(l);
+    });
+  }
+  function applyLang(l) {
     // Re-rendering the page throws away transient DOM state, so carry the two
     // things a user would be upset to lose across a language switch: the answers
     // they've already picked in a quiz, and how far down the page they were.
@@ -145,12 +201,43 @@
     // explanations come straight back instead of silently vanishing.
     if (s.graded) { var b = $("#trn-submit"); if (b) b.click(); }
   }
-  function syncLangToggle() {
-    $$("#lang-toggle button").forEach(function (b) {
-      var on = b.getAttribute("data-lang") === state.lang;
-      b.classList.toggle("on", on);
-      b.setAttribute("aria-pressed", on ? "true" : "false");
+  // ---- language selector (globe + current language + menu) -------------------
+  // Languages are listed by their own endonym (Deutsch, not German) — that's what
+  // a speaker scans for. English stays first as the default.
+  var LANG_ORDER = ["en", "es", "de", "it", "fr"];
+  function renderLangMenu() {
+    var menu = $("#lang-menu"); if (!menu) return;
+    menu.innerHTML = LANG_ORDER.map(function (l) {
+      var on = l === state.lang;
+      return '<button type="button" role="menuitemradio" aria-checked="' + (on ? "true" : "false") +
+        '" class="langmenu-item' + (on ? " on" : "") + '" data-lang="' + l + '">' +
+        '<span class="langmenu-code">' + l.toUpperCase() + "</span>" +
+        '<span class="langmenu-name">' + LANGS[l] + "</span>" +
+        (on ? '<span class="langmenu-tick">' + icon("check") + "</span>" : "") +
+      "</button>";
+    }).join("");
+    $$(".langmenu-item", menu).forEach(function (b) {
+      b.addEventListener("click", function () { closeLangMenu(); setLang(b.getAttribute("data-lang")); });
     });
+  }
+  function openLangMenu() {
+    var w = $("#lang-select"); if (!w) return;
+    w.classList.add("open");
+    $("#lang-btn").setAttribute("aria-expanded", "true");
+    var first = $(".langmenu-item.on", w) || $(".langmenu-item", w);
+    if (first) first.focus();
+  }
+  function closeLangMenu() {
+    var w = $("#lang-select"); if (!w) return;
+    w.classList.remove("open");
+    var b = $("#lang-btn"); if (b) b.setAttribute("aria-expanded", "false");
+  }
+  function langMenuOpen() { var w = $("#lang-select"); return !!(w && w.classList.contains("open")); }
+  function syncLangToggle() {
+    var lbl = $("#lang-btn-code"); if (lbl) lbl.textContent = state.lang.toUpperCase();
+    var b = $("#lang-btn");
+    if (b) b.setAttribute("aria-label", "Language: " + LANGS[state.lang]);
+    renderLangMenu();
   }
   // Static copy that lives in index.html (nav, hero, section headings, support
   // band, footer) isn't re-rendered by JS, so translate it in place. The original
@@ -536,7 +623,7 @@
           out.push({
             product: p, brand: p.brand, folder: folder, file: file,
             label: fileLabel(file), kind: facetOf(folder, file),
-            sub: p.name + " · " + folderLabel(folder),
+            subFn: function () { return p.name + " · " + folderLabel(folder); },
             hay: (fileLabel(file) + " " + folder + " " + (file.format || "") + " " + p.name + " " + p.category + " " + BRANDS[p.brand].name).toLowerCase()
           });
         });
@@ -546,7 +633,7 @@
           product: p, brand: p.brand, folder: "How-to Videos", video: v,
           file: { name: v.title, format: "Video", thumb: v.thumb, url: v.url, type: "video" },
           label: v.title, kind: "Videos",
-          sub: p.name + " · How-to video",
+          subFn: function () { return p.name + " · " + tr("How-to video"); },
           hay: (v.title + " video how to " + p.name + " " + BRANDS[p.brand].name).toLowerCase()
         });
       });
@@ -556,7 +643,7 @@
       var nm = c.title + (c.region ? " (" + c.region + ")" : "");
       out.push({
         brand: "gpen", folder: c.group || "Catalogs", kind: "Catalogs",
-        label: nm, sub: (c.group || "Catalog") + (c.region ? " · " + c.region : ""),
+        label: nm, subFn: function () { return tr(c.group || "Catalog") + (c.region ? " · " + c.region : ""); },
         openHash: "catalog/" + c.slug,
         file: { name: nm, format: "PDF", thumb: c.thumb, url: c.file || c.url, file: c.file || null, type: "pdf" },
         hay: (c.title + " " + (c.region || "") + " " + (c.group || "") + " catalog document pdf g pen").toLowerCase()
@@ -566,7 +653,7 @@
     (window.PORTAL_INSTORE_GENERAL || []).forEach(function (m) {
       out.push({
         brand: "gpen", folder: "In-Store Marketing", kind: "In-store",
-        label: m.name, sub: "In-store marketing" + (m.dim ? " · " + m.dim : ""),
+        label: m.name, subFn: function () { return tr("In-store marketing") + (m.dim ? " · " + m.dim : ""); },
         openHash: "materials",
         file: { name: m.name, format: m.format || "", thumb: m.thumb, url: m.url, file: m.file || null, type: m.type || "image" },
         hay: (m.name + " in-store marketing material retail display " + (m.format || "") + " g pen").toLowerCase()
@@ -603,16 +690,18 @@
     var groups = queryAliasGroups(q), bk = state.view, rawQ = q.toLowerCase().trim();
     return PRODUCTS.map(function (p) {
       if (p.brand !== bk) return null;
-      // Index BOTH languages, always: a Spanish visitor must still find a product
-      // by an English term (and shared ?q= links are usually English), while an
-      // English visitor can paste a Spanish word. Searching only the active
-      // language made English links return 0 results in ES mode.
-      var en = p.info || {}, es = (window.PORTAL_PRODUCT_ES || {})[p.name] || {};
+      // Always index English PLUS the active language: a translated visitor must
+      // still find a product by an English term (shared ?q= links are usually
+      // English), and can also search in their own. Indexing only the active
+      // language made English links return 0 results once translated.
+      var en = p.info || {};
+      var pk = pack();
+      var loc = (pk && pk.products && pk.products[p.name]) || {};
       function prose(i) {
         return (i.description || "") + " " + (i.fullName || "") + " " + ((i.highlights || []).join(" "));
       }
       var hay = (p.name + " " + (p.category || "") + " " + (p.type || "") + " " + (p.label || "") +
-        " " + BRANDS[p.brand].name + " " + prose(en) + " " + prose(es)).toLowerCase();
+        " " + BRANDS[p.brand].name + " " + prose(en) + " " + prose(loc)).toLowerCase();
       if (!matchTerms(hay, groups)) return null;
       return { p: p, score: relScore(p.name, hay, groups, rawQ) };
     }).filter(Boolean).sort(function (a, b) {
@@ -1064,6 +1153,10 @@
     bindSearchFiles(sf);
   }
 
+  // Captions are built at RENDER time, never cached — the file index is built
+  // once and reused, so baking tr() output into it froze search results in
+  // whichever language happened to load first.
+  function subOf(r) { return r.subFn ? r.subFn() : (r.sub || ""); }
   function searchFileTile(r) {
     var f = r.file, isVid = f.type === "video";
     var safe = escapeHTML(r.label.replace(/"/g, ""));
@@ -1077,12 +1170,12 @@
     var openAttr = r.openHash
       ? ' data-open="' + escapeHTML(r.openHash) + '"'
       : ' data-pid="' + pid(r.product) + '" data-folder="' + escapeHTML(r.folder) + '"';
-    var title = r.openHash ? "Open " + safe : "Open in " + escapeHTML((r.sub || r.label).replace(/"/g, ""));
+    var title = r.openHash ? tr("Open") + " " + safe : tr("Open in") + " " + escapeHTML((subOf(r) || r.label).replace(/"/g, ""));
     return '<div class="sf-cell">' +
         '<button class="sf-open"' + openAttr + ' title="' + title + '">' +
           '<span class="sf-thumb' + (isVid ? " is-video" : "") + '">' + media + (isVid ? '<span class="sf-play">' + icon("play") + "</span>" : "") + "</span>" +
           '<span class="sf-meta"><span class="sf-name">' + highlight(r.label, state.query) + "</span>" +
-            '<span class="sf-sub">' + highlight(r.sub || "", state.query) + (f.format ? ' · <span class="sf-fmt">' + escapeHTML(f.format) + "</span>" : "") + "</span></span>" +
+            '<span class="sf-sub">' + highlight(subOf(r), state.query) + (f.format ? ' · <span class="sf-fmt">' + escapeHTML(f.format) + "</span>" : "") + "</span></span>" +
         "</button>" +
         (dl ? '<button class="sf-dl" data-sfdl="' + escapeHTML(dl) + '" data-sfname="' + dlName + '"' + (f.file ? ' data-direct="1"' : "") + ' title="Download">' + icon("download") + "</button>" : "") +
       "</div>";
@@ -2950,23 +3043,40 @@
       onScroll();
     }
 
-    // language toggle (EN / ES) — persists per visitor, ?lang= makes it shareable
-    $$("#lang-toggle button").forEach(function (b) {
-      b.addEventListener("click", function () { setLang(b.getAttribute("data-lang")); });
-    });
-    document.documentElement.lang = state.lang;
-    syncLangToggle();
-    applyStaticI18n();
-    bindLangBar();
-    maybeOfferSpanish();
-
+    // language selector — persists per visitor, ?lang= makes it shareable
+    var langBtn = $("#lang-btn");
+    if (langBtn) {
+      langBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        langMenuOpen() ? closeLangMenu() : openLangMenu();
+      });
+      // Click-away / Escape close, and Escape returns focus to the button.
+      document.addEventListener("click", function (e) {
+        if (langMenuOpen() && !e.target.closest("#lang-select")) closeLangMenu();
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && langMenuOpen()) { closeLangMenu(); langBtn.focus(); }
+      });
+    }
     // restore filters from the URL (shareable views), then route to product/home
     parseURL();
     window.addEventListener("hashchange", function () {
       if (ignoreHash) { ignoreHash = false; return; }
       route();
     });
-    route();
+
+    // A returning visitor's language must be ready BEFORE the first render —
+    // otherwise the page paints English and then visibly flips. If the pack
+    // can't be fetched we fall back to English rather than render half-translated.
+    loadLangPack(state.lang, function (ok) {
+      if (!ok) state.lang = "en";
+      document.documentElement.lang = state.lang;
+      syncLangToggle();
+      applyStaticI18n();
+      bindLangBar();
+      maybeOfferLang();
+      route();
+    });
   }
 
   // Re-trigger a subtle fade-in each time a page renders.

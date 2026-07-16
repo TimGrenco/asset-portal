@@ -39,7 +39,7 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <meta name="theme-color" content="#ffffff" />
 
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260711k" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260711m" />
 </head>
 <body>
   <h1 class="sr-only">G Pen Brand Assets Portal</h1>
@@ -52,14 +52,19 @@
         <span class="lib">G Pen Brand Assets Portal</span>
       </div>
       <div class="nav-actions">
-        <!-- Language toggle. The globe makes "EN/ES" read as *language* at a glance;
-             without it the pill is easily mistaken for a filter. -->
-        <div class="langtog" id="lang-toggle" role="group" aria-label="Language / Idioma">
-          <span class="langtog-ic" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18Z"/></svg>
-          </span>
-          <button type="button" data-lang="en" class="on" aria-pressed="true" title="English">EN</button>
-          <button type="button" data-lang="es" aria-pressed="false" title="Español">ES</button>
+        <!-- Language selector. The globe makes it read as *language* at a glance;
+             a bare code would look like a filter. Menu is built by app.js. -->
+        <div class="langsel" id="lang-select">
+          <button type="button" class="langsel-btn" id="lang-btn" aria-haspopup="true" aria-expanded="false" aria-label="Language: English">
+            <span class="langsel-globe" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18Z"/></svg>
+            </span>
+            <span class="langsel-code" id="lang-btn-code">EN</span>
+            <span class="langsel-caret" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </span>
+          </button>
+          <div class="langsel-menu" id="lang-menu" role="menu" aria-label="Select language"></div>
         </div>
         <button class="nav-link" id="nav-catalogs" data-i18n>Catalogs</button>
         <button class="nav-link" id="nav-guides" data-i18n>Logos &amp; assets</button>
@@ -68,9 +73,10 @@
     </div>
   </header>
 
-  <!-- Offered once to visitors whose browser prefers Spanish and who haven't
-       picked a language yet. Never auto-switches — switching a retailer's portal
-       under them is worse than asking. Hidden until JS decides it applies. -->
+  <!-- Offered once to visitors whose browser prefers a language we support and
+       who haven't chosen one. app.js fills in the copy for their language and
+       never auto-switches — flipping a retailer's portal under them is worse
+       than asking. Hidden until JS decides it applies. -->
   <section class="langbar" id="lang-bar" hidden>
     <div class="wrap langbar-inner">
       <span class="langbar-ic" aria-hidden="true">
@@ -226,9 +232,7 @@
   </button>
 
   <script src="assets/data/synced.js?v=1784212296681"></script>
-  <script src="assets/data/assets.js?v=20260711k"></script>
-  <!-- Spanish content for the EN/ES toggle (UI strings + training + product copy) -->
-  <script src="assets/data/i18n.js?v=20260711k"></script>
-  <script src="assets/js/app.js?v=20260711k"></script>
+  <script src="assets/data/assets.js?v=20260711m"></script>
+  <script src="assets/js/app.js?v=20260711m"></script>
 </body>
 </html>

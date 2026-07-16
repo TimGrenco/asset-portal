@@ -64,17 +64,40 @@ a { color: inherit; text-decoration: none; }
 .req-link { font-size: 13px; color: var(--stone); display: inline-flex; align-items: center; gap: 6px; }
 .req-link:hover { color: var(--ink); }
 
-/* language toggle (EN / ES) — mirrors the .sort pill toggle */
-.langtog { display: inline-flex; align-items: center; gap: 2px; padding: 2px 2px 2px 8px; border: 1px solid var(--hair); border-radius: 999px; background: var(--mist); }
-.langtog-ic { display: inline-flex; align-items: center; color: var(--stone); margin-right: 4px; }
-.langtog-ic svg { width: 14px; height: 14px; }
-.langtog button {
-  border: none; background: none; cursor: pointer; font-family: inherit;
-  font-size: 11px; font-weight: 800; letter-spacing: 0.04em; color: var(--stone);
-  padding: 5px 10px; border-radius: 999px; transition: background 0.14s, color 0.14s;
+/* language selector — globe + current code + menu */
+.langsel { position: relative; }
+.langsel-btn {
+  display: inline-flex; align-items: center; gap: 6px; cursor: pointer; font-family: inherit;
+  padding: 5px 8px 5px 9px; border: 1px solid var(--hair); border-radius: 999px;
+  background: var(--mist); color: var(--stone); transition: border-color 0.14s, color 0.14s;
 }
-.langtog button:hover { color: var(--ink); }
-.langtog button.on { background: var(--ink); color: #fff; }
+.langsel-btn:hover { border-color: var(--ink); color: var(--ink); }
+.langsel-globe { display: inline-flex; }
+.langsel-globe svg { width: 15px; height: 15px; }
+.langsel-code { font-size: 11px; font-weight: 800; letter-spacing: 0.05em; color: var(--ink); }
+.langsel-caret { display: inline-flex; transition: transform 0.16s; }
+.langsel-caret svg { width: 11px; height: 11px; }
+.langsel.open .langsel-caret { transform: rotate(180deg); }
+
+.langsel-menu {
+  position: absolute; top: calc(100% + 8px); right: 0; z-index: 60; min-width: 178px;
+  display: none; padding: 6px; border: 1px solid var(--hair); border-radius: 12px;
+  background: var(--paper); box-shadow: 0 14px 38px rgba(15,15,15,0.16);
+}
+.langsel.open .langsel-menu { display: block; animation: lm-in 0.13s ease both; }
+@keyframes lm-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+.langmenu-item {
+  display: flex; align-items: center; gap: 10px; width: 100%; cursor: pointer; font-family: inherit;
+  padding: 8px 10px; border: none; border-radius: 8px; background: none; text-align: left;
+  transition: background 0.12s;
+}
+.langmenu-item:hover { background: var(--mist); }
+.langmenu-code { flex: 0 0 auto; width: 24px; font-size: 10px; font-weight: 800; letter-spacing: 0.05em; color: var(--stone-2); }
+.langmenu-name { flex: 1 1 auto; font-size: 13.5px; font-weight: 600; color: var(--ink); }
+.langmenu-tick { flex: 0 0 auto; display: inline-flex; color: var(--gold-ink); }
+.langmenu-tick svg { width: 14px; height: 14px; stroke: currentColor; }
+.langmenu-item.on .langmenu-name { font-weight: 800; }
+.langmenu-item.on .langmenu-code { color: var(--ink); }
 
 /* Spanish-offer bar — shown once to visitors whose browser prefers Spanish and
    who haven't chosen a language yet. Beats hoping they spot the nav pill. */
@@ -828,9 +851,12 @@ a.logo-tile { cursor: pointer; }
   .hero { padding: 30px 16px 28px; }
   .req-link span { display: none; }
   /* keep the nav on one tidy line: logo mark only, actions don't wrap */
-  .nav-inner { gap: 10px; }
+  /* Tight gaps: with the language selector plus translated nav links (German and
+     Spanish run ~20% longer than English), the row otherwise clips at 360–375px. */
+  .nav-inner { gap: 8px; }
   .brandmark .lib { display: none; }
-  .nav-actions { gap: 8px; }
+  .nav-actions { gap: 6px; }
+  .langsel-btn { padding: 5px 6px 5px 7px; gap: 4px; }
   .nav-link { white-space: nowrap; font-size: 13px; }
   .hero-brands { gap: 18px; }
   .hero-brands .nm { font-size: 17px; }
@@ -888,8 +914,9 @@ a.logo-tile { cursor: pointer; }
      too (the 720px rule below doesn't reach iPad, which is hover:none at ≥768). */
   .cat-pill { padding: 9px 14px; }
   .cat-act { padding: 11px 8px; }
-  /* EN/ES language toggle — 11px type made these only ~22px tall to thumb. */
-  .langtog button { padding: 9px 13px; }
+  /* Language selector — small type made this only ~22px tall to thumb. */
+  .langsel-btn { padding: 9px 10px 9px 11px; }
+  .langmenu-item { padding: 11px 10px; }
 }
 
 /* Empty (0-count) asset folders read as disabled instead of leading nowhere. */
