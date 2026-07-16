@@ -28,6 +28,43 @@
     } catch (e) {}
     return "en";
   }
+  // Has the visitor made an explicit choice (clicked the toggle, followed a
+  // ?lang= link, or dismissed the offer)? If not, we may offer Spanish once.
+  function hasLangPreference() {
+    try {
+      var s = localStorage.getItem("portal_lang");
+      return s === "en" || s === "es" || localStorage.getItem("portal_lang_asked") === "1";
+    } catch (e) { return false; }
+  }
+  function browserPrefersSpanish() {
+    var list = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ""]);
+    for (var i = 0; i < list.length; i++) {
+      var l = String(list[i] || "").toLowerCase();
+      if (l.indexOf("es") === 0) return true;   // es, es-MX, es-419, es-ES…
+      if (l.indexOf("en") === 0) return false;  // an English preference ranked higher wins
+    }
+    return false;
+  }
+  function dismissLangBar() {
+    var bar = $("#lang-bar"); if (!bar) return;
+    try { localStorage.setItem("portal_lang_asked", "1"); } catch (e) {}
+    bar.classList.remove("show"); bar.hidden = true;
+  }
+  // Wiring is bound once at init, independent of whether the bar is shown, so the
+  // buttons behave the same however the bar came to be visible.
+  function bindLangBar() {
+    var yes = $("#lang-bar-yes"), no = $("#lang-bar-no");
+    if (yes) yes.addEventListener("click", function () { dismissLangBar(); setLang("es"); });
+    if (no) no.addEventListener("click", dismissLangBar);
+  }
+  // Offer Spanish once, to Spanish-preferring browsers only. Deliberately does
+  // NOT auto-switch: flipping a retailer's portal under them is worse than asking.
+  function maybeOfferSpanish() {
+    var bar = $("#lang-bar"); if (!bar) return;
+    if (hasLangPreference() || state.lang !== "en" || !browserPrefersSpanish()) return;
+    bar.hidden = false;
+    bar.classList.add("show");
+  }
   // tr(): translate a UI string. Falls back to the English source text.
   // (Named tr, not t — the training code already uses `t` for the course object.)
   function tr(s) {
@@ -2920,6 +2957,8 @@
     document.documentElement.lang = state.lang;
     syncLangToggle();
     applyStaticI18n();
+    bindLangBar();
+    maybeOfferSpanish();
 
     // restore filters from the URL (shareable views), then route to product/home
     parseURL();

@@ -39,7 +39,7 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <meta name="theme-color" content="#ffffff" />
 
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260711i" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260711k" />
 </head>
 <body>
   <h1 class="sr-only">G Pen Brand Assets Portal</h1>
@@ -52,7 +52,12 @@
         <span class="lib">G Pen Brand Assets Portal</span>
       </div>
       <div class="nav-actions">
+        <!-- Language toggle. The globe makes "EN/ES" read as *language* at a glance;
+             without it the pill is easily mistaken for a filter. -->
         <div class="langtog" id="lang-toggle" role="group" aria-label="Language / Idioma">
+          <span class="langtog-ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18Z"/></svg>
+          </span>
           <button type="button" data-lang="en" class="on" aria-pressed="true" title="English">EN</button>
           <button type="button" data-lang="es" aria-pressed="false" title="Español">ES</button>
         </div>
@@ -62,6 +67,22 @@
       </div>
     </div>
   </header>
+
+  <!-- Offered once to visitors whose browser prefers Spanish and who haven't
+       picked a language yet. Never auto-switches — switching a retailer's portal
+       under them is worse than asking. Hidden until JS decides it applies. -->
+  <section class="langbar" id="lang-bar" hidden>
+    <div class="wrap langbar-inner">
+      <span class="langbar-ic" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18Z"/></svg>
+      </span>
+      <span class="langbar-txt" id="lang-bar-txt">¿Prefiere ver este portal en español?</span>
+      <span class="langbar-actions">
+        <button type="button" class="langbar-yes" id="lang-bar-yes">Ver en español</button>
+        <button type="button" class="langbar-no" id="lang-bar-no">No, gracias</button>
+      </span>
+    </div>
+  </section>
 
   <!-- HERO (compact brand band) — home only -->
   <section class="hero" id="hero">
@@ -205,9 +226,9 @@
   </button>
 
   <script src="assets/data/synced.js?v=1784212296681"></script>
-  <script src="assets/data/assets.js?v=20260711i"></script>
+  <script src="assets/data/assets.js?v=20260711k"></script>
   <!-- Spanish content for the EN/ES toggle (UI strings + training + product copy) -->
-  <script src="assets/data/i18n.js?v=20260711i"></script>
-  <script src="assets/js/app.js?v=20260711i"></script>
+  <script src="assets/data/i18n.js?v=20260711k"></script>
+  <script src="assets/js/app.js?v=20260711k"></script>
 </body>
 </html>
