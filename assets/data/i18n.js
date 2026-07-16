@@ -1078,7 +1078,12 @@ window.PORTAL_PRODUCT_ES = {
       "Batería de 1,100mAh",
       "Carga simultánea USB-C (se puede usar mientras se carga)"
     ],
-    "warranty": "Garantía limitada de 6 meses, extendida a 1 año si se registra"
+    "warranty": "Garantía limitada de 6 meses, extendida a 1 año si se registra",
+    "fullDescription": [
+      "La nueva evolución de nuestro vaporizador Dash, el más vendido: mejorado en todos los aspectos y ahora por solo $49.95.",
+      "El G Pen Dash II es un vaporizador de hierba seca de bolsillo con control preciso de temperatura, pantalla OLED y una cámara de cerámica de 0.4g mejorada, diseñada para ofrecer mejor rendimiento y una carga más fácil. Impulsado por una batería de 1,100mAh de mayor duración, el Dash II brinda sesiones suaves y confiables, con calentamiento en 30 segundos y carga simultánea por USB-C.",
+      "Más control. Carga más fácil. Mejor rendimiento."
+    ]
   },
   "510 Original — Retro": {
     "description": "La edición de la Colección Retro del 510 Original combina un suave acabado translúcido vintage con el mismo rendimiento 510 ultraportátil y activado por inhalación, inspirado en la batería original de G Pen de 2012.",
@@ -1092,7 +1097,17 @@ window.PORTAL_PRODUCT_ES = {
       "Pantalla digital",
       "24 × 21.1 × 56.7 mm"
     ],
-    "warranty": "Garantía limitada — consulte la política"
+    "warranty": "Garantía limitada — consulte la política",
+    "fullDescription": [
+      "Original. Renovado. Retro.",
+      "De vuelta al origen, ahora con un acabado retro impecable.",
+      "El G Pen 510 Original de la Colección Retro combina el diseño transparente de siempre con un intenso color translúcido que no pasa desapercibido. Inspirada en nuestra primera batería 510 de 2012, esta edición renovada conserva la sencillez y fiabilidad del original, perfeccionadas para las sesiones de hoy, esté donde esté.",
+      "Con apenas 24 × 21.1 × 56.7 mm, es la batería G Pen más pequeña jamás fabricada: tan compacta que se integra sin esfuerzo en su día a día. El sistema activado por inhalación hace que su uso sea sencillo y sin botones, mientras que la interfaz de un solo botón le da control sobre tres niveles de voltaje preconfigurados (3.2/3.6/3.8V), un modo de precalentamiento de 1.8V durante 10 segundos y la pantalla digital.",
+      "Su batería de 400 mAh con carga simultánea por USB-C mantiene el dispositivo listo cuando usted lo está, incluso mientras se carga. Con su carcasa retro translúcida y el rendimiento 510 mejorado, esta batería de bolsillo ofrece la mezcla perfecta entre estilo vintage y funcionalidad diaria.",
+      "Simple. Fiable. Icónica. El original ha vuelto.",
+      "*Cartucho 510 no incluido",
+      "**Cargador USB-C no incluido"
+    ]
   },
   "Melt Hot Knife": {
     "description": "El G Pen Melt es el cuchillo caliente más pequeño del mercado: una herramienta de dab compacta con punta de cerámica para recoger y depositar concentrados de forma rápida, limpia y sin desorden.",
@@ -1106,7 +1121,14 @@ window.PORTAL_PRODUCT_ES = {
       "Ideal para el bolsillo y el kit de viaje",
       "Compatible con rigs, Micro+ y Hyer"
     ],
-    "warranty": "Garantía limitada — consulte la política"
+    "warranty": "Garantía limitada — consulte la política",
+    "fullDescription": [
+      "Le presentamos el nuevo G Pen Melt Hot Knife: el cuchillo caliente más pequeño del mercado y la forma más rápida y limpia de preparar sus concentrados. Con apenas 3.94 pulgadas de alto, 0.5 pulgadas de ancho y 0.25 pulgadas de profundidad, Melt es ultracompacto, ultraportátil y está hecho para desaparecer en cualquier bolsillo o kit de viaje.",
+      "Diseñado para recoger sin ensuciar y depositar con precisión, Melt convierte las situaciones más pegajosas en algo increíblemente sencillo. Su punta de cerámica de calentamiento rápido alcanza la temperatura al instante para lograr transferencias perfectas siempre. Sin herramientas pegajosas. Sin desastres de reclaim. Sin torpezas.",
+      "Y ahora, con carga simultánea por USB-C, puede seguir usando Melt incluso mientras está conectado, porque lo único peor que una herramienta de dab sin batería es tener que esperar a que se cargue.",
+      "Con su elegante cuerpo de aluminio, su puerto universal USB-C y la inconfundible silueta de G Pen, Melt es su nuevo imprescindible diario: ya sea para cargar un rig, rellenar un G Pen Micro+ o preparar su G Pen Hyer.",
+      "Tamaño mínimo. Potencia máxima. Cero desorden. Siempre listo."
+    ]
   },
   "Connect": {
     "description": "Un vaporizador de concentrados sin soplete que convierte cualquier pipa de agua con conexión de vidrio a vidrio en el rig de dab definitivo, sin necesidad de soplete ni de un nail expuesto.",
@@ -1117,7 +1139,31 @@ window.PORTAL_PRODUCT_ES = {
       "Flujo de aire inverso patentado para una vaporización uniforme",
       "Tres ajustes de temperatura + modo de inhalación prolongada"
     ],
-    "warranty": "Garantía limitada de 1 año"
+    "warranty": "Garantía limitada de 1 año",
+    "fullDescription": [
+      "La mejor alternativa sin soplete a los rigs tradicionales. El G Pen Connect es un vaporizador de concentrados revolucionario para pipas de agua que elimina la necesidad de un soplete y de un nail expuesto. Este vaporizador de concentrados de calentamiento rápido alcanza la temperatura óptima en cinco segundos y ofrece vapor de calidad premium sin complicaciones.",
+      "¿Por qué elegir el G Pen Connect?",
+      "Tecnología sin soplete: un vaporizador de concentrados con calentamiento de cerámica, seguro y práctico, sin llamas abiertas.",
+      "Calentamiento en 5 segundos: activación inmediata para producir vapor denso al instante.",
+      "Compatibilidad universal: incluye adaptadores de vidrio de 10 mm, 14 mm y 18 mm para cualquier pieza de agua con conexión de vidrio a vidrio.",
+      "Flujo de aire inverso patentado: garantiza una vaporización uniforme y eficiente de los concentrados.",
+      "Tres niveles de temperatura: personalice su experiencia según el tipo de concentrado y sus preferencias de sabor.",
+      "Modo de inhalación extendida: para sesiones más largas y potentes.",
+      "Potente batería de 850 mAh: soporta varias sesiones seguidas y admite carga simultánea.",
+      "Liberación de carburador con resorte: control instantáneo del flujo de aire para despejar la cámara sin esfuerzo.",
+      "Calidad de construcción premium: impulsado por un elemento de calentamiento de cerámica que preserva el sabor del concentrado y ofrece inhalaciones suaves y potentes al combinarlo con su pieza de agua favorita. La conexión magnética de encaje instantáneo garantiza una preparación rápida y sin esfuerzo en todo momento.",
+      "Portátil y listo para viajar: a pesar de su potencia, el G Pen Connect es lo suficientemente compacto para llevarlo a donde sea. Cada kit incluye una bolsa de cáñamo para transportarlo y guardarlo con facilidad.",
+      "El kit completo incluye: dispositivo G Pen Connect, adaptadores de vidrio de 10 mm, 14 mm y 18 mm, bolsa de viaje de cáñamo, cable de carga USB y manual de usuario.",
+      "¿Listo para dejar atrás su rig tradicional? Descubra nuestras colaboraciones de edición limitada Cookies x G Pen Connect y Dr. Greenthumb's x G Pen Connect.",
+      "Tecnología patentada:",
+      "US 10,004,264 B2",
+      "US 10,021,909 B2",
+      "US 10,188,145 B2",
+      "US 10,321,721 B2",
+      "US 10,327,470 B2",
+      "*Este producto no está diseñado para usarse con tabaco, e-líquidos con nicotina, ni con ninguna nicotina sintética o sustituto de nicotina.",
+      "\"@context\": \"https://schema.org\","
+    ]
   },
   "510 Original": {
     "description": "La batería G Pen más pequeña y accesible hasta la fecha, el 510 Original reinventa la primera batería de Grenco de 2012 con un rendimiento moderno, ultraportátil y activado por inhalación para cartuchos 510.",
@@ -1131,7 +1177,16 @@ window.PORTAL_PRODUCT_ES = {
       "Pantalla digital",
       "24 × 21.1 × 56.7 mm"
     ],
-    "warranty": "Garantía limitada — consulte la política"
+    "warranty": "Garantía limitada — consulte la política",
+    "fullDescription": [
+      "Volver al origen, con mejoras.",
+      "La G Pen 510 Original cierra el círculo: se inspira en nuestra primera batería de 2012 y la reinventa para hoy. Es la batería G Pen más pequeña jamás creada (24 × 21.1 × 56.7 mm), ultraportátil y sencilla de usar, sin ceder un ápice en rendimiento.",
+      "Con activación por inhalación, la 510 Original hace que cada sesión sea inmediata: solo inhale y listo. Para mayor control, su interfaz de un solo botón permite alternar entre tres niveles de voltaje preestablecidos (3.2/3.6/3.8V), activar un modo de precalentamiento de 1.8V durante 10 segundos y seguirlo todo en la pantalla digital. Su batería de 400 mAh, junto con la carga simultánea por USB-C, permite cargarla y usarla al mismo tiempo, sin pausas.",
+      "Con un precio de apenas $12.95, es además la batería G Pen más accesible hasta la fecha: la prueba de que la tecnología premium no tiene por qué costar una fortuna.",
+      "Simple. Confiable. Icónica. El original ha vuelto.",
+      "*No incluye cartucho 510",
+      "** No incluye cargador USB C"
+    ]
   },
   "Hydout": {
     "description": "El G Pen Hydout es una batería para cartuchos 510 compacta y discreta, con cubierta magnética oculta para la boquilla, voltaje ajustable y pantalla LED, para sesiones suaves, personalizables y de bajo perfil.",
@@ -1145,7 +1200,11 @@ window.PORTAL_PRODUCT_ES = {
       "Compatible con cartuchos 510 de hasta 2g",
       "90 × 37.5 × 18.5 mm"
     ],
-    "warranty": "Garantía limitada — consulte la política"
+    "warranty": "Garantía limitada — consulte la política",
+    "fullDescription": [
+      "¿Busca la mejor batería para cartucho 510 en sesiones discretas donde quiera que vaya? Le presentamos la G Pen Hydout 510 Cartridge Battery: una batería compacta y disimulada para cartuchos 510 que ofrece un rendimiento serio sin llamar la atención.",
+      "Esta potencia de bolsillo incorpora una tapa magnética oculta para la boquilla que mantiene el cartucho discreto y protegido de la luz (sí, ayuda a preservar la calidad del aceite), una batería de 400mAh, voltaje ajustable y una pantalla LED brillante para controlar cada calada al detalle. Compatible con la mayoría de los cartuchos de rosca 510 de hasta 2g, la Hydout es ideal para sesiones suaves y personalizables, esté donde esté."
+    ]
   },
   "Hydout — Retro": {
     "description": "La edición Retro del G Pen Hydout aporta un acabado translúcido y transparente inspirado en los años 90 a esta discreta batería para cartuchos 510, sumando activación por inhalación junto con voltaje variable y carga USB-C.",
@@ -1159,7 +1218,14 @@ window.PORTAL_PRODUCT_ES = {
       "Compatible con la mayoría de los cartuchos 510",
       "Cubierta magnética oculta para la boquilla"
     ],
-    "warranty": "Garantía limitada — consulte la política"
+    "warranty": "Garantía limitada — consulte la política",
+    "fullDescription": [
+      "El G Pen Hydout Retro combina un elegante acabado translúcido de inspiración noventera con la ingeniería refinada que respalda la batería 510 más discreta de G Pen. Su carcasa magnética envuelve el cartucho para protegerlo del uso diario y mantener un conjunto visualmente limpio y minimalista.",
+      "Pensado para la versatilidad, el Hydout incluye voltaje variable para un control de calor personalizado y una función de precalentamiento de 1.8V que ablanda los concentrados más densos antes de usarlos. Esta edición Retro suma además activación por inhalación, para caladas totalmente libres de botones, y carga simultánea por USB-C, que mantiene el dispositivo listo para usar incluso mientras está conectado.",
+      "Con carga rápida USB-C, una cámara de cartucho ajustada y sin holguras, y compatibilidad con la mayoría de los cartuchos 510, el Hydout Retro ofrece rendimiento moderno bajo una carcasa translúcida llena de nostalgia.",
+      "*Cartucho 510 no incluido",
+      "**Cargador USB-C no incluido"
+    ]
   },
   "Dash+": {
     "description": "El G Pen Dash+ es un vaporizador portátil de hierba seca de última generación que utiliza calentamiento híbrido por convección y conducción en una cámara de titanio para alcanzar temperaturas de vaporización en unos 20 segundos.",
@@ -1173,7 +1239,13 @@ window.PORTAL_PRODUCT_ES = {
       "Respuesta háptica, interfaz de 3 botones",
       "Carcasa de aleación de zinc"
     ],
-    "warranty": "Garantía limitada — consulte la política"
+    "warranty": "Garantía limitada — consulte la política",
+    "fullDescription": [
+      "El G Pen Dash+ es un vaporizador compacto de hierba seca diseñado para sesiones rápidas, sabrosas y a la medida de cada usuario. Con calentamiento híbrido de convección y conducción en una cámara de titanio íntegro, alcanza la temperatura en tan solo 20 segundos para un vapor suave y constante.",
+      "Los dos canales de entrada de aire limpio y la boquilla magnética con recorrido de aire en espiral de cerámica maximizan el flujo de aire y el sabor. Una pantalla LED a todo color, controles de tres botones, respuesta háptica y un ajuste preciso de temperatura permiten personalizar cada sesión sin complicaciones.",
+      "Con un cuerpo resistente de aleación de zinc y una batería recargable de 1,800mAh con carga USB-C, el G Pen Dash+ ofrece un rendimiento confiable en un diseño elegante y portátil, hecho para el día a día.",
+      "*Este producto no está destinado al uso con tabaco, e-líquidos con nicotina, ni con nicotina sintética o sustitutos de la nicotina."
+    ]
   },
   "Hyer": {
     "description": "Un e-nail portátil de doble uso para concentrados o hierba seca que se acopla a cualquier pieza de agua con conexión de vidrio a vidrio, construido en torno a un elemento de calentamiento de cuarzo completo.",
@@ -1183,7 +1255,17 @@ window.PORTAL_PRODUCT_ES = {
       "Se acopla a cualquier pieza de vidrio a vidrio",
       "Diseño de e-nail portátil"
     ],
-    "warranty": "Garantía limitada de 2 años"
+    "warranty": "Garantía limitada de 2 años",
+    "fullDescription": [
+      "El G Pen Hyer®️ es un enail portátil de diseño intuitivo y doble uso, compatible con concentrados o hierba seca, que se acopla a cualquier pieza de agua con conexión de vidrio a vidrio. Fabricado con materiales de la más alta calidad, incluido un elemento calefactor de cuarzo íntegro, el G Pen Hyer incorpora tecnología de calentamiento inteligente con temperatura constante para ofrecer un sabor y una producción de vapor de primer nivel.",
+      "Con una batería recargable de iones de litio de 6,000mAh y carga simultánea rápida por USB-C, alojada en una carcasa de aluminio anodizado ligera y resistente, el G Pen Hyer redefine los límites de la potencia y la portabilidad. Su sencillo manejo de tres botones y su interfaz de cinco LED hacen que la configuración y la activación sean muy simples, sin ceder un ápice en la experiencia.",
+      "Un cable de alimentación trenzado de primera calidad, con resistentes conexiones magnéticas de encaje, une la batería a un alojamiento de tanque de aluminio anodizado y ligero, en el que el Tanque de Cuarzo para Concentrados o el Tanque de Hierba Seca* del G Pen Hyer se enroscan y desenroscan con total facilidad. El Tanque para Concentrados se calienta mediante un elemento calefactor de acero inoxidable troquelado a medida y cuenta con una cámara de cuarzo íntegro y un tubo ascendente interno que aportan la máxima superficie de calentamiento, un flujo de aire eficiente y una vaporización óptima de los concentrados.",
+      "La pieza que completa el rendimiento superior del Tanque de Cuarzo para Concentrados del G Pen Hyer es la Tapa del Tanque para Concentrados: de acople magnético y aluminio anodizado, con revestimiento interior de cerámica y doble orificio de flujo de aire para un funcionamiento giratorio suave. La herramienta para cera de acero inoxidable incluida también puede fijarse en la parte superior o lateral de la tapa, siempre a mano y lista para usar.",
+      "Cada kit del Vaporizador G Pen Hyer incluye un adaptador de vidrio macho de 14mm (adaptadores de vidrio de 10mm y 18mm se venden por separado). Todos los componentes del kit vienen perfectamente organizados en un estuche de viaje de cáñamo, con bolsillo de malla para accesorios adicionales.",
+      "*El Tanque de Hierba Seca del G Pen Hyer se vende por separado.",
+      "﻿*El índice de durabilidad del Tanque de Cuarzo del G Pen Hyer es de un mínimo de 200 ciclos de carga. Se recomienda reemplazar el tanque al alcanzar esta cantidad de ciclos para mantener un rendimiento óptimo.",
+      "*Este producto no debe utilizarse con tabaco, e-líquidos con nicotina, ni con nicotina sintética o sustitutos de la nicotina."
+    ]
   },
   "Roam": {
     "description": "Un e-rig portátil todo en uno que ofrece vaporización de concentrados con filtración de agua en cualquier lugar, con un hidrotubo de vidrio borosilicato resistente a derrames y un tanque de cuarzo completo.",
@@ -1193,7 +1275,13 @@ window.PORTAL_PRODUCT_ES = {
       "Potente batería de 1,300mAh",
       "E-rig todo en uno y autónomo"
     ],
-    "warranty": "Garantía limitada de 1 año"
+    "warranty": "Garantía limitada de 1 año",
+    "fullDescription": [
+      "Le presentamos el G Pen Roam, un vaporizador portátil todo en uno diseñado de forma intuitiva para ofrecer vaporización de concentrados con filtración de agua en cualquier lugar. Con un hidrotubo de vidrio borosilicato autónomo y resistente a derrames, un tanque totalmente de cuarzo y una potente batería de iones de litio de 1,300mAh, el G Pen Roam alcanza la temperatura en segundos para brindar caladas suaves y llenas de sabor sin ningún esfuerzo.",
+      "El G Pen Roam se adapta a las preferencias de sabor y temperatura de cada persona gracias a su control digital de temperatura y pantalla LED con un rango de 400° - 800°+F (204° - 427°+C), además de una función de respuesta háptica que avisa cuando el dispositivo está listo para usarse. Diseñado con una atención rigurosa a la portabilidad discreta, el Roam viene protegido por una carcasa de aleación de aluminio ligera pero resistente que resguarda por completo el tanque de cuarzo y el tubo de agua de vidrio. La tecnología de carga simultánea permite usar el dispositivo mientras está conectado, y todas las piezas en contacto con el recorrido del vapor se desmontan y se limpian con facilidad.",
+      "Cada kit completo del G Pen Roam incluye de serie un estuche de viaje de cáñamo, con espacio para dos frascos de concentrados y un bolsillo para accesorios, entre ellos un cable de carga micro USB y la G Pen Tool para cargar los concentrados.",
+      "*Este producto no está destinado al uso con tabaco, e-líquidos con nicotina, ni con ninguna nicotina sintética o sustituto de nicotina."
+    ]
   },
   "Dash": {
     "description": "El G Pen Dash original: un vaporizador de hierba seca compacto y ligero, diseñado para sesiones sencillas en cualquier lugar.",
@@ -1256,6 +1344,8 @@ window.PORTAL_I18N = {
       "has successfully completed the Product Specialist training": "ha completado exitosamente la capacitación de Especialista de Producto",
       "and demonstrated expert product knowledge of the": "y ha demostrado conocimiento experto del producto",
       "Click to watch": "Haga clic para ver",
+      "Description copied": "Descripción copiada",
+      "Copy": "Copiar",
       "product": "producto",
       "products": "productos",
       "result": "resultado",

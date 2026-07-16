@@ -60,6 +60,12 @@
     if (es.description) out.description = es.description;
     if (es.highlights && es.highlights.length) out.highlights = es.highlights;
     if (es.warranty) out.warranty = es.warranty;
+    // Long-form "Official Product Description" — the copy stores paste into their
+    // own menus. Only swap when the paragraph count matches, so a partial
+    // translation can never drop or duplicate a paragraph.
+    if (es.fullDescription && en.fullDescription && es.fullDescription.length === en.fullDescription.length) {
+      out.fullDescription = es.fullDescription;
+    }
     return out;
   }
   function setLang(l) {
@@ -2084,7 +2090,9 @@
       });
       var copyDesc = $("#copy-desc");
       if (copyDesc) copyDesc.addEventListener("click", function () {
-        copyText(((p.info && p.info.fullDescription) || []).join("\n\n"), "Description copied");
+        // infoOf, not p.info — a store reading the portal in Spanish must copy the
+        // SPANISH menu copy, which is the whole point of the button.
+        copyText((infoOf(p).fullDescription || []).join("\n\n"), tr("Description copied"));
       });
       $("#dl-folder").addEventListener("click", function () { downloadFolder(p, active); });
       $("#copy-folder").addEventListener("click", function () { copyFolderLink(p, active); });
@@ -2332,7 +2340,7 @@
     var info = infoOf(p);
     if (!(info.fullDescription && info.fullDescription.length)) return "";
     return '<div class="section-head"><h2>' + tr("Official Product Description") + '</h2>' +
-        '<button class="btn ghost sm fd-copy" id="copy-desc">' + icon("copy") + " Copy</button></div>" +
+        '<button class="btn ghost sm fd-copy" id="copy-desc">' + icon("copy") + " " + tr("Copy") + "</button></div>" +
       '<div class="fulldesc"><div class="fd-body">' +
         info.fullDescription.map(function (t) { return "<p>" + t + "</p>"; }).join("") +
       "</div></div>";
