@@ -120,8 +120,14 @@
   // English is cached on first pass and used as the lookup key both ways.
   function applyStaticI18n() {
     $$("[data-i18n]").forEach(function (el) {
-      if (el.__en === undefined) el.__en = el.textContent;
-      el.textContent = tr(el.__en.trim());
+      // Collapse whitespace: multi-line copy in the markup would otherwise carry
+      // newlines/indentation into the lookup key and never match the catalog.
+      if (el.__en === undefined) el.__en = el.textContent.replace(/\s+/g, " ").trim();
+      el.textContent = tr(el.__en);
+    });
+    $$("[data-i18n-title]").forEach(function (el) {
+      if (el.__title === undefined) el.__title = el.getAttribute("title") || "";
+      el.setAttribute("title", tr(el.__title));
     });
     $$("[data-i18n-ph]").forEach(function (el) {
       if (el.__ph === undefined) el.__ph = el.getAttribute("placeholder") || "";
@@ -331,7 +337,7 @@
     "Logos": "Logos", "Social Videos": "Social Videos", "TV Screen Videos": "TV Screen Videos",
     "Misc": "Documents",
   };
-  function typeLabel(t) { return t ? (TYPE_LABELS[t] || t) : "Assets"; }
+  function typeLabel(t) { return t ? tr(TYPE_LABELS[t] || t) : tr("Assets"); }
   // Bind click + keyboard (Enter/Space) so role="button" elements are operable
   // by keyboard, not just mouse.
   function clickKey(el, fn) {
@@ -695,12 +701,12 @@
     box.innerHTML =
       '<div class="logo-card">' +
         '<div class="logo-card-info">' +
-          '<div class="logo-card-name">' + b.name + " Logos</div>" +
-          '<p class="logo-card-note">Official ' + b.name + " logos — black, white &amp; various versions. For approved partner, press &amp; retail use; please don’t alter, recolor, or distort the marks.</p>" +
-          (fmts ? '<div class="logo-card-fmts"><span class="logo-card-fmts-l">Formats</span>' + fmts + "</div>" : "") +
+          '<div class="logo-card-name">' + b.name + " " + tr("Logos") + "</div>" +
+          '<p class="logo-card-note">' + tr("Official {brand} logos — black, white &amp; various versions. For approved partner, press &amp; retail use; please don’t alter, recolor, or distort the marks.").replace("{brand}", b.name) + "</p>" +
+          (fmts ? '<div class="logo-card-fmts"><span class="logo-card-fmts-l">' + tr("Formats") + '</span>' + fmts + "</div>" : "") +
           '<div class="logo-card-actions">' +
             '<button class="btn" id="logo-dl">' + icon("download") + " " + tr("Download all logos") + "</button>" +
-            '<button class="logo-browse-link" id="logo-browse">' + icon("eye") + " Browse all " + logoP.total + " logo files →</button>" +
+            '<button class="logo-browse-link" id="logo-browse">' + icon("eye") + " " + tr("Browse all {n} logo files →").replace("{n}", logoP.total) + "</button>" +
           "</div>" +
         "</div>" +
         (tiles ? '<div class="logo-preview">' + tiles + "</div>" : "") +
@@ -794,29 +800,29 @@
   function gridCardHTML(p) {
     var showBrand = state.view === "both";
     return (
-      '<article class="card" data-id="' + pid(p) + '" tabindex="0" role="button" aria-label="Open ' + p.name + '">' +
+      '<article class="card" data-id="' + pid(p) + '" tabindex="0" role="button" aria-label="' + tr("Open") + " " + p.name + '">' +
         '<div class="card-frame">' +
-          (p.newBadge && !p.isLogo ? '<span class="tag-new' + (typeof p.newBadge === "string" ? " tag-new-" + p.newBadge : "") + '">New</span>' : "") +
+          (p.newBadge && !p.isLogo ? '<span class="tag-new' + (typeof p.newBadge === "string" ? " tag-new-" + p.newBadge : "") + '">' + tr("New") + '</span>' : "") +
           (showBrand ? '<span class="tag-brand">' + BRANDS[p.brand].name + "</span>" : "") +
           coverHTML(p) +
           '<div class="quick">' +
-            '<button class="qbtn" data-act="download" title="Download all">' + icon("download") + "</button>" +
+            '<button class="qbtn" data-act="download" title="' + tr("Download all") + '">' + icon("download") + "</button>" +
           "</div>" +
         "</div>" +
         '<div class="card-name">' + p.name + "</div>" +
-        (p.label ? '<div class="card-label">' + p.label + "</div>" : "") +
-        '<div class="card-sub">' + (p.isLogo ? p.total + " logo files" : p.total + " assets" + (p.label ? "" : " · " + p.category)) + "</div>" +
+        (p.label ? '<div class="card-label">' + tr(p.label) + "</div>" : "") +
+        '<div class="card-sub">' + (p.isLogo ? p.total + " " + tr("logo files") : p.total + " " + tr("assets") + (p.label ? "" : " · " + tr(p.category))) + "</div>" +
       "</article>"
     );
   }
   function rowHTML(p) {
     var showBrand = state.view === "both";
     return (
-      '<article class="card row" data-id="' + pid(p) + '" tabindex="0" role="button" aria-label="Open ' + p.name + '">' +
+      '<article class="card row" data-id="' + pid(p) + '" tabindex="0" role="button" aria-label="' + tr("Open") + " " + p.name + '">' +
         '<div class="row-thumb">' + coverHTML(p) + "</div>" +
         '<div class="row-main">' +
-          '<div class="row-name">' + p.name + (p.newBadge && !p.isLogo ? ' <span class="row-new' + (typeof p.newBadge === "string" ? " row-new-" + p.newBadge : "") + '">New</span>' : "") + (p.label ? ' <span class="row-label">' + p.label + "</span>" : "") + "</div>" +
-          '<div class="row-sub">' + (p.isLogo ? p.total + " logo files" : p.total + " assets" + (p.label ? "" : " · " + p.category)) + "</div>" +
+          '<div class="row-name">' + p.name + (p.newBadge && !p.isLogo ? ' <span class="row-new' + (typeof p.newBadge === "string" ? " row-new-" + p.newBadge : "") + '">' + tr("New") + '</span>' : "") + (p.label ? ' <span class="row-label">' + tr(p.label) + "</span>" : "") + "</div>" +
+          '<div class="row-sub">' + (p.isLogo ? p.total + " " + tr("logo files") : p.total + " " + tr("assets") + (p.label ? "" : " · " + tr(p.category))) + "</div>" +
         "</div>" +
         (showBrand ? '<span class="row-brand">' + BRANDS[p.brand].name + "</span>" : "") +
         '<button class="row-dl" data-act="download" title="Download all">' + icon("download") + "</button>" +
@@ -986,8 +992,8 @@
       allGrid.innerHTML = "";
       sf.innerHTML =
         '<div class="search-empty">' + icon("search") +
-          "<div><strong>No matches for “" + escapeHTML(q) + "”.</strong>" +
-          "<span>Try a product name (Dash), a file type (PNG, MP4), a category (lifestyle, packaging), or “catalog”.</span></div>" +
+          "<div><strong>" + tr("No matches for") + " “" + escapeHTML(q) + "”.</strong>" +
+          "<span>" + tr("Try a product name (Dash), a file type (PNG, MP4), a category (lifestyle, packaging), or “catalog”.") + "</span></div>" +
           '<a class="btn ghost sm" href="mailto:' + CFG.requestEmail + "?subject=" +
             encodeURIComponent("Asset request — " + q) + '">' + icon("mail") + " " + tr("Request this asset") + "</a>" +
         "</div>";
@@ -1004,7 +1010,7 @@
     var facetChips = "";
     if (fileRes.facets.length > 1) {
       facetChips = '<div class="sf-facets" role="tablist" aria-label="Filter results by type">' +
-        '<button class="sf-facet' + (fileRes.facet ? "" : " on") + '" data-facet="">All <span>' + fileRes.total + "</span></button>" +
+        '<button class="sf-facet' + (fileRes.facet ? "" : " on") + '" data-facet="">' + tr("All") + ' <span>' + fileRes.total + "</span></button>" +
         fileRes.facets.map(function (fc) {
           return '<button class="sf-facet' + (fileRes.facet === fc.kind ? " on" : "") + '" data-facet="' + fc.kind + '">' +
             escapeHTML(fc.kind) + " <span>" + fc.n + "</span></button>";
@@ -1012,8 +1018,7 @@
     }
     var tiles = fileRes.items.map(searchFileTile).join("");
     var more = fileRes.shownTotal > fileRes.items.length
-      ? '<p class="sf-more">Showing the top ' + fileRes.items.length + " of " + fileRes.shownTotal +
-        (fileRes.facet ? " " + fileRes.facet.toLowerCase() : " matching") + " files — add a word to narrow it down.</p>"
+      ? '<p class="sf-more">' + tr("Showing the top {n} of {total} files — add a word to narrow it down.").replace("{n}", fileRes.items.length).replace("{total}", fileRes.shownTotal) + "</p>"
       : "";
     sf.innerHTML =
       '<div class="section-head"><h2>' + tr("Matching files &amp; assets") + '</h2><span class="badge">' + fileRes.total + "</span></div>" +
@@ -1125,8 +1130,7 @@
     if (!mats.length) {
       box.innerHTML =
         '<div class="instore-empty">' +
-          "<p>Retail displays, posters, shelf talkers and other in-store materials for " + bname +
-            " will show here as they’re added — order what you need for your shop.</p>" + orderCta +
+          "<p>" + tr("Retail displays, posters, shelf talkers and other in-store materials for {brand} will show here as they’re added — order what you need for your shop.").replace("{brand}", bname) + "</p>" + orderCta +
         "</div>";
       return;
     }
@@ -1140,11 +1144,10 @@
     box.innerHTML =
       '<div class="logo-card">' +
         '<div class="logo-card-info">' +
-          '<div class="logo-card-name">In-Store Marketing Materials</div>' +
-          '<p class="logo-card-note">Retail displays, posters, shelf talkers and other in-store materials for ' + bname +
-            " — order what you need for your shop.</p>" +
+          '<div class="logo-card-name">' + tr("In-Store Marketing Materials") + '</div>' +
+          '<p class="logo-card-note">' + tr("Retail displays, posters, shelf talkers and other in-store materials for {brand} — order what you need for your shop.").replace("{brand}", bname) + "</p>" +
           '<div class="logo-card-actions">' + orderCta +
-            '<span class="instore-count">' + mats.length + " material" + (mats.length === 1 ? "" : "s") + " available</span>" +
+            '<span class="instore-count">' + mats.length + " " + tr(mats.length === 1 ? "material" : "materials") + " " + tr("available") + "</span>" +
           "</div>" +
         "</div>" +
         '<div class="logo-preview">' + tiles + "</div>" +
@@ -1291,14 +1294,14 @@
         '<div class="catlb-acts">' +
           '<button class="btn ghost sm" id="catlb-dl">' + icon("download") + " " + tr("Download PDF") + "</button>" +
           '<button class="btn ghost sm" id="catlb-share">' + icon("link") + " " + tr("Share") + "</button>" +
-          '<button class="catlb-x" id="catlb-x" aria-label="Close viewer">' + icon("x") + "</button>" +
+          '<button class="catlb-x" id="catlb-x" aria-label="' + tr("Close viewer") + '">' + icon("x") + "</button>" +
         "</div></div>" +
-      '<div class="catlb-stage"><div class="catlb-load" id="catlb-load">Loading catalog…</div>' +
+      '<div class="catlb-stage"><div class="catlb-load" id="catlb-load">' + tr("Loading catalog…") + '</div>' +
         '<canvas id="catlb-canvas"></canvas></div>' +
       '<div class="catlb-nav">' +
         '<button class="btn ghost sm" id="catlb-prev">' + icon("arrowLeft") + " " + tr("Prev") + "</button>" +
         '<span class="catlb-page" id="catlb-page">–</span>' +
-        '<button class="btn ghost sm" id="catlb-next">Next ' + icon("arrowRight") + "</button>" +
+        '<button class="btn ghost sm" id="catlb-next">' + tr("Next") + " " + icon("arrowRight") + "</button>" +
       "</div>";
     document.body.appendChild(ov);
     document.body.style.overflow = "hidden";
@@ -1372,9 +1375,9 @@
     box.innerHTML =
       '<div class="locator-card">' +
         '<div class="locator-copy">' +
-          '<div class="locator-eyebrow">Retailers</div>' +
+          '<div class="locator-eyebrow">' + tr("Retailers") + '</div>' +
           "<h2>" + tr("Get your store on our Store Locator") + "</h2>" +
-          "<p>Carry G Pen? Request to be added to our official store locator so customers can find your shop.</p>" +
+          "<p>" + tr("Carry G Pen? Request to be added to our official store locator so customers can find your shop.") + "</p>" +
         "</div>" +
         '<a class="btn lg" href="#locator">' + icon("mapPin") + " " + tr("Request to be listed") + "</a>" +
       "</div>";
@@ -1388,11 +1391,10 @@
     box.innerHTML =
       '<button class="additional-entry-card" id="additional-entry-btn">' +
         '<span class="ae-main">' +
-          '<span class="ae-title">Additional Products</span>' +
-          '<span class="ae-sub">' + legacy.length + " older " + BRANDS[bk].name +
-            " products we no longer sell — assets kept for partners who still need them.</span>" +
+          '<span class="ae-title">' + tr("Additional Products") + '</span>' +
+          '<span class="ae-sub">' + tr("{n} older {brand} products we no longer sell — assets kept for partners who still need them.").replace("{n}", legacy.length).replace("{brand}", BRANDS[bk].name) + "</span>" +
         "</span>" +
-        '<span class="ae-go">View all →</span>' +
+        '<span class="ae-go">' + tr("View all →") + '</span>' +
       "</button>";
     $("#additional-entry-btn").addEventListener("click", function () { navToAdditional(bk); });
   }
@@ -1412,7 +1414,7 @@
     var legacy = legacyProducts(bk).slice().sort(function (a, b) { return a.name.localeCompare(b.name); });
     ad.innerHTML =
       '<button class="back" id="add-back">' + icon("arrowLeft") + " " + tr("Back to library") + "</button>" +
-      '<div class="section-head"><h2>Additional ' + BRANDS[bk].name + " Products</h2><span class=\"badge\">" + legacy.length + " product" + (legacy.length === 1 ? "" : "s") + "</span></div>" +
+      '<div class="section-head"><h2>' + tr("Additional " + BRANDS[bk].name + " Products") + '</h2><span class="badge">' + legacy.length + " " + tr(legacy.length === 1 ? "product" : "products") + "</span></div>" +
       '<p class="additional-note">Products we no longer sell — assets kept here for partners who still need them.</p>' +
       '<div class="grid">' + legacy.map(function (p) { return cardHTML(p, "grid"); }).join("") + "</div>";
     $("#add-back").addEventListener("click", navHome);
@@ -1458,18 +1460,18 @@
     var pg = $("#materials-page");
     pg.style.display = "block";
     animateIn(pg);
-    setTitle("Order Marketing Materials");
+    setTitle(tr("Order Marketing Materials"));
     window.scrollTo(0, 0);
 
     var mats = availableMaterials();
     var head = '<button class="back" id="mat-back">' + icon("arrowLeft") + " " + tr("Back to library") + "</button>" +
       '<div class="section-head"><h2>' + tr("In-Store Marketing Materials") + '</h2>' +
-        (mats.length ? '<span class="badge">' + mats.length + " available</span>" : "") + "</div>";
+        (mats.length ? '<span class="badge">' + mats.length + " " + tr("available") + "</span>" : "") + "</div>";
 
     if (!mats.length) {
       pg.innerHTML = head +
-        '<div class="instore-empty"><p>Orderable in-store marketing materials will be listed here soon. In the meantime, reach out and we’ll let you know what’s available.</p>' +
-        '<a class="btn ghost sm" href="mailto:' + CFG.orderEmail + "?subject=" + encodeURIComponent("Marketing Material Request") + '">' + icon("mail") + " Contact us</a></div>";
+        '<div class="instore-empty"><p>' + tr("Orderable in-store marketing materials will be listed here soon. In the meantime, reach out and we’ll let you know what’s available.") + '</p>' +
+        '<a class="btn ghost sm" href="mailto:' + CFG.orderEmail + "?subject=" + encodeURIComponent("Marketing Material Request") + '">' + icon("mail") + " " + tr("Contact us") + "</a></div>";
       $("#mat-back").addEventListener("click", navHome);
       return;
     }
@@ -1480,7 +1482,7 @@
       if (m.thumb) {
         var li = lbItems.length;
         lbItems.push({ src: m.thumb, name: m.name, url: m.url || m.thumb });
-        thumb = '<button class="mat-thumb mat-thumb-zoom" data-lbi="' + li + '" title="Click preview to enlarge" aria-label="Enlarge ' + m.name.replace(/"/g, "") + '">' +
+        thumb = '<button class="mat-thumb mat-thumb-zoom" data-lbi="' + li + '" title="' + tr("Click preview to enlarge") + '" aria-label="' + tr("Enlarge") + " " + m.name.replace(/"/g, "") + '">' +
           '<img src="' + m.thumb + '" alt="' + m.name.replace(/"/g, "") + '" loading="lazy" decoding="async"/>' +
           '<span class="mat-zoom-badge">' + icon("search") + "</span></button>";
       } else {
@@ -1489,26 +1491,26 @@
       return '<div class="mat-row">' + thumb +
         '<div class="mat-info"><div class="mat-name">' + m.name + "</div>" +
           (m.dim ? '<div class="mat-dim">' + m.dim + "</div>" : "") + "</div>" +
-        '<div class="mat-qty"><button class="mat-step" data-step="-1" aria-label="Decrease">–</button>' +
-          '<input type="number" min="0" value="0" data-mat="' + i + '" aria-label="Quantity for ' + m.name.replace(/"/g, "") + '"/>' +
-          '<button class="mat-step" data-step="1" aria-label="Increase">+</button></div>' +
+        '<div class="mat-qty"><button class="mat-step" data-step="-1" aria-label="' + tr("Decrease") + '">–</button>' +
+          '<input type="number" min="0" value="0" data-mat="' + i + '" aria-label="' + tr("Quantity for") + " " + m.name.replace(/"/g, "") + '"/>' +
+          '<button class="mat-step" data-step="1" aria-label="' + tr("Increase") + '">+</button></div>' +
       "</div>";
     }).join("");
 
     pg.innerHTML = head +
-      '<p class="mat-lead">' + icon("info") + " Set a quantity for each item, add your store details, then send your request." +
-        (lbItems.length ? " Click a preview to enlarge it." : "") + "</p>" +
+      '<p class="mat-lead">' + icon("info") + " " + tr("Set a quantity for each item, add your store details, then send your request.") +
+        (lbItems.length ? " " + tr("Click a preview to enlarge it.") : "") + "</p>" +
       '<div class="mat-layout">' +
         '<div class="mat-list">' + rows + "</div>" +
         '<aside class="mat-side">' +
-          '<div class="mat-side-h">Your details</div>' +
+          '<div class="mat-side-h">' + tr("Your details") + '</div>' +
           '<div class="mat-fields">' +
-            '<label class="mat-field"><span>Store Name</span><input type="text" id="mat-store-name" placeholder="Store name"/></label>' +
-            '<label class="mat-field"><span>Mailing Address</span><input type="text" id="mat-store-address" placeholder="Street, City, State, ZIP"/></label>' +
-            '<label class="mat-field"><span>Email Address</span><input type="email" id="mat-store-email" placeholder="you@store.com"/></label>' +
+            '<label class="mat-field"><span>' + tr("Store Name") + '</span><input type="text" id="mat-store-name" placeholder="' + tr("Store name") + '"/></label>' +
+            '<label class="mat-field"><span>' + tr("Mailing Address") + '</span><input type="text" id="mat-store-address" placeholder="' + tr("Street, City, State, ZIP") + '"/></label>' +
+            '<label class="mat-field"><span>' + tr("Email Address") + '</span><input type="email" id="mat-store-email" placeholder="you@store.com"/></label>' +
           "</div>" +
-          '<button class="btn lg mat-order-btn" id="mat-order">' + icon("mail") + ' Order Materials<span id="mat-count"></span></button>' +
-          '<p class="mat-side-note">You’ll confirm and send from your email app.</p>' +
+          '<button class="btn lg mat-order-btn" id="mat-order">' + icon("mail") + " " + tr("Order Materials") + '<span id="mat-count"></span></button>' +
+          '<p class="mat-side-note">' + tr("You’ll confirm and send from your email app.") + '</p>' +
         "</aside>" +
       "</div>";
 
@@ -1849,15 +1851,15 @@
   function storeBlockHTML(n) {
     return '<div class="loc-store" data-store>' +
         '<div class="loc-store-h">' +
-          '<span class="loc-store-n">Store <span class="loc-store-i">' + n + "</span></span>" +
-          '<button class="loc-remove" data-remove title="Remove this store">' + icon("trash") + " " + tr("Remove") + "</button>" +
+          '<span class="loc-store-n">' + tr("Store") + ' <span class="loc-store-i">' + n + "</span></span>" +
+          '<button class="loc-remove" data-remove title="' + tr("Remove this store") + '">' + icon("trash") + " " + tr("Remove") + "</button>" +
         "</div>" +
         '<div class="loc-fields">' +
-          '<label class="mat-field loc-wide"><span>Store Name</span><input type="text" data-f="name" placeholder="Store name"/></label>' +
-          '<label class="mat-field loc-wide"><span>Address</span><input type="text" data-f="address" placeholder="123 Main St, City, State ZIP"/></label>' +
+          '<label class="mat-field loc-wide"><span>' + tr("Store Name") + '</span><input type="text" data-f="name" placeholder="' + tr("Store name") + '"/></label>' +
+          '<label class="mat-field loc-wide"><span>' + tr("Address") + '</span><input type="text" data-f="address" placeholder="' + tr("123 Main St, City, State ZIP") + '"/></label>' +
           '<div class="loc-row">' +
-            '<label class="mat-field"><span>Phone</span><input type="tel" data-f="phone" placeholder="(555) 555-5555"/></label>' +
-            '<label class="mat-field"><span>Website</span><input type="text" data-f="website" placeholder="yourstore.com"/></label>' +
+            '<label class="mat-field"><span>' + tr("Phone") + '</span><input type="tel" data-f="phone" placeholder="(555) 555-5555"/></label>' +
+            '<label class="mat-field"><span>' + tr("Website") + '</span><input type="text" data-f="website" placeholder="yourstore.com"/></label>' +
           "</div>" +
         "</div>" +
       "</div>";
@@ -1873,13 +1875,13 @@
     var pg = $("#locator-page");
     pg.style.display = "block";
     animateIn(pg);
-    setTitle("Store Locator Request");
+    setTitle(tr("Store Locator Request"));
     window.scrollTo(0, 0);
 
     pg.innerHTML =
       '<button class="back" id="loc-back">' + icon("arrowLeft") + " " + tr("Back to library") + "</button>" +
       '<div class="section-head"><h2>' + tr("Store Locator Request") + '</h2></div>' +
-      '<p class="mat-lead">' + icon("info") + "<span>Add each store you'd like listed on our official locator, then send your request. Have more than one location? Use <strong>Add another store</strong> to include them all.</span>" +
+      '<p class="mat-lead">' + icon("info") + "<span>" + tr("Add each store you'd like listed on our official locator, then send your request. Have more than one location? Use <strong>Add another store</strong> to include them all.") + "</span>" +
       "</p>" +
       '<div class="mat-layout">' +
         '<div class="loc-left">' +
@@ -1887,14 +1889,14 @@
           '<button class="btn ghost loc-add" id="loc-add">' + icon("plus") + " " + tr("Add another store") + "</button>" +
         "</div>" +
         '<aside class="mat-side">' +
-          '<div class="mat-side-h">Your contact info</div>' +
+          '<div class="mat-side-h">' + tr("Your contact info") + '</div>' +
           '<div class="mat-fields">' +
-            '<label class="mat-field"><span>Your Name</span><input type="text" id="loc-contact-name" placeholder="Full name"/></label>' +
-            '<label class="mat-field"><span>Email Address</span><input type="email" id="loc-contact-email" placeholder="you@company.com"/></label>' +
-            '<label class="mat-field"><span>Phone <em>(optional)</em></span><input type="tel" id="loc-contact-phone" placeholder="(555) 555-5555"/></label>' +
+            '<label class="mat-field"><span>' + tr("Your Name") + '</span><input type="text" id="loc-contact-name" placeholder="' + tr("Full name") + '"/></label>' +
+            '<label class="mat-field"><span>' + tr("Email Address") + '</span><input type="email" id="loc-contact-email" placeholder="you@company.com"/></label>' +
+            '<label class="mat-field"><span>' + tr("Phone") + ' <em>' + tr("(optional)") + '</em></span><input type="tel" id="loc-contact-phone" placeholder="(555) 555-5555"/></label>' +
           "</div>" +
-          '<button class="btn lg mat-order-btn" id="loc-submit">' + icon("mail") + ' Submit Request<span id="loc-count"></span></button>' +
-          '<p class="mat-side-note">You’ll confirm and send from your email app.</p>' +
+          '<button class="btn lg mat-order-btn" id="loc-submit">' + icon("mail") + " " + tr("Submit Request") + '<span id="loc-count"></span></button>' +
+          '<p class="mat-side-note">' + tr("You’ll confirm and send from your email app.") + '</p>' +
         "</aside>" +
       "</div>";
 
@@ -1905,7 +1907,7 @@
       });
       var multi = $$(".loc-store", stores).length > 1;
       stores.classList.toggle("has-multi", multi);
-      var c = $("#loc-count"); if (c) c.textContent = multi ? " · " + $$(".loc-store", stores).length + " stores" : "";
+      var c = $("#loc-count"); if (c) c.textContent = multi ? " · " + $$(".loc-store", stores).length + " " + tr("stores") : "";
     }
     function bindRemove(ctx) {
       $$("[data-remove]", ctx).forEach(function (b) {
@@ -2086,18 +2088,18 @@
         '<div class="section-head" id="docs-head"><h2>' + tr("Download assets by category") + '</h2><span class="badge">' + catTotal + " file" + (catTotal === 1 ? "" : "s") + "</span></div>" +
         assetNav +
         '<div class="folder-toolbar">' +
-          '<h3 class="folder-title">' + typeLabel(active) + '<span class="ft-count">' + activeCount + " file" + (activeCount === 1 ? "" : "s") + "</span></h3>" +
+          '<h3 class="folder-title">' + typeLabel(active) + '<span class="ft-count">' + activeCount + " " + tr(activeCount === 1 ? "file" : "files") + "</span></h3>" +
           '<div class="gallery-toolbar">' +
-            '<label class="selectall"><input type="checkbox" id="sel-all"/> Select all</label>' +
+            '<label class="selectall"><input type="checkbox" id="sel-all"/> ' + tr("Select all") + '</label>' +
             '<button class="btn ghost sm" id="copy-folder">' + icon("link") + " " + tr("Copy folder link") + "</button>" +
             '<button class="btn ghost sm" id="dl-folder">' + icon("download") + " " + tr("Download folder") + "</button>" +
           "</div>" +
         "</div>" +
         '<div class="gallery" id="gallery"></div>' +
         '<div class="selbar" id="selbar">' +
-          '<span class="selcount"><strong id="sel-n">0</strong> selected</span>' +
+          '<span class="selcount"><strong id="sel-n">0</strong> ' + tr("selected") + '</span>' +
           '<span class="selacts">' +
-            '<button class="btn ghost sm" id="sel-clear">Clear</button>' +
+            '<button class="btn ghost sm" id="sel-clear">' + tr("Clear") + '</button>' +
             '<button class="btn sm" id="sel-dl">' + icon("download") + " " + tr("Download selected") + "</button>" +
           "</span>" +
         "</div>" +
@@ -2170,7 +2172,7 @@
         if (allRemote && whole.length && sel.length === whole.length && p.folderLinks && p.folderLinks[active]) {
           downloadFolder(p, active); return;
         }
-        downloadFiles(sel, typeLabel(active) + " · " + sel.length + " selected");
+        downloadFiles(sel, typeLabel(active) + " · " + sel.length + " " + tr("selected"));
       });
       $$(".catcard", d).forEach(function (t) {
         // Switching folders re-renders the detail with the new active folder.
@@ -2335,7 +2337,7 @@
     var missing = 0;
     function row(label, val) {
       var v = val ? '<span class="sku-v">' + val + "</span>" : (missing++, '<span class="sku-v sku-tbd">—</span>');
-      return '<div class="sku-row"><span class="sku-l">' + label + "</span>" + v + "</div>";
+      return '<div class="sku-row"><span class="sku-l">' + tr(label) + "</span>" + v + "</div>";
     }
     // Multi-colour collections list per-colour SKU/UPC in the Colorways section,
     // so the collection-level Product SKU/UPC rows are omitted here to avoid
@@ -2347,7 +2349,7 @@
     var perPop = info.innerPack;
     if (colorways && colorways.length && info.innerPack && info.innerPack !== "N/A") {
       var nUnits = parseInt(info.innerPack, 10), nCol = colorways.length;
-      if (nUnits && nUnits % nCol === 0) perPop = nUnits + " (" + (nUnits / nCol) + " × " + nCol + " colorways)";
+      if (nUnits && nUnits % nCol === 0) perPop = nUnits + " (" + (nUnits / nCol) + " × " + nCol + " " + tr("colorways") + ")";
     }
     var rows =
       row("Product Name", info.fullName) +
@@ -2359,7 +2361,7 @@
         : "") +
       row("Product Dimensions", info.dimensions) +
       row("Unit Weight", info.unitWeight) +
-      row("Ships In Retail POP Display", info.pop === true ? "Yes" : info.pop === false ? "No" : "") +
+      row("Ships In Retail POP Display", info.pop === true ? tr("Yes") : info.pop === false ? tr("No") : "") +
       row("Units Per POP Display", perPop) +
       row("Units Per Master Case", info.masterCarton) +
       row("Case Weight", info.caseWeight) +
@@ -2367,7 +2369,7 @@
       row("HTS (Harmonized Tariff Schedule) Code", info.htsCode);
     return '<div class="section-head"><h2>' + tr("SKU details") + '</h2></div>' +
       '<div class="sku-table">' + rows + "</div>" +
-      (missing ? '<p class="pkg-note">' + icon("info") + " Fields shown as <strong>—</strong> are still to be confirmed." + "</p>" : "");
+      (missing ? '<p class="pkg-note">' + icon("info") + " " + tr("Fields shown as <strong>—</strong> are still to be confirmed.") + "</p>" : "");
   }
 
   // MSRP / warranty facts + FAQ/site CTAs (sits in the hero info column).
@@ -2645,7 +2647,7 @@
   }
   // Same-origin committed files → bundle into a single .zip in the browser.
   function zipCommitted(committed, label, alsoFromDropbox) {
-    toast("Preparing " + committed.length + " files as a .zip…");
+    toast(tr("Preparing {n} files as a .zip…").replace("{n}", committed.length));
     loadJSZip(function (JSZip) {
       if (!JSZip) { toast(tr("Couldn’t load the zipper — try again")); return; }
       var zip = new JSZip();
@@ -2656,7 +2658,7 @@
           var href = URL.createObjectURL(blob);
           directDownload(href, String(label || "assets").replace(/[^\w.-]+/g, "_") + ".zip");
           setTimeout(function () { URL.revokeObjectURL(href); }, 8000);
-          toast("Downloaded " + committed.length + " files" +
+          toast(tr("Downloaded") + " " + committed.length + " " + tr("files") +
             (alsoFromDropbox ? " · " + alsoFromDropbox + " more coming from Dropbox" : ""));
         })
         .catch(function () { toast(tr("Couldn’t build the zip")); });
@@ -2681,7 +2683,7 @@
     if (remote.length) pullFromDropbox(remote);
     if (committed.length === 1) {
       directDownload(committed[0].file, fileLabel(committed[0]));
-      if (remote.length) toast("Downloading " + n + " files…");
+      if (remote.length) toast(tr("Downloading {n} files…").replace("{n}", n));
     } else if (committed.length) {
       zipCommitted(committed, label, remote.length);
     } else {
@@ -2832,11 +2834,11 @@
       suggestEl = document.createElement("div");
       suggestEl.className = "search-suggest";
       suggestEl.innerHTML =
-        '<div class="ss-label">Popular searches</div>' +
+        '<div class="ss-label">' + tr("Popular searches") + '</div>' +
         '<div class="ss-chips">' + SUGGESTIONS.map(function (s) {
           return '<button type="button" class="ss-chip" data-q="' + s + '">' + s + "</button>";
         }).join("") + "</div>" +
-        '<div class="ss-hint">Press <kbd>/</kbd> to search from anywhere · <kbd>Enter</kbd> opens the top result</div>';
+        '<div class="ss-hint">' + tr("Press <kbd>/</kbd> to search from anywhere · <kbd>Enter</kbd> opens the top result") + '</div>';
       host.appendChild(suggestEl);
       $$(".ss-chip", suggestEl).forEach(function (b) {
         b.addEventListener("mousedown", function (e) { e.preventDefault(); }); // keep focus
