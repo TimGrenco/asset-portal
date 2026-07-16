@@ -856,6 +856,8 @@ a.logo-tile { cursor: pointer; }
      too (the 720px rule below doesn't reach iPad, which is hover:none at ≥768). */
   .cat-pill { padding: 9px 14px; }
   .cat-act { padding: 11px 8px; }
+  /* EN/ES language toggle — 11px type made these only ~22px tall to thumb. */
+  .langtog button { padding: 9px 13px; }
 }
 
 /* Empty (0-count) asset folders read as disabled instead of leading nowhere. */
