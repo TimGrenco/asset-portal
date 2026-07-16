@@ -258,7 +258,47 @@ window.PORTAL_I18N.de = {
     "Watch": "Ansehen",
     "What’s In the Box?": "Lieferumfang",
     "You passed!": "Bestanden!",
-    "YouTube": "YouTube"
+    "YouTube": "YouTube",
+    "AUTHORIZED BY": "AUTORISIERT VON",
+    "Assets are coming soon — check back shortly.": "Assets folgen in Kürze — schauen Sie bald wieder vorbei.",
+    "B2B Resources": "B2B-Ressourcen",
+    "Blue": "Blau",
+    "Body": "Fließtext",
+    "CERTIFICATE ID": "ZERTIFIKAT-ID",
+    "CERTIFIED · PRODUCT SPECIALIST": "ZERTIFIZIERT · PRODUKTSPEZIALIST",
+    "Catalog": "Katalog",
+    "Catalog link copied": "Katalog-Link kopiert",
+    "Clear all": "Alle zurücksetzen",
+    "DATE ISSUED": "AUSSTELLUNGSDATUM",
+    "Display / Headlines": "Display / Überschriften",
+    "Green": "Grün",
+    "How-to video": "Anleitungsvideo",
+    "In-store marketing": "In-Store-Marketing",
+    "Link copied": "Link kopiert",
+    "MSRP": "UVP",
+    "Master carton": "Umkarton",
+    "Open in": "Öffnen in",
+    "Pink": "Pink",
+    "Purple": "Lila",
+    "Red": "Rot",
+    "Regional Catalogs": "Regionale Kataloge",
+    "Retail POP display": "Retail-POP-Display",
+    "Share view": "Ansicht teilen",
+    "Ships in POP display": "Lieferung im POP-Display",
+    "Ships in a retail-ready POP display — one retail box shown per colorway. See SKU details for inner-pack &amp; master-carton quantities.": "Lieferung im verkaufsfertigen POP-Display — pro Farbvariante ist eine Verkaufsverpackung abgebildet. Mengen für Innenverpackung &amp; Umkarton finden Sie in den SKU-Details.",
+    "Ships in a retail-ready POP display — see SKU details for inner-pack &amp; master-carton quantities.": "Lieferung im verkaufsfertigen POP-Display — Mengen für Innenverpackung &amp; Umkarton finden Sie in den SKU-Details.",
+    "Ships in single retail boxes — no POP display. See SKU details for master-carton quantities.": "Lieferung in einzelnen Verkaufsverpackungen — ohne POP-Display. Mengen für den Umkarton finden Sie in den SKU-Details.",
+    "Single Retail Packaging": "Einzelne Verkaufsverpackung",
+    "Swipe to see more folders": "Wischen für weitere Ordner",
+    "View link copied": "Ansichts-Link kopiert",
+    "View {brand} assets": "{brand} Assets ansehen",
+    "Warranty": "Garantie",
+    "What’s in the box": "Lieferumfang",
+    "tap to copy": "zum Kopieren tippen",
+    "updated": "aktualisiert",
+    "videos": "Videos",
+    "{brand} specific in-store materials.": "Spezifische In-Store-Materialien für {brand}.",
+    "{n}-Pack Retail POP Display": "Retail-POP-Display mit {n} Stück"
   },
   "training": {
     "Melt Hot Knife": {
@@ -1326,7 +1366,15 @@ window.PORTAL_I18N.de = {
         "Die nächste Evolutionsstufe unseres meistverkauften Dash Vaporizers — rundum verbessert und jetzt für nur $49.95.",
         "Der G Pen Dash II ist ein Trockenkräuter-Vaporizer im Taschenformat mit präziser Temperatursteuerung, OLED-Display und einer verbesserten 0,4 g Keramikkammer für mehr Leistung und einfacheres Befüllen. Angetrieben von einem verbesserten, langlebigeren 1.100 mAh Akku, liefert der Dash II gleichmäßige, zuverlässige Sessions mit 30 Sekunden Aufheizzeit und USB-C Pass-Through-Laden (Nutzung während des Ladens).",
         "Mehr Kontrolle. Einfacheres Befüllen. Bessere Leistung."
-      ]
+      ],
+      "box": {
+        "contents": [
+          "G Pen Dash II Vaporizer für Trockenkräuter",
+          "Integriertes Befüllwerkzeug",
+          "Silikonhülle für Mundstück",
+          "*USB-C Ladekabel nicht im Lieferumfang enthalten"
+        ]
+      }
     },
     "510 Original — Retro": {
       "description": "Die Retro Collection Edition des 510 Original verbindet ein sanftes, transluzentes Vintage-Finish mit derselben zugaktivierten, ultraportablen 510-Leistung — inspiriert vom allerersten G Pen Akku von 2012.",
@@ -1350,7 +1398,14 @@ window.PORTAL_I18N.de = {
         "Einfach. Zuverlässig. Ikonisch. Das Original ist zurück.",
         "*510-Kartusche nicht im Lieferumfang enthalten",
         "**USB-C Ladegerät nicht im Lieferumfang enthalten"
-      ]
+      ],
+      "box": {
+        "contents": [
+          "G Pen 510 Original Akku",
+          "*USB-C Ladegerät nicht im Lieferumfang enthalten",
+          "*510 Kartusche nicht im Lieferumfang enthalten"
+        ]
+      }
     },
     "Melt Hot Knife": {
       "description": "Der G Pen Melt ist das kleinste Hot Knife auf dem Markt — ein kompaktes Dab-Werkzeug mit Keramikspitze für schnelles, sauberes Portionieren und Auftragen von Konzentraten ohne Sauerei.",
@@ -1371,7 +1426,14 @@ window.PORTAL_I18N.de = {
         "Und jetzt mit USB-C Pass-Through-Laden (Nutzung während des Ladens) können Sie Melt sogar am Kabel weiterverwenden — denn das Einzige, was schlimmer ist als ein leeres Dab-Werkzeug, ist darauf zu warten, dass es lädt.",
         "Mit seinem eleganten Aluminiumgehäuse, dem universellen USB-C-Anschluss und der markanten G Pen Silhouette wird Melt zu Ihrem neuen Alltagsbegleiter — ob Sie ein Rig befüllen, einen G Pen Micro+ nachfüllen oder Ihren G Pen Hyer vorbereiten.",
         "Kleines Format. Große Leistung. Null Sauerei. Immer bereit."
-      ]
+      ],
+      "box": {
+        "contents": [
+          "G Pen Melt Hot Knife",
+          "Schutzkappe für unterwegs",
+          "*USB-C Ladekabel nicht im Lieferumfang enthalten"
+        ]
+      }
     },
     "Connect": {
       "description": "Ein Konzentrat-Vaporizer ohne Brenner, der jede Glass-on-Glass-Wasserpfeife in das ultimative Dab-Rig verwandelt — ganz ohne Brenner oder freiliegenden Nail.",
@@ -1429,7 +1491,14 @@ window.PORTAL_I18N.de = {
         "Einfach. Zuverlässig. Ikonisch. Das Original ist zurück.",
         "*510-Kartusche nicht im Lieferumfang enthalten",
         "** USB-C Ladegerät nicht im Lieferumfang enthalten"
-      ]
+      ],
+      "box": {
+        "contents": [
+          "G Pen 510 Original Akku",
+          "*USB-C Ladegerät nicht im Lieferumfang enthalten",
+          "*510 Kartusche nicht im Lieferumfang enthalten"
+        ]
+      }
     },
     "Hydout": {
       "description": "Der G Pen Hydout ist ein kompakter, diskreter Akku für 510-Kartuschen mit verdeckter magnetischer Mundstückabdeckung, einstellbarer Spannung und LED-Display für geschmeidige, individuell anpassbare und unauffällige Sessions.",
@@ -1447,7 +1516,15 @@ window.PORTAL_I18N.de = {
       "fullDescription": [
         "Auf der Suche nach dem besten Akku für 510-Kartuschen für unauffällige Sessions unterwegs? Lernen Sie den G Pen Hydout 510 Cartridge Battery kennen — einen kompakten, verdeckten Vape-Akku für 510-Kartuschen, der ernsthafte Leistung liefert, ohne Sie auffliegen zu lassen.",
         "Dieses Kraftpaket im Taschenformat bietet eine verdeckte magnetische Mundstückabdeckung, die Ihre Kartusche diskret hält und vor Licht schützt (ja, das hilft, die Ölqualität zu bewahren), einen 400 mAh Akku, einstellbare Spannung und ein helles LED-Display für volle Kontrolle über jeden Zug. Kompatibel mit den meisten 510-Gewinde-Kartuschen bis 2 g, ist der Hydout ideal für geschmeidige, individuell anpassbare Sessions — wo immer Sie sind."
-      ]
+      ],
+      "box": {
+        "contents": [
+          "1x G Pen Hydout 510 Kartuschen-Akku",
+          "1x Magnetische Mundstückabdeckung",
+          "510 Kartusche nicht im Lieferumfang enthalten",
+          "USB-C Ladekabel nicht im Lieferumfang enthalten"
+        ]
+      }
     },
     "Hydout — Retro": {
       "description": "Die Retro Edition des G Pen Hydout bringt ein durchsichtiges, von den 90ern inspiriertes transluzentes Finish auf den diskreten Akku für 510-Kartuschen — ergänzt um Zugaktivierung, variable Spannung und USB-C Laden.",
@@ -1468,7 +1545,15 @@ window.PORTAL_I18N.de = {
         "Mit schnellem USB-C Laden, einer passgenauen, klapperfreien Kartuschenkammer und Kompatibilität mit den meisten 510-Kartuschen liefert der Hydout Retro moderne Leistung unter nostalgisch transluzenter Hülle.",
         "*510-Kartusche nicht im Lieferumfang enthalten",
         "**USB-C Ladegerät nicht im Lieferumfang enthalten"
-      ]
+      ],
+      "box": {
+        "contents": [
+          "G Pen Hydout 510 Gewinde-Akku",
+          "Magnetisches Mundstück",
+          "*USB-C Ladekabel nicht im Lieferumfang enthalten",
+          "*510 Kartusche nicht im Lieferumfang enthalten"
+        ]
+      }
     },
     "Dash+": {
       "description": "Der G Pen Dash+ ist ein portabler Trockenkräuter-Vaporizer der nächsten Generation mit hybrider Konvektions-Konduktions-Heizung in einer Titankammer, die in rund 20 Sekunden Verdampfungstemperatur erreicht.",
@@ -1488,7 +1573,15 @@ window.PORTAL_I18N.de = {
         "Zwei separate Frischluftkanäle und ein magnetisches Mundstück mit spiralförmigem Keramik-Luftweg maximieren Luftstrom und Aroma. Ein vollfarbiges LED-Display, die Drei-Tasten-Bedienung, haptisches Feedback und die präzise Temperaturanpassung machen es leicht, jede Session zu personalisieren.",
         "Mit robustem Gehäuse aus Zinklegierung und einem wiederaufladbaren 1.800 mAh Akku mit USB-C Laden liefert der G Pen Dash+ zuverlässige Leistung in einem eleganten, portablen Design für den täglichen Gebrauch.",
         "*Dieses Produkt ist nicht zur Verwendung mit Tabak, nikotinhaltigen E-Liquids oder synthetischem Nikotin bzw. Nikotinersatzstoffen bestimmt."
-      ]
+      ],
+      "box": {
+        "contents": [
+          "Dash+ Vaporizer",
+          "Silikonhülle für Dash+ Mundstück",
+          "Befüllwerkzeug mit Schlüsselanhänger",
+          "USB-C Ladekabel"
+        ]
+      }
     },
     "Hyer": {
       "description": "Ein vielseitiger portabler E-Nail für Konzentrate oder Trockenkräuter, kompatibel mit jedem Glass-on-Glass-Wasserpfeifenstück und aufgebaut um ein Heizelement aus vollem Quarz.",

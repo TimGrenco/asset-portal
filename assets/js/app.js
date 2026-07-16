@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260711m";   // bump with the other asset tokens
+  var LANG_VER = "20260711n";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -154,6 +154,11 @@
     // translation can never drop or duplicate a paragraph.
     if (loc.fullDescription && en.fullDescription && loc.fullDescription.length === en.fullDescription.length) {
       out.fullDescription = loc.fullDescription;
+    }
+    // "What's In the Box" contents — same length guard; the image stays as-is.
+    if (loc.box && loc.box.contents && en.box && en.box.contents &&
+        loc.box.contents.length === en.box.contents.length) {
+      out.box = { contents: loc.box.contents, image: en.box.image };
     }
     return out;
   }
@@ -515,7 +520,7 @@
   }
   function shareView() {
     var qs = buildQuery();
-    copyText(location.origin + location.pathname + (qs ? "?" + qs : ""), "View link copied");
+    copyText(location.origin + location.pathname + (qs ? "?" + qs : ""), tr("View link copied"));
   }
   function clearFilter(k) {
     // Brand is fixed to G Pen for this portal, never a clearable
@@ -536,10 +541,10 @@
     var left = chips.map(function (c) {
       // escapeHTML: c.label can include the raw ?q= URL param — never inject it unescaped.
       return '<button class="fchip" data-clear="' + c.k + '">' + escapeHTML(c.label) + ' <span class="x">' + icon("x") + "</span></button>";
-    }).join("") + '<button class="fclear" data-clear="all">Clear all</button>';
+    }).join("") + '<button class="fclear" data-clear="all">' + tr("Clear all") + '</button>';
     box.innerHTML =
       '<div class="fb-left">' + left + "</div>" +
-      '<div class="fb-right"><button class="btn ghost sm" id="share-view">' + icon("link") + " Share view</button></div>";
+      '<div class="fb-right"><button class="btn ghost sm" id="share-view">' + icon("link") + " " + tr("Share view") + "</button></div>";
     $$("[data-clear]", box).forEach(function (b) {
       b.addEventListener("click", function () { clearFilter(b.getAttribute("data-clear")); });
     });
@@ -768,7 +773,7 @@
   }
   function wireSocial(ctx) {
     $$("[data-copylink]", ctx).forEach(function (b) {
-      b.addEventListener("click", function () { copyText(b.getAttribute("data-copylink"), "Link copied"); });
+      b.addEventListener("click", function () { copyText(b.getAttribute("data-copylink"), tr("Link copied")); });
     });
   }
 
@@ -864,7 +869,7 @@
     return '<div class="fontspec">' +
       '<div class="fontspec-aa" style="font-family:' + f.stack + '">Aa</div>' +
       '<div class="fontspec-body">' +
-        '<div class="fontspec-head"><span class="fontspec-name">' + f.name + '</span><span class="fontspec-role">' + f.role + "</span></div>" +
+        '<div class="fontspec-head"><span class="fontspec-name">' + f.name + '</span><span class="fontspec-role">' + tr(f.role) + "</span></div>" +
         '<div class="fontspec-line big" style="font-family:' + f.stack + '">The quick brown fox jumps over the lazy dog</div>' +
         '<div class="fontspec-line" style="font-family:' + f.stack + '">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789</div>' +
       "</div></div>";
@@ -889,11 +894,11 @@
         "<h2>" + tr("Brand &amp; Style Guide") + "</h2>" +
         '<p class="sg-note">' + icon("info") + "<span>Placeholder guide — the official " + b.name + " brand guide will replace this. Colors, type, and logos below reflect current brand usage.</span></p>" +
         '<div class="sg-actions">' +
-          '<button class="btn" data-view-brand="' + bk + '">' + icon("stack") + " View " + b.name + " assets</button>" +
+          '<button class="btn" data-view-brand="' + bk + '">' + icon("stack") + " " + tr("View {brand} assets").replace("{brand}", b.name) + "</button>" +
           (b.logoProduct ? '<button class="btn ghost" data-logo="' + b.logoProduct + '">' + icon("download") + " " + tr("Download logos") + "</button>" : "") +
         "</div>" +
       "</div>" +
-      '<div class="section-head"><h2>' + tr("Colors") + '</h2><span class="badge">tap to copy</span></div>' +
+      '<div class="section-head"><h2>' + tr("Colors") + '</h2><span class="badge">' + tr("tap to copy") + '</span></div>' +
       '<div class="sg-colors">' + (b.colors || []).map(swatchBigHTML).join("") + "</div>" +
       '<div class="section-head"><h2>' + tr("Typography") + '</h2></div>' +
       '<div class="sg-fonts">' + (b.fonts || []).map(fontSpecimenHTML).join("") + "</div>" +
@@ -902,7 +907,7 @@
         '<div class="sg-logo-tile"><span>' + b.wordmark + "</span></div>" +
         (b.logoProduct ? '<button class="btn ghost" data-logo="' + b.logoProduct + '">' + icon("download") + " " + tr("Download logo files") + "</button>" : "") +
       "</div>" +
-      '<div class="section-head"><h2>Follow ' + b.name + "</h2></div>" +
+      '<div class="section-head"><h2>' + tr("Follow " + b.name + " On Socials") + '</h2></div>' +
       socialListHTML(bk);
 
     $("#sg-back").addEventListener("click", navHome);
@@ -1375,7 +1380,7 @@
       var sh = $("[data-catshare]", card);
       if (sh) sh.addEventListener("click", function (e) {
         e.stopPropagation();
-        var c = cur(); if (c) copyText(catalogShareUrl(c), "Catalog link copied");
+        var c = cur(); if (c) copyText(catalogShareUrl(c), tr("Catalog link copied"));
       });
     });
   }
@@ -1440,7 +1445,7 @@
     $("#catlb-x").addEventListener("click", closeCatalog);
     ov.addEventListener("click", function (e) { if (e.target === ov) closeCatalog(); });
     $("#catlb-dl").addEventListener("click", function () { catalogDownload(c); });
-    $("#catlb-share").addEventListener("click", function () { copyText(catalogShareUrl(c), "Catalog link copied"); });
+    $("#catlb-share").addEventListener("click", function () { copyText(catalogShareUrl(c), tr("Catalog link copied")); });
     $("#catlb-prev").addEventListener("click", function () { go(page - 1); });
     $("#catlb-next").addEventListener("click", function () { go(page + 1); });
     ov.__key = function (e) {
@@ -1878,7 +1883,7 @@
         '<defs><path id="cert-seal-arc" d="M66 66 m-49 0 a49 49 0 1 1 98 0"/></defs>' +
         '<circle class="cs-ring" cx="66" cy="66" r="62"/>' +
         '<circle class="cs-ring cs-ring2" cx="66" cy="66" r="50"/>' +
-        '<text class="cs-arc"><textPath href="#cert-seal-arc" startOffset="50%">CERTIFIED · PRODUCT SPECIALIST</textPath></text>' +
+        '<text class="cs-arc"><textPath href="#cert-seal-arc" startOffset="50%">' + tr("CERTIFIED · PRODUCT SPECIALIST") + '</textPath></text>' +
         '<text class="cs-star" x="66" y="46">★</text>' +
         '<text class="cs-score" x="66" y="76">' + pct + '%</text>' +
         '<text class="cs-sub" x="66" y="94">G PEN</text>' +
@@ -1957,7 +1962,7 @@
     x.fillStyle = INK; x.font = "800 34px Archivo, Arial, sans-serif"; x.fillText(pct + "%", cx, scy + 12);
     ls("2px"); x.fillStyle = GOLD; x.font = "700 12px Archivo, Arial, sans-serif"; x.fillText("G PEN", cx, scy + 38); ls("0px");
     // footer columns
-    var fy = 1035, cols = [[dateStr, "DATE ISSUED"], ["Grenco Science", "AUTHORIZED BY"], [cid || "", "CERTIFICATE ID"]], xs = [cx - 400, cx, cx + 400];
+    var fy = 1035, cols = [[dateStr, tr("DATE ISSUED")], ["Grenco Science", tr("AUTHORIZED BY")], [cid || "", tr("CERTIFICATE ID")]], xs = [cx - 400, cx, cx + 400];
     cols.forEach(function (col, i) {
       x.strokeStyle = GOLD; x.lineWidth = 1; x.beginPath(); x.moveTo(xs[i] - 120, fy - 34); x.lineTo(xs[i] + 120, fy - 34); x.stroke();
       x.fillStyle = INK; x.font = "700 24px Archivo, Arial, sans-serif"; x.fillText(col[0], xs[i], fy);
@@ -2175,7 +2180,7 @@
       // Asset filters: friendly-labelled chips for this product's folders, sat
       // right at the top of the Documents section for quick filtering.
       var assetNav =
-        (folderNames.length > 3 ? '<div class="catgrid-hint"><span>Swipe to see more folders</span>' + icon("arrowRight") + "</div>" : "") +
+        (folderNames.length > 3 ? '<div class="catgrid-hint"><span>' + tr("Swipe to see more folders") + '</span>' + icon("arrowRight") + "</div>" : "") +
         '<div class="catgrid" id="asset-nav">' + folderNames.map(function (f) {
           var n = p.folders[f].length, empty = n === 0;
           return '<button class="catcard ' + (f === active ? "on " : "") + (empty ? "is-empty" : "") + '" data-folder="' + f + '"' + (empty ? " disabled" : "") + ">" +
@@ -2193,7 +2198,7 @@
       var fullName = p.name.indexOf(BRANDS[p.brand].name) === 0 ? p.name : BRANDS[p.brand].name + " " + p.name;
       setTitle(fullName);
 
-      var stat = p.total + " assets" + (p.videos && p.videos.length ? " · " + p.videos.length + " videos" : "") + " · updated " + fmtDate(p.added);
+      var stat = p.total + " " + tr("assets") + (p.videos && p.videos.length ? " · " + p.videos.length + " " + tr("videos") : "") + " · " + tr("updated") + " " + fmtDate(p.added);
       d.innerHTML =
         '<button class="back" id="back-btn">' + icon("arrowLeft") + " " + tr("Back to library") + "</button>" +
         '<div class="detail-hero">' +
@@ -2277,7 +2282,7 @@
       $("#dl-all").addEventListener("click", function () { downloadAll(p); });
       $("#copy-link").addEventListener("click", function () {
         var url = location.origin + location.pathname + productHash(p);
-        copyText(url, "Link copied");
+        copyText(url, tr("Link copied"));
       });
       var copyDesc = $("#copy-desc");
       if (copyDesc) copyDesc.addEventListener("click", function () {
@@ -2337,7 +2342,7 @@
       "</div>";
     }
     var prodName = p.name.indexOf(BRANDS[p.brand].name) === 0 ? p.name : BRANDS[p.brand].name + " " + p.name;
-    var note = '<p class="pkg-note">' + prodName + " specific in-store materials.</p>";
+    var note = '<p class="pkg-note">' + tr("{brand} specific in-store materials.").replace("{brand}", prodName) + "</p>";
     var tiles = items.map(function (x) {
       var media = x.thumb ? '<img src="' + x.thumb + '" alt="' + fileLabel(x).replace(/"/g, "") + '" loading="lazy" decoding="async"/>' : window.__icon("photo");
       var lbl = instoreLabel(x);
@@ -2408,31 +2413,31 @@
       COLORS.forEach(function (cp) {
         var pool = nonpop.filter(function (f) { return cp[1].test(f.name); });
         pool.sort(function (a, b) { return s(b) - s(a); });
-        if (pool[0]) out += pkgCard("Single Retail Packaging — " + cp[0], pool[0].thumb, pool[0].url);
+        if (pool[0]) out += pkgCard(tr("Single Retail Packaging") + " — " + tr(cp[0]), pool[0].thumb, pool[0].url);
       });
       return out;
     }
     var popLabel = (info.innerPack && info.innerPack !== "N/A")
-      ? info.innerPack + "-Pack Retail POP Display" : "Retail POP display";
+      ? tr("{n}-Pack Retail POP Display").replace("{n}", info.innerPack) : tr("Retail POP display");
     var cards, note;
     var colorCards = /retro/i.test(p.name) ? colorBoxCards() : "";
     if (colorCards) {
       // Retro collection: one retail box per colourway, then the collection POP display.
       cards = colorCards + boxCard(popLabel, info.popImg, info.popImgDl, popFile) +
-        pkgCard("Master carton", info.cartonImg);
-      note = "Ships in a retail-ready POP display — one retail box shown per colorway. See SKU details for inner-pack &amp; master-carton quantities.";
+        pkgCard(tr("Master carton"), info.cartonImg);
+      note = tr("Ships in a retail-ready POP display — one retail box shown per colorway. See SKU details for inner-pack &amp; master-carton quantities.");
     } else if (info.pop) {
       // Ships in a retail-ready POP display. Label the POP card with its pack count.
-      cards = boxCard("Single Retail Packaging", info.boxImg, null, boxFile) +
+      cards = boxCard(tr("Single Retail Packaging"), info.boxImg, null, boxFile) +
         boxCard(popLabel, info.popImg, info.popImgDl, popFile) +
-        pkgCard("Master carton", info.cartonImg);
-      note = "Ships in a retail-ready POP display — see SKU details for inner-pack &amp; master-carton quantities.";
+        pkgCard(tr("Master carton"), info.cartonImg);
+      note = tr("Ships in a retail-ready POP display — see SKU details for inner-pack &amp; master-carton quantities.");
     } else {
       // Ships in single retail boxes — no POP display for this product.
-      cards = boxCard("Single Retail Packaging", info.boxImg, null, boxFile) + pkgCard("Master carton", info.cartonImg);
-      note = "Ships in single retail boxes — no POP display. See SKU details for master-carton quantities.";
+      cards = boxCard(tr("Single Retail Packaging"), info.boxImg, null, boxFile) + pkgCard(tr("Master carton"), info.cartonImg);
+      note = tr("Ships in single retail boxes — no POP display. See SKU details for master-carton quantities.");
     }
-    return '<div class="section-head"><h2>' + tr("Packaging") + '</h2>' + (info.pop ? '<span class="badge">Ships in POP display</span>' : "") + "</div>" +
+    return '<div class="section-head"><h2>' + tr("Packaging") + '</h2>' + (info.pop ? '<span class="badge">' + tr("Ships in POP display") + '</span>' : "") + "</div>" +
       (cards ? '<div class="pkg-grid">' + cards + "</div>" : "") +
       '<p class="pkg-note">' + note + "</p>";
   }
@@ -2448,7 +2453,7 @@
           '<span class="cway-cv">' + (v || "—") + "</span></div>";
       };
       return '<div class="cway-card" style="--c:' + w.hex + '">' +
-        '<div class="cway-top"><span class="cway-dot"></span><span class="cway-color">' + w.color + "</span></div>" +
+        '<div class="cway-top"><span class="cway-dot"></span><span class="cway-color">' + tr(w.color) + "</span></div>" +
         '<div class="cway-name">' + escapeHTML(w.name) + "</div>" +
         '<div class="cway-codes">' + code("SKU", w.sku) + code("UPC", w.upc) + "</div>" +
       "</div>";
@@ -2507,8 +2512,8 @@
     var info = infoOf(p);
     var faq = info.faqUrl || BRANDS[p.brand].faqUrl;
     var factItems =
-      (info.msrp ? '<div class="ov-fact">' + icon("tag") + '<div class="ov-fact-t"><div class="ov-fact-l">MSRP</div><div class="ov-fact-v">' + info.msrp + "</div></div></div>" : "") +
-      (info.warranty ? '<div class="ov-fact">' + icon("shield") + '<div class="ov-fact-t"><div class="ov-fact-l">Warranty</div><div class="ov-fact-v">' + info.warranty + "</div></div></div>" : "");
+      (info.msrp ? '<div class="ov-fact">' + icon("tag") + '<div class="ov-fact-t"><div class="ov-fact-l">' + tr("MSRP") + '</div><div class="ov-fact-v">' + info.msrp + "</div></div></div>" : "") +
+      (info.warranty ? '<div class="ov-fact">' + icon("shield") + '<div class="ov-fact-t"><div class="ov-fact-l">' + tr("Warranty") + '</div><div class="ov-fact-v">' + info.warranty + "</div></div></div>" : "");
     var ctas =
       (info.manual ? '<a class="btn ghost sm" href="' + info.manual + '" target="_blank" rel="noopener noreferrer">' + icon("file") + " " + tr("Product Manual") + "</a>" : "") +
       (faq ? '<a class="btn ghost sm" href="' + faq + '" target="_blank" rel="noopener noreferrer">' + icon("info") + " " + tr("Product FAQs") + "</a>" : "") +
@@ -2539,12 +2544,12 @@
   // "What's In the Box?" — contents list + components image (from gpen.com).
   function whatsInBoxHTML(p) {
     if (p.isLogo) return "";
-    var b = p.info && p.info.box;
+    var b = infoOf(p).box;
     if (!b || !(b.contents && b.contents.length)) return "";
     var list = '<ul class="box-list">' + b.contents.map(function (c) { return "<li>" + c + "</li>"; }).join("") + "</ul>";
     var head = '<div class="section-head"><h2>' + tr("What’s In the Box?") + '</h2></div>';
     if (!b.image) return head + '<div class="box-single">' + list + "</div>";
-    var img = '<div class="box-media"><img src="' + b.image + '" alt="What’s in the box" loading="lazy" decoding="async"/></div>';
+    var img = '<div class="box-media"><img src="' + b.image + '" alt="' + escapeHTML(tr("What’s in the box")) + '" loading="lazy" decoding="async"/></div>';
     return head + '<div class="box-grid">' + list + img + "</div>";
   }
 
@@ -2620,7 +2625,7 @@
     var files = p.folders[folder] || [];
     if (!files.length) {
       $("#gallery").innerHTML = '<div class="gallery-empty">' + icon("photo") +
-        "<p><strong>" + typeLabel(folder) + "</strong> are coming soon — check back shortly.</p></div>";
+        "<p>" + tr("Assets are coming soon — check back shortly.") + "</p></div>";
       if (onChange) onChange();
       return;
     }
@@ -2698,7 +2703,7 @@
       clickKey(b, function () {
         var url = b.getAttribute("data-copy");
         if (!url || url === "#") { toast(tr("No link yet")); return; }
-        copyText(url, "Link copied");
+        copyText(url, tr("Link copied"));
       });
     });
   }
@@ -3009,7 +3014,7 @@
     $("#lb-copy").addEventListener("click", function () {
       var u = lbCurrent().url;
       if (!u || u === "#") { toast(tr("No link yet")); return; }
-      copyText(u, "Link copied");
+      copyText(u, tr("Link copied"));
     });
     $("#lb-dl").addEventListener("click", function () { var it = lbCurrent(); if (it.file) directDownload(it.file, it.name); else downloadOne(it.url); });
     $("#lightbox").addEventListener("click", function (e) {

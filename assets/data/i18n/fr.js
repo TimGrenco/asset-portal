@@ -258,7 +258,47 @@ window.PORTAL_I18N.fr = {
     "Watch": "Regarder",
     "What’s In the Box?": "Contenu de la boîte",
     "You passed!": "Réussi !",
-    "YouTube": "YouTube"
+    "YouTube": "YouTube",
+    "AUTHORIZED BY": "AUTORISÉ PAR",
+    "Assets are coming soon — check back shortly.": "Les ressources arrivent bientôt — revenez sous peu.",
+    "B2B Resources": "Ressources B2B",
+    "Blue": "Bleu",
+    "Body": "Corps de texte",
+    "CERTIFICATE ID": "ID DU CERTIFICAT",
+    "CERTIFIED · PRODUCT SPECIALIST": "CERTIFIÉ · SPÉCIALISTE PRODUIT",
+    "Catalog": "Catalogue",
+    "Catalog link copied": "Lien du catalogue copié",
+    "Clear all": "Tout effacer",
+    "DATE ISSUED": "DATE D’ÉMISSION",
+    "Display / Headlines": "Display / Titres",
+    "Green": "Vert",
+    "How-to video": "Vidéo tutoriel",
+    "In-store marketing": "Marketing en magasin",
+    "Link copied": "Lien copié",
+    "MSRP": "Prix conseillé",
+    "Master carton": "Carton master",
+    "Open in": "Ouvrir dans",
+    "Pink": "Rose",
+    "Purple": "Violet",
+    "Red": "Rouge",
+    "Regional Catalogs": "Catalogues régionaux",
+    "Retail POP display": "Présentoir POP de vente",
+    "Share view": "Partager la vue",
+    "Ships in POP display": "Livré en présentoir POP",
+    "Ships in a retail-ready POP display — one retail box shown per colorway. See SKU details for inner-pack &amp; master-carton quantities.": "Livré en présentoir POP prêt à vendre — une boîte de vente illustrée par coloris. Voir les détails SKU pour les quantités par pack interne &amp; par carton master.",
+    "Ships in a retail-ready POP display — see SKU details for inner-pack &amp; master-carton quantities.": "Livré en présentoir POP prêt à vendre — voir les détails SKU pour les quantités par pack interne &amp; par carton master.",
+    "Ships in single retail boxes — no POP display. See SKU details for master-carton quantities.": "Livré en boîtes de vente individuelles — sans présentoir POP. Voir les détails SKU pour les quantités par carton master.",
+    "Single Retail Packaging": "Emballage de vente individuel",
+    "Swipe to see more folders": "Balayez pour voir plus de dossiers",
+    "View link copied": "Lien de la vue copié",
+    "View {brand} assets": "Voir les ressources {brand}",
+    "Warranty": "Garantie",
+    "What’s in the box": "Contenu de la boîte",
+    "tap to copy": "appuyez pour copier",
+    "updated": "mis à jour",
+    "videos": "vidéos",
+    "{brand} specific in-store materials.": "Supports en magasin spécifiques à {brand}.",
+    "{n}-Pack Retail POP Display": "Présentoir POP de vente de {n} unités"
   },
   "training": {
     "Melt Hot Knife": {
@@ -1326,7 +1366,15 @@ window.PORTAL_I18N.fr = {
         "La nouvelle évolution de notre vaporisateur best-seller Dash : amélioré sur tous les points, et désormais à seulement $49.95.",
         "Le G Pen Dash II est un vaporisateur à herbes sèches format poche doté d'un contrôle précis de la température, d'un écran OLED et d'une chambre en céramique 0,4 g améliorée, conçue pour de meilleures performances et un chargement plus facile. Animé par une batterie 1 100mAh plus endurante, le Dash II offre des sessions douces et fiables, avec une montée en température en 30 secondes et la charge pass-through USB-C (utilisable pendant la charge).",
         "Plus de contrôle. Un chargement plus facile. De meilleures performances."
-      ]
+      ],
+      "box": {
+        "contents": [
+          "Vaporisateur à herbes sèches G Pen Dash II",
+          "Outil de remplissage intégré",
+          "Manchon en silicone pour embout buccal",
+          "*Câble de charge USB-C non inclus"
+        ]
+      }
     },
     "510 Original — Retro": {
       "description": "L'édition Retro Collection du 510 Original associe une finition translucide vintage tout en douceur aux mêmes performances 510 ultra-portables à déclenchement à l'inspiration, inspirées de la toute première batterie G Pen de 2012.",
@@ -1350,7 +1398,14 @@ window.PORTAL_I18N.fr = {
         "Simple. Fiable. Iconique. L'originale est de retour.",
         "*Cartouche 510 non incluse",
         "**Chargeur USB-C non inclus"
-      ]
+      ],
+      "box": {
+        "contents": [
+          "Batterie G Pen 510 Original",
+          "*Chargeur USB-C non inclus",
+          "*Cartouche 510 non incluse"
+        ]
+      }
     },
     "Melt Hot Knife": {
       "description": "Le G Pen Melt est le plus petit hot knife du marché : un outil à dab compact à pointe céramique pour prélever et déposer vos concentrés rapidement, proprement et sans la moindre bavure.",
@@ -1371,7 +1426,14 @@ window.PORTAL_I18N.fr = {
         "Et désormais avec la charge pass-through USB-C (utilisable pendant la charge), vous pouvez continuer à utiliser le Melt même branché — parce que la seule chose pire qu'un outil à dab déchargé, c'est d'attendre qu'il se recharge.",
         "Avec son corps en aluminium élégant, son port USB-C universel et la silhouette G Pen signature, le Melt devient votre indispensable du quotidien — que vous chargiez un rig, remplissiez un G Pen Micro+ ou prépariez votre G Pen Hyer.",
         "Petit format. Grande puissance. Zéro bavure. Toujours prêt."
-      ]
+      ],
+      "box": {
+        "contents": [
+          "G Pen Melt Hot Knife",
+          "Capuchon de protection de voyage",
+          "*Câble de charge USB-C non inclus"
+        ]
+      }
     },
     "Connect": {
       "description": "Un vaporisateur à concentrés sans chalumeau qui transforme n'importe quelle pipe à eau verre-sur-verre en rig à dab ultime — sans chalumeau ni nail exposé.",
@@ -1429,7 +1491,14 @@ window.PORTAL_I18N.fr = {
         "Simple. Fiable. Iconique. L'originale est de retour.",
         "*Cartouche 510 non incluse",
         "** Chargeur USB C non inclus"
-      ]
+      ],
+      "box": {
+        "contents": [
+          "Batterie G Pen 510 Original",
+          "*Chargeur USB-C non inclus",
+          "*Cartouche 510 non incluse"
+        ]
+      }
     },
     "Hydout": {
       "description": "Le G Pen Hydout est une batterie compacte et discrète pour cartouches 510, dotée d'un cache-embout magnétique dissimulé, d'une tension réglable et d'un écran LED, pour des sessions douces, personnalisables et en toute discrétion.",
@@ -1447,7 +1516,15 @@ window.PORTAL_I18N.fr = {
       "fullDescription": [
         "Vous cherchez la meilleure batterie pour cartouches 510 et des sessions discrètes en déplacement ? Découvrez la batterie pour cartouches 510 G Pen Hydout : une batterie compacte et dissimulée pour cartouches 510, qui offre de vraies performances sans jamais vous trahir.",
         "Ce concentré de puissance format poche est doté d'un cache-embout magnétique dissimulé qui garde votre cartouche discrète et à l'abri de la lumière (oui, cela contribue à préserver la qualité de l'huile), d'une batterie 400mAh, d'une tension réglable et d'un écran LED lumineux pour un contrôle total sur chaque bouffée. Compatible avec la plupart des cartouches à filetage 510 jusqu'à 2 g, le Hydout est parfait pour des sessions douces et personnalisables — où que vous soyez."
-      ]
+      ],
+      "box": {
+        "contents": [
+          "1x batterie pour cartouche 510 G Pen Hydout",
+          "1x cache magnétique pour embout buccal",
+          "Cartouche 510 non incluse",
+          "Câble de charge USB-C non inclus"
+        ]
+      }
     },
     "Hydout — Retro": {
       "description": "L'édition Retro du G Pen Hydout apporte une finition translucide transparente d'inspiration années 90 à la batterie 510 la plus discrète, en y ajoutant le déclenchement à l'inspiration, aux côtés de la tension variable et de la charge USB-C.",
@@ -1468,7 +1545,15 @@ window.PORTAL_I18N.fr = {
         "Avec sa charge USB-C rapide, sa chambre à cartouche parfaitement ajustée et sans jeu, et sa compatibilité avec la plupart des cartouches 510, le Hydout Retro délivre des performances modernes sous une coque translucide nostalgique.",
         "*Cartouche 510 non incluse",
         "**Chargeur USB-C non inclus"
-      ]
+      ],
+      "box": {
+        "contents": [
+          "Batterie à filetage 510 G Pen Hydout",
+          "Embout buccal magnétique",
+          "*Câble de charge USB-C non inclus",
+          "*Cartouche 510 non incluse"
+        ]
+      }
     },
     "Dash+": {
       "description": "Le G Pen Dash+ est un vaporisateur portable à herbes sèches de nouvelle génération qui associe convection et conduction dans une chambre en titane pour atteindre la température de vaporisation en environ 20 secondes.",
@@ -1488,7 +1573,15 @@ window.PORTAL_I18N.fr = {
         "Deux canaux d'admission d'air pur et un embout buccal magnétique doté d'un conduit d'air en céramique en spirale maximisent le flux d'air et la saveur. Un écran LED couleur, des commandes à trois boutons, le retour haptique et un réglage précis de la température permettent de personnaliser facilement chaque session.",
         "Doté d'un corps robuste en alliage de zinc et alimenté par une batterie rechargeable de 1 800mAh avec charge USB-C, le G Pen Dash+ offre des performances fiables dans un design élégant et portable, pensé pour un usage quotidien.",
         "*Ce produit n'est pas destiné à être utilisé avec du tabac, des e-liquides contenant de la nicotine, ni avec de la nicotine de synthèse ou tout substitut de nicotine."
-      ]
+      ],
+      "box": {
+        "contents": [
+          "Vaporisateur Dash+",
+          "Manchon en silicone pour embout buccal Dash+",
+          "Outil de remplissage avec porte-clés",
+          "Câble de charge USB-C"
+        ]
+      }
     },
     "Hyer": {
       "description": "Un e-nail portable à double usage, pour concentrés ou herbes sèches, qui s'associe à toute pipe à eau verre-sur-verre et s'articule autour d'une résistance entièrement en quartz.",
