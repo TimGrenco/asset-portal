@@ -9,6 +9,93 @@
   var BRANDS = window.PORTAL_BRANDS;
   var PRODUCTS = window.PORTAL_PRODUCTS;
 
+  /* ---- i18n: portal-wide English / Spanish toggle ---------------------------
+     Strings are keyed by their ENGLISH SOURCE TEXT (see assets/data/i18n.js), so
+     anything not yet translated simply renders in English rather than showing a
+     raw key. To revise the Spanish, edit i18n.js / the *_ES data — no code change.
+     Product names, filenames, SKUs and units are never translated. */
+  var LANGS = { en: "English", es: "Español" };
+  function readLang() {
+    try {
+      var q = (location.search.match(/[?&]lang=(en|es)\b/) || [])[1];
+      if (q) return q;
+      var s = localStorage.getItem("portal_lang");
+      if (LANGS[s]) return s;
+    } catch (e) {}
+    return "en";
+  }
+  // tr(): translate a UI string. Falls back to the English source text.
+  // (Named tr, not t — the training code already uses `t` for the course object.)
+  function tr(s) {
+    if (state.lang === "en") return s;
+    var d = window.PORTAL_I18N && window.PORTAL_I18N[state.lang];
+    return (d && d.ui && d.ui[s]) || s;
+  }
+  // Localized training course for a product (falls back to English).
+  function trainingOf(p) {
+    var en = (window.PORTAL_TRAINING || {})[p.name];
+    if (state.lang === "en") return en;
+    var es = (window.PORTAL_TRAINING_ES || {})[p.name];
+    if (!es || !en) return en;
+    // Merge so anything untranslated still renders, and the stored answer indexes
+    // (which live only on the English data) always win.
+    return {
+      tagline: es.tagline || en.tagline,
+      minutes: en.minutes, passPct: en.passPct,
+      modules: (es.modules && es.modules.length === en.modules.length) ? es.modules : en.modules,
+      quiz: en.quiz.map(function (q, i) {
+        var e = es.quiz && es.quiz[i];
+        if (!e || !e.choices || e.choices.length !== q.choices.length) return q;
+        return { q: e.q || q.q, choices: e.choices, why: e.why || q.why, answer: q.answer };
+      }),
+    };
+  }
+  // Localized product prose (description / highlights / warranty).
+  function infoOf(p) {
+    var en = p.info || {};
+    if (state.lang === "en") return en;
+    var es = (window.PORTAL_PRODUCT_ES || {})[p.name];
+    if (!es) return en;
+    var out = {}; for (var k in en) out[k] = en[k];
+    if (es.description) out.description = es.description;
+    if (es.highlights && es.highlights.length) out.highlights = es.highlights;
+    if (es.warranty) out.warranty = es.warranty;
+    return out;
+  }
+  function setLang(l) {
+    if (!LANGS[l] || l === state.lang) return;
+    state.lang = l;
+    try { localStorage.setItem("portal_lang", l); } catch (e) {}
+    document.documentElement.lang = l;
+    syncLangToggle();
+    applyStaticI18n();
+    route();   // re-render whatever view is open, in the new language
+  }
+  function syncLangToggle() {
+    $$("#lang-toggle button").forEach(function (b) {
+      var on = b.getAttribute("data-lang") === state.lang;
+      b.classList.toggle("on", on);
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+  }
+  // Static copy that lives in index.html (nav, hero, section headings, support
+  // band, footer) isn't re-rendered by JS, so translate it in place. The original
+  // English is cached on first pass and used as the lookup key both ways.
+  function applyStaticI18n() {
+    $$("[data-i18n]").forEach(function (el) {
+      if (el.__en === undefined) el.__en = el.textContent;
+      el.textContent = tr(el.__en.trim());
+    });
+    $$("[data-i18n-ph]").forEach(function (el) {
+      if (el.__ph === undefined) el.__ph = el.getAttribute("placeholder") || "";
+      el.setAttribute("placeholder", tr(el.__ph));
+    });
+    $$("[data-i18n-aria]").forEach(function (el) {
+      if (el.__aria === undefined) el.__aria = el.getAttribute("aria-label") || "";
+      el.setAttribute("aria-label", tr(el.__aria));
+    });
+  }
+
   // ---- tiny helpers --------------------------------------------------------
   var $ = function (sel, ctx) { return (ctx || document).querySelector(sel); };
   var $$ = function (sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); };
@@ -107,6 +194,7 @@
 
   // ---- state ---------------------------------------------------------------
   var state = {
+    lang: readLang(),  // en | es — portal-wide language (localStorage + ?lang=)
     view: "gpen",      // single-brand portal (G Pen)
     type: "all",       // all | E-Comm Render Photos | Lifestyle Photos | Logos | Video | Misc
     query: "",
@@ -193,7 +281,7 @@
         ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
         document.body.appendChild(ta); ta.select(); document.execCommand("copy");
         document.body.removeChild(ta); toast(okMsg);
-      } catch (e) { toast("Copy failed"); }
+      } catch (e) { toast(tr("Copy failed")); }
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(function () { toast(okMsg); }, fallback);
@@ -432,7 +520,7 @@
     var groups = queryAliasGroups(q), bk = state.view, rawQ = q.toLowerCase().trim();
     return PRODUCTS.map(function (p) {
       if (p.brand !== bk) return null;
-      var info = p.info || {};
+      var info = infoOf(p);
       var hay = (p.name + " " + (p.category || "") + " " + (p.type || "") + " " + (p.label || "") +
         " " + BRANDS[p.brand].name + " " + (info.description || "") +
         " " + (info.fullName || "") + " " + ((info.highlights || []).join(" "))).toLowerCase();
@@ -524,7 +612,7 @@
     var box = $("#social-hub"); if (!box) return;
     var bk = state.view;
     box.innerHTML =
-      '<div class="section-head"><h2>Follow ' + BRANDS[bk].name + " On Socials</h2><span class=\"badge\">Official accounts</span></div>" +
+      '<div class="section-head"><h2>' + tr("Follow " + BRANDS[bk].name + " On Socials") + '</h2><span class="badge">' + tr("Official accounts") + '</span></div>' +
       '<div class="hub-wrap"><div class="hub-brand">' + socialListHTML(bk) + "</div></div>";
     wireSocial(box);
   }
@@ -565,7 +653,7 @@
           '<p class="logo-card-note">Official ' + b.name + " logos — black, white &amp; various versions. For approved partner, press &amp; retail use; please don’t alter, recolor, or distort the marks.</p>" +
           (fmts ? '<div class="logo-card-fmts"><span class="logo-card-fmts-l">Formats</span>' + fmts + "</div>" : "") +
           '<div class="logo-card-actions">' +
-            '<button class="btn" id="logo-dl">' + icon("download") + " Download all logos</button>" +
+            '<button class="btn" id="logo-dl">' + icon("download") + " " + tr("Download all logos") + "</button>" +
             '<button class="logo-browse-link" id="logo-browse">' + icon("eye") + " Browse all " + logoP.total + " logo files →</button>" +
           "</div>" +
         "</div>" +
@@ -617,24 +705,24 @@
     window.scrollTo(0, 0);
 
     sg.innerHTML =
-      '<button class="back" id="sg-back">' + icon("arrowLeft") + " Back to library</button>" +
+      '<button class="back" id="sg-back">' + icon("arrowLeft") + " " + tr("Back to library") + "</button>" +
       '<div class="sg-hero">' +
         '<div class="sg-word">' + b.wordmark + "</div>" +
-        "<h2>Brand &amp; Style Guide</h2>" +
+        "<h2>" + tr("Brand &amp; Style Guide") + "</h2>" +
         '<p class="sg-note">' + icon("info") + "<span>Placeholder guide — the official " + b.name + " brand guide will replace this. Colors, type, and logos below reflect current brand usage.</span></p>" +
         '<div class="sg-actions">' +
           '<button class="btn" data-view-brand="' + bk + '">' + icon("stack") + " View " + b.name + " assets</button>" +
-          (b.logoProduct ? '<button class="btn ghost" data-logo="' + b.logoProduct + '">' + icon("download") + " Download logos</button>" : "") +
+          (b.logoProduct ? '<button class="btn ghost" data-logo="' + b.logoProduct + '">' + icon("download") + " " + tr("Download logos") + "</button>" : "") +
         "</div>" +
       "</div>" +
-      '<div class="section-head"><h2>Colors</h2><span class="badge">tap to copy</span></div>' +
+      '<div class="section-head"><h2>' + tr("Colors") + '</h2><span class="badge">tap to copy</span></div>' +
       '<div class="sg-colors">' + (b.colors || []).map(swatchBigHTML).join("") + "</div>" +
-      '<div class="section-head"><h2>Typography</h2></div>' +
+      '<div class="section-head"><h2>' + tr("Typography") + '</h2></div>' +
       '<div class="sg-fonts">' + (b.fonts || []).map(fontSpecimenHTML).join("") + "</div>" +
-      '<div class="section-head"><h2>Logos</h2></div>' +
+      '<div class="section-head"><h2>' + tr("Logos") + '</h2></div>' +
       '<div class="sg-logos">' +
         '<div class="sg-logo-tile"><span>' + b.wordmark + "</span></div>" +
-        (b.logoProduct ? '<button class="btn ghost" data-logo="' + b.logoProduct + '">' + icon("download") + " Download logo files</button>" : "") +
+        (b.logoProduct ? '<button class="btn ghost" data-logo="' + b.logoProduct + '">' + icon("download") + " " + tr("Download logo files") + "</button>" : "") +
       "</div>" +
       '<div class="section-head"><h2>Follow ' + b.name + "</h2></div>" +
       socialListHTML(bk);
@@ -735,9 +823,9 @@
       return '<section class="famgroup fam-' + f.key + narrow + '">' +
           '<div class="fam-head">' +
             '<span class="fam-ic" aria-hidden="true">' + (f.icon || "") + "</span>" +
-            '<h3 class="fam-name">' + f.name + "</h3>" +
+            '<h3 class="fam-name">' + tr(f.name) + "</h3>" +
             '<span class="fam-count">' + items.length + "</span>" +
-            (f.blurb ? '<span class="fam-blurb">' + f.blurb + "</span>" : "") +
+            (f.blurb ? '<span class="fam-blurb">' + tr(f.blurb) + "</span>" : "") +
           "</div>" +
           '<div class="fam-body">' +
             '<div class="' + gridClass + '">' + items.map(function (p) { return cardHTML(p, layout); }).join("") + "</div>" +
@@ -773,7 +861,7 @@
 
     // Featured products in scope (brand), logos excluded.
     var vis = visibleProducts().filter(function (p) { return !p.isLogo; });
-    $("#all-title").textContent = "Browse " + BRANDS[state.view].name + " by category";
+    $("#all-title").textContent = tr("Browse " + BRANDS[state.view].name + " by category");
 
     var curList = currentList(state.view);
     var byName = function (a, b) { return a.name.localeCompare(b.name); };
@@ -784,8 +872,8 @@
     if (state.sort === "az") current = current.slice().sort(byName);
 
     var browseCount = $("#browse-count");
-    if (browseCount) browseCount.textContent = current.length + (current.length === 1 ? " product" : " products");
-    $("#count-badge").textContent = current.length + (current.length === 1 ? " product" : " products");
+    if (browseCount) browseCount.textContent = current.length + " " + tr(current.length === 1 ? "product" : "products");
+    $("#count-badge").textContent = current.length + " " + tr(current.length === 1 ? "product" : "products");
 
     renderActiveFilters();
 
@@ -835,8 +923,8 @@
     var total = prods.length + fileRes.total;
     _lastSearch = { prods: prods, fileRes: fileRes };
 
-    $("#all-title").textContent = "Search results";
-    var label = total + (total === 1 ? " result" : " results");
+    $("#all-title").textContent = tr("Search results");
+    var label = total + " " + tr(total === 1 ? "result" : "results");
     var bc = $("#browse-count"); if (bc) bc.textContent = label;
     $("#count-badge").textContent = label;
     renderActiveFilters();
@@ -855,7 +943,7 @@
           "<div><strong>No matches for “" + escapeHTML(q) + "”.</strong>" +
           "<span>Try a product name (Dash), a file type (PNG, MP4), a category (lifestyle, packaging), or “catalog”.</span></div>" +
           '<a class="btn ghost sm" href="mailto:' + CFG.requestEmail + "?subject=" +
-            encodeURIComponent("Asset request — " + q) + '">' + icon("mail") + " Request this asset</a>" +
+            encodeURIComponent("Asset request — " + q) + '">' + icon("mail") + " " + tr("Request this asset") + "</a>" +
         "</div>";
       return;
     }
@@ -882,7 +970,7 @@
         (fileRes.facet ? " " + fileRes.facet.toLowerCase() : " matching") + " files — add a word to narrow it down.</p>"
       : "";
     sf.innerHTML =
-      '<div class="section-head"><h2>Matching files &amp; assets</h2><span class="badge">' + fileRes.total + "</span></div>" +
+      '<div class="section-head"><h2>' + tr("Matching files &amp; assets") + '</h2><span class="badge">' + fileRes.total + "</span></div>" +
       facetChips +
       '<div class="sf-grid">' + tiles + "</div>" + more;
     bindSearchFiles(sf);
@@ -987,7 +1075,7 @@
       .filter(Boolean)
       .forEach(function (p) { instoreOwn(p).forEach(function (x) { mats.push(x); }); });
 
-    var orderCta = '<a class="btn" href="#materials">' + icon("mail") + " Order materials</a>";
+    var orderCta = '<a class="btn" href="#materials">' + icon("mail") + " " + tr("Order materials") + "</a>";
     if (!mats.length) {
       box.innerHTML =
         '<div class="instore-empty">' +
@@ -1068,8 +1156,8 @@
         '<span class="cat-title">' + escapeHTML(f.title) + "</span></div>" +
       regions +
       '<div class="cat-acts">' +
-        '<button class="cat-act" data-catdl>' + icon("download") + " Download</button>" +
-        '<button class="cat-act" data-catshare>' + icon("link") + " Share</button>" +
+        '<button class="cat-act" data-catdl>' + icon("download") + " " + tr("Download") + "</button>" +
+        '<button class="cat-act" data-catshare>' + icon("link") + " " + tr("Share") + "</button>" +
       "</div></div>";
   }
 
@@ -1126,7 +1214,7 @@
 
   function openCatalog(slug) {
     var c = catalogBySlug(slug);
-    if (!c) { toast("Catalog not found"); return; }
+    if (!c) { toast(tr("Catalog not found")); return; }
     if (!c.file) { catalogDownload(c); return; }   // not committed yet → Dropbox
     closeCatalog();
     var ov = document.createElement("div");
@@ -1136,14 +1224,14 @@
         '<div class="catlb-t">' + escapeHTML(c.title) +
           (c.region ? ' <span class="cat-region">' + escapeHTML(c.region) + "</span>" : "") + "</div>" +
         '<div class="catlb-acts">' +
-          '<button class="btn ghost sm" id="catlb-dl">' + icon("download") + " Download PDF</button>" +
-          '<button class="btn ghost sm" id="catlb-share">' + icon("link") + " Share</button>" +
+          '<button class="btn ghost sm" id="catlb-dl">' + icon("download") + " " + tr("Download PDF") + "</button>" +
+          '<button class="btn ghost sm" id="catlb-share">' + icon("link") + " " + tr("Share") + "</button>" +
           '<button class="catlb-x" id="catlb-x" aria-label="Close viewer">' + icon("x") + "</button>" +
         "</div></div>" +
       '<div class="catlb-stage"><div class="catlb-load" id="catlb-load">Loading catalog…</div>' +
         '<canvas id="catlb-canvas"></canvas></div>' +
       '<div class="catlb-nav">' +
-        '<button class="btn ghost sm" id="catlb-prev">' + icon("arrowLeft") + " Prev</button>" +
+        '<button class="btn ghost sm" id="catlb-prev">' + icon("arrowLeft") + " " + tr("Prev") + "</button>" +
         '<span class="catlb-page" id="catlb-page">–</span>' +
         '<button class="btn ghost sm" id="catlb-next">Next ' + icon("arrowRight") + "</button>" +
       "</div>";
@@ -1186,7 +1274,7 @@
         $("#catlb-page").textContent = page + " / " + doc.numPages;
         $("#catlb-prev").disabled = page <= 1;
         $("#catlb-next").disabled = page >= doc.numPages;
-      }).catch(function () { busy = false; toast("Couldn’t render that page"); });
+      }).catch(function () { busy = false; toast(tr("Couldn’t render that page")); });
     }
 
     // If the viewer can't come up (blocked script, bad PDF, slow device), don't sit
@@ -1195,7 +1283,7 @@
     var giveUp = setTimeout(function () {
       if (settled || doc) return;
       settled = true;
-      toast("Viewer is taking too long — downloading instead");
+      toast(tr("Viewer is taking too long — downloading instead"));
       catalogDownload(c); closeCatalog();
     }, 20000);
     function bail(msg) {
@@ -1220,10 +1308,10 @@
       '<div class="locator-card">' +
         '<div class="locator-copy">' +
           '<div class="locator-eyebrow">Retailers</div>' +
-          "<h2>Get your store on our Store Locator</h2>" +
+          "<h2>" + tr("Get your store on our Store Locator") + "</h2>" +
           "<p>Carry G Pen? Request to be added to our official store locator so customers can find your shop.</p>" +
         "</div>" +
-        '<a class="btn lg" href="#locator">' + icon("mapPin") + " Request to be listed</a>" +
+        '<a class="btn lg" href="#locator">' + icon("mapPin") + " " + tr("Request to be listed") + "</a>" +
       "</div>";
   }
 
@@ -1258,7 +1346,7 @@
     window.scrollTo(0, 0);
     var legacy = legacyProducts(bk).slice().sort(function (a, b) { return a.name.localeCompare(b.name); });
     ad.innerHTML =
-      '<button class="back" id="add-back">' + icon("arrowLeft") + " Back to library</button>" +
+      '<button class="back" id="add-back">' + icon("arrowLeft") + " " + tr("Back to library") + "</button>" +
       '<div class="section-head"><h2>Additional ' + BRANDS[bk].name + " Products</h2><span class=\"badge\">" + legacy.length + " product" + (legacy.length === 1 ? "" : "s") + "</span></div>" +
       '<p class="additional-note">Products we no longer sell — assets kept here for partners who still need them.</p>' +
       '<div class="grid">' + legacy.map(function (p) { return cardHTML(p, "grid"); }).join("") + "</div>";
@@ -1309,8 +1397,8 @@
     window.scrollTo(0, 0);
 
     var mats = availableMaterials();
-    var head = '<button class="back" id="mat-back">' + icon("arrowLeft") + " Back to library</button>" +
-      '<div class="section-head"><h2>In-Store Marketing Materials</h2>' +
+    var head = '<button class="back" id="mat-back">' + icon("arrowLeft") + " " + tr("Back to library") + "</button>" +
+      '<div class="section-head"><h2>' + tr("In-Store Marketing Materials") + '</h2>' +
         (mats.length ? '<span class="badge">' + mats.length + " available</span>" : "") + "</div>";
 
     if (!mats.length) {
@@ -1384,7 +1472,7 @@
       var q = parseInt(inp.value, 10) || 0;
       if (q > 0) lines.push(mats[+inp.getAttribute("data-mat")].name + " — Qty: " + q);
     });
-    if (!lines.length) { toast("Set a quantity for at least one item first"); return; }
+    if (!lines.length) { toast(tr("Set a quantity for at least one item first")); return; }
     var v = function (id) { var el = $(id); return el ? el.value.trim() : ""; };
     var body = "Store Name: " + v("#mat-store-name") +
       "\nAddress: " + v("#mat-store-address") +
@@ -1402,10 +1490,14 @@
     return '<button class="trn-entry" id="train-entry">' +
       '<span class="trn-entry-ic">' + icon("graduation") + "</span>" +
       '<span class="trn-entry-txt">' +
-        '<span class="trn-entry-t">' + (cert ? "You’re a certified " + p.name + " Specialist" : "Become a " + p.name + " Product Specialist") + "</span>" +
-        '<span class="trn-entry-s">' + (cert ? "Certificate earned " + cert.date + " · review the course or retake anytime" : "Watch the videos, learn the product, and pass a short quiz to get certified.") + "</span>" +
+        '<span class="trn-entry-t">' + (cert
+          ? tr("You’re a certified {name} Specialist").replace("{name}", p.name)
+          : tr("Become a {name} Product Specialist").replace("{name}", p.name)) + "</span>" +
+        '<span class="trn-entry-s">' + (cert
+          ? tr("Certificate earned {date} · review the course or retake anytime").replace("{date}", cert.date)
+          : tr("Watch the videos, learn the product, and pass a short quiz to get certified.")) + "</span>" +
       "</span>" +
-      '<span class="trn-entry-go">' + (cert ? icon("check") + " Certified" : "Start training →") + "</span>" +
+      '<span class="trn-entry-go">' + (cert ? icon("check") + " " + tr("Certified") : tr("Start training →")) + "</span>" +
     "</button>";
   }
   function trainingHash(p) { return "#train/" + p.brand + "/" + slugify(p.name); }
@@ -1433,7 +1525,7 @@
     animateIn(pg);
     window.scrollTo(0, 0);
 
-    var t = window.PORTAL_TRAINING[p.name];
+    var t = trainingOf(p);   // localized course (falls back to English)
     var name = fullProductName(p);
     setTitle(name + " Training");
     var cert = getCert(p);
@@ -1446,26 +1538,26 @@
     }).join("");
 
     pg.innerHTML =
-      '<button class="back" id="trn-back">' + icon("arrowLeft") + " Back to " + name + "</button>" +
+      '<button class="back" id="trn-back">' + icon("arrowLeft") + " " + tr("Back to {name}").replace("{name}", name) + "</button>" +
       '<div class="trn-hero">' +
         '<div class="trn-badge">' + icon("graduation") + "</div>" +
         '<div class="trn-hero-txt">' +
-          '<div class="trn-eyebrow">Product Specialist Training' + (cert ? " · <span class=\"trn-done\">" + icon("check") + " Certified</span>" : "") + "</div>" +
+          '<div class="trn-eyebrow">' + tr("Product Specialist Training") + (cert ? " · <span class=\"trn-done\">" + icon("check") + " " + tr("Certified") + "</span>" : "") + "</div>" +
           "<h2>" + name + "</h2>" +
           "<p>" + t.tagline + "</p>" +
-          '<div class="trn-meta">' + icon("eye") + " " + p.videos.length + " videos · " + t.modules.length + " lessons · " + t.quiz.length + "-question quiz · ~" + t.minutes + " min</div>" +
+          '<div class="trn-meta">' + icon("eye") + " " + tr("{v} videos · {m} lessons · {q}-question quiz · ~{min} min").replace("{v}", p.videos.length).replace("{m}", t.modules.length).replace("{q}", t.quiz.length).replace("{min}", t.minutes) + "</div>" +
         "</div>" +
       "</div>" +
       // 1 — Watch
-      '<div class="section-head"><span class="trn-sec-n">1</span><h2>Watch</h2></div>' +
-      '<p class="trn-lead">' + icon("info") + " Watch the how-to-use and cleaning videos — click a video to play it in the large viewer, or download it.</p>" +
+      '<div class="section-head"><span class="trn-sec-n">1</span><h2>' + tr("Watch") + '</h2></div>' +
+      '<p class="trn-lead">' + icon("info") + " " + tr("Watch the how-to-use and cleaning videos — click a video to play it in the large viewer, or download it.") + "</p>" +
       videoHubGridHTML(p) +
       // 2 — Learn
-      '<div class="section-head"><span class="trn-sec-n">2</span><h2>Learn</h2></div>' +
+      '<div class="section-head"><span class="trn-sec-n">2</span><h2>' + tr("Learn") + '</h2></div>' +
       '<div class="trn-modules">' + modulesHTML + "</div>" +
       // 3 — Certify
-      '<div class="section-head"><span class="trn-sec-n">3</span><h2>Get Certified</h2></div>' +
-      '<p class="trn-lead">' + icon("info") + " Answer all " + t.quiz.length + " questions. Score " + t.passPct + "% or higher to earn your certificate.</p>" +
+      '<div class="section-head"><span class="trn-sec-n">3</span><h2>' + tr("Get Certified") + '</h2></div>' +
+      '<p class="trn-lead">' + icon("info") + " " + tr("Answer all {q} questions. Score {p}% or higher to earn your certificate.").replace("{q}", t.quiz.length).replace("{p}", t.passPct) + "</p>" +
       '<div id="trn-quiz"></div>';
 
     $("#trn-back").addEventListener("click", function () { navTo(p); });
@@ -1489,7 +1581,7 @@
       b.addEventListener("click", function (e) { e.stopPropagation(); directDownload(b.getAttribute("data-vdl"), b.getAttribute("data-vname")); });
     });
     $$("[data-soon]", ctx).forEach(function (b) {
-      b.addEventListener("click", function (e) { e.stopPropagation(); toast("Downloadable file coming soon — Dropbox link on the way"); });
+      b.addEventListener("click", function (e) { e.stopPropagation(); toast(tr("Downloadable file coming soon — Dropbox link on the way")); });
     });
   }
 
@@ -1501,25 +1593,25 @@
           '<span class="trn-choice-mark"></span><span class="trn-choice-t">' + c + "</span></label>";
       }).join("");
       return '<div class="trn-q" data-qi="' + qi + '">' +
-        '<div class="trn-q-n">Question ' + (qi + 1) + " of " + t.quiz.length + "</div>" +
+        '<div class="trn-q-n">' + tr("Question {n} of {total}").replace("{n}", qi + 1).replace("{total}", t.quiz.length) + "</div>" +
         '<div class="trn-q-t">' + item.q + "</div>" +
         '<div class="trn-choices">' + choices + "</div>" +
         '<div class="trn-why" hidden></div>' +
       "</div>";
     }).join("") +
-      '<div class="trn-actions"><button type="button" class="btn lg" id="trn-submit">' + icon("check") + " Submit Answers</button>" +
+      '<div class="trn-actions"><button type="button" class="btn lg" id="trn-submit">' + icon("check") + " " + tr("Submit Answers") + "</button>" +
         '<span class="trn-progress" id="trn-progress"></span></div>' +
     "</form>" +
       '<div id="trn-result"></div>';
     box.innerHTML = questions;
 
     function answered() { return t.quiz.filter(function (_, qi) { return $("#trn-form").querySelector('input[name="q' + qi + '"]:checked'); }).length; }
-    function updateProgress() { $("#trn-progress").textContent = answered() + " / " + t.quiz.length + " answered"; }
+    function updateProgress() { $("#trn-progress").textContent = tr("{a} / {b} answered").replace("{a}", answered()).replace("{b}", t.quiz.length); }
     updateProgress();
     $$('#trn-form input[type="radio"]', box).forEach(function (r) { r.addEventListener("change", updateProgress); });
 
     $("#trn-submit").addEventListener("click", function () {
-      if (answered() < t.quiz.length) { toast("Please answer all " + t.quiz.length + " questions first"); return; }
+      if (answered() < t.quiz.length) { toast(tr("Please answer all {q} questions first").replace("{q}", t.quiz.length)); return; }
       var correct = 0;
       t.quiz.forEach(function (item, qi) {
         var qEl = box.querySelector('.trn-q[data-qi="' + qi + '"]');
@@ -1534,7 +1626,7 @@
         if (chosen === item.answer) correct++;
         var why = qEl.querySelector(".trn-why");
         why.hidden = false;
-        why.innerHTML = (chosen === item.answer ? '<span class="trn-tag ok">' + icon("check") + " Correct</span> " : '<span class="trn-tag no">Incorrect</span> ') + item.why;
+        why.innerHTML = (chosen === item.answer ? '<span class="trn-tag ok">' + icon("check") + " " + tr("Correct") + "</span> " : '<span class="trn-tag no">' + tr("Incorrect") + "</span> ") + item.why;
       });
       var pct = Math.round((correct / t.quiz.length) * 100);
       var passed = pct >= t.passPct;
@@ -1548,26 +1640,26 @@
     if (!passed) {
       res.innerHTML = '<div class="trn-result fail">' +
         '<div class="trn-score">' + pct + '%<span>' + correct + " / " + t.quiz.length + "</span></div>" +
-        '<div class="trn-result-txt"><strong>Not quite — you need ' + t.passPct + "% to certify.</strong>" +
-          "<span>Review the explanations above, then try again.</span></div>" +
-        '<button class="btn" id="trn-retry">' + icon("refresh") + " Retry quiz</button>" +
+        '<div class="trn-result-txt"><strong>' + tr("Not quite — you need {p}% to certify.").replace("{p}", t.passPct) + "</strong>" +
+          "<span>" + tr("Review the explanations above, then try again.") + "</span></div>" +
+        '<button class="btn" id="trn-retry">' + icon("refresh") + " " + tr("Retry quiz") + "</button>" +
       "</div>";
       $("#trn-retry").addEventListener("click", function () { renderQuiz(p, t); window.scrollTo({ top: $("#trn-quiz").offsetTop - 80, behavior: "smooth" }); });
       return;
     }
     res.innerHTML = '<div class="trn-result pass">' +
       '<div class="trn-score">' + pct + '%<span>' + correct + " / " + t.quiz.length + "</span></div>" +
-      '<div class="trn-result-txt"><strong>' + icon("check") + " You passed!</strong>" +
-        "<span>Enter your name to generate your Product Specialist certificate.</span></div>" +
+      '<div class="trn-result-txt"><strong>' + icon("check") + " " + tr("You passed!") + "</strong>" +
+        "<span>" + tr("Enter your name to generate your Product Specialist certificate.") + "</span></div>" +
     "</div>" +
     '<div class="trn-certform">' +
-      '<label class="mat-field"><span>Your Name</span><input type="text" id="trn-name" placeholder="Full name" autocomplete="name"/></label>' +
-      '<button class="btn lg" id="trn-getcert">' + icon("award") + " Get My Certificate</button>" +
+      '<label class="mat-field"><span>' + tr("Your Name") + '</span><input type="text" id="trn-name" placeholder="' + tr("Full name") + '" autocomplete="name"/></label>' +
+      '<button class="btn lg" id="trn-getcert">' + icon("award") + " " + tr("Get My Certificate") + "</button>" +
     "</div>" +
     '<div id="trn-cert"></div>';
     $("#trn-getcert").addEventListener("click", function () {
       var nm = ($("#trn-name").value || "").trim();
-      if (!nm) { toast("Enter your name for the certificate"); $("#trn-name").focus(); return; }
+      if (!nm) { toast(tr("Enter your name for the certificate")); $("#trn-name").focus(); return; }
       var d = new Date();
       var dateStr = d.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
       saveCert(p, { name: nm, date: dateStr, score: pct });
@@ -1618,9 +1710,9 @@
         "</div>" +
       "</div>" +
       '<div class="trn-certactions cert-print-hide">' +
-        '<button class="btn lg" id="cert-print">' + icon("printer") + " Print certificate</button>" +
-        '<button class="btn ghost" id="cert-dl">' + icon("download") + " Download image</button>" +
-        '<button class="btn ghost" id="cert-email">' + icon("mail") + " Email my certification</button>" +
+        '<button class="btn lg" id="cert-print">' + icon("printer") + " " + tr("Print certificate") + "</button>" +
+        '<button class="btn ghost" id="cert-dl">' + icon("download") + " " + tr("Download image") + "</button>" +
+        '<button class="btn ghost" id="cert-email">' + icon("mail") + " " + tr("Email my certification") + "</button>" +
       "</div>";
     $("#cert-print").addEventListener("click", function () { window.print(); });
     $("#cert-dl").addEventListener("click", function () { downloadCertificate(name, nm, dateStr, pct, cid); });
@@ -1631,7 +1723,7 @@
         encodeURIComponent(name + " — Product Specialist Certification") + "&body=" + encodeURIComponent(body);
     });
     box.scrollIntoView({ behavior: "smooth", block: "center" });
-    toast("Certified! 🎓");
+    toast(tr("Certified! 🎓"));
   }
 
   // Draw the (light, print-style) certificate to a canvas and download as PNG.
@@ -1693,7 +1785,7 @@
     return '<div class="loc-store" data-store>' +
         '<div class="loc-store-h">' +
           '<span class="loc-store-n">Store <span class="loc-store-i">' + n + "</span></span>" +
-          '<button class="loc-remove" data-remove title="Remove this store">' + icon("trash") + " Remove</button>" +
+          '<button class="loc-remove" data-remove title="Remove this store">' + icon("trash") + " " + tr("Remove") + "</button>" +
         "</div>" +
         '<div class="loc-fields">' +
           '<label class="mat-field loc-wide"><span>Store Name</span><input type="text" data-f="name" placeholder="Store name"/></label>' +
@@ -1720,14 +1812,14 @@
     window.scrollTo(0, 0);
 
     pg.innerHTML =
-      '<button class="back" id="loc-back">' + icon("arrowLeft") + " Back to library</button>" +
-      '<div class="section-head"><h2>Store Locator Request</h2></div>' +
+      '<button class="back" id="loc-back">' + icon("arrowLeft") + " " + tr("Back to library") + "</button>" +
+      '<div class="section-head"><h2>' + tr("Store Locator Request") + '</h2></div>' +
       '<p class="mat-lead">' + icon("info") + "<span>Add each store you'd like listed on our official locator, then send your request. Have more than one location? Use <strong>Add another store</strong> to include them all.</span>" +
       "</p>" +
       '<div class="mat-layout">' +
         '<div class="loc-left">' +
           '<div class="loc-stores" id="loc-stores">' + storeBlockHTML(1) + "</div>" +
-          '<button class="btn ghost loc-add" id="loc-add">' + icon("plus") + " Add another store</button>" +
+          '<button class="btn ghost loc-add" id="loc-add">' + icon("plus") + " " + tr("Add another store") + "</button>" +
         "</div>" +
         '<aside class="mat-side">' +
           '<div class="mat-side-h">Your contact info</div>' +
@@ -1754,7 +1846,7 @@
       $$("[data-remove]", ctx).forEach(function (b) {
         if (b.__bound) return; b.__bound = true;
         b.addEventListener("click", function () {
-          if ($$(".loc-store", stores).length <= 1) { toast("At least one store is required"); return; }
+          if ($$(".loc-store", stores).length <= 1) { toast(tr("At least one store is required")); return; }
           b.closest(".loc-store").remove();
           renumber();
         });
@@ -1788,7 +1880,7 @@
         "\n  Website: " + website
       );
     });
-    if (!valid) { toast("Add at least one store's details first"); return; }
+    if (!valid) { toast(tr("Add at least one store's details first")); return; }
     var v = function (id) { var el = $(id); return el ? el.value.trim() : ""; };
     var body = "Store Locator Request" +
       "\n\nSubmitted by: " + v("#loc-contact-name") +
@@ -1906,17 +1998,17 @@
 
       var stat = p.total + " assets" + (p.videos && p.videos.length ? " · " + p.videos.length + " videos" : "") + " · updated " + fmtDate(p.added);
       d.innerHTML =
-        '<button class="back" id="back-btn">' + icon("arrowLeft") + " Back to library</button>" +
+        '<button class="back" id="back-btn">' + icon("arrowLeft") + " " + tr("Back to library") + "</button>" +
         '<div class="detail-hero">' +
           '<div class="detail-cover-lg' + (p.cover ? " clickable" : "") + '"' + (p.cover ? ' id="hero-cover"' : "") + ">" + coverHTML(p) + "</div>" +
           '<div class="detail-info">' +
             '<div class="detail-eyebrow">' + typeLine + "</div>" +
             "<h2>" + fullName + "</h2>" +
             '<div class="detail-stat">' + stat + "</div>" +
-            ((p.info && p.info.description) ? '<p class="detail-desc">' + p.info.description + "</p>" : "") +
+            (infoOf(p).description ? '<p class="detail-desc">' + infoOf(p).description + "</p>" : "") +
             '<div class="detail-actions">' +
-              '<button class="btn" id="dl-all">' + icon("download") + " Download all</button>" +
-              '<button class="btn ghost" id="copy-link">' + icon("link") + " Copy link</button>" +
+              '<button class="btn" id="dl-all">' + icon("download") + " " + tr("Download all") + "</button>" +
+              '<button class="btn ghost" id="copy-link">' + icon("link") + " " + tr("Copy link") + "</button>" +
             "</div>" +
             overviewFactsHTML(p) +
           "</div>" +
@@ -1926,14 +2018,14 @@
         fullDescHTML(p) +
         whatsInBoxHTML(p) +
         // ---- Documents (assets) — sits above Packaging, filters at the top ----
-        '<div class="section-head" id="docs-head"><h2>Download assets by category</h2><span class="badge">' + catTotal + " file" + (catTotal === 1 ? "" : "s") + "</span></div>" +
+        '<div class="section-head" id="docs-head"><h2>' + tr("Download assets by category") + '</h2><span class="badge">' + catTotal + " file" + (catTotal === 1 ? "" : "s") + "</span></div>" +
         assetNav +
         '<div class="folder-toolbar">' +
           '<h3 class="folder-title">' + typeLabel(active) + '<span class="ft-count">' + activeCount + " file" + (activeCount === 1 ? "" : "s") + "</span></h3>" +
           '<div class="gallery-toolbar">' +
             '<label class="selectall"><input type="checkbox" id="sel-all"/> Select all</label>' +
-            '<button class="btn ghost sm" id="copy-folder">' + icon("link") + " Copy folder link</button>" +
-            '<button class="btn ghost sm" id="dl-folder">' + icon("download") + " Download folder</button>" +
+            '<button class="btn ghost sm" id="copy-folder">' + icon("link") + " " + tr("Copy folder link") + "</button>" +
+            '<button class="btn ghost sm" id="dl-folder">' + icon("download") + " " + tr("Download folder") + "</button>" +
           "</div>" +
         "</div>" +
         '<div class="gallery" id="gallery"></div>' +
@@ -1941,7 +2033,7 @@
           '<span class="selcount"><strong id="sel-n">0</strong> selected</span>' +
           '<span class="selacts">' +
             '<button class="btn ghost sm" id="sel-clear">Clear</button>' +
-            '<button class="btn sm" id="sel-dl">' + icon("download") + " Download selected</button>" +
+            '<button class="btn sm" id="sel-dl">' + icon("download") + " " + tr("Download selected") + "</button>" +
           "</span>" +
         "</div>" +
         (CFG.usageNote ? '<div class="usage usage-foot">' + icon("info") + "<span>" + CFG.usageNote + "</span></div>" : "") +
@@ -1962,7 +2054,7 @@
         b.addEventListener("click", function (e) { e.stopPropagation(); directDownload(b.getAttribute("data-vdl"), b.getAttribute("data-vname")); });
       });
       $$("[data-soon]", d).forEach(function (b) {
-        b.addEventListener("click", function (e) { e.stopPropagation(); toast("Downloadable file coming soon — Dropbox link on the way"); });
+        b.addEventListener("click", function (e) { e.stopPropagation(); toast(tr("Downloadable file coming soon — Dropbox link on the way")); });
       });
       // POP-display / packaging image → enlarge in the lightbox.
       $$("[data-lbimg]", d).forEach(function (b) {
@@ -2036,13 +2128,13 @@
   function inStoreHTML(p) {
     if (p.isLogo) return "";
     var r = inStoreItems(p), items = r.items;
-    var head = '<div class="section-head"><h2>In-Store Marketing Materials</h2>' +
+    var head = '<div class="section-head"><h2>' + tr("In-Store Marketing Materials") + '</h2>' +
       (items.length ? '<span class="badge">' + items.length + " item" + (items.length === 1 ? "" : "s") + "</span>" : "") + "</div>";
     if (!items.length) {
       return head + '<div class="instore-empty">' +
         "<p>Printed in-store materials (posters, shelf talkers, displays) for this product will appear here as they’re added.</p>" +
         '<a class="btn ghost sm" href="mailto:' + CFG.orderEmail + "?subject=" +
-          encodeURIComponent("In-store material request — " + p.name) + '">' + icon("mail") + " Request materials</a>" +
+          encodeURIComponent("In-store material request — " + p.name) + '">' + icon("mail") + " " + tr("Request materials") + "</a>" +
       "</div>";
     }
     var prodName = p.name.indexOf(BRANDS[p.brand].name) === 0 ? p.name : BRANDS[p.brand].name + " " + p.name;
@@ -2078,7 +2170,7 @@
   }
   function packagingHTML(p) {
     if (p.isLogo) return "";
-    var info = p.info || {};
+    var info = infoOf(p);
     // Auto-detect the single-box shot vs the POP-display shot from the product's
     // own "Packaging" Dropbox folder by filename. "POP" in the name → the display;
     // everything else → the single retail box. Prefer transparent renders, and the
@@ -2141,7 +2233,7 @@
       cards = boxCard("Single Retail Packaging", info.boxImg, null, boxFile) + pkgCard("Master carton", info.cartonImg);
       note = "Ships in single retail boxes — no POP display. See SKU details for master-carton quantities.";
     }
-    return '<div class="section-head"><h2>Packaging</h2>' + (info.pop ? '<span class="badge">Ships in POP display</span>' : "") + "</div>" +
+    return '<div class="section-head"><h2>' + tr("Packaging") + '</h2>' + (info.pop ? '<span class="badge">Ships in POP display</span>' : "") + "</div>" +
       (cards ? '<div class="pkg-grid">' + cards + "</div>" : "") +
       '<p class="pkg-note">' + note + "</p>";
   }
@@ -2162,7 +2254,7 @@
         '<div class="cway-codes">' + code("SKU", w.sku) + code("UPC", w.upc) + "</div>" +
       "</div>";
     }).join("");
-    return '<div class="section-head cways-head"><h2>Collection Colorways</h2>' +
+    return '<div class="section-head cways-head"><h2>' + tr("Collection Colorways") + '</h2>' +
       '<span class="badge">' + ways.length + " colors</span></div>" +
       '<div class="cways">' + cards + "</div>";
   }
@@ -2170,7 +2262,7 @@
   // SKU details: identifiers + the pack/case breakdown for stores & ops.
   function skuHTML(p) {
     if (p.isLogo) return "";
-    var info = p.info || {};
+    var info = infoOf(p);
     // Every product shows the full SKU/packaging field set (like Dash II) so
     // it's clear what still needs filling in — blanks render as a muted "—".
     var missing = 0;
@@ -2206,22 +2298,22 @@
       row("Case Weight", info.caseWeight) +
       row("Case Dimensions", info.caseDimensions) +
       row("HTS (Harmonized Tariff Schedule) Code", info.htsCode);
-    return '<div class="section-head"><h2>SKU details</h2></div>' +
+    return '<div class="section-head"><h2>' + tr("SKU details") + '</h2></div>' +
       '<div class="sku-table">' + rows + "</div>" +
       (missing ? '<p class="pkg-note">' + icon("info") + " Fields shown as <strong>—</strong> are still to be confirmed." + "</p>" : "");
   }
 
   // MSRP / warranty facts + FAQ/site CTAs (sits in the hero info column).
   function overviewFactsHTML(p) {
-    var info = p.info || {};
+    var info = infoOf(p);
     var faq = info.faqUrl || BRANDS[p.brand].faqUrl;
     var factItems =
       (info.msrp ? '<div class="ov-fact">' + icon("tag") + '<div class="ov-fact-t"><div class="ov-fact-l">MSRP</div><div class="ov-fact-v">' + info.msrp + "</div></div></div>" : "") +
       (info.warranty ? '<div class="ov-fact">' + icon("shield") + '<div class="ov-fact-t"><div class="ov-fact-l">Warranty</div><div class="ov-fact-v">' + info.warranty + "</div></div></div>" : "");
     var ctas =
-      (info.manual ? '<a class="btn ghost sm" href="' + info.manual + '" target="_blank" rel="noopener noreferrer">' + icon("file") + " Product Manual</a>" : "") +
-      (faq ? '<a class="btn ghost sm" href="' + faq + '" target="_blank" rel="noopener noreferrer">' + icon("info") + " Product FAQs</a>" : "") +
-      (info.productUrl ? '<a class="btn ghost sm" href="' + info.productUrl + '" target="_blank" rel="noopener noreferrer">' + icon("link") + " View on site</a>" : "");
+      (info.manual ? '<a class="btn ghost sm" href="' + info.manual + '" target="_blank" rel="noopener noreferrer">' + icon("file") + " " + tr("Product Manual") + "</a>" : "") +
+      (faq ? '<a class="btn ghost sm" href="' + faq + '" target="_blank" rel="noopener noreferrer">' + icon("info") + " " + tr("Product FAQs") + "</a>" : "") +
+      (info.productUrl ? '<a class="btn ghost sm" href="' + info.productUrl + '" target="_blank" rel="noopener noreferrer">' + icon("link") + " " + tr("View on site") + "</a>" : "");
     if (!factItems && !ctas) return "";
     return '<div class="ov-facts">' +
       (factItems ? '<div class="ov-fact-group">' + factItems + "</div>" : "") +
@@ -2230,16 +2322,16 @@
   }
   // Highlights — a full-width two-column grid below the hero.
   function highlightsHTML(p) {
-    var info = p.info || {};
+    var info = infoOf(p);
     if (!(info.highlights && info.highlights.length)) return "";
-    return '<div class="section-head"><h2>Highlights</h2></div>' +
+    return '<div class="section-head"><h2>' + tr("Highlights") + '</h2></div>' +
       '<ul class="highlights">' + info.highlights.map(function (h) { return "<li>" + h + "</li>"; }).join("") + "</ul>";
   }
   // Official scraped product description (copy-to-clipboard).
   function fullDescHTML(p) {
-    var info = p.info || {};
+    var info = infoOf(p);
     if (!(info.fullDescription && info.fullDescription.length)) return "";
-    return '<div class="section-head"><h2>Official Product Description</h2>' +
+    return '<div class="section-head"><h2>' + tr("Official Product Description") + '</h2>' +
         '<button class="btn ghost sm fd-copy" id="copy-desc">' + icon("copy") + " Copy</button></div>" +
       '<div class="fulldesc"><div class="fd-body">' +
         info.fullDescription.map(function (t) { return "<p>" + t + "</p>"; }).join("") +
@@ -2251,7 +2343,7 @@
     var b = p.info && p.info.box;
     if (!b || !(b.contents && b.contents.length)) return "";
     var list = '<ul class="box-list">' + b.contents.map(function (c) { return "<li>" + c + "</li>"; }).join("") + "</ul>";
-    var head = '<div class="section-head"><h2>What’s In the Box?</h2></div>';
+    var head = '<div class="section-head"><h2>' + tr("What’s In the Box?") + '</h2></div>';
     if (!b.image) return head + '<div class="box-single">' + list + "</div>";
     var img = '<div class="box-media"><img src="' + b.image + '" alt="What’s in the box" loading="lazy" decoding="async"/></div>';
     return head + '<div class="box-grid">' + list + img + "</div>";
@@ -2277,10 +2369,10 @@
       // Only offer a download when there's a real downloadable file; watch-only
       // tutorials (YouTube/Vimeo) just show Watch + the YouTube link.
       var dlBtn = v.mp4
-        ? '<button class="vbtn" data-vdl="' + dl + '" data-vname="' + dlname + '">' + icon("download") + " Download</button>"
+        ? '<button class="vbtn" data-vdl="' + dl + '" data-vname="' + dlname + '">' + icon("download") + " " + tr("Download") + "</button>"
         : "";
       var ytBtn = v.youtube
-        ? '<a class="vbtn" href="' + v.youtube + '" target="_blank" rel="noopener noreferrer" title="Share on YouTube">' + icon("youtube") + " YouTube</a>"
+        ? '<a class="vbtn" href="' + v.youtube + '" target="_blank" rel="noopener noreferrer" title="Share on YouTube">' + icon("youtube") + " " + tr("YouTube") + "</a>"
         : "";
 
       return '<div class="vcard">' + thumb +
@@ -2290,7 +2382,7 @@
         "</div>" +
       "</div>";
     }).join("");
-    return '<div class="section-head"><h2>How to use videos</h2><span class="badge">' + p.videos.length + " video" + (p.videos.length > 1 ? "s" : "") + "</span></div>" +
+    return '<div class="section-head"><h2>' + tr("How to use videos") + '</h2><span class="badge">' + p.videos.length + " video" + (p.videos.length > 1 ? "s" : "") + "</span></div>" +
       '<p class="vhub-note">' + icon("eye") + " Click a video to watch it, and download it or open it on YouTube where available.</p>" +
       '<div class="vhub">' + cards + "</div>";
   }
@@ -2313,7 +2405,7 @@
       '<button class="vlb-close" aria-label="Close">' + icon("x") + "</button>" +
       '<div class="vlb-stage">' + media + "</div>" +
       '<div class="vlb-bar"><span class="vlb-name">' + (title || "") + "</span>" +
-        (dlUrl ? '<button class="btn vlb-dl">' + icon("download") + " Download video</button>" : "") + "</div>";
+        (dlUrl ? '<button class="btn vlb-dl">' + icon("download") + " " + tr("Download video") + "</button>" : "") + "</div>";
     document.body.appendChild(ov);
     ov.addEventListener("click", function (e) { if (e.target === ov || e.target.classList.contains("vlb-stage")) closeVideoModal(); });
     $(".vlb-close", ov).addEventListener("click", closeVideoModal);
@@ -2406,7 +2498,7 @@
     $$("[data-copy]", $("#gallery")).forEach(function (b) {
       clickKey(b, function () {
         var url = b.getAttribute("data-copy");
-        if (!url || url === "#") { toast("No link yet"); return; }
+        if (!url || url === "#") { toast(tr("No link yet")); return; }
         copyText(url, "Link copied");
       });
     });
@@ -2422,7 +2514,7 @@
   //  • the anchor is removed on a delay — removing it immediately can cancel the
   //    download on some mobile browsers.
   function directDownload(href, name) {
-    if (!href || href === "#") { toast("Download coming soon"); return; }
+    if (!href || href === "#") { toast(tr("Download coming soon")); return; }
     var crossOrigin = /^https?:\/\//i.test(href) && href.indexOf(location.origin) !== 0;
     var a = document.createElement("a");
     a.href = href;
@@ -2463,7 +2555,7 @@
   // A single file: force a direct download from its Dropbox link (dl=1) so the
   // browser saves the file instead of opening Dropbox's preview page.
   function downloadOne(url) {
-    if (!url || url === "#") { toast("Connect storage to enable downloads"); return; }
+    if (!url || url === "#") { toast(tr("Connect storage to enable downloads")); return; }
     // Per-file Dropbox links (scl/fi) → force a direct download. Leave folder
     // links (scl/fo) alone so a single-file click never pulls the whole folder.
     if (/dropbox\.com\/scl\/fi\//.test(url)) url = dropboxZipUrl(url);
@@ -2488,7 +2580,7 @@
   function zipCommitted(committed, label, alsoFromDropbox) {
     toast("Preparing " + committed.length + " files as a .zip…");
     loadJSZip(function (JSZip) {
-      if (!JSZip) { toast("Couldn’t load the zipper — try again"); return; }
+      if (!JSZip) { toast(tr("Couldn’t load the zipper — try again")); return; }
       var zip = new JSZip();
       Promise.all(committed.map(function (f) {
         return fetch(f.file).then(function (r) { return r.blob(); }).then(function (b) { zip.file(fileLabel(f), b); });
@@ -2500,18 +2592,18 @@
           toast("Downloaded " + committed.length + " files" +
             (alsoFromDropbox ? " · " + alsoFromDropbox + " more coming from Dropbox" : ""));
         })
-        .catch(function () { toast("Couldn’t build the zip"); });
+        .catch(function () { toast(tr("Couldn’t build the zip")); });
     });
   }
   // A folder / selection. Files live in two places — same-origin (committed to the
   // repo) and Dropbox — and a selection can mix the two, so handle BOTH sets:
   // zip what we can, and pull the rest from Dropbox. Never silently drop a file.
   function downloadFiles(files, label) {
-    if (!files || !files.length) { toast("Select at least one asset first"); return; }
+    if (!files || !files.length) { toast(tr("Select at least one asset first")); return; }
     var committed = files.filter(function (f) { return f && f.file; });
     var remote = files.filter(function (f) { return f && !f.file && f.url; });
     var n = committed.length + remote.length;
-    if (!n) { toast("Use “Download all” to get these from Dropbox"); return; }
+    if (!n) { toast(tr("Use “Download all” to get these from Dropbox")); return; }
 
     // A single file either way → save it directly; no point zipping one file.
     if (n === 1) {
@@ -2536,7 +2628,7 @@
   // fall back to the product link, then to bundling committed files.
   function downloadFolder(p, folderName) {
     var link = (p.folderLinks && p.folderLinks[folderName]) || p.dropbox;
-    if (link) { toast("Opening Dropbox download…"); window.open(dropboxZipUrl(link), "_blank", "noopener"); return; }
+    if (link) { toast(tr("Opening Dropbox download…")); window.open(dropboxZipUrl(link), "_blank", "noopener"); return; }
     downloadFiles((p.folders && p.folders[folderName]) || [], folderName);
   }
   // Turn a Dropbox shared-folder link into a direct "download whole folder as
@@ -2555,7 +2647,7 @@
   // Copy a shareable link to one category folder (Product Photos, Logos, …).
   function copyFolderLink(p, folderName) {
     var link = (p.folderLinks && p.folderLinks[folderName]) || p.dropbox;
-    if (!link) { toast("No shareable link for this folder yet"); return; }
+    if (!link) { toast(tr("No shareable link for this folder yet")); return; }
     copyText(dropboxViewUrl(link), "Copied link to " + typeLabel(folderName));
   }
   function downloadAll(p) {
@@ -2563,7 +2655,7 @@
     // link (works on the static site, no backend). Per-file/zip-of-selection
     // still needs the Dropbox API sync (see GitHub Action) to resolve paths.
     if (p.dropbox) {
-      toast("Opening Dropbox download…");
+      toast(tr("Opening Dropbox download…"));
       window.open(dropboxZipUrl(p.dropbox), "_blank", "noopener");
       return;
     }
@@ -2574,7 +2666,7 @@
     downloadFiles(files, p.name);
   }
   window.__open = function (url) {
-    if (!url || url === "#") { toast("Document coming soon"); return; }
+    if (!url || url === "#") { toast(tr("Document coming soon")); return; }
     window.open(url, "_blank", "noopener");
   };
 
@@ -2710,14 +2802,14 @@
     syncClear();
 
     // lightbox / asset viewer
-    $("#lb-copy").innerHTML = icon("link") + " Copy link";
-    $("#lb-dl").innerHTML = icon("download") + " Download";
+    $("#lb-copy").innerHTML = icon("link") + tr(" Copy link");
+    $("#lb-dl").innerHTML = icon("download") + tr(" Download");
     $("#lb-close").addEventListener("click", closeLightbox);
     $("#lb-prev").addEventListener("click", function () { lbStep(-1); });
     $("#lb-next").addEventListener("click", function () { lbStep(1); });
     $("#lb-copy").addEventListener("click", function () {
       var u = lbCurrent().url;
-      if (!u || u === "#") { toast("No link yet"); return; }
+      if (!u || u === "#") { toast(tr("No link yet")); return; }
       copyText(u, "Link copied");
     });
     $("#lb-dl").addEventListener("click", function () { var it = lbCurrent(); if (it.file) directDownload(it.file, it.name); else downloadOne(it.url); });
@@ -2751,6 +2843,14 @@
       toTop.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: "smooth" }); });
       onScroll();
     }
+
+    // language toggle (EN / ES) — persists per visitor, ?lang= makes it shareable
+    $$("#lang-toggle button").forEach(function (b) {
+      b.addEventListener("click", function () { setLang(b.getAttribute("data-lang")); });
+    });
+    document.documentElement.lang = state.lang;
+    syncLangToggle();
+    applyStaticI18n();
 
     // restore filters from the URL (shareable views), then route to product/home
     parseURL();

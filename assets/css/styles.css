@@ -64,6 +64,16 @@ a { color: inherit; text-decoration: none; }
 .req-link { font-size: 13px; color: var(--stone); display: inline-flex; align-items: center; gap: 6px; }
 .req-link:hover { color: var(--ink); }
 
+/* language toggle (EN / ES) — mirrors the .sort pill toggle */
+.langtog { display: inline-flex; align-items: center; gap: 2px; padding: 2px; border: 1px solid var(--hair); border-radius: 999px; background: var(--mist); }
+.langtog button {
+  border: none; background: none; cursor: pointer; font-family: inherit;
+  font-size: 11px; font-weight: 800; letter-spacing: 0.04em; color: var(--stone);
+  padding: 5px 10px; border-radius: 999px; transition: background 0.14s, color 0.14s;
+}
+.langtog button:hover { color: var(--ink); }
+.langtog button.on { background: var(--ink); color: #fff; }
+
 /* ---------------------------------- HERO ---------------------------------- */
 /* Compact dark brand band — premium feel of gpen.com, kept
    short so the asset library sits high on the page. */
