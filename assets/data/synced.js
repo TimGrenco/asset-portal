@@ -6680,6 +6680,22 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "Reels Melt Cleaning",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/lwv6gf8n2zr0rxlpabuix/Reels-Melt-Cleaning.mp4?rlkey=yf40zt5uqhs9fn1di5oqcotyb&dl=0",
+          "thumb": "assets/synced/melt/58b388b59b34a7da1b63a4947ddb4acb7968b8cea15f070f948c04d8fc1e24ce.jpg",
+          "file": null
+        },
+        {
+          "name": "Reels Melt Tutorial",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/gpeprn7lrnotb61f7n7nu/Reels-Melt-Tutorial.mp4?rlkey=tdsgjotlkf34q1iqiqekj0ec1&dl=0",
+          "thumb": "assets/synced/melt/2cf37ab1b5c5b8dfcaff20a360c15b19dcd1656eef0c8fa1f91421d14e2e8589.jpg",
+          "file": null
+        },
+        {
           "name": "shortandst0ned melt dec",
           "type": "video",
           "format": "MP4",
