@@ -298,7 +298,8 @@ window.PORTAL_I18N.fr = {
     "updated": "mis à jour",
     "videos": "vidéos",
     "{brand} specific in-store materials.": "Supports en magasin spécifiques à {brand}.",
-    "{n}-Pack Retail POP Display": "Présentoir POP de vente de {n} unités"
+    "{n}-Pack Retail POP Display": "Présentoir POP de vente de {n} unités",
+    "SKU": "SKU"
   },
   "training": {
     "Melt Hot Knife": {

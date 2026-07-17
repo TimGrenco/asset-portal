@@ -298,7 +298,8 @@ window.PORTAL_I18N.it = {
     "updated": "aggiornato",
     "videos": "video",
     "{brand} specific in-store materials.": "Materiali per il punto vendita specifici {brand}.",
-    "{n}-Pack Retail POP Display": "Espositore POP da {n} pezzi"
+    "{n}-Pack Retail POP Display": "Espositore POP da {n} pezzi",
+    "SKU": "SKU"
   },
   "training": {
     "Dash II": {

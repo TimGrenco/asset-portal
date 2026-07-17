@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260711n";   // bump with the other asset tokens
+  var LANG_VER = "20260711p";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -1567,7 +1567,7 @@
   function availableMaterials() {
     var out = [];
     (window.PORTAL_INSTORE_GENERAL || []).forEach(function (x) {
-      out.push({ name: x.name, dim: x.dim || null, thumb: x.thumb, url: x.file || x.url || null });
+      out.push({ name: x.name, dim: x.dim || null, sku: x.sku || null, thumb: x.thumb, url: x.file || x.url || null });
     });
     var seen = {};
     PRODUCTS.forEach(function (p) {
@@ -1625,7 +1625,7 @@
       }
       return '<div class="mat-row">' + thumb +
         '<div class="mat-info"><div class="mat-name">' + m.name + "</div>" +
-          (m.dim ? '<div class="mat-dim">' + m.dim + "</div>" : "") + "</div>" +
+          (m.dim || m.sku ? '<div class="mat-dim">' + [m.dim, m.sku ? tr("SKU") + " " + m.sku : ""].filter(Boolean).join(" · ") + "</div>" : "") + "</div>" +
         '<div class="mat-qty"><button class="mat-step" data-step="-1" aria-label="' + tr("Decrease") + '">–</button>' +
           '<input type="number" min="0" value="0" data-mat="' + i + '" aria-label="' + tr("Quantity for") + " " + m.name.replace(/"/g, "") + '"/>' +
           '<button class="mat-step" data-step="1" aria-label="' + tr("Increase") + '">+</button></div>' +
@@ -1672,7 +1672,7 @@
     var lines = [];
     $$("[data-mat]", $("#materials-page")).forEach(function (inp) {
       var q = parseInt(inp.value, 10) || 0;
-      if (q > 0) lines.push(mats[+inp.getAttribute("data-mat")].name + " — Qty: " + q);
+      if (q > 0) { var mm = mats[+inp.getAttribute("data-mat")]; lines.push(mm.name + (mm.sku ? " (" + mm.sku + ")" : "") + " — Qty: " + q); }
     });
     if (!lines.length) { toast(tr("Set a quantity for at least one item first")); return; }
     var v = function (id) { var el = $(id); return el ? el.value.trim() : ""; };
