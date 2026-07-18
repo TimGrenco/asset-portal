@@ -302,7 +302,9 @@ window.PORTAL_I18N.de = {
     "SKU": "SKU",
     "Order": "Bestellen",
     "Order marketing materials": "Marketingmaterialien bestellen",
-    "Printed in-store materials (posters, shelf talkers, displays) for this product will appear here as they’re added.": "Gedruckte In-Store-Materialien (Poster, Regalstopper, Displays) für dieses Produkt erscheinen hier, sobald sie hinzugefügt werden."
+    "Printed in-store materials (posters, shelf talkers, displays) for this product will appear here as they’re added.": "Gedruckte In-Store-Materialien (Poster, Regalstopper, Displays) für dieses Produkt erscheinen hier, sobald sie hinzugefügt werden.",
+    "Training": "Schulung",
+    "Additional G Pen Products": "Weitere G Pen Produkte"
   },
   "training": {
     "Melt Hot Knife": {

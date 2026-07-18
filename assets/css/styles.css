@@ -284,6 +284,15 @@ button.mat-thumb { padding: 0; }
   .mat-layout { grid-template-columns: 1fr; gap: 18px; }
   .mat-side { position: static; }
 }
+@media (max-width: 600px) {
+  /* Order-list rows: the name column collapsed to a sliver on phones (worse with
+     a SKU-appended dimension and longer German/Spanish names). Give the name its
+     own full-width line above a smaller thumbnail + the stepper. */
+  .mat-row { flex-wrap: wrap; gap: 10px 12px; padding: 14px; }
+  .mat-thumb { width: 72px; height: 72px; }
+  .mat-info { flex: 1 1 calc(100% - 84px); }
+  .mat-qty { margin-left: auto; }
+}
 /* store locator request — repeatable store cards */
 .loc-stores { display: flex; flex-direction: column; gap: 16px; }
 .loc-store { border: 1px solid var(--hair); border-radius: var(--radius); padding: 16px 18px; background: var(--paper); }
@@ -915,8 +924,12 @@ a.logo-tile { cursor: pointer; }
   .cat-pill { padding: 9px 14px; }
   .cat-act { padding: 11px 8px; }
   /* Language selector — small type made this only ~22px tall to thumb. */
-  .langsel-btn { padding: 9px 10px 9px 11px; }
+  .langsel-btn { padding: 9px 10px 9px 11px; min-height: 44px; }
   .langmenu-item { padding: 11px 10px; }
+  /* Marketing-materials quantity stepper — the ordering flow's primary control,
+     previously 34×36px on touch. */
+  .mat-step { min-width: 44px; }
+  .mat-qty input { height: 44px; }
 }
 
 /* Empty (0-count) asset folders read as disabled instead of leading nowhere. */

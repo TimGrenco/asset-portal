@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260711r";   // bump with the other asset tokens
+  var LANG_VER = "20260711s";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -110,6 +110,9 @@
     $("#lang-bar-no").textContent = c.no;
     bar.hidden = false;
     bar.classList.add("show");
+    // Asked once: mark it the moment we SHOW the bar, so ignoring it (navigating
+    // away without clicking) doesn't re-nag on the next visit.
+    try { localStorage.setItem("portal_lang_asked", "1"); } catch (e) {}
   }
   // tr(): translate a UI string. Falls back to the English source text.
   // (Named tr, not t — the training code already uses `t` for the course object.)
@@ -221,8 +224,20 @@
         (on ? '<span class="langmenu-tick">' + icon("check") + "</span>" : "") +
       "</button>";
     }).join("");
-    $$(".langmenu-item", menu).forEach(function (b) {
+    var items = $$(".langmenu-item", menu);
+    items.forEach(function (b, i) {
       b.addEventListener("click", function () { closeLangMenu(); setLang(b.getAttribute("data-lang")); });
+      // Arrow-key roving for the menu (role=menu) — Up/Down move, Home/End jump,
+      // Escape closes back to the button.
+      b.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+          e.preventDefault();
+          var d = e.key === "ArrowDown" ? 1 : -1;
+          (items[(i + d + items.length) % items.length] || b).focus();
+        } else if (e.key === "Home") { e.preventDefault(); items[0].focus(); }
+        else if (e.key === "End") { e.preventDefault(); items[items.length - 1].focus(); }
+        else if (e.key === "Escape") { closeLangMenu(); var lb = $("#lang-btn"); if (lb) lb.focus(); }
+      });
     });
   }
   function openLangMenu() {
@@ -746,10 +761,18 @@
   }
 
   // ---- rendering: cover ----------------------------------------------------
+  // Shopify serves covers at full resolution; ask its CDN for a card-sized copy
+  // (700px covers the grid + detail hero at retina). The lightbox still opens the
+  // untouched p.cover for a true full-res view.
+  function coverSrc(url, w) {
+    if (!url || !/cdn\.shopify\.com/.test(url)) return url;
+    if (/[?&]width=/.test(url)) return url.replace(/([?&]width=)\d+/, "$1" + w);
+    return url + (url.indexOf("?") === -1 ? "?" : "&") + "width=" + w;
+  }
   function coverHTML(p) {
     if (p.cover) {
       var safe = p.name.replace(/"/g, "");
-      return '<img src="' + p.cover + '" alt="' + safe + '" loading="lazy" decoding="async" onerror="window.__fallback(this,\'' + safe + '\')"/>';
+      return '<img src="' + coverSrc(p.cover, 700) + '" alt="' + safe + '" loading="lazy" decoding="async" onerror="window.__fallback(this,\'' + safe + '\')"/>';
     }
     if (p.isLogo) return '<div class="logo-tile"><span>' + BRANDS[p.brand].wordmark + "</span></div>";
     return fallbackHTML(p.name);
@@ -763,11 +786,6 @@
   function wireSwatches(ctx) {
     $$("[data-hex]", ctx).forEach(function (s) {
       s.addEventListener("click", function () { var h = s.getAttribute("data-hex"); copyText(h, "Copied " + h); });
-    });
-  }
-  function wireStyleLinks(ctx) {
-    $$("[data-style]", ctx).forEach(function (b) {
-      b.addEventListener("click", function () { navToStyle(b.getAttribute("data-style")); });
     });
   }
   function wireLogoLinks(ctx) {
@@ -924,11 +942,6 @@
     wireSwatches(sg);
     wireLogoLinks(sg);
     wireSocial(sg);
-  }
-  function navToStyle(bk) {
-    openStyleGuide(bk);
-    var h = "#style/" + bk;
-    if (location.hash !== h) { ignoreHash = true; location.hash = h; }
   }
 
   // ---- rendering: card -----------------------------------------------------
@@ -1360,7 +1373,7 @@
     if (!list.length) { sec.style.display = "none"; return; }
     sec.style.display = "";
     var cnt = $("#catalog-count");
-    if (cnt) cnt.textContent = list.length + " document" + (list.length === 1 ? "" : "s");
+    if (cnt) cnt.textContent = list.length + " " + tr(list.length === 1 ? "document" : "documents");
     var fams = catalogFamilies();
     box.innerHTML = '<div class="cat-grid">' + fams.map(catalogCard).join("") + "</div>";
 
@@ -1741,7 +1754,7 @@
 
     var t = trainingOf(p);   // localized course (falls back to English)
     var name = fullProductName(p);
-    setTitle(name + " Training");
+    setTitle(name + " " + tr("Training"));
     var cert = getCert(p);
 
     var modulesHTML = t.modules.map(function (m, i) {
@@ -2198,7 +2211,7 @@
           return '<button class="catcard ' + (f === active ? "on " : "") + (empty ? "is-empty" : "") + '" data-folder="' + f + '"' + (empty ? " disabled" : "") + ">" +
             '<span class="catcard-ic">' + icon(folderIcon(f)) + "</span>" +
             '<span class="catcard-tx"><span class="catcard-name">' + typeLabel(f) + "</span>" +
-            '<span class="catcard-c">' + n + " file" + (n === 1 ? "" : "s") + "</span></span>" +
+            '<span class="catcard-c">' + n + " " + tr(n === 1 ? "file" : "files") + "</span></span>" +
           "</button>";
         }).join("") + "</div>";
       var activeCount = (p.folders[active] || []).length;
@@ -2232,7 +2245,7 @@
         fullDescHTML(p) +
         whatsInBoxHTML(p) +
         // ---- Documents (assets) — sits above Packaging, filters at the top ----
-        '<div class="section-head" id="docs-head"><h2>' + tr("Download assets by category") + '</h2><span class="badge">' + catTotal + " file" + (catTotal === 1 ? "" : "s") + "</span></div>" +
+        '<div class="section-head" id="docs-head"><h2>' + tr("Download assets by category") + '</h2><span class="badge">' + catTotal + " " + tr(catTotal === 1 ? "file" : "files") + "</span></div>" +
         assetNav +
         '<div class="folder-toolbar">' +
           '<h3 class="folder-title">' + typeLabel(active) + '<span class="ft-count">' + activeCount + " " + tr(activeCount === 1 ? "file" : "files") + "</span></h3>" +
@@ -2345,7 +2358,7 @@
     if (p.isLogo) return "";
     var r = inStoreItems(p), items = r.items;
     var head = '<div class="section-head"><h2>' + tr("In-Store Marketing Materials") + '</h2>' +
-      (items.length ? '<span class="badge">' + items.length + " item" + (items.length === 1 ? "" : "s") + "</span>" : "") + "</div>";
+      (items.length ? '<span class="badge">' + items.length + " " + tr(items.length === 1 ? "item" : "items") + "</span>" : "") + "</div>";
     if (!items.length) {
       return head + '<div class="instore-empty">' +
         "<p>" + tr("Printed in-store materials (posters, shelf talkers, displays) for this product will appear here as they’re added.") + "</p>" +
@@ -2843,8 +2856,18 @@
   // A whole category folder: prefer the folder's Dropbox share link (one .zip);
   // fall back to the product link, then to bundling committed files.
   function downloadFolder(p, folderName) {
-    var link = (p.folderLinks && p.folderLinks[folderName]) || p.dropbox;
-    if (link) { toast(tr("Opening Dropbox download…")); window.open(dropboxZipUrl(link), "_blank", "noopener"); return; }
+    var link = p.folderLinks && p.folderLinks[folderName];
+    var folderCount = Object.keys(p.folders || {}).filter(function (f) { return (p.folders[f] || []).length; }).length;
+    // Use the one-zip path only when we have a link that scopes to THIS folder:
+    // either a real per-folder link, or the product has a single folder (so the
+    // whole-product link IS this folder — e.g. Logos). Some legacy products
+    // collapsed every subfolder to the whole-product link; routing a single
+    // category there would pull the entire library, so scope to its files instead.
+    if (link && (link !== p.dropbox || folderCount <= 1)) {
+      toast(tr("Opening Dropbox download…"));
+      window.open(dropboxZipUrl(link), "_blank", "noopener");
+      return;
+    }
     downloadFiles((p.folders && p.folders[folderName]) || [], folderName);
   }
   // Turn a Dropbox shared-folder link into a direct "download whole folder as
@@ -2973,9 +2996,11 @@
     // Suggestion panel: shown when the field is focused and empty, to point
     // people at the most-wanted assets without them having to guess.
     var SUGGESTIONS = ["Lifestyle", "Packaging", "Logos", "Catalog", "Videos", "PNG"];
-    var suggestEl = null;
+    var suggestEl = null, suggestLang = null;
     function buildSuggest() {
-      if (suggestEl) return suggestEl;
+      if (suggestEl && suggestLang === state.lang) return suggestEl;
+      if (suggestEl) { suggestEl.remove(); suggestEl = null; }   // rebuild in the new language
+      suggestLang = state.lang;
       var host = document.querySelector(".browse-search");
       if (!host) return null;
       suggestEl = document.createElement("div");

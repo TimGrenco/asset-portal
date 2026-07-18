@@ -302,7 +302,9 @@ window.PORTAL_I18N.es = {
     "SKU": "SKU",
     "Order": "Pedir",
     "Order marketing materials": "Pedir materiales de marketing",
-    "Printed in-store materials (posters, shelf talkers, displays) for this product will appear here as they’re added.": "Los materiales impresos para tienda (pósteres, shelf talkers, exhibidores) de este producto aparecerán aquí a medida que se agreguen."
+    "Printed in-store materials (posters, shelf talkers, displays) for this product will appear here as they’re added.": "Los materiales impresos para tienda (pósteres, shelf talkers, exhibidores) de este producto aparecerán aquí a medida que se agreguen.",
+    "Training": "Capacitación",
+    "Additional G Pen Products": "Otros productos G Pen"
   },
   "training": {
     "Melt Hot Knife": {

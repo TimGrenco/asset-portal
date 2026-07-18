@@ -302,7 +302,9 @@ window.PORTAL_I18N.it = {
     "SKU": "SKU",
     "Order": "Ordina",
     "Order marketing materials": "Ordina materiali di marketing",
-    "Printed in-store materials (posters, shelf talkers, displays) for this product will appear here as they’re added.": "I materiali stampati per il punto vendita (poster, shelf talker, espositori) di questo prodotto compariranno qui man mano che verranno aggiunti."
+    "Printed in-store materials (posters, shelf talkers, displays) for this product will appear here as they’re added.": "I materiali stampati per il punto vendita (poster, shelf talker, espositori) di questo prodotto compariranno qui man mano che verranno aggiunti.",
+    "Training": "Formazione",
+    "Additional G Pen Products": "Altri prodotti G Pen"
   },
   "training": {
     "Dash II": {
