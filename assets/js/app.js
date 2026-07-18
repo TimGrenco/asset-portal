@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260711q";   // bump with the other asset tokens
+  var LANG_VER = "20260711r";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -356,16 +356,16 @@
   // synced filename. Declared before the stats loop because instoreOwn() (called
   // there) uses it to rescue labeled pieces from the hash-name filter.
   var INSTORE_LABELS = {
-    "DashII_Postcard":                { name: "Dash II Postcard",              dim: '6" L × 4" W' },
-    "dash-Tent":                      { name: "G Pen Dash+ Table Tent",        dim: '6" L × 6" W' },
-    "510-Tent":                       { name: "510 Original Table Tent",       dim: '6" L × 6" W' },
-    "GPEN-Retro-window-cling-mockup": { name: "Retro Collection Window Cling", dim: '8" L × 8" W' },
-    "Melt-Tent":                      { name: "G Pen Melt Table Tent",         dim: '6" L × 6" W' },
-    "hydout-Tent":                    { name: "G Pen Hydout Table Tent",       dim: '6" L × 4" W' },
+    "DashII_Postcard":                { name: "Dash II Postcard",              dim: '6" L × 4" W', sku: "GMK-002-APZZ" },
+    "dash-Tent":                      { name: "G Pen Dash+ Table Tent",        dim: '6" L × 6" W', sku: "GMK-006-AMZZ" },
+    "510-Tent":                       { name: "510 Original Table Tent",       dim: '6" L × 6" W', sku: "GMK-005-APZZ" },
+    "GPEN-Retro-window-cling-mockup": { name: "Retro Collection Window Cling", dim: '8" L × 8" W', sku: "GMK-007-APZZ" },
+    "Melt-Tent":                      { name: "G Pen Melt Table Tent",         dim: '6" L × 6" W', sku: "GMK-004-APZZ" },
+    "hydout-Tent":                    { name: "G Pen Hydout Table Tent",       dim: '6" L × 4" W', sku: "GMK-006-APZZ" },
     // Dropbox stored this one under a bare content-hash filename; the label both
     // names it and rescues it from the hash-name filter in instoreOwn().
     "4afa24fe8551c06556ca9247a80e68dee51dbdc452bc7057ed0b7fdc49c400a9":
-                                      { name: "Dash II Table Tent",            dim: '4" L × 6" W' },
+                                      { name: "Dash II Table Tent",            dim: '4" L × 6" W', sku: "GMK-003-APZZ" },
   };
   PRODUCTS.forEach(function (p) {
     // De-dupe the in-store folder up front (drops PNG-vs-white-bg doubles and
@@ -1281,7 +1281,7 @@
     // Two preview tiles (like the logos card) — clicking goes to the order page.
     var tiles = mats.slice(0, 2).map(function (x) {
       var media = x.thumb ? '<img src="' + x.thumb + '" alt="' + fileLabel(x).replace(/"/g, "") + '" loading="lazy" decoding="async"/>' : window.__icon("photo");
-      return '<a class="logo-tile" href="#materials" title="Order marketing materials">' + media + "</a>";
+      return '<a class="logo-tile" href="#materials" title="' + tr("Order marketing materials") + '">' + media + "</a>";
     }).join("");
 
     box.innerHTML =
@@ -1587,6 +1587,7 @@
         out.push({
           name: lbl ? lbl.name : x.name + " — " + p.name,
           dim: lbl ? lbl.dim : (x.dim || null),
+          sku: (lbl && lbl.sku) || x.sku || null,
           thumb: x.thumb, url: x.file || x.url || null
         });
       });
@@ -2347,7 +2348,7 @@
       (items.length ? '<span class="badge">' + items.length + " item" + (items.length === 1 ? "" : "s") + "</span>" : "") + "</div>";
     if (!items.length) {
       return head + '<div class="instore-empty">' +
-        "<p>Printed in-store materials (posters, shelf talkers, displays) for this product will appear here as they’re added.</p>" +
+        "<p>" + tr("Printed in-store materials (posters, shelf talkers, displays) for this product will appear here as they’re added.") + "</p>" +
         '<a class="btn ghost sm" href="mailto:' + CFG.orderEmail + "?subject=" +
           encodeURIComponent("In-store material request — " + p.name) + '">' + icon("mail") + " " + tr("Request materials") + "</a>" +
       "</div>";
@@ -2358,13 +2359,13 @@
       var media = x.thumb ? '<img src="' + x.thumb + '" alt="' + fileLabel(x).replace(/"/g, "") + '" loading="lazy" decoding="async"/>' : window.__icon("photo");
       var lbl = instoreLabel(x);
       var cap = lbl ? '<span class="instore-tile-cap"><span class="instore-tile-nm">' + escapeHTML(lbl.name) +
-        "</span><span class=\"instore-tile-dim\">" + escapeHTML(lbl.dim) + "</span></span>" : "";
-      return '<a class="instore-tile' + (lbl ? " has-cap" : "") + '" href="#materials" title="Order ' + fileLabel(x).replace(/"/g, "") + '">' +
-        '<span class="instore-tile-media">' + media + '<span class="instore-tile-order">' + icon("mail") + " Order</span></span>" +
+        "</span><span class=\"instore-tile-dim\">" + escapeHTML([lbl.dim, lbl.sku ? tr("SKU") + " " + lbl.sku : ""].filter(Boolean).join(" · ")) + "</span></span>" : "";
+      return '<a class="instore-tile' + (lbl ? " has-cap" : "") + '" href="#materials" title="' + tr("Order") + " " + fileLabel(x).replace(/"/g, "") + '">' +
+        '<span class="instore-tile-media">' + media + '<span class="instore-tile-order">' + icon("mail") + " " + tr("Order") + "</span></span>" +
         cap + "</a>";
     }).join("");
     return head + note + '<div class="instore-grid">' + tiles + "</div>" +
-      '<div class="instore-order"><a class="btn" href="#materials">' + icon("mail") + " Order marketing materials</a></div>";
+      '<div class="instore-order"><a class="btn" href="#materials">' + icon("mail") + " " + tr("Order marketing materials") + "</a></div>";
   }
 
   function pkgCard(label, url, dlUrl) {

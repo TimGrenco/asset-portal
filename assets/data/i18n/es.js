@@ -299,7 +299,10 @@ window.PORTAL_I18N.es = {
     "videos": "videos",
     "{brand} specific in-store materials.": "Materiales en tienda específicos de {brand}.",
     "{n}-Pack Retail POP Display": "Exhibidor POP de {n} unidades",
-    "SKU": "SKU"
+    "SKU": "SKU",
+    "Order": "Pedir",
+    "Order marketing materials": "Pedir materiales de marketing",
+    "Printed in-store materials (posters, shelf talkers, displays) for this product will appear here as they’re added.": "Los materiales impresos para tienda (pósteres, shelf talkers, exhibidores) de este producto aparecerán aquí a medida que se agreguen."
   },
   "training": {
     "Melt Hot Knife": {

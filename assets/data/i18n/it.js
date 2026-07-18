@@ -299,7 +299,10 @@ window.PORTAL_I18N.it = {
     "videos": "video",
     "{brand} specific in-store materials.": "Materiali per il punto vendita specifici {brand}.",
     "{n}-Pack Retail POP Display": "Espositore POP da {n} pezzi",
-    "SKU": "SKU"
+    "SKU": "SKU",
+    "Order": "Ordina",
+    "Order marketing materials": "Ordina materiali di marketing",
+    "Printed in-store materials (posters, shelf talkers, displays) for this product will appear here as they’re added.": "I materiali stampati per il punto vendita (poster, shelf talker, espositori) di questo prodotto compariranno qui man mano che verranno aggiunti."
   },
   "training": {
     "Dash II": {
