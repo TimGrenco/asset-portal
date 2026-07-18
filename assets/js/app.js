@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260711p";   // bump with the other asset tokens
+  var LANG_VER = "20260711q";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -352,6 +352,21 @@
   // Folder name for a product's own in-store materials (declared up here so the
   // stats pass can de-dupe it before counting — see below).
   var INSTORE_FOLDER = "In Store Marketing Materials";
+  // Curated display name + print size for each in-store material, keyed by its
+  // synced filename. Declared before the stats loop because instoreOwn() (called
+  // there) uses it to rescue labeled pieces from the hash-name filter.
+  var INSTORE_LABELS = {
+    "DashII_Postcard":                { name: "Dash II Postcard",              dim: '6" L × 4" W' },
+    "dash-Tent":                      { name: "G Pen Dash+ Table Tent",        dim: '6" L × 6" W' },
+    "510-Tent":                       { name: "510 Original Table Tent",       dim: '6" L × 6" W' },
+    "GPEN-Retro-window-cling-mockup": { name: "Retro Collection Window Cling", dim: '8" L × 8" W' },
+    "Melt-Tent":                      { name: "G Pen Melt Table Tent",         dim: '6" L × 6" W' },
+    "hydout-Tent":                    { name: "G Pen Hydout Table Tent",       dim: '6" L × 4" W' },
+    // Dropbox stored this one under a bare content-hash filename; the label both
+    // names it and rescues it from the hash-name filter in instoreOwn().
+    "4afa24fe8551c06556ca9247a80e68dee51dbdc452bc7057ed0b7fdc49c400a9":
+                                      { name: "Dash II Table Tent",            dim: '4" L × 6" W' },
+  };
   PRODUCTS.forEach(function (p) {
     // De-dupe the in-store folder up front (drops PNG-vs-white-bg doubles and
     // hash-named files) so p.total matches the count the product page shows.
@@ -380,14 +395,6 @@
 
   // Curated display names + print dimensions for in-store marketing materials,
   // keyed by synced filename. Overrides the raw filename wherever the piece shows.
-  var INSTORE_LABELS = {
-    "DashII_Postcard":                { name: "Dash II Postcard",              dim: '6" L × 4" W' },
-    "dash-Tent":                      { name: "G Pen Dash+ Table Tent",        dim: '6" L × 6" W' },
-    "510-Tent":                       { name: "510 Original Table Tent",       dim: '6" L × 6" W' },
-    "GPEN-Retro-window-cling-mockup": { name: "Retro Collection Window Cling", dim: '8" L × 8" W' },
-    "Melt-Tent":                      { name: "G Pen Melt Table Tent",         dim: '6" L × 6" W' },
-    "hydout-Tent":                    { name: "G Pen Hydout Table Tent",       dim: '6" L × 4" W' },
-  };
   function instoreLabel(file) { return INSTORE_LABELS[file && file.name] || null; }
   function fileLabel(file) {
     var lbl = INSTORE_LABELS[file.name];
@@ -1242,8 +1249,9 @@
     var list = (p.folders && p.folders[INSTORE_FOLDER]) || [];
     var seen = {}, out = [];
     list.forEach(function (x) {
-      // Skip unnamed files (bare 64-char content-hash names) — not real materials.
-      if (/^[0-9a-f]{64}$/i.test(x.name || "")) return;
+      // Skip bare 64-char content-hash names — not real materials — UNLESS we've
+      // given the file a curated label (some real pieces sync with a hash name).
+      if (/^[0-9a-f]{64}$/i.test(x.name || "") && !INSTORE_LABELS[x.name]) return;
       var i = seen[x.name];
       if (i === undefined) { seen[x.name] = out.length; out.push(x); }
       else if (/png/i.test(x.format) && !/png/i.test(out[i].format)) out[i] = x;
@@ -1616,7 +1624,10 @@
       var thumb;
       if (m.thumb) {
         var li = lbItems.length;
-        lbItems.push({ src: m.thumb, name: m.name, url: m.url || m.thumb });
+        // Enlarge with the FULL-RES image (thumb is now a downscaled grid preview).
+        // Dropbox links can't be shown inline, so those fall back to the thumb.
+        var full = (m.url && /^assets\//.test(m.url)) ? m.url : m.thumb;
+        lbItems.push({ src: full, name: m.name, url: m.url || m.thumb });
         thumb = '<button class="mat-thumb mat-thumb-zoom" data-lbi="' + li + '" title="' + tr("Click preview to enlarge") + '" aria-label="' + tr("Enlarge") + " " + m.name.replace(/"/g, "") + '">' +
           '<img src="' + m.thumb + '" alt="' + m.name.replace(/"/g, "") + '" loading="lazy" decoding="async"/>' +
           '<span class="mat-zoom-badge">' + icon("search") + "</span></button>";

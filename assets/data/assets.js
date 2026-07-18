@@ -771,17 +771,17 @@ window.PORTAL_INSTORE_GENERAL = (function () {
   // Dropbox folder syncs.
   return [
     { name: "Channel Letter", type: "image", format: "PNG", dim: "12\" L × 12\" W × 2\" D",
-      thumb: "assets/materials/channel-letter.png", url: "assets/materials/channel-letter.png", file: "assets/materials/channel-letter.png" },
+      thumb: "assets/materials/thumbs/channel-letter.jpg", url: "assets/materials/channel-letter.png", file: "assets/materials/channel-letter.png" },
     { name: "Die-Cut Window Cling", type: "image", format: "PNG", dim: "8\" L × 8\" W",
-      thumb: "assets/materials/die-cut-window-cling.png", url: "assets/materials/die-cut-window-cling.png", file: "assets/materials/die-cut-window-cling.png" },
+      thumb: "assets/materials/thumbs/die-cut-window-cling.png", url: "assets/materials/die-cut-window-cling.png", file: "assets/materials/die-cut-window-cling.png" },
     { name: "Fridge Magnet", type: "image", format: "PNG", dim: "2.5\" L × 2.5\" W",
-      thumb: "assets/materials/fridge-magnet.png", url: "assets/materials/fridge-magnet.png", file: "assets/materials/fridge-magnet.png" },
+      thumb: "assets/materials/thumbs/fridge-magnet.png", url: "assets/materials/fridge-magnet.png", file: "assets/materials/fridge-magnet.png" },
     { name: "Lanyard", type: "image", format: "PNG", dim: "With vape holder",
-      thumb: "assets/materials/lanyard.png", url: "assets/materials/lanyard.png", file: "assets/materials/lanyard.png" },
+      thumb: "assets/materials/thumbs/lanyard.png", url: "assets/materials/lanyard.png", file: "assets/materials/lanyard.png" },
     { name: "Sticky Notes", type: "image", format: "PNG", dim: "2.5\" L × 2.5\" W · 25 notes per pad",
-      thumb: "assets/materials/sticky-notes.png", url: "assets/materials/sticky-notes.png", file: "assets/materials/sticky-notes.png" },
+      thumb: "assets/materials/thumbs/sticky-notes.png", url: "assets/materials/sticky-notes.png", file: "assets/materials/sticky-notes.png" },
     { name: "G Pen Floor Rug", type: "image", format: "PNG", dim: "3ft Circular", sku: "GMK-010-ANZZ",
-      thumb: "assets/materials/g-pen-floor-rug.png", url: "assets/materials/g-pen-floor-rug.png", file: "assets/materials/g-pen-floor-rug.png" },
+      thumb: "assets/materials/thumbs/g-pen-floor-rug.jpg", url: "assets/materials/g-pen-floor-rug.png", file: "assets/materials/g-pen-floor-rug.png" },
     // (Dash II Table Tent removed — superseded by the synced "Dash II Postcard".)
   ];
 })();
