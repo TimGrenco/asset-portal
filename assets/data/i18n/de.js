@@ -20,6 +20,16 @@
 window.PORTAL_I18N = window.PORTAL_I18N || {};
 window.PORTAL_I18N.de = {
   "ui": {
+    "document": "Dokument",
+    "documents": "Dokumente",
+    "item": "Artikel",
+    "items": "Artikel",
+    "These assets are provided for approved partner, press, and retail use. Please don't alter logos or product imagery. Need something specific or a different format? Use “Request an asset.”": "Diese Assets stehen für die freigegebene Nutzung durch Partner, Presse und Handel zur Verfügung. Bitte verändern Sie Logos und Produktbilder nicht. Sie brauchen etwas Bestimmtes oder ein anderes Format? Nutzen Sie „Asset anfragen“.",
+    "Brand Documents": "Markendokumente",
+    "Dry Herb Vaporizer": "Trockenkräuter-Vaporizer",
+    "510 Cartridge Battery": "510-Kartuschen-Akku",
+    "Electric Hot Knife": "Elektrisches Hot Knife",
+    "Concentrate Vaporizer": "Konzentrat-Vaporizer",
     "Become a {name} Product Specialist": "Werden Sie {name} Produktspezialist",
     "You’re a certified {name} Specialist": "Sie sind zertifizierter {name} Spezialist",
     "Watch the videos, learn the product, and pass a short quiz to get certified.": "Sehen Sie die Videos, lernen Sie das Produkt kennen und bestehen Sie ein kurzes Quiz, um sich zu zertifizieren.",

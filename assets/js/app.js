@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260722p";   // bump with the other asset tokens
+  var LANG_VER = "20260722q";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -1359,7 +1359,7 @@
     return '<div class="cat-card" data-cur="' + c.slug + '">' +
       '<div class="cat-cover" role="button" tabindex="0" data-catopen aria-label="View ' + alt + '">' +
         cover + '<span class="cat-view">' + icon("eye") + " View</span></div>" +
-      '<div class="cat-meta"><span class="cat-grp">' + escapeHTML(f.group) + "</span>" +
+      '<div class="cat-meta"><span class="cat-grp">' + escapeHTML(tr(f.group)) + "</span>" +
         '<span class="cat-title">' + escapeHTML(f.title) + "</span></div>" +
       regions +
       '<div class="cat-acts">' +
@@ -2221,7 +2221,7 @@
       // Eyebrow shows the product type (falls back to category); the title is the
       // full brand-prefixed name (e.g. "G Pen Dash II"), without double-prefixing
       // names that already lead with the brand (e.g. "G Pen Logos").
-      var typeLine = p.type || p.category || BRANDS[p.brand].name;
+      var typeLine = tr(p.type || p.category || BRANDS[p.brand].name);
       var fullName = p.name.indexOf(BRANDS[p.brand].name) === 0 ? p.name : BRANDS[p.brand].name + " " + p.name;
       setTitle(fullName);
 
@@ -2265,7 +2265,7 @@
             '<button class="btn sm" id="sel-dl">' + icon("download") + " " + tr("Download selected") + "</button>" +
           "</span>" +
         "</div>" +
-        (CFG.usageNote ? '<div class="usage usage-foot">' + icon("info") + "<span>" + CFG.usageNote + "</span></div>" : "") +
+        (CFG.usageNote ? '<div class="usage usage-foot">' + icon("info") + "<span>" + tr(CFG.usageNote) + "</span></div>" : "") +
         // ---- product info below the assets ----
         inStoreHTML(p) +
         packagingHTML(p) +
