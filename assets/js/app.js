@@ -23,9 +23,9 @@
        products  description / highlights / warranty / fullDescription.
      Product names, brand names, filenames, SKUs, units and prices are never
      translated. To revise a language, edit only its pack — no code change. */
-  var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français" };
+  var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260711s";   // bump with the other asset tokens
+  var LANG_VER = "20260722p";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -72,7 +72,7 @@
     for (var i = 0; i < list.length; i++) {
       var l = String(list[i] || "").toLowerCase().slice(0, 2);
       if (l === "en") return "";              // an English preference ranked higher wins
-      if (l !== "en" && isLang(l)) return l;  // es / de / it / fr
+      if (l !== "en" && isLang(l)) return l;  // es / de / it / fr / pt
     }
     return "";
   }
@@ -98,6 +98,8 @@
     de: { q: "Möchten Sie dieses Portal auf Deutsch ansehen?", yes: "Auf Deutsch ansehen", no: "Nein, danke" },
     it: { q: "Preferisce visualizzare questo portale in italiano?", yes: "Visualizza in italiano", no: "No, grazie" },
     fr: { q: "Préférez-vous consulter ce portail en français ?", yes: "Voir en français", no: "Non, merci" },
+    pt: { q: "Prefere ver este portal em português?", yes: "Ver em português", no: "Não, obrigado" },
+    // pt-BR/pt-PT both slice to "pt" in browserLang(); the pack is Brazilian.
   };
   function maybeOfferLang() {
     var bar = $("#lang-bar"); if (!bar) return;
@@ -212,7 +214,7 @@
   // ---- language selector (globe + current language + menu) -------------------
   // Languages are listed by their own endonym (Deutsch, not German) — that's what
   // a speaker scans for. English stays first as the default.
-  var LANG_ORDER = ["en", "es", "de", "it", "fr"];
+  var LANG_ORDER = ["en", "es", "de", "it", "fr", "pt"];
   function renderLangMenu() {
     var menu = $("#lang-menu"); if (!menu) return;
     menu.innerHTML = LANG_ORDER.map(function (l) {
