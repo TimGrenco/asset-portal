@@ -3339,6 +3339,14 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "Dash + Unboxing June",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/3dh1gi6kcr783seczlq7x/Dash-Unboxing-June.mp4?rlkey=3f5qe7cwgj2r0myxpqv8o3djp&dl=0",
+          "thumb": "assets/synced/dash-plus/ba7642684f154a1ee639f19abe52e3657fa2ad9626f97178d1be12786449e0c1.jpg",
+          "file": null
+        },
+        {
           "name": "Dash_Plus_TechSpec_Video_REELS",
           "type": "video",
           "format": "MP4",
