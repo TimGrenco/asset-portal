@@ -29,6 +29,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  actions: write   # lets the dedupe step below delete duplicate artifacts
 
 # Don't cancel an in-progress deploy (GitHub's recommended setting) — cancelling
 # mid-deploy can itself fail. Overlapping runs queue; intermediate queued runs are
@@ -62,6 +63,28 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
+
+      # GitHub's artifact backend intermittently registers a single upload more
+      # than once, leaving 2-3 artifacts all named "github-pages" on the run.
+      # actions/deploy-pages then aborts with "Multiple artifacts named
+      # github-pages were unexpectedly found" and every retry below hits the same
+      # duplicates, so the run fails and emails. Keep only the newest github-pages
+      # artifact so the deploy sees exactly one.
+      - name: Dedupe Pages artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ids=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts" \
+            --jq '[.artifacts[] | select(.name=="github-pages")] | sort_by(.created_at) | reverse | .[1:] | .[].id')
+          if [ -n "$ids" ]; then
+            echo "Duplicate github-pages artifacts found; deleting all but the newest:"
+            for id in $ids; do
+              echo "  deleting artifact $id"
+              gh api -X DELETE "repos/${GITHUB_REPOSITORY}/actions/artifacts/$id" || true
+            done
+          else
+            echo "Exactly one github-pages artifact — nothing to dedupe."
+          fi
 
       # Deploy with up to 3 attempts. GitHub Pages occasionally returns a transient
       # "Deployment failed, try again later" — retrying almost always succeeds, so
