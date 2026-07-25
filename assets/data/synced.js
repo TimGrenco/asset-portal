@@ -625,6 +625,14 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "Dash II Unboxing July",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/iffw59437rm4yhfjc8v2g/Dash-II-Unboxing-July.mp4?rlkey=bdbiojt6ygtw0wj35bfdqd709&dl=0",
+          "thumb": "assets/synced/dash-ii/5f70017b4d819729ce16db5711fcce59bfc9a579a888ca3d57e2b53bb3fd1be9.jpg",
+          "file": null
+        },
+        {
           "name": "Dash2_Teaser_Reel",
           "type": "video",
           "format": "MOV",
@@ -6669,6 +6677,14 @@ window.PORTAL_SYNCED = {
           "format": "MP4",
           "url": "https://www.dropbox.com/scl/fi/oz1wgb15m050ptzsydxbj/Melt-Unboxing-Feb.mp4?rlkey=dgfy3laxbkmsn50zujv0pkyl9&dl=0",
           "thumb": "assets/synced/melt/552c37f0398c921d2a6c4f77e1797848cd72dbef030d6b1b1e2c7cc53bd834d8.jpg",
+          "file": null
+        },
+        {
+          "name": "Melt Unboxing July",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/5l4bk0568tiwmeqkcrgdi/Melt-Unboxing-July.mp4?rlkey=jkx8b6i6illzson1k39bwvaid&dl=0",
+          "thumb": "assets/synced/melt/4db2caee47cf5e890bb77a7447207e5c89cd7d727bd00679bc41386577eb4a4e.jpg",
           "file": null
         },
         {
