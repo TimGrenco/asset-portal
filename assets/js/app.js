@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260727a";   // bump with the other asset tokens
+  var LANG_VER = "20260727b";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -1701,6 +1701,26 @@
     });
     $("#mat-order").addEventListener("click", function () { submitMaterialOrder(mats); });
   }
+  // Contact details on the two outbound forms are required in spirit — the phone
+  // field is even labelled "(optional)", implying the rest are not — but nothing
+  // enforced it, so an order could reach marketing@ with no store name, address
+  // or email and simply could not be fulfilled. These guard that.
+  function firstEmpty(ids) {
+    for (var i = 0; i < ids.length; i++) { var el = $(ids[i]); if (el && !el.value.trim()) return el; }
+    return null;
+  }
+  function validEmail(s) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(s); }
+  function requireFields(ids, msg) {
+    var miss = firstEmpty(ids);
+    if (miss) { toast(tr(msg), true); miss.focus(); return false; }
+    return true;
+  }
+  function requireEmail(id) {
+    var el = $(id);
+    if (el && !validEmail(el.value.trim())) { toast(tr("Enter a valid email address"), true); el.focus(); return false; }
+    return true;
+  }
+
   function submitMaterialOrder(mats) {
     var lines = [];
     $$("[data-mat]", $("#materials-page")).forEach(function (inp) {
@@ -1708,6 +1728,11 @@
       if (q > 0) { var mm = mats[+inp.getAttribute("data-mat")]; lines.push(mm.name + (mm.sku ? " (" + mm.sku + ")" : "") + " — Qty: " + q); }
     });
     if (!lines.length) { toast(tr("Set a quantity for at least one item first"), true); return; }
+    // Physical materials get shipped — without a name, address and email the
+    // order is unfulfillable, so block it here rather than mail a dead request.
+    if (!requireFields(["#mat-store-name", "#mat-store-address", "#mat-store-email"],
+      "Add your store name, mailing address and email so we can ship your order")) return;
+    if (!requireEmail("#mat-store-email")) return;
     var v = function (id) { var el = $(id); return el ? el.value.trim() : ""; };
     var body = "Store Name: " + v("#mat-store-name") +
       "\nAddress: " + v("#mat-store-address") +
@@ -2116,6 +2141,11 @@
       );
     });
     if (!valid) { toast(tr("Add at least one store's details first"), true); return; }
+    // Phone is explicitly "(optional)" in the UI; name + email are not, and without
+    // them there is no way to reply about the listing request.
+    if (!requireFields(["#loc-contact-name", "#loc-contact-email"],
+      "Add your name and email so we can reply")) return;
+    if (!requireEmail("#loc-contact-email")) return;
     var v = function (id) { var el = $(id); return el ? el.value.trim() : ""; };
     var body = "Store Locator Request" +
       "\n\nSubmitted by: " + v("#loc-contact-name") +

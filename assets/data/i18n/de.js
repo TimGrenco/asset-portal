@@ -20,6 +20,9 @@
 window.PORTAL_I18N = window.PORTAL_I18N || {};
 window.PORTAL_I18N.de = {
   "ui": {
+    "Add your store name, mailing address and email so we can ship your order": "Bitte geben Sie Ladenname, Versandadresse und E-Mail an, damit wir Ihre Bestellung versenden können",
+    "Enter a valid email address": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+    "Add your name and email so we can reply": "Bitte geben Sie Ihren Namen und Ihre E-Mail-Adresse an, damit wir antworten können",
     "Click a video to watch it, and download it or open it on YouTube where available.": "Klicken Sie auf ein Video, um es anzusehen, und laden Sie es herunter oder öffnen Sie es auf YouTube, sofern verfügbar.",
     "document": "Dokument",
     "documents": "Dokumente",
