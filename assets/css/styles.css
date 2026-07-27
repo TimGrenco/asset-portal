@@ -901,6 +901,19 @@ a.logo-tile { cursor: pointer; }
   .langsel-menu { right: auto; left: 0; min-width: 0; width: max-content; max-width: calc(100vw - 24px); }
 }
 
+/* Narrowest phones (iPhone SE 1st gen and older Androids). The ≤600px rules above
+   already strip the wordmark and tighten gaps, which is enough through Portuguese
+   and German — but French ("Catalogues" + "Logos et ressources") still ran ~20px
+   past a 320px viewport, pushing "Request an asset" off-screen and scrolling the
+   page sideways. One more notch of tightening covers the longest label set. */
+@media (max-width: 360px) {
+  .nav-inner { gap: 6px; }
+  .nav-actions { gap: 4px; }
+  .nav-link { font-size: 12px; }
+  .langsel-btn { padding: 5px 5px 5px 6px; gap: 3px; }
+  .langsel-code { font-size: 10px; }
+}
+
 /* iOS Safari auto-zooms the whole page when a focused input's font-size is under
    16px, and never zooms back out — a budtender filling in the order or locator
    form on an iPhone gets thrown into a zoomed, sideways-scrolling page. 16px on
