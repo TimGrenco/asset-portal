@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260727b";   // bump with the other asset tokens
+  var LANG_VER = "20260727c";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -167,11 +167,17 @@
     }
     return out;
   }
+  var langSeq = 0;
   function setLang(l) {
     if (!isLang(l) || l === state.lang) return;
     // Fetch the pack BEFORE switching, so we never render a half-translated page.
     // If it fails to load we stay put rather than degrade.
+    // The generation counter makes the LAST CLICK win: on a rapid double switch
+    // the packs can resolve out of order, and without this the slower one lands
+    // (and gets persisted), leaving the user in a language they didn't pick.
+    var my = ++langSeq;
     loadLangPack(l, function (ok) {
+      if (my !== langSeq) return;   // superseded by a later click
       if (!ok && l !== "en") { toast("Couldn’t load that language — staying in " + LANGS[state.lang]); return; }
       applyLang(l);
     });
@@ -454,6 +460,10 @@
     var lp = $("#locator-page"); if (lp && parts[0] !== "locator") lp.style.display = "none";
     var trp = $("#training-page"); if (trp && parts[0] !== "train") trp.style.display = "none";
     if (parts[0] !== "catalog") closeCatalog();
+    // Transient overlays are not routes, so a hash change (or browser Back) used
+    // to leave a full-screen lightbox/video stranded over a different page.
+    closeVideoModal();
+    if ($("#lightbox") && $("#lightbox").classList.contains("open")) closeLightbox();
     // Shared catalog deep link: render home behind it, then open the viewer.
     if (parts[0] === "catalog" && parts[1]) { renderHome(); openCatalog(parts[1]); return; }
     if (parts[0] === "style" && BRANDS[parts[1]]) { openStyleGuide(parts[1]); return; }
@@ -773,7 +783,12 @@
   }
   function coverHTML(p) {
     if (p.cover) {
-      var safe = p.name.replace(/"/g, "");
+      // `safe` lands in two different contexts: an alt="" attribute AND a
+      // single-quoted JS string inside onerror="…__fallback(this,'…')". Stripping
+      // only double quotes leaves an apostrophe free to terminate that JS string
+      // (e.g. a product named "Grandad's Pen" would break the fallback), so
+      // neutralise backslash and single quote too.
+      var safe = p.name.replace(/["\\]/g, "").replace(/'/g, "\\u0027");
       // Shopify resizes on the fly, so offer three widths and let the browser
       // pick. A phone card frame is ~150px CSS (~350px at DPR2) — without this
       // every card pulled the 700px file. src= stays as the 1x fallback.
@@ -1324,7 +1339,11 @@
   // page viewer, a direct PDF download, and a shareable deep link.
   function catalogBySlug(s) { return (window.PORTAL_CATALOGS || []).filter(function (x) { return x.slug === s; })[0]; }
   function catalogFileName(c) { return (c.title + (c.region ? " - " + c.region : "")).replace(/[^\w.-]+/g, "_") + ".pdf"; }
-  function catalogShareUrl(c) { return location.origin + location.pathname + "#catalog/" + c.slug; }
+  // Share links must carry the language, or a retailer who copies a link while
+  // browsing in Portuguese sends their colleague an English page. buildQuery()
+  // already does this for "Share view"; these two paths did not.
+  function langQS() { return state.lang !== "en" ? "?lang=" + state.lang : ""; }
+  function catalogShareUrl(c) { return location.origin + location.pathname + langQS() + "#catalog/" + c.slug; }
   function catalogDownload(c) { if (c.file) directDownload(c.file, catalogFileName(c)); else downloadOne(c.url); }
 
   // One card per document family (e.g. "G Pen 2026 Catalog"); its regional
@@ -1657,7 +1676,7 @@
         thumb = '<div class="mat-thumb">' + window.__icon("photo") + "</div>";
       }
       return '<div class="mat-row">' + thumb +
-        '<div class="mat-info"><div class="mat-name">' + m.name + "</div>" +
+        '<div class="mat-info"><div class="mat-name">' + escapeHTML(m.name) + "</div>" +
           (m.dim || m.sku ? '<div class="mat-dim">' + [m.dim, m.sku ? tr("SKU") + " " + m.sku : ""].filter(Boolean).join(" · ") + "</div>" : "") + "</div>" +
         '<div class="mat-qty"><button class="mat-step" data-step="-1" aria-label="' + tr("Decrease") + '">–</button>' +
           '<input type="number" min="0" value="0" data-mat="' + i + '" aria-label="' + tr("Quantity for") + " " + m.name.replace(/"/g, "") + '"/>' +
@@ -2246,9 +2265,12 @@
         (folderNames.length > 3 ? '<div class="catgrid-hint"><span>' + tr("Swipe to see more folders") + '</span>' + icon("arrowRight") + "</div>" : "") +
         '<div class="catgrid" id="asset-nav">' + folderNames.map(function (f) {
           var n = p.folders[f].length, empty = n === 0;
-          return '<button class="catcard ' + (f === active ? "on " : "") + (empty ? "is-empty" : "") + '" data-folder="' + f + '"' + (empty ? " disabled" : "") + ">" +
+          // Folder names come from Dropbox — untrusted. Escape both the attribute
+          // and the label. getAttribute() decodes entities, so the data-folder
+          // round-trip back to p.folders[...] still matches.
+          return '<button class="catcard ' + (f === active ? "on " : "") + (empty ? "is-empty" : "") + '" data-folder="' + escapeHTML(f) + '"' + (empty ? " disabled" : "") + ">" +
             '<span class="catcard-ic">' + icon(folderIcon(f)) + "</span>" +
-            '<span class="catcard-tx"><span class="catcard-name">' + typeLabel(f) + "</span>" +
+            '<span class="catcard-tx"><span class="catcard-name">' + escapeHTML(typeLabel(f)) + "</span>" +
             '<span class="catcard-c">' + n + " " + tr(n === 1 ? "file" : "files") + "</span></span>" +
           "</button>";
         }).join("") + "</div>";
@@ -2286,7 +2308,7 @@
         '<div class="section-head" id="docs-head"><h2>' + tr("Download assets by category") + '</h2><span class="badge">' + catTotal + " " + tr(catTotal === 1 ? "file" : "files") + "</span></div>" +
         assetNav +
         '<div class="folder-toolbar">' +
-          '<h3 class="folder-title">' + typeLabel(active) + '<span class="ft-count">' + activeCount + " " + tr(activeCount === 1 ? "file" : "files") + "</span></h3>" +
+          '<h3 class="folder-title">' + escapeHTML(typeLabel(active)) + '<span class="ft-count">' + activeCount + " " + tr(activeCount === 1 ? "file" : "files") + "</span></h3>" +
           '<div class="gallery-toolbar">' +
             '<label class="selectall"><input type="checkbox" id="sel-all"/> ' + tr("Select all") + '</label>' +
             '<button class="btn ghost sm" id="copy-folder">' + icon("link") + " " + tr("Copy folder link") + "</button>" +
@@ -2344,7 +2366,7 @@
       if (heroCover) heroCover.addEventListener("click", function () { openLightbox([{ src: p.cover, name: fullName, url: p.cover }], 0); });
       $("#dl-all").addEventListener("click", function () { downloadAll(p); });
       $("#copy-link").addEventListener("click", function () {
-        var url = location.origin + location.pathname + productHash(p);
+        var url = location.origin + location.pathname + langQS() + productHash(p);
         copyText(url, tr("Link copied"));
       });
       var copyDesc = $("#copy-desc");
@@ -2367,7 +2389,13 @@
         // is far more reliable than N hidden-iframe pulls (browsers gate those after
         // the first). Route the whole-folder case to the zip when we have the link.
         var allRemote = sel.length && sel.every(function (f) { return !f.file && f.url; });
-        if (allRemote && whole.length && sel.length === whole.length && p.folderLinks && p.folderLinks[active]) {
+        // Match on IDENTITY, not just count: a stale selection carried over from
+        // another folder tab can have the same length as this folder and would
+        // otherwise hand the user this folder's zip instead of what they ticked.
+        var key = function (f) { return f.url || f.file || f.name; };
+        var here = {}; whole.forEach(function (f) { here[key(f)] = 1; });
+        var sameFolder = sel.length === whole.length && sel.every(function (f) { return here[key(f)]; });
+        if (allRemote && whole.length && sameFolder && p.folderLinks && p.folderLinks[active]) {
           downloadFolder(p, active); return;
         }
         downloadFiles(sel, typeLabel(active) + " · " + sel.length + " " + tr("selected"));

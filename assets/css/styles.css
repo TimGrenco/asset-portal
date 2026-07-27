@@ -892,6 +892,22 @@ a.logo-tile { cursor: pointer; }
   .selbar.show { transform: translateY(0); }
   .selbar .selcount { font-size: 12px; }
   .selbar .btn.sm { padding: 8px 12px; }
+  /* The selection bar's label wraps rather than overflowing on the narrowest
+     phones (German "Auswahl herunterladen" ran ~19px past a 320px viewport). */
+  .selbar { flex-wrap: wrap; }
+  /* The language pill sits near the right edge, so a 214px menu anchored to its
+     right ran off the LEFT of the screen on narrow phones. Anchor it to the
+     button's left edge instead and cap it to the viewport. */
+  .langsel-menu { right: auto; left: 0; min-width: 0; width: max-content; max-width: calc(100vw - 24px); }
+}
+
+/* iOS Safari auto-zooms the whole page when a focused input's font-size is under
+   16px, and never zooms back out — a budtender filling in the order or locator
+   form on an iPhone gets thrown into a zoomed, sideways-scrolling page. 16px on
+   touch layouts prevents it. (Deliberately NOT solved with maximum-scale=1 on the
+   viewport, which would also block legitimate pinch-zoom.) */
+@media (max-width: 768px) {
+  .mat-field input, .mat-qty input, .loc-fields input, .browse-search input { font-size: 16px; }
 }
 
 /* ---- launch polish -------------------------------------------------------- */
@@ -948,8 +964,14 @@ a.logo-tile { cursor: pointer; }
 .to-top svg { width: 20px; height: 20px; stroke: #fff; }
 @media (max-width: 600px) { .to-top { right: 14px; bottom: 14px; width: 42px; height: 42px; } }
 
-/* Subtle content fade-in when a page renders. */
-@keyframes fadeUp { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
+/* Subtle content fade-in when a page renders.
+   Opacity only — deliberately NO transform. With `animation-fill-mode: both` the
+   finished animation leaves an interpolated identity matrix (not `none`) on
+   #detail, and ANY transform makes that element the containing block for its
+   position:fixed descendants. That silently pinned #selbar (the "Download
+   selected" bar) inside the page instead of the viewport, so multi-select was
+   dead on every product page. Re-adding a translate here would break it again. */
+@keyframes fadeUp { from { opacity: 0; } to { opacity: 1; } }
 .page-anim { animation: fadeUp 0.28s ease both; }
 @media (prefers-reduced-motion: reduce) { .page-anim { animation: none; } .to-top { transition: none; } }
 
