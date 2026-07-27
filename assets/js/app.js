@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260727d";   // bump with the other asset tokens
+  var LANG_VER = "20260727e";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -462,6 +462,7 @@
     if (parts[0] !== "catalog") closeCatalog();
     // Transient overlays are not routes, so a hash change (or browser Back) used
     // to leave a full-screen lightbox/video stranded over a different page.
+    cancelDropboxPulls();
     closeVideoModal();
     if ($("#lightbox") && $("#lightbox").classList.contains("open")) closeLightbox();
     // Shared catalog deep link: render home behind it, then open the viewer.
@@ -2861,14 +2862,25 @@
   // Dropbox "Download all" instead.
   // Dropbox-hosted files can't be zipped in the browser (no CORS), so pull each
   // one straight from Dropbox. A hidden iframe per file dodges the popup blocker.
+  // Above this many remote files, fanning out one download per file is a bad
+  // experience (browsers gate it after the first, and it trickles for minutes),
+  // so offer the single Dropbox zip instead.
+  var FANOUT_MAX = 25;
+  // Pending fan-out timers, so leaving the page cancels the queue instead of
+  // spraying downloads at whatever the user navigated to next.
+  var dropboxTimers = [];
+  function cancelDropboxPulls() {
+    dropboxTimers.forEach(function (t) { clearTimeout(t); });
+    dropboxTimers = [];
+  }
   function pullFromDropbox(remote) {
     remote.forEach(function (f, i) {
-      setTimeout(function () {
+      dropboxTimers.push(setTimeout(function () {
         var fr = document.createElement("iframe");
         fr.style.display = "none"; fr.src = dropboxZipUrl(f.url);
         document.body.appendChild(fr);
         setTimeout(function () { try { fr.remove(); } catch (e) {} }, 90000);
-      }, i * 800);
+      }, i * 800));
     });
   }
   // Same-origin committed files → bundle into a single .zip in the browser.
@@ -2893,12 +2905,24 @@
   // A folder / selection. Files live in two places — same-origin (committed to the
   // repo) and Dropbox — and a selection can mix the two, so handle BOTH sets:
   // zip what we can, and pull the rest from Dropbox. Never silently drop a file.
-  function downloadFiles(files, label) {
+  function downloadFiles(files, label, bulkZipUrl) {
     if (!files || !files.length) { toast(tr("Select at least one asset first")); return; }
     var committed = files.filter(function (f) { return f && f.file; });
     var remote = files.filter(function (f) { return f && !f.file && f.url; });
     var n = committed.length + remote.length;
     if (!n) { toast(tr("Use “Download all” to get these from Dropbox")); return; }
+
+    // Too many to fan out sensibly, and we have a single zip to offer → ask.
+    // Declining still works (they get the fan-out), but nobody ends up with one
+    // file out of 335 and no explanation.
+    if (remote.length > FANOUT_MAX && bulkZipUrl) {
+      var ask = tr("This folder has {n} files. Downloading them one at a time can take several minutes and your browser may block it. Open the full Dropbox download instead?").replace("{n}", remote.length);
+      if (window.confirm(ask)) {
+        toast(tr("Opening Dropbox download…"));
+        window.open(dropboxZipUrl(bulkZipUrl), "_blank", "noopener");
+        return;
+      }
+    }
 
     // A single file either way → save it directly; no point zipping one file.
     if (n === 1) {
@@ -2916,7 +2940,7 @@
       // Partial all-Dropbox selection: can't zip cross-origin, so each file pulls
       // separately. Browsers ask permission for multiple downloads — say so, and
       // point at the folder .zip for grabbing everything in one go.
-      toast(remote.length + " downloads starting — allow multiple if your browser asks, or use “Download folder”.");
+      toast(tr("{n} downloads starting — allow multiple if your browser asks, or use “Download all”.").replace("{n}", remote.length));
     }
   }
   // A whole category folder: prefer the folder's Dropbox share link (one .zip);
@@ -2934,7 +2958,7 @@
       window.open(dropboxZipUrl(link), "_blank", "noopener");
       return;
     }
-    downloadFiles((p.folders && p.folders[folderName]) || [], folderName);
+    downloadFiles((p.folders && p.folders[folderName]) || [], folderName, p.dropbox);
   }
   // Turn a Dropbox shared-folder link into a direct "download whole folder as
   // .zip" URL (forces dl=1).

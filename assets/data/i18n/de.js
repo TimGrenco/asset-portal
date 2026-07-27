@@ -20,6 +20,8 @@
 window.PORTAL_I18N = window.PORTAL_I18N || {};
 window.PORTAL_I18N.de = {
   "ui": {
+    "This folder has {n} files. Downloading them one at a time can take several minutes and your browser may block it. Open the full Dropbox download instead?": "Dieser Ordner enthält {n} Dateien. Sie einzeln herunterzuladen kann mehrere Minuten dauern und Ihr Browser blockiert es möglicherweise. Stattdessen den vollständigen Dropbox-Download öffnen?",
+    "{n} downloads starting — allow multiple if your browser asks, or use “Download all”.": "{n} Downloads werden gestartet – erlauben Sie mehrere, wenn Ihr Browser fragt, oder nutzen Sie „Alle herunterladen“.",
     "Add your store name, mailing address and email so we can ship your order": "Bitte geben Sie Ladenname, Versandadresse und E-Mail an, damit wir Ihre Bestellung versenden können",
     "Enter a valid email address": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
     "Add your name and email so we can reply": "Bitte geben Sie Ihren Namen und Ihre E-Mail-Adresse an, damit wir antworten können",

@@ -306,11 +306,14 @@ for (const p of PRODUCTS) {
         const direct = entries.filter((e) => e[".tag"] === "file");
         if (direct.length) {
           direct.forEach((f) => { f.relPath = "/" + raw + "/" + f.name; f.displayName = f.name.replace(/\.[^.]+$/, ""); });
-          folderSpecs.push({ name: raw, prefix: "/" + raw, files: direct });
+          // Carry the folder id: without it folderLinks falls back to the whole-
+          // product link, and "Download folder" degrades to one hidden iframe per
+          // file (335 on Hyer's biggest folder) instead of a single zip.
+          folderSpecs.push({ name: raw, prefix: "/" + raw, files: direct, id: folderId[raw] });
         }
         for (const ss of entries.filter((e) => e[".tag"] === "folder")) {
           const sub = await collectDeep(tok, p.link, "/" + raw + "/" + ss.name, "");
-          if (sub.length) folderSpecs.push({ name: raw + " / " + ss.name, prefix: "/" + raw + "/" + ss.name, files: sub });
+          if (sub.length) folderSpecs.push({ name: raw + " / " + ss.name, prefix: "/" + raw + "/" + ss.name, files: sub, id: ss.id });
         }
         continue;
       }
