@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260722q";   // bump with the other asset tokens
+  var LANG_VER = "20260727a";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -774,7 +774,13 @@
   function coverHTML(p) {
     if (p.cover) {
       var safe = p.name.replace(/"/g, "");
-      return '<img src="' + coverSrc(p.cover, 700) + '" alt="' + safe + '" loading="lazy" decoding="async" onerror="window.__fallback(this,\'' + safe + '\')"/>';
+      // Shopify resizes on the fly, so offer three widths and let the browser
+      // pick. A phone card frame is ~150px CSS (~350px at DPR2) — without this
+      // every card pulled the 700px file. src= stays as the 1x fallback.
+      var srcset = /cdn\.shopify\.com/.test(p.cover)
+        ? ' srcset="' + coverSrc(p.cover, 350) + " 350w, " + coverSrc(p.cover, 700) + " 700w, " + coverSrc(p.cover, 1050) + ' 1050w" sizes="(max-width: 640px) 45vw, 265px"'
+        : "";
+      return '<img src="' + coverSrc(p.cover, 700) + '"' + srcset + ' alt="' + safe + '" loading="lazy" decoding="async" onerror="window.__fallback(this,\'' + safe + '\')"/>';
     }
     if (p.isLogo) return '<div class="logo-tile"><span>' + BRANDS[p.brand].wordmark + "</span></div>";
     return fallbackHTML(p.name);
@@ -1701,7 +1707,7 @@
       var q = parseInt(inp.value, 10) || 0;
       if (q > 0) { var mm = mats[+inp.getAttribute("data-mat")]; lines.push(mm.name + (mm.sku ? " (" + mm.sku + ")" : "") + " — Qty: " + q); }
     });
-    if (!lines.length) { toast(tr("Set a quantity for at least one item first")); return; }
+    if (!lines.length) { toast(tr("Set a quantity for at least one item first"), true); return; }
     var v = function (id) { var el = $(id); return el ? el.value.trim() : ""; };
     var body = "Store Name: " + v("#mat-store-name") +
       "\nAddress: " + v("#mat-store-address") +
@@ -1840,7 +1846,7 @@
     $$('#trn-form input[type="radio"]', box).forEach(function (r) { r.addEventListener("change", updateProgress); });
 
     $("#trn-submit").addEventListener("click", function () {
-      if (answered() < t.quiz.length) { toast(tr("Please answer all {q} questions first").replace("{q}", t.quiz.length)); return; }
+      if (answered() < t.quiz.length) { toast(tr("Please answer all {q} questions first").replace("{q}", t.quiz.length), true); return; }
       var correct = 0;
       t.quiz.forEach(function (item, qi) {
         var qEl = box.querySelector('.trn-q[data-qi="' + qi + '"]');
@@ -1888,7 +1894,7 @@
     '<div id="trn-cert"></div>';
     $("#trn-getcert").addEventListener("click", function () {
       var nm = ($("#trn-name").value || "").trim();
-      if (!nm) { toast(tr("Enter your name for the certificate")); $("#trn-name").focus(); return; }
+      if (!nm) { toast(tr("Enter your name for the certificate"), true); $("#trn-name").focus(); return; }
       var d = new Date();
       var dateStr = d.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
       saveCert(p, { name: nm, date: dateStr, score: pct });
@@ -2109,7 +2115,7 @@
         "\n  Website: " + website
       );
     });
-    if (!valid) { toast(tr("Add at least one store's details first")); return; }
+    if (!valid) { toast(tr("Add at least one store's details first"), true); return; }
     var v = function (id) { var el = $(id); return el ? el.value.trim() : ""; };
     var body = "Store Locator Request" +
       "\n\nSubmitted by: " + v("#loc-contact-name") +
@@ -2614,7 +2620,7 @@
       "</div>";
     }).join("");
     return '<div class="section-head"><h2>' + tr("How to use videos") + '</h2><span class="badge">' + p.videos.length + " video" + (p.videos.length > 1 ? "s" : "") + "</span></div>" +
-      '<p class="vhub-note">' + icon("eye") + " Click a video to watch it, and download it or open it on YouTube where available.</p>" +
+      '<p class="vhub-note">' + icon("eye") + " " + tr("Click a video to watch it, and download it or open it on YouTube where available.") + "</p>" +
       '<div class="vhub">' + cards + "</div>";
   }
   // Dropbox shared-file link → inline-streamable URL (raw=1) for <video>.
@@ -2941,8 +2947,13 @@
 
   // ---- toast ---------------------------------------------------------------
   var toastTimer;
-  function toast(msg) {
-    var t = $("#toast"); t.textContent = msg; t.classList.add("show");
+  // `urgent` marks a blocked-action message (failed validation) rather than a
+  // status update: assertive so a screen reader interrupts and says why the
+  // submit did nothing, instead of the user waiting on a form that looks inert.
+  function toast(msg, urgent) {
+    var t = $("#toast");
+    t.setAttribute("aria-live", urgent ? "assertive" : "polite");
+    t.textContent = msg; t.classList.add("show");
     clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.classList.remove("show"); }, 2200);
   }
 

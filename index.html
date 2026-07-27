@@ -39,7 +39,7 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <meta name="theme-color" content="#ffffff" />
 
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260722q" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260727a" />
 </head>
 <body>
   <h1 class="sr-only">G Pen Brand Assets Portal</h1>
@@ -110,7 +110,7 @@
           <input id="search" type="text" placeholder="Search products, files, formats…" data-i18n-ph aria-label="Search all assets" data-i18n-aria />
           <button id="search-clear" class="search-clear" type="button" aria-label="Clear search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
         </div>
-        <span class="browse-count" id="browse-count"></span>
+        <span class="browse-count" id="browse-count" aria-live="polite"></span>
       </div>
     </div>
   </section>
@@ -224,7 +224,7 @@
     </div>
   </div>
 
-  <div class="toast" id="toast"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
   <!-- Floating scroll-to-top (shown after scrolling down) -->
   <button class="to-top" id="to-top" aria-label="Scroll to top">
@@ -232,7 +232,7 @@
   </button>
 
   <script src="assets/data/synced.js?v=1785175255323"></script>
-  <script src="assets/data/assets.js?v=20260722q"></script>
-  <script src="assets/js/app.js?v=20260722q"></script>
+  <script src="assets/data/assets.js?v=20260727a"></script>
+  <script src="assets/js/app.js?v=20260727a"></script>
 </body>
 </html>

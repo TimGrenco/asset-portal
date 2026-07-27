@@ -22,6 +22,7 @@
 window.PORTAL_I18N = window.PORTAL_I18N || {};
 window.PORTAL_I18N.pt = {
   "ui": {
+    "Click a video to watch it, and download it or open it on YouTube where available.": "Clique em um vídeo para assistir e baixe-o ou abra-o no YouTube quando disponível.",
     "document": "documento",
     "documents": "documentos",
     "item": "item",

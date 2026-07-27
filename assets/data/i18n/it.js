@@ -20,6 +20,7 @@
 window.PORTAL_I18N = window.PORTAL_I18N || {};
 window.PORTAL_I18N.it = {
   "ui": {
+    "Click a video to watch it, and download it or open it on YouTube where available.": "Fai clic su un video per guardarlo, quindi scaricalo o aprilo su YouTube se disponibile.",
     "document": "documento",
     "documents": "documenti",
     "item": "elemento",
