@@ -783,11 +783,27 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "G Pen - One Sheet - Dash II - CAD",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/eytgd8fjyw3z54slv3hp1/G-Pen-One-Sheet-Dash-II-CAD.pdf?rlkey=gloi4clrzen1tmfacbzsbh3k5&dl=0",
+          "thumb": "assets/synced/dash-ii/8d21b91c27a2079fff846369e3097adf7a7fac15597cfc94298c4b48b74b323e.jpg",
+          "file": null
+        },
+        {
+          "name": "G Pen - One Sheet - Dash II - EU",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/jcld69hm10pohlvgfujna/G-Pen-One-Sheet-Dash-II-EU.pdf?rlkey=xkam29to3e5plewy4775hrlvb&dl=0",
+          "thumb": "assets/synced/dash-ii/cbcf80afa0c5c4c7913b197b7f36c5c882f3f2354ff7d7d85270e28954121724.jpg",
+          "file": null
+        },
+        {
           "name": "G Pen - One Sheet - Dash II - UK",
           "type": "pdf",
           "format": "PDF",
           "url": "https://www.dropbox.com/scl/fi/fgd9jbwqhsqeod5en7a0e/G-Pen-One-Sheet-Dash-II-UK.pdf?rlkey=mbib6tai58jcpj6c596oyro6i&dl=0",
-          "thumb": "assets/synced/dash-ii/f07f38294a5708375b930a2012876f2c81e2ed0fd3606bd73d150d1530da73ab.jpg",
+          "thumb": "assets/synced/dash-ii/9103ec671e7ba3e14bafd868d7d6ade4bc63cb8efd47ac1954dc5648a154f70b.jpg",
           "file": null
         },
         {
@@ -795,7 +811,7 @@ window.PORTAL_SYNCED = {
           "type": "pdf",
           "format": "PDF",
           "url": "https://www.dropbox.com/scl/fi/64f6aezkbkqtlrlmx1w8a/G-Pen-One-Sheet-Dash-II.pdf?rlkey=c7neeox99b3q6qnikop0890a0&dl=0",
-          "thumb": "assets/synced/dash-ii/d9c466345e94d377faf4cf72d40bcb583b9f6a95e71377ff7dc0beee5e83dc12.jpg",
+          "thumb": "assets/synced/dash-ii/24bd0da9d8ef621e1a961300f0ecdb4bc9b2f9cb7d962b95c2a912f642b9bbc2.jpg",
           "file": null
         }
       ],
@@ -1371,6 +1387,38 @@ window.PORTAL_SYNCED = {
           "format": "PDF",
           "url": "https://www.dropbox.com/scl/fi/fq0oncklp1kkyqczzlqmu/20251218_GPen_510_Original_Manual.pdf?rlkey=616dx5fqlcylzhw5b6lmtitt6&dl=0",
           "thumb": "assets/synced/510-original/d5502bb679179a173894680ec9e70a59e0c3b7bc04042965936273f324d0ecca.jpg",
+          "file": null
+        },
+        {
+          "name": "GPen - One Sheet - 510 Original - CAD",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/e3z4aquh3xj5ceor6hqt9/GPen-One-Sheet-510-Original-CAD.pdf?rlkey=opzk5bbujmo6nfnvcuaej30l2&dl=0",
+          "thumb": "assets/synced/510-original/2289c5fc20c4bc2b6c4a0506e27aaf6309faf2db0be09c815b2b8768f8a1238d.jpg",
+          "file": null
+        },
+        {
+          "name": "GPen - One Sheet - 510 Original - EU",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/xv3dvcv2ariw1y5y0z22m/GPen-One-Sheet-510-Original-EU.pdf?rlkey=fytbgmpgf3xf7wuiohvraw3fn&dl=0",
+          "thumb": "assets/synced/510-original/ac7cf5f28a8697dcee59884f650559eb12579aee719c1e9081669c155056154a.jpg",
+          "file": null
+        },
+        {
+          "name": "GPen - One Sheet - 510 Original - UK",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/qhxuuy0ls2y4inhcwm1qi/GPen-One-Sheet-510-Original-UK.pdf?rlkey=3vbol7g6rqkoh877mdpa6aqks&dl=0",
+          "thumb": "assets/synced/510-original/c276ffe6058abdc2c10cb90f5ec5b039309756828747ec5bef755c38842b1ced.jpg",
+          "file": null
+        },
+        {
+          "name": "GPen - One Sheet - 510 Original",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/ctzmkoq44s36uef90c1mn/GPen-One-Sheet-510-Original.pdf?rlkey=wyw7b5elvur5rlnv1e4wtx5gf&dl=0",
+          "thumb": "assets/synced/510-original/6014f11d2a2dae60e84127daa28c7628db1ce1cc2bcb1035ec1ccdac7018c7ce.jpg",
           "file": null
         },
         {
@@ -2843,11 +2891,35 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "G Pen - One Sheet - 510 Original Retro - CAD",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/lhkqrdhitgjz7f4m8vz6u/G-Pen-One-Sheet-510-Original-Retro-CAD.pdf?rlkey=5oqnvfj4fabihz2cq9p31askk&dl=0",
+          "thumb": "assets/synced/510-original-retro/79c54420f85fc9843b576eb4ddbceaffec79de3e9b779c58660666e294e9876b.jpg",
+          "file": null
+        },
+        {
+          "name": "G Pen - One Sheet - 510 Original Retro - EU",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/wy2bqwqh9kctmnd72q2c8/G-Pen-One-Sheet-510-Original-Retro-EU.pdf?rlkey=c2pincint1314ijgj75dd3ovp&dl=0",
+          "thumb": "assets/synced/510-original-retro/b6efb880ab8dfa6bd8f40d4aa40b07bb844c960f0e03c60640985e02fd910237.jpg",
+          "file": null
+        },
+        {
+          "name": "G Pen - One Sheet - 510 Original Retro - UK",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/hsonj5rc9cai3errbpu2l/G-Pen-One-Sheet-510-Original-Retro-UK.pdf?rlkey=ikzwmpf5skwh2n9v9tihf0gfx&dl=0",
+          "thumb": "assets/synced/510-original-retro/5d3575fa13e993d69f2f73183dfd5e39bdb357f2b3dfa09fb4a7a8a8b14e3ba7.jpg",
+          "file": null
+        },
+        {
           "name": "G Pen - One Sheet - 510 Original Retro",
           "type": "pdf",
           "format": "PDF",
           "url": "https://www.dropbox.com/scl/fi/p06quhk9l7tq1lep6nksc/G-Pen-One-Sheet-510-Original-Retro.pdf?rlkey=xaapgzeoq5veubfaxgzybng17&dl=0",
-          "thumb": "assets/synced/510-original-retro/82aa7fee72786e396b286a3447738512fdac1b0b4d1a6f5d4cb54e6a6e3a4438.jpg",
+          "thumb": "assets/synced/510-original-retro/2cffcaed29145978ea3e39d7626302be9a119ba6eab409d9d3a2957b5a1d5b8e.jpg",
           "file": null
         }
       ],
@@ -3713,11 +3785,35 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "G Pen - One Sheet - Dash+ - CAD",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/k4mmnycxsrhlytto9efmu/G-Pen-One-Sheet-Dash-CAD.pdf?rlkey=k9zt19fjd18fwdrt0tmcafgj2&dl=0",
+          "thumb": "assets/synced/dash-plus/6c68c1c095d33cff56bd0b18d89f81f2f9348f3c78aa262c555cf7258f3bab6d.jpg",
+          "file": null
+        },
+        {
+          "name": "G Pen - One Sheet - Dash+ - EU",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/v90o6dug5a7bbqn0s158k/G-Pen-One-Sheet-Dash-EU.pdf?rlkey=nukc8hny84gpqer82lzuh4a1b&dl=0",
+          "thumb": "assets/synced/dash-plus/19052292959dfbf1bf7d1c1ee582a7af377a26385ebfe9282882545895ebfa52.jpg",
+          "file": null
+        },
+        {
+          "name": "G Pen - One Sheet - Dash+ - UK",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/vux07fmegzuhtaue7nfzg/G-Pen-One-Sheet-Dash-UK.pdf?rlkey=ik2lq0oy6hscti5uwl1h9b50s&dl=0",
+          "thumb": "assets/synced/dash-plus/40b667d2f35843d6c808498e3aec6b3b51170ef1e00ba26ae0207af67b17d9e5.jpg",
+          "file": null
+        },
+        {
           "name": "G Pen - One Sheet - Dash+",
           "type": "pdf",
           "format": "PDF",
           "url": "https://www.dropbox.com/scl/fi/gxztwrql2sysgxt6ugefk/G-Pen-One-Sheet-Dash.pdf?rlkey=xckr69uq3pufaxlyyn3ls2iki&dl=0",
-          "thumb": "assets/synced/dash-plus/6fffa3bc81231f5af95f79ea5b16e1cc36dc6da37d321485cc113ddc3d5a2307.jpg",
+          "thumb": "assets/synced/dash-plus/e245c553dd504293237816525f3c4ce5a07fa4ea250c34c2b8334af01db280b0.jpg",
           "file": null
         }
       ],
