@@ -4768,6 +4768,30 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "G Pen - One Sheet - Hydout - CAD",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/hy6rgy866ia76g8s2g44c/G-Pen-One-Sheet-Hydout-CAD.pdf?rlkey=r1puyqc97gbw043x9g239i1hn&dl=0",
+          "thumb": "assets/synced/hydout/2b9e552012c526aa4f079aae1b2e1950de4207f1ac8aa895700bc86c50602fad.jpg",
+          "file": null
+        },
+        {
+          "name": "G Pen - One Sheet - Hydout - EU",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/le86w3v56lu377soj2d1x/G-Pen-One-Sheet-Hydout-EU.pdf?rlkey=0qax3hjhs7zp132c9bsaqfnom&dl=0",
+          "thumb": "assets/synced/hydout/be50025c24c43ba5f0adc6f67e589f988fea4239295da9b89394713d769dfe38.jpg",
+          "file": null
+        },
+        {
+          "name": "G Pen - One Sheet - Hydout - UK",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/2wgm22y3mdsnq2akah6tg/G-Pen-One-Sheet-Hydout-UK.pdf?rlkey=k1kblbbb73ykdceej4jql3bhq&dl=0",
+          "thumb": "assets/synced/hydout/bc0abad89d54458be7d1d93e40180f0d9423fbbea3ed1ba7bc660dc34228936b.jpg",
+          "file": null
+        },
+        {
           "name": "GPEN_Hydout_Onesheet_8-5x11",
           "type": "pdf",
           "format": "PDF",
@@ -6215,11 +6239,43 @@ window.PORTAL_SYNCED = {
       ],
       "Documents": [
         {
-          "name": "GPEN_Hydout_Onesheet_8-5x11",
+          "name": "G Pen - One Sheet - Hydout Retro - CAD",
           "type": "pdf",
           "format": "PDF",
-          "url": "https://www.dropbox.com/scl/fi/3wr2e710m90f9anxkpr45/GPEN_Hydout_Onesheet_8-5x11.pdf?rlkey=dongxp6ezcirnjkd74asjlyp9&dl=0",
-          "thumb": "assets/synced/hydout-retro/b4cdbf033f57153ec186ffee8d4ae122a188dffafa25a18cd3675f6ce22b363b.jpg",
+          "url": "https://www.dropbox.com/scl/fi/1mx4021hia6bupv8n0h9l/G-Pen-One-Sheet-Hydout-Retro-CAD.pdf?rlkey=preur2c6h25892tgnr0qwi4pr&dl=0",
+          "thumb": "assets/synced/hydout-retro/2be5155f2f70082a1f2f14d56d19249bd8595e8c8aab6020d5fdc8d74ac3f58e.jpg",
+          "file": null
+        },
+        {
+          "name": "G Pen - One Sheet - Hydout Retro - EU",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/w1tihun4igngzd92dk3za/G-Pen-One-Sheet-Hydout-Retro-EU.pdf?rlkey=6pbnyuqkrle37od8ex9c2a13u&dl=0",
+          "thumb": "assets/synced/hydout-retro/1a7489e7efc846a48197c18f8713d5dfc2ddee20addd681fb803893969c40dd8.jpg",
+          "file": null
+        },
+        {
+          "name": "G Pen - One Sheet - Hydout Retro - UK",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/khzucy3gqkgu8imzhjtxn/G-Pen-One-Sheet-Hydout-Retro-UK.pdf?rlkey=b9ztaal3sayaf7hy4tgrkaalw&dl=0",
+          "thumb": "assets/synced/hydout-retro/9e3016a93f3e0376dae92b8dd1307c4f364130cff122df95bcf9cff8fbd49f15.jpg",
+          "file": null
+        },
+        {
+          "name": "G Pen - One Sheet - Hydout Retro",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/cybwmdl0comxvoj58tioh/G-Pen-One-Sheet-Hydout-Retro.pdf?rlkey=kl24x7j2fggndn0bg7dcu5ze5&dl=0",
+          "thumb": "assets/synced/hydout-retro/80b10a5978f0997f753ed3eaf10cfae991c3581b90200ec823cb2f8be0a6ffbc.jpg",
+          "file": null
+        },
+        {
+          "name": "G Pen - One Sheet - Hydout",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/rhqke4ex06jkkcf1wh0jm/G-Pen-One-Sheet-Hydout.pdf?rlkey=by4ocgzeh4fm9im4vk1s6i6t2&dl=0",
+          "thumb": "assets/synced/hydout-retro/43031ca384658e886c53c0bf156e19e261d7a258044e52a58f078fdb71246c38.jpg",
           "file": null
         },
         {
@@ -6974,11 +7030,35 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
-          "name": "Hot-Knife-One-Sheet",
+          "name": "G Pen - One Sheet - Melt (Hot Knife) - CAD",
           "type": "pdf",
           "format": "PDF",
-          "url": "https://www.dropbox.com/scl/fi/ch7ap122mw1jkpymyhhn4/Hot-Knife-One-Sheet.pdf?rlkey=e7scppx87p0rtz8amtdqlfzn2&dl=0",
-          "thumb": "assets/synced/melt/08d29d31bccaa921962279b112b3cb10eb75d5e2d5e0dbc2c7648fbb64050a09.jpg",
+          "url": "https://www.dropbox.com/scl/fi/dozbirwgjiiowz234dybr/G-Pen-One-Sheet-Melt-Hot-Knife-CAD.pdf?rlkey=r1g5t4la9o5tzjxdwlayfrrxa&dl=0",
+          "thumb": "assets/synced/melt/c4b7f74da5c59f66e244f97bbfe5bf17bee47a0cb5027607f3dbbb03443e3a99.jpg",
+          "file": null
+        },
+        {
+          "name": "G Pen - One Sheet - Melt (Hot Knife) - EU",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/9k6sl8ql90ay9mshrgpo0/G-Pen-One-Sheet-Melt-Hot-Knife-EU.pdf?rlkey=b66l9rngldb44nh8gzpjeilci&dl=0",
+          "thumb": "assets/synced/melt/8a4c942fb5b8d943f1a92c8a12ecf0f88b6e470eb57acca9730d24f2a21e2e03.jpg",
+          "file": null
+        },
+        {
+          "name": "G Pen - One Sheet - Melt (Hot Knife) - UK",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/ur71s84g0pigmv7eroudx/G-Pen-One-Sheet-Melt-Hot-Knife-UK.pdf?rlkey=aja2hix7kiavnxwdo42vnkr5t&dl=0",
+          "thumb": "assets/synced/melt/4f1d6b62ee740895d947ca1c462a62e7c64c935f1b14d8e42b0e510941c8d435.jpg",
+          "file": null
+        },
+        {
+          "name": "G Pen - One Sheet - Melt (Hot Knife)",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/csxlgq3t3virf9i2mudx3/G-Pen-One-Sheet-Melt-Hot-Knife.pdf?rlkey=zngdh3truhf8zscdqaolrxta3&dl=0",
+          "thumb": "assets/synced/melt/831119264e6cfc0020bc2852b23fd34b86b63a4d196d07e27fd31b7c30ddf323.jpg",
           "file": null
         }
       ],
