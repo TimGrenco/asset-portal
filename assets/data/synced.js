@@ -641,6 +641,22 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "DTLA Grinder Dash II July short",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/49obui3reagjxhj7lu3ez/DTLA-Grinder-Dash-II-July-short.MP4?rlkey=qwmgw4imi3mcom6txxoop449a&dl=0",
+          "thumb": "assets/synced/dash-ii/baa2339994f93d44696416f9c4683f5dc022b6a9d4b39b747f8752c409aa3680.jpg",
+          "file": null
+        },
+        {
+          "name": "DTLA Grinder Dash II July",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/aa4v5lyyxhp9q55x917pz/DTLA-Grinder-Dash-II-July.MP4?rlkey=antm7zyiel4mz280j5n6psr7j&dl=0",
+          "thumb": "assets/synced/dash-ii/d507bc913153059bbd71b9fd31981f1cb3cfba135d277f897b53ee49579e1fa3.jpg",
+          "file": null
+        },
+        {
           "name": "Mariana Dash2 Cross Walk",
           "type": "video",
           "format": "MP4",
@@ -1419,14 +1435,6 @@ window.PORTAL_SYNCED = {
           "format": "PDF",
           "url": "https://www.dropbox.com/scl/fi/ctzmkoq44s36uef90c1mn/GPen-One-Sheet-510-Original.pdf?rlkey=wyw7b5elvur5rlnv1e4wtx5gf&dl=0",
           "thumb": "assets/synced/510-original/6014f11d2a2dae60e84127daa28c7628db1ce1cc2bcb1035ec1ccdac7018c7ce.jpg",
-          "file": null
-        },
-        {
-          "name": "GPEN_510_Original_Onesheet",
-          "type": "pdf",
-          "format": "PDF",
-          "url": "https://www.dropbox.com/scl/fi/ixnq699x7tknrxuo498ug/GPEN_510_Original_Onesheet.pdf?rlkey=wk3e0xiunr2hbu46vi9cs35yf&dl=0",
-          "thumb": "assets/synced/510-original/18d7909a928d38c5d461683c1eb1b3263a3c6a8536425728e81aa1a37777a4bb.jpg",
           "file": null
         }
       ],
