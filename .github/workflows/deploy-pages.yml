@@ -86,20 +86,46 @@ jobs:
             echo "Exactly one github-pages artifact — nothing to dedupe."
           fi
 
-      # Deploy with up to 3 attempts. GitHub Pages occasionally returns a transient
-      # "Deployment failed, try again later" — retrying almost always succeeds, so
-      # the job only fails (and emails) if all three attempts hit it.
+      # Deploy, with a retry for TRANSIENT failures only.
+      #
+      # Two distinct failure modes, and they need opposite handling:
+      #  1. Fast failure — Pages returns "Deployment failed, try again later"
+      #     within seconds. Retrying fixes it. This is what the retry is for.
+      #  2. Timeout — the site is large (~185MB of synced thumbnails), so Pages
+      #     can take longer than deploy-pages' 600s default to finish processing.
+      #     The deployment is still PENDING server-side; creating another one
+      #     cancels it, which is exactly what broke deploys on 2026-08-06 (three
+      #     attempts, "Deployment cancelled", 11m35s, nothing published).
+      #
+      # So: give attempt 1 a generous 30-minute window, and only retry if it
+      # failed FAST. A slow failure means "still working" — leave it alone.
+      - id: t1
+        run: echo "start=$(date +%s)" >> "$GITHUB_OUTPUT"
       - id: deploy1
         continue-on-error: true
         uses: actions/deploy-pages@v4
-      - if: steps.deploy1.outcome == 'failure'
-        run: sleep 20
-      - id: deploy2
-        if: steps.deploy1.outcome == 'failure'
-        continue-on-error: true
-        uses: actions/deploy-pages@v4
-      - if: steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure'
+        with:
+          timeout: 1800000
+      - id: gate
+        run: |
+          dur=$(( $(date +%s) - ${{ steps.t1.outputs.start }} ))
+          echo "attempt 1 outcome=${{ steps.deploy1.outcome }} after ${dur}s"
+          if [ "${{ steps.deploy1.outcome }}" = "failure" ] && [ "$dur" -lt 120 ]; then
+            echo "fast failure — safe to retry"; echo "retry=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "not retrying (success, or a slow failure whose deployment may still be pending)"
+            echo "retry=no" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.gate.outputs.retry == 'yes'
         run: sleep 30
       - id: deployment
-        if: steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure'
+        if: steps.gate.outputs.retry == 'yes'
         uses: actions/deploy-pages@v4
+        with:
+          timeout: 1800000
+      # Surface a slow failure rather than passing silently.
+      - if: steps.gate.outputs.retry == 'no' && steps.deploy1.outcome == 'failure'
+        run: |
+          echo "::error::Pages deployment did not complete within 30 minutes."
+          echo "The site is ~185MB; consider shrinking assets/synced thumbnails."
+          exit 1
