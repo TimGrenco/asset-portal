@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deploy1.outputs.page_url || steps.deploy2.outputs.page_url || steps.deployment.outputs.page_url }}
+      url: ${{ steps.deploy1.outputs.page_url || steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -91,21 +91,24 @@ jobs:
       # Two distinct failure modes, and they need opposite handling:
       #  1. Fast failure — Pages returns "Deployment failed, try again later"
       #     within seconds. Retrying fixes it. This is what the retry is for.
-      #  2. Timeout — the site is large (~185MB of synced thumbnails), so Pages
-      #     can take longer than deploy-pages' 600s default to finish processing.
-      #     The deployment is still PENDING server-side; creating another one
-      #     cancels it, which is exactly what broke deploys on 2026-08-06 (three
-      #     attempts, "Deployment cancelled", 11m35s, nothing published).
+      #  2. Timeout — the deployment sits in `deployment_queued` past the action's
+      #     600s cap because GitHub's Pages queue is busy. (Not a size issue: the
+      #     artifact was an identical 184MB on runs that finished in 65s and on
+      #     runs that blew past 600s — only the queue wait varied.) The deployment
+      #     is still PENDING; creating another one CANCELS it, which is what broke
+      #     deploys on 2026-08-06 — three attempts, "Deployment cancelled", 11m35s.
       #
-      # So: give attempt 1 a generous 30-minute window, and only retry if it
-      # failed FAST. A slow failure means "still working" — leave it alone.
+      # 600000ms is the action's HARD maximum (larger values are clamped), so the
+      # wait cannot be extended — see the verification step after the retry gate.
+      # Only retry a FAST failure; a slow one means the deployment is still
+      # pending, and creating another one cancels it.
       - id: t1
         run: echo "start=$(date +%s)" >> "$GITHUB_OUTPUT"
       - id: deploy1
         continue-on-error: true
         uses: actions/deploy-pages@v4
         with:
-          timeout: 1800000
+          timeout: 600000
       - id: gate
         run: |
           dur=$(( $(date +%s) - ${{ steps.t1.outputs.start }} ))
@@ -122,10 +125,35 @@ jobs:
         if: steps.gate.outputs.retry == 'yes'
         uses: actions/deploy-pages@v4
         with:
-          timeout: 1800000
-      # Surface a slow failure rather than passing silently.
-      - if: steps.gate.outputs.retry == 'no' && steps.deploy1.outcome == 'failure'
+          timeout: 600000
+      # actions/deploy-pages caps its own wait at 600s — that is a HARD maximum,
+      # a larger `timeout:` input is silently clamped back down to it. When
+      # GitHub's Pages queue is busy the deployment sits in `deployment_queued`
+      # past that cap, the action aborts with "Timeout reached", and the job
+      # reports failure — but the deployment almost always completes moments
+      # later and the content DOES go live. (Verified 2026-08-06: three
+      # consecutive "failed" runs had all published; live synced.js matched HEAD.)
+      #
+      # So don't trust the action's impatience — ask GitHub whether the
+      # deployment actually succeeded, and only fail if it genuinely didn't.
+      - name: Confirm the deployment landed
+        if: steps.gate.outputs.retry == 'no' && steps.deploy1.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          echo "::error::Pages deployment did not complete within 30 minutes."
-          echo "The site is ~185MB; consider shrinking assets/synced thumbnails."
+          echo "deploy-pages gave up waiting; checking whether the deployment completed anyway."
+          for i in $(seq 1 40); do
+            id=$(gh api "repos/${GITHUB_REPOSITORY}/deployments?sha=${GITHUB_SHA}&environment=github-pages" \
+                   --jq '.[0].id // empty' 2>/dev/null)
+            if [ -n "$id" ]; then
+              s=$(gh api "repos/${GITHUB_REPOSITORY}/deployments/$id/statuses" --jq '.[0].state // empty' 2>/dev/null)
+              echo "  deployment $id -> ${s:-pending}"
+              case "$s" in
+                success)          echo "Published."; exit 0 ;;
+                failure|error)    echo "::error::Pages reported the deployment as $s."; exit 1 ;;
+              esac
+            fi
+            sleep 30
+          done
+          echo "::error::Pages deployment never reported success (20 min past the action timeout)."
           exit 1
