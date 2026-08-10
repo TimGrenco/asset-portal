@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260727e";   // bump with the other asset tokens
+  var LANG_VER = "20260810a";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -1019,7 +1019,7 @@
   var PRODUCT_FAMILIES = [
     { key: "510",         name: "510 Batteries",       blurb: "510-thread cartridge batteries",
       icon: '<svg viewBox="0 0 24 24"><rect x="2" y="7" width="15" height="10" rx="2"/><path d="M20 10.5v3"/><path d="m9.5 9-2 3.2h2.8l-2 2.8"/></svg>' },
-    { key: "dryherb",     name: "Dry Herb Vaporizers", blurb: "Portable dry-herb devices",
+    { key: "dryherb",     name: "Dry Herb Accessories", blurb: "Dry-herb devices & accessories",
       icon: '<svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 4 13C4 7 9 3 20 3c0 11-4 16-9 16Z"/><path d="M11 20c0-6 3-10 8-13"/></svg>' },
     { key: "concentrate", name: "Concentrate",         blurb: "Concentrate tools & accessories",
       icon: '<svg viewBox="0 0 24 24"><path d="M12 3s6.5 6.8 6.5 11.5a6.5 6.5 0 0 1-13 0C5.5 9.8 12 3 12 3Z"/></svg>' },

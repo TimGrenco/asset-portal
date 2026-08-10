@@ -83,6 +83,7 @@ window.PORTAL_CURRENT = {
   gpen: [
     "Dash II",
     "Dash+",
+    "Slim 3-Piece Grinder",
     "Melt Hot Knife",
     "Hydout",
     "510 Original",
@@ -116,6 +117,18 @@ window.PORTAL_PRODUCTS = [
     added: "2026-05-19", newBadge: "purple",
     oneSheet: "#",
     folders: {},   // real folders + thumbnails come from synced.js (Dropbox sync)
+  },
+  {
+    // Grinder — category "Dry Herb" so familyOf() files it under the Dry Herb
+    // Accessories panel alongside the Dash II / Dash+ it's meant to pair with.
+    name: "Slim 3-Piece Grinder", brand: "gpen", category: "Dry Herb", type: "Grinder",
+    cover: CDN + "stashgrinder_thumb_02.jpg?v=1785434429",
+    added: "2026-08-10",
+    newBadge: true,
+    oneSheet: "#",
+    // Durable rlkey link (the expiring st= token is deliberately stripped).
+    dropbox: "https://www.dropbox.com/scl/fo/8lfqlq0faeml5pqnvzoys/ADcfy5cYRTh2lHbK13o_I60?rlkey=4jjwd6s48mon6tcpis5uass3x&dl=0",
+    folders: {},   // real files + thumbnails come from synced.js (Dropbox sync)
   },
   {
     name: "Melt Hot Knife", brand: "gpen", category: "Accessory", type: "Electric Hot Knife",
@@ -425,6 +438,31 @@ var PRODUCT_INFO = {
     warranty: "Limited warranty — see policy",
     manual: "https://cdn.shopify.com/s/files/1/0185/1576/files/GPEN_Retro_Hydout_Manual.pdf?v=1765208154",
     productUrl: "https://www.gpen.com/products/g-pen-hydout-purple-translucent",
+  },
+  "Slim 3-Piece Grinder": {
+    description:
+      "A slim, screenless 3-piece grinder with micro-rounded teeth that gently separate flower into a consistent grind — built to pair with the Dash II and Dash+.",
+    highlights: [
+      "Micro-rounded teeth for a gentle, even grind",
+      "Helps preserve cannabinoids and terpenes",
+      "Screenless 3-piece design keeps trichomes in your material",
+      "Smooth interior reduces friction and buildup",
+      "6063 aircraft-grade anodized aluminum",
+      "Highest post-grind THC retention in Orange Photonics testing",
+      "Compact profile for pocket and travel",
+      "Pairs with G Pen Dash II and Dash+",
+    ],
+    productUrl: "https://www.gpen.com/products/g-pen-grinder-3-pc-aluminum",
+    msrp: "$24.95",
+    sku: "GPA-001-APSC",
+    fullName: "G Pen Slim 3-Piece Grinder",
+    fullDescription: [
+      "Every great session starts with a better grind. The G Pen Slim 3-Piece Grinder is engineered with innovative micro-rounded teeth that gently separate flower into a consistent grind while helping preserve the cannabinoids and terpenes that make every strain unique.",
+      "Unlike traditional sharp-tooth grinders, the Slim\u2019s rounded tooth geometry and smooth interior reduce friction and minimize buildup, keeping more of your flower where it belongs. The screenless 3-piece design also keeps trichomes mixed with your ground material instead of separating them away, while the compact profile is perfect for pockets, travel, and everyday carry.",
+      "Crafted from premium 6063 aircraft-grade anodized aluminum, the G Pen Slim delivers smooth rotation, lasting durability, and precision performance. Backed by independent testing from Orange Photonics, the innovative micro-rounded tooth design demonstrated the highest post-grind THC retention among multiple grinder styles tested.",
+      "Designed to produce a consistent grind that\u2019s ideal for vaporization, the G Pen Slim 3-Piece Grinder pairs perfectly with the G Pen Dash II and G Pen Dash+ dry herb vaporizers, helping you get the most out of every pack with an even, efficient grind optimized for flavorful vapor production.",
+      "Smarter by design. Better with every turn.",
+    ],
   },
   "Melt Hot Knife": {
     description: "The G Pen Melt is the smallest hot knife on the market — a compact, ceramic-tipped dab tool for fast, clean, zero-mess concentrate scooping and drops.",

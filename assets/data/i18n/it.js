@@ -20,6 +20,9 @@
 window.PORTAL_I18N = window.PORTAL_I18N || {};
 window.PORTAL_I18N.it = {
   "ui": {
+    "Dry Herb Accessories": "Accessori per erba secca",
+    "Dry-herb devices & accessories": "Dispositivi e accessori per erba secca",
+    "Grinder": "Grinder",
     "This folder has {n} files. Downloading them one at a time can take several minutes and your browser may block it. Open the full Dropbox download instead?": "Questa cartella contiene {n} file. Scaricarli uno alla volta può richiedere diversi minuti e il browser potrebbe bloccarlo. Vuoi aprire invece il download completo da Dropbox?",
     "{n} downloads starting — allow multiple if your browser asks, or use “Download all”.": "Avvio di {n} download: consenti download multipli se il browser lo chiede, oppure usa «Scarica tutto».",
     "Add your store name, mailing address and email so we can ship your order": "Inserisci il nome del negozio, l’indirizzo di spedizione e l’email per poterti inviare l’ordine",
