@@ -920,6 +920,38 @@ window.PORTAL_SYNCED = {
           "url": "https://www.dropbox.com/scl/fi/swunffawx1e3dfaj2ant4/stashgrinder_thumb_05.jpg?rlkey=rutb5ydk2ua5l3g9o6hd29edb&dl=0",
           "thumb": "assets/synced/slim-3-piece-grinder/d9c3c7b46cb587571a78988cd41e278351fde66489588f099aedb99f264b569a.jpg",
           "file": null
+        },
+        {
+          "name": "stashgrinder_thumb_06",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/3b1p3spd0rovk7hub3ehz/stashgrinder_thumb_06.jpg?rlkey=fj2crj6o8fm9twd57sj8oovzd&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/0cbfdacb2b5712f7b88b0ccd75f7f52cee59b7488c7f6b237b6f87e3bdea445b.jpg",
+          "file": null
+        },
+        {
+          "name": "stashgrinder_thumb_07",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/ttgm2t4h9kt10v9dfrphf/stashgrinder_thumb_07.jpg?rlkey=ybgcwl2nwhypheuvrszpnrssd&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/a52401de4dd42ba77080be116de92aa4b9faed4bfebe6be94822bc3df8e0d0a8.jpg",
+          "file": null
+        },
+        {
+          "name": "stashgrinder_thumb_08",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/ieidpzbtyvm31386tdbur/stashgrinder_thumb_08.jpg?rlkey=u9w8mjobymiqrxyqsng11xkhn&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/af5b69819b3b7562d6388dd1ab65f70051f60cd4e498cd35f461964c34f7d28b.jpg",
+          "file": null
+        },
+        {
+          "name": "stashgrinder_thumb_09",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/uzxutybji9629ej5hbf15/stashgrinder_thumb_09.jpg?rlkey=yfv8iww2pvl0ane5pcqns58g7&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/f0daf4e2325f2cd99f3fd9509d0f448f12b3edcd538aecad8807329dc3feb31a.jpg",
+          "file": null
         }
       ],
       "Lifestyle Photos": [
