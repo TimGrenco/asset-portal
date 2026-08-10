@@ -878,6 +878,236 @@ window.PORTAL_SYNCED = {
       "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/3rc18jy9dpk2vdzwm0vzd/AJ-eyktmRpU3jcZaN3d8KY8?rlkey=ldbjknlj2qyo8danjifpabcmx&dl=1"
     }
   },
+  "Slim 3-Piece Grinder": {
+    "folders": {
+      "Product Photos": [
+        {
+          "name": "stashgrinder_thumb_01",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/co4famhzclqeunxkcfges/stashgrinder_thumb_01.jpg?rlkey=4vf1z6ygpey32zh1rh2f8u2sf&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/841b0cc3f39c90ad8415f6173185f05df5fbd6d874f5e20d3c7a40367d5228fc.jpg",
+          "file": null
+        },
+        {
+          "name": "stashgrinder_thumb_02",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/x99hxawsdk2ky37kdwgh0/stashgrinder_thumb_02.jpg?rlkey=qa1i4eexpdixeztj1dbqcgfem&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/6b19b4ea9db4303de723550f4f82bc266fe89776d7ff3180a534227a3fbefd63.jpg",
+          "file": null
+        },
+        {
+          "name": "stashgrinder_thumb_03",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/59to13vlz0z5elvnm9nn0/stashgrinder_thumb_03.jpg?rlkey=yjv19q1rq76n5fqr5xchmh428&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/0fbb1f8d492eb9a3230da10082b02e5dbce938d37a055f7945e5ac7080e2dd90.jpg",
+          "file": null
+        },
+        {
+          "name": "stashgrinder_thumb_04",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/tbn6ktc4ev51ef1hsuoqe/stashgrinder_thumb_04.jpg?rlkey=tdzefkzpa1qr4y7ao7clvflt5&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/1c889c22582b4fe2bc15b3ab0e6dea6b06c9373dca34c638786eb0afb65a1405.jpg",
+          "file": null
+        },
+        {
+          "name": "stashgrinder_thumb_05",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/swunffawx1e3dfaj2ant4/stashgrinder_thumb_05.jpg?rlkey=rutb5ydk2ua5l3g9o6hd29edb&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/d9c3c7b46cb587571a78988cd41e278351fde66489588f099aedb99f264b569a.jpg",
+          "file": null
+        }
+      ],
+      "Lifestyle Photos": [
+        {
+          "name": "_ALF9037",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/91jtn7fywecv24yw9favi/_ALF9037.jpg?rlkey=6ujbjs2kfv1jvwaofk8hsj00y&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/6120e7c350834c0bc55f5b70288d5102d25d49bb546603d0fc2919f243c9f3da.jpg",
+          "file": null
+        },
+        {
+          "name": "_ALF9038",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/ihsi65mqi7xfukbf6ljmx/_ALF9038.jpg?rlkey=ue3ey6a8ywdu56xyic30mesb5&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/d5b544c9d57481acd8a476ec9c32d06edea6215f211bd77ace53d9703b667a01.jpg",
+          "file": null
+        },
+        {
+          "name": "_ALF9040",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/vp7xstcjpixuep9n7m1cg/_ALF9040.jpg?rlkey=ml794u1wjvwusllc68w8zm4y4&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/5b9ae5fd887f0ba97fa683982e93bf1643c26b2a2bf91292a03f43cf98244408.jpg",
+          "file": null
+        },
+        {
+          "name": "_ALF9041",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/p5sszg1zslb1y6s0m79ul/_ALF9041.jpg?rlkey=xc98o6ggfc6uiwan8ujm1lp82&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/d0f721b0bebd01144cc6793dc3bf13c01a42224f957e388d1d56f0b214a549ff.jpg",
+          "file": null
+        },
+        {
+          "name": "_ALF9043",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/zmlmwym59lp4m50fw7x5s/_ALF9043.jpg?rlkey=v96nqv7sjd3gqyq9brmg3kdt0&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/b30420ac6519a8b48d0c8015995ddfd2e496a3b83570ea58c73274cf3d4d5701.jpg",
+          "file": null
+        },
+        {
+          "name": "_ALF9057",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/bd95wirhvhq3soj48e48b/_ALF9057.jpg?rlkey=ojvvn4t6egje8dud4d6us1fgi&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/ce9b701c81519049aa79224919ec7493f96f738e9ebb1b42a1e773e70989b355.jpg",
+          "file": null
+        },
+        {
+          "name": "_ALF9060",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/zn907slwvmja8wdjhqx9d/_ALF9060.jpg?rlkey=49caof7ybuekukfzfal9sqc92&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/c4f43e21cae2de5f9b0f73cf759bc0d7971a88544ca5aa5e05036eb6450a3ae2.jpg",
+          "file": null
+        },
+        {
+          "name": "_ALF9067",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/2ek895tjvkh7pku4ah7jx/_ALF9067.jpg?rlkey=srenitmz7mo0i566lpx4a0llz&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/afbc2c6d46b35a8c0350cfcfb4f8776e1f13379351059f49a27d647c6fe954e2.jpg",
+          "file": null
+        },
+        {
+          "name": "_ALF9080",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/v1asy9ga3qudykfw2xj7h/_ALF9080.jpg?rlkey=rh90fdc42dij6wpk6kvrw7eg3&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/46821120c6c0fb68dcfcd1a904e6a6f8eaf8267eadead26452a291f1287c39bf.jpg",
+          "file": null
+        },
+        {
+          "name": "_ALF9488",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/bgw90xki2hg0kpci3mw3t/_ALF9488.jpg?rlkey=3viwrkyy3jbp95gis7caypkoq&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/9341abafde5fe298f73ef19323da3b097a0a9b506c91bcc8a6e61ad1421349fb.jpg",
+          "file": null
+        }
+      ],
+      "Social Videos": [
+        {
+          "name": "DTLA Grinder Dash II July short",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/tpneoh7vky6rjxx3obqj6/DTLA-Grinder-Dash-II-July-short.MP4?rlkey=a5667027k8vjnh6on9qrme37f&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/baa2339994f93d44696416f9c4683f5dc022b6a9d4b39b747f8752c409aa3680.jpg",
+          "file": null
+        },
+        {
+          "name": "Grinder Dash II Larry Venice",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/29t4j432g9blfzro9wj21/Grinder-Dash-II-Larry-Venice.mp4?rlkey=d2ssqpeufam5z2pess8j9i6f4&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/b17f2c5a58db844c617f0ff756f819debc3c3a04a292f1a0a811efd65e45ce43.jpg",
+          "file": null
+        },
+        {
+          "name": "Grinder Larry Top Down Venice",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/gcyzrm3b90nr81uj30ico/Grinder-Larry-Top-Down-Venice.mp4?rlkey=sx0q9tr8m0cyb9la80m0kz3ov&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/b24c10474973a5b2c3acd152df740ed93c791ff1fdebbf84cdaf2052d921183d.jpg",
+          "file": null
+        },
+        {
+          "name": "Grinder Stop Motion A",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/cp9dfazb960fgenqf5obv/Grinder-Stop-Motion-A.mp4?rlkey=4fxhf4shcw3dhf4uy4tu4wmfs&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/c4867cbd0bbb74f8652f1079bd28d0c9d2260b3a79c3ce0e872438820dd8a5c0.jpg",
+          "file": null
+        },
+        {
+          "name": "Larry Grinder Announcement",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/sopvhzwsyzky78fc6ybb4/Larry-Grinder-Announcement.mp4?rlkey=09wp5ynm411mn7mzes6anqyk9&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/5265bd6378e14e99d3f6372179af7f36830a2d8fb9dbc618529ff1d81e953fa3.jpg",
+          "file": null
+        },
+        {
+          "name": "Macro Grinder A",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/i21uwqj52c2iz0qgn4h6k/Macro-Grinder-A.mp4?rlkey=mhbjcwdcao3pz5bw8apg49ege&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/bc71251da6e1bbffeaa4f4e1e284b55b38738acd2295bf7d0ddbc5374a9db73f.jpg",
+          "file": null
+        }
+      ],
+      "TV Screen Videos": [
+        {
+          "name": "Grinder Larry Horiztonal",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/spru5rhgbo79gci3frjju/Grinder-Larry-Horiztonal.mp4?rlkey=xrwfv6e7ojollyiwpdm7dr6mb&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/a8a0f52f0494bd3368b12fab45566d0d1fba32d773ecc3fa4129bff8250da72d.jpg",
+          "file": null
+        }
+      ],
+      "Documents": [
+        {
+          "name": "G Pen - One Sheet - Grinder - CAD",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/lxrjbtxqqpt13dkc75mba/G-Pen-One-Sheet-Grinder-CAD.pdf?rlkey=kp8wkjqr6gkpphiratqfoffi8&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/06ea519e3932276c4eba8fb9b5aac612fe55d60d633261904f68578fa0846a20.jpg",
+          "file": null
+        },
+        {
+          "name": "G Pen - One Sheet - Grinder - EU",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/0nd45b1qe2r4vz1z5omd2/G-Pen-One-Sheet-Grinder-EU.pdf?rlkey=srh8ji3rue8tvo02ml7s01t0x&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/f59b9f707f6706eb4938b772db51e21c47dc0ffde50f85b930389a33a11fec9d.jpg",
+          "file": null
+        },
+        {
+          "name": "G Pen - One Sheet - Grinder - UK",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/38l9acoi1z3410e3otqag/G-Pen-One-Sheet-Grinder-UK.pdf?rlkey=jvvyuoz9ytpzhlwe5z99nq302&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/51dd3285ea45630093d0277f982368b3d8cf2874265f4ae0b4a0e4d24dccc130.jpg",
+          "file": null
+        },
+        {
+          "name": "G Pen - One Sheet - Grinder",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/0g8rhtfuefqhcw1pjv58k/G-Pen-One-Sheet-Grinder.pdf?rlkey=gx3khpjdccf2019zwny6100jl&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/0484ef724954bbab2b2f6f1450c617c2a6adfee92ecbdf6e6daf76dcf24b265b.jpg",
+          "file": null
+        }
+      ]
+    },
+    "dropbox": "https://www.dropbox.com/scl/fo/8lfqlq0faeml5pqnvzoys/ADcfy5cYRTh2lHbK13o_I60?rlkey=4jjwd6s48mon6tcpis5uass3x&dl=1",
+    "folderLinks": {
+      "Product Photos": "https://www.dropbox.com/scl/fo/yfolxbk4lfgeduw8gn3vf/ABhoyG0Nr5nOtjvRVFbw6IQ?rlkey=2na8tv2zjpp6wa4lkhqrcczrm&dl=1",
+      "Lifestyle Photos": "https://www.dropbox.com/scl/fo/awq7j23mcl39w5ct7nry9/AI-Nn2vEN3UmHLIFQ9ouFdo?rlkey=47dptp2fmw8w934er8pr66cx2&dl=1",
+      "Social Videos": "https://www.dropbox.com/scl/fo/g0jd2408h2wsxs8tllkkg/ALMhLVAadnNSTigWUSf04pg?rlkey=g3f5938aezsl1u5z62qbo3u7j&dl=1",
+      "TV Screen Videos": "https://www.dropbox.com/scl/fo/zvzbkibqd2aosrqh4tuks/AIYbRk9vrspXYWZcA2fv-MA?rlkey=zqpbl2p0wslq04x0aix2mvdo2&dl=1",
+      "Documents": "https://www.dropbox.com/scl/fo/xa8fpu6byuxbn6bfz5dtf/ABlSIjG-tdSnIw04E6zD4bU?rlkey=ujcruu80zly1ehfhkcb6trrg1&dl=1"
+    }
+  },
   "510 Original": {
     "folders": {
       "Product Photos": [
