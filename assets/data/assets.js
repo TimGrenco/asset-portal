@@ -121,8 +121,11 @@ window.PORTAL_PRODUCTS = [
   {
     // Grinder — category "Dry Herb" so familyOf() files it under the Dry Herb
     // Accessories panel alongside the Dash II / Dash+ it's meant to pair with.
-    name: "Slim 3-Piece Grinder", brand: "gpen", category: "Dry Herb", type: "Grinder",
-    cover: CDN + "stashgrinder_thumb_02.jpg?v=1785434429",
+    name: "Slim 3-Piece Grinder", brand: "gpen", category: "Dry Herb", type: "Grinder", label: "Grinder",
+    // Transparent PNG so the tile matches the other products (the Shopify shot is
+    // a JPEG on solid white, which shows as a white square inside the grey card).
+    // Background removed by edge flood-fill, which preserves the white G on the lid.
+    cover: "assets/img/grinder-slim-3pc.png?v=20260810a",
     added: "2026-08-10",
     newBadge: true,
     oneSheet: "#",
@@ -454,8 +457,23 @@ var PRODUCT_INFO = {
     ],
     productUrl: "https://www.gpen.com/products/g-pen-grinder-3-pc-aluminum",
     msrp: "$24.95",
+    // From G-Pen-SKU-Details-Template-6.xlsx (rows 7–8). NOTE: that sheet lists
+    // the SAME SKU for the single unit and the 10-pack POP — unlike e.g. Dash II,
+    // whose POP carries a "-Inner Pack" suffix. Recorded as supplied; worth
+    // confirming the POP has its own SKU.
     sku: "GPA-001-APSC",
-    fullName: "G Pen Slim 3-Piece Grinder",
+    upc: "811736020688",
+    fullName: "G PEN GRINDER (3-PC ALUMINUM)",
+    pop: true,
+    popSku: "GPA-001-APSC",
+    popUpc: "10811736020685",
+    dimensions: "65 × 65 × 31 mm",
+    unitWeight: "0.11 kg",
+    innerPack: "10",
+    masterCarton: "150",
+    caseWeight: "18.2 kg",
+    caseDimensions: "410 × 170 × 360 mm",
+    htsCode: "7615.1",
     fullDescription: [
       "Every great session starts with a better grind. The G Pen Slim 3-Piece Grinder is engineered with innovative micro-rounded teeth that gently separate flower into a consistent grind while helping preserve the cannabinoids and terpenes that make every strain unique.",
       "Unlike traditional sharp-tooth grinders, the Slim\u2019s rounded tooth geometry and smooth interior reduce friction and minimize buildup, keeping more of your flower where it belongs. The screenless 3-piece design also keeps trichomes mixed with your ground material instead of separating them away, while the compact profile is perfect for pockets, travel, and everyday carry.",

@@ -20,6 +20,7 @@
 window.PORTAL_I18N = window.PORTAL_I18N || {};
 window.PORTAL_I18N.es = {
   "ui": {
+    "Concentrate Accessories": "Accesorios para concentrados",
     "Dry Herb Accessories": "Accesorios para hierba seca",
     "Dry-herb devices & accessories": "Dispositivos y accesorios para hierba seca",
     "Grinder": "Grinder",

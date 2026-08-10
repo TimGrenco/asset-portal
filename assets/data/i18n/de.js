@@ -20,6 +20,7 @@
 window.PORTAL_I18N = window.PORTAL_I18N || {};
 window.PORTAL_I18N.de = {
   "ui": {
+    "Concentrate Accessories": "Konzentrat-Zubehör",
     "Dry Herb Accessories": "Trockenkräuter-Zubehör",
     "Dry-herb devices & accessories": "Trockenkräuter-Geräte & Zubehör",
     "Grinder": "Grinder",
