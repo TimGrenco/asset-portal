@@ -20,6 +20,7 @@
 window.PORTAL_I18N = window.PORTAL_I18N || {};
 window.PORTAL_I18N.fr = {
   "ui": {
+    "{m} lessons · {q}-question quiz · ~{min} min": "{m} leçons · Quiz de {q} questions · ~{min} min",
     "Concentrate Accessories": "Accessoires pour concentrés",
     "Dry Herb Accessories": "Accessoires pour herbes sèches",
     "Dry-herb devices & accessories": "Appareils et accessoires pour herbes sèches",
@@ -327,6 +328,159 @@ window.PORTAL_I18N.fr = {
     "Additional G Pen Products": "Autres produits G Pen"
   },
   "training": {
+    "Slim 3-Piece Grinder": {
+     "tagline": "Découvrez le G Pen Slim 3-Piece Grinder, puis réussissez le quiz pour devenir Spécialiste Produit certifié.",
+     "minutes": 6,
+     "passPct": 80,
+     "modules": [
+      {
+       "title": "Présentation du produit",
+       "points": [
+        "Le G Pen Slim est un <strong>grinder 3 parties</strong> pour la fleur — et non un vaporisateur.",
+        "Son rôle : offrir une <strong>mouture régulière</strong>, idéale pour la vaporisation.",
+        "Assez compact pour la <strong>poche, les déplacements et le quotidien</strong>.",
+        "Prix conseillé : <strong>$24.95</strong>."
+       ]
+      },
+      {
+       "title": "Ce qui le distingue",
+       "points": [
+        "Des <strong>dents micro-arrondies</strong> — et non les dents acérées d'un grinder classique — séparent la fleur en douceur.",
+        "Cette action plus douce aide à <strong>préserver les cannabinoïdes et les terpènes</strong>, porteurs de la puissance et des arômes de chaque variété.",
+        "La géométrie arrondie des dents et un <strong>intérieur lisse</strong> réduisent les frottements et limitent les résidus : moins de fleur reste piégée.",
+        "Il est <strong>sans tamis</strong> : une conception en 3 parties ne comporte aucun tamis à kief, si bien que les <strong>trichomes restent mélangés à la matière moulue</strong> au lieu d'être filtrés à part."
+       ]
+      },
+      {
+       "title": "Fabrication et tests indépendants",
+       "points": [
+        "Usiné dans un <strong>aluminium anodisé 6063 de qualité aéronautique</strong> haut de gamme, pour une rotation fluide et une grande durabilité.",
+        "Testé de façon indépendante par <strong>Orange Photonics</strong>.",
+        "Lors de ces tests, la conception à dents micro-arrondies a affiché la <strong>meilleure rétention de THC après mouture</strong> parmi les types de grinders évalués."
+       ]
+      },
+      {
+       "title": "L'argumentaire de vente",
+       "points": [
+        "S'associe aux vaporisateurs à herbes sèches <strong>G Pen Dash II</strong> et <strong>G Pen Dash+</strong>.",
+        "Une mouture homogène signifie un remplissage plus efficace et une meilleure production de vapeur — une vente additionnelle évidente avec tout appareil à herbes sèches.",
+        "Ligne de positionnement : <strong>Plus intelligent par conception. Meilleur à chaque tour.</strong>"
+       ]
+      }
+     ],
+     "quiz": [
+      {
+       "q": "Qu'est-ce que le G Pen Slim 3-Piece Grinder ?",
+       "choices": [
+        "Un vaporisateur à herbes sèches",
+        "Un grinder pour la fleur",
+        "Une batterie 510",
+        "Un outil à dab pour concentrés"
+       ],
+       "answer": 1,
+       "why": "Le Slim est un grinder 3 parties : il prépare la fleur, il ne la vaporise pas."
+      },
+      {
+       "q": "Quel type de dents le Slim utilise-t-il ?",
+       "choices": [
+        "Des dents acérées classiques",
+        "Des dents micro-arrondies",
+        "Des lames dentelées",
+        "Des meules en céramique"
+       ],
+       "answer": 1,
+       "why": "Les dents micro-arrondies séparent la fleur en douceur, contrairement à un grinder classique à dents acérées."
+      },
+      {
+       "q": "Pourquoi la conception à dents arrondies fait-elle la différence ?",
+       "choices": [
+        "Elle moud plus vite que toute autre conception",
+        "Elle aide à préserver les cannabinoïdes et les terpènes",
+        "Elle permet de moudre des concentrés",
+        "Elle évite d'avoir à nettoyer le grinder"
+       ],
+       "answer": 1,
+       "why": "Une séparation plus douce aide à préserver les cannabinoïdes et les terpènes qui font le caractère unique de chaque variété."
+      },
+      {
+       "q": "Que signifie « sans tamis » pour ce grinder ?",
+       "choices": [
+        "Il n'a pas de couvercle",
+        "Il n'y a pas de tamis à kief : les trichomes restent mélangés à la matière moulue",
+        "Il ne peut pas être démonté",
+        "Il ne fonctionne qu'avec de la fleur sèche"
+       ],
+       "answer": 1,
+       "why": "Une conception 3 parties sans tamis conserve les trichomes dans la matière moulue au lieu de les filtrer vers un compartiment séparé."
+      },
+      {
+       "q": "De combien de parties le Slim se compose-t-il ?",
+       "choices": [
+        "2",
+        "3",
+        "4",
+        "5"
+       ],
+       "answer": 1,
+       "why": "C'est un grinder 3 parties."
+      },
+      {
+       "q": "Dans quel matériau le Slim est-il fabriqué ?",
+       "choices": [
+        "Acier inoxydable",
+        "Aluminium anodisé 6063 de qualité aéronautique",
+        "Bioplastique de chanvre",
+        "Titane anodisé"
+       ],
+       "answer": 1,
+       "why": "Un aluminium anodisé 6063 de qualité aéronautique haut de gamme assure une rotation fluide et une durabilité à toute épreuve."
+      },
+      {
+       "q": "Qui a testé de façon indépendante la conception des dents du Slim ?",
+       "choices": [
+        "Orange Photonics",
+        "Santa Cruz Shredder",
+        "SGS",
+        "Underwriters Laboratories"
+       ],
+       "answer": 0,
+       "why": "C'est Orange Photonics qui a mené les tests indépendants."
+      },
+      {
+       "q": "Qu'ont démontré ces tests indépendants ?",
+       "choices": [
+        "Le temps de mouture le plus rapide",
+        "La meilleure rétention de THC après mouture parmi les types de grinders évalués",
+        "Le prix au gramme le plus bas",
+        "Le fonctionnement le plus silencieux"
+       ],
+       "answer": 1,
+       "why": "La conception à dents micro-arrondies a démontré la meilleure rétention de THC après mouture parmi plusieurs types de grinders évalués."
+      },
+      {
+       "q": "Avec quels appareils le Slim est-il conçu pour être associé ?",
+       "choices": [
+        "Hydout et 510 Original",
+        "Dash II et Dash+",
+        "Melt et Connect",
+        "Micro+ et Hyer"
+       ],
+       "answer": 1,
+       "why": "Il est conçu pour accompagner les vaporisateurs à herbes sèches G Pen Dash II et G Pen Dash+."
+      },
+      {
+       "q": "Quel est le prix conseillé du G Pen Slim 3-Piece Grinder ?",
+       "choices": [
+        "$14.95",
+        "$24.95",
+        "$39.95",
+        "$49.95"
+       ],
+       "answer": 1,
+       "why": "Le Slim 3-Piece Grinder est vendu au prix conseillé de $24.95."
+      }
+     ]
+    },
     "Melt Hot Knife": {
       "tagline": "Découvrez le G Pen Melt, puis réussissez le quiz pour devenir Spécialiste Produit certifié.",
       "modules": [
@@ -1375,6 +1529,26 @@ window.PORTAL_I18N.fr = {
     }
   },
   "products": {
+    "Slim 3-Piece Grinder": {
+     "description": "Un grinder 3 parties fin et sans tamis, doté de dents micro-arrondies qui séparent la fleur en douceur pour une mouture régulière — pensé pour accompagner les Dash II et Dash+.",
+     "highlights": [
+      "Dents micro-arrondies pour une mouture douce et homogène",
+      "Aide à préserver les cannabinoïdes et les terpènes",
+      "Conception 3 parties sans tamis : les trichomes restent dans votre matière",
+      "Intérieur lisse qui réduit les frottements et les résidus",
+      "Aluminium anodisé 6063 de qualité aéronautique",
+      "Meilleure rétention de THC après mouture lors des tests Orange Photonics",
+      "Profil compact pour la poche et les déplacements",
+      "S'associe aux G Pen Dash II et Dash+"
+     ],
+     "fullDescription": [
+      "Toute bonne session commence par une meilleure mouture. Le G Pen Slim 3-Piece Grinder est conçu autour de dents micro-arrondies innovantes qui séparent la fleur en douceur pour une mouture régulière, tout en aidant à préserver les cannabinoïdes et les terpènes qui font le caractère unique de chaque variété.",
+      "Contrairement aux grinders classiques à dents acérées, la géométrie arrondie des dents du Slim et son intérieur lisse réduisent les frottements et limitent les résidus : votre fleur reste là où elle doit être. La conception 3 parties sans tamis garde également les trichomes mélangés à la matière moulue au lieu de les séparer, tandis que le profil compact se glisse partout — poche, voyages et usage quotidien.",
+      "Façonné dans un aluminium anodisé 6063 de qualité aéronautique haut de gamme, le G Pen Slim offre une rotation fluide, une durabilité à toute épreuve et des performances précises. Lors de tests indépendants menés par Orange Photonics, cette conception innovante à dents micro-arrondies a démontré la meilleure rétention de THC après mouture parmi plusieurs types de grinders évalués.",
+      "Pensé pour produire une mouture régulière, idéale pour la vaporisation, le G Pen Slim 3-Piece Grinder s'associe parfaitement aux vaporisateurs à herbes sèches G Pen Dash II et G Pen Dash+ : vous tirez le meilleur de chaque remplissage grâce à une mouture homogène et efficace, optimisée pour une vapeur pleine de saveurs.",
+      "Plus intelligent par conception. Meilleur à chaque tour."
+     ]
+    },
     "Dash II": {
       "description": "La nouvelle évolution du Dash, notre best-seller : un vaporisateur à herbes sèches format poche amélioré sur tous les points, avec une montée en température plus rapide, un flux d'air optimisé et un contrôle de température affiné.",
       "highlights": [

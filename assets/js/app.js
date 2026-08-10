@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260810a";   // bump with the other asset tokens
+  var LANG_VER = "20260810b";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -1825,7 +1825,14 @@
           '<div class="trn-eyebrow">' + tr("Product Specialist Training") + (cert ? " · <span class=\"trn-done\">" + icon("check") + " " + tr("Certified") + "</span>" : "") + "</div>" +
           "<h2>" + name + "</h2>" +
           "<p>" + t.tagline + "</p>" +
-          '<div class="trn-meta">' + icon("eye") + " " + tr("{v} videos · {m} lessons · {q}-question quiz · ~{min} min").replace("{v}", p.videos.length).replace("{m}", t.modules.length).replace("{q}", t.quiz.length).replace("{min}", t.minutes) + "</div>" +
+          '<div class="trn-meta">' + icon("eye") + " " + (
+            // Not every product with a course ships a how-to video (a grinder
+            // has none), and an unguarded p.videos.length threw here, leaving
+            // the whole training page blank.
+            (p.videos && p.videos.length
+              ? tr("{v} videos · {m} lessons · {q}-question quiz · ~{min} min").replace("{v}", p.videos.length)
+              : tr("{m} lessons · {q}-question quiz · ~{min} min"))
+            .replace("{m}", t.modules.length).replace("{q}", t.quiz.length).replace("{min}", t.minutes)) + "</div>" +
         "</div>" +
       "</div>" +
       // 1 — Watch

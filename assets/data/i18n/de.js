@@ -20,6 +20,7 @@
 window.PORTAL_I18N = window.PORTAL_I18N || {};
 window.PORTAL_I18N.de = {
   "ui": {
+    "{m} lessons · {q}-question quiz · ~{min} min": "{m} Lektionen · Quiz mit {q} Fragen · ~{min} Min.",
     "Concentrate Accessories": "Konzentrat-Zubehör",
     "Dry Herb Accessories": "Trockenkräuter-Zubehör",
     "Dry-herb devices & accessories": "Trockenkräuter-Geräte & Zubehör",
@@ -327,6 +328,159 @@ window.PORTAL_I18N.de = {
     "Additional G Pen Products": "Weitere G Pen Produkte"
   },
   "training": {
+    "Slim 3-Piece Grinder": {
+     "tagline": "Lernen Sie den G Pen Slim 3-Piece Grinder kennen und bestehen Sie anschließend das Quiz, um zertifizierter Produktspezialist zu werden.",
+     "minutes": 6,
+     "passPct": 80,
+     "modules": [
+      {
+       "title": "Produktüberblick",
+       "points": [
+        "Der G Pen Slim ist ein <strong>3-teiliger Grinder</strong> für Blüten – kein Vaporizer.",
+        "Seine Aufgabe: ein <strong>gleichmäßiges Mahlgut</strong>, das sich ideal zum Vaporisieren eignet.",
+        "Kompakt genug für <strong>Hosentasche, Reise und den täglichen Gebrauch</strong>.",
+        "UVP <strong>$24.95</strong>."
+       ]
+      },
+      {
+       "title": "Was ihn besonders macht",
+       "points": [
+        "<strong>Mikro-abgerundete Zähne</strong> – nicht die scharfen Zähne herkömmlicher Grinder – zerkleinern die Blüten sanft.",
+        "Die schonendere Arbeitsweise hilft dabei, <strong>Cannabinoide und Terpene zu bewahren</strong>, die Wirkstoffgehalt und Aroma einer Sorte ausmachen.",
+        "Die abgerundete Zahngeometrie und ein <strong>glattes Innenleben</strong> verringern die Reibung und minimieren Ablagerungen – so bleibt weniger Material zurück.",
+        "Er arbeitet <strong>siebfrei</strong>: Ein 3-teiliges Design besitzt kein Kief-Sieb, sodass die <strong>Trichome im Mahlgut verbleiben</strong>, statt herausgesiebt zu werden."
+       ]
+      },
+      {
+       "title": "Verarbeitung & unabhängige Tests",
+       "points": [
+        "Gefertigt aus hochwertigem <strong>eloxiertem Aluminium 6063 in Luftfahrtqualität</strong> – für einen leichtgängigen Lauf und lange Haltbarkeit.",
+        "Unabhängig geprüft von <strong>Orange Photonics</strong>.",
+        "In diesen Tests erreichte das mikro-abgerundete Zahndesign die <strong>höchste THC-Retention nach dem Mahlen</strong> unter den getesteten Grinder-Bauarten."
+       ]
+      },
+      {
+       "title": "So verkaufen Sie ihn",
+       "points": [
+        "Die perfekte Ergänzung zu den Kräutervaporizern <strong>G Pen Dash II</strong> und <strong>G Pen Dash+</strong>.",
+        "Ein gleichmäßiges Mahlgut bedeutet eine effizientere Befüllung und mehr Dampfentwicklung – ein naheliegendes Zusatzprodukt zu jedem Kräutervaporizer.",
+        "Positionierung: <strong>Durchdacht im Design. Besser mit jeder Drehung.</strong>"
+       ]
+      }
+     ],
+     "quiz": [
+      {
+       "q": "Was ist der G Pen Slim 3-Piece Grinder?",
+       "choices": [
+        "Ein Kräutervaporizer",
+        "Ein Grinder für Blüten",
+        "Ein 510-Akku",
+        "Ein Dab-Werkzeug für Konzentrate"
+       ],
+       "answer": 1,
+       "why": "Der Slim ist ein 3-teiliger Grinder – er bereitet Blüten auf, er vaporisiert sie nicht."
+      },
+      {
+       "q": "Welche Art von Zähnen verwendet der Slim?",
+       "choices": [
+        "Herkömmliche scharfe Zähne",
+        "Mikro-abgerundete Zähne",
+        "Gezackte Klingen",
+        "Keramik-Mahlwerke"
+       ],
+       "answer": 1,
+       "why": "Mikro-abgerundete Zähne zerkleinern die Blüten sanft – anders als bei einem herkömmlichen Grinder mit scharfen Zähnen."
+      },
+      {
+       "q": "Warum ist das abgerundete Zahndesign so wichtig?",
+       "choices": [
+        "Es mahlt schneller als jedes andere Design",
+        "Es hilft dabei, Cannabinoide und Terpene zu bewahren",
+        "Es ermöglicht das Mahlen von Konzentraten",
+        "Es macht das Reinigen des Grinders überflüssig"
+       ],
+       "answer": 1,
+       "why": "Das schonendere Zerkleinern hilft dabei, die Cannabinoide und Terpene zu bewahren, die jede Sorte einzigartig machen."
+      },
+      {
+       "q": "Was bedeutet „siebfrei“ bei diesem Grinder?",
+       "choices": [
+        "Er hat keinen Deckel",
+        "Es gibt kein Kief-Sieb, sodass die Trichome im Mahlgut verbleiben",
+        "Er lässt sich nicht zerlegen",
+        "Er funktioniert nur mit trockenen Blüten"
+       ],
+       "answer": 1,
+       "why": "Ein 3-teiliges, siebfreies Design belässt die Trichome im Mahlgut, statt sie in eine separate Kammer zu sieben."
+      },
+      {
+       "q": "Aus wie vielen Teilen besteht der Slim?",
+       "choices": [
+        "2",
+        "3",
+        "4",
+        "5"
+       ],
+       "answer": 1,
+       "why": "Es handelt sich um einen 3-teiligen Grinder."
+      },
+      {
+       "q": "Aus welchem Material besteht der Slim?",
+       "choices": [
+        "Edelstahl",
+        "Eloxiertes Aluminium 6063 in Luftfahrtqualität",
+        "Hanf-Biokunststoff",
+        "Eloxiertes Titan"
+       ],
+       "answer": 1,
+       "why": "Hochwertiges eloxiertes Aluminium 6063 in Luftfahrtqualität sorgt für einen leichtgängigen Lauf und dauerhafte Haltbarkeit."
+      },
+      {
+       "q": "Wer hat das Zahndesign des Slim unabhängig getestet?",
+       "choices": [
+        "Orange Photonics",
+        "Santa Cruz Shredder",
+        "SGS",
+        "Underwriters Laboratories"
+       ],
+       "answer": 0,
+       "why": "Orange Photonics hat die unabhängigen Tests durchgeführt."
+      },
+      {
+       "q": "Was haben diese unabhängigen Tests gezeigt?",
+       "choices": [
+        "Die kürzeste Mahldauer",
+        "Die höchste THC-Retention nach dem Mahlen unter den getesteten Grinder-Bauarten",
+        "Den niedrigsten Preis pro Gramm",
+        "Den leisesten Betrieb"
+       ],
+       "answer": 1,
+       "why": "Das mikro-abgerundete Zahndesign erzielte die höchste THC-Retention nach dem Mahlen unter mehreren getesteten Grinder-Bauarten."
+      },
+      {
+       "q": "Mit welchen Geräten wird der Slim als Ergänzung positioniert?",
+       "choices": [
+        "Hydout und 510 Original",
+        "Dash II und Dash+",
+        "Melt und Connect",
+        "Micro+ und Hyer"
+       ],
+       "answer": 1,
+       "why": "Er ist als Ergänzung zu den Kräutervaporizern G Pen Dash II und G Pen Dash+ konzipiert."
+      },
+      {
+       "q": "Wie hoch ist die UVP des G Pen Slim 3-Piece Grinder?",
+       "choices": [
+        "$14.95",
+        "$24.95",
+        "$39.95",
+        "$49.95"
+       ],
+       "answer": 1,
+       "why": "Der Slim 3-Piece Grinder ist zu einer UVP von $24.95 erhältlich."
+      }
+     ]
+    },
     "Melt Hot Knife": {
       "tagline": "Lernen Sie den G Pen Melt kennen und bestehen Sie anschließend das Quiz, um zertifizierter Produktspezialist zu werden.",
       "modules": [
@@ -1375,6 +1529,26 @@ window.PORTAL_I18N.de = {
     }
   },
   "products": {
+    "Slim 3-Piece Grinder": {
+     "description": "Ein schlanker, siebfreier 3-teiliger Grinder mit mikro-abgerundeten Zähnen, die Blüten sanft zu einem gleichmäßigen Mahlgut zerkleinern – konzipiert als perfekte Ergänzung zum Dash II und Dash+.",
+     "highlights": [
+      "Mikro-abgerundete Zähne für sanftes, gleichmäßiges Mahlen",
+      "Hilft dabei, Cannabinoide und Terpene zu bewahren",
+      "Siebfreies 3-teiliges Design belässt die Trichome im Material",
+      "Glattes Innenleben verringert Reibung und Ablagerungen",
+      "Eloxiertes Aluminium 6063 in Luftfahrtqualität",
+      "Höchste THC-Retention nach dem Mahlen im Test von Orange Photonics",
+      "Kompakte Bauform für Hosentasche und Reise",
+      "Perfekte Ergänzung zum G Pen Dash II und Dash+"
+     ],
+     "fullDescription": [
+      "Jede großartige Session beginnt mit einem besseren Mahlgut. Der G Pen Slim 3-Piece Grinder ist mit innovativen mikro-abgerundeten Zähnen konstruiert, die Blüten sanft zu einem gleichmäßigen Mahlgut zerkleinern und dabei helfen, die Cannabinoide und Terpene zu bewahren, die jede Sorte einzigartig machen.",
+      "Anders als bei herkömmlichen Grindern mit scharfen Zähnen verringern die abgerundete Zahngeometrie und das glatte Innenleben des Slim die Reibung und minimieren Ablagerungen – so bleibt mehr von Ihren Blüten dort, wo sie hingehören. Das siebfreie 3-teilige Design belässt zudem die Trichome im Mahlgut, statt sie herauszusieben, und die kompakte Bauform ist ideal für die Hosentasche, für Reisen und für jeden Tag.",
+      "Gefertigt aus hochwertigem eloxiertem Aluminium 6063 in Luftfahrtqualität, überzeugt der G Pen Slim mit leichtgängigem Lauf, dauerhafter Haltbarkeit und präziser Performance. In unabhängigen Tests von Orange Photonics erzielte das innovative mikro-abgerundete Zahndesign die höchste THC-Retention nach dem Mahlen unter mehreren getesteten Grinder-Bauarten.",
+      "Entwickelt für ein gleichmäßiges Mahlgut, das sich ideal zum Vaporisieren eignet, ist der G Pen Slim 3-Piece Grinder die perfekte Ergänzung zu den Kräutervaporizern G Pen Dash II und G Pen Dash+: So holen Sie mit einem gleichmäßigen, effizienten Mahlgut aus jeder Befüllung das Maximum heraus – für besonders aromatische Dampfentwicklung.",
+      "Durchdacht im Design. Besser mit jeder Drehung."
+     ]
+    },
     "Dash II": {
       "description": "Die nächste Evolutionsstufe des meistverkauften Dash — ein Trockenkräuter-Vaporizer im Taschenformat, rundum verbessert mit schnellerem Aufheizen, optimiertem Luftstrom und verfeinerter Temperatursteuerung.",
       "highlights": [
