@@ -126,15 +126,47 @@ async function getToken() {
   return (await r.json()).access_token;
 }
 
+// A full sync makes a few thousand RPC calls. Dropbox intermittently answers one
+// of them with a 500 ("unexpected error occurred") or throttles with a 429, and
+// because every call used to be fatal, a single blip threw away the entire run —
+// that is what broke the 08:01, 12:38, 13:52 and 14:43 syncs on 2026-08-10.
+// Retry the transient classes with backoff; genuine errors (401 bad token, 409
+// path not found) still fail fast, because retrying those is pointless.
+const RPC_TRIES = 5;
 async function rpc(tok, endpoint, body) {
-  const r = await fetch("https://api.dropboxapi.com/2/" + endpoint, {
-    method: "POST",
-    headers: { Authorization: "Bearer " + tok, "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
-  if (!r.ok) throw new Error(endpoint + " " + r.status + " " + (await r.text()));
-  return r.json();
+  let last;
+  for (let attempt = 1; attempt <= RPC_TRIES; attempt++) {
+    let r;
+    try {
+      r = await fetch("https://api.dropboxapi.com/2/" + endpoint, {
+        method: "POST",
+        headers: { Authorization: "Bearer " + tok, "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+    } catch (e) {
+      // Network-level failure (DNS, socket reset) — also worth retrying.
+      last = new Error(endpoint + " network error: " + e.message);
+      if (attempt === RPC_TRIES) break;
+      await sleep(backoffMs(attempt));
+      continue;
+    }
+    if (r.ok) return r.json();
+
+    const text = await r.text();
+    last = new Error(endpoint + " " + r.status + " " + text);
+    const retryable = r.status >= 500 || r.status === 429;
+    if (!retryable || attempt === RPC_TRIES) break;
+
+    // Dropbox sends Retry-After on 429; respect it when present.
+    const ra = Number(r.headers.get("retry-after"));
+    const wait = Number.isFinite(ra) && ra > 0 ? ra * 1000 : backoffMs(attempt);
+    console.warn(`  ${endpoint} ${r.status} — retry ${attempt}/${RPC_TRIES - 1} in ${Math.round(wait / 1000)}s`);
+    await sleep(wait);
+  }
+  throw last;
 }
+function backoffMs(attempt) { return Math.min(30000, 1000 * 2 ** (attempt - 1)); }
+function sleep(ms) { return new Promise((r) => setTimeout(r, ms)); }
 
 // Create (or fetch the existing) direct download link for ONE file, so the portal
 // downloads it straight from Dropbox — nothing large is hosted on GitHub. `id` is
