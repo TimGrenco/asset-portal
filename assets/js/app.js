@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260810b";   // bump with the other asset tokens
+  var LANG_VER = "20260810c";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -1835,15 +1835,22 @@
             .replace("{m}", t.modules.length).replace("{q}", t.quiz.length).replace("{min}", t.minutes)) + "</div>" +
         "</div>" +
       "</div>" +
-      // 1 — Watch
-      '<div class="section-head"><span class="trn-sec-n">1</span><h2>' + tr("Watch") + '</h2></div>' +
-      '<p class="trn-lead">' + icon("info") + " " + tr("Watch the how-to-use and cleaning videos — click a video to play it in the large viewer, or download it.") + "</p>" +
-      videoHubGridHTML(p) +
-      // 2 — Learn
-      '<div class="section-head"><span class="trn-sec-n">2</span><h2>' + tr("Learn") + '</h2></div>' +
-      '<div class="trn-modules">' + modulesHTML + "</div>" +
-      // 3 — Certify
-      '<div class="section-head"><span class="trn-sec-n">3</span><h2>' + tr("Get Certified") + '</h2></div>' +
+      // Steps are numbered from a counter, not hardcoded: a product with no
+      // how-to videos (an accessory like the grinder) skips "Watch" entirely
+      // rather than showing a numbered step with nothing under it, telling the
+      // trainee to click videos that aren't there.
+      (function () {
+        var n = 0;
+        var watch = videoHubGridHTML(p);
+        return (watch
+          ? '<div class="section-head"><span class="trn-sec-n">' + (++n) + '</span><h2>' + tr("Watch") + '</h2></div>' +
+            '<p class="trn-lead">' + icon("info") + " " + tr("Watch the how-to-use and cleaning videos — click a video to play it in the large viewer, or download it.") + "</p>" +
+            watch
+          : "") +
+          '<div class="section-head"><span class="trn-sec-n">' + (++n) + '</span><h2>' + tr("Learn") + '</h2></div>' +
+          '<div class="trn-modules">' + modulesHTML + "</div>" +
+          '<div class="section-head"><span class="trn-sec-n">' + (++n) + '</span><h2>' + tr("Get Certified") + '</h2></div>';
+      })() +
       '<p class="trn-lead">' + icon("info") + " " + tr("Answer all {q} questions. Score {p}% or higher to earn your certificate.").replace("{q}", t.quiz.length).replace("{p}", t.passPct) + "</p>" +
       '<div id="trn-quiz"></div>';
 

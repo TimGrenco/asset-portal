@@ -452,20 +452,20 @@ var PRODUCT_INFO = {
       "Smooth interior reduces friction and buildup",
       "6063 aircraft-grade anodized aluminum",
       "Highest post-grind THC retention in Orange Photonics testing",
+      "Magnetic lid keeps contents secure",
       "Compact profile for pocket and travel",
       "Pairs with G Pen Dash II and Dash+",
     ],
-    productUrl: "https://www.gpen.com/products/g-pen-grinder-3-pc-aluminum",
-    msrp: "$24.95",
-    // From G-Pen-SKU-Details-Template-6.xlsx (rows 7–8). NOTE: that sheet lists
-    // the SAME SKU for the single unit and the 10-pack POP — unlike e.g. Dash II,
-    // whose POP carries a "-Inner Pack" suffix. Recorded as supplied; worth
-    // confirming the POP has its own SKU.
+    msrp: "$19.95",
+    // From G-Pen-SKU-Details-Template-6.xlsx (rows 7–8). The sheet listed the same
+    // SKU for the unit and the 10-pack POP; the official one-sheet shows the POP is
+    // GPA-001-APSC-INNER PACK, so the sheet\'s duplicate was an oversight. MSRP also
+    // comes from the one-sheet ($19.95) — the Shopify draft listing said $24.95.
     sku: "GPA-001-APSC",
     upc: "811736020688",
     fullName: "G PEN GRINDER (3-PC ALUMINUM)",
     pop: true,
-    popSku: "GPA-001-APSC",
+    popSku: "GPA-001-APSC-INNER PACK",
     popUpc: "10811736020685",
     dimensions: "65 × 65 × 31 mm",
     unitWeight: "0.11 kg",
@@ -1083,7 +1083,7 @@ window.PORTAL_TRAINING = {
           "The G Pen Slim is a <strong>3-piece grinder</strong> for flower — not a vaporizer.",
           "Its job is a <strong>consistent grind</strong> that is ideal for vaporization.",
           "Compact enough for <strong>pockets, travel and everyday carry</strong>.",
-          "MSRP <strong>$24.95</strong>.",
+          "MSRP <strong>$19.95</strong>.",
         ],
       },
       {
@@ -1150,9 +1150,9 @@ window.PORTAL_TRAINING = {
         answer: 1,
         why: "It is designed to pair with the G Pen Dash II and G Pen Dash+ dry herb vaporizers." },
       { q: "What is the MSRP of the G Pen Slim 3-Piece Grinder?",
-        choices: ["$14.95", "$24.95", "$39.95", "$49.95"],
+        choices: ["$14.95", "$19.95", "$29.95", "$49.95"],
         answer: 1,
-        why: "The Slim 3-Piece Grinder retails at $24.95." },
+        why: "The Slim 3-Piece Grinder retails at $19.95." },
     ],
   },
   "Melt Hot Knife": {

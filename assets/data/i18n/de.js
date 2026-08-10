@@ -339,7 +339,7 @@ window.PORTAL_I18N.de = {
         "Der G Pen Slim ist ein <strong>3-teiliger Grinder</strong> für Blüten – kein Vaporizer.",
         "Seine Aufgabe: ein <strong>gleichmäßiges Mahlgut</strong>, das sich ideal zum Vaporisieren eignet.",
         "Kompakt genug für <strong>Hosentasche, Reise und den täglichen Gebrauch</strong>.",
-        "UVP <strong>$24.95</strong>."
+        "UVP <strong>$19.95</strong>."
        ]
       },
       {
@@ -472,12 +472,12 @@ window.PORTAL_I18N.de = {
        "q": "Wie hoch ist die UVP des G Pen Slim 3-Piece Grinder?",
        "choices": [
         "$14.95",
-        "$24.95",
-        "$39.95",
+        "$19.95",
+        "$29.95",
         "$49.95"
        ],
        "answer": 1,
-       "why": "Der Slim 3-Piece Grinder ist zu einer UVP von $24.95 erhältlich."
+       "why": "Der Slim 3-Piece Grinder ist zu einer UVP von $19.95 erhältlich."
       }
      ]
     },
@@ -489,7 +489,7 @@ window.PORTAL_I18N.de = {
           "points": [
             "Der Melt ist das <strong>kleinste Hot Knife auf dem Markt</strong> — ein elektrisches <strong>Dab-Werkzeug</strong> mit Keramikspitze für Konzentrate.",
             "Konzipiert für schnelles, sauberes und <strong>rückstandsfreies</strong> Aufnehmen und Dosieren.",
-            "UVP <strong>$24.95</strong>."
+            "UVP <strong>$19.95</strong>."
           ]
         },
         {
@@ -615,11 +615,11 @@ window.PORTAL_I18N.de = {
           "q": "Wie hoch ist die UVP des Melt?",
           "choices": [
             "$12.95",
-            "$24.95",
+            "$19.95",
             "$49.95",
             "$99.95"
           ],
-          "why": "Die UVP des Melt beträgt $24.95."
+          "why": "Die UVP des Melt beträgt $19.95."
         }
       ]
     },
@@ -631,7 +631,7 @@ window.PORTAL_I18N.de = {
           "points": [
             "Der Hydout ist ein kompakter, <strong>diskreter Akku für 510-Kartuschen</strong> mit einer <strong>verborgenen magnetischen Mundstückabdeckung</strong>.",
             "Einstellbare Spannung plus LED-Display für sanfte, individuell anpassbare und unauffällige Sessions.",
-            "UVP <strong>$24.95</strong>."
+            "UVP <strong>$19.95</strong>."
           ]
         },
         {
@@ -903,7 +903,7 @@ window.PORTAL_I18N.de = {
           "q": "Wie lautet die UVP des 510 Original?",
           "choices": [
             "$12.95",
-            "$24.95",
+            "$19.95",
             "$49.95",
             "$9.95"
           ],
@@ -1247,7 +1247,7 @@ window.PORTAL_I18N.de = {
           "points": [
             "Der Hydout ist ein kompakter, <strong>diskreter Akku für 510-Kartuschen</strong> mit einer <strong>verborgenen magnetischen Mundstückabdeckung</strong>.",
             "Einstellbare Spannung plus LED-Display für sanfte, individuell anpassbare und unauffällige Sessions.",
-            "UVP <strong>$24.95</strong>."
+            "UVP <strong>$19.95</strong>."
           ]
         },
         {
@@ -1519,7 +1519,7 @@ window.PORTAL_I18N.de = {
           "q": "Wie hoch ist die UVP des 510 Original?",
           "choices": [
             "$12.95",
-            "$24.95",
+            "$19.95",
             "$49.95",
             "$9.95"
           ],
@@ -1538,6 +1538,7 @@ window.PORTAL_I18N.de = {
       "Glattes Innenleben verringert Reibung und Ablagerungen",
       "Eloxiertes Aluminium 6063 in Luftfahrtqualität",
       "Höchste THC-Retention nach dem Mahlen im Test von Orange Photonics",
+      "Magnetischer Deckel hält den Inhalt sicher",
       "Kompakte Bauform für Hosentasche und Reise",
       "Perfekte Ergänzung zum G Pen Dash II und Dash+"
      ],

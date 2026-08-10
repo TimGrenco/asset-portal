@@ -339,7 +339,7 @@ window.PORTAL_I18N.fr = {
         "Le G Pen Slim est un <strong>grinder 3 parties</strong> pour la fleur — et non un vaporisateur.",
         "Son rôle : offrir une <strong>mouture régulière</strong>, idéale pour la vaporisation.",
         "Assez compact pour la <strong>poche, les déplacements et le quotidien</strong>.",
-        "Prix conseillé : <strong>$24.95</strong>."
+        "Prix conseillé : <strong>$19.95</strong>."
        ]
       },
       {
@@ -472,12 +472,12 @@ window.PORTAL_I18N.fr = {
        "q": "Quel est le prix conseillé du G Pen Slim 3-Piece Grinder ?",
        "choices": [
         "$14.95",
-        "$24.95",
-        "$39.95",
+        "$19.95",
+        "$29.95",
         "$49.95"
        ],
        "answer": 1,
-       "why": "Le Slim 3-Piece Grinder est vendu au prix conseillé de $24.95."
+       "why": "Le Slim 3-Piece Grinder est vendu au prix conseillé de $19.95."
       }
      ]
     },
@@ -489,7 +489,7 @@ window.PORTAL_I18N.fr = {
           "points": [
             "Le Melt est le <strong>plus petit hot knife du marché</strong> — un <strong>outil à dab</strong> électrique à pointe en céramique pour les concentrés.",
             "Conçu pour prélever et déposer rapidement, proprement et <strong>sans aucune salissure</strong>.",
-            "Prix conseillé : <strong>$24.95</strong>."
+            "Prix conseillé : <strong>$19.95</strong>."
           ]
         },
         {
@@ -615,11 +615,11 @@ window.PORTAL_I18N.fr = {
           "q": "Quel est le prix conseillé du Melt ?",
           "choices": [
             "$12.95",
-            "$24.95",
+            "$19.95",
             "$49.95",
             "$99.95"
           ],
-          "why": "Le prix conseillé du Melt est de $24.95."
+          "why": "Le prix conseillé du Melt est de $19.95."
         }
       ]
     },
@@ -1087,7 +1087,7 @@ window.PORTAL_I18N.fr = {
           "q": "Quel est le prix conseillé du 510 Original ?",
           "choices": [
             "$12.95",
-            "$24.95",
+            "$19.95",
             "$49.95",
             "$9.95"
           ],
@@ -1103,7 +1103,7 @@ window.PORTAL_I18N.fr = {
           "points": [
             "Le Hydout est une <strong>batterie pour cartouche 510 discrète</strong> et compacte, dotée d'un <strong>cache d'embout buccal magnétique dissimulé</strong>.",
             "Voltage réglable et écran LED pour des sessions douces, personnalisables et discrètes.",
-            "Prix conseillé : <strong>$24.95</strong>."
+            "Prix conseillé : <strong>$19.95</strong>."
           ]
         },
         {
@@ -1247,7 +1247,7 @@ window.PORTAL_I18N.fr = {
           "points": [
             "Le Hydout est une <strong>batterie pour cartouche 510 discrète</strong> et compacte, dotée d'un <strong>cache-embout magnétique dissimulé</strong>.",
             "Voltage réglable et écran LED pour des sessions douces, personnalisables et discrètes.",
-            "Prix conseillé : <strong>$24.95</strong>."
+            "Prix conseillé : <strong>$19.95</strong>."
           ]
         },
         {
@@ -1519,7 +1519,7 @@ window.PORTAL_I18N.fr = {
           "q": "Quel est le prix conseillé de la 510 Original ?",
           "choices": [
             "$12.95",
-            "$24.95",
+            "$19.95",
             "$49.95",
             "$9.95"
           ],
@@ -1538,6 +1538,7 @@ window.PORTAL_I18N.fr = {
       "Intérieur lisse qui réduit les frottements et les résidus",
       "Aluminium anodisé 6063 de qualité aéronautique",
       "Meilleure rétention de THC après mouture lors des tests Orange Photonics",
+      "Couvercle magnétique qui maintient le contenu en place",
       "Profil compact pour la poche et les déplacements",
       "S'associe aux G Pen Dash II et Dash+"
      ],

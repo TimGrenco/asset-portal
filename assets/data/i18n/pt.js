@@ -341,7 +341,7 @@ window.PORTAL_I18N.pt = {
         "O G Pen Slim é um <strong>grinder de 3 peças</strong> para flor — não é um vaporizador.",
         "A função dele é entregar uma <strong>moagem uniforme</strong>, ideal para vaporização.",
         "Compacto o suficiente para <strong>bolso, viagem e uso no dia a dia</strong>.",
-        "Preço sugerido: <strong>$24.95</strong>."
+        "Preço sugerido: <strong>$19.95</strong>."
        ]
       },
       {
@@ -474,12 +474,12 @@ window.PORTAL_I18N.pt = {
        "q": "Qual é o preço sugerido do G Pen Slim 3-Piece Grinder?",
        "choices": [
         "$14.95",
-        "$24.95",
-        "$39.95",
+        "$19.95",
+        "$29.95",
         "$49.95"
        ],
        "answer": 1,
-       "why": "O Slim 3-Piece Grinder é vendido por $24.95."
+       "why": "O Slim 3-Piece Grinder é vendido por $19.95."
       }
      ]
     },
@@ -847,7 +847,7 @@ window.PORTAL_I18N.pt = {
           "points": [
             "O Melt é a <strong>menor hot knife do mercado</strong> — uma <strong>ferramenta de dab</strong> elétrica com ponta de cerâmica para concentrados.",
             "Projetado para raspar e aplicar concentrado de forma rápida, limpa e <strong>sem sujeira</strong>.",
-            "Preço sugerido <strong>$24.95</strong>."
+            "Preço sugerido <strong>$19.95</strong>."
           ]
         },
         {
@@ -982,12 +982,12 @@ window.PORTAL_I18N.pt = {
           "q": "Qual é o preço sugerido do Melt?",
           "choices": [
             "$12.95",
-            "$24.95",
+            "$19.95",
             "$49.95",
             "$99.95"
           ],
           "answer": 1,
-          "why": "O preço sugerido do Melt é $24.95."
+          "why": "O preço sugerido do Melt é $19.95."
         }
       ]
     },
@@ -1001,7 +1001,7 @@ window.PORTAL_I18N.pt = {
           "points": [
             "O Hydout é uma <strong>bateria discreta para cartuchos 510</strong>, compacta e com <strong>tampa magnética oculta da piteira</strong>.",
             "Voltagem ajustável e visor LED para sessões suaves, personalizáveis e discretas.",
-            "Preço sugerido <strong>$24.95</strong>."
+            "Preço sugerido <strong>$19.95</strong>."
           ]
         },
         {
@@ -1294,7 +1294,7 @@ window.PORTAL_I18N.pt = {
           "q": "Qual é o preço sugerido do 510 Original?",
           "choices": [
             "$12.95",
-            "$24.95",
+            "$19.95",
             "$49.95",
             "$9.95"
           ],
@@ -1313,7 +1313,7 @@ window.PORTAL_I18N.pt = {
           "points": [
             "O Hydout é uma <strong>bateria compacta e discreta para cartuchos 510</strong> com <strong>tampa magnética oculta da piteira</strong>.",
             "Voltagem ajustável e visor LED para sessões suaves, personalizáveis e discretas.",
-            "Preço sugerido: <strong>$24.95</strong>."
+            "Preço sugerido: <strong>$19.95</strong>."
           ]
         },
         {
@@ -1606,7 +1606,7 @@ window.PORTAL_I18N.pt = {
           "q": "Qual é o preço sugerido do 510 Original?",
           "choices": [
             "$12.95",
-            "$24.95",
+            "$19.95",
             "$49.95",
             "$9.95"
           ],
@@ -1626,6 +1626,7 @@ window.PORTAL_I18N.pt = {
       "Interior liso reduz o atrito e o acúmulo",
       "Alumínio anodizado 6063 de grau aeronáutico",
       "Maior retenção de THC após a moagem nos testes da Orange Photonics",
+      "Tampa magnética mantém o conteúdo seguro",
       "Perfil compacto para levar no bolso e em viagens",
       "Combina com o G Pen Dash II e o Dash+"
      ],
