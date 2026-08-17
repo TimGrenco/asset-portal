@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deploy1.outputs.page_url || steps.deployment.outputs.page_url }}
+      url: ${{ steps.deploy1.outputs.page_url || steps.deploy2.outputs.page_url || steps.deploy3.outputs.page_url || steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -121,8 +121,60 @@ jobs:
           fi
       - if: steps.gate.outputs.retry == 'yes'
         run: sleep 30
-      - id: deployment
+      - id: t2
         if: steps.gate.outputs.retry == 'yes'
+        run: echo "start=$(date +%s)" >> "$GITHUB_OUTPUT"
+      - id: deploy2
+        if: steps.gate.outputs.retry == 'yes'
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+        with:
+          timeout: 600000
+      # A Pages 503 ("No server is currently available") can persist for a couple
+      # of minutes, and one 30s retry is not enough to ride it out — on
+      # 2026-08-17 both attempts landed inside the same ~1 minute outage and the
+      # run failed even though nothing was wrong with the site. Back off further
+      # and try twice more before giving up.
+      - id: gate2
+        if: steps.gate.outputs.retry == 'yes'
+        run: |
+          dur=$(( $(date +%s) - ${{ steps.t2.outputs.start }} ))
+          echo "attempt 2 outcome=${{ steps.deploy2.outcome }} after ${dur}s"
+          # Same rule as attempt 1: only a FAST failure is safe to retry. If this
+          # one timed out instead, its deployment is still pending and another
+          # attempt would cancel it.
+          if [ "${{ steps.deploy2.outcome }}" = "failure" ] && [ "$dur" -lt 120 ]; then
+            echo "attempt 2 also failed fast — backing off further"
+            echo "retry=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "retry=no" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.gate2.outputs.retry == 'yes'
+        run: sleep 120
+      - id: t3
+        if: steps.gate2.outputs.retry == 'yes'
+        run: echo "start=$(date +%s)" >> "$GITHUB_OUTPUT"
+      - id: deploy3
+        if: steps.gate2.outputs.retry == 'yes'
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+        with:
+          timeout: 600000
+      - id: gate3
+        if: steps.gate2.outputs.retry == 'yes'
+        run: |
+          dur=$(( $(date +%s) - ${{ steps.t3.outputs.start }} ))
+          echo "attempt 3 outcome=${{ steps.deploy3.outcome }} after ${dur}s"
+          if [ "${{ steps.deploy3.outcome }}" = "failure" ] && [ "$dur" -lt 120 ]; then
+            echo "attempt 3 also failed fast — one last try"
+            echo "retry=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "retry=no" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.gate3.outputs.retry == 'yes'
+        run: sleep 300
+      - id: deployment
+        if: steps.gate3.outputs.retry == 'yes'
         uses: actions/deploy-pages@v4
         with:
           timeout: 600000
