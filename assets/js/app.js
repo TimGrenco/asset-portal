@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260818a";   // bump with the other asset tokens
+  var LANG_VER = "20260818b";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -2496,6 +2496,7 @@
           if (/front/i.test(nm)) n += 2;
           if (/transparent/i.test(nm)) n += 1;
           if (/\bside\b|-side/i.test(nm)) n -= 2; // side angles are secondary
+          if (/\bcopy\b|-copy|_copy/i.test(nm)) n -= 3; // working duplicates, never the hero
           return n;
         }
         return s(b) - s(a);
