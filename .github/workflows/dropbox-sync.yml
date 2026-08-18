@@ -15,6 +15,8 @@ concurrency:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    # A stuck step must never hold the concurrency group for hours again.
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
 
@@ -23,9 +25,40 @@ jobs:
           node-version: "20"
 
       - name: Install thumbnail tools (ffmpeg + poppler + ImageMagick)
+        # Hung indefinitely twice on 2026-08-18 (one run sat here 3+ hours and
+        # blocked every later sync behind the concurrency group). Causes and
+        # guards, in order:
+        #  - no DEBIAN_FRONTEND: apt can block forever on an interactive prompt
+        #  - no timeout: a stalled mirror never returns, and Actions will happily
+        #    wait out the full 6-hour job limit
+        #  - ubuntu-latest already ships ffmpeg and imagemagick, so most of this
+        #    work was unnecessary anyway — only install what is actually missing
+        timeout-minutes: 8
+        env:
+          DEBIAN_FRONTEND: noninteractive
         run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends ffmpeg poppler-utils imagemagick ghostscript librsvg2-bin
+          set -euo pipefail
+          need=""
+          command -v ffmpeg      >/dev/null || need="$need ffmpeg"
+          command -v pdftoppm    >/dev/null || need="$need poppler-utils"
+          command -v convert     >/dev/null || need="$need imagemagick"
+          command -v gs          >/dev/null || need="$need ghostscript"
+          command -v rsvg-convert>/dev/null || need="$need librsvg2-bin"
+          if [ -z "$need" ]; then
+            echo "All thumbnail tools already present — skipping apt."
+          else
+            echo "Installing:$need"
+            for attempt in 1 2 3; do
+              if timeout 150 sudo -E apt-get update -qq \
+                 && timeout 240 sudo -E apt-get install -y -qq --no-install-recommends $need; then
+                echo "apt succeeded on attempt $attempt"; break
+              fi
+              echo "apt attempt $attempt failed or timed out; retrying"
+              sudo rm -f /var/lib/apt/lists/lock /var/cache/apt/archives/lock /var/lib/dpkg/lock-frontend || true
+              [ "$attempt" = 3 ] && { echo "::error::apt failed 3 times"; exit 1; }
+              sleep 15
+            done
+          fi
           # Ubuntu ships ImageMagick with PDF/AI/EPS reading disabled by policy;
           # re-enable read so white AI/PDF logos can be composited onto gray.
           sudo sed -i -E 's/rights="none" pattern="(PDF|EPS|PS|AI)"/rights="read|write" pattern="\1"/g' /etc/ImageMagick-6/policy.xml || true
