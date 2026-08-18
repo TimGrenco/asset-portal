@@ -757,6 +757,39 @@ window.PORTAL_COLORWAYS = {
     var img = pops.filter(function (x) { return re.test(x.name) && x.thumb; })[0];
     if (img) { if (!p.info.popImg) { p.info.popImg = img.thumb; p.info.popImgDl = img.url; } p.info.pop = true; }
   });
+
+  // Fallback: a POP shot that lives in the product's OWN Dropbox folders rather
+  // than the central POP Displays library. packagingHTML only looks in a folder
+  // literally called "Packaging", so a POP image filed anywhere else (the
+  // Grinder's arrived under "Documents") would never reach the packaging card.
+  // Prefer a front-on, non-"copy" shot, matching the -Front-POP convention the
+  // central library uses. Resolved at load time by filename, so it survives the
+  // content-hash thumbnails changing on every re-sync.
+  window.PORTAL_PRODUCTS.forEach(function (p) {
+    if (!p.info || p.info.popImg || !p.folders) return;
+    var own = [];
+    Object.keys(p.folders).forEach(function (f) {
+      if (f === "Packaging") return;                     // already handled natively
+      (p.folders[f] || []).forEach(function (x) {
+        if (x && x.thumb && /pop/i.test(x.name || "")) own.push(x);
+      });
+    });
+    if (!own.length) return;
+    own.sort(function (a, b) {
+      function score(x) {
+        var n = 0, nm = x.name || "";
+        if (/front/i.test(nm)) n += 3;
+        if (/transparent/i.test(nm)) n += 2;
+        if (/copy/i.test(nm)) n -= 3;                    // working files, not finals
+        if (/\bside\b|-side/i.test(nm)) n -= 2;
+        return n;
+      }
+      return score(b) - score(a);
+    });
+    p.info.popImg = own[0].thumb;
+    p.info.popImgDl = own[0].url;
+    p.info.pop = true;
+  });
 })();
 
 /* =============================================================================
