@@ -1128,6 +1128,38 @@ window.PORTAL_SYNCED = {
           "url": "https://www.dropbox.com/scl/fi/0g8rhtfuefqhcw1pjv58k/G-Pen-One-Sheet-Grinder.pdf?rlkey=gx3khpjdccf2019zwny6100jl&dl=0",
           "thumb": "assets/synced/slim-3-piece-grinder/ca59d6415582030ed23cb5f3a2789ea3d67e022e3c1c936fe2e924b80fe45517.jpg",
           "file": null
+        },
+        {
+          "name": "grinder pop 2",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/wsaogd2xpilpfxq33sm09/grinder-pop-2.png?rlkey=xxlem28lr3sdsrmsbtpippp2z&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/fadb5f8c7f97774fb2f6a2cdf9576ea9e44dd5e7af8b3c5078e8fd67c3f9884c.jpg",
+          "file": null
+        },
+        {
+          "name": "grinder pop front 2",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/eew1tcwgsaq58943npofo/grinder-pop-front-2.png?rlkey=92am7ebwu04ew6j2zljs33hnt&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/1d36eb3de3fe085fd7d75671701db97d24e1a7741e0af7488ba2d8d93d75dc29.jpg",
+          "file": null
+        },
+        {
+          "name": "grinder pop front copy",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/iiy4gotcy1zeaxtt3soh0/grinder-pop-front-copy.png?rlkey=4g1hnsw3rt4t2f49hqihig42w&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/8aeb846648f77687f31378ea2aff44dad5f018ed4376ef7c02e1ff14987cf0d6.jpg",
+          "file": null
+        },
+        {
+          "name": "grinder pop",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/l3qnenzj29tcghoh0irbc/grinder-pop.png?rlkey=88nr3tu9xdl7oen91stooz38t&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/b1538f3f5f042e73d3fcf7626d9c93c116d6d22c3f6d011c494b74d749b3c600.jpg",
+          "file": null
         }
       ]
     },
