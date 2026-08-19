@@ -25,6 +25,14 @@ jobs:
           node-version: "20"
 
       - name: Install thumbnail tools (ffmpeg + poppler + ImageMagick)
+        # OPTIONAL — every use of these binaries in scripts/dropbox-sync.mjs is
+        # wrapped in try/catch and degrades via warnOnce(), and raster thumbnails
+        # come from Dropbox's own API, not from here. Without them the sync still
+        # completes; only video/PDF/vector thumbs are skipped, and a later run
+        # backfills them. So this step must NEVER fail the job — on 2026-08-19 a
+        # stalled apt mirror did exactly that and the Sync step was skipped
+        # entirely, publishing nothing.
+        continue-on-error: true
         # Hung indefinitely twice on 2026-08-18 (one run sat here 3+ hours and
         # blocked every later sync behind the concurrency group). Causes and
         # guards, in order:
@@ -48,14 +56,22 @@ jobs:
             echo "All thumbnail tools already present — skipping apt."
           else
             echo "Installing:$need"
+            # Fast path: the runner image already carries a package index, and it
+            # is `apt-get update` that has been stalling — so try the install on
+            # its own first and only refresh the index if that fails.
+            if timeout 240 sudo -E apt-get install -y -qq --no-install-recommends $need; then
+              echo "installed without an index refresh"
+              need=""
+            fi
             for attempt in 1 2 3; do
+              [ -z "$need" ] && break
               if timeout 150 sudo -E apt-get update -qq \
                  && timeout 240 sudo -E apt-get install -y -qq --no-install-recommends $need; then
                 echo "apt succeeded on attempt $attempt"; break
               fi
               echo "apt attempt $attempt failed or timed out; retrying"
               sudo rm -f /var/lib/apt/lists/lock /var/cache/apt/archives/lock /var/lib/dpkg/lock-frontend || true
-              [ "$attempt" = 3 ] && { echo "::error::apt failed 3 times"; exit 1; }
+              [ "$attempt" = 3 ] && { echo "::warning::apt failed 3 times — continuing without these tools; video/PDF/vector thumbnails will be skipped this run"; exit 0; }
               sleep 15
             done
           fi
