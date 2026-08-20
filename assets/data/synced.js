@@ -805,6 +805,14 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "Dash-POPside-No-Price",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/403kff6flxho6b0l74x64/Dash-POPside-No-Price.png?rlkey=l26i7xeq1rxsh1qzroxcgzyjb&dl=0",
+          "thumb": "assets/synced/dash-ii/e106c3326a5e09b9104dd8f624f0aaed79c14c9e5c7db5258c1fde6b3524d513.jpg",
+          "file": null
+        },
+        {
           "name": "Dash-POPside",
           "type": "image",
           "format": "JPG",
@@ -7405,6 +7413,22 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "Melt-Front-POP-Transparent-No-Price",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/96nmcvzs3nj2dsq4gej37/Melt-Front-POP-Transparent-No-Price.jpg?rlkey=sam252u9zfb8f9me9dstoky9m&dl=0",
+          "thumb": "assets/synced/melt/9e421df770566eb33235e7f26542a2865b3e87947e1e042fe5bc9db6a957096d.jpg",
+          "file": null
+        },
+        {
+          "name": "Melt-Front-POP-Transparent-No-Price",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/3wbfmgfufrxsyhzk2q563/Melt-Front-POP-Transparent-No-Price.png?rlkey=d15tvkbm5qjvvs1aem68l3tiq&dl=0",
+          "thumb": "assets/synced/melt/7123883d76e4e23189bd628697eafaf5c4d39e56a3ae6419f9bc6cc98985ab09.jpg",
+          "file": null
+        },
+        {
           "name": "Melt-Front-POP-Transparent",
           "type": "image",
           "format": "JPG",
@@ -7426,6 +7450,22 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fi/641b8pjabxy9b3ae22b5o/melt-front-transparent_1.png?rlkey=plmzh2jxq03ikxtu7cxi13dcv&dl=0",
           "thumb": "assets/synced/melt/0bffe63b0c121a7238456aa76cfb6de723634429ef4b0d6c02d59fa3ad79c1ca.jpg",
+          "file": null
+        },
+        {
+          "name": "Melt-POP-Transparent-No-Price",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/gmio7wafxk7qb86vw4yzl/Melt-POP-Transparent-No-Price.jpg?rlkey=ip3jcruqdx4g4e8az0ovrtd8c&dl=0",
+          "thumb": "assets/synced/melt/a74671c99ff36ec839f74e7439c404774b9beee18933f92531afda56330f3351.jpg",
+          "file": null
+        },
+        {
+          "name": "Melt-POP-Transparent-No-Price",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/ohotba4a5e2l254fy4e3e/Melt-POP-Transparent-No-Price.png?rlkey=d4rg04ecydee25640kvo8cv2j&dl=0",
+          "thumb": "assets/synced/melt/5667a518307cb603712570c0fbdb13186309c993454032ee7a0d4728cd061ed9.jpg",
           "file": null
         },
         {
