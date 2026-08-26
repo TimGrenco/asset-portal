@@ -124,8 +124,7 @@ window.PORTAL_PRODUCTS = [
     // only by its direct URL (#gpen/micro-ii) so the page can be reviewed
     // internally before launch. Remove the flag and add it to PORTAL_CURRENT to
     // publish. Awaiting: Dropbox folder, cover image, marketing copy, MSRP.
-    // TODO(confirm): category/type are inferred from the Micro+ lineage and the
-    // 8543.70.9940 HTS code (an electrical vaporizer) — verify before launch.
+    // Category/type confirmed by the owner 2026-08-19: Concentrate Vaporizer.
     name: "Micro II", brand: "gpen", category: "Concentrate", type: "Concentrate Vaporizer",
     unlisted: true,
     added: "2026-08-19",
