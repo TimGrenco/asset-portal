@@ -467,7 +467,7 @@ var PRODUCT_INFO = {
     // product's own Dropbox Documents folder ("G Pen - One Sheet - Micro II"),
     // which is the authority the Grinder's price was corrected against.
     description:
-      "A compact concentrate vaporizer featuring three precision heat settings, adjustable airflow, a digital display, ceramic heating, and up to 120 sessions per charge.",
+      "A compact concentrate vaporizer featuring three heat settings, adjustable airflow, a digital display, ceramic heating, and up to 120 sessions per charge.",
     // Long copy is the approved Shopify description — retailers copy it verbatim
     // into their own listings, so keep it in sync with gpen.com rather than
     // paraphrasing it here.
@@ -480,7 +480,7 @@ var PRODUCT_INFO = {
       "More than a decade after the original microG helped define portable concentrate vaporization, the Micro II brings the Micro experience into a new generation \u2014 all for $49.95.",
     ],
     highlights: [
-      "Three precision heat settings \u2014 LOW ~295\u00B0F, MEDIUM ~340\u00B0F, HIGH ~395\u00B0F",
+      "Three heat settings \u2014 LOW ~295\u00B0F, MEDIUM ~340\u00B0F, HIGH ~395\u00B0F",
       "5-second heat-up",
       "Session Mode (15s) + Manual Heating (up to 20s)",
       "Adjustable airflow \u2014 open to restricted",
@@ -526,7 +526,7 @@ var PRODUCT_INFO = {
     // approved source so retail staff and gpen.com never disagree.
     faqs: [
       ["What is the G Pen Micro II?", [
-        "The G Pen Micro II is a portable concentrate vaporizer featuring a ceramic atomizer, three precision heat settings, adjustable airflow, automatic and manual heating modes, a digital display, haptic feedback, and a 1,250mAh rechargeable battery.",
+        "The G Pen Micro II is a portable concentrate vaporizer featuring a ceramic atomizer, three heat settings, adjustable airflow, automatic and manual heating modes, a digital display, haptic feedback, and a 1,250mAh rechargeable battery.",
       ]],
       ["What material is the G Pen Micro II designed for?", [
         "The G Pen Micro II is designed for use with concentrates.",
@@ -621,7 +621,7 @@ var PRODUCT_INFO = {
         "The Micro II measures approximately 98.6 \u00d7 24 \u00d7 32 mm and weighs 86g, making it compact enough for easy everyday portability.",
       ]],
       ["How is the Micro II different from previous G Pen Micro devices?", [
-        "The Micro II represents the newest evolution of the G Pen Micro concentrate platform, which began with the original microG in 2013. It introduces a 1,250mAh battery, digital display, three precision temperature settings, adjustable airflow, automatic and manual heating, USB-C fast charging, haptic feedback, and compatibility with optional water-filtration accessories.",
+        "The Micro II represents the newest evolution of the G Pen Micro concentrate platform, which began with the original microG in 2013. It introduces a 1,250mAh battery, digital display, three temperature settings, adjustable airflow, automatic and manual heating, USB-C fast charging, haptic feedback, and compatibility with optional water-filtration accessories.",
       ]],
     ],
     msrp: "$49.95",
