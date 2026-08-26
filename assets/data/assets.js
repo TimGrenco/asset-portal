@@ -132,7 +132,7 @@ window.PORTAL_PRODUCTS = [
     // Transparent PNG built from the synced "Micro 2-front" shot (background
     // removed by edge flood-fill, preserving the lit display and the G logo),
     // so the tile matches the other products instead of sitting on white.
-    cover: "assets/img/micro-ii.png?v=20260826a",
+    cover: "assets/img/micro-ii.png?v=20260826d",
     // Durable rlkey link (expiring st= token stripped).
     dropbox: "https://www.dropbox.com/scl/fo/spharop9yvc7bnk5g3w4z/AKUC7ALBupRa8e039bvfNr4?rlkey=5560kr7brds1hco7tgeiafsbx&dl=0",
     folders: {},   // real files + thumbnails come from synced.js (Dropbox sync)
