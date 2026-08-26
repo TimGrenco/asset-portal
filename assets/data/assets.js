@@ -855,7 +855,6 @@ var PRODUCT_BOX = {
       "G Pen Micro II Battery",
       "G Pen Micro II Ceramic Tank",
       "Silicone Mouthpiece",
-      "*USB-C Charging Cable Not Included",
       "*Micro II Sidecar Sold Separately",
       "*Micro II 14mm Rig Adapter Sold Separately",
     ],
