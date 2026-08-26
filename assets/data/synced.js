@@ -910,6 +910,428 @@ window.PORTAL_SYNCED = {
       "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/3rc18jy9dpk2vdzwm0vzd/AJ-eyktmRpU3jcZaN3d8KY8?rlkey=ldbjknlj2qyo8danjifpabcmx&dl=1"
     }
   },
+  "Micro II": {
+    "folders": {
+      "Product Photos": [
+        {
+          "name": "Micro 2-34",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/d6g1k9nh9dcnafh8t5rw8/Micro-2-34.png?rlkey=4iz8lrish85epzbp108078wij&dl=0",
+          "thumb": "assets/synced/micro-ii/f81299e99c9c96776563324c16a0aa848eca0e88f0bc3b83b62ccb1902e3d0e6.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro 2-airflow",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/dmfmlgivpntjc8du9jbyf/Micro-2-airflow.png?rlkey=y1hoesuj2kgntvu1ipuwa47zt&dl=0",
+          "thumb": "assets/synced/micro-ii/d35d55b9a71b6e00328b5ad0e7adaaa137d9803d042df6e6f83062881acc67b0.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro 2-Battery",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/3u06s5hi281qykwt0x3lr/Micro-2-Battery.png?rlkey=8o3hx31og4ixo1am1qelwpr4q&dl=0",
+          "thumb": "assets/synced/micro-ii/4db82681eb9bdfee70f1558b28c66ea6935814dd392a4a033ffedfd746392e80.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro 2-front",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/cb8dj0d62ullb43rwamzb/Micro-2-front.png?rlkey=7zlclspgjwhazfuq5nfg4hx76&dl=0",
+          "thumb": "assets/synced/micro-ii/28bd0687239f436b0a8ff882e09c93bd1f3db211191a2d6dba449409b2ce5e04.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro 2-Heating",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/qsfzcphynhs6f1cij93ak/Micro-2-Heating.png?rlkey=e7b1h65bhk67ooerl3p4vrbqi&dl=0",
+          "thumb": "assets/synced/micro-ii/98b558fdd0b5cb7a8a73f935e277e3e881e6c13b9030de599066d0d6b152270c.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro 2-Mouthpiece",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/vy3l1gft2j4xh89layb92/Micro-2-Mouthpiece.png?rlkey=lc6xb3ufgt7coewvejd56mjqj&dl=0",
+          "thumb": "assets/synced/micro-ii/3e4ded3ffc654b5177892b897bb98af54b16f10cfab49cf521daa9cb024aa63c.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro 2-rigadapter_34",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/yb6mkh5misv2fk37prrmc/Micro-2-rigadapter_34.png?rlkey=hcmdjizydzufsoxzdh2x17tap&dl=0",
+          "thumb": "assets/synced/micro-ii/f8cb421efff7f88e22221297944d5a044353c69d7f77c905e19a1e46d5131065.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro 2-rigadapter_connected",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/4n6djc7qxn5in3e48i40f/Micro-2-rigadapter_connected.png?rlkey=vz25wzmuoh8q6ip7fngvdsfwh&dl=0",
+          "thumb": "assets/synced/micro-ii/219eff9e5bfa4a2309af2a67df55d9c1d494496c05af1c8e8cc2bce452a83161.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro 2-rigadapter_side",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/7twzyft6o41w4bmat1531/Micro-2-rigadapter_side.png?rlkey=pdp0ib1v6zz4kaya4e50cikwc&dl=0",
+          "thumb": "assets/synced/micro-ii/4ab6469d4d9468aea1af6e656ca939568ccfe57798f8f20f9ce7a72c6e99e2b9.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro 2-side",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/1me4csg9alpn4f61y65ma/Micro-2-side.png?rlkey=1yqbwfj4and4c72iy6nmh8d1q&dl=0",
+          "thumb": "assets/synced/micro-ii/87760e9a8bb2319f58760a13fa13d83ae5e39380b42b2aa9f452274fa67af614.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro 2-sidecar_connected",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/9ugjbzmayps75yygl07fg/Micro-2-sidecar_connected.png?rlkey=32ohp88nua0q6w34on66vrn7s&dl=0",
+          "thumb": "assets/synced/micro-ii/96d76daf4eb6afdb6bca22d329606f9ca32795a79de7507c70d0b90bedcf693f.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro 2-sidecar",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/lsgtsdmn78kjizykivazo/Micro-2-sidecar.png?rlkey=mfwmpav9g3v0mzj73ibt9yyer&dl=0",
+          "thumb": "assets/synced/micro-ii/582d775e1e5f8c0347a18dde50af6fcb52eabe6615fc3be24182f51999c4e43b.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro 2-Tank2",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/wn965bhmb1b1h5fxa801v/Micro-2-Tank2.png?rlkey=gn1ciuc1b0gf5k9h04lg5r7i8&dl=0",
+          "thumb": "assets/synced/micro-ii/425a8c85e95740fb3a29b64f0f8d78f24f5a3c84f62270988fe3da68d280d2e4.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro2_thumb_01",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/o132ode4gqkypkfrrlv2l/Micro2_thumb_01.jpg?rlkey=jhuyay10rs3u1w43vsxztfb9t&dl=0",
+          "thumb": "assets/synced/micro-ii/ff633e753ede84d5f9a40bed51020b9896a2c08a9b48a2f18a62a1a12fa2824c.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro2_thumb_01",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/2bbaduvfezt4c0t4yf719/Micro2_thumb_01.png?rlkey=e6mh28tdu68tfajscf6t673pj&dl=0",
+          "thumb": "assets/synced/micro-ii/5fd70654d82bd468f80940406c1dd24824fe620c4325c6c96b82d390dfa7a5e5.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro2_thumb_02",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/5m604gpi1hbqq909h4acb/Micro2_thumb_02.jpg?rlkey=2waij8pt2c2ycjdt54hcf9hb2&dl=0",
+          "thumb": "assets/synced/micro-ii/83c1502e53f69dbf427a174c88f27ac388aa0dfbf4fca81ce09559104c72d52a.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro2_thumb_03",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/p096hjrkkga472xm9v4p0/Micro2_thumb_03.jpg?rlkey=hsvh52h5yqswta0foh9dz3vw8&dl=0",
+          "thumb": "assets/synced/micro-ii/be4d507a9096f02f895f6daaf5867bbe2611a323661d4d33a1210107261ef9e9.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro2_thumb_04",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/zi6cmr6u1g8nh9n33zyfp/Micro2_thumb_04.jpg?rlkey=dpwycy4a71ejhybj3qqavimln&dl=0",
+          "thumb": "assets/synced/micro-ii/343978e218c800c4838f17687d5c60a680c63489d0aa1645f7dda1b374d0bb7c.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro2_thumb_05",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/hy6leh0fte7nluowdqj6x/Micro2_thumb_05.jpg?rlkey=56yjdyet7u55y6y1bvi83wnu8&dl=0",
+          "thumb": "assets/synced/micro-ii/9351747bce546a94c7179635e2906101ce79c6df6e2b82617bf089bd34c3a7a6.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro2_thumb_06",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/wmsfyijwi349yz9mfte21/Micro2_thumb_06.jpg?rlkey=rllom25c81045rvcmdc5j8hn3&dl=0",
+          "thumb": "assets/synced/micro-ii/4243a1315bee56d04749c9882b468df1e478f180468c3230c5f2fb6ed2cad3c2.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro2_thumb_07",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/ljt1s6kzk8fezojdawkkd/Micro2_thumb_07.jpg?rlkey=mgbx86zej5rnodvdrl6e3ez2u&dl=0",
+          "thumb": "assets/synced/micro-ii/02da45e86778e15d33055cd13096a21d7a71290d8c10ffe77b583fb42830830f.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro2_thumb_08",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/zioktliugpur3umgte34n/Micro2_thumb_08.jpg?rlkey=orueeo8pxr0fbptul9v06ild5&dl=0",
+          "thumb": "assets/synced/micro-ii/55045f7f369a1c9414e5051c8c8099a9d6427358330c0e0b000c9d00070731ab.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro2mouthpiece_thumb_014",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/9cl3dyg2s3v6bphq9s6cl/Micro2mouthpiece_thumb_014.jpg?rlkey=r2baaojpqvjaxkx73n0db723f&dl=0",
+          "thumb": "assets/synced/micro-ii/05b30bb94b2a178784653c46b061aba6a240c2a095f9ccb8caa3b6aa120003a4.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro2rigattachment_012",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/vssr0utjs7qol4uka4naf/Micro2rigattachment_012.jpg?rlkey=8gmv7lhc903i0cqpgild9tpad&dl=0",
+          "thumb": "assets/synced/micro-ii/9cb27f986a4d088f91d31d0306b1e5562ea0e566a4330ae3889eacd9c97617f0.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro2rigattachment_013",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/s2ml421agmx9p4g3g8sj3/Micro2rigattachment_013.jpg?rlkey=83ncl2zd478xmaqas2slxyi2k&dl=0",
+          "thumb": "assets/synced/micro-ii/6741e851b7b4f23c1429f3d9ca9a97d42517025a7205e5491272dc85ed736a83.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro2rigattachment_017",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/r2hzswgi68p4j12xb75dz/Micro2rigattachment_017.png?rlkey=2u41d5qjp0w83kubvgqcv567t&dl=0",
+          "thumb": "assets/synced/micro-ii/739ecc196846808c60eff49a6e3e8f69db43e4afcdb4a0e3320bf13c01fb0209.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro2rigattachment_thumb_016",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/k0kao41othzzey68kiw7k/Micro2rigattachment_thumb_016.jpg?rlkey=oh1brn6eqgrd5s2t47tneobvh&dl=0",
+          "thumb": "assets/synced/micro-ii/2960b012c1e06bb23249aaa68a29f0ef7284606075a3122a4187452106bf318d.jpg",
+          "file": null
+        },
+        {
+          "name": "micro2sidecar_thumb_09",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/ml26xklk9izd752eo7zhg/micro2sidecar_thumb_09.jpg?rlkey=mxnbta2bosceqrcmo35gabvim&dl=0",
+          "thumb": "assets/synced/micro-ii/bedf16733f76e998aa2c5cb361e89838bd7298d9b47aeb1d618ddf81e0cb8def.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro2sidecar_thumb_010",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/kqxfnlhdq0go07pcg34wb/Micro2sidecar_thumb_010.jpg?rlkey=x294h33w4qlwcnmcedgjmx9ls&dl=0",
+          "thumb": "assets/synced/micro-ii/aaee016d1f447f3a419df3ecaafcff8bb37585af89f8a7668c0e9fe02b819583.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro2sidecar_thumb_011",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/b4ic1mf38om0nskcd4mdg/Micro2sidecar_thumb_011.jpg?rlkey=py8ltwag4ba33jelmmo95p11k&dl=0",
+          "thumb": "assets/synced/micro-ii/232175df1cf001f9ef92b91705a5c744a875f3f8613852b8f8a0c46d909b643c.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro2sidecar_thumb_018",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/vj0r1fh2qsb1g3iln58xh/Micro2sidecar_thumb_018.jpg?rlkey=7gnfai6jzj3rb3esdgnz6t26q&dl=0",
+          "thumb": "assets/synced/micro-ii/34a07d4535a6d9510963c1523e7b5cb78af0ee6c17882de2ca660facbbe0f445.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro2tank_thumb_015",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/fmj8spfrnkk8zie14qr8u/Micro2tank_thumb_015.jpg?rlkey=xwfwqupix7muwlkhqbwl6wd4i&dl=0",
+          "thumb": "assets/synced/micro-ii/d02e96f441c00cb275b47eccd92f4fbc85c6571de4f9b75c14f98ca378ab517f.jpg",
+          "file": null
+        }
+      ],
+      "Lifestyle Photos": [
+        {
+          "name": "_GSH6782",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/ds4jafcbbgprckntcou6x/_GSH6782.jpg?rlkey=adik17sojif4hgfd147gml60w&dl=0",
+          "thumb": "assets/synced/micro-ii/33ff612cae81a50874772064bcde2bd4917f59d6398c11177b94871b133df7da.jpg",
+          "file": null
+        },
+        {
+          "name": "_STZ5512",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/2o6w4haeor6e60yfkmlg6/_STZ5512.jpg?rlkey=yyisem0hvgelpzdqu1hxf0ay9&dl=0",
+          "thumb": "assets/synced/micro-ii/2b6a4d5eea844a57511f359c005a9a9ae27d9c4699aa1a6c830df8ffcc08f8aa.jpg",
+          "file": null
+        },
+        {
+          "name": "_STZ5514",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/gi26ln8k5g5j7ytuocnfv/_STZ5514.jpg?rlkey=dly78tq01xnbw0e6lv55kmg4m&dl=0",
+          "thumb": "assets/synced/micro-ii/22dcc08cd82154e75b321221345c2d776904cf749d918d3464f75cf62a5f864f.jpg",
+          "file": null
+        }
+      ],
+      "Social Videos": [
+        {
+          "name": "Micro II Product Page",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/bw3tb7z1x5wl8v2kz7mke/Micro-II-Product-Page.mp4?rlkey=wtu2qhmpn587r2jio0gpc3qto&dl=0",
+          "thumb": "assets/synced/micro-ii/9c89ad5afc0b2ad5c8c94436b82afbab07a4b5c362a9ae104857b9eb5eb57d22.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro II Spin on white",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/irva19jehzdmx43xpuer9/Micro-II-Spin-on-white.mp4?rlkey=5jn1k1abl7c07lcxidmbyvw7u&dl=0",
+          "thumb": "assets/synced/micro-ii/a119b324abb3216b7aacb0d9d0f5a6e293307f0e594715fcc2d4059f258f826d.jpg",
+          "file": null
+        }
+      ],
+      "Packaging": [
+        {
+          "name": "Micro-II-Packaging-2",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/miqmh0kxqzzlgps3pg1sr/Micro-II-Packaging-2.png?rlkey=e2hz3ccim8nnvql7zi1djtts7&dl=0",
+          "thumb": "assets/synced/micro-ii/f76238d0c925499cf1b63f29dec5ad116f7a7face779cb4d2a85b27e77450ba3.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro-II-Packaging-front-2",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/hvw14m6qe6fsttx8txszr/Micro-II-Packaging-front-2.png?rlkey=0jqd22p0ul9v45tkdfl1qt0f9&dl=0",
+          "thumb": "assets/synced/micro-ii/80e33f3dcbbf76ecb45497ba8e905cc754968c4e70477ccdf6cff278a118beae.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro-II-Packaging-front",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/kyezmidq23ghpfebrfovo/Micro-II-Packaging-front.png?rlkey=qxd6zhqhequ3evdmowni4segp&dl=0",
+          "thumb": "assets/synced/micro-ii/a0518a8afe9fab3baab82d255765055744e7ab8509ae36aefbc97343392a044a.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro-II-Packaging",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/5y4k7uwzyi8lyb01msi68/Micro-II-Packaging.png?rlkey=r6y66j0ehw62kc15ipn6d8yvh&dl=0",
+          "thumb": "assets/synced/micro-ii/f9c67dd586c724d3158bbf314d0bd814559f90ed4f4a7af96e9a143021775cae.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro-II-POP-front",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/ag1tc0jpunw9iv8nwd0c7/Micro-II-POP-front.png?rlkey=bs2mjmzdls2ctrh3313to03je&dl=0",
+          "thumb": "assets/synced/micro-ii/31265288dfbd38d5ce09cd1b4b252eddd6058207700075dbb8fff90aec49b51a.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro-II-Pop-No-Price",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/glpcwkigrq6ynsmqq0ej1/Micro-II-Pop-No-Price.jpg?rlkey=q3d18l13ry9bmknbiugj0swn6&dl=0",
+          "thumb": "assets/synced/micro-ii/ba113942e7ac8b476f91e196977edc74d99c8ee1a1f0ed4bead29fc8dbcfef0e.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro-II-Pop-No-Price",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/r7ey17zskbgzoy6gc8r09/Micro-II-Pop-No-Price.png?rlkey=8tixmj6fgrpk3n8ealv4c0nih&dl=0",
+          "thumb": "assets/synced/micro-ii/9c93a117e9266fd2aa5c3ba2d70f37e8fc8807630968b9674ef124c7493a382c.jpg",
+          "file": null
+        }
+      ],
+      "Documents": [
+        {
+          "name": "20260714_GPEN_Micro2_Onesheet_Attachments_C",
+          "type": "file",
+          "format": "PSD",
+          "url": "https://www.dropbox.com/scl/fi/z2dm9cmfnur93nsi924t8/20260714_GPEN_Micro2_Onesheet_Attachments_C.psd?rlkey=mm9v7zem883ukask5jbj8o4ib&dl=0",
+          "thumb": null,
+          "file": null
+        },
+        {
+          "name": "20260730_GPen_Micro2_Manual",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/00ehfws4oltsflf7tzrhx/20260730_GPen_Micro2_Manual.pdf?rlkey=r0hsgju2qw9m4h5k0ugg33fnt&dl=0",
+          "thumb": "assets/synced/micro-ii/12609d503369f22ac3b85a14547cd4d091a49e20608f8e91d56fa63f64c5a4be.jpg",
+          "file": null
+        },
+        {
+          "name": "G Pen - One Sheet - Micro II - CAD",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/jwmfxvwox6649oarom5ef/G-Pen-One-Sheet-Micro-II-CAD.pdf?rlkey=56sc84wp31dxt3y45awh3x1kz&dl=0",
+          "thumb": "assets/synced/micro-ii/53025880cd8d725ecdb6760446a5d685da6b6bbac6e40bdc5db5bafc502d58b7.jpg",
+          "file": null
+        },
+        {
+          "name": "G Pen - One Sheet - Micro II - EU",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/kxf3ts5i1wvjojnv990so/G-Pen-One-Sheet-Micro-II-EU.pdf?rlkey=kpb3umpujnz2efj9cb2mctxf6&dl=0",
+          "thumb": "assets/synced/micro-ii/f7d8b5fd0e1d1ec8768be5733780a224bb1b2ae9d7ad7071e839136d8718df4e.jpg",
+          "file": null
+        },
+        {
+          "name": "G Pen - One Sheet - Micro II - UK",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/dfmvv005jhtg1hemgxg9x/G-Pen-One-Sheet-Micro-II-UK.pdf?rlkey=jmll0uw6ibi9fzcaenv4ktxz7&dl=0",
+          "thumb": "assets/synced/micro-ii/acba51d4d31046ff9353902f7786a71220a5c6aa92b22c4f465f1eef276670b7.jpg",
+          "file": null
+        },
+        {
+          "name": "G Pen - One Sheet - Micro II",
+          "type": "pdf",
+          "format": "PDF",
+          "url": "https://www.dropbox.com/scl/fi/y1erzrarzw60ui6bid13g/G-Pen-One-Sheet-Micro-II.pdf?rlkey=5ox83egr6x6pulkpk4pn3zaqx&dl=0",
+          "thumb": "assets/synced/micro-ii/6236be262a2c1476d13204c306c1357f4f375b9c49a8f0dd48b6aca2402d9c2b.jpg",
+          "file": null
+        }
+      ]
+    },
+    "dropbox": "https://www.dropbox.com/scl/fo/spharop9yvc7bnk5g3w4z/AKUC7ALBupRa8e039bvfNr4?rlkey=5560kr7brds1hco7tgeiafsbx&dl=1",
+    "folderLinks": {
+      "Product Photos": "https://www.dropbox.com/scl/fo/4kjoxbzjujqr1j0bkhepl/ALj-3oSfvwACdWDr5rQyPHI?rlkey=z3vsqyyzzp4rdd02twju8b2in&dl=1",
+      "Lifestyle Photos": "https://www.dropbox.com/scl/fo/6yv3ziksupvhegwma2s1s/AOiFj76XyMVBhXAn9dPjzic?rlkey=d3thbzp1xoc9qc26gfju4lvvt&dl=1",
+      "Social Videos": "https://www.dropbox.com/scl/fo/mdmxzunt7ip3njuaf3v0n/AMD-6YyOwyy0lpAYHY5nNII?rlkey=uc8cd3wlj2v1v3q6dijwno30i&dl=1",
+      "Packaging": "https://www.dropbox.com/scl/fo/90lgonbxj7kjcxk1im3qx/AAffdm5A9PYCiG_-ASUssP4?rlkey=f6jcrqo5feghryxdzxy1uu74y&dl=1",
+      "Documents": "https://www.dropbox.com/scl/fo/hbm79asz0sz5voe6e9nsi/AFYenSbkUK4Rat7-wFI0T9c?rlkey=ozc1dplsp1bdcam3mvz9m9d0l&dl=1"
+    }
+  },
   "Slim 3-Piece Grinder": {
     "folders": {
       "Product Photos": [
