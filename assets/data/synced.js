@@ -381,6 +381,14 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "dash2_thumb_10",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/pf6vjm674fdv12cmfazry/dash2_thumb_10.jpg?rlkey=bfpb9d4hskbb2y473p9lprdot&dl=0",
+          "thumb": "assets/synced/dash-ii/e83704102e4804973ae7db2e3d4a40fe76104b6c0ab4bc2884133730c2cab8af.jpg",
+          "file": null
+        },
+        {
           "name": "GPEN - Dash 2-10",
           "type": "image",
           "format": "PNG",
@@ -4260,6 +4268,14 @@ window.PORTAL_SYNCED = {
           "url": "https://www.dropbox.com/scl/fi/g2l87fyvbvtpol262sghc/_STZ9997.jpg?rlkey=zuls5wt02lutqzkdv29k17soq&dl=0",
           "thumb": "assets/synced/dash-plus/ea4dec7d26b85c0806979428f775d530b12859e76c37c65ea711a03a2666caea.jpg",
           "file": null
+        },
+        {
+          "name": "dash+_vape_thumb_08",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/cubtqpgwodeedyu7bqvq2/dash-_vape_thumb_08.png?rlkey=fonlwkr9ap3pzca13sfl2lyic&dl=0",
+          "thumb": "assets/synced/dash-plus/6743d30cc6b543bd2b0e37255049d0f7d5067a2a6f76dda6b10d5e03d762213f.jpg",
+          "file": null
         }
       ],
       "Logos": [
@@ -5258,6 +5274,14 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fi/snwxt0vk7rjlv5oyvhcdd/_GSH4332.jpg?rlkey=cmd8zz7kpcab81p8vgtqdlgiq&dl=0",
           "thumb": "assets/synced/hydout/6757d3abfbb0d0b085a6919d52e21a71391528b41272a0e2ee1c5bf8a15b29e6.jpg",
+          "file": null
+        },
+        {
+          "name": "Hydout_vape_015",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/0k8mawx4e4jatequn5ghd/Hydout_vape_015.png?rlkey=rutgholejg4cbzqp04ik7zrug&dl=0",
+          "thumb": "assets/synced/hydout/64110ae4840bd115e2d36096765440b068af3225e2896ae80b51f2d4ec6b3d75.jpg",
           "file": null
         },
         {
@@ -6404,6 +6428,14 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "Blue_Hydout_02",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/t0jqup92aroaz044lplbu/Blue_Hydout_02.png?rlkey=fqozokxsrmnrxzy42fapf43kt&dl=0",
+          "thumb": "assets/synced/hydout-retro/81bf8f8674857134afe7d29a2c21ea11280a4335bec706426eda2cfdcfc29c47.jpg",
+          "file": null
+        },
+        {
           "name": "blue-3",
           "type": "image",
           "format": "JPG",
@@ -6548,6 +6580,14 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "Green_hydout_02",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/k27ap8iplzdfept5csxvu/Green_hydout_02.png?rlkey=2lpktomyaj4y7yhahq8awmyop&dl=0",
+          "thumb": "assets/synced/hydout-retro/81712c8a04bc600c6222103b653f6e475a310aff004e56f89856edae4325969c.jpg",
+          "file": null
+        },
+        {
           "name": "green-room",
           "type": "image",
           "format": "PNG",
@@ -6620,6 +6660,14 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "Pink_Hydout_02",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/euvd9fsfly0e94qfv7sav/Pink_Hydout_02.png?rlkey=urpo7k9cwiaqrgyt4svgx75ca&dl=0",
+          "thumb": "assets/synced/hydout-retro/6eeaff64f42c74fc202da0a8941efe554ed85d3cb7f9c0832237e5d67670ccd2.jpg",
+          "file": null
+        },
+        {
           "name": "Pink-room",
           "type": "image",
           "format": "PNG",
@@ -6633,6 +6681,14 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fi/ca8ak2jvfl4nvxhrd0cd1/Purple-Retro-Dream-Bedroom-A.jpg?rlkey=7i7dicvol9j0aus8f67vgffy0&dl=0",
           "thumb": "assets/synced/hydout-retro/7cfbc1f826e6f95bc4fb59cc5594af4f4222ca040d3e8dd943e2b32f289adab4.jpg",
+          "file": null
+        },
+        {
+          "name": "Purple_Hydout_02",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/o5vq7kc4r1i3ignywjbqh/Purple_Hydout_02.png?rlkey=qwilt8f6ts4ze38jq14usczqd&dl=0",
+          "thumb": "assets/synced/hydout-retro/114ff6dcb6b2534edaa56a6521174bd8a5da4bdeb845d104ba133b3497438080.jpg",
           "file": null
         },
         {
@@ -6657,6 +6713,14 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fi/a01stlo5bwkiicgu3dscx/Red-Retro-Bedroom-B.jpg?rlkey=0khls4uze92b880m9d9xguuny&dl=0",
           "thumb": "assets/synced/hydout-retro/fc2f50242be5e8062112584e48b1e89079662498363b749a19550d41b76af3be.jpg",
+          "file": null
+        },
+        {
+          "name": "Red_Hydout_02",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/d80gzriwmbxr4pj1738w2/Red_Hydout_02.png?rlkey=s2k2op3lnhfxdtm3g0z7woy70&dl=0",
+          "thumb": "assets/synced/hydout-retro/21110a720cef0075564be97571377a1b3a11ee5958effff428806f629af2c126.jpg",
           "file": null
         },
         {
