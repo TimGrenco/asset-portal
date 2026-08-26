@@ -129,6 +129,10 @@ window.PORTAL_PRODUCTS = [
     unlisted: true,
     added: "2026-08-19",
     oneSheet: "#",
+    // Transparent PNG built from the synced "Micro 2-front" shot (background
+    // removed by edge flood-fill, preserving the lit display and the G logo),
+    // so the tile matches the other products instead of sitting on white.
+    cover: "assets/img/micro-ii.png?v=20260826a",
     // Durable rlkey link (expiring st= token stripped).
     dropbox: "https://www.dropbox.com/scl/fo/spharop9yvc7bnk5g3w4z/AKUC7ALBupRa8e039bvfNr4?rlkey=5560kr7brds1hco7tgeiafsbx&dl=0",
     folders: {},   // real files + thumbnails come from synced.js (Dropbox sync)
@@ -458,10 +462,24 @@ var PRODUCT_INFO = {
     productUrl: "https://www.gpen.com/products/g-pen-hydout-purple-translucent",
   },
   "Micro II": {
-    // SKU data from G-Pen-SKU-Details-Template-7.xlsx (rows 9-10). Everything
-    // else — description, highlights, MSRP, imagery — is still to come with the
-    // Dropbox folder, so this deliberately carries no marketing copy rather than
-    // placeholder text that could reach a retailer.
+    // SKU data from G-Pen-SKU-Details-Template-7.xlsx (rows 9-10).
+    // MSRP + every highlight below come from the official one-sheet in the
+    // product's own Dropbox Documents folder ("G Pen - One Sheet - Micro II"),
+    // which is the authority the Grinder's price was corrected against.
+    description:
+      "A pocket-sized concentrate vaporizer with a ceramic heating chamber, digital display and three temperature settings — and it takes the Sidecar and 14mm rig-adapter glass attachments.",
+    highlights: [
+      "Ceramic heating chamber",
+      "Digital display",
+      "3 temperature settings",
+      "Adjustable airflow carb",
+      "1250mAh battery",
+      "USB-C fast charging",
+      "Pass-through charging",
+      "Haptic feedback",
+      "Compatible with glass attachments",
+    ],
+    msrp: "$49.95",
     fullName: "MICRO II VAPORIZER",
     sku: "GPM-001-APZZ",
     upc: "811736020343",
