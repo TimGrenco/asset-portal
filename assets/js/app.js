@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260818b";   // bump with the other asset tokens
+  var LANG_VER = "20260819a";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -589,6 +589,7 @@
   // ---- filtering -----------------------------------------------------------
   function visibleProducts() {
     return PRODUCTS.filter(function (p) {
+      if (isUnlisted(p)) return false;
       if (state.view !== "both" && p.brand !== state.view) return false;
       if (state.type !== "all" && !p.folders[state.type]) return false;
       if (state.query) {
@@ -658,6 +659,7 @@
     if (_fileIndex) return _fileIndex;
     var out = [];
     PRODUCTS.forEach(function (p) {
+      if (isUnlisted(p)) return;
       if (p.folders) Object.keys(p.folders).forEach(function (folder) {
         (p.folders[folder] || []).forEach(function (file) {
           out.push({
@@ -729,7 +731,7 @@
   function searchProducts(q) {
     var groups = queryAliasGroups(q), bk = state.view, rawQ = q.toLowerCase().trim();
     return PRODUCTS.map(function (p) {
-      if (p.brand !== bk) return null;
+      if (p.brand !== bk || isUnlisted(p)) return null;
       // Always index English PLUS the active language: a translated visitor must
       // still find a product by an English term (shared ?q= links are usually
       // English), and can also search in their own. Indexing only the active
@@ -1009,8 +1011,12 @@
   function currentList(bk) { return (window.PORTAL_CURRENT && window.PORTAL_CURRENT[bk]) || []; }
   function isCurrentName(bk, name) { return currentList(bk).indexOf(name) !== -1; }
   // All legacy (non-current, non-logo) products for a brand — unfiltered.
+  // `unlisted: true` = built but not announced. Reachable by direct URL (so the
+  // page can be reviewed and shared internally) but kept out of every listing:
+  // the home grid, this Additional Products page, product search and file search.
+  function isUnlisted(p) { return !!(p && p.unlisted); }
   function legacyProducts(bk) {
-    return PRODUCTS.filter(function (p) { return p.brand === bk && !p.isLogo && !isCurrentName(bk, p.name); });
+    return PRODUCTS.filter(function (p) { return p.brand === bk && !p.isLogo && !isUnlisted(p) && !isCurrentName(bk, p.name); });
   }
 
   // ---- product families: group the featured grid by use-case -----------------

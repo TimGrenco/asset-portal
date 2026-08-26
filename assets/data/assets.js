@@ -119,6 +119,20 @@ window.PORTAL_PRODUCTS = [
     folders: {},   // real folders + thumbnails come from synced.js (Dropbox sync)
   },
   {
+    // Micro II — PRE-LAUNCH. `unlisted: true` keeps it out of the home grid, the
+    // Additional Products page, product search and file search; it is reachable
+    // only by its direct URL (#gpen/micro-ii) so the page can be reviewed
+    // internally before launch. Remove the flag and add it to PORTAL_CURRENT to
+    // publish. Awaiting: Dropbox folder, cover image, marketing copy, MSRP.
+    // TODO(confirm): category/type are inferred from the Micro+ lineage and the
+    // 8543.70.9940 HTS code (an electrical vaporizer) — verify before launch.
+    name: "Micro II", brand: "gpen", category: "Concentrate", type: "Concentrate Vaporizer",
+    unlisted: true,
+    added: "2026-08-19",
+    oneSheet: "#",
+    folders: {},   // real files + thumbnails arrive with the Dropbox sync
+  },
+  {
     // Grinder — category "Dry Herb" so familyOf() files it under the Dry Herb
     // Accessories panel alongside the Dash II / Dash+ it's meant to pair with.
     name: "Slim 3-Piece Grinder", brand: "gpen", category: "Dry Herb", type: "Grinder", label: "Grinder",
@@ -441,6 +455,25 @@ var PRODUCT_INFO = {
     warranty: "Limited warranty — see policy",
     manual: "https://cdn.shopify.com/s/files/1/0185/1576/files/GPEN_Retro_Hydout_Manual.pdf?v=1765208154",
     productUrl: "https://www.gpen.com/products/g-pen-hydout-purple-translucent",
+  },
+  "Micro II": {
+    // SKU data from G-Pen-SKU-Details-Template-7.xlsx (rows 9-10). Everything
+    // else — description, highlights, MSRP, imagery — is still to come with the
+    // Dropbox folder, so this deliberately carries no marketing copy rather than
+    // placeholder text that could reach a retailer.
+    fullName: "MICRO II VAPORIZER",
+    sku: "GPM-001-APZZ",
+    upc: "811736020343",
+    pop: true,
+    popSku: "GPM-001-APZZ-Inner Pack",
+    popUpc: "10811736020340",
+    dimensions: "105 × 35 × 28 mm",
+    unitWeight: "0.1 kg",
+    innerPack: "10",
+    masterCarton: "160",
+    caseWeight: "16.8 kg",
+    caseDimensions: "325 × 305 × 235 mm",
+    htsCode: "8543.70.9940",
   },
   "Slim 3-Piece Grinder": {
     description:
