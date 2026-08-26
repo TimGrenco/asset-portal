@@ -129,7 +129,9 @@ window.PORTAL_PRODUCTS = [
     unlisted: true,
     added: "2026-08-19",
     oneSheet: "#",
-    folders: {},   // real files + thumbnails arrive with the Dropbox sync
+    // Durable rlkey link (expiring st= token stripped).
+    dropbox: "https://www.dropbox.com/scl/fo/spharop9yvc7bnk5g3w4z/AKUC7ALBupRa8e039bvfNr4?rlkey=5560kr7brds1hco7tgeiafsbx&dl=0",
+    folders: {},   // real files + thumbnails come from synced.js (Dropbox sync)
   },
   {
     // Grinder — category "Dry Herb" so familyOf() files it under the Dry Herb

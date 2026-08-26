@@ -38,6 +38,7 @@ const PRODUCTS = [
     slug: "dash-ii",
     link: "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=0",
   },
+  { name: "Micro II", slug: "micro-ii", link: "https://www.dropbox.com/scl/fo/spharop9yvc7bnk5g3w4z/AKUC7ALBupRa8e039bvfNr4?rlkey=5560kr7brds1hco7tgeiafsbx&dl=0" },
   { name: "Slim 3-Piece Grinder", slug: "slim-3-piece-grinder", link: "https://www.dropbox.com/scl/fo/8lfqlq0faeml5pqnvzoys/ADcfy5cYRTh2lHbK13o_I60?rlkey=4jjwd6s48mon6tcpis5uass3x&dl=0" },
   { name: "510 Original", slug: "510-original", link: "https://www.dropbox.com/scl/fo/mtuk2kb73ln5pv0qj68y5/AOnLPmrirA3wsvOdaA0v9rw?rlkey=e8svbeey6dql240rjqzch9qco&st=tvt2s0qf&dl=0" },
   { name: "510 Original — Retro", slug: "510-original-retro", link: "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=0" },
