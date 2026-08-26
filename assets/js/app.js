@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260826a";   // bump with the other asset tokens
+  var LANG_VER = "20260826b";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -2325,6 +2325,8 @@
         highlightsHTML(p) +
         fullDescHTML(p) +
         whatsInBoxHTML(p) +
+        specsHTML(p) +
+        faqHTML(p) +
         // ---- Documents (assets) — sits above Packaging, filters at the top ----
         '<div class="section-head" id="docs-head"><h2>' + tr("Download assets by category") + '</h2><span class="badge">' + catTotal + " " + tr(catTotal === 1 ? "file" : "files") + "</span></div>" +
         assetNav +
@@ -2654,6 +2656,50 @@
         info.fullDescription.map(function (t) { return "<p>" + t + "</p>"; }).join("") +
       "</div></div>";
   }
+  // Product FAQs, rendered inline as a native <details> accordion (no JS, keyboard
+  // accessible for free). Shown only when a product carries its own `faqs`; the
+  // hero's "Product FAQs" button still links out to the brand FAQ page.
+  // Shape: [question, [paragraph, ...]]. A paragraph starting with "\u2022 " becomes a
+  // bullet, and consecutive bullets are grouped into one list.
+  function faqHTML(p) {
+    if (p.isLogo) return "";
+    var faqs = infoOf(p).faqs;
+    if (!(faqs && faqs.length)) return "";
+    var items = faqs.map(function (qa) {
+      var body = "", open = false;
+      (qa[1] || []).forEach(function (line) {
+        var bullet = line.indexOf("\u2022 ") === 0;
+        if (bullet && !open) { body += "<ul>"; open = true; }
+        if (!bullet && open) { body += "</ul>"; open = false; }
+        body += bullet
+          ? "<li>" + escapeHTML(line.slice(2)) + "</li>"
+          : "<p>" + escapeHTML(line) + "</p>";
+      });
+      if (open) body += "</ul>";
+      return "<details class=\"faq-item\"><summary>" + escapeHTML(tr(qa[0])) + "</summary>" +
+        '<div class="faq-a">' + body + "</div></details>";
+    }).join("");
+    return '<div class="section-head"><h2>' + tr("Product FAQs") + '</h2>' +
+        '<span class="badge">' + faqs.length + "</span></div>" +
+      '<div class="faq-list">' + items + "</div>";
+  }
+
+  // Technical specifications. Reuses the SKU table's row markup so the two
+  // spec-style tables on a product page stay visually identical.
+  // Authored as ordered [label, value] pairs — unlike the SKU table there is no
+  // fixed field set, since specs differ completely between a grinder and a vape.
+  function specsHTML(p) {
+    if (p.isLogo) return "";
+    var specs = infoOf(p).specs;
+    if (!(specs && specs.length)) return "";
+    var rows = specs.map(function (kv) {
+      return '<div class="sku-row"><span class="sku-l">' + tr(kv[0]) + '</span>' +
+        '<span class="sku-v">' + escapeHTML(kv[1]) + "</span></div>";
+    }).join("");
+    return '<div class="section-head"><h2>' + tr("Technical specifications") + '</h2></div>' +
+      '<div class="sku-table">' + rows + "</div>";
+  }
+
   // "What's In the Box?" — contents list + components image (from gpen.com).
   function whatsInBoxHTML(p) {
     if (p.isLogo) return "";

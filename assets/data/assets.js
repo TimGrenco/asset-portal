@@ -467,17 +467,162 @@ var PRODUCT_INFO = {
     // product's own Dropbox Documents folder ("G Pen - One Sheet - Micro II"),
     // which is the authority the Grinder's price was corrected against.
     description:
-      "A pocket-sized concentrate vaporizer with a ceramic heating chamber, digital display and three temperature settings — and it takes the Sidecar and 14mm rig-adapter glass attachments.",
+      "A compact concentrate vaporizer featuring three precision heat settings, adjustable airflow, a digital display, ceramic heating, and up to 120 sessions per charge.",
+    // Long copy is the approved Shopify description — retailers copy it verbatim
+    // into their own listings, so keep it in sync with gpen.com rather than
+    // paraphrasing it here.
+    fullDescription: [
+      "The G Pen Micro II reimagines the iconic Micro concentrate vaporizer with more power, precision, and control in a compact, pocket-friendly design.",
+      "Powered by a 1,250mAh rechargeable battery, the Micro II delivers up to 120 sessions per charge with USB-C fast charging in under 60 minutes. Three optimized temperature settings \u2014 LOW at approximately 295\u00B0F, MEDIUM at 340\u00B0F, and HIGH at 395\u00B0F \u2014 let you dial in your session for smooth flavor, balanced performance, or heavier vapor production.",
+      "A premium 0.8\u03A9 ceramic atomizer provides consistent concentrate performance, while adjustable airflow gives you even more control over every draw. Choose between 15-second Session Mode for convenient automatic heating or Manual Heating for up to 20 seconds of direct control.",
+      "The integrated digital display keeps battery, temperature, and heating status visible at a glance, while haptic feedback lets you know when the Micro II has reached temperature. A durable anodized aluminum body, simple one-button operation, pass-through charging, and 10-minute automatic shutoff make everyday use effortless.",
+      "Use the included silicone mouthpiece for a compact setup, or expand the experience with the separately available G Pen Micro II Sidecar and 14mm Rig Adapter for water-filtered sessions at home or on the go.",
+      "More than a decade after the original microG helped define portable concentrate vaporization, the Micro II brings the Micro experience into a new generation \u2014 all for $49.95.",
+    ],
     highlights: [
-      "Ceramic heating chamber",
-      "Digital display",
-      "3 temperature settings",
-      "Adjustable airflow carb",
-      "1250mAh battery",
-      "USB-C fast charging",
+      "Three precision heat settings \u2014 LOW ~295\u00B0F, MEDIUM ~340\u00B0F, HIGH ~395\u00B0F",
+      "5-second heat-up",
+      "Session Mode (15s) + Manual Heating (up to 20s)",
+      "Adjustable airflow \u2014 open to restricted",
+      "0.8\u03A9 ceramic atomizer",
+      "Digital display \u2014 temperature, heating status, battery",
+      "Haptic feedback at temperature",
+      "1,250mAh battery \u2014 up to 120 sessions per charge",
+      "USB-C fast charging \u2014 under 60 minutes",
       "Pass-through charging",
-      "Haptic feedback",
-      "Compatible with glass attachments",
+      "10-minute auto shutoff",
+      "Anodized aluminum body",
+      "Sidecar & 14mm Rig Adapter compatible (sold separately)",
+      "Simple one-button operation",
+    ],
+    // Ordered [label, value] pairs from the approved spec sheet.
+    // NOTE: "Device Dimensions/Weight" here are the bare unit (98.6\u00D724\u00D732 mm, 86 g).
+    // The SKU table's "Product Dimensions" (105\u00D735\u00D728 mm) and "Unit Weight"
+    // (0.1 kg) come from the ops spreadsheet and are the PACKAGED figures — the
+    // two are labelled differently on purpose so they don't read as a conflict.
+    specs: [
+      ["Battery", "1,250mAh rechargeable"],
+      ["Charging", "USB-C fast charging, under 60 minutes"],
+      ["Pass-through charging", "Yes"],
+      ["Display", "Digital black-and-white display"],
+      ["Temperature \u2014 LOW", "~295\u00B0F"],
+      ["Temperature \u2014 MEDIUM", "~340\u00B0F"],
+      ["Temperature \u2014 HIGH", "~395\u00B0F"],
+      ["Temperature tolerance", "\u00B110\u201315\u00B0F"],
+      ["Heat-up time", "5 seconds"],
+      ["Session Mode", "15-second heating cycle"],
+      ["Manual Heating", "Up to 20 seconds"],
+      ["Atomizer", "0.8\u03A9 ceramic"],
+      ["Airflow", "Adjustable"],
+      ["Haptic feedback", "Yes"],
+      ["Battery life", "Up to 120 sessions per charge"],
+      ["Auto shutoff", "10 minutes"],
+      ["Body", "Anodized aluminum"],
+      ["Mouthpiece", "Silicone"],
+      ["Device Dimensions", "98.6 \u00D7 24 \u00D7 32 mm"],
+      ["Device Weight", "86 g"],
+    ],
+    // Official FAQ copy, rendered inline by faqHTML(). Kept verbatim from the
+    // approved source so retail staff and gpen.com never disagree.
+    faqs: [
+      ["What is the G Pen Micro II?", [
+        "The G Pen Micro II is a portable concentrate vaporizer featuring a ceramic atomizer, three precision heat settings, adjustable airflow, automatic and manual heating modes, a digital display, haptic feedback, and a 1,250mAh rechargeable battery.",
+      ]],
+      ["What material is the G Pen Micro II designed for?", [
+        "The G Pen Micro II is designed for use with concentrates.",
+      ]],
+      ["How much does the G Pen Micro II cost?", [
+        "The G Pen Micro II retails for $49.95.",
+      ]],
+      ["What are the G Pen Micro II temperature settings?", [
+        "The Micro II features three optimized temperature settings:",
+        "\u2022 LOW \u2014 ~295\u00b0F",
+        "\u2022 MEDIUM \u2014 ~340\u00b0F",
+        "\u2022 HIGH \u2014 ~395\u00b0F",
+        "Temperatures may vary by approximately \u00b110\u201315\u00b0F.",
+      ]],
+      ["How do I change the temperature?", [
+        "With the Micro II powered on, click the button three times to cycle between the three temperature settings. One cloud represents LOW, two clouds represent MEDIUM, and three clouds represent HIGH.",
+      ]],
+      ["How long does the Micro II take to heat up?", [
+        "The Micro II reaches its selected temperature in approximately 5 seconds. The device will vibrate when temperature has been reached.",
+      ]],
+      ["What is Session Mode?", [
+        "Session Mode provides an automatic heating cycle. Click the button twice to begin heating. After the approximately 5-second heat-up, the Micro II will vibrate and continue heating for 15 seconds before automatically stopping.",
+        "You can click the button twice at any time to cancel the session.",
+      ]],
+      ["What is Manual Heating?", [
+        "Manual Heating gives you direct control over activation. Press and hold the button to begin heating. Once the selected temperature has been reached, Manual Heating can continue for up to 20 seconds before automatically shutting off.",
+      ]],
+      ["How do I turn the Micro II on and off?", [
+        "Click the button five times to power the Micro II on or off.",
+        "The device will also automatically shut off after 10 minutes of inactivity.",
+      ]],
+      ["Why am I not getting much vapor on my first session?", [
+        "During the first heat activation, concentrate must prime the porous ceramic heating plate before optimal vapor production can occur.",
+        "Additional heat activations and draws may be necessary during initial use, particularly when using the LOW temperature setting.",
+      ]],
+      ["How do I adjust the airflow?", [
+        "The airflow control is located on the opposite side of the device from the display. Slide the airflow control to the left for increased airflow or to the right for a more restricted draw.",
+      ]],
+      ["What type of atomizer does the Micro II use?", [
+        "The Micro II uses a 0.8\u03a9 ceramic atomizer designed to provide consistent heating and concentrate performance.",
+      ]],
+      ["How much concentrate should I load?", [
+        "Place a small amount of concentrate directly onto the center of the ceramic heating plate. Avoid overfilling the tank to help maintain consistent performance and make cleaning easier.",
+      ]],
+      ["How long does the Micro II battery last?", [
+        "The 1,250mAh rechargeable battery provides up to 120 sessions on a single charge. Actual battery life may vary depending on temperature setting, session length, and usage.",
+      ]],
+      ["How long does the Micro II take to charge?", [
+        "The Micro II supports USB-C fast charging and can fully charge in under 60 minutes.",
+      ]],
+      ["Does the Micro II support pass-through charging?", [
+        "Yes. The G Pen Micro II supports pass-through charging.",
+      ]],
+      ["How do I know when my Micro II is fully charged?", [
+        "The digital display shows battery status while charging. Once the battery icon on the display is full, the Micro II is fully charged.",
+      ]],
+      ["Does the Micro II have haptic feedback?", [
+        "Yes. The Micro II uses haptic feedback to confirm device actions and vibrates when the selected temperature has been reached.",
+      ]],
+      ["Does the Micro II have an automatic shutoff?", [
+        "Yes. The Micro II automatically powers off after 10 minutes.",
+      ]],
+      ["Can I use the Micro II with a glass rig?", [
+        "Yes. The separately available G Pen Micro II Rig Adapter features a 14mm male glass connection that allows the Micro II to connect to compatible glass rigs for water-filtered and water-cooled vapor.",
+        "The Rig Adapter is sold separately and is not included with the Micro II.",
+      ]],
+      ["What is the G Pen Micro II Sidecar?", [
+        "The separately available Micro II Sidecar is a glass water-filtration attachment designed specifically for the Micro II. It replaces the standard mouthpiece and allows you to enjoy water-filtered, cooled vapor in a compact setup without requiring a separate rig.",
+        "The Sidecar is sold separately and is not included with the Micro II.",
+      ]],
+      ["How do I use the Micro II Sidecar?", [
+        "Remove the standard Micro II mouthpiece and attach the Sidecar silicone adapter. Fill the Sidecar with water to the indicated black fill line and attach it to the silicone adapter.",
+        "Position the Sidecar so its mouthpiece faces the same direction as the Micro II power button and display. Cover the carb at the top of the Sidecar while drawing, then release the carb to clear the vapor from the glass.",
+      ]],
+      ["Are the Sidecar and Rig Adapter included with the Micro II?", [
+        "No. The G Pen Micro II Sidecar and Rig Adapter are optional accessories sold separately.",
+      ]],
+      ["How do I clean the G Pen Micro II?", [
+        "Power off the Micro II and allow it to cool completely before cleaning.",
+        "Remove the mouthpiece and use a cotton swab lightly dampened with isopropyl alcohol to gently clean the ceramic heating chamber and remove concentrate buildup. Use the same method to clean buildup from the mouthpiece.",
+        "Do not soak the Micro II tank or battery in isopropyl alcohol. Allow all components to dry completely before reassembling and using the device.",
+      ]],
+      ["How do I clean the Micro II Rig Adapter?", [
+        "Disconnect the Rig Adapter from both the Micro II and your glass rig. Use a cotton swab with a small amount of isopropyl alcohol to remove concentrate buildup.",
+        "The internal airpath can be accessed by removing the top panel. If deeper cleaning is necessary, the 14mm glass adapter can be removed and soaked in isopropyl alcohol.",
+        "After soaking, thoroughly rinse the glass with water and allow all components to dry completely before reassembly.",
+      ]],
+      ["Can I soak the Micro II tank in isopropyl alcohol?", [
+        "No. Do not soak the Micro II tank or battery in isopropyl alcohol. Use a cotton swab lightly dampened with isopropyl alcohol for cleaning instead.",
+      ]],
+      ["How big is the G Pen Micro II?", [
+        "The Micro II measures approximately 98.6 \u00d7 24 \u00d7 32 mm and weighs 86g, making it compact enough for easy everyday portability.",
+      ]],
+      ["How is the Micro II different from previous G Pen Micro devices?", [
+        "The Micro II represents the newest evolution of the G Pen Micro concentrate platform, which began with the original microG in 2013. It introduces a 1,250mAh battery, digital display, three precision temperature settings, adjustable airflow, automatic and manual heating, USB-C fast charging, haptic feedback, and compatibility with optional water-filtration accessories.",
+      ]],
     ],
     msrp: "$49.95",
     fullName: "MICRO II VAPORIZER",
@@ -703,6 +848,18 @@ var PRODUCT_SKU = {
 /* "What's In the Box?" contents + components image per product (from gpen.com).
    { image: "<url>", contents: ["item", ...] } */
 var PRODUCT_BOX = {
+  // No components image yet — Micro II isn't on the gpen.com CDN. The renderer
+  // falls back to a list-only layout, so this is complete as-is.
+  "Micro II": {
+    contents: [
+      "G Pen Micro II Battery",
+      "G Pen Micro II Ceramic Tank",
+      "Silicone Mouthpiece",
+      "USB-C Charging Cable",
+      "*Micro II Sidecar Sold Separately",
+      "*Micro II 14mm Rig Adapter Sold Separately",
+    ],
+  },
   "Dash II": {
     image: CDN + "dash2_thumb_011.jpg?v=1772834595",
     contents: ["G Pen Dash II Dry Herb Vape", "Built in loading tool", "Silicone Mouthpiece Sleeve", "*USB-C Charging Cable Not Included"],
