@@ -474,7 +474,7 @@ var PRODUCT_INFO = {
     fullDescription: [
       "The G Pen Micro II reimagines the iconic Micro concentrate vaporizer with more power, precision, and control in a compact, pocket-friendly design.",
       "Powered by a 1,250mAh rechargeable battery, the Micro II delivers up to 120 sessions per charge with USB-C fast charging in under 60 minutes. Three optimized temperature settings \u2014 LOW at approximately 295\u00B0F, MEDIUM at 340\u00B0F, and HIGH at 395\u00B0F \u2014 let you dial in your session for smooth flavor, balanced performance, or heavier vapor production.",
-      "A premium 0.8\u03A9 ceramic atomizer provides consistent concentrate performance, while adjustable airflow gives you even more control over every draw. Choose between 15-second Session Mode for convenient automatic heating or Manual Heating for up to 20 seconds of direct control.",
+      "A premium 0.8\u03A9 ceramic atomizer provides consistent concentrate performance, while adjustable airflow gives you even more control over every draw. Choose between a 20-second Session Mode cycle for convenient automatic heating or Manual Heating for up to 25 seconds of direct control.",
       "The integrated digital display keeps battery, temperature, and heating status visible at a glance, while haptic feedback lets you know when the Micro II has reached temperature. A durable anodized aluminum body, simple one-button operation, pass-through charging, and 10-minute automatic shutoff make everyday use effortless.",
       "Use the included silicone mouthpiece for a compact setup, or expand the experience with the separately available G Pen Micro II Sidecar and 14mm Rig Adapter for water-filtered sessions at home or on the go.",
       "More than a decade after the original microG helped define portable concentrate vaporization, the Micro II brings the Micro experience into a new generation \u2014 all for $49.95.",
@@ -482,7 +482,7 @@ var PRODUCT_INFO = {
     highlights: [
       "Three heat settings \u2014 LOW ~295\u00B0F, MEDIUM ~340\u00B0F, HIGH ~395\u00B0F",
       "5-second heat-up",
-      "Session Mode (15s) + Manual Heating (up to 20s)",
+      "Session Mode (20s) + Manual Heating (up to 25s)",
       "Adjustable airflow \u2014 open to restricted",
       "0.8\u03A9 ceramic atomizer",
       "Digital display \u2014 temperature, heating status, battery",
@@ -510,8 +510,8 @@ var PRODUCT_INFO = {
       ["Temperature \u2014 HIGH", "~395\u00B0F"],
       ["Temperature tolerance", "\u00B115\u201330\u00B0F"],
       ["Heat-up time", "5 seconds"],
-      ["Session Mode", "15-second heating cycle"],
-      ["Manual Heating", "Up to 20 seconds"],
+      ["Session Mode", "20-second heating cycle (including heat-up)"],
+      ["Manual Heating", "Up to 25 seconds (including heat-up)"],
       ["Atomizer", "0.8\u03A9 ceramic"],
       ["Airflow", "Adjustable"],
       ["Haptic feedback", "Yes"],
@@ -548,11 +548,11 @@ var PRODUCT_INFO = {
         "The Micro II reaches its selected temperature in approximately 5 seconds. The device will vibrate when temperature has been reached.",
       ]],
       ["What is Session Mode?", [
-        "Session Mode provides an automatic heating cycle. Click the button twice to begin heating. After the approximately 5-second heat-up, the Micro II will vibrate and continue heating for 15 seconds before automatically stopping.",
+        "Session Mode provides an automatic heating cycle. Click the button twice to begin heating. The cycle runs 20 seconds in total, including the approximately 5-second heat-up \u2014 the Micro II vibrates once the selected temperature is reached, then stops automatically at the end of the cycle.",
         "You can click the button twice at any time to cancel the session.",
       ]],
       ["What is Manual Heating?", [
-        "Manual Heating gives you direct control over activation. Press and hold the button to begin heating. Once the selected temperature has been reached, Manual Heating can continue for up to 20 seconds before automatically shutting off.",
+        "Manual Heating gives you direct control over activation. Press and hold the button to begin heating. Manual Heating can run for up to 25 seconds in total, including the approximately 5-second heat-up, before automatically shutting off.",
       ]],
       ["How do I turn the Micro II on and off?", [
         "Click the button five times to power the Micro II on or off.",
