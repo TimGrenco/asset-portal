@@ -954,14 +954,6 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
-          "name": "Micro 2-Heating",
-          "type": "image",
-          "format": "PNG",
-          "url": "https://www.dropbox.com/scl/fi/qsfzcphynhs6f1cij93ak/Micro-2-Heating.png?rlkey=e7b1h65bhk67ooerl3p4vrbqi&dl=0",
-          "thumb": "assets/synced/micro-ii/98b558fdd0b5cb7a8a73f935e277e3e881e6c13b9030de599066d0d6b152270c.jpg",
-          "file": null
-        },
-        {
           "name": "Micro 2-Mouthpiece",
           "type": "image",
           "format": "PNG",
@@ -1015,14 +1007,6 @@ window.PORTAL_SYNCED = {
           "format": "PNG",
           "url": "https://www.dropbox.com/scl/fi/lsgtsdmn78kjizykivazo/Micro-2-sidecar.png?rlkey=mfwmpav9g3v0mzj73ibt9yyer&dl=0",
           "thumb": "assets/synced/micro-ii/582d775e1e5f8c0347a18dde50af6fcb52eabe6615fc3be24182f51999c4e43b.jpg",
-          "file": null
-        },
-        {
-          "name": "Micro 2-Tank2",
-          "type": "image",
-          "format": "PNG",
-          "url": "https://www.dropbox.com/scl/fi/wn965bhmb1b1h5fxa801v/Micro-2-Tank2.png?rlkey=gn1ciuc1b0gf5k9h04lg5r7i8&dl=0",
-          "thumb": "assets/synced/micro-ii/425a8c85e95740fb3a29b64f0f8d78f24f5a3c84f62270988fe3da68d280d2e4.jpg",
           "file": null
         },
         {
