@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260826g";   // bump with the other asset tokens
+  var LANG_VER = "20260826h";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -2326,7 +2326,10 @@
         fullDescHTML(p) +
         whatsInBoxHTML(p) +
         specsHTML(p) +
-        faqHTML(p) +
+        // FAQs are built and ready (28 of them on the Micro II) but pulled from
+        // the page at the owner's request, 2026-08-26. The renderer and the data
+        // both stay put — restore by uncommenting this one line.
+        // faqHTML(p) +
         // ---- Documents (assets) — sits above Packaging, filters at the top ----
         '<div class="section-head" id="docs-head"><h2>' + tr("Download assets by category") + '</h2><span class="badge">' + catTotal + " " + tr(catTotal === 1 ? "file" : "files") + "</span></div>" +
         assetNav +
