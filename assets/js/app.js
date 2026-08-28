@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260826j";   // bump with the other asset tokens
+  var LANG_VER = "20260826k";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -2546,13 +2546,13 @@
       note = tr("Ships in a retail-ready POP display — one retail box shown per colorway. See SKU details for inner-pack &amp; master-carton quantities.");
     } else if (info.pop) {
       // Ships in a retail-ready POP display. Label the POP card with its pack count.
-      cards = boxCard(tr("Single Retail Packaging"), info.boxImg, null, boxFile) +
+      cards = boxCard(tr("Single Retail Packaging"), info.boxImg, info.boxImgDl, boxFile) +
         boxCard(popLabel, info.popImg, info.popImgDl, popFile) +
         pkgCard(tr("Master carton"), info.cartonImg);
       note = tr("Ships in a retail-ready POP display — see SKU details for inner-pack &amp; master-carton quantities.");
     } else {
       // Ships in single retail boxes — no POP display for this product.
-      cards = boxCard(tr("Single Retail Packaging"), info.boxImg, null, boxFile) + pkgCard(tr("Master carton"), info.cartonImg);
+      cards = boxCard(tr("Single Retail Packaging"), info.boxImg, info.boxImgDl, boxFile) + pkgCard(tr("Master carton"), info.cartonImg);
       note = tr("Ships in single retail boxes — no POP display. See SKU details for master-carton quantities.");
     }
     return '<div class="section-head"><h2>' + tr("Packaging") + '</h2>' + (info.pop ? '<span class="badge">' + tr("Ships in POP display") + '</span>' : "") + "</div>" +

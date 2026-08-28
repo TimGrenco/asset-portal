@@ -626,8 +626,8 @@ var PRODUCT_INFO = {
     sku: "GPM-001-APZZ",
     upc: "811736020343",
     pop: true,
-    // The no-price render, chosen by the owner over the higher-scoring
-    // "Micro-II-POP-front". Matched by filename — see the popFile resolver.
+    // Owner-chosen packaging renders, matched by filename (see the resolver).
+    boxFile: "Micro-II-Packaging",
     popFile: "Micro-II-Pop-No-Price",
     popSku: "GPM-001-APZZ-Inner Pack",
     popUpc: "10811736020340",
@@ -966,20 +966,28 @@ window.PORTAL_COLORWAYS = {
     if (img) { if (!p.info.popImg) { p.info.popImg = img.thumb; p.info.popImgDl = img.url; } p.info.pop = true; }
   });
 
-  // An explicit per-product POP choice, named by FILE (info.popFile). Use when
-  // the auto-pick below would score the wrong render highest — e.g. Micro II,
-  // where "Micro-II-POP-front" outscores the no-price render we actually want
-  // on the page. Resolved at load time by filename, never by URL, so it
-  // survives the content-hash thumbnails changing on every re-sync.
+  // Explicit per-product packaging choices, named by FILE: info.boxFile for the
+  // single retail box, info.popFile for the POP display. Use when the auto-pick
+  // in packagingHTML would score the wrong render highest — e.g. Micro II, where
+  // "Micro-II-Packaging-front" and "Micro-II-POP-front" both win on the +2
+  // "front" bonus over the renders the owner actually wants shown.
+  // Matched by FILENAME at load time, never by URL: the synced thumbnails are
+  // content-hashed and change on every re-sync, so a pasted URL would rot.
   window.PORTAL_PRODUCTS.forEach(function (p) {
-    if (!p.info || !p.info.popFile || !p.folders) return;
-    var want = String(p.info.popFile).toLowerCase(), hit = null;
-    Object.keys(p.folders).forEach(function (f) {
-      (p.folders[f] || []).forEach(function (x) {
-        if (!hit && x && x.thumb && String(x.name || "").toLowerCase() === want) hit = x;
+    if (!p.info || !p.folders) return;
+    function findByName(want) {
+      var target = String(want).toLowerCase(), hit = null;
+      Object.keys(p.folders).forEach(function (f) {
+        (p.folders[f] || []).forEach(function (x) {
+          if (!hit && x && x.thumb && String(x.name || "").toLowerCase() === target) hit = x;
+        });
       });
-    });
-    if (hit) { p.info.popImg = hit.thumb; p.info.popImgDl = hit.url; p.info.pop = true; }
+      return hit;
+    }
+    var box = p.info.boxFile && findByName(p.info.boxFile);
+    if (box) { p.info.boxImg = box.thumb; p.info.boxImgDl = box.url; }
+    var pop = p.info.popFile && findByName(p.info.popFile);
+    if (pop) { p.info.popImg = pop.thumb; p.info.popImgDl = pop.url; p.info.pop = true; }
   });
 
   // Fallback: a POP shot that lives in the product's OWN Dropbox folders rather
