@@ -1164,11 +1164,115 @@ window.PORTAL_SYNCED = {
       ],
       "Lifestyle Photos": [
         {
+          "name": "_ALF0890",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/sm6wyou2n2xynnxpqvgb7/_ALF0890.jpg?rlkey=mgsearsv2ursfzct2164p4f2i&dl=0",
+          "thumb": "assets/synced/micro-ii/90f9d3c4cd042540efa0715bc3c46f17c7415652d674f889de79593a3b7b796b.jpg",
+          "file": null
+        },
+        {
+          "name": "_ALF0895",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/92swzpsvwii3yei35qzyn/_ALF0895.jpg?rlkey=1i2t8zbemyax6r0g5wd0wh5b7&dl=0",
+          "thumb": "assets/synced/micro-ii/97293754b9df38ca21eaa1a459c016833f69425324951fe6d6b6bfc3b0c7f202.jpg",
+          "file": null
+        },
+        {
+          "name": "_ALF0898",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/brbqrpk3266t0l1ojihn9/_ALF0898.jpg?rlkey=vbycgr8bfij6oenim4nfieasx&dl=0",
+          "thumb": "assets/synced/micro-ii/16c63150dfbcd05e9e11d0f047cce7cd0b1363f84be6236d1b6e4184adc02837.jpg",
+          "file": null
+        },
+        {
+          "name": "_ALF0904",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/aj4vpyx7iabbcjrbo8xp5/_ALF0904.jpg?rlkey=11u63de0g48adb7ci4kbgo4f2&dl=0",
+          "thumb": "assets/synced/micro-ii/0dce997e673ea9e0c39490bbac807cda5c9336d48460432bd42e2b7710e462ec.jpg",
+          "file": null
+        },
+        {
+          "name": "_ALF1297",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/0tlj629lidz3blkmm3fv9/_ALF1297.jpg?rlkey=ysnjx99ng8sarb7jj5iydwypn&dl=0",
+          "thumb": "assets/synced/micro-ii/7b26f9dc2edefe0c3f5a4789780ff6bda3e47499c4d27515b2d65e3119aa083d.jpg",
+          "file": null
+        },
+        {
+          "name": "_ALF1528",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/llhwva356h5npu3mo05jo/_ALF1528.jpg?rlkey=60822cf1drv4n436o71thuceh&dl=0",
+          "thumb": "assets/synced/micro-ii/c054d6ee0772cbac305c71bab88b8e493905248cc964ab9090f38d989a8fa24c.jpg",
+          "file": null
+        },
+        {
+          "name": "_ALF1529",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/jtd49yv7iflc81xzlj8lb/_ALF1529.jpg?rlkey=stsmhroxrc449yr63mlfi71ps&dl=0",
+          "thumb": "assets/synced/micro-ii/8d6ac61e3b396438e172ca615cb835e1775daa1fd291f132b000921b045455ae.jpg",
+          "file": null
+        },
+        {
+          "name": "_ALF1742",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/afxvxfmu04450vbxwom7k/_ALF1742.jpg?rlkey=vb60wl1ciylhjtdipdysu4bel&dl=0",
+          "thumb": "assets/synced/micro-ii/6a79327f790f31bd07cf626f07de1a9629c115a655315bb077f36be0d7e4fcbc.jpg",
+          "file": null
+        },
+        {
           "name": "_GSH6782",
           "type": "image",
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fi/ds4jafcbbgprckntcou6x/_GSH6782.jpg?rlkey=adik17sojif4hgfd147gml60w&dl=0",
           "thumb": "assets/synced/micro-ii/33ff612cae81a50874772064bcde2bd4917f59d6398c11177b94871b133df7da.jpg",
+          "file": null
+        },
+        {
+          "name": "_GSH6788",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/hixbf6jvbrko725hj4env/_GSH6788.jpg?rlkey=dcg406yo6w7wcov314gkb5ibg&dl=0",
+          "thumb": "assets/synced/micro-ii/ca8341bcf84863cc2fa230d8cc363bf4166cc994c0de394cb98d8a56f723bd9b.jpg",
+          "file": null
+        },
+        {
+          "name": "_GSH6893",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/gdlywwr16tw4qyaziit2k/_GSH6893.jpg?rlkey=srrulir0ps5ovqhochsurjrcs&dl=0",
+          "thumb": "assets/synced/micro-ii/d1561e4655ccbbb6f436e7c14d0e73387a96ab1ef1794c48cfa603c6ee608496.jpg",
+          "file": null
+        },
+        {
+          "name": "_GSH6974",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/qe475g1r24kpza22xm6tu/_GSH6974.jpg?rlkey=innggdiqiqj4zevcq8zhdpro9&dl=0",
+          "thumb": "assets/synced/micro-ii/9de303a4bf0ed330b0f4e6025043c4933b0a5c07ae2175e085fd2672b877063e.jpg",
+          "file": null
+        },
+        {
+          "name": "_GSH7120",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/l8fg936vm2f8ucauqvgek/_GSH7120.jpg?rlkey=bbpf79m0xbul3rtjp5anc35jy&dl=0",
+          "thumb": "assets/synced/micro-ii/d772345a5614c7b3fb4dd9916f8a3350dcd82775816c3b8f3bfc39d073246ab9.jpg",
+          "file": null
+        },
+        {
+          "name": "_GSH7228",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/3p3059pzd9trcmrjt60n4/_GSH7228.jpg?rlkey=ew94gj6it381o2phz1qfwqn1y&dl=0",
+          "thumb": "assets/synced/micro-ii/fb1081a504c2361ef04b9e280da291f6be474a7f2590c02a416a4c7b92d3cdd3.jpg",
           "file": null
         },
         {
@@ -1265,14 +1369,6 @@ window.PORTAL_SYNCED = {
         }
       ],
       "Documents": [
-        {
-          "name": "20260714_GPEN_Micro2_Onesheet_Attachments_C",
-          "type": "file",
-          "format": "PSD",
-          "url": "https://www.dropbox.com/scl/fi/z2dm9cmfnur93nsi924t8/20260714_GPEN_Micro2_Onesheet_Attachments_C.psd?rlkey=mm9v7zem883ukask5jbj8o4ib&dl=0",
-          "thumb": null,
-          "file": null
-        },
         {
           "name": "20260730_GPen_Micro2_Manual",
           "type": "pdf",
