@@ -132,7 +132,7 @@ window.PORTAL_PRODUCTS = [
     // Transparent PNG built from the synced "Micro 2-front" shot (background
     // removed by edge flood-fill, preserving the lit display and the G logo),
     // so the tile matches the other products instead of sitting on white.
-    cover: "assets/img/micro-ii.png?v=20260826d",
+    cover: "assets/img/micro-ii.png?v=20260826i",
     // Durable rlkey link (expiring st= token stripped).
     dropbox: "https://www.dropbox.com/scl/fo/spharop9yvc7bnk5g3w4z/AKUC7ALBupRa8e039bvfNr4?rlkey=5560kr7brds1hco7tgeiafsbx&dl=0",
     folders: {},   // real files + thumbnails come from synced.js (Dropbox sync)
@@ -629,6 +629,9 @@ var PRODUCT_INFO = {
     sku: "GPM-001-APZZ",
     upc: "811736020343",
     pop: true,
+    // The no-price render, chosen by the owner over the higher-scoring
+    // "Micro-II-POP-front". Matched by filename — see the popFile resolver.
+    popFile: "Micro-II-Pop-No-Price",
     popSku: "GPM-001-APZZ-Inner Pack",
     popUpc: "10811736020340",
     dimensions: "105 × 35 × 28 mm",
@@ -964,6 +967,22 @@ window.PORTAL_COLORWAYS = {
     var re = MATCH[p.name]; if (!re || !p.info) return;
     var img = pops.filter(function (x) { return re.test(x.name) && x.thumb; })[0];
     if (img) { if (!p.info.popImg) { p.info.popImg = img.thumb; p.info.popImgDl = img.url; } p.info.pop = true; }
+  });
+
+  // An explicit per-product POP choice, named by FILE (info.popFile). Use when
+  // the auto-pick below would score the wrong render highest — e.g. Micro II,
+  // where "Micro-II-POP-front" outscores the no-price render we actually want
+  // on the page. Resolved at load time by filename, never by URL, so it
+  // survives the content-hash thumbnails changing on every re-sync.
+  window.PORTAL_PRODUCTS.forEach(function (p) {
+    if (!p.info || !p.info.popFile || !p.folders) return;
+    var want = String(p.info.popFile).toLowerCase(), hit = null;
+    Object.keys(p.folders).forEach(function (f) {
+      (p.folders[f] || []).forEach(function (x) {
+        if (!hit && x && x.thumb && String(x.name || "").toLowerCase() === want) hit = x;
+      });
+    });
+    if (hit) { p.info.popImg = hit.thumb; p.info.popImgDl = hit.url; p.info.pop = true; }
   });
 
   // Fallback: a POP shot that lives in the product's OWN Dropbox folders rather
