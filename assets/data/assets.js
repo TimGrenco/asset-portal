@@ -120,15 +120,15 @@ window.PORTAL_PRODUCTS = [
     folders: {},   // real folders + thumbnails come from synced.js (Dropbox sync)
   },
   {
-    // Additional Products page, product search and file search; it is reachable
-    // only by its direct URL (#gpen/micro-ii) so the page can be reviewed
     // Category/type confirmed by the owner 2026-08-19: Concentrate Vaporizer.
+    // Published to the home grid 2026-08-26, first in Concentrate Accessories.
     name: "Micro II", brand: "gpen", category: "Concentrate", type: "Concentrate Vaporizer",
     added: "2026-08-19",
+    newBadge: true,   // launch product — flag it on the home card
     oneSheet: "#",
-    // Transparent PNG built from the synced "Micro 2-front" shot (background
-    // removed by edge flood-fill, preserving the lit display and the G logo),
-    // so the tile matches the other products instead of sitting on white.
+    // Transparent PNG built from the synced "Micro 2-34" shot (background removed
+    // by edge flood-fill from the border only, so the lit display and the G logo
+    // keep their whites), sized so the device fills 88% of the square canvas.
     cover: "assets/img/micro-ii.png?v=20260826i",
     // Durable rlkey link (expiring st= token stripped).
     dropbox: "https://www.dropbox.com/scl/fo/spharop9yvc7bnk5g3w4z/AKUC7ALBupRa8e039bvfNr4?rlkey=5560kr7brds1hco7tgeiafsbx&dl=0",
