@@ -84,6 +84,7 @@ window.PORTAL_CURRENT = {
     "Dash II",
     "Dash+",
     "Slim 3-Piece Grinder",
+    "Micro II",
     "Melt Hot Knife",
     "Hydout",
     "510 Original",
@@ -119,14 +120,10 @@ window.PORTAL_PRODUCTS = [
     folders: {},   // real folders + thumbnails come from synced.js (Dropbox sync)
   },
   {
-    // Micro II — PRE-LAUNCH. `unlisted: true` keeps it out of the home grid, the
     // Additional Products page, product search and file search; it is reachable
     // only by its direct URL (#gpen/micro-ii) so the page can be reviewed
-    // internally before launch. Remove the flag and add it to PORTAL_CURRENT to
-    // publish. Awaiting: Dropbox folder, cover image, marketing copy, MSRP.
     // Category/type confirmed by the owner 2026-08-19: Concentrate Vaporizer.
     name: "Micro II", brand: "gpen", category: "Concentrate", type: "Concentrate Vaporizer",
-    unlisted: true,
     added: "2026-08-19",
     oneSheet: "#",
     // Transparent PNG built from the synced "Micro 2-front" shot (background
@@ -1169,6 +1166,7 @@ var HYDOUT_RETRO_PHOTOS = [
   var LABELS = {
     "Dash II": "Dry Herb Vape",
     "Dash+": "Dry Herb Vape",
+    "Micro II": "Concentrate Vaporizer",
     "Melt Hot Knife": "Concentrate Hot Knife",
     "510 Original": "510 Battery",
     "510 Original — Retro": "510 Battery",
