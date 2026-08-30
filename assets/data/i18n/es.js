@@ -259,6 +259,7 @@ window.PORTAL_I18N.es = {
     "Order materials": "Solicitar materiales",
     "Packaging": "Empaque",
     "Prev": "Anterior",
+    "Technical specifications": "Especificaciones técnicas",
     "Product FAQs": "Preguntas Frecuentes",
     "Product Manual": "Manual del Producto",
     "Remove": "Eliminar",
@@ -1529,6 +1530,124 @@ window.PORTAL_I18N.es = {
     }
   },
   "products": {
+      "Micro II": {
+        "description": "Un vaporizador de concentrados compacto con tres niveles de calor, flujo de aire ajustable, pantalla digital, calentamiento cerámico y hasta 120 sesiones por carga.",
+        "highlights": [
+          "Tres niveles de calor: LOW ~295°F, MEDIUM ~340°F, HIGH ~395°F",
+          "Calentamiento en 5 segundos",
+          "Modo Sesión (20 s) + Calentamiento Manual (hasta 25 s)",
+          "Flujo de aire ajustable: de abierto a restringido",
+          "Atomizador cerámico de 0.8Ω",
+          "Pantalla digital: temperatura, estado de calentamiento y batería",
+          "Vibración al alcanzar la temperatura",
+          "Batería de 1,250mAh: hasta 120 sesiones por carga",
+          "Carga rápida USB-C: en menos de 60 minutos",
+          "Carga simultánea (se puede usar mientras se carga)",
+          "Apagado automático a los 10 minutos",
+          "Cuerpo de aluminio anodizado",
+          "Compatible con el Sidecar y el adaptador para rig de 14 mm (se venden por separado)",
+          "Manejo sencillo con un solo botón"
+        ],
+        "fullDescription": [
+          "El G Pen Micro II reinventa el icónico vaporizador de concentrados Micro con más potencia, precisión y control en un diseño compacto que cabe en el bolsillo.",
+          "Impulsado por una batería recargable de 1,250mAh, el Micro II ofrece hasta 120 sesiones por carga, con carga rápida USB-C en menos de 60 minutos. Sus tres niveles de temperatura optimizados —LOW a unos 295°F, MEDIUM a 340°F y HIGH a 395°F— le permiten ajustar la sesión para lograr un sabor suave, un rendimiento equilibrado o una producción de vapor más densa.",
+          "Un atomizador cerámico de 0.8Ω de primera calidad brinda un rendimiento constante con los concentrados, mientras que el flujo de aire ajustable le da aún más control sobre cada calada. Elija entre el Modo Sesión de 20 segundos, con calentamiento automático, o el Calentamiento Manual, con hasta 25 segundos de control directo.",
+          "La pantalla digital integrada mantiene a la vista la batería, la temperatura y el estado de calentamiento, mientras que la vibración le avisa cuando el Micro II ha alcanzado la temperatura. Un cuerpo resistente de aluminio anodizado, el manejo con un solo botón, la carga simultánea y el apagado automático a los 10 minutos hacen que el uso diario sea muy sencillo.",
+          "Utilice la boquilla de silicona incluida para una configuración compacta, o amplíe la experiencia con el G Pen Micro II Sidecar y el adaptador para rig de 14 mm, disponibles por separado, para disfrutar de sesiones filtradas con agua en casa o donde quiera que vaya.",
+          "Más de una década después de que el microG original ayudara a definir la vaporización portátil de concentrados, el Micro II lleva la experiencia Micro a una nueva generación, todo por $49.95."
+        ],
+        "box": {
+          "contents": [
+            "Batería G Pen Micro II",
+            "Tanque cerámico G Pen Micro II",
+            "Boquilla de silicona",
+            "*Sidecar del Micro II: se vende por separado",
+            "*Adaptador para rig de 14 mm del Micro II: se vende por separado"
+          ]
+        },
+        "specs": [
+          [
+            "Batería",
+            "1,250mAh recargable"
+          ],
+          [
+            "Carga",
+            "Carga rápida USB-C, menos de 60 minutos"
+          ],
+          [
+            "Carga simultánea",
+            "Sí"
+          ],
+          [
+            "Pantalla",
+            "Pantalla digital en blanco y negro"
+          ],
+          [
+            "Temperatura — LOW",
+            "~295°F"
+          ],
+          [
+            "Temperatura — MEDIUM",
+            "~340°F"
+          ],
+          [
+            "Temperatura — HIGH",
+            "~395°F"
+          ],
+          [
+            "Tolerancia de temperatura",
+            "±15–30°F"
+          ],
+          [
+            "Tiempo de calentamiento",
+            "5 segundos"
+          ],
+          [
+            "Modo Sesión",
+            "Ciclo de calentamiento de 20 segundos (calentamiento inicial incluido)"
+          ],
+          [
+            "Calentamiento Manual",
+            "Hasta 25 segundos (calentamiento inicial incluido)"
+          ],
+          [
+            "Atomizador",
+            "Cerámico de 0.8Ω"
+          ],
+          [
+            "Flujo de aire",
+            "Ajustable"
+          ],
+          [
+            "Vibración",
+            "Sí"
+          ],
+          [
+            "Duración de la batería",
+            "Hasta 120 sesiones por carga"
+          ],
+          [
+            "Apagado automático",
+            "10 minutos"
+          ],
+          [
+            "Cuerpo",
+            "Aluminio anodizado"
+          ],
+          [
+            "Boquilla",
+            "Silicona"
+          ],
+          [
+            "Dimensiones del dispositivo",
+            "98.6 × 24 × 32 mm"
+          ],
+          [
+            "Peso del dispositivo",
+            "86 g"
+          ]
+        ]
+      },
     "Slim 3-Piece Grinder": {
      "description": "Un grinder de 3 piezas, delgado y sin tamiz, con dientes micro-redondeados que separan la flor con suavidad para lograr una molienda uniforme: creado para combinar con el Dash II y el Dash+.",
      "highlights": [

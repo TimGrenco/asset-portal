@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260826m";   // bump with the other asset tokens
+  var LANG_VER = "20260826n";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -159,6 +159,13 @@
     // translation can never drop or duplicate a paragraph.
     if (loc.fullDescription && en.fullDescription && loc.fullDescription.length === en.fullDescription.length) {
       out.fullDescription = loc.fullDescription;
+    }
+    // Technical specifications — [label, value] pairs. Same length guard as the
+    // other arrays, plus a shape check: a malformed row would otherwise render
+    // "undefined" in a spec table that stores read as authoritative.
+    if (loc.specs && en.specs && loc.specs.length === en.specs.length &&
+        loc.specs.every(function (r) { return r && r.length === 2; })) {
+      out.specs = loc.specs;
     }
     // "What's In the Box" contents — same length guard; the image stays as-is.
     if (loc.box && loc.box.contents && en.box && en.box.contents &&

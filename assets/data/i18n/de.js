@@ -259,6 +259,7 @@ window.PORTAL_I18N.de = {
     "Order materials": "Materialien bestellen",
     "Packaging": "Verpackung",
     "Prev": "Zurück",
+    "Technical specifications": "Technische Daten",
     "Product FAQs": "Produkt-FAQs",
     "Product Manual": "Bedienungsanleitung",
     "Remove": "Entfernen",
@@ -1529,6 +1530,124 @@ window.PORTAL_I18N.de = {
     }
   },
   "products": {
+      "Micro II": {
+        "description": "Ein kompakter Konzentrat-Vaporizer mit drei Heizstufen, einstellbarem Luftstrom, Digitaldisplay, Keramikheizung und bis zu 120 Sessions pro Ladung.",
+        "highlights": [
+          "Drei Heizstufen: LOW ~295°F, MEDIUM ~340°F, HIGH ~395°F",
+          "Aufheizen in 5 Sekunden",
+          "Session-Modus (20 s) + manuelles Heizen (bis zu 25 s)",
+          "Einstellbarer Luftstrom: von offen bis eingeschränkt",
+          "0.8Ω Keramik-Atomizer",
+          "Digitaldisplay: Temperatur, Heizstatus und Akkustand",
+          "Vibration beim Erreichen der Temperatur",
+          "1,250mAh Akku: bis zu 120 Sessions pro Ladung",
+          "USB-C-Schnellladung: in weniger als 60 Minuten",
+          "Pass-Through-Laden (Nutzung während des Ladens möglich)",
+          "Automatische Abschaltung nach 10 Minuten",
+          "Gehäuse aus eloxiertem Aluminium",
+          "Kompatibel mit Sidecar und 14-mm-Rig-Adapter (separat erhältlich)",
+          "Einfache Bedienung mit nur einer Taste"
+        ],
+        "fullDescription": [
+          "Der G Pen Micro II denkt den ikonischen Micro Konzentrat-Vaporizer neu: mit mehr Leistung, Präzision und Kontrolle in einem kompakten, taschenfreundlichen Design.",
+          "Angetrieben von einem wiederaufladbaren 1,250mAh Akku, liefert der Micro II bis zu 120 Sessions pro Ladung und lädt per USB-C in weniger als 60 Minuten. Drei optimierte Temperaturstufen – LOW bei etwa 295°F, MEDIUM bei 340°F und HIGH bei 395°F – lassen Sie Ihre Session auf sanften Geschmack, ausgewogene Leistung oder dichtere Dampfentwicklung abstimmen.",
+          "Ein hochwertiger 0.8Ω Keramik-Atomizer sorgt für gleichbleibende Leistung mit Konzentraten, während der einstellbare Luftstrom Ihnen noch mehr Kontrolle über jeden Zug gibt. Wählen Sie zwischen dem 20-sekündigen Session-Modus mit automatischem Heizen oder dem manuellen Heizen mit bis zu 25 Sekunden direkter Kontrolle.",
+          "Das integrierte Digitaldisplay hält Akkustand, Temperatur und Heizstatus im Blick, und die Vibration meldet Ihnen, wenn der Micro II die Temperatur erreicht hat. Ein robustes Gehäuse aus eloxiertem Aluminium, die Bedienung mit nur einer Taste, Pass-Through-Laden und die automatische Abschaltung nach 10 Minuten machen den täglichen Gebrauch mühelos.",
+          "Nutzen Sie das mitgelieferte Silikonmundstück für einen kompakten Aufbau oder erweitern Sie das Erlebnis mit dem separat erhältlichen G Pen Micro II Sidecar und dem 14-mm-Rig-Adapter für wassergefilterte Sessions zu Hause und unterwegs.",
+          "Mehr als ein Jahrzehnt nachdem der ursprüngliche microG die portable Konzentrat-Verdampfung mitgeprägt hat, bringt der Micro II das Micro Erlebnis in eine neue Generation – und das für $49.95."
+        ],
+        "box": {
+          "contents": [
+            "G Pen Micro II Akku",
+            "G Pen Micro II Keramiktank",
+            "Silikonmundstück",
+            "*Micro II Sidecar separat erhältlich",
+            "*Micro II 14-mm-Rig-Adapter separat erhältlich"
+          ]
+        },
+        "specs": [
+          [
+            "Akku",
+            "1,250mAh wiederaufladbar"
+          ],
+          [
+            "Aufladen",
+            "USB-C-Schnellladung, unter 60 Minuten"
+          ],
+          [
+            "Pass-Through-Laden",
+            "Ja"
+          ],
+          [
+            "Display",
+            "Digitales Schwarz-Weiß-Display"
+          ],
+          [
+            "Temperatur — LOW",
+            "~295°F"
+          ],
+          [
+            "Temperatur — MEDIUM",
+            "~340°F"
+          ],
+          [
+            "Temperatur — HIGH",
+            "~395°F"
+          ],
+          [
+            "Temperaturtoleranz",
+            "±15–30°F"
+          ],
+          [
+            "Aufheizzeit",
+            "5 Sekunden"
+          ],
+          [
+            "Session-Modus",
+            "20-sekündiger Heizzyklus (inklusive Aufheizen)"
+          ],
+          [
+            "Manuelles Heizen",
+            "Bis zu 25 Sekunden (inklusive Aufheizen)"
+          ],
+          [
+            "Atomizer",
+            "0.8Ω Keramik"
+          ],
+          [
+            "Luftstrom",
+            "Einstellbar"
+          ],
+          [
+            "Vibration",
+            "Ja"
+          ],
+          [
+            "Akkulaufzeit",
+            "Bis zu 120 Sessions pro Ladung"
+          ],
+          [
+            "Automatische Abschaltung",
+            "10 Minuten"
+          ],
+          [
+            "Gehäuse",
+            "Eloxiertes Aluminium"
+          ],
+          [
+            "Mundstück",
+            "Silikon"
+          ],
+          [
+            "Geräteabmessungen",
+            "98.6 × 24 × 32 mm"
+          ],
+          [
+            "Gerätegewicht",
+            "86 g"
+          ]
+        ]
+      },
     "Slim 3-Piece Grinder": {
      "description": "Ein schlanker, siebfreier 3-teiliger Grinder mit mikro-abgerundeten Zähnen, die Blüten sanft zu einem gleichmäßigen Mahlgut zerkleinern – konzipiert als perfekte Ergänzung zum Dash II und Dash+.",
      "highlights": [
