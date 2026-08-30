@@ -329,6 +329,153 @@ window.PORTAL_I18N.de = {
     "Additional G Pen Products": "Weitere G Pen Produkte"
   },
   "training": {
+      "Micro II": {
+        "tagline": "Lernen Sie den G Pen Micro II kennen und bestehen Sie das Quiz, um zertifizierter Produktspezialist zu werden.",
+        "minutes": 7,
+        "passPct": 80,
+        "modules": [
+          {
+            "title": "Produktüberblick",
+            "points": [
+              "Der G Pen Micro II ist ein <strong>Konzentrat-Vaporizer</strong> – nicht für Blüten geeignet.",
+              "Er ist die neueste Entwicklungsstufe der Micro Plattform, die mit dem <strong>ursprünglichen microG von 2013</strong> begann.",
+              "Taschenformat, mit robustem Gehäuse aus <strong>eloxiertem Aluminium</strong> und einem <strong>0.8Ω Keramik-Atomizer</strong>.",
+              "UVP <strong>$49.95</strong>."
+            ]
+          },
+          {
+            "title": "Hitze &amp; Luftstrom",
+            "points": [
+              "Drei Heizstufen: <strong>LOW ~295°F</strong>, <strong>MEDIUM ~340°F</strong>, <strong>HIGH ~395°F</strong>.",
+              "Die Temperaturen schwanken um etwa <strong>±15–30°F</strong>, je nachdem wie lange das Heizelement aktiviert wird – weisen Sie Kunden darauf hin.",
+              "<strong>Aufheizen in 5 Sekunden</strong>, und das Gerät vibriert, sobald die Temperatur erreicht ist.",
+              "Der <strong>einstellbare Luftstrom</strong> liegt gegenüber dem Display: nach links für mehr Luft, nach rechts für einen engeren Zug."
+            ]
+          },
+          {
+            "title": "Bedienung &amp; Heizmodi",
+            "points": [
+              "<strong>Fünfmal klicken</strong> schaltet den Micro II ein oder aus.",
+              "<strong>Dreimal klicken</strong> wechselt die Temperatur – eine Wolke LOW, zwei Wolken MEDIUM, drei Wolken HIGH.",
+              "<strong>Session-Modus</strong>: Zweimal klicken startet einen automatischen Zyklus von <strong>insgesamt 20 Sekunden, inklusive der etwa 5 Sekunden Aufheizzeit</strong>. Erneutes zweimaliges Klicken bricht ab.",
+              "<strong>Manuelles Heizen</strong>: Taste gedrückt halten, bis zu <strong>25 Sekunden insgesamt, inklusive Aufheizen</strong>.",
+              "<strong>Automatische Abschaltung nach 10 Minuten</strong> schont den Akku."
+            ]
+          },
+          {
+            "title": "Akku, Lieferumfang &amp; Zubehör",
+            "points": [
+              "<strong>1,250mAh</strong> Akku – bis zu <strong>120 Sessions pro Ladung</strong>.",
+              "<strong>USB-C-Schnellladung</strong> in unter 60 Minuten, dazu <strong>Pass-Through-Laden</strong>, sodass das Gerät während des Ladens nutzbar bleibt.",
+              "Im Lieferumfang: Akku, Keramiktank und ein Silikonmundstück. <strong>Ein Ladekabel ist nicht enthalten</strong> – jedes USB-C-Ladegerät funktioniert.",
+              "Das <strong>Sidecar</strong> (Glas-Wasserfiltration) und der <strong>14-mm-Rig-Adapter</strong> sind <strong>separat erhältlich</strong>.",
+              "Bei der ersten Nutzung muss das Konzentrat die <strong>poröse Keramikplatte einziehen</strong>, daher können die ersten Züge schwach ausfallen – besonders auf LOW."
+            ]
+          }
+        ],
+        "quiz": [
+          {
+            "q": "Um was für ein Produkt handelt es sich beim G Pen Micro II?",
+            "choices": [
+              "Einen Trockenkräuter-Vaporizer",
+              "Einen Konzentrat-Vaporizer",
+              "Eine 510 Batterie",
+              "Einen Grinder"
+            ],
+            "why": "Der Micro II ist ein Konzentrat-Vaporizer und nicht für Blüten ausgelegt."
+          },
+          {
+            "q": "Wie hoch ist die UVP des Micro II?",
+            "choices": [
+              "$29.95",
+              "$39.95",
+              "$49.95",
+              "$59.95"
+            ],
+            "why": "Der Micro II kostet $49.95."
+          },
+          {
+            "q": "Wie lauten die drei Temperaturstufen?",
+            "choices": [
+              "~250°F / ~300°F / ~350°F",
+              "~295°F / ~340°F / ~395°F",
+              "~315°F / ~365°F / ~415°F",
+              "~350°F / ~400°F / ~450°F"
+            ],
+            "why": "LOW liegt bei etwa 295°F, MEDIUM bei 340°F und HIGH bei 395°F."
+          },
+          {
+            "q": "Wie wechselt man zwischen den Temperaturstufen?",
+            "choices": [
+              "Einmal klicken",
+              "Zweimal klicken",
+              "Dreimal klicken",
+              "Fünfmal klicken"
+            ],
+            "why": "Dreimal klicken wechselt zwischen LOW, MEDIUM und HIGH – dargestellt als eine, zwei oder drei Wolken."
+          },
+          {
+            "q": "Wie schaltet man den Micro II ein oder aus?",
+            "choices": [
+              "Zweimal klicken",
+              "Dreimal klicken",
+              "Fünfmal klicken",
+              "Taste gedrückt halten"
+            ],
+            "why": "Fünfmal klicken schaltet das Gerät ein oder aus."
+          },
+          {
+            "q": "Was ist der Session-Modus?",
+            "choices": [
+              "Ein automatischer Heizzyklus von 20 Sekunden, inklusive Aufheizen",
+              "Ein Modus, der die Akkulaufzeit verdoppelt",
+              "Eine Einstellung, die die Temperatur sperrt",
+              "Ein Reinigungszyklus"
+            ],
+            "why": "Zweimal klicken startet den Session-Modus: ein Zyklus von 20 Sekunden ab Heizbeginn, inklusive der etwa 5 Sekunden Aufheizzeit."
+          },
+          {
+            "q": "Wie lange kann das manuelle Heizen laufen?",
+            "choices": [
+              "Bis zu 10 Sekunden",
+              "Bis zu 15 Sekunden",
+              "Bis zu 25 Sekunden inklusive Aufheizen",
+              "Unbegrenzt, bis die Taste losgelassen wird"
+            ],
+            "why": "Manuelles Heizen läuft bis zu 25 Sekunden insgesamt, inklusive Aufheizen, und schaltet sich dann automatisch ab."
+          },
+          {
+            "q": "Wie viele Sessions liefert eine volle Ladung?",
+            "choices": [
+              "Bis zu 60",
+              "Bis zu 90",
+              "Bis zu 120",
+              "Bis zu 200"
+            ],
+            "why": "Der 1,250mAh Akku liefert bis zu 120 Sessions pro Ladung."
+          },
+          {
+            "q": "Was ist beim Micro II im Lieferumfang enthalten?",
+            "choices": [
+              "Akku, Keramiktank, Silikonmundstück und ein USB-C-Ladekabel",
+              "Akku, Keramiktank und Silikonmundstück – kein Ladekabel",
+              "Akku und das Sidecar-Zubehör",
+              "Akku, Keramiktank und der 14-mm-Rig-Adapter"
+            ],
+            "why": "Dem Micro II liegt kein Ladekabel bei – jedes USB-C-Ladegerät funktioniert. Sidecar und Rig-Adapter sind separat erhältlich."
+          },
+          {
+            "q": "Ein Kunde sagt, die allererste Session habe kaum Dampf erzeugt. Was ist die wahrscheinlichste Ursache?",
+            "choices": [
+              "Der Akku ist defekt und muss ersetzt werden",
+              "Das Konzentrat muss erst die poröse Keramikplatte durchziehen",
+              "Das Gerät wurde ohne Atomizer ausgeliefert",
+              "Es benötigt ein Firmware-Update"
+            ],
+            "why": "Bei der ersten Nutzung muss das Konzentrat die poröse Keramikplatte einziehen; weitere Aktivierungen können nötig sein, besonders auf LOW."
+          }
+        ]
+      },
     "Slim 3-Piece Grinder": {
      "tagline": "Lernen Sie den G Pen Slim 3-Piece Grinder kennen und bestehen Sie anschließend das Quiz, um zertifizierter Produktspezialist zu werden.",
      "minutes": 6,

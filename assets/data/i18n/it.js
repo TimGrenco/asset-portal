@@ -329,6 +329,153 @@ window.PORTAL_I18N.it = {
     "Additional G Pen Products": "Altri prodotti G Pen"
   },
   "training": {
+      "Micro II": {
+        "tagline": "Impara a conoscere il G Pen Micro II e supera il quiz per diventare Specialista di Prodotto certificato.",
+        "minutes": 7,
+        "passPct": 80,
+        "modules": [
+          {
+            "title": "Panoramica del prodotto",
+            "points": [
+              "Il G Pen Micro II è un <strong>vaporizzatore per concentrati</strong>: non è adatto alle infiorescenze.",
+              "È l'evoluzione più recente della piattaforma Micro, nata con il <strong>microG originale nel 2013</strong>.",
+              "Formato tascabile, con corpo resistente in <strong>alluminio anodizzato</strong> e <strong>atomizzatore in ceramica da 0.8Ω</strong>.",
+              "Prezzo consigliato: <strong>$49.95</strong>."
+            ]
+          },
+          {
+            "title": "Calore e flusso d'aria",
+            "points": [
+              "Tre livelli di calore: <strong>LOW ~295°F</strong>, <strong>MEDIUM ~340°F</strong>, <strong>HIGH ~395°F</strong>.",
+              "Le temperature variano di circa <strong>±15–30°F</strong> a seconda di quanto a lungo viene attivata la resistenza: spiegatelo al cliente.",
+              "<strong>Riscaldamento in 5 secondi</strong>, e il dispositivo vibra al raggiungimento della temperatura.",
+              "Il <strong>flusso d'aria regolabile</strong> si trova sul lato opposto al display: verso sinistra per più aria, verso destra per un tiro più ristretto."
+            ]
+          },
+          {
+            "title": "Comandi e modalità di riscaldamento",
+            "points": [
+              "<strong>Cinque clic</strong> accendono o spengono il Micro II.",
+              "<strong>Tre clic</strong> cambiano la temperatura: una nuvola LOW, due nuvole MEDIUM, tre nuvole HIGH.",
+              "<strong>Modalità Sessione</strong>: due clic avviano un ciclo automatico di <strong>20 secondi in totale, compresi i circa 5 secondi di riscaldamento</strong>. Altri due clic lo annullano.",
+              "<strong>Riscaldamento Manuale</strong>: tenete premuto fino a <strong>25 secondi in totale, riscaldamento compreso</strong>.",
+              "<strong>Spegnimento automatico dopo 10 minuti</strong> per preservare la batteria."
+            ]
+          },
+          {
+            "title": "Batteria, contenuto e accessori",
+            "points": [
+              "Batteria da <strong>1,250mAh</strong>: fino a <strong>120 sessioni per ricarica</strong>.",
+              "<strong>Ricarica rapida USB-C</strong> in meno di 60 minuti e <strong>ricarica pass-through</strong>, per usarlo mentre è collegato.",
+              "Nella confezione: batteria, serbatoio in ceramica e bocchino in silicone. <strong>Il cavo di ricarica non è incluso</strong>: va bene qualsiasi caricatore USB-C.",
+              "Il <strong>Sidecar</strong> (filtrazione ad acqua in vetro) e l'<strong>adattatore per rig da 14 mm</strong> sono <strong>venduti separatamente</strong>.",
+              "Al primo utilizzo il concentrato deve <strong>impregnare la piastra in ceramica porosa</strong>, quindi i primi tiri possono essere leggeri, soprattutto su LOW."
+            ]
+          }
+        ],
+        "quiz": [
+          {
+            "q": "Che tipo di prodotto è il G Pen Micro II?",
+            "choices": [
+              "Un vaporizzatore per erbe secche",
+              "Un vaporizzatore per concentrati",
+              "Una batteria 510",
+              "Un grinder"
+            ],
+            "why": "Il Micro II è un vaporizzatore per concentrati e non è progettato per le infiorescenze."
+          },
+          {
+            "q": "Qual è il prezzo consigliato del Micro II?",
+            "choices": [
+              "$29.95",
+              "$39.95",
+              "$49.95",
+              "$59.95"
+            ],
+            "why": "Il Micro II è venduto a $49.95."
+          },
+          {
+            "q": "Quali sono i tre livelli di temperatura?",
+            "choices": [
+              "~250°F / ~300°F / ~350°F",
+              "~295°F / ~340°F / ~395°F",
+              "~315°F / ~365°F / ~415°F",
+              "~350°F / ~400°F / ~450°F"
+            ],
+            "why": "LOW è circa 295°F, MEDIUM circa 340°F e HIGH circa 395°F."
+          },
+          {
+            "q": "Come si passa da un livello di temperatura all'altro?",
+            "choices": [
+              "Un clic",
+              "Due clic",
+              "Tre clic",
+              "Cinque clic"
+            ],
+            "why": "Tre clic alternano LOW, MEDIUM e HIGH, indicati con una, due o tre nuvole."
+          },
+          {
+            "q": "Come si accende e si spegne il Micro II?",
+            "choices": [
+              "Due clic",
+              "Tre clic",
+              "Cinque clic",
+              "Tenendo premuto"
+            ],
+            "why": "Cinque clic accendono o spengono il dispositivo."
+          },
+          {
+            "q": "Che cos'è la Modalità Sessione?",
+            "choices": [
+              "Un ciclo di riscaldamento automatico di 20 secondi, riscaldamento iniziale compreso",
+              "Una modalità che raddoppia la durata della batteria",
+              "Un'impostazione che blocca la temperatura",
+              "Un ciclo di pulizia"
+            ],
+            "why": "Due clic avviano la Modalità Sessione: un ciclo di 20 secondi calcolati dall'inizio del riscaldamento, compresi i circa 5 secondi iniziali."
+          },
+          {
+            "q": "Quanto può durare il Riscaldamento Manuale?",
+            "choices": [
+              "Fino a 10 secondi",
+              "Fino a 15 secondi",
+              "Fino a 25 secondi, riscaldamento compreso",
+              "All'infinito, finché non si rilascia il pulsante"
+            ],
+            "why": "Il Riscaldamento Manuale dura fino a 25 secondi in totale, riscaldamento compreso, poi si spegne automaticamente."
+          },
+          {
+            "q": "Quante sessioni offre una ricarica completa?",
+            "choices": [
+              "Fino a 60",
+              "Fino a 90",
+              "Fino a 120",
+              "Fino a 200"
+            ],
+            "why": "La batteria da 1,250mAh offre fino a 120 sessioni per ricarica."
+          },
+          {
+            "q": "Cosa contiene la confezione del Micro II?",
+            "choices": [
+              "Batteria, serbatoio in ceramica, bocchino in silicone e un cavo di ricarica USB-C",
+              "Batteria, serbatoio in ceramica e bocchino in silicone, senza cavo di ricarica",
+              "Batteria e l'accessorio Sidecar",
+              "Batteria, serbatoio in ceramica e l'adattatore per rig da 14 mm"
+            ],
+            "why": "Il Micro II non include il cavo di ricarica: va bene qualsiasi caricatore USB-C. Sidecar e adattatore per rig sono venduti separatamente."
+          },
+          {
+            "q": "Un cliente dice che la primissima sessione ha prodotto poco vapore. Qual è la causa più probabile?",
+            "choices": [
+              "La batteria è difettosa e va sostituita",
+              "Il concentrato deve prima impregnare la piastra in ceramica porosa",
+              "Il dispositivo è stato spedito senza atomizzatore",
+              "Serve un aggiornamento del firmware"
+            ],
+            "why": "Al primo utilizzo il concentrato deve impregnare la piastra in ceramica porosa; possono servire altre attivazioni, soprattutto su LOW."
+          }
+        ]
+      },
     "Slim 3-Piece Grinder": {
      "tagline": "Impara a conoscere il G Pen Slim 3-Piece Grinder, poi supera il quiz per diventare Product Specialist certificato.",
      "minutes": 6,

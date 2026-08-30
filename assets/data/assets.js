@@ -1192,6 +1192,102 @@ var HYDOUT_RETRO_PHOTOS = [
    `videos` array. Add a product key here to give it a training page.
    ========================================================================== */
 window.PORTAL_TRAINING = {
+  "Micro II": {
+    tagline: "Learn the G Pen Micro II, then pass the quiz to become a certified Product Specialist.",
+    minutes: 7, passPct: 80,
+    modules: [
+      {
+        title: "Product Overview",
+        points: [
+          "The G Pen Micro II is a <strong>concentrate vaporizer</strong> — it is not for flower.",
+          "It is the newest evolution of the Micro platform, which began with the original <strong>microG in 2013</strong>.",
+          "Pocket-sized, with a durable <strong>anodized aluminum</strong> body and a <strong>0.8&#8486; ceramic atomizer</strong>.",
+          "MSRP <strong>$49.95</strong>.",
+        ],
+      },
+      {
+        title: "Heat &amp; Airflow",
+        points: [
+          "Three heat settings: <strong>LOW ~295&deg;F</strong>, <strong>MEDIUM ~340&deg;F</strong>, <strong>HIGH ~395&deg;F</strong>.",
+          "Temperatures vary by roughly <strong>&plusmn;15&ndash;30&deg;F</strong> depending on how long the heating element is activated — set that expectation with customers.",
+          "<strong>5-second heat-up</strong>, and the device vibrates once it reaches temperature.",
+          "<strong>Adjustable airflow</strong> sits on the opposite side from the display: slide left for more air, right for a more restricted draw.",
+        ],
+      },
+      {
+        title: "Controls &amp; Heating Modes",
+        points: [
+          "<strong>Five clicks</strong> powers the Micro II on or off.",
+          "<strong>Three clicks</strong> cycles the temperature — one cloud LOW, two clouds MEDIUM, three clouds HIGH.",
+          "<strong>Session Mode</strong>: two clicks starts an automatic cycle that runs <strong>20 seconds in total, including the ~5-second heat-up</strong>. Two clicks again cancels it.",
+          "<strong>Manual Heating</strong>: press and hold for up to <strong>25 seconds in total, including heat-up</strong>.",
+          "<strong>10-minute auto shutoff</strong> protects the battery.",
+        ],
+      },
+      {
+        title: "Battery, Box &amp; Accessories",
+        points: [
+          "<strong>1,250mAh</strong> battery — up to <strong>120 sessions per charge</strong>.",
+          "<strong>USB-C fast charging</strong> in under 60 minutes, plus <strong>pass-through charging</strong> so it can be used while plugged in.",
+          "In the box: the battery, the ceramic tank and a silicone mouthpiece. <strong>No charging cable is included</strong> — any USB-C charger works.",
+          "The <strong>Sidecar</strong> (glass water filtration) and the <strong>14mm Rig Adapter</strong> are <strong>sold separately</strong>.",
+          "On first use, concentrate must <strong>prime the porous ceramic plate</strong>, so early draws can be light — especially on LOW.",
+        ],
+      },
+    ],
+    quiz: [
+      { q: "What type of product is the G Pen Micro II?",
+        choices: ["A dry herb vaporizer", "A concentrate vaporizer", "A 510 battery", "A grinder"],
+        answer: 1,
+        why: "The Micro II is a concentrate vaporizer — it is not designed for flower." },
+      { q: "What is the MSRP of the Micro II?",
+        choices: ["$29.95", "$39.95", "$49.95", "$59.95"],
+        answer: 2,
+        why: "The Micro II retails for $49.95." },
+      { q: "What are the three temperature settings?",
+        choices: ["~250\u00B0F / ~300\u00B0F / ~350\u00B0F", "~295\u00B0F / ~340\u00B0F / ~395\u00B0F", "~315\u00B0F / ~365\u00B0F / ~415\u00B0F", "~350\u00B0F / ~400\u00B0F / ~450\u00B0F"],
+        answer: 1,
+        why: "LOW is about 295\u00B0F, MEDIUM about 340\u00B0F and HIGH about 395\u00B0F." },
+      { q: "How do you cycle between the temperature settings?",
+        choices: ["Click once", "Click twice", "Click three times", "Click five times"],
+        answer: 2,
+        why: "Three clicks cycles LOW, MEDIUM and HIGH — shown as one, two or three clouds." },
+      { q: "How do you power the Micro II on or off?",
+        choices: ["Click twice", "Click three times", "Click five times", "Press and hold"],
+        answer: 2,
+        why: "Five clicks powers the device on or off." },
+      { q: "What is Session Mode?",
+        choices: ["A 20-second automatic heating cycle, including the heat-up", "A mode that doubles battery life", "A setting that locks the temperature", "A cleaning cycle"],
+        answer: 0,
+        why: "Two clicks starts Session Mode: a 20-second cycle measured from the start of heating, including the ~5-second heat-up." },
+      { q: "How long can Manual Heating run?",
+        choices: ["Up to 10 seconds", "Up to 15 seconds", "Up to 25 seconds including heat-up", "Indefinitely, until the button is released"],
+        answer: 2,
+        why: "Manual Heating runs up to 25 seconds in total, including the heat-up, then shuts off automatically." },
+      { q: "How many sessions does a full charge deliver?",
+        choices: ["Up to 60", "Up to 90", "Up to 120", "Up to 200"],
+        answer: 2,
+        why: "The 1,250mAh battery delivers up to 120 sessions per charge." },
+      { q: "What comes in the box with the Micro II?",
+        choices: [
+          "Battery, ceramic tank, silicone mouthpiece and a USB-C charging cable",
+          "Battery, ceramic tank and silicone mouthpiece \u2014 no charging cable",
+          "Battery and the Sidecar attachment",
+          "Battery, ceramic tank and the 14mm Rig Adapter"
+        ],
+        answer: 1,
+        why: "No charging cable ships with the Micro II — any USB-C charger works. The Sidecar and Rig Adapter are sold separately." },
+      { q: "A customer says their very first session produced little vapor. What is the likely reason?",
+        choices: [
+          "The battery is defective and needs replacing",
+          "Concentrate must first prime the porous ceramic heating plate",
+          "The device shipped without an atomizer",
+          "It needs a firmware update"
+        ],
+        answer: 1,
+        why: "On first use the concentrate has to prime the porous ceramic plate; extra activations may be needed, especially on LOW." },
+    ],
+  },
   "Dash II": {
     tagline: "Learn the G Pen Dash II inside-out, then pass the quiz to become a certified Product Specialist.",
     minutes: 8,
