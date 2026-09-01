@@ -1302,11 +1302,29 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "Micro II Reels Color",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/23k41ocgrx9eotodztyrp/Micro-II-Reels-Color.mp4?rlkey=bv1dyne7jzsixqoi62xik48t1&dl=0",
+          "thumb": "assets/synced/micro-ii/9ecbccc4034110db131939a0208f42a2d475303bd6f6164b9ceb433eacfe3b58.jpg",
+          "file": null
+        },
+        {
           "name": "Micro II Spin on white",
           "type": "video",
           "format": "MP4",
           "url": "https://www.dropbox.com/scl/fi/irva19jehzdmx43xpuer9/Micro-II-Spin-on-white.mp4?rlkey=5jn1k1abl7c07lcxidmbyvw7u&dl=0",
           "thumb": "assets/synced/micro-ii/a119b324abb3216b7aacb0d9d0f5a6e293307f0e594715fcc2d4059f258f826d.jpg",
+          "file": null
+        }
+      ],
+      "TV Screen Videos": [
+        {
+          "name": "Micro II Launch Horizontal",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/e84t9v94948r7lmn1r4vo/Micro-II-Launch-Horizontal.mp4?rlkey=ipo7yzcntf8qsqxy6b00gnuot&dl=0",
+          "thumb": "assets/synced/micro-ii/f392feee74559108bca33b52b9f0db270c0fe0c7bb465c71db3dd2fc201c50fe.jpg",
           "file": null
         }
       ],
@@ -1416,6 +1434,7 @@ window.PORTAL_SYNCED = {
       "Product Photos": "https://www.dropbox.com/scl/fo/4kjoxbzjujqr1j0bkhepl/ALj-3oSfvwACdWDr5rQyPHI?rlkey=z3vsqyyzzp4rdd02twju8b2in&dl=1",
       "Lifestyle Photos": "https://www.dropbox.com/scl/fo/6yv3ziksupvhegwma2s1s/AOiFj76XyMVBhXAn9dPjzic?rlkey=d3thbzp1xoc9qc26gfju4lvvt&dl=1",
       "Social Videos": "https://www.dropbox.com/scl/fo/mdmxzunt7ip3njuaf3v0n/AMD-6YyOwyy0lpAYHY5nNII?rlkey=uc8cd3wlj2v1v3q6dijwno30i&dl=1",
+      "TV Screen Videos": "https://www.dropbox.com/scl/fo/vn7o49d9jvrml058gem1t/ABNix1eTJ9SDLECY_EwtHSE?rlkey=a5axj9vhoglefntelaxfs4do6&dl=1",
       "Packaging": "https://www.dropbox.com/scl/fo/90lgonbxj7kjcxk1im3qx/AAffdm5A9PYCiG_-ASUssP4?rlkey=f6jcrqo5feghryxdzxy1uu74y&dl=1",
       "Documents": "https://www.dropbox.com/scl/fo/hbm79asz0sz5voe6e9nsi/AFYenSbkUK4Rat7-wFI0T9c?rlkey=ozc1dplsp1bdcam3mvz9m9d0l&dl=1"
     }
