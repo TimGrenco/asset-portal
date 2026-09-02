@@ -24420,6 +24420,22 @@ window.PORTAL_SYNCED = {
           "url": "https://www.dropbox.com/scl/fi/fd9brmmsux8fvglvxkbrk/Melt-POP-Transparent.png?rlkey=hwmysvo0o1hzdq111c4mpxh9u&dl=0",
           "thumb": "assets/synced/pop-displays/8b037743f79f814059c3f0941350eb6adca2e853cc4dadd42986eaac8896e54f.jpg",
           "file": null
+        },
+        {
+          "name": "Micro-II-POP-front",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/pxnvhmisu901iecc0uonz/Micro-II-POP-front.png?rlkey=nmm2ueprpkg9xt4py8xn540g1&dl=0",
+          "thumb": "assets/synced/pop-displays/adb7f75563d2580f28a697b6ea3fd498e41504bd7f3baad87b9e366418ac26b0.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro-II-Pop-No-Price",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/67a47awiiz9zzg46wqzjm/Micro-II-Pop-No-Price.png?rlkey=pjenkg3wur4vxbq9r2po2qhxe&dl=0",
+          "thumb": "assets/synced/pop-displays/9c93a117e9266fd2aa5c3ba2d70f37e8fc8807630968b9674ef124c7493a382c.jpg",
+          "file": null
         }
       ]
     },
