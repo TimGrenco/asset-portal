@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260826p";   // bump with the other asset tokens
+  var LANG_VER = "20260826r";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -1881,7 +1881,7 @@
   function bindVideoHub(ctx, p) {
     $$("[data-play]", ctx).forEach(function (el) {
       el.addEventListener("click", function () {
-        openVideoModal(el.getAttribute("data-play"), el.getAttribute("data-title"), el.getAttribute("data-dl"), el.getAttribute("data-dlname"));
+        openVideoModal(el.getAttribute("data-play"), el.getAttribute("data-title"), el.getAttribute("data-dl"), el.getAttribute("data-dlname"), el.getAttribute("data-share"));
       });
     });
     $$("[data-vdl]", ctx).forEach(function (b) {
@@ -2367,7 +2367,7 @@
       renderGallery(p, active, selected, toggle, syncSelection);
       $$("[data-play]", d).forEach(function (el) {
         el.addEventListener("click", function () {
-          openVideoModal(el.getAttribute("data-play"), el.getAttribute("data-title"), el.getAttribute("data-dl"), el.getAttribute("data-dlname"));
+          openVideoModal(el.getAttribute("data-play"), el.getAttribute("data-title"), el.getAttribute("data-dl"), el.getAttribute("data-dlname"), el.getAttribute("data-share"));
         });
       });
       $$("[data-vdl]", d).forEach(function (b) {
@@ -2734,9 +2734,12 @@
       // Play source: a real Dropbox MP4 takes priority; else the Vimeo/YouTube embed.
       var playSrc = v.mp4 ? dropboxRaw(v.mp4) : (v.embed || v.url || "");
       var dl = v.mp4 ? dropboxZipUrl(v.mp4) : "";
+      // Shareable link for the modal's Copy button: the original Dropbox share URL
+      // (not the raw= playback variant), else the YouTube/Vimeo page.
+      var share = v.mp4 || v.youtube || v.url || "";
 
       var thumb = '<div class="vthumb' + (playSrc ? " vplay" : "") + '"' +
-        (playSrc ? ' data-play="' + playSrc + '" data-title="' + safe + '"' + (dl ? ' data-dl="' + dl + '" data-dlname="' + dlname + '"' : "") + ' role="button" tabindex="0" aria-label="Watch ' + safe + '"' : "") + ">" +
+        (playSrc ? ' data-play="' + playSrc + '" data-title="' + safe + '"' + (dl ? ' data-dl="' + dl + '" data-dlname="' + dlname + '"' : "") + (share ? ' data-share="' + escapeHTML(share) + '"' : "") + ' role="button" tabindex="0" aria-label="Watch ' + safe + '"' : "") + ">" +
         poster + '<span class="play-badge">' + icon("play") + "</span>" + (playSrc ? '<span class="vthumb-hint">' + tr("Click to watch") + "</span>" : "") + "</div>";
 
       // Only offer a download when there's a real downloadable file; watch-only
@@ -2765,7 +2768,7 @@
     return link + (link.indexOf("?") === -1 ? "?raw=1" : "&raw=1");
   }
   // Large in-browser video player (modal overlay).
-  function openVideoModal(src, title, dlUrl, dlName) {
+  function openVideoModal(src, title, dlUrl, dlName, shareUrl) {
     closeVideoModal();
     var ov = document.createElement("div");
     ov.className = "vlb"; ov.id = "vlb";
@@ -2778,12 +2781,17 @@
       '<button class="vlb-close" aria-label="Close">' + icon("x") + "</button>" +
       '<div class="vlb-stage">' + media + "</div>" +
       '<div class="vlb-bar"><span class="vlb-name">' + (title || "") + "</span>" +
-        (dlUrl ? '<button class="btn vlb-dl">' + icon("download") + " " + tr("Download video") + "</button>" : "") + "</div>";
+        '<span class="vlb-acts">' +
+          (shareUrl ? '<button class="btn ghost vlb-copy">' + icon("link") + " " + tr("Copy link") + "</button>" : "") +
+          (dlUrl ? '<button class="btn vlb-dl">' + icon("download") + " " + tr("Download video") + "</button>" : "") +
+        "</span></div>";
     document.body.appendChild(ov);
     ov.addEventListener("click", function (e) { if (e.target === ov || e.target.classList.contains("vlb-stage")) closeVideoModal(); });
     $(".vlb-close", ov).addEventListener("click", closeVideoModal);
     var dlBtn = $(".vlb-dl", ov);
     if (dlBtn) dlBtn.addEventListener("click", function () { directDownload(dlUrl, dlName); });
+    var cpBtn = $(".vlb-copy", ov);
+    if (cpBtn) cpBtn.addEventListener("click", function () { copyText(shareUrl, tr("Link copied")); });
   }
   function closeVideoModal() {
     var ov = $("#vlb");
@@ -2807,6 +2815,10 @@
       var key = fileKey(folder, file);
       var on = selected && selected[key];
       var ext = isExtVideo(file);   // YouTube (or other external) video link
+      // A Dropbox-hosted video: plays inline in the lightbox. Distinct from `ext`,
+      // which leaves the portal. Both get a play badge; only `ext` swaps the row's
+      // download action for a "watch on YouTube" one.
+      var vid = !ext && file.type === "video" && !!file.url;
       var hasImg = !!file.thumb;
       // Everything below is escaped before going into markup: synced filenames and
       // Dropbox URLs (which contain &) are data, never trusted HTML.
@@ -2817,7 +2829,11 @@
         badge = '<span class="play-badge">' + icon("play") + "</span>";
       } else if (hasImg) {
         lbAttr = ' data-lbidx="' + items.length + '"';
-        items.push({ src: file.thumb, name: fileLabel(file), url: file.url || "#", file: file.file || null });
+        if (vid) badge = '<span class="play-badge">' + icon("play") + "</span>";
+        // type/format ride along so the lightbox knows to play this rather than
+        // show its poster frame as a still.
+        items.push({ src: file.thumb, name: fileLabel(file), url: file.url || "#", file: file.file || null,
+                     type: file.type, format: file.format });
       }
       var thumb = hasImg
         ? '<img src="' + escapeHTML(file.thumb) + '" alt="' + escapeHTML(file.name) + '" loading="lazy" decoding="async" onerror="this.parentNode.innerHTML=window.__icon(\'' + (typeIcon[file.type] || "file") + '\')"/>' + badge
@@ -2825,7 +2841,7 @@
       return (
         '<div class="gcell' + (on ? " sel" : "") + '" data-key="' + escapeHTML(key) + '">' +
           '<label class="gselect"><input type="checkbox" class="gcheck"' + (on ? " checked" : "") + ' aria-label="Select ' + nm + '"/></label>' +
-          '<div class="gthumb' + (ext ? " is-video" : "") + '" role="button" tabindex="0" aria-label="' + (ext ? "Play " : "Enlarge ") + nm + '"' + lbAttr + ytAttr + ">" + thumb +
+          '<div class="gthumb' + (ext || vid ? " is-video" : "") + '" role="button" tabindex="0" aria-label="' + (ext || vid ? "Play " : "Enlarge ") + nm + '"' + lbAttr + ytAttr + ">" + thumb +
             (file.format ? '<span class="gfmt">' + fmt + "</span>" : "") + "</div>" +
           '<div class="gbar"><span class="gn">' + nm + '</span>' +
           '<span class="ga">' +
@@ -3085,10 +3101,45 @@
     $("#lightbox").classList.add("open");
   }
   function lbCurrent() { return lbItems[lbIdx] || {}; }
+  // A synced asset the lightbox should PLAY rather than show as a still.
+  // Dropbox-hosted only: an external YouTube/Vimeo item is a link, not a file.
+  function lbIsVideo(it) {
+    return !!(it && it.type === "video" && it.url && it.url !== "#" &&
+              !/youtube\.com|youtu\.be|vimeo\.com/.test(it.url));
+  }
+  // Stop and detach the player. removeAttribute + load() rather than src="",
+  // which would make the browser re-request the page URL; and leaving the src set
+  // keeps the file streaming in the background after the lightbox has moved on.
+  function lbResetVideo() {
+    var v = $("#lb-video");
+    if (!v) return;
+    v.pause();
+    v.removeAttribute("src");
+    v.removeAttribute("poster");
+    v.load();
+    v.hidden = true;
+    var fb = $("#lb-vfallback"); if (fb) fb.hidden = true;
+  }
   function showLb() {
     var it = lbCurrent();
     var lbImg = $("#lightbox img");
-    if (it.src) lbImg.src = it.src; else lbImg.removeAttribute("src");
+    var vid = $("#lb-video");
+    lbResetVideo();
+    if (vid && lbIsVideo(it)) {
+      lbImg.removeAttribute("src");
+      lbImg.hidden = true;
+      if (it.src) vid.poster = it.src;      // the synced thumbnail is the poster frame
+      vid.src = dropboxRaw(it.url);
+      vid.hidden = false;
+      // Autoplay can be refused (browser policy, or a codec the browser will not
+      // take — 21 of the synced files are .MOV). Either way the controls remain,
+      // and the error handler swaps in a "download to view" note, not a black box.
+      var pl = vid.play();
+      if (pl && pl.catch) pl.catch(function () {});
+    } else {
+      lbImg.hidden = false;
+      if (it.src) lbImg.src = it.src; else lbImg.removeAttribute("src");
+    }
     $("#lb-name").textContent = it.name || "";
     $("#lb-count").textContent = lbItems.length > 1 ? (lbIdx + 1) + " / " + lbItems.length : "";
     var multi = lbItems.length > 1 ? "flex" : "none";
@@ -3101,7 +3152,12 @@
     showLb();
   }
   // removeAttribute, not src="" — an empty src makes the browser re-request the page URL.
-  function closeLightbox() { $("#lightbox").classList.remove("open"); $("#lightbox img").removeAttribute("src"); lbItems = []; }
+  function closeLightbox() {
+    $("#lightbox").classList.remove("open");
+    $("#lightbox img").removeAttribute("src");
+    lbResetVideo();
+    lbItems = [];
+  }
   function lbOpen() { return $("#lightbox").classList.contains("open"); }
 
   // ---- toast ---------------------------------------------------------------
@@ -3217,6 +3273,21 @@
     // lightbox / asset viewer
     $("#lb-copy").innerHTML = icon("link") + tr(" Copy link");
     $("#lb-dl").innerHTML = icon("download") + tr(" Download");
+    // A format the browser will not decode (chiefly the 21 synced .MOV files)
+    // fires `error` and would otherwise leave a black stage. Swap in a short note
+    // pointing at the Download button, which is right there in the same bar.
+    var lbVid = $("#lb-video");
+    if (lbVid) lbVid.addEventListener("error", function () {
+      if (lbVid.hidden) return;                 // reset in progress, not a real failure
+      var it = lbCurrent(), fb = $("#lb-vfallback");
+      lbVid.hidden = true;
+      if (!fb) return;
+      fb.querySelector(".lb-vfallback-t").textContent =
+        tr("This video can't be played in the browser.");
+      fb.querySelector(".lb-vfallback-s").textContent =
+        tr("Use Download below to save it") + (it.format ? " (" + it.format + ")" : "") + ".";
+      fb.hidden = false;
+    });
     $("#lb-close").addEventListener("click", closeLightbox);
     $("#lb-prev").addEventListener("click", function () { lbStep(-1); });
     $("#lb-next").addEventListener("click", function () { lbStep(1); });

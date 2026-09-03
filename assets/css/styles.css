@@ -37,6 +37,12 @@ body {
   line-height: 1.5;
 }
 img { display: block; max-width: 100%; }
+/* `img { display: block }` above is an AUTHOR rule, and author rules beat the
+   browser's built-in [hidden] { display: none } whatever the specificity. Without
+   this, setting .hidden = true on an <img> does nothing — which is how the
+   lightbox's still image kept showing its broken-image icon behind a playing
+   video. Restore the attribute's meaning for every element. */
+[hidden] { display: none !important; }
 button { font-family: inherit; cursor: pointer; }
 a { color: inherit; text-decoration: none; }
 .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
@@ -654,6 +660,12 @@ button.pkg-media { width: 100%; border: 0; padding: 0; font: inherit; }
 .vlb iframe { width: min(92vw, 1200px); aspect-ratio: 16 / 9; max-height: 78vh; border: 0; border-radius: 8px; background: #000; }
 .vlb-bar { width: 100%; max-width: 920px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 4px 2px; flex-wrap: wrap; }
 .vlb-name { font-size: 14px; font-weight: 600; color: #fff; }
+.vlb-acts { display: flex; gap: 8px; flex: 0 0 auto; }
+/* The ghost Copy button needs its own treatment: the blanket `.vlb .btn`
+   rule above paints every button solid white, which would make the two
+   actions indistinguishable. */
+.vlb .btn.ghost { background: transparent; color: #fff; border-color: rgba(255, 255, 255, 0.4); }
+.vlb .btn.ghost:hover { background: rgba(255, 255, 255, 0.12); border-color: #fff; }
 .vlb .btn { background: #fff; color: var(--ink); border-color: #fff; }
 .vlb .btn:hover { background: var(--mist); }
 .vlb-close { position: absolute; top: 22px; right: 22px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.12); border: none; display: flex; align-items: center; justify-content: center; }
@@ -861,6 +873,12 @@ a.logo-tile { cursor: pointer; }
 .lightbox.open { display: flex; }
 .lb-stage { flex: 1; min-height: 0; width: 100%; display: flex; align-items: center; justify-content: center; }
 .lightbox img { max-width: 90vw; max-height: 74vh; object-fit: contain; border-radius: 8px; }
+/* Lightbox video player — same envelope as the still image so the bar below
+   does not jump when stepping between a photo and a video in one folder. */
+#lb-video { max-width: 90vw; max-height: 74vh; width: auto; border-radius: 8px; background: #000; outline: none; }
+.lb-vfallback { max-width: min(90vw, 460px); text-align: center; color: #fff; padding: 34px 26px; border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 10px; background: rgba(255, 255, 255, 0.04); }
+.lb-vfallback-t { font-size: 14px; font-weight: 600; margin: 0 0 6px; }
+.lb-vfallback-s { font-size: 12.5px; color: rgba(255, 255, 255, 0.62); margin: 0; }
 .lb-bar { width: 100%; max-width: 880px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 4px 2px; flex-wrap: wrap; }
 .lb-meta { min-width: 0; display: flex; align-items: baseline; gap: 10px; }
 .lb-name { font-size: 13px; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
