@@ -1488,6 +1488,22 @@ window.PORTAL_SYNCED = {
       ],
       "TV Screen Videos": [
         {
+          "name": "How to Clean- G Pen Micro II",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/22jvjwer0fj805w8rrfj6/How-to-Clean-G-Pen-Micro-II.mp4?rlkey=t2bdz9iy1ds4hzqorqfjqwi9q&dl=0",
+          "thumb": "assets/synced/micro-ii/ad2ae2d052fedcab7bedcedc891f8f942ac5fce3fbbf7b9611bc974cc85e1466.jpg",
+          "file": null
+        },
+        {
+          "name": "How to Use G Pen Micro II",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/eil1ip103rt5hwht76b2a/How-to-Use-G-Pen-Micro-II.mp4?rlkey=4we4adybv2dyktsjg7ojqybsr&dl=0",
+          "thumb": "assets/synced/micro-ii/98e6fe3aa5337316883a07c9e07912b96c73462e53f65abd99abd1d6573b1b5c.jpg",
+          "file": null
+        },
+        {
           "name": "Micro II Launch Horizontal",
           "type": "video",
           "format": "MP4",
