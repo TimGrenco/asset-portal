@@ -1244,6 +1244,22 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "_ALF1656",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/w3ns9tvw9zw3988pg2f30/_ALF1656.jpg?rlkey=lv8ymetxtdrs41hnytidyla1e&dl=0",
+          "thumb": "assets/synced/micro-ii/68394638f06a6e2a9190443e1205aded1bf2131b53538812c10c32e5f04530a6.jpg",
+          "file": null
+        },
+        {
+          "name": "_ALF1735",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/8vmorfljo4xket9uiiq89/_ALF1735.jpg?rlkey=vc1twyktomncel3hyo2gjhr9d&dl=0",
+          "thumb": "assets/synced/micro-ii/c049c185d319c42af1228ebf03c76330b56b28a8019e55be48a9ed296ba13ec1.jpg",
+          "file": null
+        },
+        {
           "name": "_ALF1742",
           "type": "image",
           "format": "JPG",
