@@ -1220,6 +1220,14 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "_ALF1483",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/l326j992z68654matn2rh/_ALF1483.jpg?rlkey=9h8xiwyhlo4jh2izjdbib043i&dl=0",
+          "thumb": "assets/synced/micro-ii/3d8b2a142de733ce051a8e0c1e6fcae5acc17d59a38974433f7a700988c91b71.jpg",
+          "file": null
+        },
+        {
           "name": "_ALF1528",
           "type": "image",
           "format": "JPG",
@@ -1241,6 +1249,14 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fi/afxvxfmu04450vbxwom7k/_ALF1742.jpg?rlkey=vb60wl1ciylhjtdipdysu4bel&dl=0",
           "thumb": "assets/synced/micro-ii/6a79327f790f31bd07cf626f07de1a9629c115a655315bb077f36be0d7e4fcbc.jpg",
+          "file": null
+        },
+        {
+          "name": "_ALF1764",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/kg73u6nvarmejjf5skz9o/_ALF1764.jpg?rlkey=9bj2djkh9b20mckpcdi3h1chm&dl=0",
+          "thumb": "assets/synced/micro-ii/19f64c3a96121027de5fc439a33838199fde9cb5df67a51ff44d401cb5c30cb2.jpg",
           "file": null
         },
         {
