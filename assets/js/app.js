@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260908a";   // bump with the other asset tokens
+  var LANG_VER = "20260908b";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -391,6 +391,14 @@
     "510-Tent":                       { name: "510 Original Table Tent",       dim: '6" L × 6" W', sku: "GMK-005-APZZ" },
     "GPEN-Retro-window-cling-mockup": { name: "Retro Collection Window Cling", dim: '8" L × 8" W', sku: "GMK-007-APZZ" },
     "Melt-Tent":                      { name: "G Pen Melt Table Tent",         dim: '6" L × 6" W', sku: "GMK-004-APZZ" },
+    // Micro II launch set. Print dimensions are not published for these four yet,
+    // so `dim` is omitted rather than guessed from the sibling pieces — the row
+    // falls back to the SKU alone, and a wrong size on an order form is a
+    // fulfillment problem, not a cosmetic one.
+    "Micro-II-Table-Tent-Mockup":      { name: "Micro II Table Tent",           sku: "GMK-008-APZZ" },
+    "Micro-II-Poster-Mockup":          { name: "Micro II Poster",               sku: "GMK-010-APZZ" },
+    "Micro-II-Postcard-Mockup":        { name: "Micro II Postcard",             sku: "GMK-011-APZZ" },
+    "Micro-II-Window-Cling-Mockup":    { name: "Micro II Window Cling",         sku: "GMK-012-APZZ" },
     "hydout-Tent":                    { name: "G Pen Hydout Table Tent",       dim: '6" L × 4" W', sku: "GMK-006-APZZ" },
     // Dropbox stored this one under a bare content-hash filename; the label both
     // names it and rescues it from the hash-name filter in instoreOwn().

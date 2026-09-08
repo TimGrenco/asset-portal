@@ -496,7 +496,7 @@ var PRODUCT_INFO = {
     // NOTE: "Device Dimensions/Weight" here are the bare unit (98.6\u00D724\u00D732 mm, 86 g).
     // The SKU table's "Product Dimensions" (105\u00D735\u00D728 mm) and "Unit Weight"
     // (0.1 kg) come from the ops spreadsheet and are the PACKAGED figures — the
-    // two are labelled differently on purpose so they don't read as a conflict.
+    // two are labeled differently on purpose so they don't read as a conflict.
     specs: [
       ["Battery", "1,250mAh rechargeable"],
       ["Charging", "USB-C fast charging, under 60 minutes"],
@@ -1452,8 +1452,8 @@ window.PORTAL_TRAINING = {
         title: "What Makes It Different",
         points: [
           "<strong>Micro-rounded teeth</strong> — not the sharp teeth of a traditional grinder — gently separate flower.",
-          "The gentler action helps <strong>preserve cannabinoids and terpenes</strong>, which carry a strain's potency and flavour.",
-          "Rounded tooth geometry plus a <strong>smooth interior</strong> reduce friction and minimise buildup, so less flower is left behind.",
+          "The gentler action helps <strong>preserve cannabinoids and terpenes</strong>, which carry a strain's potency and flavor.",
+          "Rounded tooth geometry plus a <strong>smooth interior</strong> reduce friction and minimize buildup, so less flower is left behind.",
           "It is <strong>screenless</strong>: a 3-piece design has no kief screen, so <strong>trichomes stay mixed into the ground material</strong> instead of being sifted away.",
         ],
       },
