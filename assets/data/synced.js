@@ -2195,6 +2195,40 @@ window.PORTAL_SYNCED = {
           "thumb": "assets/synced/micro-ii/6236be262a2c1476d13204c306c1357f4f375b9c49a8f0dd48b6aca2402d9c2b.jpg",
           "file": null
         }
+      ],
+      "In Store Marketing Materials": [
+        {
+          "name": "Micro-II-Postcard-Mockup",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/n900cr3o9fh992ifpy14o/Micro-II-Postcard-Mockup.png?rlkey=0txy1xve4ju5ioomthd2eoery&dl=0",
+          "thumb": "assets/synced/micro-ii/9f08469f767204a50de5eceea6f4c3821dc5f4976683f20ca0a545367567ada7.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro-II-Poster-Mockup",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/hsfs2h4xbuoprc1x0x9eg/Micro-II-Poster-Mockup.png?rlkey=vj721nle91dd1vpmstzezlldd&dl=0",
+          "thumb": "assets/synced/micro-ii/536c27765a3d3e9814bc3039b8eff8d99aad77a509afbd3eb35679a2a0a35433.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro-II-Table-Tent-Mockup",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/0xl81ke6icik9zki4282w/Micro-II-Table-Tent-Mockup.png?rlkey=q502w9c3ce8r0of3h06mtic7p&dl=0",
+          "thumb": "assets/synced/micro-ii/bba73ae48d657fefa2aca33c90f150eaa8f425b3fa0fa7151ddd2724ff71e062.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro-II-Window-Cling-Mockup",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/xmp5td1x5dfvg5bbkkbos/Micro-II-Window-Cling-Mockup.png?rlkey=7do8hvmr7d6ihe5nl7kpyah8a&dl=0",
+          "thumb": "assets/synced/micro-ii/4b317c2f290b42fd5a169f55e9efdaac23c95e559da1ced6072c3f24b628ac40.jpg",
+          "file": null
+        }
       ]
     },
     "dropbox": "https://www.dropbox.com/scl/fo/spharop9yvc7bnk5g3w4z/AKUC7ALBupRa8e039bvfNr4?rlkey=5560kr7brds1hco7tgeiafsbx&dl=1",
@@ -2204,7 +2238,8 @@ window.PORTAL_SYNCED = {
       "Social Videos": "https://www.dropbox.com/scl/fo/mdmxzunt7ip3njuaf3v0n/AMD-6YyOwyy0lpAYHY5nNII?rlkey=uc8cd3wlj2v1v3q6dijwno30i&dl=1",
       "TV Screen Videos": "https://www.dropbox.com/scl/fo/vn7o49d9jvrml058gem1t/ABNix1eTJ9SDLECY_EwtHSE?rlkey=a5axj9vhoglefntelaxfs4do6&dl=1",
       "Packaging": "https://www.dropbox.com/scl/fo/90lgonbxj7kjcxk1im3qx/AAffdm5A9PYCiG_-ASUssP4?rlkey=f6jcrqo5feghryxdzxy1uu74y&dl=1",
-      "Documents": "https://www.dropbox.com/scl/fo/hbm79asz0sz5voe6e9nsi/AFYenSbkUK4Rat7-wFI0T9c?rlkey=ozc1dplsp1bdcam3mvz9m9d0l&dl=1"
+      "Documents": "https://www.dropbox.com/scl/fo/hbm79asz0sz5voe6e9nsi/AFYenSbkUK4Rat7-wFI0T9c?rlkey=ozc1dplsp1bdcam3mvz9m9d0l&dl=1",
+      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/wpkywovfwqzht61fi3iy7/AD1h_pWNcg3PtII1wxhJnGo?rlkey=x5ilflreeyywtx9y7uh47i95e&dl=1"
     }
   },
   "Slim 3-Piece Grinder": {
