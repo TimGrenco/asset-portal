@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260826r";   // bump with the other asset tokens
+  var LANG_VER = "20260908a";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -2332,7 +2332,6 @@
         highlightsHTML(p) +
         fullDescHTML(p) +
         whatsInBoxHTML(p) +
-        specsHTML(p) +
         // FAQs are built and ready (28 of them on the Micro II) but pulled from
         // the page at the owner's request, 2026-08-26. The renderer and the data
         // both stay put — restore by uncommenting this one line.
@@ -2362,6 +2361,11 @@
         packagingHTML(p) +
         colorwaysHTML(p) +
         skuHTML(p) +
+        // Specs sit BELOW the SKU table by request: stores come to this page for
+        // SKUs and pack quantities first, and the 20-row spec table pushed that
+        // down the page. Only Micro II carries `specs` today, so this is where
+        // any future product's spec table will land too.
+        specsHTML(p) +
         videoHubHTML(p);
 
       renderGallery(p, active, selected, toggle, syncSelection);
