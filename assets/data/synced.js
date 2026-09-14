@@ -2046,6 +2046,14 @@ window.PORTAL_SYNCED = {
       ],
       "Social Videos": [
         {
+          "name": "Bre Forrest Micro II Reels A",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/t3f2nhhu4917h7zx3qqb6/Bre-Forrest-Micro-II-Reels-A.mp4?rlkey=em5bfw5z09p7orstmy46qqx5f&dl=0",
+          "thumb": "assets/synced/micro-ii/8c341183017b80a866415290d5d790e8ed7c27ebc5f73df6a1ed2a2d2f234cf9.jpg",
+          "file": null
+        },
+        {
           "name": "Bre Forrest Micro II Reels B",
           "type": "video",
           "format": "MP4",
@@ -2091,6 +2099,14 @@ window.PORTAL_SYNCED = {
           "format": "MP4",
           "url": "https://www.dropbox.com/scl/fi/dhju2gefbwmmng3f8nzt4/Forrest-Micro-II-Reels-A.mp4?rlkey=67j8z6fc3wscgsp7rlco82o9o&dl=0",
           "thumb": "assets/synced/micro-ii/2d9d39849e87643985b6bb81c613946c7f55a5aa1443064fbc43a552104d9eac.jpg",
+          "file": null
+        },
+        {
+          "name": "Forrest Micro II Rig Adapter Reels A",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/xe3siuemt4baxqki42sfd/Forrest-Micro-II-Rig-Adapter-Reels-A.mp4?rlkey=eu266slbnovcdqtxyhogtfej0&dl=0",
+          "thumb": "assets/synced/micro-ii/dcd079bca1ef85d628226131747fad70419ab608bec5433a84288e736636d811.jpg",
           "file": null
         },
         {
