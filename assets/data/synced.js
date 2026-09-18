@@ -2140,6 +2140,14 @@ window.PORTAL_SYNCED = {
           "url": "https://www.dropbox.com/scl/fi/irva19jehzdmx43xpuer9/Micro-II-Spin-on-white.mp4?rlkey=5jn1k1abl7c07lcxidmbyvw7u&dl=0",
           "thumb": "assets/synced/micro-ii/a119b324abb3216b7aacb0d9d0f5a6e293307f0e594715fcc2d4059f258f826d.jpg",
           "file": null
+        },
+        {
+          "name": "Micro II Unboxing on white",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/zeegyhhnpul0wjjt1yiv0/Micro-II-Unboxing-on-white.mp4?rlkey=7a9mzcr2pacf5daeti26p6mqy&dl=0",
+          "thumb": "assets/synced/micro-ii/5b6ff0b372a6b00e48465ceda700c88c4e17febb0a8743a8d0480d2273e13a26.jpg",
+          "file": null
         }
       ],
       "TV Screen Videos": [
