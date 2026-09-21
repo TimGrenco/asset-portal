@@ -2148,6 +2148,30 @@ window.PORTAL_SYNCED = {
           "url": "https://www.dropbox.com/scl/fi/zeegyhhnpul0wjjt1yiv0/Micro-II-Unboxing-on-white.mp4?rlkey=7a9mzcr2pacf5daeti26p6mqy&dl=0",
           "thumb": "assets/synced/micro-ii/5b6ff0b372a6b00e48465ceda700c88c4e17febb0a8743a8d0480d2273e13a26.jpg",
           "file": null
+        },
+        {
+          "name": "Reels How to Clean G Pen Micro II Rig Adapter",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/hb70gee4ed70r5661u6s9/Reels-How-to-Clean-G-Pen-Micro-II-Rig-Adapter.mp4?rlkey=a6nnaeb2clism463swowugf1y&dl=0",
+          "thumb": "assets/synced/micro-ii/3f79b8a0652423e547781cf86df1b3e3293e1e03ee10fbecaefa84d1b23d7c6e.jpg",
+          "file": null
+        },
+        {
+          "name": "Reels How to Clean G Pen Micro II Side Car",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/4folpmmp2x114pt3qgxs7/Reels-How-to-Clean-G-Pen-Micro-II-Side-Car.mp4?rlkey=7h2dths9t0mq0kn21apgosp1l&dl=0",
+          "thumb": "assets/synced/micro-ii/8786317f421f91b42359ef33b878c162384599fd963c32f97b6ed7dd3c535400.jpg",
+          "file": null
+        },
+        {
+          "name": "Reels How to Clean G Pen Micro II",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/eqagcukudhcj5doeo76hi/Reels-How-to-Clean-G-Pen-Micro-II.mp4?rlkey=e3s7a9u8br97g5veuusjtized&dl=0",
+          "thumb": "assets/synced/micro-ii/1b390c09a0e2bd9a750fdc8c845b1d709caea98493683074c9d4b4b1a94ee1e6.jpg",
+          "file": null
         }
       ],
       "TV Screen Videos": [
