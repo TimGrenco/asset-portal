@@ -2514,6 +2514,14 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "Grinder Unboxing on whitemp4",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/oiwan6i2nw8xe31znxfbe/Grinder-Unboxing-on-whitemp4.mp4?rlkey=t346p4ehj8simwetcg3o4m5jv&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/f932ac32e88c5641bf9487e618e85e7a1eb6c77628e1b472a4501aaed2d6ae80.jpg",
+          "file": null
+        },
+        {
           "name": "Larry Grinder Announcement",
           "type": "video",
           "format": "MP4",
