@@ -2444,6 +2444,14 @@ window.PORTAL_SYNCED = {
           "url": "https://www.dropbox.com/scl/fi/uzxutybji9629ej5hbf15/stashgrinder_thumb_09.jpg?rlkey=yfv8iww2pvl0ane5pcqns58g7&dl=0",
           "thumb": "assets/synced/slim-3-piece-grinder/f0daf4e2325f2cd99f3fd9509d0f448f12b3edcd538aecad8807329dc3feb31a.jpg",
           "file": null
+        },
+        {
+          "name": "stashgrinder_thumb_010",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/cioz0zccgnrqdtirrzjv2/stashgrinder_thumb_010.jpg?rlkey=obc3urp4c46lwuwer4flk2y5z&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/c483f1a32584db5813baf6914ec853d8ff4093a386181496d83392844a90bcf6.jpg",
+          "file": null
         }
       ],
       "Lifestyle Photos": [
