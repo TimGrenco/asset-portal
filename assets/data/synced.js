@@ -2172,6 +2172,30 @@ window.PORTAL_SYNCED = {
           "url": "https://www.dropbox.com/scl/fi/eqagcukudhcj5doeo76hi/Reels-How-to-Clean-G-Pen-Micro-II.mp4?rlkey=e3s7a9u8br97g5veuusjtized&dl=0",
           "thumb": "assets/synced/micro-ii/1b390c09a0e2bd9a750fdc8c845b1d709caea98493683074c9d4b4b1a94ee1e6.jpg",
           "file": null
+        },
+        {
+          "name": "Reels How to Use G Pen Micro II Rig Adapter",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/h5e5sl8ilm0bcrvc99p7x/Reels-How-to-Use-G-Pen-Micro-II-Rig-Adapter.mp4?rlkey=jqbibl85gf2wcpmgpehzcbuiv&dl=0",
+          "thumb": "assets/synced/micro-ii/97e1d38b355c7bb81ebc0768b2eec69bdcf377efdb5d622448a163001bad6303.jpg",
+          "file": null
+        },
+        {
+          "name": "Reels How to Use G Pen Micro II Side Car",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/rr9hilija4nxk1luoolhz/Reels-How-to-Use-G-Pen-Micro-II-Side-Car.mp4?rlkey=wp3ha06u9fxq7iqkfmirni98i&dl=0",
+          "thumb": "assets/synced/micro-ii/75bc6ce24cd8d8186f84e49b2e9f6e3600a099ca055cb23a31eac5c92b4a2ab0.jpg",
+          "file": null
+        },
+        {
+          "name": "Reels How to Use G Pen Micro II",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/oa3enlcw2hul5jzly87fe/Reels-How-to-Use-G-Pen-Micro-II.mp4?rlkey=lylmeqd33s85gbn3d8fmq1rs5&dl=0",
+          "thumb": "assets/synced/micro-ii/ffb8be1c1b35ff2703f90f9258ab4ee1b4daf2ff39e6a66890ab0abf88e8588b.jpg",
+          "file": null
         }
       ],
       "TV Screen Videos": [
