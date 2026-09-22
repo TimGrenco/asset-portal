@@ -4554,6 +4554,14 @@ window.PORTAL_SYNCED = {
       ],
       "Social Videos": [
         {
+          "name": "Alyssa 510 Retro Titles",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/peusjvqi8g35m26rrmr2z/Alyssa-510-Retro-Titles.mp4?rlkey=rdq2ib9ujnex0k2sec87ei4hk&dl=0",
+          "thumb": "assets/synced/510-original-retro/c6b9d13e87c70b371f572f8ac9a1b2bc7c468be480eb3cdd8f1a248175e00a1f.jpg",
+          "file": null
+        },
+        {
           "name": "Alyssa Pink 510 Bag",
           "type": "video",
           "format": "MP4",
