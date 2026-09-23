@@ -259,6 +259,8 @@ window.PORTAL_I18N.es = {
     "Order materials": "Solicitar materiales",
     "Packaging": "Empaque",
     "Prev": "Anterior",
+    "This video can't be played in the browser.": "Este video no se puede reproducir en el navegador.",
+    "Use Download below to save it": "Use Descargar abajo para guardarlo",
     "Technical specifications": "Especificaciones técnicas",
     "Product FAQs": "Preguntas Frecuentes",
     "Product Manual": "Manual del Producto",

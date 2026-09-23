@@ -259,6 +259,8 @@ window.PORTAL_I18N.it = {
     "Order materials": "Ordina materiali",
     "Packaging": "Packaging",
     "Prev": "Indietro",
+    "This video can't be played in the browser.": "Questo video non può essere riprodotto nel browser.",
+    "Use Download below to save it": "Usi Scarica qui sotto per salvarlo",
     "Technical specifications": "Specifiche tecniche",
     "Product FAQs": "FAQ prodotto",
     "Product Manual": "Manuale del prodotto",
@@ -347,7 +349,7 @@ window.PORTAL_I18N.it = {
             "title": "Calore e flusso d'aria",
             "points": [
               "Tre livelli di calore: <strong>LOW ~295°F</strong>, <strong>MEDIUM ~340°F</strong>, <strong>HIGH ~395°F</strong>.",
-              "Le temperature variano di circa <strong>±15–30°F</strong> a seconda di quanto a lungo viene attivata la resistenza: spiegatelo al cliente.",
+              "Le temperature variano di circa <strong>±15–30°F</strong> a seconda di quanto a lungo viene attivata la resistenza: lo spieghi al cliente.",
               "<strong>Riscaldamento in 5 secondi</strong>, e il dispositivo vibra al raggiungimento della temperatura.",
               "Il <strong>flusso d'aria regolabile</strong> si trova sul lato opposto al display: verso sinistra per più aria, verso destra per un tiro più ristretto."
             ]
@@ -358,7 +360,7 @@ window.PORTAL_I18N.it = {
               "<strong>Cinque clic</strong> accendono o spengono il Micro II.",
               "<strong>Tre clic</strong> cambiano la temperatura: una nuvola LOW, due nuvole MEDIUM, tre nuvole HIGH.",
               "<strong>Modalità Sessione</strong>: due clic avviano un ciclo automatico di <strong>20 secondi in totale, compresi i circa 5 secondi di riscaldamento</strong>. Altri due clic lo annullano.",
-              "<strong>Riscaldamento Manuale</strong>: tenete premuto fino a <strong>25 secondi in totale, riscaldamento compreso</strong>.",
+              "<strong>Riscaldamento Manuale</strong>: tenga premuto fino a <strong>25 secondi in totale, riscaldamento compreso</strong>.",
               "<strong>Spegnimento automatico dopo 10 minuti</strong> per preservare la batteria."
             ]
           },
@@ -1698,9 +1700,9 @@ window.PORTAL_I18N.it = {
         "fullDescription": [
           "Il G Pen Micro II reinventa l'iconico vaporizzatore per concentrati Micro con più potenza, precisione e controllo, in un design compatto e tascabile.",
           "Alimentato da una batteria ricaricabile da 1,250mAh, il Micro II offre fino a 120 sessioni per ricarica, con ricarica rapida USB-C in meno di 60 minuti. Tre livelli di temperatura ottimizzati — LOW a circa 295°F, MEDIUM a 340°F e HIGH a 395°F — permettono di calibrare la sessione per un gusto morbido, prestazioni equilibrate o una produzione di vapore più densa.",
-          "Un atomizzatore in ceramica da 0.8Ω di alta qualità garantisce prestazioni costanti con i concentrati, mentre il flusso d'aria regolabile offre un controllo ancora maggiore su ogni tiro. Scegliete tra la Modalità Sessione da 20 secondi, con riscaldamento automatico, o il Riscaldamento Manuale, con fino a 25 secondi di controllo diretto.",
+          "Un atomizzatore in ceramica da 0.8Ω di alta qualità garantisce prestazioni costanti con i concentrati, mentre il flusso d'aria regolabile offre un controllo ancora maggiore su ogni tiro. Scelga tra la Modalità Sessione da 20 secondi, con riscaldamento automatico, o il Riscaldamento Manuale, con fino a 25 secondi di controllo diretto.",
           "Il display digitale integrato tiene sempre visibili batteria, temperatura e stato di riscaldamento, mentre la vibrazione segnala quando il Micro II ha raggiunto la temperatura. Un resistente corpo in alluminio anodizzato, l'utilizzo con un solo pulsante, la ricarica pass-through e lo spegnimento automatico dopo 10 minuti rendono l'uso quotidiano semplicissimo.",
-          "Utilizzate il bocchino in silicone incluso per una configurazione compatta, oppure ampliate l'esperienza con il G Pen Micro II Sidecar e l'adattatore per rig da 14 mm, disponibili separatamente, per sessioni filtrate ad acqua a casa o in movimento.",
+          "Utilizzi il bocchino in silicone incluso per una configurazione compatta, oppure ampli l'esperienza con il G Pen Micro II Sidecar e l'adattatore per rig da 14 mm, disponibili separatamente, per sessioni filtrate ad acqua a casa o in movimento.",
           "A più di dieci anni dal microG originale, che ha contribuito a definire la vaporizzazione portatile dei concentrati, il Micro II porta l'esperienza Micro in una nuova generazione, il tutto a $49.95."
         ],
         "box": {

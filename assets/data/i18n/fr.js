@@ -259,6 +259,8 @@ window.PORTAL_I18N.fr = {
     "Order materials": "Commander des supports",
     "Packaging": "Packaging",
     "Prev": "Préc.",
+    "This video can't be played in the browser.": "Cette vidéo ne peut pas être lue dans le navigateur.",
+    "Use Download below to save it": "Utilisez Télécharger ci-dessous pour l'enregistrer",
     "Technical specifications": "Caractéristiques techniques",
     "Product FAQs": "FAQ produit",
     "Product Manual": "Manuel du produit",

@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260908b";   // bump with the other asset tokens
+  var LANG_VER = "20260923a";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -515,6 +515,11 @@
     "E-Comm Render Photos": "Product photos", "Lifestyle Photos": "Lifestyle Photos",
     "Logos": "Logos", "Social Videos": "Social Videos", "TV Screen Videos": "TV Screen Videos",
     "Misc": "Documents",
+    // The synced Dropbox folder is named without a hyphen. Mapping it onto the
+    // section heading's spelling fixes the tab in English AND reuses that
+    // heading's existing translations — raw, it matched no pack key and stayed
+    // English in all five languages.
+    "In Store Marketing Materials": "In-Store Marketing Materials",
   };
   function typeLabel(t) { return t ? tr(TYPE_LABELS[t] || t) : tr("Assets"); }
   // Bind click + keyboard (Enter/Space) so role="button" elements are operable

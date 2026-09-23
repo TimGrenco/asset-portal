@@ -259,6 +259,8 @@ window.PORTAL_I18N.de = {
     "Order materials": "Materialien bestellen",
     "Packaging": "Verpackung",
     "Prev": "Zurück",
+    "This video can't be played in the browser.": "Dieses Video kann im Browser nicht abgespielt werden.",
+    "Use Download below to save it": "Verwenden Sie unten „Herunterladen“, um es zu speichern",
     "Technical specifications": "Technische Daten",
     "Product FAQs": "Produkt-FAQs",
     "Product Manual": "Bedienungsanleitung",
