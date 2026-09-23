@@ -3073,8 +3073,13 @@
   // Turn a Dropbox shared-folder link into a direct "download whole folder as
   // .zip" URL (forces dl=1).
   function dropboxZipUrl(link) {
-    if (/[?&]dl=/.test(link)) return link.replace(/([?&]dl=)\d/, "$11");
-    return link + (link.indexOf("?") === -1 ? "?dl=1" : "&dl=1");
+    var u = /[?&]dl=/.test(link) ? link.replace(/([?&]dl=)\d/, "$11")
+      : link + (link.indexOf("?") === -1 ? "?dl=1" : "&dl=1");
+    // Safari (iPhone AND Mac) gets an HTML "open in the app" page from
+    // www.dropbox.com even with dl=1, so the file never downloads. The content
+    // host serves the file itself, with its real filename, to every browser.
+    // Single files only — the content host 404s folder (scl/fo) zip links.
+    return u.replace(/^https:\/\/www\.dropbox\.com\/scl\/fi\//, "https://dl.dropboxusercontent.com/scl/fi/");
   }
   // The same shared-folder link, but as a *viewable* Dropbox page (dl=0). This is
   // what gets copied to share with someone — a dl=1 link would fire a download at
