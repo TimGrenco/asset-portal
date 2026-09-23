@@ -20,6 +20,42 @@
 window.PORTAL_I18N = window.PORTAL_I18N || {};
 window.PORTAL_I18N.de = {
   "ui": {
+    "N/A": "k. A.",
+    "Back to home": "Zur Startseite",
+    "Select language": "Sprache wählen",
+    "Clear search": "Suche löschen",
+    "Previous": "Zurück",
+    "Scroll to top": "Nach oben",
+    "Grid view": "Rasteransicht",
+    "List view": "Listenansicht",
+    "Layout": "Ansicht",
+    "Sort products": "Produkte sortieren",
+    "Select {name}": "{name} auswählen",
+    "Play {name}": "{name} abspielen",
+    "Enlarge {name}": "{name} vergrößern",
+    "Copy link to {name}": "Link zu {name} kopieren",
+    "Download {name}": "{name} herunterladen",
+    "Watch {name}": "{name} ansehen",
+    "Watch on YouTube": "Auf YouTube ansehen",
+    "Share on YouTube": "Auf YouTube teilen",
+    "Close": "Schließen",
+    "Video player": "Videoplayer",
+    "Asset preview": "Asset-Vorschau",
+    "Zoom in": "Vergrößern",
+    "Fit to screen": "An Bildschirm anpassen",
+    "Viewer unavailable — downloading instead": "Viewer nicht verfügbar – stattdessen wird heruntergeladen",
+    "Couldn’t open the catalog — downloading instead": "Katalog konnte nicht geöffnet werden – stattdessen wird heruntergeladen",
+    "Filter results by type": "Ergebnisse nach Typ filtern",
+    "View my certificate": "Mein Zertifikat ansehen",
+    "asset": "Asset",
+    "video": "Video",
+    "Photos": "Fotos",
+    "Lifestyle": "Lifestyle",
+    "Videos": "Videos",
+    "In-store": "Im Laden",
+    "View": "Ansehen",
+    "{n} colors": "{n} Farben",
+    "Copied link to {folder}": "Link zu {folder} kopiert",
     "{m} lessons · {q}-question quiz · ~{min} min": "{m} Lektionen · Quiz mit {q} Fragen · ~{min} Min.",
     "Concentrate Accessories": "Konzentrat-Zubehör",
     "Dry Herb Accessories": "Trockenkräuter-Zubehör",
@@ -341,7 +377,7 @@ window.PORTAL_I18N.de = {
             "points": [
               "Der G Pen Micro II ist ein <strong>Konzentrat-Vaporizer</strong> – nicht für Blüten geeignet.",
               "Er ist die neueste Entwicklungsstufe der Micro Plattform, die mit dem <strong>ursprünglichen microG von 2013</strong> begann.",
-              "Taschenformat, mit robustem Gehäuse aus <strong>eloxiertem Aluminium</strong> und einem <strong>0.8Ω Keramik-Atomizer</strong>.",
+              "Taschenformat, mit robustem Gehäuse aus <strong>eloxiertem Aluminium</strong> und einem <strong>0,8Ω Keramik-Atomizer</strong>.",
               "UVP <strong>$49.95</strong>."
             ]
           },
@@ -367,7 +403,7 @@ window.PORTAL_I18N.de = {
           {
             "title": "Akku, Lieferumfang &amp; Zubehör",
             "points": [
-              "<strong>1,250mAh</strong> Akku – bis zu <strong>120 Sessions pro Ladung</strong>.",
+              "<strong>1.250mAh</strong> Akku – bis zu <strong>120 Sessions pro Ladung</strong>.",
               "<strong>USB-C-Schnellladung</strong> in unter 60 Minuten, dazu <strong>Pass-Through-Laden</strong>, sodass das Gerät während des Ladens nutzbar bleibt.",
               "Im Lieferumfang: Akku, Keramiktank und ein Silikonmundstück. <strong>Ein Ladekabel ist nicht enthalten</strong> – jedes USB-C-Ladegerät funktioniert.",
               "Das <strong>Sidecar</strong> (Glas-Wasserfiltration) und der <strong>14-mm-Rig-Adapter</strong> sind <strong>separat erhältlich</strong>.",
@@ -454,7 +490,7 @@ window.PORTAL_I18N.de = {
               "Bis zu 120",
               "Bis zu 200"
             ],
-            "why": "Der 1,250mAh Akku liefert bis zu 120 Sessions pro Ladung."
+            "why": "Der 1.250mAh Akku liefert bis zu 120 Sessions pro Ladung."
           },
           {
             "q": "Was ist beim Micro II im Lieferumfang enthalten?",
@@ -648,7 +684,7 @@ window.PORTAL_I18N.de = {
             "<strong>Schnell aufheizende Keramikspitze</strong>.",
             "<strong>USB-C Pass-Through-Laden (Nutzung während des Ladens)</strong> — das Gerät kann während des Ladens verwendet werden.",
             "Elegantes Gehäuse aus <strong>Aluminium</strong>.",
-            "Ultrakompakt: <strong>3.94 × 0.5 × 0.25 in</strong>, ideal für die Hosentasche und das Reise-Kit.",
+            "Ultrakompakt: <strong>3,94 × 0,5 × 0,25 in</strong>, ideal für die Hosentasche und das Reise-Kit.",
             "Passend zu Rigs sowie zum G Pen Micro+ / Hyer."
           ]
         },
@@ -787,12 +823,12 @@ window.PORTAL_I18N.de = {
         {
           "title": "Wichtige technische Daten",
           "points": [
-            "<strong>5 Heizstufen</strong> von <strong>2.4V bis 3.8V</strong>.",
-            "<strong>1.8V</strong> Vorheizmodus für 10 Sekunden.",
+            "<strong>5 Heizstufen</strong> von <strong>2,4V bis 3,8V</strong>.",
+            "<strong>1,8V</strong> Vorheizmodus für 10 Sekunden.",
             "<strong>400mAh</strong> wiederaufladbarer Akku, Laden über <strong>USB-C</strong>.",
             "Helles <strong>LED-Display</strong>.",
             "Passend für <strong>510-Kartuschen bis 2g</strong>.",
-            "Abmessungen: <strong>90 × 37.5 × 18.5 mm</strong>."
+            "Abmessungen: <strong>90 × 37,5 × 18,5 mm</strong>."
           ]
         },
         {
@@ -801,7 +837,7 @@ window.PORTAL_I18N.de = {
             "<strong>Bestücken:</strong> Mundstück abnehmen, eine 510-Kartusche einschrauben und das Mundstück wieder aufsetzen.",
             "<strong>Ein-/Ausschalten:</strong> die Taste <strong>5×</strong> drücken.",
             "<strong>Spannung einstellen:</strong> <strong>3×</strong> drücken, um durch die Heizstufen zu schalten.",
-            "<strong>Vorheizen:</strong> <strong>2×</strong> drücken für ein 10-sekündiges Vorheizen bei 1.8V.",
+            "<strong>Vorheizen:</strong> <strong>2×</strong> drücken für ein 10-sekündiges Vorheizen bei 1,8V.",
             "<strong>Ziehen:</strong> die Taste <strong>gedrückt halten</strong>, um zu aktivieren und zu ziehen.",
             "Automatische Abschaltung nach <strong>2 Minuten</strong> Inaktivität."
           ]
@@ -838,12 +874,12 @@ window.PORTAL_I18N.de = {
         {
           "q": "Welchen Spannungsbereich hat der Hydout?",
           "choices": [
-            "1.0V–2.0V",
-            "2.4V–3.8V (5 Stufen)",
-            "3.8V–4.8V",
+            "1,0V–2,0V",
+            "2,4V–3,8V (5 Stufen)",
+            "3,8V–4,8V",
             "Eine einzige feste Spannung"
           ],
-          "why": "Der Hydout bietet 5 Heizstufen von 2.4V bis 3.8V."
+          "why": "Der Hydout bietet 5 Heizstufen von 2,4V bis 3,8V."
         },
         {
           "q": "Welche Akkukapazität hat der Hydout?",
@@ -889,11 +925,11 @@ window.PORTAL_I18N.de = {
           "q": "Was bewirkt zweimaliges Drücken der Taste?",
           "choices": [
             "Schaltet ihn aus",
-            "Startet ein 10-sekündiges Vorheizen bei 1.8V",
+            "Startet ein 10-sekündiges Vorheizen bei 1,8V",
             "Sperrt ihn",
             "Nichts"
           ],
-          "why": "Zweimaliges Drücken startet ein 10-sekündiges Vorheizen bei 1.8V."
+          "why": "Zweimaliges Drücken startet ein 10-sekündiges Vorheizen bei 1,8V."
         },
         {
           "q": "Nach welcher Zeit schaltet sich der Hydout automatisch ab?",
@@ -932,11 +968,11 @@ window.PORTAL_I18N.de = {
           "title": "Wichtige Spezifikationen",
           "points": [
             "<strong>Zugaktiviert</strong> — einfach inhalieren (oder die Taste gedrückt halten).",
-            "<strong>Drei voreingestellte Spannungen: 3.2 / 3.6 / 3.8V</strong>.",
-            "<strong>1.8V</strong> Vorheizmodus für 10 Sekunden.",
+            "<strong>Drei voreingestellte Spannungen: 3,2 / 3,6 / 3,8V</strong>.",
+            "<strong>1,8V</strong> Vorheizmodus für 10 Sekunden.",
             "<strong>400mAh</strong> Akku mit <strong>USB-C Pass-Through-Laden (Nutzung während des Ladens)</strong>.",
             "Digitales <strong>Display</strong>.",
-            "Abmessungen: <strong>24 × 21.1 × 56.7 mm</strong>."
+            "Abmessungen: <strong>24 × 21,1 × 56,7 mm</strong>."
           ]
         },
         {
@@ -944,8 +980,8 @@ window.PORTAL_I18N.de = {
           "points": [
             "<strong>Bestücken:</strong> eine 510-Kartusche aufschrauben.",
             "<strong>Ein-/Ausschalten:</strong> die Taste <strong>5×</strong> drücken.",
-            "<strong>Spannung ändern:</strong> <strong>3×</strong> drücken, um zwischen 3.2 / 3.6 / 3.8V zu wechseln.",
-            "<strong>Vorheizen:</strong> <strong>2×</strong> drücken für ein 10-sekündiges Vorheizen mit 1.8V.",
+            "<strong>Spannung ändern:</strong> <strong>3×</strong> drücken, um zwischen 3,2 / 3,6 / 3,8V zu wechseln.",
+            "<strong>Vorheizen:</strong> <strong>2×</strong> drücken für ein 10-sekündiges Vorheizen mit 1,8V.",
             "<strong>Ziehen:</strong> einfach <strong>einatmen</strong> (zugaktiviert) — oder die Taste gedrückt halten.",
             "Automatische Abschaltung nach <strong>10 Minuten</strong> Inaktivität."
           ]
@@ -982,12 +1018,12 @@ window.PORTAL_I18N.de = {
         {
           "q": "Welches sind die drei voreingestellten Spannungen?",
           "choices": [
-            "2.4 / 3.0 / 3.6V",
-            "3.2 / 3.6 / 3.8V",
-            "1.8 / 2.4 / 3.0V",
-            "3.8 / 4.2 / 4.8V"
+            "2,4 / 3,0 / 3,6V",
+            "3,2 / 3,6 / 3,8V",
+            "1,8 / 2,4 / 3,0V",
+            "3,8 / 4,2 / 4,8V"
           ],
-          "why": "Er hat drei voreingestellte Spannungen: 3.2, 3.6 und 3.8V."
+          "why": "Er hat drei voreingestellte Spannungen: 3.2, 3.6 und 3,8V."
         },
         {
           "q": "Wie hoch ist die Akkukapazität des 510 Original?",
@@ -995,7 +1031,7 @@ window.PORTAL_I18N.de = {
             "150mAh",
             "400mAh",
             "900mAh",
-            "1,100mAh"
+            "1.100mAh"
           ],
           "why": "Er hat einen 400mAh Akku mit USB-C Pass-Through-Laden (Nutzung während des Ladens)."
         },
@@ -1017,17 +1053,17 @@ window.PORTAL_I18N.de = {
             "Die Taste gedrückt halten",
             "Die Kartusche fester aufschrauben"
           ],
-          "why": "Drücken Sie die Taste 3×, um zwischen 3.2 / 3.6 / 3.8V zu wechseln."
+          "why": "Drücken Sie die Taste 3×, um zwischen 3,2 / 3,6 / 3,8V zu wechseln."
         },
         {
           "q": "Was bewirkt zweimaliges Drücken (2×)?",
           "choices": [
             "Schaltet ihn aus",
-            "Startet ein 10-sekündiges Vorheizen mit 1.8V",
+            "Startet ein 10-sekündiges Vorheizen mit 1,8V",
             "Sperrt den Akku",
             "Nichts"
           ],
-          "why": "Zweimaliges Drücken (2×) startet ein 10-sekündiges Vorheizen mit 1.8V."
+          "why": "Zweimaliges Drücken (2×) startet ein 10-sekündiges Vorheizen mit 1,8V."
         },
         {
           "q": "Nach welcher Zeit schaltet sich der 510 Original automatisch ab?",
@@ -1077,7 +1113,7 @@ window.PORTAL_I18N.de = {
           "points": [
             "Heizkammer vollständig aus <strong>Titan</strong>.",
             "Erreicht die Verdampfungstemperatur in nur <strong>20 Sekunden</strong>.",
-            "<strong>1,800mAh</strong> wiederaufladbarer Li-Ionen-Akku mit <strong>USB-C</strong>-Ladung.",
+            "<strong>1.800mAh</strong> wiederaufladbarer Li-Ionen-Akku mit <strong>USB-C</strong>-Ladung.",
             "<strong>Vollfarbiges LED-Display</strong> mit präziser Temperatursteuerung.",
             "<strong>Haptisches Feedback</strong> und eine intuitive <strong>3-Tasten</strong>-Bedienung.",
             "Robustes Gehäuse aus <strong>Zinklegierung</strong>."
@@ -1137,11 +1173,11 @@ window.PORTAL_I18N.de = {
           "q": "Wie hoch ist die Akkukapazität des Dash+?",
           "choices": [
             "650mAh",
-            "1,100mAh",
-            "1,800mAh",
-            "3,000mAh"
+            "1.100mAh",
+            "1.800mAh",
+            "3.000mAh"
           ],
-          "why": "Er wird von einem wiederaufladbaren 1,800mAh Li-Ionen-Akku betrieben."
+          "why": "Er wird von einem wiederaufladbaren 1.800mAh Li-Ionen-Akku betrieben."
         },
         {
           "q": "Wie schalten Sie den Dash+ ein?",
@@ -1403,12 +1439,12 @@ window.PORTAL_I18N.de = {
         {
           "title": "Wichtige technische Daten",
           "points": [
-            "<strong>5 Heizstufen</strong> von <strong>2.4V bis 3.8V</strong>.",
-            "<strong>1.8V</strong> Vorheizmodus für 10 Sekunden.",
+            "<strong>5 Heizstufen</strong> von <strong>2,4V bis 3,8V</strong>.",
+            "<strong>1,8V</strong> Vorheizmodus für 10 Sekunden.",
             "<strong>400mAh</strong> wiederaufladbarer Akku, Laden über <strong>USB-C</strong>.",
             "Helles <strong>LED-Display</strong>.",
             "Passend für <strong>510-Kartuschen bis 2g</strong>.",
-            "Abmessungen: <strong>90 × 37.5 × 18.5 mm</strong>."
+            "Abmessungen: <strong>90 × 37,5 × 18,5 mm</strong>."
           ]
         },
         {
@@ -1417,7 +1453,7 @@ window.PORTAL_I18N.de = {
             "<strong>Bestücken:</strong> Mundstück abnehmen, eine 510-Kartusche einschrauben und das Mundstück wieder aufsetzen.",
             "<strong>Ein-/Ausschalten:</strong> die Taste <strong>5×</strong> drücken.",
             "<strong>Spannung einstellen:</strong> <strong>3×</strong> drücken, um durch die Heizstufen zu schalten.",
-            "<strong>Vorheizen:</strong> <strong>2×</strong> drücken für ein 10-sekündiges Vorheizen bei 1.8V.",
+            "<strong>Vorheizen:</strong> <strong>2×</strong> drücken für ein 10-sekündiges Vorheizen bei 1,8V.",
             "<strong>Ziehen:</strong> die Taste <strong>gedrückt halten</strong>, um zu aktivieren und zu ziehen.",
             "Automatische Abschaltung nach <strong>2 Minuten</strong> Inaktivität."
           ]
@@ -1454,12 +1490,12 @@ window.PORTAL_I18N.de = {
         {
           "q": "Welchen Spannungsbereich hat der Hydout?",
           "choices": [
-            "1.0V–2.0V",
-            "2.4V–3.8V (5 Stufen)",
-            "3.8V–4.8V",
+            "1,0V–2,0V",
+            "2,4V–3,8V (5 Stufen)",
+            "3,8V–4,8V",
             "Eine einzige feste Spannung"
           ],
-          "why": "Der Hydout bietet 5 Heizstufen von 2.4V bis 3.8V."
+          "why": "Der Hydout bietet 5 Heizstufen von 2,4V bis 3,8V."
         },
         {
           "q": "Welche Akkukapazität hat der Hydout?",
@@ -1505,11 +1541,11 @@ window.PORTAL_I18N.de = {
           "q": "Was bewirkt zweimaliges Drücken der Taste?",
           "choices": [
             "Schaltet ihn aus",
-            "Startet ein 10-sekündiges Vorheizen bei 1.8V",
+            "Startet ein 10-sekündiges Vorheizen bei 1,8V",
             "Sperrt ihn",
             "Nichts"
           ],
-          "why": "Zweimaliges Drücken startet ein 10-sekündiges Vorheizen bei 1.8V."
+          "why": "Zweimaliges Drücken startet ein 10-sekündiges Vorheizen bei 1,8V."
         },
         {
           "q": "Nach welcher Zeit schaltet sich der Hydout automatisch ab?",
@@ -1548,11 +1584,11 @@ window.PORTAL_I18N.de = {
           "title": "Wichtigste Spezifikationen",
           "points": [
             "<strong>Zugaktiviert</strong> — einfach inhalieren (oder die Taste gedrückt halten).",
-            "<strong>Drei voreingestellte Spannungen: 3.2 / 3.6 / 3.8V</strong>.",
-            "<strong>1.8V</strong> Vorheizmodus für 10 Sekunden.",
+            "<strong>Drei voreingestellte Spannungen: 3,2 / 3,6 / 3,8V</strong>.",
+            "<strong>1,8V</strong> Vorheizmodus für 10 Sekunden.",
             "<strong>400mAh</strong> Akku mit <strong>USB-C Pass-Through-Laden (Nutzung während des Ladens)</strong>.",
             "Digitales <strong>Display</strong>.",
-            "Abmessungen: <strong>24 × 21.1 × 56.7 mm</strong>."
+            "Abmessungen: <strong>24 × 21,1 × 56,7 mm</strong>."
           ]
         },
         {
@@ -1560,8 +1596,8 @@ window.PORTAL_I18N.de = {
           "points": [
             "<strong>Bestücken:</strong> Schrauben Sie eine 510-Kartusche auf.",
             "<strong>Ein-/Ausschalten:</strong> Drücken Sie die Taste <strong>5×</strong>.",
-            "<strong>Spannung einstellen:</strong> Drücken Sie <strong>3×</strong>, um zwischen 3.2 / 3.6 / 3.8V zu wechseln.",
-            "<strong>Vorheizen:</strong> Drücken Sie <strong>2×</strong> für ein 10-sekündiges Vorheizen bei 1.8V.",
+            "<strong>Spannung einstellen:</strong> Drücken Sie <strong>3×</strong>, um zwischen 3,2 / 3,6 / 3,8V zu wechseln.",
+            "<strong>Vorheizen:</strong> Drücken Sie <strong>2×</strong> für ein 10-sekündiges Vorheizen bei 1,8V.",
             "<strong>Ziehen:</strong> Einfach <strong>einatmen</strong> (zugaktiviert) — oder die Taste gedrückt halten.",
             "Automatische Abschaltung nach <strong>10 Minuten</strong> ohne Aktivität."
           ]
@@ -1598,12 +1634,12 @@ window.PORTAL_I18N.de = {
         {
           "q": "Welches sind die drei voreingestellten Spannungen?",
           "choices": [
-            "2.4 / 3.0 / 3.6V",
-            "3.2 / 3.6 / 3.8V",
-            "1.8 / 2.4 / 3.0V",
-            "3.8 / 4.2 / 4.8V"
+            "2,4 / 3,0 / 3,6V",
+            "3,2 / 3,6 / 3,8V",
+            "1,8 / 2,4 / 3,0V",
+            "3,8 / 4,2 / 4,8V"
           ],
-          "why": "Er verfügt über drei voreingestellte Spannungen: 3.2, 3.6 und 3.8V."
+          "why": "Er verfügt über drei voreingestellte Spannungen: 3.2, 3.6 und 3,8V."
         },
         {
           "q": "Wie hoch ist die Akkukapazität des 510 Original?",
@@ -1611,7 +1647,7 @@ window.PORTAL_I18N.de = {
             "150mAh",
             "400mAh",
             "900mAh",
-            "1,100mAh"
+            "1.100mAh"
           ],
           "why": "Er hat einen 400mAh Akku mit USB-C Pass-Through-Laden (Nutzung während des Ladens)."
         },
@@ -1633,17 +1669,17 @@ window.PORTAL_I18N.de = {
             "Die Taste gedrückt halten",
             "Die Kartusche fester anschrauben"
           ],
-          "why": "Drücken Sie die Taste 3×, um zwischen 3.2 / 3.6 / 3.8V zu wechseln."
+          "why": "Drücken Sie die Taste 3×, um zwischen 3,2 / 3,6 / 3,8V zu wechseln."
         },
         {
           "q": "Was bewirkt zweimaliges Drücken (2×)?",
           "choices": [
             "Schaltet ihn aus",
-            "Startet ein 10-sekündiges Vorheizen bei 1.8V",
+            "Startet ein 10-sekündiges Vorheizen bei 1,8V",
             "Sperrt den Akku",
             "Nichts"
           ],
-          "why": "Zweimaliges Drücken (2×) startet ein 10-sekündiges Vorheizen bei 1.8V."
+          "why": "Zweimaliges Drücken (2×) startet ein 10-sekündiges Vorheizen bei 1,8V."
         },
         {
           "q": "Nach welcher Zeit schaltet sich der 510 Original automatisch ab?",
@@ -1686,10 +1722,10 @@ window.PORTAL_I18N.de = {
           "Aufheizen in 5 Sekunden",
           "Session-Modus (20 s) + manuelles Heizen (bis zu 25 s)",
           "Einstellbarer Luftstrom: von offen bis eingeschränkt",
-          "0.8Ω Keramik-Atomizer",
+          "0,8Ω Keramik-Atomizer",
           "Digitaldisplay: Temperatur, Heizstatus und Akkustand",
           "Vibration beim Erreichen der Temperatur",
-          "1,250mAh Akku: bis zu 120 Sessions pro Ladung",
+          "1.250mAh Akku: bis zu 120 Sessions pro Ladung",
           "USB-C-Schnellladung: in weniger als 60 Minuten",
           "Pass-Through-Laden (Nutzung während des Ladens möglich)",
           "Automatische Abschaltung nach 10 Minuten",
@@ -1699,8 +1735,8 @@ window.PORTAL_I18N.de = {
         ],
         "fullDescription": [
           "Der G Pen Micro II denkt den ikonischen Micro Konzentrat-Vaporizer neu: mit mehr Leistung, Präzision und Kontrolle in einem kompakten, taschenfreundlichen Design.",
-          "Angetrieben von einem wiederaufladbaren 1,250mAh Akku, liefert der Micro II bis zu 120 Sessions pro Ladung und lädt per USB-C in weniger als 60 Minuten. Drei optimierte Temperaturstufen – LOW bei etwa 295°F, MEDIUM bei 340°F und HIGH bei 395°F – lassen Sie Ihre Session auf sanften Geschmack, ausgewogene Leistung oder dichtere Dampfentwicklung abstimmen.",
-          "Ein hochwertiger 0.8Ω Keramik-Atomizer sorgt für gleichbleibende Leistung mit Konzentraten, während der einstellbare Luftstrom Ihnen noch mehr Kontrolle über jeden Zug gibt. Wählen Sie zwischen dem 20-sekündigen Session-Modus mit automatischem Heizen oder dem manuellen Heizen mit bis zu 25 Sekunden direkter Kontrolle.",
+          "Angetrieben von einem wiederaufladbaren 1.250mAh Akku, liefert der Micro II bis zu 120 Sessions pro Ladung und lädt per USB-C in weniger als 60 Minuten. Drei optimierte Temperaturstufen – LOW bei etwa 295°F, MEDIUM bei 340°F und HIGH bei 395°F – lassen Sie Ihre Session auf sanften Geschmack, ausgewogene Leistung oder dichtere Dampfentwicklung abstimmen.",
+          "Ein hochwertiger 0,8Ω Keramik-Atomizer sorgt für gleichbleibende Leistung mit Konzentraten, während der einstellbare Luftstrom Ihnen noch mehr Kontrolle über jeden Zug gibt. Wählen Sie zwischen dem 20-sekündigen Session-Modus mit automatischem Heizen oder dem manuellen Heizen mit bis zu 25 Sekunden direkter Kontrolle.",
           "Das integrierte Digitaldisplay hält Akkustand, Temperatur und Heizstatus im Blick, und die Vibration meldet Ihnen, wenn der Micro II die Temperatur erreicht hat. Ein robustes Gehäuse aus eloxiertem Aluminium, die Bedienung mit nur einer Taste, Pass-Through-Laden und die automatische Abschaltung nach 10 Minuten machen den täglichen Gebrauch mühelos.",
           "Nutzen Sie das mitgelieferte Silikonmundstück für einen kompakten Aufbau oder erweitern Sie das Erlebnis mit dem separat erhältlichen G Pen Micro II Sidecar und dem 14-mm-Rig-Adapter für wassergefilterte Sessions zu Hause und unterwegs.",
           "Mehr als ein Jahrzehnt nachdem der ursprüngliche microG die portable Konzentrat-Verdampfung mitgeprägt hat, bringt der Micro II das Micro Erlebnis in eine neue Generation – und das für $49.95."
@@ -1717,7 +1753,7 @@ window.PORTAL_I18N.de = {
         "specs": [
           [
             "Akku",
-            "1,250mAh wiederaufladbar"
+            "1.250mAh wiederaufladbar"
           ],
           [
             "Aufladen",
@@ -1761,7 +1797,7 @@ window.PORTAL_I18N.de = {
           ],
           [
             "Atomizer",
-            "0.8Ω Keramik"
+            "0,8Ω Keramik"
           ],
           [
             "Luftstrom",
@@ -1789,7 +1825,7 @@ window.PORTAL_I18N.de = {
           ],
           [
             "Geräteabmessungen",
-            "98.6 × 24 × 32 mm"
+            "98,6 × 24 × 32 mm"
           ],
           [
             "Gerätegewicht",

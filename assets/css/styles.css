@@ -12,6 +12,7 @@
   --mist-2: #ECECE8;
   --hair: #E6E6E3;
   --stone: #777772;
+  --stone-on-mist: #676762;   /* --stone fails AA (4.09:1) on --mist; this is ~5.1:1 */
   --stone-2: #9A9A93;
   --gold: #FEC870;        /* brand gold (G Pen) — single accent, used sparingly */
   --gold-ink: #8A5A09;    /* deeper gold for accent text on light backgrounds */
@@ -390,7 +391,7 @@ button.mat-thumb { padding: 0; }
 .fmts { position: absolute; bottom: 12px; right: 12px; display: flex; gap: 5px; z-index: 2; }
 .fmt { font-size: 9px; font-weight: 700; color: var(--stone); background: var(--paper); border: 1px solid var(--hair); border-radius: 5px; padding: 2px 6px; }
 .quick { position: absolute; bottom: 12px; left: 12px; display: flex; gap: 6px; z-index: 2; opacity: 0; transform: translateY(4px); transition: all 0.16s; }
-.card:hover .quick { opacity: 1; transform: translateY(0); }
+.card:hover .quick, .card:focus-within .quick { opacity: 1; transform: translateY(0); }
 .qbtn { width: 28px; height: 28px; border-radius: 7px; background: var(--ink); color: #fff; display: flex; align-items: center; justify-content: center; border: none; }
 .qbtn svg { width: 15px; height: 15px; stroke: #fff; }
 .card-name { font-family: var(--serif); font-size: 16px; margin: 13px 0 3px; }
@@ -441,7 +442,7 @@ button.mat-thumb { padding: 0; }
 .btn.ghost:hover { background: var(--mist); }
 .detail-actions { margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap; }
 
-.usage { display: flex; align-items: flex-start; gap: 10px; padding: 12px 16px; background: var(--mist); border: 1px solid var(--hair); border-radius: var(--radius); margin-bottom: 18px; font-size: 12.5px; line-height: 1.5; color: var(--stone); }
+.usage { display: flex; align-items: flex-start; gap: 10px; padding: 12px 16px; background: var(--mist); border: 1px solid var(--hair); border-radius: var(--radius); margin-bottom: 18px; font-size: 12.5px; line-height: 1.5; color: var(--stone-on-mist); }
 .usage svg { width: 16px; height: 16px; stroke: var(--ink); flex: 0 0 auto; margin-top: 1px; }
 .usage-foot { margin-top: 22px; margin-bottom: 22px; }
 
@@ -455,7 +456,7 @@ button.mat-thumb { padding: 0; }
 .ov-fact-group { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
 .ov-fact { display: flex; align-items: center; gap: 11px; }
 .ov-fact svg { width: 20px; height: 20px; stroke: var(--ink); flex: 0 0 auto; }
-.ov-fact-l { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; color: var(--stone); }
+.ov-fact-l { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; color: var(--stone-on-mist); }
 .ov-fact-v { font-size: 13px; font-weight: 600; }
 .ov-cta { display: flex; gap: 8px; flex-wrap: wrap; }
 .fd-copy { order: 6; flex: 0 0 auto; }
@@ -554,6 +555,12 @@ button.pkg-media { width: 100%; border: 0; padding: 0; font: inherit; }
 .catlb-x:hover { background: rgba(255,255,255,0.2); }
 .catlb-stage { flex: 1 1 auto; min-height: 0; position: relative; display: flex; align-items: center; justify-content: center; padding: 12px; }
 .catlb-stage canvas { max-width: 100%; max-height: 100%; border-radius: 4px; box-shadow: 0 18px 50px -20px rgba(0,0,0,0.9); background: #fff; }
+.catlb-stage.zoomed { display: block; overflow: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; text-align: center; }
+.catlb-stage.zoomed canvas { max-width: none; max-height: none; display: inline-block; vertical-align: top; }
+@media (max-width: 720px) {
+  .catlb-nav { flex-wrap: wrap; gap: 10px; padding-left: 10px; padding-right: 10px; }
+  .catlb-nav #catlb-zoom span { display: none; }   /* icon-only; aria-label carries the text */
+}
 .catlb-load { position: absolute; color: rgba(255,255,255,0.7); font-size: 13px; font-weight: 600; }
 .catlb-nav { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; gap: 14px;
   padding: 12px 16px 18px; }
@@ -723,6 +730,10 @@ button.pkg-media { width: 100%; border: 0; padding: 0; font: inherit; }
 /* floating selection action bar */
 .selbar { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%) translateY(24px); display: flex; align-items: center; gap: 18px; background: var(--ink); color: #fff; padding: 10px 12px 10px 22px; border-radius: var(--radius-pill); box-shadow: var(--shadow-lg); z-index: 85; opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; }
 .selbar.show { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+/* Hidden (opacity 0) controls must also leave the Tab order and the a11y tree:
+   visibility flips after the fade-out, and immediately on show. */
+.selbar, .to-top { visibility: hidden; transition: opacity 0.2s, transform 0.2s, visibility 0s 0.2s; }
+.selbar.show, .to-top.show { visibility: visible; transition: opacity 0.2s, transform 0.2s, visibility 0s; }
 .selbar .selcount { font-size: 13px; white-space: nowrap; }
 .selbar .selcount strong { font-weight: 700; }
 .selbar .selacts { display: flex; gap: 8px; }
@@ -733,6 +744,7 @@ button.pkg-media { width: 100%; border: 0; padding: 0; font: inherit; }
 
 /* lift the toast above the selection bar while a selection is active */
 body.has-selection .toast { bottom: 88px; }
+body.has-selection .to-top { bottom: 88px; }
 
 /* ----------------------- RESOURCES (guides + social) ---------------------- */
 /* Intentionally low-key and parked at the bottom of the home view, so brand
@@ -929,6 +941,7 @@ a.logo-tile { cursor: pointer; }
   /* swipe affordance — mobile only */
   .catgrid-hint { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: var(--stone); margin: 0 0 9px; }
   .catgrid-hint svg { width: 15px; height: 15px; color: var(--gold-ink); }
+  .catgrid-hint.is-off { display: none; }
   .sku-row { flex-direction: column; align-items: flex-start; gap: 4px; }
   .toggle button { padding: 9px 16px; }
   .section-head { flex-wrap: wrap; }
@@ -944,6 +957,11 @@ a.logo-tile { cursor: pointer; }
      right ran off the LEFT of the screen on narrow phones. Anchor it to the
      button's left edge instead and cap it to the viewport. */
   .langsel-menu { right: auto; left: 0; min-width: 0; width: max-content; max-width: calc(100vw - 24px); }
+}
+@media (max-width: 500px) {
+  /* Icon-only "Download selected" so the bar fits at 320px (label stays as aria-label). */
+  .selbar .sel-dl-l { display: none; }
+  .selbar #sel-dl { min-width: 44px; justify-content: center; }
 }
 
 /* Narrowest phones (iPhone SE 1st gen and older Androids). The ≤600px rules above
@@ -981,6 +999,8 @@ a.logo-tile { cursor: pointer; }
   .gbar .ga { gap: 6px; }
   .gbar .ga > span { display: inline-flex; align-items: center; justify-content: center; padding: 7px; }
   .gbar .ga svg { width: 17px; height: 17px; }
+  /* iOS Safari zooms the whole page into any focused field under 16px. */
+  .browse-search input, .mat-qty input, .mat-field input { font-size: 16px; }
 
   /* Everything below grows the *hit area* only — the icon/label keeps its size,
      so nothing looks different; it just stops being a 16px dot to thumb. */
@@ -1018,6 +1038,9 @@ a.logo-tile { cursor: pointer; }
 /* Floating scroll-to-top — appears once you're a screen or two down. */
 .to-top { position: fixed; right: 20px; bottom: 20px; width: 46px; height: 46px; border-radius: 50%; background: var(--ink); color: #fff; border: none; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(0,0,0,0.22); opacity: 0; pointer-events: none; transform: translateY(10px) scale(0.9); transition: opacity 0.2s, transform 0.2s; z-index: 95; cursor: pointer; }
 .to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0) scale(1); }
+.to-top { transition: opacity 0.2s, transform 0.2s, visibility 0s 0.2s; }
+.to-top.show { transition: opacity 0.2s, transform 0.2s, visibility 0s; }
+@media (prefers-reduced-motion: reduce) { .selbar, .to-top, .selbar.show, .to-top.show { transition: none; } }
 .to-top:hover { background: #000; transform: translateY(-2px) scale(1.04); }
 .to-top svg { width: 20px; height: 20px; stroke: #fff; }
 @media (max-width: 600px) { .to-top { right: 14px; bottom: 14px; width: 42px; height: 42px; } }
@@ -1137,6 +1160,9 @@ a.logo-tile { cursor: pointer; }
 .trn-choice input { position: absolute; opacity: 0; pointer-events: none; }
 .trn-choice-mark { flex: 0 0 auto; width: 18px; height: 18px; border: 2px solid var(--hair); border-radius: 50%; position: relative; transition: border-color 0.12s; }
 .trn-choice input:checked + .trn-choice-mark { border-color: var(--ink); }
+/* The radio itself is visually hidden, so show keyboard focus on its row. */
+.trn-choice:has(input:focus-visible) { outline: 2px solid var(--ink); outline-offset: 2px; }
+.trn-choice input:focus-visible + .trn-choice-mark { box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.25); }
 .trn-choice input:checked + .trn-choice-mark::after { content: ""; position: absolute; inset: 3px; border-radius: 50%; background: var(--ink); }
 .trn-choice-t { font-size: 14px; line-height: 1.35; }
 .trn-q.graded .trn-choice { cursor: default; }
@@ -1197,10 +1223,15 @@ a.logo-tile { cursor: pointer; }
 .trn-certactions { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
 @media print {
   @page { size: landscape; margin: 0.35in; }
-  body * { visibility: hidden !important; }
-  #cert-card, #cert-card * { visibility: visible !important; }
-  #cert-card { position: fixed; inset: 0; margin: auto; width: 100%; box-shadow: none !important; }
-  #cert-card .cert-inner { box-shadow: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  /* Printing a certificate: app.js copies it into #print-root (a direct child
+     of <body>) and every other body child is removed from layout. The old
+     visibility:hidden + position:fixed kept the ~8,000px training page in the
+     layout and Chrome repeated the fixed card on every page — 8-9 sheets. */
+  body.printing-cert > *:not(#print-root) { display: none !important; }
+  #print-root { display: block; }
+  #print-root .cert { box-shadow: none !important; margin: 0 auto; width: 100%; }
+  #print-root .cert-inner { box-shadow: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .cert-print-hide, .to-top, .toast { display: none !important; }
 }
+#print-root { display: none; }
 @media (max-width: 600px) { .trn-hero { flex-direction: column; gap: 14px; } .trn-result { gap: 14px; } }

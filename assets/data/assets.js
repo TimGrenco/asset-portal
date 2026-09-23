@@ -912,6 +912,7 @@ window.PORTAL_PRODUCTS.forEach(function (p) {
       if (s.folderLinks) p.folderLinks = s.folderLinks;
       p.synced = true;
       p.syncedAt = s.syncedAt;
+      if (s.updated && (!p.added || s.updated > p.added)) p.updated = s.updated;
       // Logo folders have no product shot — use the main black G monogram
       // (GPen_G_Black, not the registered/wordmark variants) as the hero cover.
       if (p.isLogo && !p.cover) {
@@ -999,11 +1000,15 @@ window.PORTAL_COLORWAYS = {
   // content-hash thumbnails changing on every re-sync.
   window.PORTAL_PRODUCTS.forEach(function (p) {
     if (!p.info || p.info.popImg || !p.folders) return;
+    // Ops data says this product has no POP display — don't let a filename overrule it.
+    if (p.info.pop === false) return;
     var own = [];
     Object.keys(p.folders).forEach(function (f) {
       if (f === "Packaging") return;                     // already handled natively
       (p.folders[f] || []).forEach(function (x) {
-        if (x && x.thumb && /pop/i.test(x.name || "")) own.push(x);
+        // Images only, and "POP" as its own word: Elite II's social video
+        // "…_poplockandlemondrops.MOV" was being shown as its retail POP display.
+        if (x && x.thumb && x.type === "image" && /(^|[^a-z])pop([^a-z]|$)/i.test(x.name || "")) own.push(x);
       });
     });
     if (!own.length) return;

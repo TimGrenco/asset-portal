@@ -41,6 +41,11 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    # A normal deploy takes ~1 minute. This is a deadlock breaker: with
+    # cancel-in-progress: false, one run wedged in "waiting" (as happened to the
+    # Stündenglass portal for 12 days) would otherwise hold the "pages" group
+    # forever while every later deploy queues and is skipped, with no failure.
+    timeout-minutes: 20
     environment:
       name: github-pages
       url: ${{ steps.deploy1.outputs.page_url || steps.deploy2.outputs.page_url || steps.deploy3.outputs.page_url || steps.deployment.outputs.page_url }}

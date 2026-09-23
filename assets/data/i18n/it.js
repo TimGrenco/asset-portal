@@ -20,6 +20,42 @@
 window.PORTAL_I18N = window.PORTAL_I18N || {};
 window.PORTAL_I18N.it = {
   "ui": {
+    "N/A": "N/D",
+    "Back to home": "Torna alla home",
+    "Select language": "Seleziona la lingua",
+    "Clear search": "Cancella ricerca",
+    "Previous": "Precedente",
+    "Scroll to top": "Torna su",
+    "Grid view": "Vista a griglia",
+    "List view": "Vista a elenco",
+    "Layout": "Layout",
+    "Sort products": "Ordina i prodotti",
+    "Select {name}": "Seleziona {name}",
+    "Play {name}": "Riproduci {name}",
+    "Enlarge {name}": "Ingrandisci {name}",
+    "Copy link to {name}": "Copia il link a {name}",
+    "Download {name}": "Scarica {name}",
+    "Watch {name}": "Guarda {name}",
+    "Watch on YouTube": "Guarda su YouTube",
+    "Share on YouTube": "Condividi su YouTube",
+    "Close": "Chiudi",
+    "Video player": "Lettore video",
+    "Asset preview": "Anteprima dell’asset",
+    "Zoom in": "Ingrandisci",
+    "Fit to screen": "Adatta allo schermo",
+    "Viewer unavailable — downloading instead": "Visualizzatore non disponibile — avvio del download",
+    "Couldn’t open the catalog — downloading instead": "Impossibile aprire il catalogo — avvio del download",
+    "Filter results by type": "Filtra i risultati per tipo",
+    "View my certificate": "Visualizza il mio certificato",
+    "asset": "asset",
+    "video": "video",
+    "Photos": "Foto",
+    "Lifestyle": "Lifestyle",
+    "Videos": "Video",
+    "In-store": "In negozio",
+    "View": "Visualizza",
+    "{n} colors": "{n} colori",
+    "Copied link to {folder}": "Link a {folder} copiato",
     "{m} lessons · {q}-question quiz · ~{min} min": "{m} lezioni · Quiz da {q} domande · ~{min} min",
     "Concentrate Accessories": "Accessori per concentrati",
     "Dry Herb Accessories": "Accessori per erba secca",
@@ -341,7 +377,7 @@ window.PORTAL_I18N.it = {
             "points": [
               "Il G Pen Micro II è un <strong>vaporizzatore per concentrati</strong>: non è adatto alle infiorescenze.",
               "È l'evoluzione più recente della piattaforma Micro, nata con il <strong>microG originale nel 2013</strong>.",
-              "Formato tascabile, con corpo resistente in <strong>alluminio anodizzato</strong> e <strong>atomizzatore in ceramica da 0.8Ω</strong>.",
+              "Formato tascabile, con corpo resistente in <strong>alluminio anodizzato</strong> e <strong>atomizzatore in ceramica da 0,8Ω</strong>.",
               "Prezzo consigliato: <strong>$49.95</strong>."
             ]
           },
@@ -367,7 +403,7 @@ window.PORTAL_I18N.it = {
           {
             "title": "Batteria, contenuto e accessori",
             "points": [
-              "Batteria da <strong>1,250mAh</strong>: fino a <strong>120 sessioni per ricarica</strong>.",
+              "Batteria da <strong>1.250mAh</strong>: fino a <strong>120 sessioni per ricarica</strong>.",
               "<strong>Ricarica rapida USB-C</strong> in meno di 60 minuti e <strong>ricarica pass-through</strong>, per usarlo mentre è collegato.",
               "Nella confezione: batteria, serbatoio in ceramica e bocchino in silicone. <strong>Il cavo di ricarica non è incluso</strong>: va bene qualsiasi caricatore USB-C.",
               "Il <strong>Sidecar</strong> (filtrazione ad acqua in vetro) e l'<strong>adattatore per rig da 14 mm</strong> sono <strong>venduti separatamente</strong>.",
@@ -454,7 +490,7 @@ window.PORTAL_I18N.it = {
               "Fino a 120",
               "Fino a 200"
             ],
-            "why": "La batteria da 1,250mAh offre fino a 120 sessioni per ricarica."
+            "why": "La batteria da 1.250mAh offre fino a 120 sessioni per ricarica."
           },
           {
             "q": "Cosa contiene la confezione del Micro II?",
@@ -646,12 +682,12 @@ window.PORTAL_I18N.it = {
         {
           "title": "Specifiche principali",
           "points": [
-            "Camera di riscaldamento in <strong>ceramica da 0.4g</strong> — più capiente rispetto al Dash originale e più facile da caricare.",
-            "Batteria da <strong>1,100mAh</strong>.",
+            "Camera di riscaldamento in <strong>ceramica da 0,4g</strong> — più capiente rispetto al Dash originale e più facile da caricare.",
+            "Batteria da <strong>1.100mAh</strong>.",
             "Ricarica <strong>USB-C</strong> con <strong>ricarica pass-through (utilizzabile durante la ricarica)</strong> — può essere usato mentre è collegato.",
             "Il <strong>display OLED</strong> mostra la temperatura e il livello della batteria in tempo reale.",
             "<strong>Controllo della temperatura regolabile</strong> con precisione.",
-            "Dimensioni <strong>97 × 35 × 21 mm</strong>, peso <strong>59.5 g</strong>.",
+            "Dimensioni <strong>97 × 35 × 21 mm</strong>, peso <strong>59,5 g</strong>.",
             "<strong>Utensile a punta</strong> integrato per il caricamento e la pulizia."
           ]
         },
@@ -687,7 +723,7 @@ window.PORTAL_I18N.it = {
           "title": "Miglioramenti rispetto al Dash originale",
           "points": [
             "Prezzo consigliato più basso ($49.95), <strong>controllo della temperatura</strong> regolabile e <strong>display OLED</strong>.",
-            "Camera più capiente da <strong>0.4g</strong> e batteria più grande da <strong>1,100mAh</strong>.",
+            "Camera più capiente da <strong>0,4g</strong> e batteria più grande da <strong>1.100mAh</strong>.",
             "Ricarica moderna <strong>USB-C</strong> con pass-through e design della camera aggiornato."
           ]
         }
@@ -706,12 +742,12 @@ window.PORTAL_I18N.it = {
         {
           "q": "Quanto è grande la camera di riscaldamento del Dash II?",
           "choices": [
-            "0.2g",
-            "Ceramica da 0.4g",
-            "1.0g",
+            "0,2g",
+            "Ceramica da 0,4g",
+            "1,0g",
             "Non ha una camera"
           ],
-          "why": "Il Dash II dispone di una camera in ceramica migliorata da 0.4g — più capiente rispetto al Dash originale e più facile da caricare."
+          "why": "Il Dash II dispone di una camera in ceramica migliorata da 0,4g — più capiente rispetto al Dash originale e più facile da caricare."
         },
         {
           "q": "Che tipo di sistema di riscaldamento utilizza il Dash II?",
@@ -738,10 +774,10 @@ window.PORTAL_I18N.it = {
           "choices": [
             "650mAh",
             "900mAh",
-            "1,100mAh",
-            "2,200mAh"
+            "1.100mAh",
+            "2.200mAh"
           ],
-          "why": "Il Dash II è alimentato da una batteria da 1,100mAh — un miglioramento rispetto al Dash originale."
+          "why": "Il Dash II è alimentato da una batteria da 1.100mAh — un miglioramento rispetto al Dash originale."
         },
         {
           "q": "Quale affermazione sulla ricarica del Dash II è VERA?",
@@ -831,7 +867,7 @@ window.PORTAL_I18N.it = {
           "points": [
             "Camera di riscaldamento interamente in <strong>titanio</strong>.",
             "Raggiunge la temperatura di vaporizzazione in appena <strong>20 secondi</strong>.",
-            "Batteria ricaricabile agli ioni di litio da <strong>1,800mAh</strong> con ricarica <strong>USB-C</strong>.",
+            "Batteria ricaricabile agli ioni di litio da <strong>1.800mAh</strong> con ricarica <strong>USB-C</strong>.",
             "<strong>Display LED a colori</strong> con controllo preciso della temperatura.",
             "<strong>Feedback aptico</strong> e interfaccia intuitiva a <strong>3 pulsanti</strong>.",
             "Corpo resistente in <strong>lega di zinco</strong>."
@@ -891,11 +927,11 @@ window.PORTAL_I18N.it = {
           "q": "Qual è la capacità della batteria del Dash+?",
           "choices": [
             "650mAh",
-            "1,100mAh",
-            "1,800mAh",
-            "3,000mAh"
+            "1.100mAh",
+            "1.800mAh",
+            "3.000mAh"
           ],
-          "why": "È alimentato da una batteria ricaricabile agli ioni di litio da 1,800mAh."
+          "why": "È alimentato da una batteria ricaricabile agli ioni di litio da 1.800mAh."
         },
         {
           "q": "Come si accende il Dash+?",
@@ -976,7 +1012,7 @@ window.PORTAL_I18N.it = {
             "<strong>Punta in ceramica a riscaldamento rapido</strong>.",
             "<strong>Ricarica pass-through USB-C</strong> — può essere utilizzato durante la ricarica.",
             "Elegante corpo in <strong>alluminio</strong>.",
-            "Ultra compatto: <strong>3.94 × 0.5 × 0.25 in</strong>, ideale per la tasca e per il kit da viaggio.",
+            "Ultra compatto: <strong>3,94 × 0,5 × 0,25 in</strong>, ideale per la tasca e per il kit da viaggio.",
             "Si abbina ai rig e al G Pen Micro+ / Hyer."
           ]
         },
@@ -1115,12 +1151,12 @@ window.PORTAL_I18N.it = {
         {
           "title": "Specifiche principali",
           "points": [
-            "<strong>5 impostazioni di calore</strong> da <strong>2.4V a 3.8V</strong>.",
-            "Modalità di preriscaldamento a <strong>1.8V</strong> per 10 secondi.",
+            "<strong>5 impostazioni di calore</strong> da <strong>2,4V a 3,8V</strong>.",
+            "Modalità di preriscaldamento a <strong>1,8V</strong> per 10 secondi.",
             "Batteria ricaricabile da <strong>400mAh</strong>, ricarica <strong>USB-C</strong>.",
             "<strong>Display LED</strong> luminoso.",
             "Compatibile con <strong>cartucce 510 fino a 2g</strong>.",
-            "Dimensioni: <strong>90 × 37.5 × 18.5 mm</strong>."
+            "Dimensioni: <strong>90 × 37,5 × 18,5 mm</strong>."
           ]
         },
         {
@@ -1129,7 +1165,7 @@ window.PORTAL_I18N.it = {
             "<strong>Caricamento:</strong> rimuova il boccaglio, avviti una cartuccia 510 e riposizioni il boccaglio.",
             "<strong>Accensione/spegnimento:</strong> prema il pulsante <strong>5×</strong>.",
             "<strong>Regolazione del voltaggio:</strong> prema <strong>3×</strong> per scorrere le impostazioni di calore.",
-            "<strong>Preriscaldamento:</strong> prema <strong>2×</strong> per un preriscaldamento di 10 secondi a 1.8V.",
+            "<strong>Preriscaldamento:</strong> prema <strong>2×</strong> per un preriscaldamento di 10 secondi a 1,8V.",
             "<strong>Tiro:</strong> <strong>tenga premuto</strong> il pulsante per attivare e aspiri.",
             "Spegnimento automatico dopo <strong>2 minuti</strong> di inattività."
           ]
@@ -1166,12 +1202,12 @@ window.PORTAL_I18N.it = {
         {
           "q": "Qual è la gamma di voltaggio di Hydout?",
           "choices": [
-            "1.0V–2.0V",
-            "2.4V–3.8V (5 impostazioni)",
-            "3.8V–4.8V",
+            "1,0V–2,0V",
+            "2,4V–3,8V (5 impostazioni)",
+            "3,8V–4,8V",
             "Un unico voltaggio fisso"
           ],
-          "why": "Hydout offre 5 impostazioni di calore da 2.4V a 3.8V."
+          "why": "Hydout offre 5 impostazioni di calore da 2,4V a 3,8V."
         },
         {
           "q": "Qual è la capacità della batteria di Hydout?",
@@ -1217,11 +1253,11 @@ window.PORTAL_I18N.it = {
           "q": "Cosa succede premendo il pulsante 2×?",
           "choices": [
             "Si spegne",
-            "Si avvia un preriscaldamento di 10 secondi a 1.8V",
+            "Si avvia un preriscaldamento di 10 secondi a 1,8V",
             "Si blocca",
             "Niente"
           ],
-          "why": "Premendo 2× si avvia un preriscaldamento di 10 secondi a 1.8V."
+          "why": "Premendo 2× si avvia un preriscaldamento di 10 secondi a 1,8V."
         },
         {
           "q": "Dopo quanto tempo Hydout si spegne automaticamente?",
@@ -1260,11 +1296,11 @@ window.PORTAL_I18N.it = {
           "title": "Specifiche principali",
           "points": [
             "<strong>Attivazione a respiro</strong> — basta inalare (oppure tenere premuto il pulsante).",
-            "<strong>Tre voltaggi preimpostati: 3.2 / 3.6 / 3.8V</strong>.",
-            "Modalità preriscaldamento a <strong>1.8V</strong> per 10 secondi.",
+            "<strong>Tre voltaggi preimpostati: 3,2 / 3,6 / 3,8V</strong>.",
+            "Modalità preriscaldamento a <strong>1,8V</strong> per 10 secondi.",
             "Batteria da <strong>400mAh</strong> con ricarica <strong>USB-C pass-through</strong> (utilizzabile durante la ricarica).",
             "<strong>Display</strong> digitale.",
-            "Dimensioni: <strong>24 × 21.1 × 56.7 mm</strong>."
+            "Dimensioni: <strong>24 × 21,1 × 56,7 mm</strong>."
           ]
         },
         {
@@ -1272,8 +1308,8 @@ window.PORTAL_I18N.it = {
           "points": [
             "<strong>Caricamento:</strong> avviti una cartuccia 510.",
             "<strong>Accensione/spegnimento:</strong> prema il pulsante <strong>5×</strong>.",
-            "<strong>Regolazione del voltaggio:</strong> prema <strong>3×</strong> per scorrere tra 3.2 / 3.6 / 3.8V.",
-            "<strong>Preriscaldamento:</strong> prema <strong>2×</strong> per un preriscaldamento di 10 secondi a 1.8V.",
+            "<strong>Regolazione del voltaggio:</strong> prema <strong>3×</strong> per scorrere tra 3,2 / 3,6 / 3,8V.",
+            "<strong>Preriscaldamento:</strong> prema <strong>2×</strong> per un preriscaldamento di 10 secondi a 1,8V.",
             "<strong>Tiro:</strong> semplicemente <strong>inspiri</strong> (attivazione a respiro) — oppure tenga premuto il pulsante.",
             "Spegnimento automatico dopo <strong>10 minuti</strong> di inattività."
           ]
@@ -1310,12 +1346,12 @@ window.PORTAL_I18N.it = {
         {
           "q": "Quali sono i tre voltaggi preimpostati?",
           "choices": [
-            "2.4 / 3.0 / 3.6V",
-            "3.2 / 3.6 / 3.8V",
-            "1.8 / 2.4 / 3.0V",
-            "3.8 / 4.2 / 4.8V"
+            "2,4 / 3,0 / 3,6V",
+            "3,2 / 3,6 / 3,8V",
+            "1,8 / 2,4 / 3,0V",
+            "3,8 / 4,2 / 4,8V"
           ],
-          "why": "Ha tre voltaggi preimpostati: 3.2, 3.6 e 3.8V."
+          "why": "Ha tre voltaggi preimpostati: 3.2, 3.6 e 3,8V."
         },
         {
           "q": "Qual è la capacità della batteria del 510 Original?",
@@ -1323,7 +1359,7 @@ window.PORTAL_I18N.it = {
             "150mAh",
             "400mAh",
             "900mAh",
-            "1,100mAh"
+            "1.100mAh"
           ],
           "why": "Ha una batteria da 400mAh con ricarica pass-through (utilizzabile durante la ricarica) via USB-C."
         },
@@ -1345,17 +1381,17 @@ window.PORTAL_I18N.it = {
             "Tenendo premuto il pulsante",
             "Avvitando più stretta la cartuccia"
           ],
-          "why": "Prema il pulsante 3× per scorrere tra 3.2 / 3.6 / 3.8V."
+          "why": "Prema il pulsante 3× per scorrere tra 3,2 / 3,6 / 3,8V."
         },
         {
           "q": "Cosa fa la pressione 2×?",
           "choices": [
             "Lo spegne",
-            "Avvia un preriscaldamento di 10 secondi a 1.8V",
+            "Avvia un preriscaldamento di 10 secondi a 1,8V",
             "Blocca la batteria",
             "Niente"
           ],
-          "why": "Premendo 2× si avvia un preriscaldamento di 10 secondi a 1.8V."
+          "why": "Premendo 2× si avvia un preriscaldamento di 10 secondi a 1,8V."
         },
         {
           "q": "Dopo quanto tempo il 510 Original si spegne automaticamente?",
@@ -1404,11 +1440,11 @@ window.PORTAL_I18N.it = {
           "title": "Specifiche principali",
           "points": [
             "<strong>Attivazione a respiro</strong> — basta inspirare (oppure tenere premuto il pulsante).",
-            "<strong>Tre voltaggi preimpostati: 3.2 / 3.6 / 3.8V</strong>.",
-            "Modalità di preriscaldamento a <strong>1.8V</strong> per 10 secondi.",
+            "<strong>Tre voltaggi preimpostati: 3,2 / 3,6 / 3,8V</strong>.",
+            "Modalità di preriscaldamento a <strong>1,8V</strong> per 10 secondi.",
             "Batteria da <strong>400mAh</strong> con ricarica <strong>USB-C pass-through</strong> (utilizzabile durante la ricarica).",
             "<strong>Display</strong> digitale.",
-            "Dimensioni: <strong>24 × 21.1 × 56.7 mm</strong>."
+            "Dimensioni: <strong>24 × 21,1 × 56,7 mm</strong>."
           ]
         },
         {
@@ -1416,8 +1452,8 @@ window.PORTAL_I18N.it = {
           "points": [
             "<strong>Caricamento:</strong> avviti una cartuccia 510.",
             "<strong>Accensione/spegnimento:</strong> prema il pulsante <strong>5×</strong>.",
-            "<strong>Regolazione del voltaggio:</strong> prema <strong>3×</strong> per scorrere 3.2 / 3.6 / 3.8V.",
-            "<strong>Preriscaldamento:</strong> prema <strong>2×</strong> per un preriscaldamento di 10 secondi a 1.8V.",
+            "<strong>Regolazione del voltaggio:</strong> prema <strong>3×</strong> per scorrere 3,2 / 3,6 / 3,8V.",
+            "<strong>Preriscaldamento:</strong> prema <strong>2×</strong> per un preriscaldamento di 10 secondi a 1,8V.",
             "<strong>Tiro:</strong> è sufficiente <strong>inspirare</strong> (attivazione a respiro) — oppure tenere premuto il pulsante.",
             "Spegnimento automatico dopo <strong>10 minuti</strong> di inattività."
           ]
@@ -1454,12 +1490,12 @@ window.PORTAL_I18N.it = {
         {
           "q": "Quali sono i tre voltaggi preimpostati?",
           "choices": [
-            "2.4 / 3.0 / 3.6V",
-            "3.2 / 3.6 / 3.8V",
-            "1.8 / 2.4 / 3.0V",
-            "3.8 / 4.2 / 4.8V"
+            "2,4 / 3,0 / 3,6V",
+            "3,2 / 3,6 / 3,8V",
+            "1,8 / 2,4 / 3,0V",
+            "3,8 / 4,2 / 4,8V"
           ],
-          "why": "Ha tre voltaggi preimpostati: 3.2, 3.6 e 3.8V."
+          "why": "Ha tre voltaggi preimpostati: 3.2, 3.6 e 3,8V."
         },
         {
           "q": "Qual è la capacità della batteria del 510 Original?",
@@ -1467,7 +1503,7 @@ window.PORTAL_I18N.it = {
             "150mAh",
             "400mAh",
             "900mAh",
-            "1,100mAh"
+            "1.100mAh"
           ],
           "why": "Ha una batteria da 400mAh con ricarica USB-C pass-through."
         },
@@ -1489,17 +1525,17 @@ window.PORTAL_I18N.it = {
             "Tenendo premuto il pulsante",
             "Avvitando la cartuccia più stretta"
           ],
-          "why": "Prema il pulsante 3× per scorrere tra 3.2 / 3.6 / 3.8V."
+          "why": "Prema il pulsante 3× per scorrere tra 3,2 / 3,6 / 3,8V."
         },
         {
           "q": "Che cosa fa la pressione 2×?",
           "choices": [
             "Lo spegne",
-            "Avvia un preriscaldamento di 10 secondi a 1.8V",
+            "Avvia un preriscaldamento di 10 secondi a 1,8V",
             "Blocca la batteria",
             "Niente"
           ],
-          "why": "Premendo 2× si avvia un preriscaldamento di 10 secondi a 1.8V."
+          "why": "Premendo 2× si avvia un preriscaldamento di 10 secondi a 1,8V."
         },
         {
           "q": "Dopo quanto tempo il 510 Original si spegne automaticamente?",
@@ -1547,12 +1583,12 @@ window.PORTAL_I18N.it = {
         {
           "title": "Specifiche principali",
           "points": [
-            "<strong>5 livelli di temperatura</strong> da <strong>2.4V a 3.8V</strong>.",
-            "Modalità di preriscaldamento a <strong>1.8V</strong> per 10 secondi.",
+            "<strong>5 livelli di temperatura</strong> da <strong>2,4V a 3,8V</strong>.",
+            "Modalità di preriscaldamento a <strong>1,8V</strong> per 10 secondi.",
             "Batteria ricaricabile da <strong>400mAh</strong>, ricarica <strong>USB-C</strong>.",
             "<strong>Display LED</strong> luminoso.",
             "Compatibile con <strong>cartucce 510 fino a 2g</strong>.",
-            "Dimensioni: <strong>90 × 37.5 × 18.5 mm</strong>."
+            "Dimensioni: <strong>90 × 37,5 × 18,5 mm</strong>."
           ]
         },
         {
@@ -1561,7 +1597,7 @@ window.PORTAL_I18N.it = {
             "<strong>Caricamento:</strong> rimuovere il boccaglio, avvitare una cartuccia 510 e riposizionare il boccaglio.",
             "<strong>Accensione/spegnimento:</strong> premere il pulsante <strong>5×</strong>.",
             "<strong>Regolazione del voltaggio:</strong> premere <strong>3×</strong> per scorrere i livelli di temperatura.",
-            "<strong>Preriscaldamento:</strong> premere <strong>2×</strong> per un preriscaldamento di 10 secondi a 1.8V.",
+            "<strong>Preriscaldamento:</strong> premere <strong>2×</strong> per un preriscaldamento di 10 secondi a 1,8V.",
             "<strong>Tiro:</strong> <strong>tenere premuto</strong> il pulsante per attivare e tirare.",
             "Spegnimento automatico dopo <strong>2 minuti</strong> di inattività."
           ]
@@ -1598,12 +1634,12 @@ window.PORTAL_I18N.it = {
         {
           "q": "Qual è l'intervallo di voltaggio dell'Hydout?",
           "choices": [
-            "1.0V–2.0V",
-            "2.4V–3.8V (5 livelli)",
-            "3.8V–4.8V",
+            "1,0V–2,0V",
+            "2,4V–3,8V (5 livelli)",
+            "3,8V–4,8V",
             "Un unico voltaggio fisso"
           ],
-          "why": "L'Hydout offre 5 livelli di temperatura da 2.4V a 3.8V."
+          "why": "L'Hydout offre 5 livelli di temperatura da 2,4V a 3,8V."
         },
         {
           "q": "Qual è la capacità della batteria dell'Hydout?",
@@ -1611,7 +1647,7 @@ window.PORTAL_I18N.it = {
             "200mAh",
             "400mAh",
             "900mAh",
-            "1,800mAh"
+            "1.800mAh"
           ],
           "why": "Ha una batteria ricaricabile da 400mAh."
         },
@@ -1649,11 +1685,11 @@ window.PORTAL_I18N.it = {
           "q": "Che cosa fa la pressione del pulsante 2×?",
           "choices": [
             "Lo spegne",
-            "Avvia un preriscaldamento di 10 secondi a 1.8V",
+            "Avvia un preriscaldamento di 10 secondi a 1,8V",
             "Lo blocca",
             "Niente"
           ],
-          "why": "Premere 2× avvia un preriscaldamento di 10 secondi a 1.8V."
+          "why": "Premere 2× avvia un preriscaldamento di 10 secondi a 1,8V."
         },
         {
           "q": "Dopo quanto tempo l'Hydout si spegne automaticamente?",
@@ -1686,10 +1722,10 @@ window.PORTAL_I18N.it = {
           "Riscaldamento in 5 secondi",
           "Modalità Sessione (20 s) + Riscaldamento Manuale (fino a 25 s)",
           "Flusso d'aria regolabile: da aperto a ristretto",
-          "Atomizzatore in ceramica da 0.8Ω",
+          "Atomizzatore in ceramica da 0,8Ω",
           "Display digitale: temperatura, stato di riscaldamento e batteria",
           "Vibrazione al raggiungimento della temperatura",
-          "Batteria da 1,250mAh: fino a 120 sessioni per ricarica",
+          "Batteria da 1.250mAh: fino a 120 sessioni per ricarica",
           "Ricarica rapida USB-C: in meno di 60 minuti",
           "Ricarica pass-through (utilizzabile durante la ricarica)",
           "Spegnimento automatico dopo 10 minuti",
@@ -1699,8 +1735,8 @@ window.PORTAL_I18N.it = {
         ],
         "fullDescription": [
           "Il G Pen Micro II reinventa l'iconico vaporizzatore per concentrati Micro con più potenza, precisione e controllo, in un design compatto e tascabile.",
-          "Alimentato da una batteria ricaricabile da 1,250mAh, il Micro II offre fino a 120 sessioni per ricarica, con ricarica rapida USB-C in meno di 60 minuti. Tre livelli di temperatura ottimizzati — LOW a circa 295°F, MEDIUM a 340°F e HIGH a 395°F — permettono di calibrare la sessione per un gusto morbido, prestazioni equilibrate o una produzione di vapore più densa.",
-          "Un atomizzatore in ceramica da 0.8Ω di alta qualità garantisce prestazioni costanti con i concentrati, mentre il flusso d'aria regolabile offre un controllo ancora maggiore su ogni tiro. Scelga tra la Modalità Sessione da 20 secondi, con riscaldamento automatico, o il Riscaldamento Manuale, con fino a 25 secondi di controllo diretto.",
+          "Alimentato da una batteria ricaricabile da 1.250mAh, il Micro II offre fino a 120 sessioni per ricarica, con ricarica rapida USB-C in meno di 60 minuti. Tre livelli di temperatura ottimizzati — LOW a circa 295°F, MEDIUM a 340°F e HIGH a 395°F — permettono di calibrare la sessione per un gusto morbido, prestazioni equilibrate o una produzione di vapore più densa.",
+          "Un atomizzatore in ceramica da 0,8Ω di alta qualità garantisce prestazioni costanti con i concentrati, mentre il flusso d'aria regolabile offre un controllo ancora maggiore su ogni tiro. Scelga tra la Modalità Sessione da 20 secondi, con riscaldamento automatico, o il Riscaldamento Manuale, con fino a 25 secondi di controllo diretto.",
           "Il display digitale integrato tiene sempre visibili batteria, temperatura e stato di riscaldamento, mentre la vibrazione segnala quando il Micro II ha raggiunto la temperatura. Un resistente corpo in alluminio anodizzato, l'utilizzo con un solo pulsante, la ricarica pass-through e lo spegnimento automatico dopo 10 minuti rendono l'uso quotidiano semplicissimo.",
           "Utilizzi il bocchino in silicone incluso per una configurazione compatta, oppure ampli l'esperienza con il G Pen Micro II Sidecar e l'adattatore per rig da 14 mm, disponibili separatamente, per sessioni filtrate ad acqua a casa o in movimento.",
           "A più di dieci anni dal microG originale, che ha contribuito a definire la vaporizzazione portatile dei concentrati, il Micro II porta l'esperienza Micro in una nuova generazione, il tutto a $49.95."
@@ -1717,7 +1753,7 @@ window.PORTAL_I18N.it = {
         "specs": [
           [
             "Batteria",
-            "1,250mAh ricaricabile"
+            "1.250mAh ricaricabile"
           ],
           [
             "Ricarica",
@@ -1761,7 +1797,7 @@ window.PORTAL_I18N.it = {
           ],
           [
             "Atomizzatore",
-            "Ceramica da 0.8Ω"
+            "Ceramica da 0,8Ω"
           ],
           [
             "Flusso d'aria",
@@ -1789,7 +1825,7 @@ window.PORTAL_I18N.it = {
           ],
           [
             "Dimensioni del dispositivo",
-            "98.6 × 24 × 32 mm"
+            "98,6 × 24 × 32 mm"
           ],
           [
             "Peso del dispositivo",
@@ -1850,19 +1886,19 @@ window.PORTAL_I18N.it = {
       "highlights": [
         "Finitura retro traslucida",
         "Attivazione a tiro",
-        "Tre voltaggi preimpostati (3.2 / 3.6 / 3.8V)",
-        "Modalità preriscaldamento 1.8V per 10 secondi",
+        "Tre voltaggi preimpostati (3,2 / 3,6 / 3,8V)",
+        "Modalità preriscaldamento 1,8V per 10 secondi",
         "Batteria da 400mAh",
         "Ricarica pass-through USB-C (utilizzabile durante la ricarica)",
         "Display digitale",
-        "24 × 21.1 × 56.7 mm"
+        "24 × 21,1 × 56,7 mm"
       ],
       "warranty": "Garanzia limitata — consultare le condizioni",
       "fullDescription": [
         "Original. Upgraded. Retro.",
         "Un ritorno alle origini, con una raffinata finitura retro.",
         "La G Pen 510 Original della Retro Collection unisce un design trasparente nostalgico a una colorazione traslucida intensa e distintiva. Ispirata alla nostra primissima batteria 510 del 2012, questa edizione migliorata conserva la semplicità e l'affidabilità dell'originale, perfezionandola per le sessioni moderne, ovunque ci si trovi.",
-        "Con soli 24 × 21.1 × 56.7 mm, la 510 Original è la batteria G Pen più piccola mai realizzata: talmente compatta da accompagnare ogni giornata senza il minimo ingombro. L'attivazione a tiro rende l'utilizzo semplice e senza pulsanti, mentre l'interfaccia a pulsante singolo consente di gestire tre voltaggi preimpostati (3.2/3.6/3.8V), una modalità di preriscaldamento da 1.8V per 10 secondi e il display digitale.",
+        "Con soli 24 × 21,1 × 56,7 mm, la 510 Original è la batteria G Pen più piccola mai realizzata: talmente compatta da accompagnare ogni giornata senza il minimo ingombro. L'attivazione a tiro rende l'utilizzo semplice e senza pulsanti, mentre l'interfaccia a pulsante singolo consente di gestire tre voltaggi preimpostati (3,2/3,6/3,8V), una modalità di preriscaldamento da 1,8V per 10 secondi e il display digitale.",
         "Una batteria da 400 mAh con ricarica pass-through USB-C mantiene il dispositivo sempre pronto, anche mentre è collegato alla presa. Con il suo guscio retro traslucido e prestazioni 510 potenziate, questa batteria tascabile offre una perfetta sintesi di stile vintage e funzionalità quotidiana.",
         "Semplice. Affidabile. Iconica. L'originale è tornato.",
         "*Cartuccia 510 non inclusa",
@@ -1883,7 +1919,7 @@ window.PORTAL_I18N.it = {
         "Punta in ceramica a riscaldamento rapido",
         "Ricarica pass-through USB-C (utilizzabile durante la ricarica)",
         "Elegante corpo in alluminio",
-        "Ultracompatto: 3.94 × 0.5 × 0.25 in",
+        "Ultracompatto: 3,94 × 0,5 × 0,25 in",
         "Prelievi e dosaggi senza sbavature",
         "Ideale per tasca e kit da viaggio",
         "Compatibile con rig, Micro+, Hyer"
@@ -1944,18 +1980,18 @@ window.PORTAL_I18N.it = {
       "highlights": [
         "La batteria G Pen più piccola di sempre",
         "Attivazione a tiro — basta inspirare",
-        "Tre voltaggi preimpostati (3.2 / 3.6 / 3.8V)",
-        "Modalità preriscaldamento 1.8V per 10 secondi",
+        "Tre voltaggi preimpostati (3,2 / 3,6 / 3,8V)",
+        "Modalità preriscaldamento 1,8V per 10 secondi",
         "Batteria da 400mAh",
         "Ricarica pass-through USB-C (utilizzabile durante la ricarica)",
         "Display digitale",
-        "24 × 21.1 × 56.7 mm"
+        "24 × 21,1 × 56,7 mm"
       ],
       "warranty": "Garanzia limitata — consultare le condizioni",
       "fullDescription": [
         "Un ritorno alle origini, con qualcosa in più.",
-        "La G Pen 510 Original chiude il cerchio: prende ispirazione dalla nostra primissima batteria del 2012 e la reinterpreta per l'oggi. È la batteria G Pen più piccola mai realizzata (24 × 21.1 × 56.7 mm), progettata per essere ultraportatile e semplicissima da usare, senza rinunce sul fronte delle prestazioni.",
-        "Grazie all'attivazione a tiro, la 510 Original rende ogni sessione immediata: basta inspirare. Per un controllo ancora maggiore, l'interfaccia a pulsante singolo permette di scorrere tra tre voltaggi preimpostati (3.2/3.6/3.8V), attivare la modalità di preriscaldamento da 1.8V per 10 secondi e tenere tutto sotto controllo sul display digitale. Una batteria da 400 mAh abbinata alla ricarica pass-through USB-C consente di ricaricare e utilizzare il dispositivo allo stesso tempo, senza rallentamenti.",
+        "La G Pen 510 Original chiude il cerchio: prende ispirazione dalla nostra primissima batteria del 2012 e la reinterpreta per l'oggi. È la batteria G Pen più piccola mai realizzata (24 × 21,1 × 56,7 mm), progettata per essere ultraportatile e semplicissima da usare, senza rinunce sul fronte delle prestazioni.",
+        "Grazie all'attivazione a tiro, la 510 Original rende ogni sessione immediata: basta inspirare. Per un controllo ancora maggiore, l'interfaccia a pulsante singolo permette di scorrere tra tre voltaggi preimpostati (3,2/3,6/3,8V), attivare la modalità di preriscaldamento da 1,8V per 10 secondi e tenere tutto sotto controllo sul display digitale. Una batteria da 400 mAh abbinata alla ricarica pass-through USB-C consente di ricaricare e utilizzare il dispositivo allo stesso tempo, senza rallentamenti.",
         "A soli $12.95, è anche la batteria G Pen più conveniente di sempre: la prova che la tecnologia premium non deve per forza avere un prezzo premium.",
         "Semplice. Affidabile. Iconica. L'originale è tornato.",
         "*Cartuccia 510 non inclusa",
@@ -1973,13 +2009,13 @@ window.PORTAL_I18N.it = {
       "description": "Il G Pen Hydout è una batteria per cartucce 510 compatta e discreta, con copri-boccaglio magnetico nascosto, voltaggio regolabile e display LED per sessioni fluide, personalizzabili e sempre riservate.",
       "highlights": [
         "Copri-boccaglio magnetico nascosto",
-        "5 impostazioni di calore (2.4V – 3.8V)",
-        "Modalità preriscaldamento 1.8V",
+        "5 impostazioni di calore (2,4V – 3,8V)",
+        "Modalità preriscaldamento 1,8V",
         "Batteria ricaricabile da 400mAh",
         "Display LED luminoso",
         "Ricarica USB-C",
         "Compatibile con cartucce 510 fino a 2g",
-        "90 × 37.5 × 18.5 mm"
+        "90 × 37,5 × 18,5 mm"
       ],
       "warranty": "Garanzia limitata — consultare le condizioni",
       "fullDescription": [
@@ -2001,7 +2037,7 @@ window.PORTAL_I18N.it = {
         "Finitura trasparente di ispirazione anni '90",
         "Attivazione a tiro",
         "Voltaggio variabile regolabile",
-        "Modalità preriscaldamento 1.8V",
+        "Modalità preriscaldamento 1,8V",
         "Batteria ricaricabile da 400mAh",
         "Ricarica pass-through USB-C (utilizzabile durante la ricarica)",
         "Compatibile con la maggior parte delle cartucce 510",
@@ -2010,7 +2046,7 @@ window.PORTAL_I18N.it = {
       "warranty": "Garanzia limitata — consultare le condizioni",
       "fullDescription": [
         "La G Pen Hydout Retro unisce un'elegante finitura traslucida trasparente di ispirazione anni '90 all'ingegneria raffinata della batteria 510 più discreta di G Pen. Il suo guscio magnetico avvolge la cartuccia proteggendola dall'usura quotidiana e mantenendo il setup visivamente pulito ed essenziale.",
-        "Progettata per la massima versatilità, la Hydout offre impostazioni di voltaggio variabile per un controllo del calore personalizzato e una funzione di preriscaldamento da 1.8V per scaldare i concentrati più densi prima dell'uso. Questa edizione Retro aggiunge inoltre l'attivazione a tiro, per tiri completamente privi di pulsanti, e la ricarica pass-through USB-C, che mantiene il dispositivo pronto all'uso anche mentre è collegato alla presa.",
+        "Progettata per la massima versatilità, la Hydout offre impostazioni di voltaggio variabile per un controllo del calore personalizzato e una funzione di preriscaldamento da 1,8V per scaldare i concentrati più densi prima dell'uso. Questa edizione Retro aggiunge inoltre l'attivazione a tiro, per tiri completamente privi di pulsanti, e la ricarica pass-through USB-C, che mantiene il dispositivo pronto all'uso anche mentre è collegato alla presa.",
         "Con la ricarica rapida USB-C, un alloggiamento per cartuccia aderente e privo di vibrazioni e la compatibilità con la maggior parte delle cartucce 510, la Hydout Retro offre prestazioni moderne sotto un guscio traslucido dal fascino nostalgico.",
         "*Cartuccia 510 non inclusa",
         "**Caricatore USB-C non incluso"

@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260923b";   // bump with the other asset tokens
+  var LANG_VER = "20260923d";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -194,15 +194,44 @@
     // things a user would be upset to lose across a language switch: the answers
     // they've already picked in a quiz, and how far down the page they were.
     var quiz = captureQuizState();
+    var forms = captureFormState();
     var y = window.pageYOffset;
     state.lang = l;
     try { localStorage.setItem("portal_lang", l); } catch (e) {}
     document.documentElement.lang = l;
     syncLangToggle();
     applyStaticI18n();
+    labelLightbox();
+    _fileIndex = null;   // its haystacks embed translated text — rebuild in the new language
     route();   // re-render whatever view is open, in the new language
+    syncURL();  // route() only rewrites the URL on the home view — without this a stale
+                // ?lang= survives on product/training/order pages and wins on the next load
     restoreQuizState(quiz);
+    restoreFormState(forms);
     if (y) window.scrollTo(0, y);
+  }
+  // Same for the two request forms (Order Marketing Materials, Store Locator):
+  // a retailer halfway through typing their address shouldn't lose it by
+  // switching language. Fields are matched by position; extra locator stores
+  // are re-added first so every typed store has somewhere to land.
+  function captureFormState() {
+    var pg = ["#materials-page", "#locator-page"].map(function (id) { return $(id); })
+      .filter(function (el) { return el && el.style.display !== "none"; })[0];
+    if (!pg) return null;
+    var vals = $$("input, textarea", pg).map(function (i) { return i.value; });
+    if (!vals.some(function (v) { return v && v !== "0"; })) return null;
+    return { id: "#" + pg.id, vals: vals, stores: $$(".loc-store", pg).length };
+  }
+  function restoreFormState(s) {
+    if (!s) return;
+    var pg = $(s.id); if (!pg || pg.style.display === "none") return;
+    var add = $("#loc-add", pg);
+    for (var i = $$(".loc-store", pg).length; add && i < s.stores; i++) add.click();
+    $$("input, textarea", pg).forEach(function (inp, i) {
+      if (s.vals[i] == null || s.vals[i] === inp.value) return;
+      inp.value = s.vals[i];
+      inp.dispatchEvent(new Event("input", { bubbles: true }));
+    });
   }
   // Snapshot / restore in-progress quiz answers around a language switch.
   // Answers are stored as choice INDEXES, which are language-independent — the
@@ -211,7 +240,8 @@
     var form = $("#trn-form"); if (!form) return null;
     var picked = {}, n = 0;
     $$('input[type="radio"]:checked', form).forEach(function (r) { picked[r.name] = r.value; n++; });
-    return n ? { picked: picked, graded: !!$(".trn-q.graded") } : null;
+    var nameEl = $("#trn-name");
+    return n ? { picked: picked, graded: !!$(".trn-q.graded"), name: nameEl ? nameEl.value : "", cert: !!$("#trn-cert #cert-card") } : null;
   }
   function restoreQuizState(s) {
     if (!s) return;
@@ -223,6 +253,10 @@
     // If they'd already submitted, re-grade so the score and the (now translated)
     // explanations come straight back instead of silently vanishing.
     if (s.graded) { var b = $("#trn-submit"); if (b) b.click(); }
+    // …and the typed name, plus the certificate if one was on screen.
+    var nameEl = $("#trn-name");
+    if (nameEl && s.name) nameEl.value = s.name;
+    if (s.cert && s.name) { var gc = $("#trn-getcert"); if (gc) gc.click(); }
   }
   // ---- language selector (globe + current language + menu) -------------------
   // Languages are listed by their own endonym (Deutsch, not German) — that's what
@@ -303,9 +337,19 @@
   var $$ = function (sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); };
   // "New" badges are now fully manual — set `newBadge: true` (or a colour) on any
   // product in assets.js. (No longer auto-shown by upload date.)
+  // The portal language's locale (not the browser's), so a Spanish page shows a
+  // Spanish date. pt is Brazilian Portuguese.
+  function locale() { return { en: "en-US", es: "es", de: "de", it: "it", fr: "fr", pt: "pt-BR" }[state.lang] || "en-US"; }
+  // The lightbox's static buttons: set at init AND after every language load
+  // (init runs before a lazily loaded pack arrives, so they stayed English).
+  function labelLightbox() {
+    var c = document.getElementById("lb-copy"), d = document.getElementById("lb-dl");
+    if (c) c.innerHTML = icon("link") + " " + tr("Copy link");
+    if (d) d.innerHTML = icon("download") + " " + tr("Download");
+  }
   function fmtDate(iso) {
     // Parse as local midnight so an ISO date doesn't shift a day in US timezones.
-    return new Date(iso + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+    return new Date(iso + "T00:00:00").toLocaleDateString(locale(), { month: "short", day: "numeric", year: "numeric" });
   }
   function icon(name) {
     var paths = {
@@ -406,6 +450,14 @@
                                       { name: "Dash II Table Tent",            dim: '4" L × 6" W', sku: "GMK-003-APZZ" },
   };
   PRODUCTS.forEach(function (p) {
+    // The sync canonicalizes renamed in-store folders ("POS", "In Store
+    // Materials", "In-Store Marketing"…) to "In-Store Marketing". Fold that into
+    // the key the app reads, or a renamed folder drops out of the order page.
+    if (p.folders && p.folders["In-Store Marketing"] && !p.folders[INSTORE_FOLDER]) {
+      p.folders[INSTORE_FOLDER] = p.folders["In-Store Marketing"];
+      delete p.folders["In-Store Marketing"];
+      if (p.folderLinks && p.folderLinks["In-Store Marketing"]) p.folderLinks[INSTORE_FOLDER] = p.folderLinks["In-Store Marketing"];
+    }
     // De-dupe the in-store folder up front (drops PNG-vs-white-bg doubles and
     // hash-named files) so p.total matches the count the product page shows.
     if (p.folders && (p.folders[INSTORE_FOLDER] || []).length) p.folders[INSTORE_FOLDER] = instoreOwn(p);
@@ -442,16 +494,29 @@
     return file.name + "." + f.toLowerCase();
   }
   function isExtVideo(file) { return file.type === "video" && /youtube\.com|youtu\.be|vimeo\.com/.test(file.url || ""); }
-  function escapeHTML(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function escapeHTML(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  // Own-key lookup for anything a URL can name (?b=, ?t=, #style/…). A plain
+  // truthy lookup lets "constructor" or "toString" through via Object.prototype
+  // and renders "function Object() { [native code] }" or crashes the page.
+  // Toggle buttons expose their state to screen readers, not just via class "on".
+  function setPressed(b, on) { b.classList.toggle("on", on); b.setAttribute("aria-pressed", on ? "true" : "false"); }
+  function own(o, k) { return !!o && k != null && Object.prototype.hasOwnProperty.call(o, k); }
 
   // ---- shareable deep links ------------------------------------------------
   function slugify(s) {
     return String(s).toLowerCase().replace(/ü/g, "u").replace(/\+/g, " plus ")
       .replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
   }
-  function productHash(p) { return "#" + p.brand + "/" + slugify(p.name); }
+  // "?f=<folder>" after the product slug names the open folder, so a copied link,
+  // a refresh or a language switch lands on the folder you were looking at.
+  function productHash(p, folder) { return "#" + p.brand + "/" + slugify(p.name) + (folder ? "?f=" + encodeURIComponent(folder) : ""); }
+  function folderFromHash() {
+    var m = location.hash.match(/\?f=([^&]*)/);
+    if (!m) return null;
+    try { return decodeURIComponent(m[1]); } catch (e) { return null; }
+  }
   function productFromHash() {
-    var h = location.hash.replace(/^#/, "");
+    var h = location.hash.replace(/^#/, "").replace(/\?.*$/, "");
     if (!h) return null;
     var parts = h.split("/"), brand = parts[0], slug = parts.slice(1).join("/");
     return PRODUCTS.filter(function (p) { return p.brand === brand && slugify(p.name) === slug; })[0] || null;
@@ -482,8 +547,8 @@
     if ($("#lightbox") && $("#lightbox").classList.contains("open")) closeLightbox();
     // Shared catalog deep link: render home behind it, then open the viewer.
     if (parts[0] === "catalog" && parts[1]) { renderHome(); openCatalog(parts[1]); return; }
-    if (parts[0] === "style" && BRANDS[parts[1]]) { openStyleGuide(parts[1]); return; }
-    if (parts[0] === "additional" && BRANDS[parts[1]]) { openAdditional(parts[1]); return; }
+    if (parts[0] === "style" && own(BRANDS, parts[1])) { openStyleGuide(parts[1]); return; }
+    if (parts[0] === "additional" && own(BRANDS, parts[1])) { openAdditional(parts[1]); return; }
     if (parts[0] === "materials") { openMaterials(); return; }
     if (parts[0] === "locator") { openLocator(); return; }
     if (parts[0] === "train") {
@@ -492,7 +557,7 @@
       renderHome(); return;
     }
     var p = productFromHash();
-    if (p) openDetail(p); else renderHome();
+    if (p) openDetail(p, folderFromHash()); else renderHome();
   }
 
   // ---- clipboard -----------------------------------------------------------
@@ -521,7 +586,7 @@
     // English in all five languages.
     "In Store Marketing Materials": "In-Store Marketing Materials",
   };
-  function typeLabel(t) { return t ? tr(TYPE_LABELS[t] || t) : tr("Assets"); }
+  function typeLabel(t) { return t ? tr(own(TYPE_LABELS, t) ? TYPE_LABELS[t] : t) : tr("Assets"); }
   // Bind click + keyboard (Enter/Space) so role="button" elements are operable
   // by keyboard, not just mouse.
   function clickKey(el, fn) {
@@ -539,6 +604,7 @@
     if (state.view !== "gpen") parts.push("b=" + state.view);   // gpen is the default → keep its URL clean
     if (state.type !== "all") parts.push("t=" + encodeURIComponent(state.type));
     if (state.query) parts.push("q=" + encodeURIComponent(state.query));
+    if (state.query && state.fileFacet) parts.push("ff=" + encodeURIComponent(state.fileFacet));
     if (state.sort !== "featured") parts.push("s=" + state.sort);
     if (state.layout !== "grid") parts.push("l=" + state.layout);
     // Carry the language so "Share view" / a copied URL opens in the same language
@@ -559,18 +625,26 @@
     var q = location.search.replace(/^\?/, "");
     if (!q) return;
     var params = {};
-    q.split("&").forEach(function (kv) { var p = kv.split("="); params[p[0]] = decodeURIComponent(p[1] || ""); });
-    if (params.b && BRANDS[params.b]) state.view = params.b;
-    if (params.t) state.type = params.t;
+    q.split("&").forEach(function (kv) {
+      var p = kv.split("=");
+      // A malformed %-escape (a bare "%") throws URIError — skip the bad param
+      // rather than let it abort init and leave a blank page.
+      try { params[p[0]] = decodeURIComponent(p[1] || ""); } catch (e) { params[p[0]] = ""; }
+    });
+    if (own(BRANDS, params.b)) state.view = params.b;
+    // Only a folder name some product actually has (?t=constructor rendered
+    // "function Object() { [native code] }" as a filter chip).
+    if (params.t && PRODUCTS.some(function (p) { return own(p.folders, params.t); })) state.type = params.t;
     if (params.q) state.query = params.q;
+    if (params.q && FACET_ORDER.indexOf(params.ff) >= 0) state.fileFacet = params.ff;
     if (params.s === "az" || params.s === "featured") state.sort = params.s;
     if (params.l === "list" || params.l === "grid") state.layout = params.l;
     syncControls();
   }
   // Reflect state into the toggle / chips / sort / view / search controls.
   function syncControls() {
-    $$("#sort-toggle button").forEach(function (b) { b.classList.toggle("on", b.getAttribute("data-sort") === state.sort); });
-    $$("#view-mode button").forEach(function (b) { b.classList.toggle("on", b.getAttribute("data-layout") === state.layout); });
+    $$("#sort-toggle button").forEach(function (b) { setPressed(b, b.getAttribute("data-sort") === state.sort); });
+    $$("#view-mode button").forEach(function (b) { setPressed(b, b.getAttribute("data-layout") === state.layout); });
     var s = $("#search"); if (s && s.value !== state.query) s.value = state.query;
   }
   function shareView() {
@@ -611,7 +685,7 @@
     return PRODUCTS.filter(function (p) {
       if (isUnlisted(p)) return false;
       if (state.view !== "both" && p.brand !== state.view) return false;
-      if (state.type !== "all" && !p.folders[state.type]) return false;
+      if (state.type !== "all" && !own(p.folders, state.type)) return false;
       if (state.query) {
         var q = state.query.toLowerCase();
         var hay = (p.name + " " + p.category + " " + BRANDS[p.brand].name + " " + p.formats.join(" ")).toLowerCase();
@@ -650,8 +724,11 @@
     }
     return true;
   }
+  // Lower-case and strip accents, so "catalogo" finds "catálogo" and a
+  // Portuguese keyboard's "vídeo" finds "video".
+  function fold(s) { return String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); }
   function queryTerms(q) {
-    return q.toLowerCase().split(/\s+/).filter(Boolean);
+    return fold(q).split(/\s+/).filter(Boolean);
   }
   // Pre-expand a query into alias groups once, for reuse across every candidate.
   function queryAliasGroups(q) { return queryTerms(q).map(termAliases); }
@@ -686,7 +763,10 @@
             product: p, brand: p.brand, folder: folder, file: file,
             label: fileLabel(file), kind: facetOf(folder, file),
             subFn: function () { return p.name + " · " + folderLabel(folder); },
-            hay: (fileLabel(file) + " " + folder + " " + (file.format || "") + " " + p.name + " " + p.category + " " + BRANDS[p.brand].name).toLowerCase()
+            // English names AND the active language's (folder label, kind, product,
+            // category), so "embalagem" or "Produktfotos" finds what "packaging" does.
+            hay: fold(fileLabel(file) + " " + folder + " " + folderLabel(folder) + " " + tr(facetOf(folder, file)) + " " + (file.format || "") + " " +
+              p.name + " " + tr(p.name) + " " + p.category + " " + tr(p.category || "") + " " + BRANDS[p.brand].name)
           });
         });
       });
@@ -696,7 +776,7 @@
           file: { name: v.title, format: "Video", thumb: v.thumb, url: v.url, type: "video" },
           label: v.title, kind: "Videos",
           subFn: function () { return p.name + " · " + tr("How-to video"); },
-          hay: (v.title + " video how to " + p.name + " " + BRANDS[p.brand].name).toLowerCase()
+          hay: fold(v.title + " video how to " + tr("Videos") + " " + tr("How-to video") + " " + p.name + " " + BRANDS[p.brand].name)
         });
       });
     });
@@ -708,7 +788,7 @@
         label: nm, subFn: function () { return tr(c.group || "Catalog") + (c.region ? " · " + c.region : ""); },
         openHash: "catalog/" + c.slug,
         file: { name: nm, format: "PDF", thumb: c.thumb, url: c.file || c.url, file: c.file || null, type: "pdf" },
-        hay: (c.title + " " + (c.region || "") + " " + (c.group || "") + " catalog document pdf g pen").toLowerCase()
+        hay: fold(c.title + " " + (c.region || "") + " " + (c.group || "") + " " + tr(c.group || "") + " catalog document pdf g pen " + tr("Catalog") + " " + tr("Catalogs"))
       });
     });
     // Brand-level in-store marketing materials (open the order/materials page).
@@ -718,7 +798,7 @@
         label: m.name, subFn: function () { return tr("In-store marketing") + (m.dim ? " · " + m.dim : ""); },
         openHash: "materials",
         file: { name: m.name, format: m.format || "", thumb: m.thumb, url: m.url, file: m.file || null, type: m.type || "image" },
-        hay: (m.name + " in-store marketing material retail display " + (m.format || "") + " g pen").toLowerCase()
+        hay: fold(m.name + " in-store marketing material retail display " + tr("In-store marketing") + " " + (m.format || "") + " g pen")
       });
     });
     _fileIndex = out;
@@ -729,7 +809,7 @@
   // more relevant, so the best matches survive the display cap. Rewards matches
   // in the name/label over incidental matches deep in the haystack.
   function relScore(label, hay, groups, rawQ) {
-    var name = (label || "").toLowerCase(), score = 0;
+    var name = fold(label), score = 0;
     if (rawQ && name === rawQ) score += 100;          // exact name
     if (rawQ && name.indexOf(rawQ) === 0) score += 40; // name starts with query
     if (rawQ && name.indexOf(rawQ) !== -1) score += 20; // full query phrase in name
@@ -748,8 +828,14 @@
   // Products (incl. logos + legacy) in the active brand matching the query,
   // ranked by relevance. Format tokens are intentionally excluded — "png" is a
   // file concept, so it shouldn't pull in every product.
+  // SKU/UPC codes — a buyer re-ordering pastes the code off an invoice.
+  function codes(p) {
+    var info = p.info || {}, out = [info.sku, info.upc, info.popSku, info.popUpc];
+    ((window.PORTAL_COLORWAYS || {})[p.name] || []).forEach(function (w) { out.push(w.sku, w.upc, w.color, tr(w.color || "")); });
+    return " " + out.filter(Boolean).join(" ");
+  }
   function searchProducts(q) {
-    var groups = queryAliasGroups(q), bk = state.view, rawQ = q.toLowerCase().trim();
+    var groups = queryAliasGroups(q), bk = state.view, rawQ = fold(q).trim();
     return PRODUCTS.map(function (p) {
       if (p.brand !== bk || isUnlisted(p)) return null;
       // Always index English PLUS the active language: a translated visitor must
@@ -762,8 +848,8 @@
       function prose(i) {
         return (i.description || "") + " " + (i.fullName || "") + " " + ((i.highlights || []).join(" "));
       }
-      var hay = (p.name + " " + (p.category || "") + " " + (p.type || "") + " " + (p.label || "") +
-        " " + BRANDS[p.brand].name + " " + prose(en) + " " + prose(loc)).toLowerCase();
+      var hay = fold(p.name + " " + (p.category || "") + " " + tr(p.category || "") + " " + (p.type || "") + " " + tr(p.type || "") + " " + (p.label || "") +
+        " " + BRANDS[p.brand].name + " " + prose(en) + " " + prose(loc) + codes(p));
       if (!matchTerms(hay, groups)) return null;
       return { p: p, score: relScore(p.name, hay, groups, rawQ) };
     }).filter(Boolean).sort(function (a, b) {
@@ -776,7 +862,7 @@
   // keeps the *best* matches because we sort before slicing.
   var SEARCH_FILE_CAP = 60;
   function searchFiles(q) {
-    var groups = queryAliasGroups(q), bk = state.view, rawQ = q.toLowerCase().trim();
+    var groups = queryAliasGroups(q), bk = state.view, rawQ = fold(q).trim();
     var hits = [];
     fileIndex().forEach(function (r) {
       if (r.brand !== bk) return;
@@ -790,7 +876,7 @@
     hits.forEach(function (r) { counts[r.kind] = (counts[r.kind] || 0) + 1; });
     var facets = FACET_ORDER.filter(function (k) { return counts[k]; })
       .map(function (k) { return { kind: k, n: counts[k] }; });
-    var facet = state.fileFacet && counts[state.fileFacet] ? state.fileFacet : "";
+    var facet = own(counts, state.fileFacet) ? state.fileFacet : "";
     var shown = facet ? hits.filter(function (r) { return r.kind === facet; }) : hits;
     return { total: hits.length, all: hits, items: shown.slice(0, SEARCH_FILE_CAP), shownTotal: shown.length, facets: facets, facet: facet };
   }
@@ -824,7 +910,7 @@
     return fallbackHTML(p.name);
   }
   function fallbackHTML(name) {
-    return '<div class="fallback">' + icon("photo") + "<span>" + name + "</span></div>";
+    return '<div class="fallback">' + icon("photo") + "<span>" + escapeHTML(name) + "</span></div>";
   }
   window.__fallback = function (img, name) { img.parentNode.innerHTML = fallbackHTML(name); };
 
@@ -896,7 +982,7 @@
     var tiles = preview.map(function (x) {
       var dark = /white|reverse/i.test(x.name);
       var media = x.thumb ? '<img src="' + x.thumb + '" alt="' + x.name.replace(/"/g, "") + '" loading="lazy" decoding="async"/>' : window.__icon("photo");
-      return '<button class="logo-tile' + (dark ? " dark" : "") + '" data-logodl="' + (x.file || "#") + '" data-logoname="' + fileLabel(x) + '" title="Download ' + fileLabel(x) + '">' +
+      return '<button class="logo-tile' + (dark ? " dark" : "") + '" data-logodl="' + escapeHTML(x.file || "#") + '" data-logoname="' + escapeHTML(fileLabel(x)) + '" title="' + escapeHTML(tr("Download") + " " + fileLabel(x)) + '">' +
         media + "</button>";
     }).join("");
 
@@ -946,7 +1032,7 @@
       "</div></div>";
   }
   function openStyleGuide(bk) {
-    var b = BRANDS[bk];
+    var b = own(BRANDS, bk) ? BRANDS[bk] : null;
     if (!b) { renderHome(); return; }
     $("#home").style.display = "none"; siteH1(false);
     $("#detail").style.display = "none";
@@ -1003,7 +1089,7 @@
           (showBrand ? '<span class="tag-brand">' + BRANDS[p.brand].name + "</span>" : "") +
           coverHTML(p) +
           '<div class="quick">' +
-            '<button class="qbtn" data-act="download" title="' + tr("Download all") + '">' + icon("download") + "</button>" +
+            '<button class="qbtn" data-act="download" title="' + tr("Download all") + '" aria-label="' + escapeHTML(tr("Download all") + " – " + tr(p.name)) + '">' + icon("download") + "</button>" +
           "</div>" +
         "</div>" +
         '<div class="card-name">' + p.name + "</div>" +
@@ -1210,11 +1296,11 @@
   function renderFileResults(sf, fileRes) {
     var facetChips = "";
     if (fileRes.facets.length > 1) {
-      facetChips = '<div class="sf-facets" role="tablist" aria-label="Filter results by type">' +
-        '<button class="sf-facet' + (fileRes.facet ? "" : " on") + '" data-facet="">' + tr("All") + ' <span>' + fileRes.total + "</span></button>" +
+      facetChips = '<div class="sf-facets" role="group" aria-label="' + tr("Filter results by type") + '">' +
+        '<button class="sf-facet' + (fileRes.facet ? "" : " on") + '" data-facet="" aria-pressed="' + !fileRes.facet + '">' + tr("All") + ' <span>' + fileRes.total + "</span></button>" +
         fileRes.facets.map(function (fc) {
-          return '<button class="sf-facet' + (fileRes.facet === fc.kind ? " on" : "") + '" data-facet="' + fc.kind + '">' +
-            escapeHTML(fc.kind) + " <span>" + fc.n + "</span></button>";
+          return '<button class="sf-facet' + (fileRes.facet === fc.kind ? " on" : "") + '" data-facet="' + fc.kind + '" aria-pressed="' + (fileRes.facet === fc.kind) + '">' +
+            escapeHTML(tr(fc.kind)) + " <span>" + fc.n + "</span></button>";
         }).join("") + "</div>";
     }
     var tiles = fileRes.items.map(searchFileTile).join("");
@@ -1264,6 +1350,10 @@
           _lastSearch.fileRes = fr;
           renderFileResults($("#search-files"), fr);
         }
+        syncURL();   // the facet is part of the view "Share view" hands over
+        // The re-render replaced this button; put focus back on its twin.
+        var again = document.querySelector('.sf-facet[data-facet="' + state.fileFacet + '"]');
+        if (again) again.focus();
       });
     });
     $$(".sf-open", ctx).forEach(function (b) {
@@ -1297,7 +1387,7 @@
     var p = PRODUCTS.filter(function (x) { return pid(x) === pidStr; })[0];
     if (!p) return;
     openDetail(p, folder);
-    var h = productHash(p);
+    var h = productHash(p, folder);
     if (location.hash !== h) { ignoreHash = true; location.hash = h; }
   }
 
@@ -1353,7 +1443,9 @@
           '<div class="logo-card-name">' + tr("In-Store Marketing Materials") + '</div>' +
           '<p class="logo-card-note">' + tr("Retail displays, posters, shelf talkers and other in-store materials for {brand} — order what you need for your shop.").replace("{brand}", bname) + "</p>" +
           '<div class="logo-card-actions">' + orderCta +
-            '<span class="instore-count">' + mats.length + " " + tr(mats.length === 1 ? "material" : "materials") + " " + tr("available") + "</span>" +
+            // Count what the order page will actually list (shared pieces like the
+            // Retro window cling once) — counting per product promised 20, showed 17.
+            (function () { var n = availableMaterials().length; return '<span class="instore-count">' + n + " " + tr(n === 1 ? "material" : "materials") + " " + tr("available") + "</span>"; })() +
           "</div>" +
         "</div>" +
         '<div class="logo-preview">' + tiles + "</div>" +
@@ -1410,7 +1502,7 @@
       : (c.region ? '<div class="cat-pills"><span class="cat-region">' + escapeHTML(c.region) + "</span></div>" : "");
     return '<div class="cat-card" data-cur="' + c.slug + '">' +
       '<div class="cat-cover" role="button" tabindex="0" data-catopen aria-label="View ' + alt + '">' +
-        cover + '<span class="cat-view">' + icon("eye") + " View</span></div>" +
+        cover + '<span class="cat-view">' + icon("eye") + " " + tr("View") + "</span></div>" +
       '<div class="cat-meta"><span class="cat-grp">' + escapeHTML(tr(f.group)) + "</span>" +
         '<span class="cat-title">' + escapeHTML(f.title) + "</span></div>" +
       regions +
@@ -1468,9 +1560,10 @@
     if (!ov) return;
     if (ov.__key) document.removeEventListener("keydown", ov.__key);
     if (ov.__resize) window.removeEventListener("resize", ov.__resize);
+    if (ov.__cancel) ov.__cancel();
     if (ov.__doc) { try { ov.__doc.destroy(); } catch (e) {} ov.__doc = null; }
     ov.remove();
-    document.body.style.overflow = "";
+    modalClose();   // restores scroll + returns focus to what opened it
   }
   // The user actually closing the viewer: tear down AND drop the catalog route.
   function closeCatalog() {
@@ -1507,17 +1600,40 @@
           '<button class="catlb-x" id="catlb-x" aria-label="' + tr("Close viewer") + '">' + icon("x") + "</button>" +
         "</div></div>" +
       '<div class="catlb-stage"><div class="catlb-load" id="catlb-load">' + tr("Loading catalog…") + '</div>' +
-        '<canvas id="catlb-canvas"></canvas></div>' +
+        '<canvas id="catlb-canvas" role="img" aria-label="' + escapeHTML(c.title) + '"></canvas></div>' +
       '<div class="catlb-nav">' +
         '<button class="btn ghost sm" id="catlb-prev">' + icon("arrowLeft") + " " + tr("Prev") + "</button>" +
-        '<span class="catlb-page" id="catlb-page">–</span>' +
+        '<span class="catlb-page" id="catlb-page" role="status" aria-live="polite">–</span>' +
         '<button class="btn ghost sm" id="catlb-next">' + tr("Next") + " " + icon("arrowRight") + "</button>" +
+        '<button class="btn ghost sm" id="catlb-zoom" aria-label="' + tr("Zoom in") + '">' + icon("search") + ' <span>' + tr("Zoom in") + "</span></button>" +
       "</div>";
     document.body.appendChild(ov);
-    document.body.style.overflow = "hidden";
+    modalOpen(ov, c.title, $("#catlb-x"));
 
-    var doc = null, page = 1, busy = false;
+    var doc = null, page = 1, busy = false, zoomed = false;
     $("#catlb-x").addEventListener("click", closeCatalog);
+    // Zoom: landscape pages fit a phone at ~0.3× (body text ~3px). Zoomed renders
+    // fit-to-height (or ≥2× fit) at a higher pixel density in a pannable stage.
+    $("#catlb-zoom").addEventListener("click", function () {
+      if (!doc || busy) return;
+      zoomed = !zoomed;
+      var zb = $("#catlb-zoom");
+      $("span", zb).textContent = zoomed ? tr("Fit to screen") : tr("Zoom in");
+      zb.setAttribute("aria-label", $("span", zb).textContent);
+      render();
+    });
+    // Swipe to turn pages — off while zoomed (a drag pans) or pinch-zoomed.
+    var tx = null, ty = 0, stageEl = $(".catlb-stage", ov);
+    stageEl.addEventListener("touchstart", function (e) {
+      if (zoomed || e.touches.length !== 1 || (window.visualViewport && visualViewport.scale > 1.01)) { tx = null; return; }
+      tx = e.touches[0].clientX; ty = e.touches[0].clientY;
+    }, { passive: true });
+    stageEl.addEventListener("touchend", function (e) {
+      if (tx == null) return;
+      var dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
+      tx = null;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) go(dx < 0 ? page + 1 : page - 1);
+    }, { passive: true });
     ov.addEventListener("click", function (e) { if (e.target === ov) closeCatalog(); });
     $("#catlb-dl").addEventListener("click", function () { catalogDownload(c); });
     $("#catlb-share").addEventListener("click", function () { copyText(catalogShareUrl(c), tr("Catalog link copied")); });
@@ -1535,12 +1651,18 @@
 
     function go(n) { if (doc && !busy && n >= 1 && n <= doc.numPages) { page = n; render(); } }
     function render() {
+      if (!ov.isConnected) return;   // closed while a page was on its way
       busy = true;
       doc.getPage(page).then(function (pg) {
+        if (!ov.isConnected) return;
         var canvas = $("#catlb-canvas"), stage = canvas.parentNode;
         var base = pg.getViewport({ scale: 1 });
-        var scale = Math.min((stage.clientWidth - 24) / base.width, (stage.clientHeight - 24) / base.height);
-        var dpr = Math.min(window.devicePixelRatio || 1, 2);
+        var fw = (stage.clientWidth - 24) / base.width, fh = (stage.clientHeight - 24) / base.height;
+        var fit = Math.min(fw, fh);
+        var scale = zoomed ? Math.max(fw, fh, fit * 2) : fit;
+        stage.classList.toggle("zoomed", zoomed);
+        stage.scrollTop = 0; stage.scrollLeft = 0;
+        var dpr = Math.min(window.devicePixelRatio || 1, zoomed ? 3 : 2);
         var vp = pg.getViewport({ scale: scale * dpr });
         canvas.width = vp.width; canvas.height = vp.height;
         canvas.style.width = Math.round(vp.width / dpr) + "px";
@@ -1548,11 +1670,12 @@
         return pg.render({ canvasContext: canvas.getContext("2d"), viewport: vp }).promise;
       }).then(function () {
         busy = false;
+        if (!ov.isConnected) return;
         var l = $("#catlb-load"); if (l) l.style.display = "none";
         $("#catlb-page").textContent = page + " / " + doc.numPages;
         $("#catlb-prev").disabled = page <= 1;
         $("#catlb-next").disabled = page >= doc.numPages;
-      }).catch(function () { busy = false; toast(tr("Couldn’t render that page")); });
+      }).catch(function () { busy = false; if (ov.isConnected) toast(tr("Couldn’t render that page")); });
     }
 
     // If the viewer can't come up (blocked script, bad PDF, slow device), don't sit
@@ -1564,6 +1687,14 @@
       toast(tr("Viewer is taking too long — downloading instead"));
       catalogDownload(c); closeCatalog();
     }, 20000);
+    // Closing the viewer mid-load must stop BOTH the load and the 20s give-up
+    // timer — otherwise a slow load later fires a surprise download, or closes
+    // whatever catalog the user opened next.
+    var task = null;
+    ov.__cancel = function () {
+      settled = true; clearTimeout(giveUp);
+      if (task && !doc) { try { task.destroy(); } catch (e) {} }
+    };
     function bail(msg) {
       if (settled) return;
       settled = true; clearTimeout(giveUp);
@@ -1571,12 +1702,15 @@
     }
     loadPdfJs(function (lib) {
       if (settled) return;
-      if (!lib) return bail("Viewer unavailable — downloading instead");
-      lib.getDocument(c.file).promise.then(function (d) {
+      if (!lib) return bail(tr("Viewer unavailable — downloading instead"));
+      // isEvalSupported:false closes CVE-2024-4367 in this pdf.js build (a crafted
+      // font in a PDF could otherwise run script on the portal's origin).
+      task = lib.getDocument({ url: c.file, isEvalSupported: false });
+      task.promise.then(function (d) {
         if (settled) { try { d.destroy(); } catch (e) {} return; }
         settled = true; clearTimeout(giveUp);
         doc = d; ov.__doc = d; render();
-      }).catch(function () { bail("Couldn’t open the catalog — downloading instead"); });
+      }).catch(function () { if (ov.isConnected) bail(tr("Couldn’t open the catalog — downloading instead")); });
     });
   }
 
@@ -1611,7 +1745,7 @@
 
   // Dedicated page listing a brand's legacy products.
   function openAdditional(bk) {
-    if (!BRANDS[bk]) { renderHome(); return; }
+    if (!own(BRANDS, bk)) { renderHome(); return; }
     $("#home").style.display = "none"; siteH1(false);
     $("#detail").style.display = "none";
     $("#styleguide").style.display = "none";
@@ -1800,7 +1934,7 @@
           ? tr("You’re a certified {name} Specialist").replace("{name}", p.name)
           : tr("Become a {name} Product Specialist").replace("{name}", p.name)) + "</span>" +
         '<span class="trn-entry-s">' + (cert
-          ? tr("Certificate earned {date} · review the course or retake anytime").replace("{date}", cert.date)
+          ? tr("Certificate earned {date} · review the course or retake anytime").replace("{date}", certDate(cert))
           : tr("Watch the videos, learn the product, and pass a short quiz to get certified.")) + "</span>" +
       "</span>" +
       '<span class="trn-entry-go">' + (cert ? icon("check") + " " + tr("Certified") : tr("Start training →")) + "</span>" +
@@ -1810,6 +1944,11 @@
   function certKey(p) { return "gp-cert-" + p.brand + "-" + slugify(p.name); }
   function getCert(p) { try { return JSON.parse(localStorage.getItem(certKey(p)) || "null"); } catch (e) { return null; } }
   function saveCert(p, data) { try { localStorage.setItem(certKey(p), JSON.stringify(data)); } catch (e) {} }
+  // Certificates store the ISO date and are formatted in the PORTAL language at
+  // render (older ones saved a preformatted, browser-locale string — show as is).
+  function certDate(cert) {
+    return cert.iso ? new Date(cert.iso + "T00:00:00").toLocaleDateString(locale(), { year: "numeric", month: "long", day: "numeric" }) : cert.date;
+  }
   function navTraining(p) {
     openTraining(p);
     var h = trainingHash(p);
@@ -1877,10 +2016,20 @@
           '<div class="trn-modules">' + modulesHTML + "</div>" +
           '<div class="section-head"><span class="trn-sec-n">' + (++n) + '</span><h2>' + tr("Get Certified") + '</h2></div>';
       })() +
+      (cert ? '<div class="trn-savedcert"><button type="button" class="btn ghost" id="trn-viewcert">' + icon("award") + " " + tr("View my certificate") + "</button></div>" +
+        '<div id="trn-cert-saved"></div>' : "") +
       '<p class="trn-lead">' + icon("info") + " " + tr("Answer all {q} questions. Score {p}% or higher to earn your certificate.").replace("{q}", t.quiz.length).replace("{p}", t.passPct) + "</p>" +
       '<div id="trn-quiz"></div>';
 
     $("#trn-back").addEventListener("click", function () { navTo(p); });
+    // A certificate already earned can be viewed, printed or downloaded again
+    // without retaking the quiz (and without re-stamping today's date).
+    var vc = $("#trn-viewcert");
+    if (vc) vc.addEventListener("click", function () {
+      var c = getCert(p); if (!c) return;
+      var old = $("#trn-cert"); if (old) old.innerHTML = "";
+      showCertificate(p, t, c.name, certDate(c), c.score, c.iso || c.date, $("#trn-cert-saved"), true);
+    });
     bindVideoHub(pg, p);
     renderQuiz(p, t);
   }
@@ -1905,24 +2054,55 @@
     });
   }
 
+  // Deterministic shuffle of [0..n-1] from a string seed (FNV-1a + LCG).
+  function shuffledOrder(n, seed) {
+    var h = 2166136261 >>> 0;
+    for (var i = 0; i < seed.length; i++) { h ^= seed.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; }
+    var a = []; for (var k = 0; k < n; k++) a.push(k);
+    for (var j = n - 1; j > 0; j--) {
+      h = (Math.imul(h, 1664525) + 1013904223) >>> 0;
+      var r = h % (j + 1), tmp = a[j]; a[j] = a[r]; a[r] = tmp;
+    }
+    return a;
+  }
+  // Where the correct answer is shown: an even spread over the positions (a
+  // per-product shuffled cycle), so no single "always pick C" strategy scores
+  // much above chance. The distractors around it are shuffled too.
+  function quizOrder(item, qi, seed) {
+    var n = item.choices.length, cycle = shuffledOrder(n, seed + "|cycle");
+    // "Any of the above" only makes sense last — leave such questions as written.
+    // (Checked on the English source; translated choices can't be matched.)
+    var en = ((window.PORTAL_TRAINING || {})[seed] || {}).quiz;
+    var src = (en && en[qi]) || item;
+    if (src.choices.some(function (c) { return /\b(above|below)\b/i.test(c); })) return src.choices.map(function (_, i) { return i; });
+    var pos = cycle[(qi + Math.floor(qi / n)) % n];
+    var rest = shuffledOrder(n, seed + "|" + qi).filter(function (ci) { return ci !== item.answer; });
+    rest.splice(pos, 0, item.answer);
+    return rest;
+  }
   function renderQuiz(p, t) {
     var box = $("#trn-quiz");
     var questions = '<form id="trn-form" class="trn-quiz">' + t.quiz.map(function (item, qi) {
-      var choices = item.choices.map(function (c, ci) {
+      // Display order is shuffled per question (answer keys stay as the English
+      // indexes, carried in each radio's value) — in source order, "always pick
+      // the 2nd option" passed the grinder quiz with 90%. Seeded by product +
+      // question, so the order is stable across reloads and languages.
+      var order = quizOrder(item, qi, p.name);
+      var choices = order.map(function (ci) {
         return '<label class="trn-choice"><input type="radio" name="q' + qi + '" value="' + ci + '"/>' +
-          '<span class="trn-choice-mark"></span><span class="trn-choice-t">' + c + "</span></label>";
+          '<span class="trn-choice-mark"></span><span class="trn-choice-t">' + item.choices[ci] + "</span></label>";
       }).join("");
       return '<div class="trn-q" data-qi="' + qi + '">' +
         '<div class="trn-q-n">' + tr("Question {n} of {total}").replace("{n}", qi + 1).replace("{total}", t.quiz.length) + "</div>" +
-        '<div class="trn-q-t">' + item.q + "</div>" +
-        '<div class="trn-choices">' + choices + "</div>" +
+        '<div class="trn-q-t" id="trn-q' + qi + '">' + item.q + "</div>" +
+        '<div class="trn-choices" role="radiogroup" aria-labelledby="trn-q' + qi + '">' + choices + "</div>" +
         '<div class="trn-why" hidden></div>' +
       "</div>";
     }).join("") +
       '<div class="trn-actions"><button type="button" class="btn lg" id="trn-submit">' + icon("check") + " " + tr("Submit Answers") + "</button>" +
         '<span class="trn-progress" id="trn-progress"></span></div>' +
     "</form>" +
-      '<div id="trn-result"></div>';
+      '<div id="trn-result" role="status" aria-live="polite"></div>';
     box.innerHTML = questions;
 
     function answered() { return t.quiz.filter(function (_, qi) { return $("#trn-form").querySelector('input[name="q' + qi + '"]:checked'); }).length; }
@@ -1937,7 +2117,8 @@
         var qEl = box.querySelector('.trn-q[data-qi="' + qi + '"]');
         var chosen = parseInt($("#trn-form").querySelector('input[name="q' + qi + '"]:checked').value, 10);
         qEl.classList.add("graded");
-        $$(".trn-choice", qEl).forEach(function (lab, ci) {
+        $$(".trn-choice", qEl).forEach(function (lab) {
+          var ci = parseInt(lab.querySelector("input").value, 10);   // shuffled — read the real index
           lab.classList.remove("is-correct", "is-wrong");
           if (ci === item.answer) lab.classList.add("is-correct");
           else if (ci === chosen) lab.classList.add("is-wrong");
@@ -1981,9 +2162,11 @@
       var nm = ($("#trn-name").value || "").trim();
       if (!nm) { toast(tr("Enter your name for the certificate"), true); $("#trn-name").focus(); return; }
       var d = new Date();
-      var dateStr = d.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
-      saveCert(p, { name: nm, date: dateStr, score: pct });
-      showCertificate(p, t, nm, dateStr, pct);
+      var iso = d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
+      var cert = { name: nm, iso: iso, score: pct };
+      saveCert(p, cert);
+      var saved = $("#trn-cert-saved"); if (saved) saved.innerHTML = "";   // one certificate on the page at a time
+      showCertificate(p, t, nm, certDate(cert), pct, iso);
     });
   }
 
@@ -1998,19 +2181,25 @@
   function certSealHTML(pct) {
     return '<div class="cert-seal" aria-hidden="true">' +
       '<svg viewBox="0 0 132 132">' +
-        '<defs><path id="cert-seal-arc" d="M66 66 m-49 0 a49 49 0 1 1 98 0"/></defs>' +
+        // A 270° arc (bottom-left, over the top, to bottom-right): the half-circle
+        // it replaces was shorter than the text, which lost letters at both ends.
+        '<defs><path id="cert-seal-arc" d="M31.35 100.65 A49 49 0 1 1 100.65 100.65"/></defs>' +
         '<circle class="cs-ring" cx="66" cy="66" r="62"/>' +
         '<circle class="cs-ring cs-ring2" cx="66" cy="66" r="50"/>' +
-        '<text class="cs-arc"><textPath href="#cert-seal-arc" startOffset="50%">' + tr("CERTIFIED · PRODUCT SPECIALIST") + '</textPath></text>' +
+        '<text class="cs-arc"><textPath href="#cert-seal-arc" startOffset="50%"' +
+          // Long translations ("CERTIFICADO · ESPECIALISTA DE PRODUCTO") are squeezed to fit.
+          (tr("CERTIFIED · PRODUCT SPECIALIST").length > 30 ? ' textLength="220" lengthAdjust="spacingAndGlyphs"' : "") + ">" +
+          tr("CERTIFIED · PRODUCT SPECIALIST") + '</textPath></text>' +
         '<text class="cs-star" x="66" y="46">★</text>' +
         '<text class="cs-score" x="66" y="76">' + pct + '%</text>' +
         '<text class="cs-sub" x="66" y="94">G PEN</text>' +
       "</svg></div>";
   }
-  function showCertificate(p, t, nm, dateStr, pct) {
+  function showCertificate(p, t, nm, dateStr, pct, idSeed, box, quiet) {
     var name = fullProductName(p);
-    var cid = certId(nm + "|" + name + "|" + dateStr);
-    var box = $("#trn-cert");
+    // Seeded by the ISO date (when known) so the ID doesn't change with language.
+    var cid = certId(nm + "|" + name + "|" + (idSeed || dateStr));
+    box = box || $("#trn-cert");
     box.innerHTML =
       '<div class="cert" id="cert-card">' +
         '<div class="cert-inner">' +
@@ -2043,8 +2232,25 @@
         encodeURIComponent(name + " — Product Specialist Certification") + "&body=" + encodeURIComponent(body);
     });
     box.scrollIntoView({ behavior: "smooth", block: "center" });
-    toast(tr("Certified! 🎓"));
+    if (!quiet) toast(tr("Certified! 🎓"));
   }
+
+  // Print just the certificate: copy it to a top-level node for the print CSS
+  // (works for the Print button AND the browser's own Print / Cmd-P).
+  window.addEventListener("beforeprint", function () {
+    var card = document.getElementById("cert-card");
+    if (!card || !card.offsetParent) return;
+    var root = document.getElementById("print-root") || document.body.appendChild(document.createElement("div"));
+    root.id = "print-root";
+    root.innerHTML = "";
+    var copy = card.cloneNode(true); copy.removeAttribute("id");
+    root.appendChild(copy);
+    document.body.classList.add("printing-cert");
+  });
+  window.addEventListener("afterprint", function () {
+    document.body.classList.remove("printing-cert");
+    var root = document.getElementById("print-root"); if (root) root.innerHTML = "";
+  });
 
   // Draw the (light, print-style) certificate to a canvas and download as PNG.
   function downloadCertificate(product, nm, dateStr, pct, cid) {
@@ -2167,8 +2373,13 @@
         if (b.__bound) return; b.__bound = true;
         b.addEventListener("click", function () {
           if ($$(".loc-store", stores).length <= 1) { toast(tr("At least one store is required")); return; }
-          b.closest(".loc-store").remove();
+          var gone = b.closest(".loc-store"), next = gone.previousElementSibling || gone.nextElementSibling;
+          gone.remove();
           renumber();
+          // Removing the focused button drops focus to <body>; land on the store
+          // next to it instead.
+          var f = next && next.querySelector("input");
+          if (f) f.focus();
         });
       });
     }
@@ -2232,7 +2443,12 @@
         }
         navTo(p);
       });
-      card.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); navTo(p); } });
+      card.addEventListener("keydown", function (e) {
+        // Only the card itself — Enter on its inner "Download all" button must
+        // reach that button's click handler, not open the product.
+        if (e.target !== card) return;
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); navTo(p); }
+      });
     });
   }
 
@@ -2243,6 +2459,10 @@
     var dBrowse = $("#browse"); if (dBrowse) dBrowse.style.display = "none";
     var dHero = $("#hero"); if (dHero) dHero.style.display = "none";
     $("#additional").style.display = "none";
+    // navTo() skips route() (ignoreHash), so this is the only place these get
+    // hidden on the way here — "Back to <product>" from training left the whole
+    // course rendered under the product page.
+    ["#training-page", "#materials-page", "#locator-page"].forEach(function (id) { var el = $(id); if (el) el.style.display = "none"; });
     var d = $("#detail");
     d.style.display = "block";
     animateIn(d);
@@ -2303,13 +2523,13 @@
       // Asset filters: friendly-labelled chips for this product's folders, sat
       // right at the top of the Documents section for quick filtering.
       var assetNav =
-        (folderNames.length > 3 ? '<div class="catgrid-hint"><span>' + tr("Swipe to see more folders") + '</span>' + icon("arrowRight") + "</div>" : "") +
+        (folderNames.length > 1 ? '<div class="catgrid-hint is-off"><span>' + tr("Swipe to see more folders") + '</span>' + icon("arrowRight") + "</div>" : "") +
         '<div class="catgrid" id="asset-nav">' + folderNames.map(function (f) {
           var n = p.folders[f].length, empty = n === 0;
           // Folder names come from Dropbox — untrusted. Escape both the attribute
           // and the label. getAttribute() decodes entities, so the data-folder
           // round-trip back to p.folders[...] still matches.
-          return '<button class="catcard ' + (f === active ? "on " : "") + (empty ? "is-empty" : "") + '" data-folder="' + escapeHTML(f) + '"' + (empty ? " disabled" : "") + ">" +
+          return '<button class="catcard ' + (f === active ? "on " : "") + (empty ? "is-empty" : "") + '" data-folder="' + escapeHTML(f) + '"' + (empty ? " disabled" : "") + (f === active ? ' aria-current="true"' : "") + ">" +
             '<span class="catcard-ic">' + icon(folderIcon(f)) + "</span>" +
             '<span class="catcard-tx"><span class="catcard-name">' + escapeHTML(typeLabel(f)) + "</span>" +
             '<span class="catcard-c">' + n + " " + tr(n === 1 ? "file" : "files") + "</span></span>" +
@@ -2324,7 +2544,13 @@
       var fullName = p.name.indexOf(BRANDS[p.brand].name) === 0 ? p.name : BRANDS[p.brand].name + " " + p.name;
       setTitle(fullName);
 
-      var stat = p.total + " " + tr("assets") + (p.videos && p.videos.length ? " · " + p.videos.length + " " + tr("videos") : "") + " · " + tr("updated") + " " + fmtDate(p.added);
+      // Videos = every video file in the folders plus the hand-listed how-tos
+      // (counting only the how-tos read "2 videos" on a page with 46).
+      var nVid = (p.videos || []).length;
+      Object.keys(p.folders || {}).forEach(function (f) { (p.folders[f] || []).forEach(function (x) { if (x.type === "video") nVid++; }); });
+      var stat = p.total + " " + tr(p.total === 1 ? "asset" : "assets") +
+        (nVid ? " · " + nVid + " " + tr(nVid === 1 ? "video" : "videos") : "") +
+        " · " + tr("updated") + " " + fmtDate(p.updated || p.added);
       d.innerHTML =
         '<button class="back" id="back-btn">' + icon("arrowLeft") + " " + tr("Back to library") + "</button>" +
         '<div class="detail-hero">' +
@@ -2362,10 +2588,10 @@
         "</div>" +
         '<div class="gallery" id="gallery"></div>' +
         '<div class="selbar" id="selbar">' +
-          '<span class="selcount"><strong id="sel-n">0</strong> ' + tr("selected") + '</span>' +
+          '<span class="selcount" role="status" aria-live="polite"><strong id="sel-n">0</strong> ' + tr("selected") + '</span>' +
           '<span class="selacts">' +
             '<button class="btn ghost sm" id="sel-clear">' + tr("Clear") + '</button>' +
-            '<button class="btn sm" id="sel-dl">' + icon("download") + " " + tr("Download selected") + "</button>" +
+            '<button class="btn sm" id="sel-dl" aria-label="' + tr("Download selected") + '">' + icon("download") + ' <span class="sel-dl-l">' + tr("Download selected") + "</span></button>" +
           "</span>" +
         "</div>" +
         (CFG.usageNote ? '<div class="usage usage-foot">' + icon("info") + "<span>" + tr(CFG.usageNote) + "</span></div>" : "") +
@@ -2416,7 +2642,7 @@
       if (heroCover) heroCover.addEventListener("click", function () { openLightbox([{ src: p.cover, name: fullName, url: p.cover }], 0); });
       $("#dl-all").addEventListener("click", function () { downloadAll(p); });
       $("#copy-link").addEventListener("click", function () {
-        var url = location.origin + location.pathname + langQS() + productHash(p);
+        var url = location.origin + location.pathname + langQS() + productHash(p, active);
         copyText(url, tr("Link copied"));
       });
       var copyDesc = $("#copy-desc");
@@ -2452,13 +2678,37 @@
       });
       $$(".catcard", d).forEach(function (t) {
         // Switching folders re-renders the detail with the new active folder.
-        t.addEventListener("click", function () { active = t.getAttribute("data-folder"); render(); });
+        t.addEventListener("click", function () {
+          active = t.getAttribute("data-folder");
+          // Name the folder in the URL (no history entry per hop).
+          try { history.replaceState(null, "", location.pathname + location.search + productHash(p, active)); } catch (e) {}
+          render();
+          // render() replaced the clicked card; keep keyboard focus on its twin
+          // and bring it into view in the phone rail instead of jumping to the start.
+          var same = $$(".catcard", d).filter(function (x) { return x.getAttribute("data-folder") === active; })[0];
+          if (same) { same.focus({ preventScroll: true }); revealInRail(same); }
+        });
       });
+      // Phones show the folder cards as a swipeable rail: say so whenever it
+      // actually overflows (not by card count), and show the open folder's card.
+      var rail = $("#asset-nav", d), hint = $(".catgrid-hint", d);
+      if (rail) {
+        if (hint) hint.classList.toggle("is-off", rail.scrollWidth <= rail.clientWidth + 2);
+        revealInRail($(".catcard.on", rail));
+      }
       syncSelection();
     }
     render();
   }
 
+  // Scroll a folder card into view inside its horizontal rail (phones) without
+  // moving the page vertically.
+  function revealInRail(card) {
+    var rail = card && card.parentNode; if (!rail) return;
+    if (rail.scrollWidth <= rail.clientWidth + 2) return;
+    var r = card.getBoundingClientRect(), rr = rail.getBoundingClientRect();
+    if (r.left < rr.left || r.right > rr.right) rail.scrollLeft += r.left - rr.left - 16;
+  }
   // Packaging visuals: retail outer box + (for POP products) the POP display.
   // The materials to show for a product: its own "In-Store Marketing" folder if it
   // has any, otherwise the generic brand-level pieces as placeholders.
@@ -2506,11 +2756,13 @@
     var dsrc = dlUrl || url;
     var dl = /dropbox\.com/.test(dsrc) ? dropboxZipUrl(dsrc) : dsrc;
     var name = label.replace(/[^\w.-]+/g, "_") + (/\.png/i.test(dsrc) ? ".png" : /\.jpe?g/i.test(dsrc) ? ".jpg" : "");
+    var L = escapeHTML(label);
+    src = escapeHTML(src); dl = escapeHTML(dl);
     return '<div class="pkg-card">' +
-      '<button class="pkg-media pkg-zoom" data-lbimg="' + src + '" data-lbname="' + label + '" data-lbdl="' + dl + '" title="Click to enlarge">' +
-        '<img src="' + src + '" alt="' + label + '" loading="lazy" decoding="async"/></button>' +
-      '<div class="pkg-label"><span>' + label + "</span>" +
-        '<button class="pkg-dl" data-pkgdl="' + dl + '" data-pkgname="' + name + '" title="Download ' + label + '">' + icon("download") + "</button>" +
+      '<button class="pkg-media pkg-zoom" data-lbimg="' + src + '" data-lbname="' + L + '" data-lbdl="' + dl + '" title="' + tr("Click preview to enlarge") + '">' +
+        '<img src="' + src + '" alt="' + L + '" loading="lazy" decoding="async"/></button>' +
+      '<div class="pkg-label"><span>' + L + "</span>" +
+        '<button class="pkg-dl" data-pkgdl="' + dl + '" data-pkgname="' + escapeHTML(name) + '" title="' + escapeHTML(tr("Download") + " " + label) + '">' + icon("download") + "</button>" +
       "</div></div>";
   }
   function packagingHTML(p) {
@@ -2601,11 +2853,25 @@
       "</div>";
     }).join("");
     return '<div class="section-head cways-head"><h2>' + tr("Collection Colorways") + '</h2>' +
-      '<span class="badge">' + ways.length + " colors</span></div>" +
+      '<span class="badge">' + tr("{n} colors").replace("{n}", ways.length) + "</span></div>" +
       '<div class="cways">' + cards + "</div>";
   }
 
   // SKU details: identifiers + the pack/case breakdown for stores & ops.
+  // Measurements from the (English) ops data, in the reader's number format:
+  // "59.5 g" → "59,5 g", "1,250mAh" → "1.250mAh" (fr: "1 250mAh"). Only numbers
+  // attached to a unit or "×" change — SKUs, UPCs and HTS codes are left alone.
+  function localNum(v) {
+    if (v == null || v === "") return v;
+    v = String(v);
+    if (v === "N/A") return tr("N/A");
+    if (state.lang === "en") return v;
+    var th = state.lang === "fr" ? "\u00a0" : ".";
+    return v
+      .replace(/(\d),(\d{3})(?=\s?mAh\b)/g, "$1\u0001$2")
+      .replace(/(\d)\.(\d+)(?=\s?(?:mAh|mm|cm|kg|g|lbs?|oz|in|V|W|Ω|°|×|x\b|\s?\/))/g, "$1,$2")
+      .replace(/\u0001/g, th);
+  }
   function skuHTML(p) {
     if (p.isLogo) return "";
     var info = infoOf(p);
@@ -2636,13 +2902,13 @@
         ? row("Retail POP Display SKU", info.popSku) +
           row("Retail POP Display UPC", info.popUpc)
         : "") +
-      row("Product Dimensions", info.dimensions) +
-      row("Unit Weight", info.unitWeight) +
+      row("Product Dimensions", localNum(info.dimensions)) +
+      row("Unit Weight", localNum(info.unitWeight)) +
       row("Ships In Retail POP Display", info.pop === true ? tr("Yes") : info.pop === false ? tr("No") : "") +
-      row("Units Per POP Display", perPop) +
-      row("Units Per Master Case", info.masterCarton) +
-      row("Case Weight", info.caseWeight) +
-      row("Case Dimensions", info.caseDimensions) +
+      row("Units Per POP Display", localNum(perPop)) +
+      row("Units Per Master Case", localNum(info.masterCarton)) +
+      row("Case Weight", localNum(info.caseWeight)) +
+      row("Case Dimensions", localNum(info.caseDimensions)) +
       row("HTS (Harmonized Tariff Schedule) Code", info.htsCode);
     return '<div class="section-head"><h2>' + tr("SKU details") + '</h2></div>' +
       '<div class="sku-table">' + rows + "</div>" +
@@ -2721,7 +2987,7 @@
     if (!(specs && specs.length)) return "";
     var rows = specs.map(function (kv) {
       return '<div class="sku-row"><span class="sku-l">' + tr(kv[0]) + '</span>' +
-        '<span class="sku-v">' + escapeHTML(kv[1]) + "</span></div>";
+        '<span class="sku-v">' + escapeHTML(localNum(kv[1])) + "</span></div>";
     }).join("");
     return '<div class="section-head"><h2>' + tr("Technical specifications") + '</h2></div>' +
       '<div class="sku-table">' + rows + "</div>";
@@ -2765,7 +3031,7 @@
         ? '<button class="vbtn" data-vdl="' + dl + '" data-vname="' + dlname + '">' + icon("download") + " " + tr("Download") + "</button>"
         : "";
       var ytBtn = v.youtube
-        ? '<a class="vbtn" href="' + v.youtube + '" target="_blank" rel="noopener noreferrer" title="Share on YouTube">' + icon("youtube") + " " + tr("YouTube") + "</a>"
+        ? '<a class="vbtn" href="' + v.youtube + '" target="_blank" rel="noopener noreferrer" title="' + tr("Share on YouTube") + '">' + icon("youtube") + " " + tr("YouTube") + "</a>"
         : "";
 
       return '<div class="vcard">' + thumb +
@@ -2785,6 +3051,36 @@
     return link + (link.indexOf("?") === -1 ? "?raw=1" : "&raw=1");
   }
   // Large in-browser video player (modal overlay).
+  // ---- shared dialog behavior for the three overlays (lightbox, video, catalog):
+  // dialog role, focus moved in, Tab kept inside, page scroll locked, and focus
+  // handed back to whatever opened it on close.
+  var _modalReturn = null;
+  function openModalEl() { return $("#vlb") || $("#catlb") || (lbOpen() ? $("#lightbox") : null); }
+  function modalOpen(ov, label, focusEl) {
+    ov.setAttribute("role", "dialog");
+    ov.setAttribute("aria-modal", "true");
+    if (label) ov.setAttribute("aria-label", label);
+    if (!_modalReturn) _modalReturn = document.activeElement;
+    document.body.style.overflow = "hidden";
+    setTimeout(function () { var f = focusEl || ov; if (f && f.focus) f.focus({ preventScroll: true }); }, 0);
+  }
+  function modalClose() {
+    if (openModalEl()) return;   // another overlay is still up
+    document.body.style.overflow = "";
+    var back = _modalReturn; _modalReturn = null;
+    if (back && back !== document.body && document.contains(back)) back.focus({ preventScroll: true });
+  }
+  function modalTrap(e) {
+    if (e.key !== "Tab") return;
+    var ov = openModalEl(); if (!ov) return;
+    var f = $$("button, a[href], input, select, textarea, video[controls], iframe, [tabindex]:not([tabindex='-1'])", ov)
+      .filter(function (el) { return !el.disabled && el.offsetParent !== null; });
+    if (!f.length) { e.preventDefault(); return; }
+    var first = f[0], last = f[f.length - 1];
+    if (!ov.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+    else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
   function openVideoModal(src, title, dlUrl, dlName, shareUrl) {
     closeVideoModal();
     var ov = document.createElement("div");
@@ -2795,14 +3091,16 @@
       ? '<iframe src="' + src + (src.indexOf("?") === -1 ? "?" : "&") + 'autoplay=1" title="' + escapeHTML(title || "Video player") + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>'
       : '<video src="' + src + '" controls autoplay playsinline></video>';
     ov.innerHTML =
-      '<button class="vlb-close" aria-label="Close">' + icon("x") + "</button>" +
+      '<button class="vlb-close" aria-label="' + tr("Close") + '">' + icon("x") + "</button>" +
       '<div class="vlb-stage">' + media + "</div>" +
-      '<div class="vlb-bar"><span class="vlb-name">' + (title || "") + "</span>" +
+      // The title is a Dropbox filename (via a data- attribute, which decodes) — escape it.
+      '<div class="vlb-bar"><span class="vlb-name">' + escapeHTML(title || "") + "</span>" +
         '<span class="vlb-acts">' +
           (shareUrl ? '<button class="btn ghost vlb-copy">' + icon("link") + " " + tr("Copy link") + "</button>" : "") +
           (dlUrl ? '<button class="btn vlb-dl">' + icon("download") + " " + tr("Download video") + "</button>" : "") +
         "</span></div>";
     document.body.appendChild(ov);
+    modalOpen(ov, title || tr("Video player"), $(".vlb-close", ov));
     ov.addEventListener("click", function (e) { if (e.target === ov || e.target.classList.contains("vlb-stage")) closeVideoModal(); });
     $(".vlb-close", ov).addEventListener("click", closeVideoModal);
     var dlBtn = $(".vlb-dl", ov);
@@ -2812,7 +3110,7 @@
   }
   function closeVideoModal() {
     var ov = $("#vlb");
-    if (ov) { var v = $("video", ov); if (v) v.pause(); ov.remove(); }
+    if (ov) { var v = $("video", ov); if (v) v.pause(); ov.remove(); modalClose(); }
   }
 
   function renderGallery(p, folder, selected, onToggle, onChange) {
@@ -2857,13 +3155,13 @@
         : window.__icon(typeIcon[file.type] || "file");
       return (
         '<div class="gcell' + (on ? " sel" : "") + '" data-key="' + escapeHTML(key) + '">' +
-          '<label class="gselect"><input type="checkbox" class="gcheck"' + (on ? " checked" : "") + ' aria-label="Select ' + nm + '"/></label>' +
-          '<div class="gthumb' + (ext || vid ? " is-video" : "") + '" role="button" tabindex="0" aria-label="' + (ext || vid ? "Play " : "Enlarge ") + nm + '"' + lbAttr + ytAttr + ">" + thumb +
+          '<label class="gselect"><input type="checkbox" class="gcheck"' + (on ? " checked" : "") + ' aria-label="' + tr("Select {name}").replace("{name}", nm) + '"/></label>' +
+          '<div class="gthumb' + (ext || vid ? " is-video" : "") + '" role="button" tabindex="0" aria-label="' + tr(ext || vid ? "Play {name}" : "Enlarge {name}").replace("{name}", nm) + '"' + lbAttr + ytAttr + ">" + thumb +
             (file.format ? '<span class="gfmt">' + fmt + "</span>" : "") + "</div>" +
           '<div class="gbar"><span class="gn">' + nm + '</span>' +
           '<span class="ga">' +
-            '<span role="button" tabindex="0" data-copy="' + escapeHTML(file.url || "#") + '" aria-label="Copy link to ' + nm + '" title="Copy link">' + icon("link") + "</span>" +
-            '<span role="button" tabindex="0" data-dl="' + escapeHTML(file.file || file.url || "#") + '" data-name="' + nm + '"' + (file.file ? ' data-direct="1"' : "") + ' aria-label="' + (ext ? "Watch " : "Download ") + nm + '" title="' + (ext ? "Watch on YouTube" : "Download") + '">' + icon(ext ? "play" : "download") + "</span>" +
+            '<span role="button" tabindex="0" data-copy="' + escapeHTML(file.url || "#") + '" aria-label="' + tr("Copy link to {name}").replace("{name}", nm) + '" title="' + tr("Copy link") + '">' + icon("link") + "</span>" +
+            '<span role="button" tabindex="0" data-dl="' + escapeHTML(file.file || file.url || "#") + '" data-name="' + nm + '"' + (file.file ? ' data-direct="1"' : "") +  ' aria-label="' + tr(ext ? "Watch {name}" : "Download {name}").replace("{name}", nm) + '" title="' + tr(ext ? "Watch on YouTube" : "Download") + '">' + icon(ext ? "play" : "download") + "</span>" +
           "</span></div>" +
         "</div>"
       );
@@ -3092,7 +3390,7 @@
   function copyFolderLink(p, folderName) {
     var link = (p.folderLinks && p.folderLinks[folderName]) || p.dropbox;
     if (!link) { toast(tr("No shareable link for this folder yet")); return; }
-    copyText(dropboxViewUrl(link), "Copied link to " + typeLabel(folderName));
+    copyText(dropboxViewUrl(link), tr("Copied link to {folder}").replace("{folder}", typeLabel(folderName)));
   }
   function downloadAll(p) {
     // Real Dropbox: download the whole product folder as a .zip from the shared
@@ -3120,7 +3418,9 @@
     lbItems = items && items.length ? items : [];
     lbIdx = idx || 0;
     showLb();
+    var wasOpen = lbOpen();
     $("#lightbox").classList.add("open");
+    if (!wasOpen) modalOpen($("#lightbox"), tr("Asset preview"), $("#lb-close"));
   }
   function lbCurrent() { return lbItems[lbIdx] || {}; }
   // A synced asset the lightbox should PLAY rather than show as a still.
@@ -3179,6 +3479,7 @@
     $("#lightbox img").removeAttribute("src");
     lbResetVideo();
     lbItems = [];
+    modalClose();
   }
   function lbOpen() { return $("#lightbox").classList.contains("open"); }
 
@@ -3199,7 +3500,17 @@
     // hero text from config
     $("#hero-tagline").textContent = CFG.tagline;
     var heroIntro = $("#hero-intro"); if (heroIntro) heroIntro.textContent = CFG.intro;
-    $$(".req-mail").forEach(function (a) { a.href = "mailto:" + CFG.requestEmail; });
+    // Pre-fill the request with where the retailer is, so it isn't a blank email.
+    $$(".req-mail").forEach(function (a) {
+      a.href = "mailto:" + CFG.requestEmail;
+      a.addEventListener("click", function () {
+        var h = $("#detail") && $("#detail").style.display !== "none" && $("#detail .detail-info h1");
+        var where = h ? h.textContent.trim() : "";
+        a.href = "mailto:" + CFG.requestEmail +
+          "?subject=" + encodeURIComponent("Asset request" + (where ? " — " + where : "")) +
+          "&body=" + encodeURIComponent("What I'm looking for:\n\n\nStore name:\n\nPage: " + location.href);
+      });
+    });
 
     // nav "Catalogs" link scrolls to the catalogs & brand documents section.
     var navCatalogs = $("#nav-catalogs");
@@ -3222,8 +3533,7 @@
     // sort toggle
     $$("#sort-toggle button").forEach(function (b) {
       b.addEventListener("click", function () {
-        $$("#sort-toggle button").forEach(function (x) { x.classList.remove("on"); });
-        b.classList.add("on");
+        $$("#sort-toggle button").forEach(function (x) { setPressed(x, x === b); });
         state.sort = b.getAttribute("data-sort");
         renderHome();
       });
@@ -3232,8 +3542,7 @@
     $$("#view-mode button").forEach(function (b) {
       b.innerHTML = icon(b.getAttribute("data-layout"));
       b.addEventListener("click", function () {
-        $$("#view-mode button").forEach(function (x) { x.classList.remove("on"); });
-        b.classList.add("on");
+        $$("#view-mode button").forEach(function (x) { setPressed(x, x === b); });
         state.layout = b.getAttribute("data-layout");
         renderHome();
       });
@@ -3268,6 +3577,10 @@
           searchEl.value = b.getAttribute("data-q");
           state.query = searchEl.value.trim(); state.fileFacet = "";
           syncClear(); hideSuggest(); renderHome(true);
+          searchEl.focus();   // keyboard users keep their place instead of dropping to <body>
+        });
+        b.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") { e.stopPropagation(); hideSuggest(); searchEl.focus(); }
         });
       });
       return suggestEl;
@@ -3283,7 +3596,16 @@
       renderHome(true);
     });
     searchEl.addEventListener("focus", function () { if (!searchEl.value) showSuggest(); });
-    searchEl.addEventListener("blur", function () { setTimeout(hideSuggest, 120); });
+    // Hide only when focus leaves the whole search box — Tab from the input onto
+    // a "Popular searches" chip must keep the panel (and the focused chip) visible.
+    var searchHost = document.querySelector(".browse-search");
+    (searchHost || searchEl).addEventListener("focusout", function (e) {
+      var to = e.relatedTarget;
+      if (to && searchHost && searchHost.contains(to)) return;
+      setTimeout(function () {
+        if (!searchHost || !searchHost.contains(document.activeElement)) hideSuggest();
+      }, 120);
+    });
     searchEl.addEventListener("keydown", function (e) {
       if (e.key === "Enter") { hideSuggest(); if (state.query) { searchEl.blur(); openTopResult(); } }
     });
@@ -3293,8 +3615,7 @@
     syncClear();
 
     // lightbox / asset viewer
-    $("#lb-copy").innerHTML = icon("link") + tr(" Copy link");
-    $("#lb-dl").innerHTML = icon("download") + tr(" Download");
+    labelLightbox();
     // A format the browser will not decode (chiefly the 21 synced .MOV files)
     // fires `error` and would otherwise leave a black stage. Swap in a short note
     // pointing at the Download button, which is right there in the same bar.
@@ -3316,6 +3637,9 @@
     $("#lb-copy").addEventListener("click", function () {
       var u = lbCurrent().url;
       if (!u || u === "#") { toast(tr("No link yet")); return; }
+      // Same-origin items (product covers, packaging) carry a relative path —
+      // "assets/img/…" is useless pasted into an email. Hand over a full URL.
+      try { u = /dropbox\.com/.test(u) ? dropboxViewUrl(u) : new URL(u, location.href).href; } catch (e) {}
       copyText(u, tr("Link copied"));
     });
     $("#lb-dl").addEventListener("click", function () { var it = lbCurrent(); if (it.file) directDownload(it.file, it.name); else downloadOne(it.url); });
@@ -3325,6 +3649,7 @@
 
     // keyboard shortcuts
     document.addEventListener("keydown", function (e) {
+      modalTrap(e);
       var el = document.activeElement;
       var typing = el && /^(INPUT|TEXTAREA)$/.test(el.tagName);
       if (e.key === "Escape") {
@@ -3338,7 +3663,7 @@
         else if (e.key === "ArrowRight") lbStep(1);
         return;
       }
-      if (e.key === "/" && !typing) { e.preventDefault(); var s = $("#search"); if (s) s.focus(); }
+      if (e.key === "/" && !typing && !document.getElementById("vlb") && !document.getElementById("catlb")) { e.preventDefault(); var s = $("#search"); if (s) s.focus(); }
     });
 
     // floating scroll-to-top — shows once you're a screen or two down
@@ -3380,6 +3705,7 @@
       document.documentElement.lang = state.lang;
       syncLangToggle();
       applyStaticI18n();
+      labelLightbox();
       bindLangBar();
       maybeOfferLang();
       route();

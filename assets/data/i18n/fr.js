@@ -20,6 +20,42 @@
 window.PORTAL_I18N = window.PORTAL_I18N || {};
 window.PORTAL_I18N.fr = {
   "ui": {
+    "N/A": "N/D",
+    "Back to home": "Retour à l’accueil",
+    "Select language": "Choisir la langue",
+    "Clear search": "Effacer la recherche",
+    "Previous": "Précédent",
+    "Scroll to top": "Remonter en haut",
+    "Grid view": "Vue en grille",
+    "List view": "Vue en liste",
+    "Layout": "Affichage",
+    "Sort products": "Trier les produits",
+    "Select {name}": "Sélectionner {name}",
+    "Play {name}": "Lire {name}",
+    "Enlarge {name}": "Agrandir {name}",
+    "Copy link to {name}": "Copier le lien vers {name}",
+    "Download {name}": "Télécharger {name}",
+    "Watch {name}": "Regarder {name}",
+    "Watch on YouTube": "Regarder sur YouTube",
+    "Share on YouTube": "Partager sur YouTube",
+    "Close": "Fermer",
+    "Video player": "Lecteur vidéo",
+    "Asset preview": "Aperçu de la ressource",
+    "Zoom in": "Zoomer",
+    "Fit to screen": "Ajuster à l’écran",
+    "Viewer unavailable — downloading instead": "Visionneuse indisponible — téléchargement à la place",
+    "Couldn’t open the catalog — downloading instead": "Impossible d’ouvrir le catalogue — téléchargement à la place",
+    "Filter results by type": "Filtrer les résultats par type",
+    "View my certificate": "Voir mon certificat",
+    "asset": "ressource",
+    "video": "vidéo",
+    "Photos": "Photos",
+    "Lifestyle": "Lifestyle",
+    "Videos": "Vidéos",
+    "In-store": "En magasin",
+    "View": "Voir",
+    "{n} colors": "{n} coloris",
+    "Copied link to {folder}": "Lien vers {folder} copié",
     "{m} lessons · {q}-question quiz · ~{min} min": "{m} leçons · Quiz de {q} questions · ~{min} min",
     "Concentrate Accessories": "Accessoires pour concentrés",
     "Dry Herb Accessories": "Accessoires pour herbes sèches",
@@ -341,7 +377,7 @@ window.PORTAL_I18N.fr = {
             "points": [
               "Le G Pen Micro II est un <strong>vaporisateur à concentrés</strong> : il n'est pas conçu pour les fleurs.",
               "C'est la dernière évolution de la plateforme Micro, née avec le <strong>microG original en 2013</strong>.",
-              "Format de poche, avec un corps robuste en <strong>aluminium anodisé</strong> et un <strong>atomiseur céramique de 0.8Ω</strong>.",
+              "Format de poche, avec un corps robuste en <strong>aluminium anodisé</strong> et un <strong>atomiseur céramique de 0,8Ω</strong>.",
               "Prix conseillé : <strong>$49.95</strong>."
             ]
           },
@@ -367,7 +403,7 @@ window.PORTAL_I18N.fr = {
           {
             "title": "Batterie, contenu et accessoires",
             "points": [
-              "Batterie de <strong>1,250mAh</strong> : jusqu'à <strong>120 sessions par charge</strong>.",
+              "Batterie de <strong>1 250mAh</strong> : jusqu'à <strong>120 sessions par charge</strong>.",
               "<strong>Charge rapide USB-C</strong> en moins de 60 minutes, et <strong>charge pass-through</strong> pour l'utiliser branché.",
               "Dans la boîte : la batterie, le réservoir céramique et un embout en silicone. <strong>Aucun câble de charge n'est inclus</strong> : n'importe quel chargeur USB-C convient.",
               "Le <strong>Sidecar</strong> (filtration à eau en verre) et l'<strong>adaptateur pour rig de 14 mm</strong> sont <strong>vendus séparément</strong>.",
@@ -454,7 +490,7 @@ window.PORTAL_I18N.fr = {
               "Jusqu'à 120",
               "Jusqu'à 200"
             ],
-            "why": "La batterie de 1,250mAh offre jusqu'à 120 sessions par charge."
+            "why": "La batterie de 1 250mAh offre jusqu'à 120 sessions par charge."
           },
           {
             "q": "Que contient la boîte du Micro II ?",
@@ -648,7 +684,7 @@ window.PORTAL_I18N.fr = {
             "<strong>Pointe en céramique à chauffe rapide</strong>.",
             "<strong>Charge pass-through USB-C (utilisable pendant la charge)</strong> — il peut être utilisé pendant la charge.",
             "Corps élégant en <strong>aluminium</strong>.",
-            "Ultra-compact : <strong>3.94 × 0.5 × 0.25 in</strong>, idéal pour la poche et le kit de voyage.",
+            "Ultra-compact : <strong>3,94 × 0,5 × 0,25 in</strong>, idéal pour la poche et le kit de voyage.",
             "Se marie avec les rigs et le G Pen Micro+ / Hyer."
           ]
         },
@@ -789,7 +825,7 @@ window.PORTAL_I18N.fr = {
           "points": [
             "Chambre de chauffe intégralement en <strong>titane</strong>.",
             "Atteint la température de vaporisation en seulement <strong>20 secondes</strong>.",
-            "Batterie Li-ion rechargeable <strong>1,800mAh</strong> avec charge <strong>USB-C</strong>.",
+            "Batterie Li-ion rechargeable <strong>1 800mAh</strong> avec charge <strong>USB-C</strong>.",
             "<strong>Écran LED couleur</strong> avec contrôle précis de la température.",
             "<strong>Retour haptique</strong> et interface intuitive à <strong>3 boutons</strong>.",
             "Corps durable en <strong>alliage de zinc</strong>."
@@ -849,11 +885,11 @@ window.PORTAL_I18N.fr = {
           "q": "Quelle est la capacité de la batterie du Dash+ ?",
           "choices": [
             "650mAh",
-            "1,100mAh",
-            "1,800mAh",
-            "3,000mAh"
+            "1 100mAh",
+            "1 800mAh",
+            "3 000mAh"
           ],
-          "why": "Il est alimenté par une batterie Li-ion rechargeable de 1,800mAh."
+          "why": "Il est alimenté par une batterie Li-ion rechargeable de 1 800mAh."
         },
         {
           "q": "Comment allume-t-on le Dash+ ?",
@@ -932,12 +968,12 @@ window.PORTAL_I18N.fr = {
         {
           "title": "Caractéristiques clés",
           "points": [
-            "Chambre de chauffe en <strong>céramique de 0.4g</strong> — plus grande que celle du Dash original et plus facile à charger.",
-            "Batterie de <strong>1,100mAh</strong>.",
+            "Chambre de chauffe en <strong>céramique de 0,4g</strong> — plus grande que celle du Dash original et plus facile à charger.",
+            "Batterie de <strong>1 100mAh</strong>.",
             "Charge <strong>USB-C</strong> avec <strong>charge pass-through (utilisable pendant la charge)</strong> — l'appareil peut être utilisé lorsqu'il est branché.",
             "L'<strong>écran OLED</strong> affiche la température et le niveau de batterie en temps réel.",
             "<strong>Contrôle précis et réglable de la température</strong>.",
-            "Dimensions <strong>97 × 35 × 21 mm</strong>, poids <strong>59.5 g</strong>.",
+            "Dimensions <strong>97 × 35 × 21 mm</strong>, poids <strong>59,5 g</strong>.",
             "<strong>Outil pique</strong> intégré pour le chargement et le nettoyage."
           ]
         },
@@ -973,7 +1009,7 @@ window.PORTAL_I18N.fr = {
           "title": "Améliorations par rapport au Dash original",
           "points": [
             "Prix conseillé plus bas ($49.95), <strong>contrôle de la température</strong> réglable et <strong>écran OLED</strong>.",
-            "Chambre plus grande de <strong>0.4g</strong> et batterie plus puissante de <strong>1,100mAh</strong>.",
+            "Chambre plus grande de <strong>0,4g</strong> et batterie plus puissante de <strong>1 100mAh</strong>.",
             "Charge <strong>USB-C</strong> moderne avec pass-through et conception de chambre revue."
           ]
         }
@@ -992,12 +1028,12 @@ window.PORTAL_I18N.fr = {
         {
           "q": "Quelle est la taille de la chambre de chauffe du Dash II ?",
           "choices": [
-            "0.2g",
-            "0.4g en céramique",
-            "1.0g",
+            "0,2g",
+            "0,4g en céramique",
+            "1,0g",
             "Il n'a pas de chambre"
           ],
-          "why": "Le Dash II dispose d'une chambre en céramique améliorée de 0.4g — plus grande que celle du Dash original et plus facile à charger."
+          "why": "Le Dash II dispose d'une chambre en céramique améliorée de 0,4g — plus grande que celle du Dash original et plus facile à charger."
         },
         {
           "q": "Quel type de système de chauffe le Dash II utilise-t-il ?",
@@ -1024,10 +1060,10 @@ window.PORTAL_I18N.fr = {
           "choices": [
             "650mAh",
             "900mAh",
-            "1,100mAh",
-            "2,200mAh"
+            "1 100mAh",
+            "2 200mAh"
           ],
-          "why": "Le Dash II est alimenté par une batterie de 1,100mAh — une amélioration par rapport au Dash original."
+          "why": "Le Dash II est alimenté par une batterie de 1 100mAh — une amélioration par rapport au Dash original."
         },
         {
           "q": "Quelle affirmation concernant la charge du Dash II est VRAIE ?",
@@ -1116,11 +1152,11 @@ window.PORTAL_I18N.fr = {
           "title": "Caractéristiques clés",
           "points": [
             "<strong>Déclenchement à l'inspiration</strong> — il suffit d'inhaler (ou de maintenir le bouton enfoncé).",
-            "<strong>Trois tensions préréglées : 3.2 / 3.6 / 3.8V</strong>.",
-            "Mode préchauffage <strong>1.8V</strong> de 10 secondes.",
+            "<strong>Trois tensions préréglées : 3,2 / 3,6 / 3,8V</strong>.",
+            "Mode préchauffage <strong>1,8V</strong> de 10 secondes.",
             "Batterie <strong>400mAh</strong> avec charge <strong>USB-C pass-through (utilisable pendant la charge)</strong>.",
             "<strong>Écran</strong> numérique.",
-            "Dimensions : <strong>24 × 21.1 × 56.7 mm</strong>."
+            "Dimensions : <strong>24 × 21,1 × 56,7 mm</strong>."
           ]
         },
         {
@@ -1128,8 +1164,8 @@ window.PORTAL_I18N.fr = {
           "points": [
             "<strong>Chargement :</strong> vissez une cartouche 510.",
             "<strong>Allumage/extinction :</strong> cliquez <strong>5×</strong> sur le bouton.",
-            "<strong>Réglage de la tension :</strong> cliquez <strong>3×</strong> pour faire défiler 3.2 / 3.6 / 3.8V.",
-            "<strong>Préchauffage :</strong> cliquez <strong>2×</strong> pour un préchauffage de 10 secondes à 1.8V.",
+            "<strong>Réglage de la tension :</strong> cliquez <strong>3×</strong> pour faire défiler 3,2 / 3,6 / 3,8V.",
+            "<strong>Préchauffage :</strong> cliquez <strong>2×</strong> pour un préchauffage de 10 secondes à 1,8V.",
             "<strong>Inhalation :</strong> <strong>inspirez</strong> simplement (déclenchement à l'inspiration) — ou maintenez le bouton enfoncé.",
             "Arrêt automatique après <strong>10 minutes</strong> d'inactivité."
           ]
@@ -1166,12 +1202,12 @@ window.PORTAL_I18N.fr = {
         {
           "q": "Quelles sont les trois tensions préréglées ?",
           "choices": [
-            "2.4 / 3.0 / 3.6V",
-            "3.2 / 3.6 / 3.8V",
-            "1.8 / 2.4 / 3.0V",
-            "3.8 / 4.2 / 4.8V"
+            "2,4 / 3,0 / 3,6V",
+            "3,2 / 3,6 / 3,8V",
+            "1,8 / 2,4 / 3,0V",
+            "3,8 / 4,2 / 4,8V"
           ],
-          "why": "Il propose trois tensions préréglées : 3.2, 3.6 et 3.8V."
+          "why": "Il propose trois tensions préréglées : 3.2, 3.6 et 3,8V."
         },
         {
           "q": "Quelle est la capacité de la batterie du 510 Original ?",
@@ -1179,7 +1215,7 @@ window.PORTAL_I18N.fr = {
             "150mAh",
             "400mAh",
             "900mAh",
-            "1,100mAh"
+            "1 100mAh"
           ],
           "why": "Il est équipé d'une batterie 400mAh avec charge pass-through (utilisable pendant la charge) en USB-C."
         },
@@ -1201,17 +1237,17 @@ window.PORTAL_I18N.fr = {
             "Maintenez le bouton enfoncé",
             "Vissez la cartouche plus fort"
           ],
-          "why": "Cliquez 3× sur le bouton pour faire défiler 3.2 / 3.6 / 3.8V."
+          "why": "Cliquez 3× sur le bouton pour faire défiler 3,2 / 3,6 / 3,8V."
         },
         {
           "q": "Que fait un double clic (2×) ?",
           "choices": [
             "Il l'éteint",
-            "Il lance un préchauffage de 10 secondes à 1.8V",
+            "Il lance un préchauffage de 10 secondes à 1,8V",
             "Il verrouille la batterie",
             "Rien"
           ],
-          "why": "Cliquer 2× lance un préchauffage de 10 secondes à 1.8V."
+          "why": "Cliquer 2× lance un préchauffage de 10 secondes à 1,8V."
         },
         {
           "q": "Au bout de combien de temps le 510 Original s'éteint-il automatiquement ?",
@@ -1259,12 +1295,12 @@ window.PORTAL_I18N.fr = {
         {
           "title": "Caractéristiques clés",
           "points": [
-            "<strong>5 réglages de chauffe</strong> de <strong>2.4V à 3.8V</strong>.",
-            "Mode préchauffage de 10 secondes à <strong>1.8V</strong>.",
+            "<strong>5 réglages de chauffe</strong> de <strong>2,4V à 3,8V</strong>.",
+            "Mode préchauffage de 10 secondes à <strong>1,8V</strong>.",
             "Batterie rechargeable <strong>400mAh</strong>, charge <strong>USB-C</strong>.",
             "<strong>Écran LED</strong> lumineux.",
             "Compatible avec les <strong>cartouches 510 jusqu'à 2g</strong>.",
-            "Dimensions : <strong>90 × 37.5 × 18.5 mm</strong>."
+            "Dimensions : <strong>90 × 37,5 × 18,5 mm</strong>."
           ]
         },
         {
@@ -1273,7 +1309,7 @@ window.PORTAL_I18N.fr = {
             "<strong>Chargement :</strong> retirez l'embout buccal, vissez une cartouche 510, puis remettez l'embout buccal en place.",
             "<strong>Allumage/extinction :</strong> cliquez <strong>5×</strong> sur le bouton.",
             "<strong>Réglage du voltage :</strong> cliquez <strong>3×</strong> pour faire défiler les réglages de chauffe.",
-            "<strong>Préchauffage :</strong> cliquez <strong>2×</strong> pour un préchauffage de 10 secondes à 1.8V.",
+            "<strong>Préchauffage :</strong> cliquez <strong>2×</strong> pour un préchauffage de 10 secondes à 1,8V.",
             "<strong>Inhalation :</strong> <strong>maintenez</strong> le bouton enfoncé pour activer et inspirez.",
             "Arrêt automatique après <strong>2 minutes</strong> d'inactivité."
           ]
@@ -1310,12 +1346,12 @@ window.PORTAL_I18N.fr = {
         {
           "q": "Quelle est la plage de voltage du Hydout ?",
           "choices": [
-            "1.0V–2.0V",
-            "2.4V–3.8V (5 réglages)",
-            "3.8V–4.8V",
+            "1,0V–2,0V",
+            "2,4V–3,8V (5 réglages)",
+            "3,8V–4,8V",
             "Un seul voltage fixe"
           ],
-          "why": "Le Hydout propose 5 réglages de chauffe de 2.4V à 3.8V."
+          "why": "Le Hydout propose 5 réglages de chauffe de 2,4V à 3,8V."
         },
         {
           "q": "Quelle est la capacité de la batterie du Hydout ?",
@@ -1323,7 +1359,7 @@ window.PORTAL_I18N.fr = {
             "200mAh",
             "400mAh",
             "900mAh",
-            "1,800mAh"
+            "1 800mAh"
           ],
           "why": "Il dispose d'une batterie rechargeable de 400mAh."
         },
@@ -1361,11 +1397,11 @@ window.PORTAL_I18N.fr = {
           "q": "Que fait un double clic (2×) sur le bouton ?",
           "choices": [
             "L'éteint",
-            "Lance un préchauffage de 10 secondes à 1.8V",
+            "Lance un préchauffage de 10 secondes à 1,8V",
             "Le verrouille",
             "Rien"
           ],
-          "why": "Cliquer 2× lance un préchauffage de 10 secondes à 1.8V."
+          "why": "Cliquer 2× lance un préchauffage de 10 secondes à 1,8V."
         },
         {
           "q": "Au bout de combien de temps le Hydout s'éteint-il automatiquement ?",
@@ -1403,12 +1439,12 @@ window.PORTAL_I18N.fr = {
         {
           "title": "Caractéristiques clés",
           "points": [
-            "<strong>5 réglages de chauffe</strong> de <strong>2.4V à 3.8V</strong>.",
-            "Mode préchauffage de 10 secondes à <strong>1.8V</strong>.",
+            "<strong>5 réglages de chauffe</strong> de <strong>2,4V à 3,8V</strong>.",
+            "Mode préchauffage de 10 secondes à <strong>1,8V</strong>.",
             "Batterie rechargeable <strong>400mAh</strong>, charge <strong>USB-C</strong>.",
             "<strong>Écran LED</strong> lumineux.",
             "Compatible avec les <strong>cartouches 510 jusqu'à 2g</strong>.",
-            "Dimensions : <strong>90 × 37.5 × 18.5 mm</strong>."
+            "Dimensions : <strong>90 × 37,5 × 18,5 mm</strong>."
           ]
         },
         {
@@ -1417,7 +1453,7 @@ window.PORTAL_I18N.fr = {
             "<strong>Chargement :</strong> retirez l'embout buccal, vissez une cartouche 510, puis remettez l'embout buccal en place.",
             "<strong>Allumage/extinction :</strong> cliquez <strong>5×</strong> sur le bouton.",
             "<strong>Réglage du voltage :</strong> cliquez <strong>3×</strong> pour faire défiler les réglages de chauffe.",
-            "<strong>Préchauffage :</strong> cliquez <strong>2×</strong> pour un préchauffage de 10 secondes à 1.8V.",
+            "<strong>Préchauffage :</strong> cliquez <strong>2×</strong> pour un préchauffage de 10 secondes à 1,8V.",
             "<strong>Inhalation :</strong> <strong>maintenez</strong> le bouton enfoncé pour activer et inhalez.",
             "Arrêt automatique après <strong>2 minutes</strong> d'inactivité."
           ]
@@ -1454,12 +1490,12 @@ window.PORTAL_I18N.fr = {
         {
           "q": "Quelle est la plage de voltage du Hydout ?",
           "choices": [
-            "1.0V–2.0V",
-            "2.4V–3.8V (5 réglages)",
-            "3.8V–4.8V",
+            "1,0V–2,0V",
+            "2,4V–3,8V (5 réglages)",
+            "3,8V–4,8V",
             "Un seul voltage fixe"
           ],
-          "why": "Le Hydout propose 5 réglages de chauffe de 2.4V à 3.8V."
+          "why": "Le Hydout propose 5 réglages de chauffe de 2,4V à 3,8V."
         },
         {
           "q": "Quelle est la capacité de la batterie du Hydout ?",
@@ -1467,7 +1503,7 @@ window.PORTAL_I18N.fr = {
             "200mAh",
             "400mAh",
             "900mAh",
-            "1,800mAh"
+            "1 800mAh"
           ],
           "why": "Il dispose d'une batterie rechargeable de 400mAh."
         },
@@ -1505,11 +1541,11 @@ window.PORTAL_I18N.fr = {
           "q": "Que fait un double clic (2×) sur le bouton ?",
           "choices": [
             "L'éteint",
-            "Lance un préchauffage de 10 secondes à 1.8V",
+            "Lance un préchauffage de 10 secondes à 1,8V",
             "Le verrouille",
             "Rien"
           ],
-          "why": "Cliquer 2× lance un préchauffage de 10 secondes à 1.8V."
+          "why": "Cliquer 2× lance un préchauffage de 10 secondes à 1,8V."
         },
         {
           "q": "Au bout de combien de temps le Hydout s'éteint-il automatiquement ?",
@@ -1548,11 +1584,11 @@ window.PORTAL_I18N.fr = {
           "title": "Caractéristiques clés",
           "points": [
             "<strong>Déclenchement à l'inspiration</strong> — il suffit d'inhaler (ou de maintenir le bouton).",
-            "<strong>Trois tensions préréglées : 3.2 / 3.6 / 3.8V</strong>.",
-            "Mode préchauffage de 10 secondes à <strong>1.8V</strong>.",
+            "<strong>Trois tensions préréglées : 3,2 / 3,6 / 3,8V</strong>.",
+            "Mode préchauffage de 10 secondes à <strong>1,8V</strong>.",
             "Batterie <strong>400mAh</strong> avec charge <strong>USB-C pass-through (utilisable pendant la charge)</strong>.",
             "<strong>Écran</strong> numérique.",
-            "Dimensions : <strong>24 × 21.1 × 56.7 mm</strong>."
+            "Dimensions : <strong>24 × 21,1 × 56,7 mm</strong>."
           ]
         },
         {
@@ -1560,8 +1596,8 @@ window.PORTAL_I18N.fr = {
           "points": [
             "<strong>Chargement :</strong> vissez une cartouche 510.",
             "<strong>Allumage/extinction :</strong> cliquez <strong>5×</strong> sur le bouton.",
-            "<strong>Réglage de la tension :</strong> cliquez <strong>3×</strong> pour faire défiler 3.2 / 3.6 / 3.8V.",
-            "<strong>Préchauffage :</strong> cliquez <strong>2×</strong> pour un préchauffage de 10 secondes à 1.8V.",
+            "<strong>Réglage de la tension :</strong> cliquez <strong>3×</strong> pour faire défiler 3,2 / 3,6 / 3,8V.",
+            "<strong>Préchauffage :</strong> cliquez <strong>2×</strong> pour un préchauffage de 10 secondes à 1,8V.",
             "<strong>Inhalation :</strong> il suffit d'<strong>inspirer</strong> (déclenchement à l'inspiration) — ou de maintenir le bouton.",
             "Arrêt automatique après <strong>10 minutes</strong> d'inactivité."
           ]
@@ -1598,12 +1634,12 @@ window.PORTAL_I18N.fr = {
         {
           "q": "Quelles sont les trois tensions préréglées ?",
           "choices": [
-            "2.4 / 3.0 / 3.6V",
-            "3.2 / 3.6 / 3.8V",
-            "1.8 / 2.4 / 3.0V",
-            "3.8 / 4.2 / 4.8V"
+            "2,4 / 3,0 / 3,6V",
+            "3,2 / 3,6 / 3,8V",
+            "1,8 / 2,4 / 3,0V",
+            "3,8 / 4,2 / 4,8V"
           ],
-          "why": "Elle propose trois tensions préréglées : 3.2, 3.6 et 3.8V."
+          "why": "Elle propose trois tensions préréglées : 3.2, 3.6 et 3,8V."
         },
         {
           "q": "Quelle est la capacité de la batterie de la 510 Original ?",
@@ -1611,7 +1647,7 @@ window.PORTAL_I18N.fr = {
             "150mAh",
             "400mAh",
             "900mAh",
-            "1,100mAh"
+            "1 100mAh"
           ],
           "why": "Elle est équipée d'une batterie 400mAh avec charge USB-C pass-through (utilisable pendant la charge)."
         },
@@ -1633,17 +1669,17 @@ window.PORTAL_I18N.fr = {
             "Maintenez le bouton",
             "Vissez la cartouche plus fort"
           ],
-          "why": "Cliquez 3× sur le bouton pour faire défiler 3.2 / 3.6 / 3.8V."
+          "why": "Cliquez 3× sur le bouton pour faire défiler 3,2 / 3,6 / 3,8V."
         },
         {
           "q": "Que fait un double clic (2×) ?",
           "choices": [
             "Elle s'éteint",
-            "Lance un préchauffage de 10 secondes à 1.8V",
+            "Lance un préchauffage de 10 secondes à 1,8V",
             "Verrouille la batterie",
             "Rien"
           ],
-          "why": "Cliquer 2× lance un préchauffage de 10 secondes à 1.8V."
+          "why": "Cliquer 2× lance un préchauffage de 10 secondes à 1,8V."
         },
         {
           "q": "Au bout de combien de temps la 510 Original s'éteint-elle automatiquement ?",
@@ -1686,10 +1722,10 @@ window.PORTAL_I18N.fr = {
           "Montée en température en 5 secondes",
           "Mode Session (20 s) + Chauffe Manuelle (jusqu'à 25 s)",
           "Flux d'air réglable : d'ouvert à restreint",
-          "Atomiseur céramique de 0.8Ω",
+          "Atomiseur céramique de 0,8Ω",
           "Écran numérique : température, état de chauffe et batterie",
           "Vibration à l'atteinte de la température",
-          "Batterie de 1,250mAh : jusqu'à 120 sessions par charge",
+          "Batterie de 1 250mAh : jusqu'à 120 sessions par charge",
           "Charge rapide USB-C : en moins de 60 minutes",
           "Charge pass-through (utilisable pendant la charge)",
           "Arrêt automatique au bout de 10 minutes",
@@ -1699,8 +1735,8 @@ window.PORTAL_I18N.fr = {
         ],
         "fullDescription": [
           "Le G Pen Micro II réinvente l'emblématique vaporisateur à concentrés Micro avec plus de puissance, de précision et de contrôle, dans un format compact qui tient dans la poche.",
-          "Animé par une batterie rechargeable de 1,250mAh, le Micro II offre jusqu'à 120 sessions par charge, avec une charge rapide USB-C en moins de 60 minutes. Trois niveaux de température optimisés — LOW à environ 295°F, MEDIUM à 340°F et HIGH à 395°F — vous permettent d'ajuster votre session pour une saveur douce, des performances équilibrées ou une production de vapeur plus dense.",
-          "Un atomiseur céramique de 0.8Ω haut de gamme assure des performances constantes avec les concentrés, tandis que le flux d'air réglable vous donne encore plus de contrôle sur chaque bouffée. Choisissez entre le Mode Session de 20 secondes, à chauffe automatique, ou la Chauffe Manuelle, avec jusqu'à 25 secondes de contrôle direct.",
+          "Animé par une batterie rechargeable de 1 250mAh, le Micro II offre jusqu'à 120 sessions par charge, avec une charge rapide USB-C en moins de 60 minutes. Trois niveaux de température optimisés — LOW à environ 295°F, MEDIUM à 340°F et HIGH à 395°F — vous permettent d'ajuster votre session pour une saveur douce, des performances équilibrées ou une production de vapeur plus dense.",
+          "Un atomiseur céramique de 0,8Ω haut de gamme assure des performances constantes avec les concentrés, tandis que le flux d'air réglable vous donne encore plus de contrôle sur chaque bouffée. Choisissez entre le Mode Session de 20 secondes, à chauffe automatique, ou la Chauffe Manuelle, avec jusqu'à 25 secondes de contrôle direct.",
           "L'écran numérique intégré garde la batterie, la température et l'état de chauffe visibles d'un coup d'œil, tandis que la vibration vous signale que le Micro II a atteint sa température. Un corps robuste en aluminium anodisé, une utilisation à un seul bouton, la charge pass-through et l'arrêt automatique au bout de 10 minutes rendent l'usage quotidien très simple.",
           "Utilisez l'embout en silicone inclus pour une configuration compacte, ou enrichissez l'expérience avec le G Pen Micro II Sidecar et l'adaptateur pour rig de 14 mm, disponibles séparément, pour des sessions filtrées à l'eau chez vous comme en déplacement.",
           "Plus de dix ans après que le microG original a contribué à définir la vaporisation portable de concentrés, le Micro II fait entrer l'expérience Micro dans une nouvelle génération, le tout pour $49.95."
@@ -1717,7 +1753,7 @@ window.PORTAL_I18N.fr = {
         "specs": [
           [
             "Batterie",
-            "1,250mAh rechargeable"
+            "1 250mAh rechargeable"
           ],
           [
             "Charge",
@@ -1761,7 +1797,7 @@ window.PORTAL_I18N.fr = {
           ],
           [
             "Atomiseur",
-            "Céramique de 0.8Ω"
+            "Céramique de 0,8Ω"
           ],
           [
             "Flux d'air",
@@ -1789,7 +1825,7 @@ window.PORTAL_I18N.fr = {
           ],
           [
             "Dimensions de l'appareil",
-            "98.6 × 24 × 32 mm"
+            "98,6 × 24 × 32 mm"
           ],
           [
             "Poids de l'appareil",

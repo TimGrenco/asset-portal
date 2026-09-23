@@ -305,14 +305,32 @@ function grayThumb(src, out, e) {
 const tok = await getToken();
 const synced = {};
 
+// The last published data, so a product whose sync FAILS keeps what it had
+// instead of dropping out of the portal (and so one revoked link can't stop
+// the other 18 products updating).
+let previous = {};
+try {
+  const src = readFileSync("assets/data/synced.js", "utf8");
+  previous = JSON.parse(src.slice(src.indexOf("=") + 1).trim().replace(/;\s*$/, ""));
+} catch { previous = {}; }
+const skipped = [];
+
 for (const p of PRODUCTS) {
+ try {
   const dir = join("assets", "synced", p.slug);
   mkdirSync(dir, { recursive: true });
   const keep = new Set();   // thumbnail filenames referenced this run (for pruning)
   const tmp = join(dir, "_tmp");
 
   const top = await listFolder(tok, p.link, "");
-  const subs = top.filter((e) => e[".tag"] === "folder").map((e) => e.name);
+  // A `flat` product (Logos, POP Displays, Catalogs) is ONE bucket of the files
+  // at its root. Treating a stray subfolder ("Archive 2025") as the product's
+  // folder list would hide every root file — all 8 catalogs — and prune their
+  // committed PDFs. Ignore subfolders there instead.
+  const subs = p.flat ? [] : top.filter((e) => e[".tag"] === "folder").map((e) => e.name);
+  if (p.flat && top.some((e) => e[".tag"] === "folder")) {
+    console.error(`  ! ${p.name}: ignoring subfolder(s) in a flat folder — only root files are synced`);
+  }
   // Dropbox id per top-level subfolder — used to mint a per-folder shared link so
   // "Download folder" pulls that whole folder as a .zip (not just the first file).
   const folderId = {};
@@ -484,12 +502,28 @@ for (const p of PRODUCTS) {
 
   writeFileSync(linkCacheFile, JSON.stringify(linkCache));
 
-  synced[p.name] = { folders, dropbox: dlLink(p.link), folderLinks };
+  // Newest file date in the product, so the portal's "updated …" line tracks
+  // Dropbox instead of a hand-set date that never moves.
+  const newest = folderSpecs.flatMap((sp) => sp.files).map((f) => f.server_modified || "").sort().pop() || "";
+  synced[p.name] = { folders, dropbox: dlLink(p.link), folderLinks, ...(newest ? { updated: newest.slice(0, 10) } : {}) };
   const total = Object.values(folders).reduce((n, a) => n + a.length, 0);
   const withThumb = Object.values(folders).reduce((n, a) => n + a.filter((x) => x.thumb).length, 0);
   const withLink = Object.values(folders).reduce((n, a) => n + a.filter((x) => /scl\/fi\//.test(x.url)).length, 0);
   console.log(`${p.name}: ${folderSpecs.length} folders, ${total} files, ${withThumb} thumbnails, ${withLink} per-file links`);
+ } catch (e) {
+  // Nothing was pruned for this product (pruning runs only after a full walk),
+  // so its committed thumbnails still match the data carried forward here.
+  console.error(`::error::${p.name} skipped — ${e.message}`);
+  if (previous[p.name]) synced[p.name] = previous[p.name];
+  skipped.push(p.name);
+ }
 }
 
 writeFileSync("assets/data/synced.js", "window.PORTAL_SYNCED = " + JSON.stringify(synced, null, 2) + ";\n");
 console.log("Wrote assets/data/synced.js");
+// Publish what did sync, then let the workflow fail AFTER committing so a broken
+// link still surfaces as a red run (and an email) instead of silently aging.
+if (skipped.length) {
+  console.error(`\n! ${skipped.length} product(s) kept their previous data: ${skipped.join(", ")}`);
+  if (process.env.RUNNER_TEMP) writeFileSync(join(process.env.RUNNER_TEMP, "sync-skipped.txt"), skipped.join("\n") + "\n");
+}

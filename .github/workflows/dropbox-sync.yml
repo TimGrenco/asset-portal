@@ -90,9 +90,15 @@ jobs:
         run: |
           git config user.name "dropbox-sync[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # Bump the synced.js cache token so GitHub Pages serves the fresh file.
-          node -e "const fs=require('fs');let h=fs.readFileSync('index.html','utf8');h=h.replace(/synced\.js\?v=[0-9a-z]+/,'synced.js?v='+Date.now());fs.writeFileSync('index.html',h)"
+          # Bump the synced.js cache token so GitHub Pages serves the fresh file —
+          # but only when Dropbox actually changed something. Bumping first made
+          # every run a "change": an hourly commit + full deploy, and every
+          # returning visitor re-downloading the 1.2 MB synced.js for nothing.
           git add -A
+          if ! git diff --cached --quiet; then
+            node -e "const fs=require('fs');let h=fs.readFileSync('index.html','utf8');h=h.replace(/synced\.js\?v=[0-9a-z]+/,'synced.js?v='+Date.now());fs.writeFileSync('index.html',h)"
+            git add -A
+          fi
           if git diff --cached --quiet; then
             echo "No changes from Dropbox."
           else
@@ -106,4 +112,17 @@ jobs:
               git pull --rebase --autostash origin main || true
               sleep 5
             done
+          fi
+
+      # A product whose Dropbox link failed kept its previous data (see the sync
+      # log) so the rest could publish. Fail here, after the commit, so it still
+      # shows as a red run instead of silently going stale.
+      - name: Fail if a product was skipped
+        if: always()
+        run: |
+          f="$RUNNER_TEMP/sync-skipped.txt"
+          if [ -s "$f" ]; then
+            echo "::error::These products kept their previous data because their Dropbox link failed:"
+            cat "$f"
+            exit 1
           fi
