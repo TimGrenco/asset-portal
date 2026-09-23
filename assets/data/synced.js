@@ -2150,6 +2150,14 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "Peck NY Micro II",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/4mo7hm7scuqgcyo6n66cq/Peck-NY-Micro-II.mp4?rlkey=qf7h3e74xcwh8lvhxbtxsur9p&dl=0",
+          "thumb": "assets/synced/micro-ii/78561b9b1e218897397fe2c31de5ba1dbba96b2a73a850c34845d492c9006a19.jpg",
+          "file": null
+        },
+        {
           "name": "Reels How to Clean G Pen Micro II Rig Adapter",
           "type": "video",
           "format": "MP4",
