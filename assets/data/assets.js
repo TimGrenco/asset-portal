@@ -1041,6 +1041,11 @@ window.PORTAL_COLORWAYS = {
 window.PORTAL_CATALOG_GROUPS = ["Regional Catalogs", "B2B Resources"];
 window.PORTAL_CATALOG_META = {
   "G Pen Catalog - 2026 - US":           { title: "G Pen 2026 Catalog",    region: "US",  group: "Regional Catalogs", order: 1 },
+  // The 2026-09-23 re-upload named the US edition without its "- US" suffix (the
+  // same convention Dispensary Essentials already uses). Unmapped, it fell out of
+  // the regional card — leaving the 2026 Catalog with no US option — and landed
+  // as a stray "Brand Documents" card. Both spellings map, so either name works.
+  "G Pen Catalog - 2026":                { title: "G Pen 2026 Catalog",    region: "US",  group: "Regional Catalogs", order: 1 },
   "G Pen Catalog - 2026 - UK":           { title: "G Pen 2026 Catalog",    region: "UK",  group: "Regional Catalogs", order: 2 },
   "G Pen Catalog - 2026 - EU":           { title: "G Pen 2026 Catalog",    region: "EU",  group: "Regional Catalogs", order: 3 },
   "G Pen Catalog - 2026 - CAD":          { title: "G Pen 2026 Catalog",    region: "CAD", group: "Regional Catalogs", order: 4 },
