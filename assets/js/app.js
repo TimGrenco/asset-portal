@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260923a";   // bump with the other asset tokens
+  var LANG_VER = "20260923b";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -948,7 +948,7 @@
   function openStyleGuide(bk) {
     var b = BRANDS[bk];
     if (!b) { renderHome(); return; }
-    $("#home").style.display = "none";
+    $("#home").style.display = "none"; siteH1(false);
     $("#detail").style.display = "none";
     var sgBrowse = $("#browse"); if (sgBrowse) sgBrowse.style.display = "none";
     var sgHero = $("#hero"); if (sgHero) sgHero.style.display = "none";
@@ -962,7 +962,7 @@
       '<button class="back" id="sg-back">' + icon("arrowLeft") + " " + tr("Back to library") + "</button>" +
       '<div class="sg-hero">' +
         '<div class="sg-word">' + b.wordmark + "</div>" +
-        "<h2>" + tr("Brand &amp; Style Guide") + "</h2>" +
+        "<h1>" + tr("Brand &amp; Style Guide") + "</h1>" +
         '<p class="sg-note">' + icon("info") + "<span>Placeholder guide — the official " + b.name + " brand guide will replace this. Colors, type, and logos below reflect current brand usage.</span></p>" +
         '<div class="sg-actions">' +
           '<button class="btn" data-view-brand="' + bk + '">' + icon("stack") + " " + tr("View {brand} assets").replace("{brand}", b.name) + "</button>" +
@@ -1095,7 +1095,7 @@
     $("#materials-page").style.display = "none";
     $("#locator-page").style.display = "none";
     var trHome = $("#training-page"); if (trHome) trHome.style.display = "none";
-    $("#home").style.display = "block";
+    $("#home").style.display = "block"; siteH1(true);
     if (!noAnim) animateIn($("#home"));
     setTitle("");
     var browse = $("#browse"); if (browse) browse.style.display = "";
@@ -1612,7 +1612,7 @@
   // Dedicated page listing a brand's legacy products.
   function openAdditional(bk) {
     if (!BRANDS[bk]) { renderHome(); return; }
-    $("#home").style.display = "none";
+    $("#home").style.display = "none"; siteH1(false);
     $("#detail").style.display = "none";
     $("#styleguide").style.display = "none";
     var hero = $("#hero"); if (hero) hero.style.display = "none";
@@ -1624,7 +1624,7 @@
     var legacy = legacyProducts(bk).slice().sort(function (a, b) { return a.name.localeCompare(b.name); });
     ad.innerHTML =
       '<button class="back" id="add-back">' + icon("arrowLeft") + " " + tr("Back to library") + "</button>" +
-      '<div class="section-head"><h2>' + tr("Additional " + BRANDS[bk].name + " Products") + '</h2><span class="badge">' + legacy.length + " " + tr(legacy.length === 1 ? "product" : "products") + "</span></div>" +
+      '<div class="section-head"><h1>' + tr("Additional " + BRANDS[bk].name + " Products") + '</h1><span class="badge">' + legacy.length + " " + tr(legacy.length === 1 ? "product" : "products") + "</span></div>" +
       '<p class="additional-note">Products we no longer sell — assets kept here for partners who still need them.</p>' +
       '<div class="grid">' + legacy.map(function (p) { return cardHTML(p, "grid"); }).join("") + "</div>";
     $("#add-back").addEventListener("click", navHome);
@@ -1662,7 +1662,7 @@
     return out;
   }
   function openMaterials() {
-    $("#home").style.display = "none";
+    $("#home").style.display = "none"; siteH1(false);
     $("#detail").style.display = "none";
     $("#styleguide").style.display = "none";
     $("#additional").style.display = "none";
@@ -1676,7 +1676,7 @@
 
     var mats = availableMaterials();
     var head = '<button class="back" id="mat-back">' + icon("arrowLeft") + " " + tr("Back to library") + "</button>" +
-      '<div class="section-head"><h2>' + tr("In-Store Marketing Materials") + '</h2>' +
+      '<div class="section-head"><h1>' + tr("In-Store Marketing Materials") + '</h1>' +
         (mats.length ? '<span class="badge">' + mats.length + " " + tr("available") + "</span>" : "") + "</div>";
 
     if (!mats.length) {
@@ -1818,7 +1818,7 @@
   function fullProductName(p) { return p.name.indexOf(BRANDS[p.brand].name) === 0 ? p.name : BRANDS[p.brand].name + " " + p.name; }
 
   function openTraining(p) {
-    $("#home").style.display = "none";
+    $("#home").style.display = "none"; siteH1(false);
     $("#detail").style.display = "none";
     $("#styleguide").style.display = "none";
     $("#additional").style.display = "none";
@@ -1849,7 +1849,7 @@
         '<div class="trn-badge">' + icon("graduation") + "</div>" +
         '<div class="trn-hero-txt">' +
           '<div class="trn-eyebrow">' + tr("Product Specialist Training") + (cert ? " · <span class=\"trn-done\">" + icon("check") + " " + tr("Certified") + "</span>" : "") + "</div>" +
-          "<h2>" + name + "</h2>" +
+          "<h1>" + name + "</h1>" +
           "<p>" + t.tagline + "</p>" +
           '<div class="trn-meta">' + icon("eye") + " " + (
             // Not every product with a course ships a how-to video (a grinder
@@ -2118,7 +2118,7 @@
       "</div>";
   }
   function openLocator() {
-    $("#home").style.display = "none";
+    $("#home").style.display = "none"; siteH1(false);
     $("#detail").style.display = "none";
     $("#styleguide").style.display = "none";
     $("#additional").style.display = "none";
@@ -2133,7 +2133,7 @@
 
     pg.innerHTML =
       '<button class="back" id="loc-back">' + icon("arrowLeft") + " " + tr("Back to library") + "</button>" +
-      '<div class="section-head"><h2>' + tr("Store Locator Request") + '</h2></div>' +
+      '<div class="section-head"><h1>' + tr("Store Locator Request") + '</h1></div>' +
       '<p class="mat-lead">' + icon("info") + "<span>" + tr("Add each store you'd like listed on our official locator, then send your request. Have more than one location? Use <strong>Add another store</strong> to include them all.") + "</span>" +
       "</p>" +
       '<div class="mat-layout">' +
@@ -2238,7 +2238,7 @@
 
   // ---- rendering: detail ---------------------------------------------------
   function openDetail(p, initialFolder) {
-    $("#home").style.display = "none";
+    $("#home").style.display = "none"; siteH1(false);
     $("#styleguide").style.display = "none";
     var dBrowse = $("#browse"); if (dBrowse) dBrowse.style.display = "none";
     var dHero = $("#hero"); if (dHero) dHero.style.display = "none";
@@ -2331,7 +2331,7 @@
           '<div class="detail-cover-lg' + (p.cover ? " clickable" : "") + '"' + (p.cover ? ' id="hero-cover"' : "") + ">" + coverHTML(p) + "</div>" +
           '<div class="detail-info">' +
             '<div class="detail-eyebrow">' + typeLine + "</div>" +
-            "<h2>" + fullName + "</h2>" +
+            "<h1>" + fullName + "</h1>" +
             '<div class="detail-stat">' + stat + "</div>" +
             (infoOf(p).description ? '<p class="detail-desc">' + infoOf(p).description + "</p>" : "") +
             '<div class="detail-actions">' +
@@ -3389,6 +3389,11 @@
     el.classList.add("page-anim");
   }
   var DEFAULT_TITLE = "G Pen Brand Assets Portal";
+  // One <h1> per view. The shell's screen-reader-only site name is the home page's
+  // heading; every other view renders its own title as <h1> (product name, course
+  // name, page name), so the site name steps aside there instead of leaving two
+  // top-level headings — or, as before, a site-name <h1> over a product-name <h2>.
+  function siteH1(onHome) { var h = $("#site-h1"); if (h) h.hidden = !onHome; }
   function setTitle(t) { document.title = t ? t + " — G Pen Brand Assets Portal" : DEFAULT_TITLE; }
 
   document.addEventListener("DOMContentLoaded", init);
