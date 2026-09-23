@@ -916,7 +916,8 @@ window.PORTAL_SYNCED = {
       "Packaging": "https://www.dropbox.com/scl/fo/j4l4996uts9ut6ex1bsvt/APEJJJdU-oGFf_TU0Bkn-H4?rlkey=gwbc64fzubwwt5cr0yx9ge7e0&dl=1",
       "Documents": "https://www.dropbox.com/scl/fo/vt7c8gwxyw3p8t2cr51tb/AP1rJU_rRyf43cXm12n_88g?rlkey=8eraicte8138ha2pkbeu780yx&dl=1",
       "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/3rc18jy9dpk2vdzwm0vzd/AJ-eyktmRpU3jcZaN3d8KY8?rlkey=ldbjknlj2qyo8danjifpabcmx&dl=1"
-    }
+    },
+    "updated": "2026-08-26"
   },
   "Micro II": {
     "folders": {
@@ -2376,7 +2377,8 @@ window.PORTAL_SYNCED = {
       "Packaging": "https://www.dropbox.com/scl/fo/90lgonbxj7kjcxk1im3qx/AAffdm5A9PYCiG_-ASUssP4?rlkey=f6jcrqo5feghryxdzxy1uu74y&dl=1",
       "Documents": "https://www.dropbox.com/scl/fo/hbm79asz0sz5voe6e9nsi/AFYenSbkUK4Rat7-wFI0T9c?rlkey=ozc1dplsp1bdcam3mvz9m9d0l&dl=1",
       "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/wpkywovfwqzht61fi3iy7/AD1h_pWNcg3PtII1wxhJnGo?rlkey=x5ilflreeyywtx9y7uh47i95e&dl=1"
-    }
+    },
+    "updated": "2026-09-22"
   },
   "Slim 3-Piece Grinder": {
     "folders": {
@@ -2721,7 +2723,8 @@ window.PORTAL_SYNCED = {
       "TV Screen Videos": "https://www.dropbox.com/scl/fo/zvzbkibqd2aosrqh4tuks/AIYbRk9vrspXYWZcA2fv-MA?rlkey=zqpbl2p0wslq04x0aix2mvdo2&dl=1",
       "Packaging": "https://www.dropbox.com/scl/fo/fxe11gkyjj90fs6k7u4pn/AA_u1kITmQyvG2jso3wRIPc?rlkey=hyv0pfcuzdl7w8bym69lgpdit&dl=1",
       "Documents": "https://www.dropbox.com/scl/fo/xa8fpu6byuxbn6bfz5dtf/ABlSIjG-tdSnIw04E6zD4bU?rlkey=ujcruu80zly1ehfhkcb6trrg1&dl=1"
-    }
+    },
+    "updated": "2026-09-22"
   },
   "510 Original": {
     "folders": {
@@ -3336,7 +3339,8 @@ window.PORTAL_SYNCED = {
       "Packaging": "https://www.dropbox.com/scl/fo/o8o1mmk7nr029a66z3sad/AE0gg5cFF3rJFkpNvXnHH70?rlkey=rt245v76qjnezw5ev0i8aex9t&dl=1",
       "Documents": "https://www.dropbox.com/scl/fo/o3atp3bw7zziy848vrxz3/ANZwAjN6-94KYmjH0ZDfO2Y?rlkey=4y1jny03913bgymoawt6obgoa&dl=1",
       "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/x329gmo76oo3jq87y6r9k/AI9oiFVm9G475ETKxDf3b6c?rlkey=9dvno9yxhbzafrmldxdnagh2e&dl=1"
-    }
+    },
+    "updated": "2026-08-20"
   },
   "510 Original — Retro": {
     "folders": {
@@ -4916,7 +4920,8 @@ window.PORTAL_SYNCED = {
       "Packaging": "https://www.dropbox.com/scl/fo/3x0ivw8f46sg5rea2ur1n/AM0zF2GfFoWmVlMXaOEIQN0?rlkey=wb6x26ol6bpez32hzmralzxl0&dl=1",
       "Documents": "https://www.dropbox.com/scl/fo/9j1vn1j2rhpoaezdppsq0/AAwzQ8Z0aXMg1RrfvqWKdLM?rlkey=ia8knrnxm5osphfyh2hddw3bk&dl=1",
       "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/dnm010ew08nacj5o8rtdv/AMHk1ucb2uw651uWoO5l468?rlkey=l6hw918fkxsfgojj2dy1k6l5j&dl=1"
-    }
+    },
+    "updated": "2026-09-22"
   },
   "Dash+": {
     "folders": {
@@ -5811,7 +5816,8 @@ window.PORTAL_SYNCED = {
       "Packaging": "https://www.dropbox.com/scl/fo/e1ci8uad1eqkrtzlz24ib/AFfmiwFlTHe6KMykuwC2IbM?rlkey=ckhxvz6yp5vw5p5g05q1jeg09&dl=1",
       "Documents": "https://www.dropbox.com/scl/fo/e8f1pwhsmb4kglz4ikie3/ACinlb4iLIQ2cVHKqofKuZw?rlkey=g7ke7xpuzz3apbgdkfzts4xnw&dl=1",
       "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/p4ipqa1un5pexeb80tbdk/AOJcGN9Du8Sw_fK3ODVMYX8?rlkey=bey7o5p4faalwnfh2z3k1l4ki&dl=1"
-    }
+    },
+    "updated": "2026-08-26"
   },
   "Hydout": {
     "folders": {
@@ -6802,7 +6808,8 @@ window.PORTAL_SYNCED = {
       "Packaging": "https://www.dropbox.com/scl/fo/q71t1cdi882vijx2y6yl2/AN_q2Z7gviv3FZXBGPr2fWg?rlkey=8gecjmlgv76d33mnyfdaemk6f&dl=1",
       "Documents": "https://www.dropbox.com/scl/fo/aihjn42h0sicrlxfmgort/ACUA7vF5ICwgxGjJzM8C1bQ?rlkey=ric2rgozyhss6ybrkcr0y679b&dl=1",
       "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/exoxjg1o9c9ga7a00n2bs/APP-rGanWwPWI86XLGoPe5I?rlkey=zwz3xlmysbcawxiz2bcfvnvdi&dl=1"
-    }
+    },
+    "updated": "2026-08-26"
   },
   "Hydout — Retro": {
     "folders": {
@@ -8337,7 +8344,8 @@ window.PORTAL_SYNCED = {
       "Packaging": "https://www.dropbox.com/scl/fo/25wwnw5dw2nqc450h69f3/ADt6mYq_iObLo13Balr7b-8?rlkey=nkvworwgmk0kgb5k1wyyn9eup&dl=1",
       "Documents": "https://www.dropbox.com/scl/fo/w4jlorkg87a7b4ctpyuc4/AIjD0tyD39HVigyzoElkCvY?rlkey=1pwev1fqvz1d25lcjyxycjat6&dl=1",
       "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/js0iplvvoapl4ciauih9l/AIhGt4o5N4BAJhR0ppoiTSs?rlkey=wotyti3ickyxnxitk0al1kez5&dl=1"
-    }
+    },
+    "updated": "2026-08-26"
   },
   "Melt Hot Knife": {
     "folders": {
@@ -9136,7 +9144,8 @@ window.PORTAL_SYNCED = {
       "Packaging": "https://www.dropbox.com/scl/fo/3dixucbe75rggzfb67e23/AGg3BDqBDYQbQUf5JJDxbXk?rlkey=z3x745eumkrkhrcdk2jyl7xdl&dl=1",
       "Documents": "https://www.dropbox.com/scl/fo/nuubnhqd8d0eq0ne2vdrd/AAf562CAZcnMVr72B6NvyuE?rlkey=2wxclel98k6c3cxwuoqeiz8li&dl=1",
       "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/ba61fxdq8janqa07o4q2y/AC3law8SSuhKq58KyUsaeY4?rlkey=ptqh04v7y6osfcupkcahy63eu&dl=1"
-    }
+    },
+    "updated": "2026-08-20"
   },
   "Connect": {
     "folders": {
@@ -10375,7 +10384,8 @@ window.PORTAL_SYNCED = {
       "Lemonnade / 1-Sheet": "https://www.dropbox.com/scl/fo/ya5okk55nngghjia9danf/AGrFEbvYcLnIAXGPkFMbyDI?rlkey=0ccmmtmrytj19wu0el2durakn&dl=1",
       "Lemonnade / Video": "https://www.dropbox.com/scl/fo/nm8p8gw3r5hrjmu30awmv/AHvZIj2zkOoaFx2jyfrWDqc?rlkey=yr00jm2vome718thyglmeosfe&dl=1",
       "Lemonnade / Product Photos": "https://www.dropbox.com/scl/fo/ppvf6we2hiz4z5imqy01q/ANv3uUgpjj7euF0X7pqBXMM?rlkey=qxcgmrsiz20npk7ejwhmrs77o&dl=1"
-    }
+    },
+    "updated": "2026-06-30"
   },
   "Dash": {
     "folders": {
@@ -13690,7 +13700,8 @@ window.PORTAL_SYNCED = {
       "Tyson 2.0 / Photos": "https://www.dropbox.com/scl/fo/o5nrsu5je4cv69hd0l7jo/ALiDzo8aJUeap_QWBx84Jl8?rlkey=pitloz6tsvpe0gvaim75e07dr&dl=1",
       "Tyson 2.0 / Video": "https://www.dropbox.com/scl/fo/snmnyubuiiu59l02lcm46/ACVbcpOD-dUoDhCLuiBKO3c?rlkey=lk99xlmjg7eguj13h2ce5uwrh&dl=1",
       "Tyson 2.0 / Renders": "https://www.dropbox.com/scl/fo/vs001cignefq5qu3wwwur/AC6gBBDsbSq9fKSsk7KJpKg?rlkey=qley1k6o2qk6vods7021khsdy&dl=1"
-    }
+    },
+    "updated": "2026-06-30"
   },
   "Elite II": {
     "folders": {
@@ -15513,7 +15524,8 @@ window.PORTAL_SYNCED = {
       "Renders": "https://www.dropbox.com/scl/fo/x2wq16xdh9domnx3oq4ie/AOKyy5A6Ol24vsydoZoI7SM?rlkey=zhzqabb5s8evp156dj21o6cv3&dl=1",
       "Renders / Web": "https://www.dropbox.com/scl/fo/4086mt47tktatv1yf3nx2/ANOrGW22YliY_A1nDfUPq6s?rlkey=3j3wqpk4d76ttays4lelrcupg&dl=1",
       "Sales Sheet": "https://www.dropbox.com/scl/fo/npojfj3ul0qne75lnn643/AApXVp6ZbRQH1Sto7EJ2eu4?rlkey=a1dk6k4k8e9rvbym8jtm81sr3&dl=1"
-    }
+    },
+    "updated": "2026-06-30"
   },
   "Hyer": {
     "folders": {
@@ -20781,7 +20793,8 @@ window.PORTAL_SYNCED = {
       "Black / Video": "https://www.dropbox.com/scl/fo/6of2w25ichybe48bnqnm5/APHh3T-QAX875KCgwimTLqM?rlkey=tqa5tpl5i1xnggktwcabusane&dl=1",
       "Black / Logos": "https://www.dropbox.com/scl/fo/iei9gxae2i5gct5w1kujb/AOL1WJIyw-UuoG1bI6No2_o?rlkey=bqzv1fs674o63uhdjnq8wmhgn&dl=1",
       "Black / Photos": "https://www.dropbox.com/scl/fo/iyw1ueq529sjpcq89w7e6/ABZMBn2mfJYw273fFfC0jIo?rlkey=ytc4o6r2nmmgvxxzdfw1s46qf&dl=1"
-    }
+    },
+    "updated": "2026-04-23"
   },
   "Micro+": {
     "folders": {
@@ -23779,7 +23792,8 @@ window.PORTAL_SYNCED = {
       "Dr. Greenthumb's / Photo": "https://www.dropbox.com/scl/fo/rd3lrbu7pfw3aw2urj7hg/ANtReD4aDipH8I1WPHTGRhU?rlkey=mmu08cbgtwz0rf0hvv4pyh1en&dl=1",
       "Dr. Greenthumb's / Video": "https://www.dropbox.com/scl/fo/pnf6xte5ikwyhr2cmcxtr/APaxzl9bCmnaJEWJ38lrAZQ?rlkey=clwpgdq71mgul43ory3pu91zo&dl=1",
       "Dr. Greenthumb's / Renders": "https://www.dropbox.com/scl/fo/8xdwbo7qe6zuxsjj8tdoh/AESIZdszFmf0qBT39GBNoLs?rlkey=xrktvzsqvhwmose6f8911pxmz&dl=1"
-    }
+    },
+    "updated": "2026-06-30"
   },
   "Roam": {
     "folders": {
@@ -24953,7 +24967,8 @@ window.PORTAL_SYNCED = {
       "Lemonnade / Lifestyle Photos": "https://www.dropbox.com/scl/fo/ibeetbcuwm5nsaspeutlt/AFgFmxLFQ0loBh8Jf3bR1nE?rlkey=s7rhevr9ztj2e7abiuuakmv91&dl=1",
       "Lemonnade / 1-Sheet": "https://www.dropbox.com/scl/fo/3xocawk37f3urmlo3bi9j/AD_TLTXNQEjxZd3cxwD7-Qo?rlkey=frkge2depyrb5vulf4eibhlsa&dl=1",
       "Lemonnade / Video": "https://www.dropbox.com/scl/fo/aayzow2qj5okl8bmnazqd/ADOkr1NtH3xDmuBU8apERrI?rlkey=5yg29uyz9pjzca3prv4m166bs&dl=1"
-    }
+    },
+    "updated": "2026-06-30"
   },
   "G Pen Logos": {
     "folders": {
@@ -25107,7 +25122,8 @@ window.PORTAL_SYNCED = {
     "dropbox": "https://www.dropbox.com/scl/fo/gjjl69xfmfxqdxg87vym9/h?rlkey=q17pigcl81qcvr7rzcv2xpne3&st=wok0w9o7&dl=1",
     "folderLinks": {
       "Logos": "https://www.dropbox.com/scl/fo/gjjl69xfmfxqdxg87vym9/h?rlkey=q17pigcl81qcvr7rzcv2xpne3&st=wok0w9o7&dl=1"
-    }
+    },
+    "updated": "2026-06-30"
   },
   "POP Displays": {
     "folders": {
@@ -25237,7 +25253,8 @@ window.PORTAL_SYNCED = {
     "dropbox": "https://www.dropbox.com/scl/fo/z31rov1tjw0rm2fy7qssw/ABSnVsz5hLjhid95WhqyajM?rlkey=jkld2f2m07jctowd5x1ao357b&st=lmrqshh4&dl=1",
     "folderLinks": {
       "POP Displays": "https://www.dropbox.com/scl/fo/z31rov1tjw0rm2fy7qssw/ABSnVsz5hLjhid95WhqyajM?rlkey=jkld2f2m07jctowd5x1ao357b&st=lmrqshh4&dl=1"
-    }
+    },
+    "updated": "2026-09-02"
   },
   "Catalogs": {
     "folders": {
@@ -25278,39 +25295,40 @@ window.PORTAL_SYNCED = {
           "name": "G Pen Catalog - 2026 - CAD",
           "type": "pdf",
           "format": "PDF",
-          "url": "https://www.dropbox.com/scl/fi/z6p9b6bhoiv198dk7qmj3/G-Pen-Catalog-2026-CAD.pdf?rlkey=wppfza9hqeksq8215yo89k2s7&dl=0",
-          "thumb": "assets/synced/catalogs/7adac423d9db60d7ea289a68ffc8d01a683ecb42531fe9273d9b47fd14bceebc.jpg",
-          "file": "assets/synced/catalogs/files/7adac423d9db60d7ea289a68ffc8d01a683ecb42531fe9273d9b47fd14bceebc.pdf"
+          "url": "https://www.dropbox.com/scl/fi/h1lmm5k3ik8z56hs1u162/G-Pen-Catalog-2026-CAD.pdf?rlkey=advlkzcdfygnbruu5t3fgt90i&dl=0",
+          "thumb": "assets/synced/catalogs/1ca2d7f610543a2bd4a97e73c3b31ecc9e4ad03d0271de79c2f28efb0bad2e78.jpg",
+          "file": "assets/synced/catalogs/files/1ca2d7f610543a2bd4a97e73c3b31ecc9e4ad03d0271de79c2f28efb0bad2e78.pdf"
         },
         {
           "name": "G Pen Catalog - 2026 - EU",
           "type": "pdf",
           "format": "PDF",
-          "url": "https://www.dropbox.com/scl/fi/49d25iet90dmkeihk8u8p/G-Pen-Catalog-2026-EU.pdf?rlkey=e2lq88oxiv425sa4sigwt4ll8&dl=0",
-          "thumb": "assets/synced/catalogs/bd07b3630c53648da10ce196353970a38644c67ab353eaa7e06d8fc080367dc3.jpg",
-          "file": "assets/synced/catalogs/files/bd07b3630c53648da10ce196353970a38644c67ab353eaa7e06d8fc080367dc3.pdf"
+          "url": "https://www.dropbox.com/scl/fi/za4jfjb4yqf3yk1fepzpi/G-Pen-Catalog-2026-EU.pdf?rlkey=24g235or6f796h0g7e8axbabc&dl=0",
+          "thumb": "assets/synced/catalogs/17c3e73715c5f7c2ced631309fe2559c6b559cbe1b66f815c1377d9d774d1575.jpg",
+          "file": "assets/synced/catalogs/files/17c3e73715c5f7c2ced631309fe2559c6b559cbe1b66f815c1377d9d774d1575.pdf"
         },
         {
           "name": "G Pen Catalog - 2026 - UK",
           "type": "pdf",
           "format": "PDF",
-          "url": "https://www.dropbox.com/scl/fi/2zjnth58wse20i60w9mhx/G-Pen-Catalog-2026-UK.pdf?rlkey=hfebtrnv49daes1avy5nmx8g9&dl=0",
-          "thumb": "assets/synced/catalogs/59254a7abb033cac96dff5ff0805a91f4b0aa128298bb9f9e274339f4fe61990.jpg",
-          "file": "assets/synced/catalogs/files/59254a7abb033cac96dff5ff0805a91f4b0aa128298bb9f9e274339f4fe61990.pdf"
+          "url": "https://www.dropbox.com/scl/fi/y876ttnj8tosgaj84j4zu/G-Pen-Catalog-2026-UK.pdf?rlkey=lmcofwv1ygezscnt48xs5wqng&dl=0",
+          "thumb": "assets/synced/catalogs/cbb2482506ebfe9401dadb7b000b2f344cce5766cae1871febc5a522cda0c4f7.jpg",
+          "file": "assets/synced/catalogs/files/cbb2482506ebfe9401dadb7b000b2f344cce5766cae1871febc5a522cda0c4f7.pdf"
         },
         {
-          "name": "G Pen Catalog - 2026 - US",
+          "name": "G Pen Catalog - 2026",
           "type": "pdf",
           "format": "PDF",
-          "url": "https://www.dropbox.com/scl/fi/0uz654jxbwz8ne61wal4h/G-Pen-Catalog-2026-US.pdf?rlkey=sisbsnyik6qk5xx9syx0kw1xo&dl=0",
-          "thumb": "assets/synced/catalogs/09f8a003c02ed77ae0b746af5103bec0c6c6ba94b1f27a5058df7f5b699d6f19.jpg",
-          "file": "assets/synced/catalogs/files/09f8a003c02ed77ae0b746af5103bec0c6c6ba94b1f27a5058df7f5b699d6f19.pdf"
+          "url": "https://www.dropbox.com/scl/fi/g1mtnwgzdc253k210nzh7/G-Pen-Catalog-2026.pdf?rlkey=d57iac1n3n4gg4auxecdhnw2g&dl=0",
+          "thumb": "assets/synced/catalogs/8cc8c1b7a156a5e53c1c1155d527acd5ac78c2f33d4e6db3e52ba97038ca65ff.jpg",
+          "file": "assets/synced/catalogs/files/8cc8c1b7a156a5e53c1c1155d527acd5ac78c2f33d4e6db3e52ba97038ca65ff.pdf"
         }
       ]
     },
     "dropbox": "https://www.dropbox.com/scl/fo/dih80hjue27zsimr49uc7/AMJvOe4GB3SMc_DtFaG_2KY?rlkey=veatg0r4e2nkze7dxkxwwdgnc&dl=1",
     "folderLinks": {
       "Catalogs": "https://www.dropbox.com/scl/fo/dih80hjue27zsimr49uc7/AMJvOe4GB3SMc_DtFaG_2KY?rlkey=veatg0r4e2nkze7dxkxwwdgnc&dl=1"
-    }
+    },
+    "updated": "2026-09-23"
   }
 };
