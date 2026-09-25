@@ -2217,11 +2217,27 @@ window.PORTAL_SYNCED = {
       ],
       "TV Screen Videos": [
         {
-          "name": "How to Clean- G Pen Micro II",
+          "name": "How to Clean G Pen Micro II",
           "type": "video",
           "format": "MP4",
           "url": "https://www.dropbox.com/scl/fi/22jvjwer0fj805w8rrfj6/How-to-Clean-G-Pen-Micro-II.mp4?rlkey=t2bdz9iy1ds4hzqorqfjqwi9q&dl=0",
           "thumb": "assets/synced/micro-ii/ad2ae2d052fedcab7bedcedc891f8f942ac5fce3fbbf7b9611bc974cc85e1466.jpg",
+          "file": null
+        },
+        {
+          "name": "How to Use G Pen Micro II Rig Adapter",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/8ggu3j39f2arzwssl9htz/How-to-Use-G-Pen-Micro-II-Rig-Adapter.mp4?rlkey=chzxe3tfvbup3qlzbn45nr9wj&dl=0",
+          "thumb": "assets/synced/micro-ii/0eac377b154facb149be93f2aed8bfc9f4768291a02598daf510940cbfe16924.jpg",
+          "file": null
+        },
+        {
+          "name": "How to Use G Pen Micro II Sidecar",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/7ae6ou5dr4vzrcs2wo9mv/How-to-Use-G-Pen-Micro-II-Sidecar.mp4?rlkey=ahiw0iljob6obdu89f31f7zsk&dl=0",
+          "thumb": "assets/synced/micro-ii/5d6ee7c8fead0eb4525cc4322e1af95fed579b3cbb2b57d203108652f050bec5.jpg",
           "file": null
         },
         {
@@ -2386,7 +2402,7 @@ window.PORTAL_SYNCED = {
       "Documents": "https://www.dropbox.com/scl/fo/hbm79asz0sz5voe6e9nsi/AFYenSbkUK4Rat7-wFI0T9c?rlkey=ozc1dplsp1bdcam3mvz9m9d0l&dl=1",
       "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/wpkywovfwqzht61fi3iy7/AD1h_pWNcg3PtII1wxhJnGo?rlkey=x5ilflreeyywtx9y7uh47i95e&dl=1"
     },
-    "updated": "2026-09-24"
+    "updated": "2026-09-25"
   },
   "Slim 3-Piece Grinder": {
     "folders": {
