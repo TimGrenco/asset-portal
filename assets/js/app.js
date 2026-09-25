@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260925b";   // bump with the other asset tokens
+  var LANG_VER = "20260925c";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -505,7 +505,7 @@
     // product's course on the training site, or to its home if there is no match.
     if (parts[0] === "train") {
       var tp = PRODUCTS.filter(function (x) { return x.brand === parts[1] && slugify(x.name) === parts.slice(2).join("/"); })[0];
-      location.replace(trainingCourseUrl(tp) || window.PORTAL_TRAINING_SITE || "https://training.gpen.com/");
+      location.replace(trainingCourseUrl(tp) || trainingSiteUrl(""));
       return;
     }
     var p = productFromHash();
@@ -994,6 +994,8 @@
     var sg = $("#styleguide");
     sg.style.display = "block";
     animateIn(sg);
+    // The key is stored HTML-escaped for the <h1>; a tab title is plain text.
+    setTitle(tr("Brand &amp; Style Guide").replace(/&amp;/g, "&"));
     window.scrollTo(0, 0);
 
     sg.innerHTML =
@@ -1705,6 +1707,7 @@
     var ad = $("#additional");
     ad.style.display = "block";
     animateIn(ad);
+    setTitle(tr("Additional " + BRANDS[bk].name + " Products"));
     window.scrollTo(0, 0);
     var legacy = legacyProducts(bk).slice().sort(function (a, b) { return a.name.localeCompare(b.name); });
     ad.innerHTML =
@@ -1876,9 +1879,17 @@
   // Training and certification live on G Pen Training (training.gpen.com): videos,
   // lessons, the quiz, certificates and rewards. This portal only links each
   // product to its course there — see PORTAL_TRAINING_COURSES in assets.js.
+  // A link into G Pen Training, carrying the visitor's language so they land in it
+  // (the training site reads ?lang= on arrival, saves it and strips it). English is
+  // left off: most visitors never chose it, and sending it would override a
+  // language they had picked on the training site itself.
+  function trainingSiteUrl(hashPath) {
+    return (window.PORTAL_TRAINING_SITE || "https://training.gpen.com/") +
+      (state.lang && state.lang !== "en" ? "?lang=" + state.lang : "") + (hashPath || "");
+  }
   function trainingCourseUrl(p) {
     var slug = p && (window.PORTAL_TRAINING_COURSES || {})[p.name];
-    return slug ? (window.PORTAL_TRAINING_SITE || "https://training.gpen.com/") + "#/course/" + slug : null;
+    return slug ? trainingSiteUrl("#/course/" + slug) : null;
   }
   // Entry banner on the product page → that product's course on G Pen Training.
   // A real link (new tab), so it can be middle-clicked, copied and read by a
