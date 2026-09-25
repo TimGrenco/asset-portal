@@ -2119,6 +2119,14 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "Micro II Burgundy SG on white",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/m3ptt5xrxjf0rq73yxson/Micro-II-Burgundy-SG-on-white.mp4?rlkey=ltmo2koo9i2cv4m0xv78xsq2m&dl=0",
+          "thumb": "assets/synced/micro-ii/40891018413d0e70b50215296b3c446b16dcb7b332b7615db0453e650c3c680a.jpg",
+          "file": null
+        },
+        {
           "name": "Micro II Product Page",
           "type": "video",
           "format": "MP4",
@@ -2378,7 +2386,7 @@ window.PORTAL_SYNCED = {
       "Documents": "https://www.dropbox.com/scl/fo/hbm79asz0sz5voe6e9nsi/AFYenSbkUK4Rat7-wFI0T9c?rlkey=ozc1dplsp1bdcam3mvz9m9d0l&dl=1",
       "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/wpkywovfwqzht61fi3iy7/AD1h_pWNcg3PtII1wxhJnGo?rlkey=x5ilflreeyywtx9y7uh47i95e&dl=1"
     },
-    "updated": "2026-09-22"
+    "updated": "2026-09-24"
   },
   "Slim 3-Piece Grinder": {
     "folders": {
