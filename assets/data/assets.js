@@ -340,6 +340,17 @@ var PRODUCT_VIDEOS = {
     ["ZLL3oAI-J2c", "How To Use Your G Pen Elite II"],
     ["X7j7LP8lfic", "Using the Elite II"],
   ],
+  // Micro II's how-to videos live only in its own Dropbox folder ("TV Screen
+  // Videos"), so they are named by their synced FILENAME and resolved after the
+  // sync data is merged (see "Curated videos named by synced filename" below) —
+  // not by pasted URLs, which would rot when a video is re-exported. The launch
+  // reel in the same folder is promo, not how-to, so it isn't listed here.
+  "Micro II": [
+    { title: "How to Use: G Pen Micro II",             synced: "How to Use G Pen Micro II" },
+    { title: "How to Clean: G Pen Micro II",           synced: "How to Clean G Pen Micro II" },
+    { title: "How to Use: G Pen Micro II Sidecar",     synced: "How to Use G Pen Micro II Sidecar" },
+    { title: "How to Use: G Pen Micro II Rig Adapter", synced: "How to Use G Pen Micro II Rig Adapter" },
+  ],
   // Official how-to videos embedded on gpen.com (Vimeo).
   "Micro+": [
     { title: "How to Use: G Pen Micro+", vimeo: "989157950", hash: "0257076fb0",
@@ -377,6 +388,9 @@ window.PORTAL_PRODUCTS.forEach(function (p) {
         youtube: yt(v.youtube),
       };
     }
+    // Synced form: {title, synced:"<Dropbox filename>"} — link and poster filled in
+    // once the sync data is merged.
+    if (v.synced) return { title: v.title, synced: v.synced, mp4: null, thumb: null };
     // Object form: a real MP4 (Dropbox) that plays in-browser + downloads.
     return {
       title: v.title, mp4: v.mp4,
@@ -925,6 +939,28 @@ window.PORTAL_PRODUCTS.forEach(function (p) {
     }
   });
 })();
+
+/* Curated videos named by synced filename ({synced: "<name>"}) get their Dropbox
+   link and poster from the product's own synced folders, now that those are merged.
+   A video renamed or removed in Dropbox drops out of the "How to use videos" section
+   instead of leaving a card that cannot play. */
+window.PORTAL_PRODUCTS.forEach(function (p) {
+  if (!p.videos) return;
+  p.videos = p.videos.filter(function (v) {
+    if (!v.synced) return true;
+    var want = String(v.synced).toLowerCase(), hit = null;
+    Object.keys(p.folders || {}).forEach(function (f) {
+      (p.folders[f] || []).forEach(function (x) {
+        if (!hit && x && x.type === "video" && x.url && String(x.name || "").toLowerCase() === want) hit = x;
+      });
+    });
+    if (!hit) return false;
+    v.mp4 = hit.url;
+    v.thumb = hit.thumb || null;
+    return true;
+  });
+  if (!p.videos.length) delete p.videos;
+});
 
 /* Per-colourway SKU/UPC for the multi-colour Retro collections. Shown as the
    "Collection Colorways" section on those product pages. `hex` drives the fun,
