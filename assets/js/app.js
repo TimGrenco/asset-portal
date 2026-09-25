@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260925c";   // bump with the other asset tokens
+  var LANG_VER = "20260925d";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -1003,7 +1003,7 @@
       '<div class="sg-hero">' +
         '<div class="sg-word">' + b.wordmark + "</div>" +
         "<h1>" + tr("Brand &amp; Style Guide") + "</h1>" +
-        '<p class="sg-note">' + icon("info") + "<span>Placeholder guide — the official " + b.name + " brand guide will replace this. Colors, type, and logos below reflect current brand usage.</span></p>" +
+        '<p class="sg-note">' + icon("info") + "<span>" + tr("Placeholder guide — the official {brand} brand guide will replace this. Colors, type, and logos below reflect current brand usage.").replace("{brand}", b.name) + "</span></p>" +
         '<div class="sg-actions">' +
           '<button class="btn" data-view-brand="' + bk + '">' + icon("stack") + " " + tr("View {brand} assets").replace("{brand}", b.name) + "</button>" +
           (b.logoProduct ? '<button class="btn ghost" data-logo="' + b.logoProduct + '">' + icon("download") + " " + tr("Download logos") + "</button>" : "") +
@@ -1713,7 +1713,7 @@
     ad.innerHTML =
       '<button class="back" id="add-back">' + icon("arrowLeft") + " " + tr("Back to library") + "</button>" +
       '<div class="section-head"><h1>' + tr("Additional " + BRANDS[bk].name + " Products") + '</h1><span class="badge">' + legacy.length + " " + tr(legacy.length === 1 ? "product" : "products") + "</span></div>" +
-      '<p class="additional-note">Products we no longer sell — assets kept here for partners who still need them.</p>' +
+      '<p class="additional-note">' + tr("Products we no longer sell — assets kept here for partners who still need them.") + "</p>" +
       '<div class="grid">' + legacy.map(function (p) { return cardHTML(p, "grid"); }).join("") + "</div>";
     $("#add-back").addEventListener("click", navHome);
     bindCards(ad);
@@ -1792,7 +1792,7 @@
       }
       return '<div class="mat-row">' + thumb +
         '<div class="mat-info"><div class="mat-name">' + escapeHTML(m.name) + "</div>" +
-          (m.dim || m.sku ? '<div class="mat-dim">' + [m.dim, m.sku ? tr("SKU") + " " + m.sku : ""].filter(Boolean).join(" · ") + "</div>" : "") + "</div>" +
+          (m.dim || m.sku ? '<div class="mat-dim">' + [m.dim ? tr(m.dim) : "", m.sku ? tr("SKU") + " " + m.sku : ""].filter(Boolean).join(" · ") + "</div>" : "") + "</div>" +
         '<div class="mat-qty"><button class="mat-step" data-step="-1" aria-label="' + tr("Decrease") + '">–</button>' +
           '<input type="number" min="0" value="0" data-mat="' + i + '" aria-label="' + tr("Quantity for") + " " + m.name.replace(/"/g, "") + '"/>' +
           '<button class="mat-step" data-step="1" aria-label="' + tr("Increase") + '">+</button></div>' +
@@ -2032,7 +2032,7 @@
       encodeURIComponent("Add to Store Locator") + "&body=" + encodeURIComponent(body);
   }
   function emptyState() {
-    return '<p style="grid-column:1/-1;color:var(--stone);font-size:14px;padding:30px 0;">No assets match your filters. <a href="mailto:' + CFG.requestEmail + '" style="text-decoration:underline;">Request one →</a></p>';
+    return '<p style="grid-column:1/-1;color:var(--stone);font-size:14px;padding:30px 0;">' + tr("No assets match your filters.") + ' <a href="mailto:' + CFG.requestEmail + '" style="text-decoration:underline;">' + tr("Request one →") + "</a></p>";
   }
 
   function bindCards(ctx) {
@@ -2615,8 +2615,11 @@
   function videoHubHTML(p) {
     if (!p.videos || !p.videos.length) return "";
     var cards = p.videos.map(function (v) {
+      // Title as shown (translated); the download filename below stays English, so a
+      // file saves under the same name whichever language someone browses in.
+      var shown = tr(v.title);
       var safe = v.title.replace(/"/g, "");
-      var poster = v.thumb ? '<img src="' + v.thumb + '" alt="' + safe + '" loading="lazy" decoding="async"/>' : "";
+      var poster = v.thumb ? '<img src="' + v.thumb + '" alt="' + escapeHTML(shown) + '" loading="lazy" decoding="async"/>' : "";
       var dlname = safe.replace(/[^\w.-]+/g, "_") + ".mp4";
       // Play source: a real Dropbox MP4 takes priority; else the Vimeo/YouTube embed.
       var playSrc = v.mp4 ? dropboxRaw(v.mp4) : (v.embed || v.url || "");
@@ -2626,7 +2629,7 @@
       var share = v.mp4 || v.youtube || v.url || "";
 
       var thumb = '<div class="vthumb' + (playSrc ? " vplay" : "") + '"' +
-        (playSrc ? ' data-play="' + playSrc + '" data-title="' + safe + '"' + (dl ? ' data-dl="' + dl + '" data-dlname="' + dlname + '"' : "") + (share ? ' data-share="' + escapeHTML(share) + '"' : "") + ' role="button" tabindex="0" aria-label="Watch ' + safe + '"' : "") + ">" +
+        (playSrc ? ' data-play="' + playSrc + '" data-title="' + escapeHTML(shown) + '"' + (dl ? ' data-dl="' + dl + '" data-dlname="' + dlname + '"' : "") + (share ? ' data-share="' + escapeHTML(share) + '"' : "") + ' role="button" tabindex="0" aria-label="' + escapeHTML(tr("Watch") + " " + shown) + '"' : "") + ">" +
         poster + '<span class="play-badge">' + icon("play") + "</span>" + (playSrc ? '<span class="vthumb-hint">' + tr("Click to watch") + "</span>" : "") + "</div>";
 
       // Only offer a download when there's a real downloadable file; watch-only
@@ -2640,7 +2643,7 @@
 
       return '<div class="vcard">' + thumb +
         '<div class="vmeta">' +
-          '<div class="vtitle">' + v.title + "</div>" +
+          '<div class="vtitle">' + escapeHTML(shown) + "</div>" +
           '<div class="vactions">' + dlBtn + ytBtn + "</div>" +
         "</div>" +
       "</div>";
@@ -2909,7 +2912,7 @@
           directDownload(href, String(label || "assets").replace(/[^\w.-]+/g, "_") + ".zip");
           setTimeout(function () { URL.revokeObjectURL(href); }, 8000);
           toast(tr("Downloaded") + " " + committed.length + " " + tr("files") +
-            (alsoFromDropbox ? " · " + alsoFromDropbox + " more coming from Dropbox" : ""));
+            (alsoFromDropbox ? " · " + tr("{n} more coming from Dropbox").replace("{n}", alsoFromDropbox) : ""));
         })
         .catch(function () { toast(tr("Couldn’t build the zip")); });
     });
