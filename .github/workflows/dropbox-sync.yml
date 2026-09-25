@@ -3,7 +3,13 @@ name: Dropbox sync
 on:
   workflow_dispatch:        # manual "Run sync" button
   schedule:
-    - cron: "23 * * * *"    # hourly (acts as a backstop even with a webhook)
+    # Once a day, 10:23 UTC (6:23 AM Eastern / 3:23 AM Pacific), so a workday's
+    # Dropbox uploads are live before stores open. The portal is live and stable, so
+    # hourly was more churn than it was worth (2026-09-25). Anything urgent: run the
+    # sync by hand (workflow_dispatch above, or `gh workflow run "Dropbox sync"`).
+    # Off the top of the hour on purpose — GitHub drops scheduled runs under load,
+    # and :00 is when load peaks.
+    - cron: "23 10 * * *"
 
 permissions:
   contents: write
@@ -92,7 +98,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           # Bump the synced.js cache token so GitHub Pages serves the fresh file —
           # but only when Dropbox actually changed something. Bumping first made
-          # every run a "change": an hourly commit + full deploy, and every
+          # every run a "change": a commit + full deploy each run, and every
           # returning visitor re-downloading the 1.2 MB synced.js for nothing.
           git add -A
           if ! git diff --cached --quiet; then

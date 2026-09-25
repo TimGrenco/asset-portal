@@ -37,7 +37,7 @@ assets/data/synced.js      AUTO-GENERATED — do not hand-edit. A window.PORTAL_
                            per-file + per-folder download links and local thumbnails
 assets/img/                Brandmark PNGs (gpen-g-black.png / -white.png), favicon
 scripts/dropbox-sync.mjs   The sync bot (Node, no deps)
-.github/workflows/         dropbox-sync.yml (hourly + manual) and deploy-pages.yml
+.github/workflows/         dropbox-sync.yml (daily + manual) and deploy-pages.yml
 robots.txt, sitemap.xml,
 404.html, apple-touch-icon.png, CNAME
 ```
@@ -50,8 +50,8 @@ bumping the `?v=` token on the three script/style tags in `index.html`.
 
 ## How assets sync from Dropbox
 
-`scripts/dropbox-sync.mjs` runs in GitHub Actions (`dropbox-sync.yml`, hourly + manual
-dispatch). For each product it lists the product's Dropbox folder, generates thumbnails
+`scripts/dropbox-sync.mjs` runs in GitHub Actions (`dropbox-sync.yml`, once a day at 10:23 UTC
++ manual dispatch). For each product it lists the product's Dropbox folder, generates thumbnails
 (ImageMagick / ffmpeg / poppler), mints **per-file and per-folder share links** (so
 "Download all / folder / selected" return real `.zip`s), and writes `assets/data/synced.js`.
 
