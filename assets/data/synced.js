@@ -2063,7 +2063,7 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
-          "name": "Bre Forrest Micro II Side Car Reels A",
+          "name": "Bre Forrest Micro II Sidecar Reels A",
           "type": "video",
           "format": "MP4",
           "url": "https://www.dropbox.com/scl/fi/xcgtujvxxjwtkeuu9wwz8/Bre-Forrest-Micro-II-Side-Car-Reels-A.mp4?rlkey=z7x2hv2pmdjomfhv3waw3z4xb&dl=0",
@@ -2175,7 +2175,7 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
-          "name": "Reels How to Clean G Pen Micro II Side Car",
+          "name": "Reels How to Clean G Pen Micro II Sidecar",
           "type": "video",
           "format": "MP4",
           "url": "https://www.dropbox.com/scl/fi/4folpmmp2x114pt3qgxs7/Reels-How-to-Clean-G-Pen-Micro-II-Side-Car.mp4?rlkey=7h2dths9t0mq0kn21apgosp1l&dl=0",
@@ -2199,11 +2199,11 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
-          "name": "Reels How to Use G Pen Micro II Side Car",
+          "name": "Reels How to Use G Pen Micro II Sidecar",
           "type": "video",
           "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/rr9hilija4nxk1luoolhz/Reels-How-to-Use-G-Pen-Micro-II-Side-Car.mp4?rlkey=wp3ha06u9fxq7iqkfmirni98i&dl=0",
-          "thumb": "assets/synced/micro-ii/75bc6ce24cd8d8186f84e49b2e9f6e3600a099ca055cb23a31eac5c92b4a2ab0.jpg",
+          "url": "https://www.dropbox.com/scl/fi/ef657o17y5sk3r0s9429u/Reels-How-to-Use-G-Pen-Micro-II-Sidecar.mp4?rlkey=0u92v1lospi7vv9yhq5e1w64f&dl=0",
+          "thumb": "assets/synced/micro-ii/53685f7bec2c03bd33c583c61cc383f76ba68b60a9ff912e09d1d2ff209cff71.jpg",
           "file": null
         },
         {
