@@ -2737,6 +2737,40 @@ window.PORTAL_SYNCED = {
           "thumb": "assets/synced/slim-3-piece-grinder/ca59d6415582030ed23cb5f3a2789ea3d67e022e3c1c936fe2e924b80fe45517.jpg",
           "file": null
         }
+      ],
+      "In Store Marketing Materials": [
+        {
+          "name": "Grinder-Postcard_Mock-Up",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/23am78mxitvtdvelpjnzd/Grinder-Postcard_Mock-Up.png?rlkey=9lqqzw30ksp6t9ea691eqj8ee&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/d68be0efab2b1945a3359e3589ccd7e07e72f6f375d9165924c6606ec4e701b2.jpg",
+          "file": null
+        },
+        {
+          "name": "Grinder-Poster_Mock-Up",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/pojlikt73dtlcmu7ffr95/Grinder-Poster_Mock-Up.png?rlkey=dw0fo97q6ww50slunv7ta29gp&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/a27439798b4a5784958482b91e1c6ab85e0e495d6bada31ea0c6ee4b9346cd81.jpg",
+          "file": null
+        },
+        {
+          "name": "Grinder-Table-Tent_Mock-Up",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/lm4qujvvjoc6sx9fag0it/Grinder-Table-Tent_Mock-Up.png?rlkey=1obg0qotlh2tp5p57ju8s2vcj&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/605611f0d01f5ecdefb74464d42079bd0809873705dce4adb550ee2b1452342f.jpg",
+          "file": null
+        },
+        {
+          "name": "Grinder-Window-Cling_Mock-Up",
+          "type": "image",
+          "format": "PNG",
+          "url": "https://www.dropbox.com/scl/fi/c1hctxqz9izjevrifuvjk/Grinder-Window-Cling_Mock-Up.png?rlkey=1w9u6e6bwc9x80wyz5fnnvex2&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/0f3a8a2ac597c600d2cad14b47a0632da851786a5a1d24fab3dc3cadd653994e.jpg",
+          "file": null
+        }
       ]
     },
     "dropbox": "https://www.dropbox.com/scl/fo/8lfqlq0faeml5pqnvzoys/ADcfy5cYRTh2lHbK13o_I60?rlkey=4jjwd6s48mon6tcpis5uass3x&dl=1",
@@ -2746,9 +2780,10 @@ window.PORTAL_SYNCED = {
       "Social Videos": "https://www.dropbox.com/scl/fo/g0jd2408h2wsxs8tllkkg/ALMhLVAadnNSTigWUSf04pg?rlkey=g3f5938aezsl1u5z62qbo3u7j&dl=1",
       "TV Screen Videos": "https://www.dropbox.com/scl/fo/zvzbkibqd2aosrqh4tuks/AIYbRk9vrspXYWZcA2fv-MA?rlkey=zqpbl2p0wslq04x0aix2mvdo2&dl=1",
       "Packaging": "https://www.dropbox.com/scl/fo/fxe11gkyjj90fs6k7u4pn/AA_u1kITmQyvG2jso3wRIPc?rlkey=hyv0pfcuzdl7w8bym69lgpdit&dl=1",
-      "Documents": "https://www.dropbox.com/scl/fo/xa8fpu6byuxbn6bfz5dtf/ABlSIjG-tdSnIw04E6zD4bU?rlkey=ujcruu80zly1ehfhkcb6trrg1&dl=1"
+      "Documents": "https://www.dropbox.com/scl/fo/xa8fpu6byuxbn6bfz5dtf/ABlSIjG-tdSnIw04E6zD4bU?rlkey=ujcruu80zly1ehfhkcb6trrg1&dl=1",
+      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/eiroju8uf0q8ntzldvhh8/AChK_rv3bd7FHjp8YymEX5M?rlkey=eu289oru99vvqr8ucia5ba8jq&dl=1"
     },
-    "updated": "2026-09-22"
+    "updated": "2026-09-28"
   },
   "510 Original": {
     "folders": {
