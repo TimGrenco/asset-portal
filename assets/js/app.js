@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260928a";   // bump with the other asset tokens
+  var LANG_VER = "20260928b";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -393,12 +393,13 @@
     "Micro-II-Poster-Mockup":          { name: "Micro II Poster",               sku: "GMK-010-APZZ" },
     "Micro-II-Postcard-Mockup":        { name: "Micro II Postcard",             sku: "GMK-011-APZZ" },
     "Micro-II-Window-Cling-Mockup":    { name: "Micro II Window Cling",         sku: "GMK-012-APZZ" },
-    // Grinder set: only the Table Tent has a SKU so far. The other three synced
-    // alongside it; they get clean names now and a SKU/size once confirmed.
+    // Grinder set: only the Table Tent has been produced. The other three mock-ups
+    // sit in the synced folder but aren't printed yet, so `hidden` keeps them off
+    // the page and out of the cart. Drop `hidden` and add sku/dim once they exist.
     "Grinder-Table-Tent_Mock-Up":     { name: "G Pen Grinder Table Tent",      dim: '4.25" L × 6" W', sku: "GMK-013-APZZ" },
-    "Grinder-Poster_Mock-Up":         { name: "G Pen Grinder Poster" },
-    "Grinder-Postcard_Mock-Up":       { name: "G Pen Grinder Postcard" },
-    "Grinder-Window-Cling_Mock-Up":   { name: "G Pen Grinder Window Cling" },
+    "Grinder-Poster_Mock-Up":         { name: "G Pen Grinder Poster",          hidden: true },
+    "Grinder-Postcard_Mock-Up":       { name: "G Pen Grinder Postcard",        hidden: true },
+    "Grinder-Window-Cling_Mock-Up":   { name: "G Pen Grinder Window Cling",    hidden: true },
     "hydout-Tent":                    { name: "G Pen Hydout Table Tent",       dim: '6" L × 4" W', sku: "GMK-006-APZZ" },
     // Dropbox stored this one under a bare content-hash filename; the label both
     // names it and rescues it from the hash-name filter in instoreOwn().
@@ -1364,6 +1365,7 @@
       // Skip bare 64-char content-hash names — not real materials — UNLESS we've
       // given the file a curated label (some real pieces sync with a hash name).
       if (/^[0-9a-f]{64}$/i.test(x.name || "") && !INSTORE_LABELS[x.name]) return;
+      if ((INSTORE_LABELS[x.name] || {}).hidden) return;   // synced but not produced yet
       var i = seen[x.name];
       if (i === undefined) { seen[x.name] = out.length; out.push(x); }
       else if (/png/i.test(x.format) && !/png/i.test(out[i].format)) out[i] = x;
