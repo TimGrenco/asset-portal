@@ -23,9 +23,10 @@
      translations — the packs no longer hold course or quiz text.)
      Product names, brand names, filenames, SKUs, units and prices are never
      translated. To revise a language, edit only its pack — no code change. */
-  var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
+  var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)",
+                sv: "Svenska", pl: "Polski", da: "Dansk" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20261001d";   // bump with the other asset tokens
+  var LANG_VER = "20261001e";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -72,7 +73,7 @@
     for (var i = 0; i < list.length; i++) {
       var l = String(list[i] || "").toLowerCase().slice(0, 2);
       if (l === "en") return "";              // an English preference ranked higher wins
-      if (l !== "en" && isLang(l)) return l;  // es / de / it / fr / pt
+      if (l !== "en" && isLang(l)) return l;  // es / de / it / fr / pt / sv / pl / da
     }
     return "";
   }
@@ -99,6 +100,9 @@
     it: { q: "Preferisce visualizzare questo portale in italiano?", yes: "Visualizza in italiano", no: "No, grazie" },
     fr: { q: "Préférez-vous consulter ce portail en français ?", yes: "Voir en français", no: "Non, merci" },
     pt: { q: "Prefere ver este portal em português?", yes: "Ver em português", no: "Não, obrigado" },
+    sv: { q: "Vill du se den här portalen på svenska?", yes: "Visa på svenska", no: "Nej tack" },
+    pl: { q: "Czy wolisz przeglądać ten portal po polsku?", yes: "Pokaż po polsku", no: "Nie, dziękuję" },
+    da: { q: "Vil du se denne portal på dansk?", yes: "Vis på dansk", no: "Nej tak" },
     // pt-BR/pt-PT both slice to "pt" in browserLang(); the pack is Brazilian.
   };
   function maybeOfferLang() {
@@ -122,6 +126,16 @@
     var p = pack();
     return (p && p.ui && p.ui[s]) || s;
   }
+  // Counted nouns. English and most packs have two forms, but Polish has a third
+  // for 2–4, 22–24…: "2 pliki" but "5 plików". A pack supplies it as
+  // "<key>|few"; Intl.PluralRules decides which form a count takes.
+  function trn(s, n) {
+    if (state.lang === "en") return s;
+    var p = pack(), cat = "";
+    try { cat = new Intl.PluralRules(locale()).select(n); } catch (e) {}
+    return (cat && p && p.ui && p.ui[s + "|" + cat]) || tr(s);
+  }
+  function plural(n, one, many) { return n === 1 ? tr(one) : trn(many, n); }
   // Localized product prose (description / highlights / warranty).
   function infoOf(p) {
     var en = p.info || {};
@@ -213,7 +227,7 @@
   // ---- language selector (globe + current language + menu) -------------------
   // Languages are listed by their own endonym (Deutsch, not German) — that's what
   // a speaker scans for. English stays first as the default.
-  var LANG_ORDER = ["en", "es", "de", "it", "fr", "pt"];
+  var LANG_ORDER = ["en", "es", "de", "it", "fr", "pt", "sv", "pl", "da"];
   function renderLangMenu() {
     var menu = $("#lang-menu"); if (!menu) return;
     menu.innerHTML = LANG_ORDER.map(function (l) {
@@ -291,7 +305,7 @@
   // product in assets.js. (No longer auto-shown by upload date.)
   // The portal language's locale (not the browser's), so a Spanish page shows a
   // Spanish date. pt is Brazilian Portuguese.
-  function locale() { return { en: "en-US", es: "es", de: "de", it: "it", fr: "fr", pt: "pt-BR" }[state.lang] || "en-US"; }
+  function locale() { return { en: "en-US", es: "es", de: "de", it: "it", fr: "fr", pt: "pt-BR", sv: "sv-SE", pl: "pl-PL", da: "da-DK" }[state.lang] || "en-US"; }
   // The lightbox's static buttons: set at init AND after every language load
   // (init runs before a lazily loaded pack arrives, so they stayed English).
   function labelLightbox() {
@@ -1122,7 +1136,7 @@
         "</div>" +
         '<div class="card-name">' + p.name + "</div>" +
         (p.label ? '<div class="card-label">' + tr(p.label) + "</div>" : "") +
-        '<div class="card-sub">' + (p.isLogo ? p.total + " " + tr("logo files") : p.total + " " + tr("assets") + (p.label ? "" : " · " + tr(p.category))) + "</div>" +
+        '<div class="card-sub">' + (p.isLogo ? p.total + " " + trn("logo files", p.total) : p.total + " " + trn("assets", p.total) + (p.label ? "" : " · " + tr(p.category))) + "</div>" +
       "</article>"
     );
   }
@@ -1133,7 +1147,7 @@
         '<div class="row-thumb">' + coverHTML(p) + "</div>" +
         '<div class="row-main">' +
           '<div class="row-name">' + p.name + (p.newBadge && !p.isLogo ? ' <span class="row-new' + (typeof p.newBadge === "string" ? " row-new-" + p.newBadge : "") + '">' + tr("New") + '</span>' : "") + (p.label ? ' <span class="row-label">' + tr(p.label) + "</span>" : "") + "</div>" +
-          '<div class="row-sub">' + (p.isLogo ? p.total + " " + tr("logo files") : p.total + " " + tr("assets") + (p.label ? "" : " · " + tr(p.category))) + "</div>" +
+          '<div class="row-sub">' + (p.isLogo ? p.total + " " + trn("logo files", p.total) : p.total + " " + trn("assets", p.total) + (p.label ? "" : " · " + tr(p.category))) + "</div>" +
         "</div>" +
         (showBrand ? '<span class="row-brand">' + BRANDS[p.brand].name + "</span>" : "") +
         '<button class="row-dl" data-act="download" title="Download all">' + icon("download") + "</button>" +
@@ -1238,8 +1252,8 @@
     if (state.sort === "az") current = current.slice().sort(byName);
 
     var browseCount = $("#browse-count");
-    if (browseCount) browseCount.textContent = current.length + " " + tr(current.length === 1 ? "product" : "products");
-    $("#count-badge").textContent = current.length + " " + tr(current.length === 1 ? "product" : "products");
+    if (browseCount) browseCount.textContent = current.length + " " + plural(current.length, "product", "products");
+    $("#count-badge").textContent = current.length + " " + plural(current.length, "product", "products");
 
     renderActiveFilters();
 
@@ -1290,7 +1304,7 @@
     _lastSearch = { prods: prods, fileRes: fileRes };
 
     $("#all-title").textContent = tr("Search results");
-    var label = total + " " + tr(total === 1 ? "result" : "results");
+    var label = total + " " + plural(total, "result", "results");
     var bc = $("#browse-count"); if (bc) bc.textContent = label;
     $("#count-badge").textContent = label;
     renderActiveFilters();
@@ -1473,7 +1487,7 @@
           '<div class="logo-card-actions">' + orderCta +
             // Count what the order page will actually list (shared pieces like the
             // Retro window cling once) — counting per product promised 20, showed 17.
-            (function () { var n = availableMaterials().length; return '<span class="instore-count">' + n + " " + tr(n === 1 ? "material" : "materials") + " " + tr("available") + "</span>"; })() +
+            (function () { var n = availableMaterials().length; return '<span class="instore-count">' + n + " " + plural(n, "material", "materials") + " " + trn("available", n) + "</span>"; })() +
           "</div>" +
         "</div>" +
         '<div class="logo-preview">' + tiles + "</div>" +
@@ -1547,7 +1561,7 @@
     if (!list.length) { sec.style.display = "none"; return; }
     sec.style.display = "";
     var cnt = $("#catalog-count");
-    if (cnt) cnt.textContent = list.length + " " + tr(list.length === 1 ? "document" : "documents");
+    if (cnt) cnt.textContent = list.length + " " + plural(list.length, "document", "documents");
     var fams = catalogFamilies();
     box.innerHTML = '<div class="cat-grid">' + fams.map(catalogCard).join("") + "</div>";
 
@@ -1787,7 +1801,7 @@
     var legacy = legacyProducts(bk).slice().sort(function (a, b) { return a.name.localeCompare(b.name); });
     ad.innerHTML =
       '<button class="back" id="add-back">' + icon("arrowLeft") + " " + tr("Back to library") + "</button>" +
-      '<div class="section-head"><h1>' + tr("Additional " + BRANDS[bk].name + " Products") + '</h1><span class="badge">' + legacy.length + " " + tr(legacy.length === 1 ? "product" : "products") + "</span></div>" +
+      '<div class="section-head"><h1>' + tr("Additional " + BRANDS[bk].name + " Products") + '</h1><span class="badge">' + legacy.length + " " + plural(legacy.length, "product", "products") + "</span></div>" +
       '<p class="additional-note">' + tr("Products we no longer sell — assets kept here for partners who still need them.") + "</p>" +
       '<div class="grid">' + legacy.map(function (p) { return cardHTML(p, "grid"); }).join("") + "</div>";
     $("#add-back").addEventListener("click", navHome);
@@ -2054,7 +2068,7 @@
       });
       var multi = $$(".loc-store", stores).length > 1;
       stores.classList.toggle("has-multi", multi);
-      var c = $("#loc-count"); if (c) c.textContent = multi ? " · " + $$(".loc-store", stores).length + " " + tr("stores") : "";
+      var c = $("#loc-count"); if (c) c.textContent = multi ? " · " + $$(".loc-store", stores).length + " " + trn("stores", $$(".loc-store", stores).length) : "";
     }
     function bindRemove(ctx) {
       $$("[data-remove]", ctx).forEach(function (b) {
@@ -2201,7 +2215,7 @@
     function syncSelection() {
       var n = Object.keys(selected).length;
       var bar = $("#selbar");
-      if (bar) { $("#sel-n").textContent = n; bar.classList.toggle("show", n > 0); }
+      if (bar) { $("#sel-n").textContent = n; $("#sel-l").textContent = trn("selected", n); bar.classList.toggle("show", n > 0); }
       document.body.classList.toggle("has-selection", n > 0);
       $$(".folder-toolbar[data-folder]", d).forEach(function (tb) {
         var f = tb.getAttribute("data-folder"), ff = visibleFiles(f);
@@ -2280,7 +2294,7 @@
         copyText(x.url, tr("Link copied"));
       });
     }
-    function countLabel(n) { return n + " " + tr(n === 1 ? "file" : "files"); }
+    function countLabel(n) { return n + " " + plural(n, "file", "files"); }
     // Select all / Copy folder link / Download folder for one folder. The title
     // row is only needed where the folder isn't already named by its card.
     function folderToolsHTML(f, titled) {
@@ -2398,8 +2412,8 @@
       // (counting only the how-tos read "2 videos" on a page with 46).
       var nVid = (p.videos || []).length;
       Object.keys(p.folders || {}).forEach(function (f) { (p.folders[f] || []).forEach(function (x) { if (x.type === "video") nVid++; }); });
-      var stat = p.total + " " + tr(p.total === 1 ? "asset" : "assets") +
-        (nVid ? " · " + nVid + " " + tr(nVid === 1 ? "video" : "videos") : "") +
+      var stat = p.total + " " + plural(p.total, "asset", "assets") +
+        (nVid ? " · " + nVid + " " + plural(nVid, "video", "videos") : "") +
         " · " + tr("updated") + " " + fmtDate(p.updated || p.added);
       d.innerHTML =
         '<button class="back" id="back-btn">' + icon("arrowLeft") + " " + tr("Back to library") + "</button>" +
@@ -2438,7 +2452,7 @@
               (rest.length ? '<div class="gallery" data-docs="' + escapeHTML(f) + '"></div>' : "") + "</div>";
           }).join("") : "") +
         '<div class="selbar" id="selbar">' +
-          '<span class="selcount" role="status" aria-live="polite"><strong id="sel-n">0</strong> ' + tr("selected") + '</span>' +
+          '<span class="selcount" role="status" aria-live="polite"><strong id="sel-n">0</strong> <span id="sel-l">' + tr("selected") + '</span></span>' +
           '<span class="selacts">' +
             '<button class="btn ghost sm" id="sel-clear">' + tr("Clear") + '</button>' +
             '<button class="btn sm" id="sel-dl" aria-label="' + tr("Download selected") + '">' + icon("download") + ' <span class="sel-dl-l">' + tr("Download selected") + "</span></button>" +
@@ -2526,7 +2540,7 @@
         if (one && allRemote && whole.length && sameFolder && p.folderLinks && p.folderLinks[one]) {
           downloadFolder(p, one); return;
         }
-        downloadFiles(sel, (one ? typeLabel(one) : fullName) + " · " + sel.length + " " + tr("selected"));
+        downloadFiles(sel, (one ? typeLabel(one) : fullName) + " · " + sel.length + " " + trn("selected", sel.length));
       });
       syncSelection();
       // Deep link: bring the requested folder into view once it's rendered.
@@ -2558,7 +2572,7 @@
     if (p.isLogo) return "";
     var r = inStoreItems(p), items = r.items;
     var head = '<div class="section-head"><h2>' + tr("In-Store Marketing Materials") + '</h2>' +
-      (items.length ? '<span class="badge">' + items.length + " " + tr(items.length === 1 ? "item" : "items") + "</span>" : "") + "</div>";
+      (items.length ? '<span class="badge">' + items.length + " " + plural(items.length, "item", "items") + "</span>" : "") + "</div>";
     if (!items.length) {
       return head + '<div class="instore-empty">' +
         "<p>" + tr("Printed in-store materials (posters, shelf talkers, displays) for this product will appear here as they’re added.") + "</p>" +
@@ -2726,7 +2740,7 @@
     var perPop = info.innerPack;
     if (colorways && colorways.length && info.innerPack && info.innerPack !== "N/A") {
       var nUnits = parseInt(info.innerPack, 10), nCol = colorways.length;
-      if (nUnits && nUnits % nCol === 0) perPop = nUnits + " (" + (nUnits / nCol) + " × " + nCol + " " + tr("colorways") + ")";
+      if (nUnits && nUnits % nCol === 0) perPop = nUnits + " (" + (nUnits / nCol) + " × " + nCol + " " + trn("colorways", nCol) + ")";
     }
     var rows =
       row("Product Name", info.fullName) +
@@ -3143,7 +3157,7 @@
           var href = URL.createObjectURL(blob);
           directDownload(href, String(label || "assets").replace(/[^\w.-]+/g, "_") + ".zip");
           setTimeout(function () { URL.revokeObjectURL(href); }, 8000);
-          toast(tr("Downloaded") + " " + committed.length + " " + tr("files") +
+          toast(tr("Downloaded") + " " + committed.length + " " + trn("files", committed.length) +
             (alsoFromDropbox ? " · " + tr("{n} more coming from Dropbox").replace("{n}", alsoFromDropbox) : ""));
         })
         .catch(function () { toast(tr("Couldn’t build the zip")); });
