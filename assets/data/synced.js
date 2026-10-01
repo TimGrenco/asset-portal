@@ -253,6 +253,14 @@ window.PORTAL_SYNCED = {
       ],
       "Lifestyle Photos": [
         {
+          "name": "__ALF2690",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/gpi5qph0utjoiu50134ys/_ALF2690.jpg?rlkey=0uobk2jij5a7zaj0u34m605fb&dl=0",
+          "thumb": "assets/synced/dash-ii/75c30f4f8089259b848ed84d4eddf5497d2624d5ca2d7cddd6bbb5718a813d0d.jpg",
+          "file": null
+        },
+        {
           "name": "_ALF2043",
           "type": "image",
           "format": "JPG",
@@ -338,14 +346,6 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fi/wmir6uwgaqr7orkw2fwry/_ALF2674.jpg?rlkey=x0eiqyshzdsgyoue70z4yoax4&dl=0",
           "thumb": "assets/synced/dash-ii/bf55167651e5a116e90cef3b590d284f98a4064aaed932492847b7e1132b8210.jpg",
-          "file": null
-        },
-        {
-          "name": "_ALF2690",
-          "type": "image",
-          "format": "JPG",
-          "url": "https://www.dropbox.com/scl/fi/gpi5qph0utjoiu50134ys/_ALF2690.jpg?rlkey=0uobk2jij5a7zaj0u34m605fb&dl=0",
-          "thumb": "assets/synced/dash-ii/75c30f4f8089259b848ed84d4eddf5497d2624d5ca2d7cddd6bbb5718a813d0d.jpg",
           "file": null
         },
         {
@@ -807,14 +807,6 @@ window.PORTAL_SYNCED = {
       ],
       "Documents": [
         {
-          "name": "20260303_GPen_Dash2_Manual",
-          "type": "pdf",
-          "format": "PDF",
-          "url": "https://www.dropbox.com/scl/fi/ezbactowmtn7z4sinyun9/20260303_GPen_Dash2_Manual.pdf?rlkey=2llxjbtzk61t2jawvz3vyd4qm&dl=0",
-          "thumb": "assets/synced/dash-ii/e3c5b706210385f3ba1c5f146b720d2c0cb3a331e5f89510b0aeba34f0ad2f4f.jpg",
-          "file": null
-        },
-        {
           "name": "G Pen - One Sheet - Dash II - CAD",
           "type": "pdf",
           "format": "PDF",
@@ -1248,6 +1240,14 @@ window.PORTAL_SYNCED = {
       ],
       "Lifestyle Photos": [
         {
+          "name": "__ALF1483",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/l326j992z68654matn2rh/_ALF1483.jpg?rlkey=9h8xiwyhlo4jh2izjdbib043i&dl=0",
+          "thumb": "assets/synced/micro-ii/3d8b2a142de733ce051a8e0c1e6fcae5acc17d59a38974433f7a700988c91b71.jpg",
+          "file": null
+        },
+        {
           "name": "_ALF0890",
           "type": "image",
           "format": "JPG",
@@ -1389,14 +1389,6 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fi/4tnd7tasedng7jiytonmj/_ALF1462.jpg?rlkey=swg1r73iessq4w4z2tjv0fati&dl=0",
           "thumb": "assets/synced/micro-ii/93efa1ae3c7349010dd1859471be3d74e7e0d0b67b658ffc3cfb1b8d0eed27ed.jpg",
-          "file": null
-        },
-        {
-          "name": "_ALF1483",
-          "type": "image",
-          "format": "JPG",
-          "url": "https://www.dropbox.com/scl/fi/l326j992z68654matn2rh/_ALF1483.jpg?rlkey=9h8xiwyhlo4jh2izjdbib043i&dl=0",
-          "thumb": "assets/synced/micro-ii/3d8b2a142de733ce051a8e0c1e6fcae5acc17d59a38974433f7a700988c91b71.jpg",
           "file": null
         },
         {
@@ -2344,14 +2336,6 @@ window.PORTAL_SYNCED = {
       ],
       "Documents": [
         {
-          "name": "20260730_GPen_Micro2_Manual",
-          "type": "pdf",
-          "format": "PDF",
-          "url": "https://www.dropbox.com/scl/fi/00ehfws4oltsflf7tzrhx/20260730_GPen_Micro2_Manual.pdf?rlkey=r0hsgju2qw9m4h5k0ugg33fnt&dl=0",
-          "thumb": "assets/synced/micro-ii/12609d503369f22ac3b85a14547cd4d091a49e20608f8e91d56fa63f64c5a4be.jpg",
-          "file": null
-        },
-        {
           "name": "G Pen - One Sheet - Micro II - CAD",
           "type": "pdf",
           "format": "PDF",
@@ -2478,6 +2462,14 @@ window.PORTAL_SYNCED = {
     "folders": {
       "Product Photos": [
         {
+          "name": "_stashgrinder_thumb_03",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/59to13vlz0z5elvnm9nn0/stashgrinder_thumb_03.jpg?rlkey=yjv19q1rq76n5fqr5xchmh428&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/0fbb1f8d492eb9a3230da10082b02e5dbce938d37a055f7945e5ac7080e2dd90.jpg",
+          "file": null
+        },
+        {
           "name": "stashgrinder_thumb_01",
           "type": "image",
           "format": "JPG",
@@ -2491,14 +2483,6 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fi/x99hxawsdk2ky37kdwgh0/stashgrinder_thumb_02.jpg?rlkey=qa1i4eexpdixeztj1dbqcgfem&dl=0",
           "thumb": "assets/synced/slim-3-piece-grinder/6b19b4ea9db4303de723550f4f82bc266fe89776d7ff3180a534227a3fbefd63.jpg",
-          "file": null
-        },
-        {
-          "name": "stashgrinder_thumb_03",
-          "type": "image",
-          "format": "JPG",
-          "url": "https://www.dropbox.com/scl/fi/59to13vlz0z5elvnm9nn0/stashgrinder_thumb_03.jpg?rlkey=yjv19q1rq76n5fqr5xchmh428&dl=0",
-          "thumb": "assets/synced/slim-3-piece-grinder/0fbb1f8d492eb9a3230da10082b02e5dbce938d37a055f7945e5ac7080e2dd90.jpg",
           "file": null
         },
         {
@@ -2560,6 +2544,14 @@ window.PORTAL_SYNCED = {
       ],
       "Lifestyle Photos": [
         {
+          "name": "__ALF9043",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/zmlmwym59lp4m50fw7x5s/_ALF9043.jpg?rlkey=v96nqv7sjd3gqyq9brmg3kdt0&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/b30420ac6519a8b48d0c8015995ddfd2e496a3b83570ea58c73274cf3d4d5701.jpg",
+          "file": null
+        },
+        {
           "name": "_ALF9037",
           "type": "image",
           "format": "JPG",
@@ -2589,14 +2581,6 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fi/p5sszg1zslb1y6s0m79ul/_ALF9041.jpg?rlkey=xc98o6ggfc6uiwan8ujm1lp82&dl=0",
           "thumb": "assets/synced/slim-3-piece-grinder/d0f721b0bebd01144cc6793dc3bf13c01a42224f957e388d1d56f0b214a549ff.jpg",
-          "file": null
-        },
-        {
-          "name": "_ALF9043",
-          "type": "image",
-          "format": "JPG",
-          "url": "https://www.dropbox.com/scl/fi/zmlmwym59lp4m50fw7x5s/_ALF9043.jpg?rlkey=v96nqv7sjd3gqyq9brmg3kdt0&dl=0",
-          "thumb": "assets/synced/slim-3-piece-grinder/b30420ac6519a8b48d0c8015995ddfd2e496a3b83570ea58c73274cf3d4d5701.jpg",
           "file": null
         },
         {
@@ -3417,14 +3401,6 @@ window.PORTAL_SYNCED = {
         }
       ],
       "Documents": [
-        {
-          "name": "20251218_GPen_510_Original_Manual",
-          "type": "pdf",
-          "format": "PDF",
-          "url": "https://www.dropbox.com/scl/fi/fq0oncklp1kkyqczzlqmu/20251218_GPen_510_Original_Manual.pdf?rlkey=616dx5fqlcylzhw5b6lmtitt6&dl=0",
-          "thumb": "assets/synced/510-original/d5502bb679179a173894680ec9e70a59e0c3b7bc04042965936273f324d0ecca.jpg",
-          "file": null
-        },
         {
           "name": "GPen - One Sheet - 510 Original - CAD",
           "type": "pdf",
@@ -5027,14 +5003,6 @@ window.PORTAL_SYNCED = {
       ],
       "Documents": [
         {
-          "name": "20251218_GPen_510_Original_Manual",
-          "type": "pdf",
-          "format": "PDF",
-          "url": "https://www.dropbox.com/scl/fi/p3b5nd7raepe9sajkn350/20251218_GPen_510_Original_Manual.pdf?rlkey=awl6i9qy3g57l0t8n4muc6d7r&dl=0",
-          "thumb": "assets/synced/510-original-retro/d5502bb679179a173894680ec9e70a59e0c3b7bc04042965936273f324d0ecca.jpg",
-          "file": null
-        },
-        {
           "name": "G Pen - One Sheet - 510 Original Retro - CAD",
           "type": "pdf",
           "format": "PDF",
@@ -5129,19 +5097,19 @@ window.PORTAL_SYNCED = {
     "folders": {
       "Product Photos": [
         {
+          "name": "_dash+_vape_thumb_01",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/9x23dhj8yvtxofgv5r30t/dash-_vape_thumb_01.jpg?rlkey=njfjsgbji2gbdz6pkpyfwphzv&dl=0",
+          "thumb": "assets/synced/dash-plus/5aa0cd97a15a492ebec70db4b301cfa7eccf122d2b4110ceaa7f4f3426218ae0.jpg",
+          "file": null
+        },
+        {
           "name": "Dash+ Filter Screens",
           "type": "image",
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fi/ezayx7stcimehbne7l6e5/Dash-Filter-Screens.jpg?rlkey=z01gkghtl6e09lp5vz0kn2muy&dl=0",
           "thumb": "assets/synced/dash-plus/72cc8099c788ab11f9e61d16e4c1eb6e76135cb2b6623e4370261bd7d8003fe5.jpg",
-          "file": null
-        },
-        {
-          "name": "dash+_vape_thumb_01",
-          "type": "image",
-          "format": "JPG",
-          "url": "https://www.dropbox.com/scl/fi/9x23dhj8yvtxofgv5r30t/dash-_vape_thumb_01.jpg?rlkey=njfjsgbji2gbdz6pkpyfwphzv&dl=0",
-          "thumb": "assets/synced/dash-plus/5aa0cd97a15a492ebec70db4b301cfa7eccf122d2b4110ceaa7f4f3426218ae0.jpg",
           "file": null
         },
         {
@@ -5901,14 +5869,6 @@ window.PORTAL_SYNCED = {
       ],
       "Documents": [
         {
-          "name": "20250304_GPen_Dash-Plus_Manual_US",
-          "type": "pdf",
-          "format": "PDF",
-          "url": "https://www.dropbox.com/scl/fi/ilxuzqy59soox5b4rgosg/20250304_GPen_Dash-Plus_Manual_US.pdf?rlkey=yn5ku29edb5yvaxdfs4ym501a&dl=0",
-          "thumb": "assets/synced/dash-plus/c26dcf72121fb7abc98ccee6a30d6d4413846f93fb4f8ec73c8b2bce868ae95d.jpg",
-          "file": null
-        },
-        {
           "name": "G Pen - One Sheet - Dash+ - CAD",
           "type": "pdf",
           "format": "PDF",
@@ -6586,6 +6546,14 @@ window.PORTAL_SYNCED = {
       ],
       "Social Videos": [
         {
+          "name": "_Alyssa Hydout GIF D",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/lkqsqi4sbgdnudxdb1l5l/Alyssa-Hydout-GIF-D.mp4?rlkey=mnnd9s24to4fudmcza72wdkua&dl=0",
+          "thumb": "assets/synced/hydout/0b899fc749884752809bf9b300b9291b72da4e87dd95abfb14e81e82c3922bda.jpg",
+          "file": null
+        },
+        {
           "name": "Alyssa 510 Knock No Text",
           "type": "video",
           "format": "MP4",
@@ -6599,14 +6567,6 @@ window.PORTAL_SYNCED = {
           "format": "MP4",
           "url": "https://www.dropbox.com/scl/fi/en0aqljgj2mq89sgmphyy/Alyssa-Hydout-510-knock.mp4?rlkey=6w6dyll2anbsvmsxurgwld4ou&dl=0",
           "thumb": "assets/synced/hydout/72c2013d40fe09f4e12a67e4848fd2dfe7ef8304a2c50115645a36a19836ad1e.jpg",
-          "file": null
-        },
-        {
-          "name": "Alyssa Hydout GIF D",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/lkqsqi4sbgdnudxdb1l5l/Alyssa-Hydout-GIF-D.mp4?rlkey=mnnd9s24to4fudmcza72wdkua&dl=0",
-          "thumb": "assets/synced/hydout/0b899fc749884752809bf9b300b9291b72da4e87dd95abfb14e81e82c3922bda.jpg",
           "file": null
         },
         {
@@ -6831,14 +6791,6 @@ window.PORTAL_SYNCED = {
         }
       ],
       "Documents": [
-        {
-          "name": "20250528_GPen_Hydout_Manual",
-          "type": "pdf",
-          "format": "PDF",
-          "url": "https://www.dropbox.com/scl/fi/wn0co3fhllafleqlyvg1t/20250528_GPen_Hydout_Manual.pdf?rlkey=d5pzpe45a2pcqmqc7jp4jax5d&dl=0",
-          "thumb": "assets/synced/hydout/5819d4bb587c7eb0b07509a6e0488fd4084280a57a81510e183cd79c57a76cf5.jpg",
-          "file": null
-        },
         {
           "name": "G Pen - One Sheet - Hydout - CAD",
           "type": "pdf",
@@ -8473,14 +8425,6 @@ window.PORTAL_SYNCED = {
           "url": "https://www.dropbox.com/scl/fi/rhqke4ex06jkkcf1wh0jm/G-Pen-One-Sheet-Hydout.pdf?rlkey=by4ocgzeh4fm9im4vk1s6i6t2&dl=0",
           "thumb": "assets/synced/hydout-retro/43031ca384658e886c53c0bf156e19e261d7a258044e52a58f078fdb71246c38.jpg",
           "file": null
-        },
-        {
-          "name": "GPEN_Retro_Hydout_Manual",
-          "type": "pdf",
-          "format": "PDF",
-          "url": "https://www.dropbox.com/scl/fi/qgj2vbqivbk98w9y1n7us/GPEN_Retro_Hydout_Manual.pdf?rlkey=790fx22u3tkx4e16tf4kls3ij&dl=0",
-          "thumb": "assets/synced/hydout-retro/4bfe5254fe2bc4da1d9e7af303ac4efd40ce8818c1b956636e7656ff25ee6212.jpg",
-          "file": null
         }
       ],
       "In Store Marketing Materials": [
@@ -8724,6 +8668,14 @@ window.PORTAL_SYNCED = {
       ],
       "Lifestyle Photos": [
         {
+          "name": "__GSH7840",
+          "type": "image",
+          "format": "JPG",
+          "url": "https://www.dropbox.com/scl/fi/swt0x8st6682tq893qsee/_GSH7840.jpg?rlkey=ievzer6wfk6rxnycjk7uzykue&dl=0",
+          "thumb": "assets/synced/melt/10569df08d7c1b21777e2054acf8b547e132ef308952d87357ae6594d1c26279.jpg",
+          "file": null
+        },
+        {
           "name": "_GSH6503",
           "type": "image",
           "format": "JPG",
@@ -8769,14 +8721,6 @@ window.PORTAL_SYNCED = {
           "format": "JPG",
           "url": "https://www.dropbox.com/scl/fi/qkoett6wc4288bbb3janb/_GSH7830.jpg?rlkey=mrkwhezkr96jj5k9vh1493o2h&dl=0",
           "thumb": "assets/synced/melt/d0eaa8ff099588adf44045dd3536650378e563dd37b87d7dc38f1a23599d6348.jpg",
-          "file": null
-        },
-        {
-          "name": "_GSH7840",
-          "type": "image",
-          "format": "JPG",
-          "url": "https://www.dropbox.com/scl/fi/swt0x8st6682tq893qsee/_GSH7840.jpg?rlkey=ievzer6wfk6rxnycjk7uzykue&dl=0",
-          "thumb": "assets/synced/melt/10569df08d7c1b21777e2054acf8b547e132ef308952d87357ae6594d1c26279.jpg",
           "file": null
         },
         {
@@ -9093,14 +9037,6 @@ window.PORTAL_SYNCED = {
         }
       ],
       "Documents": [
-        {
-          "name": "20251203_GPen_MELT_Manual",
-          "type": "pdf",
-          "format": "PDF",
-          "url": "https://www.dropbox.com/scl/fi/6t9ketnbx44sa8rz2orpd/20251203_GPen_MELT_Manual.pdf?rlkey=l4vdzllimzkwu6x549h5lsf83&dl=0",
-          "thumb": "assets/synced/melt/b04836d7c50e0d8873083efc27ea6aa6989de4fc263f6aa34bbe5b14124165a7.jpg",
-          "file": null
-        },
         {
           "name": "G Pen - One Sheet - Melt (Hot Knife) - CAD",
           "type": "pdf",
