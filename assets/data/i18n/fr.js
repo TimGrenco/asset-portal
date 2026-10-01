@@ -267,6 +267,8 @@ window.PORTAL_I18N.fr = {
     "Sales Assets": "Ressources commerciales",
     "Other": "Autres",
     "User Generated Content": "Contenu généré par les utilisateurs",
+    "One Sheet": "Fiche produit",
+    "Region": "Région",
     "Download coming soon": "Téléchargement bientôt disponible",
     "Download folder": "Télécharger le dossier",
     "Download logo files": "Télécharger les fichiers de logos",

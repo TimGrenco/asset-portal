@@ -267,6 +267,8 @@ window.PORTAL_I18N.es = {
     "Sales Assets": "Recursos de ventas",
     "Other": "Otros",
     "User Generated Content": "Contenido generado por usuarios",
+    "One Sheet": "Ficha de producto",
+    "Region": "Región",
     "Download coming soon": "Descarga próximamente",
     "Download folder": "Descargar carpeta",
     "Download logo files": "Descargar archivos de logo",

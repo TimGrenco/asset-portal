@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20261001c";   // bump with the other asset tokens
+  var LANG_VER = "20261001d";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -578,6 +578,34 @@
   // The Documents folder (manual + regional one-sheets) is its own "Sales assets"
   // section on the product page, not one of the photo/video folder cards.
   function isSalesFolder(f) { return f === "Documents" || f === "Misc"; }
+  // One-sheets come as one PDF per region: "… - CAD", "… - EU", "… - UK", and the
+  // US edition with no suffix. Sales Assets shows them as ONE card with a region
+  // picker instead of four near-identical filenames.
+  var ONE_SHEET_REGIONS = ["USD", "CAD", "EU", "UK"];
+  var REGION_SUFFIX = /[\s_-]+(CAD|EU|UK|USD|US)$/i;
+  function oneSheetRegion(name) {
+    var m = REGION_SUFFIX.exec(name || "");
+    return !m ? "USD" : m[1].toUpperCase() === "US" ? "USD" : m[1].toUpperCase();
+  }
+  // → { files: { USD: file, CAD: file, … }, rest: [other files] }, or null.
+  function groupOneSheets(files) {
+    var os = (files || []).filter(function (x) { return /one.?sheet/i.test(x.name || ""); });
+    if (!os.length) return null;
+    // The regional files share a stem ("G Pen - One Sheet - Dash II") and the US
+    // file IS that stem. A folder can hold a stray extra US sheet (Hydout — Retro
+    // also carries the plain Hydout one): prefer the one matching the stem, and
+    // leave the other as an ordinary file.
+    var stems = os.filter(function (x) { return oneSheetRegion(x.name) !== "USD"; })
+      .map(function (x) { return x.name.replace(REGION_SUFFIX, ""); });
+    var g = {};
+    os.forEach(function (x) {
+      var r = oneSheetRegion(x.name);
+      if (!g[r]) g[r] = x;
+      else if (r === "USD" && stems.indexOf(x.name) !== -1 && stems.indexOf(g[r].name) === -1) g[r] = x;
+    });
+    var used = Object.keys(g).map(function (k) { return g[k]; });
+    return { files: g, rest: files.filter(function (x) { return used.indexOf(x) === -1; }) };
+  }
   // Photo / video folder cards are grouped Photos → Videos → Other, each group in
   // its own fixed order. Legacy products' colorway folders ("Black / Videos",
   // "Cookies / Renders"…) fall into a group by name; anything else is Other.
@@ -2150,6 +2178,19 @@
     var active = (initialFolder && cardFolders.indexOf(initialFolder) !== -1) ? initialFolder : null;
     var jumpTo = (initialFolder && folderNames.indexOf(initialFolder) !== -1) ? initialFolder : null;
     var selected = {};   // fileKey -> file object; persists while opening/closing folders
+    // Sales Assets: each Documents folder's one-sheets as one card, USD first.
+    var oneSheets = {}, osRegion = {};
+    docFolders.forEach(function (f) {
+      var g = groupOneSheets(p.folders[f]); if (!g) return;
+      oneSheets[f] = g;
+      osRegion[f] = ONE_SHEET_REGIONS.filter(function (r) { return g.files[r]; })[0];
+    });
+    // What a folder's Select all covers: for Sales Assets, the files on show plus
+    // the one-sheet in the region picked (not the three hidden editions).
+    function visibleFiles(f) {
+      var g = oneSheets[f];
+      return g ? g.rest.concat([g.files[osRegion[f]]]) : (p.folders[f] || []);
+    }
 
     function selectedList() { return Object.keys(selected).map(function (k) { return selected[k]; }); }
     function toggle(folder, file, on) {
@@ -2163,7 +2204,7 @@
       if (bar) { $("#sel-n").textContent = n; bar.classList.toggle("show", n > 0); }
       document.body.classList.toggle("has-selection", n > 0);
       $$(".folder-toolbar[data-folder]", d).forEach(function (tb) {
-        var f = tb.getAttribute("data-folder"), ff = p.folders[f] || [];
+        var f = tb.getAttribute("data-folder"), ff = visibleFiles(f);
         var some = ff.some(function (x) { return selected[fileKey(f, x)]; });
         var all = ff.length > 0 && ff.every(function (x) { return selected[fileKey(f, x)]; });
         var sa = $(".sel-all", tb);
@@ -2173,6 +2214,70 @@
         var k = cell.getAttribute("data-key"), on = !!selected[k];
         cell.classList.toggle("sel", on);
         var cb = $(".gcheck", cell); if (cb) cb.checked = on;
+      });
+      $$(".onesheet", d).forEach(function (card) {
+        var f = card.getAttribute("data-osfolder"), x = oneSheets[f].files[osRegion[f]];
+        var on = !!selected[fileKey(f, x)];
+        card.classList.toggle("sel", on);
+        var cb = $(".os-check", card); if (cb) cb.checked = on;
+      });
+    }
+    // The one-sheet card: preview, region picker (only the editions that exist),
+    // Download PDF and Copy link for the picked region.
+    function oneSheetHTML(f, title) {
+      var g = oneSheets[f], r = osRegion[f], x = g.files[r];
+      var regs = ONE_SHEET_REGIONS.filter(function (k) { return g.files[k]; });
+      var nm = escapeHTML(fileLabel(x)), on = !!selected[fileKey(f, x)];
+      return '<div class="onesheet' + (on ? " sel" : "") + '" data-osfolder="' + escapeHTML(f) + '">' +
+        '<div class="onesheet-media">' +
+          '<label class="gselect"><input type="checkbox" class="gcheck os-check"' + (on ? " checked" : "") + ' aria-label="' + tr("Select {name}").replace("{name}", nm) + '"/></label>' +
+          '<button type="button" class="onesheet-prev" aria-label="' + tr("Enlarge {name}").replace("{name}", nm) + '">' +
+            (x.thumb ? '<img src="' + escapeHTML(x.thumb) + '" alt="" decoding="async"/>' : icon("file")) +
+            (x.format ? '<span class="gfmt">' + escapeHTML(x.format) + "</span>" : "") +
+          "</button>" +
+        "</div>" +
+        '<div class="onesheet-info">' +
+          '<h3 class="onesheet-title">' + tr("One Sheet") + "</h3>" +
+          '<p class="onesheet-sub">' + escapeHTML(title) + "</p>" +
+          '<div class="onesheet-regions" role="radiogroup" aria-label="' + tr("Region") + '">' +
+            regs.map(function (k) {
+              return '<button type="button" role="radio" aria-checked="' + (k === r) + '"' + (k === r ? ' class="on"' : "") + ' data-region="' + k + '">' + k + "</button>";
+            }).join("") +
+          "</div>" +
+          '<div class="onesheet-acts">' +
+            '<button type="button" class="btn sm" data-osdl>' + icon("download") + " " + tr(/pdf/i.test(x.format || "") ? "Download PDF" : "Download") + "</button>" +
+            '<button type="button" class="btn ghost sm" data-oscopy>' + icon("link") + " " + tr("Copy link") + "</button>" +
+          "</div>" +
+          '<div class="onesheet-file">' + nm + "</div>" +
+        "</div>" +
+      "</div>";
+    }
+    function wireOneSheet(card, title) {
+      var f = card.getAttribute("data-osfolder");
+      var cur = function () { return oneSheets[f].files[osRegion[f]]; };
+      $$("[data-region]", card).forEach(function (b) {
+        b.addEventListener("click", function () {
+          if (osRegion[f] === b.getAttribute("data-region")) return;
+          osRegion[f] = b.getAttribute("data-region");
+          var tmp = document.createElement("div"); tmp.innerHTML = oneSheetHTML(f, title);
+          var fresh = tmp.firstChild; card.parentNode.replaceChild(fresh, card);
+          wireOneSheet(fresh, title); syncSelection();
+          var same = $('[data-region="' + osRegion[f] + '"]', fresh); if (same) same.focus({ preventScroll: true });
+        });
+      });
+      $(".os-check", card).addEventListener("change", function (e) { toggle(f, cur(), e.target.checked); syncSelection(); });
+      $(".onesheet-prev", card).addEventListener("click", function () {
+        var x = cur();
+        openLightbox([{ src: x.thumb, name: fileLabel(x), url: x.url || "#", file: x.file || null, type: x.type, format: x.format }], 0);
+      });
+      $("[data-osdl]", card).addEventListener("click", function () {
+        var x = cur();
+        if (x.file) directDownload(x.file, fileLabel(x)); else downloadOne(x.url);
+      });
+      $("[data-oscopy]", card).addEventListener("click", function () {
+        var x = cur();
+        if (!x.url) { toast(tr("No link yet")); return; }
+        copyText(x.url, tr("Link copied"));
       });
     }
     function countLabel(n) { return n + " " + tr(n === 1 ? "file" : "files"); }
@@ -2193,15 +2298,15 @@
         var f = tb.getAttribute("data-folder");
         $(".sel-all", tb).addEventListener("change", function (e) {
           var on = e.target.checked;
-          (p.folders[f] || []).forEach(function (x) { toggle(f, x, on); });
+          visibleFiles(f).forEach(function (x) { toggle(f, x, on); });
           syncSelection();
         });
         $("[data-copyfolder]", tb).addEventListener("click", function () { copyFolderLink(p, f); });
         $("[data-dlfolder]", tb).addEventListener("click", function () { downloadFolder(p, f); });
       });
     }
-    function fillGallery(f, el) {
-      renderGallery(p, f, selected, function (x, on) { toggle(f, x, on); }, syncSelection, el);
+    function fillGallery(f, el, only) {
+      renderGallery(p, f, selected, function (x, on) { toggle(f, x, on); }, syncSelection, el, only);
     }
     // Square folder cards, the first photo/video frame cropped to fill each one,
     // in three labeled groups. The open folder's files sit in a full-width panel
@@ -2327,7 +2432,10 @@
         // ---- Sales assets: the Documents folder (manual, one-sheets), open ----
         (docTotal ? '<div class="section-head sales-head" id="sales-head"><h2>' + tr("Sales Assets") + '</h2><span class="badge">' + countLabel(docTotal) + "</span></div>" +
           docFolders.map(function (f) {
-            return '<div class="sales-folder">' + folderToolsHTML(f, docFolders.length > 1) + '<div class="gallery" data-docs="' + escapeHTML(f) + '"></div></div>';
+            var g = oneSheets[f], rest = g ? g.rest : p.folders[f];
+            return '<div class="sales-folder">' + folderToolsHTML(f, docFolders.length > 1) +
+              (g ? oneSheetHTML(f, fullName) : "") +
+              (rest.length ? '<div class="gallery" data-docs="' + escapeHTML(f) + '"></div>' : "") + "</div>";
           }).join("") : "") +
         '<div class="selbar" id="selbar">' +
           '<span class="selcount" role="status" aria-live="polite"><strong id="sel-n">0</strong> ' + tr("selected") + '</span>' +
@@ -2349,7 +2457,11 @@
         specsHTML(p) +
         videoHubHTML(p);
 
-      $$("[data-docs]", d).forEach(function (g) { fillGallery(g.getAttribute("data-docs"), g); });
+      $$("[data-docs]", d).forEach(function (g) {
+        var f = g.getAttribute("data-docs");
+        fillGallery(f, g, oneSheets[f] ? oneSheets[f].rest : null);
+      });
+      $$(".onesheet", d).forEach(function (card) { wireOneSheet(card, fullName); });
       $$(".sales-folder", d).forEach(wireTools);
       renderCards();
       $$("[data-play]", d).forEach(function (el) {
@@ -2839,9 +2951,9 @@
     if (ov) { var v = $("video", ov); if (v) v.pause(); ov.remove(); modalClose(); }
   }
 
-  function renderGallery(p, folder, selected, onToggle, onChange, el) {
+  function renderGallery(p, folder, selected, onToggle, onChange, el, only) {
     var g = el;
-    var files = p.folders[folder] || [];
+    var files = only || p.folders[folder] || [];
     if (!files.length) {
       g.innerHTML = '<div class="gallery-empty">' + icon("photo") +
         "<p>" + tr("Assets are coming soon — check back shortly.") + "</p></div>";

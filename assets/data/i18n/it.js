@@ -267,6 +267,8 @@ window.PORTAL_I18N.it = {
     "Sales Assets": "Asset di vendita",
     "Other": "Altro",
     "User Generated Content": "Contenuti generati dagli utenti",
+    "One Sheet": "Scheda prodotto",
+    "Region": "Regione",
     "Download coming soon": "Download in arrivo",
     "Download folder": "Scarica cartella",
     "Download logo files": "Scarica i file logo",
