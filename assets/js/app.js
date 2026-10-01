@@ -26,7 +26,7 @@
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)",
                 sv: "Svenska", pl: "Polski", da: "Dansk" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20261001e";   // bump with the other asset tokens
+  var LANG_VER = "20261001f";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -427,19 +427,35 @@
   // Videos group. It has no Dropbox folder of its own: Download folder pulls its
   // files one by one, and Copy folder link shares the folder they came from.
   function splitUGC(p) {
-    if (!p.folders || p.folders[UGC_FOLDER]) return;
-    var moved = [], from = {};
+    if (!p.folders) return;
+    // Dropbox's own UGC folder ("UGC Videos", "UGC"…) IS the card, Dropbox link
+    // and all — spelled out as "User Generated Content".
     Object.keys(p.folders).forEach(function (f) {
+      if (f === UGC_FOLDER || !/^ugc\b/i.test(f)) return;
+      p.folders[UGC_FOLDER] = (p.folders[UGC_FOLDER] || []).concat(p.folders[f]);
+      if (p.folderLinks && p.folderLinks[f] && !p.folderLinks[UGC_FOLDER]) p.folderLinks[UGC_FOLDER] = p.folderLinks[f];
+      delete p.folders[f];
+      if (p.folderLinks) delete p.folderLinks[f];
+    });
+    // Stray creator videos still filed elsewhere (older products keep them in
+    // their video folders) move in too; one already in the UGC folder is dropped
+    // from the other folder rather than shown twice.
+    var have = {}, moved = [], from = {};
+    (p.folders[UGC_FOLDER] || []).forEach(function (x) { have[x.name] = 1; });
+    Object.keys(p.folders).forEach(function (f) {
+      if (f === UGC_FOLDER) return;
       var keep = [];
       (p.folders[f] || []).forEach(function (x) {
-        if (x.type === "video" && /(^|[^a-z])ugc([^a-z]|$)/i.test(x.name || "")) { moved.push(x); from[f] = (from[f] || 0) + 1; }
-        else keep.push(x);
+        if (x.type === "video" && /(^|[^a-z])ugc([^a-z]|$)/i.test(x.name || "")) {
+          if (!have[x.name]) { moved.push(x); have[x.name] = 1; from[f] = (from[f] || 0) + 1; }
+        } else keep.push(x);
       });
       p.folders[f] = keep;
     });
-    if (!moved.length) return;
-    p.folders[UGC_FOLDER] = moved;
-    p.ugcFrom = Object.keys(from).sort(function (a, b) { return from[b] - from[a]; })[0];
+    if (moved.length) p.folders[UGC_FOLDER] = (p.folders[UGC_FOLDER] || []).concat(moved);
+    // No Dropbox folder of its own: Copy folder link shares where the files came from.
+    if (moved.length && !(p.folderLinks && p.folderLinks[UGC_FOLDER]))
+      p.ugcFrom = Object.keys(from).sort(function (a, b) { return from[b] - from[a]; })[0];
   }
   PRODUCTS.forEach(function (p) {
     // The sync canonicalizes renamed in-store folders ("POS", "In Store

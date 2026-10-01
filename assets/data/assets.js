@@ -1281,6 +1281,14 @@ window.PORTAL_HELP_PAGES = {
    renamed or removed, the card falls back to the first file.
    ========================================================================== */
 window.PORTAL_FOLDER_COVERS = {
-  "Dash II":      { "User Generated Content": "Dash II UGC_01" },        // "G Pen unboxing"
-  "510 Original": { "User Generated Content": "UGC 510 Original_01" },   // "Smallest battery check!"
+  // User Generated Content: a creator with the product clearly in frame, no edgy captions.
+  "Dash II":              { "User Generated Content": "Dash II UGC_01" },                         // "G Pen unboxing"
+  "510 Original":         { "User Generated Content": "UGC 510 Original_01" },                    // "Smallest battery check!"
+  "510 Original — Retro": { "User Generated Content": "irielogic420 retro 510 july" },            // red Retro 510 in its box
+  "Micro II":             { "User Generated Content": "highwithkay Micro II Sept" },              // "try the gpen micro II with me"
+  "Slim 3-Piece Grinder": { "User Generated Content": "zach_tha_ripper Grinder trim" },           // grinder close-up
+  "Dash+":                { "User Generated Content": "Bentley Rolling Dash+ Review" },           // creator review, device in hand
+  "Hydout":               { "User Generated Content": "Grand Illumination Hydout lets_rhi.up" },  // Hydout in hand, colorful house
+  "Hydout — Retro":       { "User Generated Content": "iproch Purple Hydout June" },              // purple Retro outdoors
+  "Melt Hot Knife":       { "User Generated Content": "blazzedange melt jar march" },             // creator holding the Melt
 };
