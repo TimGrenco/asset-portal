@@ -678,20 +678,33 @@ button.pkg-media { width: 100%; border: 0; padding: 0; font: inherit; }
 .vlb-close { position: absolute; top: 22px; right: 22px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.12); border: none; display: flex; align-items: center; justify-content: center; }
 .vlb-close svg { width: 20px; height: 20px; stroke: #fff; }
 
-/* product-page category tabs — card style with a type icon per folder */
-.catgrid { display: flex; flex-wrap: wrap; gap: 8px; align-items: stretch; margin: -2px 0 16px; }
-.catcard { display: flex; align-items: center; gap: 9px; padding: 9px 13px 9px 9px; border-radius: 12px; border: 1px solid var(--hair); background: var(--paper); color: var(--ink); transition: border-color 0.14s, background 0.14s; text-align: left; }
-.catcard:hover { border-color: var(--ink); }
-.catcard.on { background: var(--ink); border-color: var(--ink); color: #fff; }
-.catcard-ic { flex: 0 0 auto; width: 30px; height: 30px; border-radius: 8px; background: var(--mist); display: flex; align-items: center; justify-content: center; color: var(--ink); }
-.catcard-ic svg { width: 17px; height: 17px; }
-.catcard.on .catcard-ic { background: rgba(255, 255, 255, 0.16); color: #fff; }
-.catcard-tx { display: flex; flex-direction: column; line-height: 1.2; }
-.catcard-name { font-size: 13px; font-weight: 600; }
-.catcard-c { font-size: 9.5px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--stone); margin-top: 1px; }
-.catcard.on .catcard-c { color: rgba(255, 255, 255, 0.72); }
-/* "Swipe to see more folders" — mobile only (see media query) */
-.catgrid-hint { display: none; }
+/* product-page folder cards: square, led by the folder's first image. One opens
+   at a time, as a full-width panel the JS places right after the card's row. */
+.fcards { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; margin: -2px 0 8px; }
+.fcard { position: relative; display: flex; flex-direction: column; aspect-ratio: 1 / 1; min-width: 0; padding: 0; border: 1px solid var(--hair); border-radius: var(--radius); background: var(--paper); color: var(--ink); overflow: hidden; text-align: left; font-family: inherit; cursor: pointer; transition: border-color 0.14s, box-shadow 0.14s; }
+.fcard:hover { border-color: var(--ink); }
+.fcard:focus-visible { outline: 2px solid var(--gold-ink); outline-offset: 2px; }
+.fcard.on { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
+.fcard-img { position: relative; flex: 1 1 auto; min-height: 0; background: var(--mist); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.fcard-img img { width: 100%; height: 100%; object-fit: contain; padding: 12px; box-sizing: border-box; transition: transform 0.3s; }
+.fcard.is-cover .fcard-img img { object-fit: cover; padding: 0; }
+.fcard:hover .fcard-img img { transform: scale(1.03); }
+.fcard-fb { display: none; color: #c8c8c3; }
+.fcard-img.no-img .fcard-fb { display: flex; }
+.fcard-fb svg { width: 34px; height: 34px; }
+.fcard-cap { flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--hair); background: var(--paper); }
+.fcard.on .fcard-cap { background: var(--ink); color: #fff; border-top-color: var(--ink); }
+.fcard-tx { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; }
+.fcard-name { font-size: 13.5px; font-weight: 700; }
+.fcard-c { font-size: 10px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--stone); margin-top: 2px; }
+.fcard.on .fcard-c { color: rgba(255, 255, 255, 0.72); }
+.fcard-cap > svg { flex: 0 0 auto; width: 16px; height: 16px; transition: transform 0.18s; }
+.fcard.on .fcard-cap > svg { transform: rotate(180deg); }
+.fpanel { grid-column: 1 / -1; min-width: 0; border: 1px solid var(--hair); border-radius: var(--radius); background: var(--mist); padding: 16px; scroll-margin-top: 84px; }
+.fpanel .folder-toolbar { justify-content: flex-end; }
+.section-head h2.caps { text-transform: uppercase; letter-spacing: 0.01em; }
+.sales-head { margin-top: 36px; scroll-margin-top: 84px; }
+.sales-folder + .sales-folder { margin-top: 22px; }
 /* Active-folder row above the gallery */
 .folder-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin: 0 0 12px; }
 .folder-title { font-family: var(--serif); font-size: 17px; font-weight: 700; color: var(--ink); display: flex; align-items: baseline; gap: 10px; margin: 0; }
@@ -930,15 +943,12 @@ a.logo-tile { cursor: pointer; }
   .hero-logo.gpen { height: 52px; }
   .hero-logo.sg { height: 26px; }
   .grid { grid-template-columns: repeat(2, 1fr); gap: 13px; }
-  /* asset filter chips become a single swipeable strip instead of stacking */
-  .catgrid { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; scroll-snap-type: x proximity; padding-bottom: 2px; margin-right: -16px; padding-right: 16px; }
-  .catgrid::-webkit-scrollbar { display: none; }
-  .catcard { flex: 0 0 auto; scroll-snap-align: start; }
-  /* swipe affordance — mobile only */
-  .catgrid-hint { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: var(--stone); margin: 0 0 9px; }
-  .catgrid-hint svg { width: 15px; height: 15px; color: var(--gold-ink); }
-  .catgrid-hint.is-off { display: none; }
   .sku-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .fcards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .fcard-cap { padding: 9px 10px; }
+  .fcard-name { font-size: 13px; }
+  .fpanel { padding: 12px; }
+  .fpanel .folder-toolbar { justify-content: flex-start; }
   .toggle button { padding: 9px 16px; }
   .section-head { flex-wrap: wrap; }
   .section-head::after { display: none; }
@@ -1028,8 +1038,6 @@ a.logo-tile { cursor: pointer; }
 }
 
 /* Empty (0-count) asset folders read as disabled instead of leading nowhere. */
-.catcard.is-empty { opacity: 0.4; cursor: default; }
-.catcard.is-empty:hover { border-color: var(--hair); }
 
 /* Floating scroll-to-top — appears once you're a screen or two down. */
 .to-top { position: fixed; right: 20px; bottom: 20px; width: 46px; height: 46px; border-radius: 50%; background: var(--ink); color: #fff; border: none; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(0,0,0,0.22); opacity: 0; pointer-events: none; transform: translateY(10px) scale(0.9); transition: opacity 0.2s, transform 0.2s; z-index: 95; cursor: pointer; }

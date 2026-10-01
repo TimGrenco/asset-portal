@@ -1251,3 +1251,24 @@ window.PORTAL_TRAINING_COURSES = {
   "510 Original":         "510-original",
   "510 Original — Retro": "510-original",
 };
+
+
+/* =============================================================================
+   PRODUCT MANUALS — the "Product Manual" button on each product page opens that
+   product's How to Use guide on help.gpen.com (replacing the old Shopify-CDN
+   PDFs, which stay downloadable under Sales Assets). One page per product; the
+   Retro editions are covered on their base model's page. A product with no
+   entry falls back to PRODUCT_INFO's `manual`, if it has one.
+   ========================================================================== */
+window.PORTAL_HELP_SITE = "https://help.gpen.com/";
+window.PORTAL_HELP_PAGES = {
+  "Dash II":              "dash-ii",
+  "Dash+":                "dash-plus",
+  "Slim 3-Piece Grinder": "grinder",
+  "Micro II":             "micro-ii",
+  "Melt Hot Knife":       "melt",
+  "Hydout":               "hydout",
+  "Hydout — Retro":       "hydout",
+  "510 Original":         "510-original",
+  "510 Original — Retro": "510-original",
+};

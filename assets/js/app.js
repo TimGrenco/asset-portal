@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20260928b";   // bump with the other asset tokens
+  var LANG_VER = "20261001a";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -313,6 +313,7 @@
       share: '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/>',
       arrowLeft: '<path d="M19 12H5"/><path d="m12 19-7-7 7-7"/>',
       arrowUp: '<path d="M12 19V5"/><path d="m5 12 7-7 7 7"/>',
+      chevronDown: '<path d="m6 9 6 6 6-6"/>',
       arrowRight: '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
       file: '<path d="M14 3v5h5"/><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/>',
       photo: '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/>',
@@ -557,6 +558,9 @@
   // Canonical Digital Assets tab order (matches the Dropbox-sync FOLDER_ORDER).
   var FOLDER_TAB_ORDER = ["Product Photos", "E-Comm Render Photos", "Lifestyle Photos", "Web Banners", "Logos", "Social Videos", "TV Screen Videos", "Packaging", "Documents", "Misc"];
   function folderRank(f) { var i = FOLDER_TAB_ORDER.indexOf(f); return i < 0 ? 99 : i; }
+  // The Documents folder (manual + regional one-sheets) is its own "Sales assets"
+  // section on the product page, not one of the photo/video folder cards.
+  function isSalesFolder(f) { return f === "Documents" || f === "Misc"; }
 
   function buildQuery() {
     var parts = [];
@@ -960,7 +964,11 @@
       "</div>";
 
     $("#logo-dl").addEventListener("click", function () { downloadAll(logoP); });
-    $("#logo-browse").addEventListener("click", function () { navTo(logoP); });
+    // Straight to the open Logos folder (product-page folders start collapsed).
+    $("#logo-browse").addEventListener("click", function () {
+      var f = Object.keys(logoP.folders || {})[0];
+      if (f) navToFile(pid(logoP), f); else navTo(logoP);
+    });
     $$("[data-logodl]", box).forEach(function (btn) {
       btn.addEventListener("click", function () {
         var f = btn.getAttribute("data-logodl");
@@ -1895,6 +1903,14 @@
     return (window.PORTAL_TRAINING_SITE || "https://training.gpen.com/") +
       (state.lang && state.lang !== "en" ? "?lang=" + state.lang : "") + (hashPath || "");
   }
+  // The product's How to Use guide on help.gpen.com, in the reader's language
+  // (that site honors ?lang= the same way this one does).
+  function helpPageUrl(p) {
+    var slug = p && (window.PORTAL_HELP_PAGES || {})[p.name];
+    if (!slug) return null;
+    return (window.PORTAL_HELP_SITE || "https://help.gpen.com/") + slug + "/" +
+      (state.lang && state.lang !== "en" ? "?lang=" + state.lang : "");
+  }
   function trainingCourseUrl(p) {
     var slug = p && (window.PORTAL_TRAINING_COURSES || {})[p.name];
     return slug ? trainingSiteUrl("#/course/" + slug) : null;
@@ -2083,35 +2099,29 @@
 
     // The In-Store Marketing folder also has its own section below the gallery. In
     // the gallery it's PNG-de-duplicated (no white-bg doubles) and pinned as the
-    // last tab.
+    // last card.
     if ((p.folders[INSTORE_FOLDER] || []).length) p.folders[INSTORE_FOLDER] = instoreOwn(p);
     var folderNames = Object.keys(p.folders).filter(function (f) { return (p.folders[f] || []).length; });
     // Canonical folders keep their fixed order (Product Photos first, etc.); the
-    // In-Store Marketing tab is always pinned last. Other non-canonical folders
-    // (e.g. legacy products' colorway folders) sort by size — largest first — so a
-    // product opens on its richest folder, not a 2-file "Logo" tab.
+    // In-Store Marketing card is always pinned last. Other non-canonical folders
+    // (e.g. legacy products' colorway folders) sort by size, largest first.
     folderNames.sort(function (a, b) {
       if (a === INSTORE_FOLDER) return 1;
       if (b === INSTORE_FOLDER) return -1;
       return (folderRank(a) - folderRank(b)) || ((p.folders[b] || []).length - (p.folders[a] || []).length);
     });
-    // Default to a folder with content — prefer the one holding the cover image
-    // (has a thumb), else the first non-empty folder — so the gallery never opens
-    // on an empty placeholder tab (e.g. the blank "Web Banners" on legacy products).
-    var withCover = folderNames.filter(function (f) { return (p.folders[f] || []).some(function (x) { return x.thumb; }); });
-    // Prefer a substantial folder (≥ 4 files) so we don't open on a tiny 2-file
-    // "Logos" tab when a rich photo/render folder is available.
-    var rich = withCover.filter(function (f) { return (p.folders[f] || []).length >= 4; });
-    var nonEmpty = folderNames.filter(function (f) { return (p.folders[f] || []).length; });
-    // Deep-link straight to a folder (e.g. from a file search result).
-    var active = (initialFolder && folderNames.indexOf(initialFolder) !== -1)
-      ? initialFolder : (rich[0] || withCover[0] || nonEmpty[0] || folderNames[0]);
-    var selected = {};   // fileKey -> file object; persists while switching folder tabs
+    // Photo / video folders are cards; the Documents folder is "Sales assets".
+    var cardFolders = folderNames.filter(function (f) { return !isSalesFolder(f); });
+    var docFolders = folderNames.filter(isSalesFolder);
+    // Every card starts collapsed. A deep link (?f=…, e.g. from a file search
+    // result) opens that folder, or for a sales document scrolls to that section.
+    var active = (initialFolder && cardFolders.indexOf(initialFolder) !== -1) ? initialFolder : null;
+    var jumpTo = (initialFolder && folderNames.indexOf(initialFolder) !== -1) ? initialFolder : null;
+    var selected = {};   // fileKey -> file object; persists while opening/closing folders
 
-    function folderFiles() { return p.folders[active] || []; }
     function selectedList() { return Object.keys(selected).map(function (k) { return selected[k]; }); }
-    function toggle(file, on) {
-      var k = fileKey(active, file);
+    function toggle(folder, file, on) {
+      var k = fileKey(folder, file);
       if (on) selected[k] = file; else delete selected[k];
     }
     // Reflect selection state into the DOM without a full re-render.
@@ -2120,36 +2130,102 @@
       var bar = $("#selbar");
       if (bar) { $("#sel-n").textContent = n; bar.classList.toggle("show", n > 0); }
       document.body.classList.toggle("has-selection", n > 0);
-      var ff = folderFiles();
-      var some = ff.some(function (f) { return selected[fileKey(active, f)]; });
-      var all = ff.length > 0 && ff.every(function (f) { return selected[fileKey(active, f)]; });
-      var sa = $("#sel-all");
-      if (sa) { sa.checked = all; sa.indeterminate = some && !all; }
-      $$(".gcell", $("#gallery")).forEach(function (cell) {
+      $$(".folder-toolbar[data-folder]", d).forEach(function (tb) {
+        var f = tb.getAttribute("data-folder"), ff = p.folders[f] || [];
+        var some = ff.some(function (x) { return selected[fileKey(f, x)]; });
+        var all = ff.length > 0 && ff.every(function (x) { return selected[fileKey(f, x)]; });
+        var sa = $(".sel-all", tb);
+        if (sa) { sa.checked = all; sa.indeterminate = some && !all; }
+      });
+      $$(".gcell", d).forEach(function (cell) {
         var k = cell.getAttribute("data-key"), on = !!selected[k];
         cell.classList.toggle("sel", on);
         var cb = $(".gcheck", cell); if (cb) cb.checked = on;
       });
     }
+    function countLabel(n) { return n + " " + tr(n === 1 ? "file" : "files"); }
+    // Select all / Copy folder link / Download folder for one folder. The title
+    // row is only needed where the folder isn't already named by its card.
+    function folderToolsHTML(f, titled) {
+      return '<div class="folder-toolbar" data-folder="' + escapeHTML(f) + '">' +
+        (titled ? '<h3 class="folder-title">' + escapeHTML(typeLabel(f)) + '<span class="ft-count">' + countLabel(p.folders[f].length) + "</span></h3>" : "") +
+        '<div class="gallery-toolbar">' +
+          '<label class="selectall"><input type="checkbox" class="sel-all"/> ' + tr("Select all") + '</label>' +
+          '<button class="btn ghost sm" data-copyfolder>' + icon("link") + " " + tr("Copy folder link") + "</button>" +
+          '<button class="btn ghost sm" data-dlfolder>' + icon("download") + " " + tr("Download folder") + "</button>" +
+        "</div>" +
+      "</div>";
+    }
+    function wireTools(scope) {
+      $$(".folder-toolbar[data-folder]", scope).forEach(function (tb) {
+        var f = tb.getAttribute("data-folder");
+        $(".sel-all", tb).addEventListener("change", function (e) {
+          var on = e.target.checked;
+          (p.folders[f] || []).forEach(function (x) { toggle(f, x, on); });
+          syncSelection();
+        });
+        $("[data-copyfolder]", tb).addEventListener("click", function () { copyFolderLink(p, f); });
+        $("[data-dlfolder]", tb).addEventListener("click", function () { downloadFolder(p, f); });
+      });
+    }
+    function fillGallery(f, el) {
+      renderGallery(p, f, selected, function (x, on) { toggle(f, x, on); }, syncSelection, el);
+    }
+    // Square folder cards, the first photo/video frame as the image. The open
+    // folder's files sit in a full-width panel placed straight after its row.
+    function cardsHTML() {
+      return '<div class="fcards" id="fcards">' + cardFolders.map(function (f) {
+        var files = p.folders[f], on = f === active;
+        var first = files.filter(function (x) { return x.thumb; })[0];
+        // Lifestyle shots and video frames are full-bleed; renders, logos and
+        // packaging are shown whole.
+        var cover = /lifestyle|video|reel|tv screen/i.test(f) ? " is-cover" : "";
+        // Folder names come from Dropbox — untrusted. getAttribute() decodes the
+        // escaped data-folder, so the round-trip back to p.folders[...] matches.
+        return '<button type="button" class="fcard' + (on ? " on" : "") + cover + '" data-folder="' + escapeHTML(f) + '" aria-expanded="' + on + '"' + (on ? ' aria-controls="fpanel"' : "") + ">" +
+          '<span class="fcard-img' + (first ? "" : " no-img") + '">' +
+            (first ? '<img src="' + escapeHTML(first.thumb) + '" alt="" loading="lazy" decoding="async" onerror="this.parentNode.classList.add(\'no-img\');this.remove()"/>' : "") +
+            '<span class="fcard-fb">' + icon(folderIcon(f)) + "</span>" +
+          "</span>" +
+          '<span class="fcard-cap"><span class="fcard-tx"><span class="fcard-name">' + escapeHTML(typeLabel(f)) + '</span><span class="fcard-c">' + countLabel(files.length) + "</span></span>" + icon("chevronDown") + "</span>" +
+        "</button>";
+      }).join("") +
+      (active ? '<div class="fpanel" id="fpanel" role="region" aria-label="' + escapeHTML(typeLabel(active)) + '">' +
+        folderToolsHTML(active, false) + '<div class="gallery" data-gallery></div></div>' : "") +
+      "</div>";
+    }
+    // Move the open panel to just after the last card on its card's row, so it
+    // opens under the card at any column count (re-run on resize).
+    function placePanel() {
+      var grid = $("#fcards", d), panel = $("#fpanel", d), on = grid && $(".fcard.on", grid);
+      if (!panel || !on) return;
+      var last = on;
+      $$(".fcard", grid).forEach(function (c) { if (c.offsetTop === on.offsetTop) last = c; });
+      if (last.nextSibling !== panel) grid.insertBefore(panel, last.nextSibling);
+    }
+    placeOpenPanel = placePanel;
+    function renderCards() {
+      var box = $("#pv-assets", d); if (!box) return;
+      box.innerHTML = cardsHTML();
+      if (active) { fillGallery(active, $("[data-gallery]", box)); wireTools(box); placePanel(); }
+      $$(".fcard", box).forEach(function (c) {
+        c.addEventListener("click", function () {
+          var f = c.getAttribute("data-folder");
+          active = active === f ? null : f;
+          // Name the open folder in the URL (no history entry per click).
+          try { history.replaceState(null, "", location.pathname + location.search + productHash(p, active)); } catch (e) {}
+          renderCards();
+          // renderCards() replaced the clicked card; keep keyboard focus on its twin.
+          var same = $$(".fcard", box).filter(function (x) { return x.getAttribute("data-folder") === f; })[0];
+          if (same) same.focus({ preventScroll: true });
+        });
+      });
+      syncSelection();
+    }
 
     function render() {
-      // Asset filters: friendly-labelled chips for this product's folders, sat
-      // right at the top of the Documents section for quick filtering.
-      var assetNav =
-        (folderNames.length > 1 ? '<div class="catgrid-hint is-off"><span>' + tr("Swipe to see more folders") + '</span>' + icon("arrowRight") + "</div>" : "") +
-        '<div class="catgrid" id="asset-nav">' + folderNames.map(function (f) {
-          var n = p.folders[f].length, empty = n === 0;
-          // Folder names come from Dropbox — untrusted. Escape both the attribute
-          // and the label. getAttribute() decodes entities, so the data-folder
-          // round-trip back to p.folders[...] still matches.
-          return '<button class="catcard ' + (f === active ? "on " : "") + (empty ? "is-empty" : "") + '" data-folder="' + escapeHTML(f) + '"' + (empty ? " disabled" : "") + (f === active ? ' aria-current="true"' : "") + ">" +
-            '<span class="catcard-ic">' + icon(folderIcon(f)) + "</span>" +
-            '<span class="catcard-tx"><span class="catcard-name">' + escapeHTML(typeLabel(f)) + "</span>" +
-            '<span class="catcard-c">' + n + " " + tr(n === 1 ? "file" : "files") + "</span></span>" +
-          "</button>";
-        }).join("") + "</div>";
-      var activeCount = (p.folders[active] || []).length;
-      var catTotal = folderNames.reduce(function (s, f) { return s + p.folders[f].length; }, 0);
+      var pvTotal = cardFolders.reduce(function (s, f) { return s + p.folders[f].length; }, 0);
+      var docTotal = docFolders.reduce(function (s, f) { return s + p.folders[f].length; }, 0);
       // Eyebrow shows the product type (falls back to category); the title is the
       // full brand-prefixed name (e.g. "G Pen Dash II"), without double-prefixing
       // names that already lead with the brand (e.g. "G Pen Logos").
@@ -2188,18 +2264,15 @@
         // the page at the owner's request, 2026-08-26. The renderer and the data
         // both stay put — restore by uncommenting this one line.
         // faqHTML(p) +
-        // ---- Documents (assets) — sits above Packaging, filters at the top ----
-        '<div class="section-head" id="docs-head"><h2>' + tr("Download assets by category") + '</h2><span class="badge">' + catTotal + " " + tr(catTotal === 1 ? "file" : "files") + "</span></div>" +
-        assetNav +
-        '<div class="folder-toolbar">' +
-          '<h3 class="folder-title">' + escapeHTML(typeLabel(active)) + '<span class="ft-count">' + activeCount + " " + tr(activeCount === 1 ? "file" : "files") + "</span></h3>" +
-          '<div class="gallery-toolbar">' +
-            '<label class="selectall"><input type="checkbox" id="sel-all"/> ' + tr("Select all") + '</label>' +
-            '<button class="btn ghost sm" id="copy-folder">' + icon("link") + " " + tr("Copy folder link") + "</button>" +
-            '<button class="btn ghost sm" id="dl-folder">' + icon("download") + " " + tr("Download folder") + "</button>" +
-          "</div>" +
-        "</div>" +
-        '<div class="gallery" id="gallery"></div>' +
+        // ---- Photo / video assets: one square card per folder, all collapsed ----
+        '<div class="section-head" id="docs-head"><h2 class="caps">' + tr("Photo / Video Assets") + '</h2><span class="badge">' + countLabel(pvTotal) + "</span></div>" +
+        (cardFolders.length ? '<div id="pv-assets"></div>'
+          : '<div class="gallery"><div class="gallery-empty">' + icon("photo") + "<p>" + tr("Assets are coming soon — check back shortly.") + "</p></div></div>") +
+        // ---- Sales assets: the Documents folder (manual, one-sheets), open ----
+        (docTotal ? '<div class="section-head sales-head" id="sales-head"><h2 class="caps">' + tr("Sales Assets") + '</h2><span class="badge">' + countLabel(docTotal) + "</span></div>" +
+          docFolders.map(function (f) {
+            return '<div class="sales-folder">' + folderToolsHTML(f, docFolders.length > 1) + '<div class="gallery" data-docs="' + escapeHTML(f) + '"></div></div>';
+          }).join("") : "") +
         '<div class="selbar" id="selbar">' +
           '<span class="selcount" role="status" aria-live="polite"><strong id="sel-n">0</strong> ' + tr("selected") + '</span>' +
           '<span class="selacts">' +
@@ -2220,7 +2293,9 @@
         specsHTML(p) +
         videoHubHTML(p);
 
-      renderGallery(p, active, selected, toggle, syncSelection);
+      $$("[data-docs]", d).forEach(function (g) { fillGallery(g.getAttribute("data-docs"), g); });
+      $$(".sales-folder", d).forEach(wireTools);
+      renderCards();
       $$("[data-play]", d).forEach(function (el) {
         el.addEventListener("click", function () {
           openVideoModal(el.getAttribute("data-play"), el.getAttribute("data-title"), el.getAttribute("data-dl"), el.getAttribute("data-dlname"), el.getAttribute("data-share"));
@@ -2263,64 +2338,43 @@
         // SPANISH menu copy, which is the whole point of the button.
         copyText((infoOf(p).fullDescription || []).join("\n\n"), tr("Description copied"));
       });
-      $("#dl-folder").addEventListener("click", function () { downloadFolder(p, active); });
-      $("#copy-folder").addEventListener("click", function () { copyFolderLink(p, active); });
-      $("#sel-all").addEventListener("change", function (e) {
-        var on = e.target.checked;
-        folderFiles().forEach(function (f) { toggle(f, on); });
-        syncSelection();
-      });
       $("#sel-clear").addEventListener("click", function () { selected = {}; syncSelection(); });
       $("#sel-dl").addEventListener("click", function () {
-        var sel = selectedList(), whole = folderFiles();
+        var sel = selectedList();
+        // Which folder(s) the selection came from (fileKey is "folder::name.ext").
+        var from = {};
+        Object.keys(selected).forEach(function (k) { from[k.slice(0, k.indexOf("::"))] = 1; });
+        var one = Object.keys(from).length === 1 ? Object.keys(from)[0] : null;
+        var whole = one ? (p.folders[one] || []) : [];
         // "Select all → Download selected" on an all-Dropbox folder: one folder .zip
         // is far more reliable than N hidden-iframe pulls (browsers gate those after
         // the first). Route the whole-folder case to the zip when we have the link.
         var allRemote = sel.length && sel.every(function (f) { return !f.file && f.url; });
-        // Match on IDENTITY, not just count: a stale selection carried over from
-        // another folder tab can have the same length as this folder and would
-        // otherwise hand the user this folder's zip instead of what they ticked.
+        // Match on IDENTITY, not just count, so only a selection that is exactly
+        // this one folder gets the folder's zip.
         var key = function (f) { return f.url || f.file || f.name; };
         var here = {}; whole.forEach(function (f) { here[key(f)] = 1; });
         var sameFolder = sel.length === whole.length && sel.every(function (f) { return here[key(f)]; });
-        if (allRemote && whole.length && sameFolder && p.folderLinks && p.folderLinks[active]) {
-          downloadFolder(p, active); return;
+        if (one && allRemote && whole.length && sameFolder && p.folderLinks && p.folderLinks[one]) {
+          downloadFolder(p, one); return;
         }
-        downloadFiles(sel, typeLabel(active) + " · " + sel.length + " " + tr("selected"));
+        downloadFiles(sel, (one ? typeLabel(one) : fullName) + " · " + sel.length + " " + tr("selected"));
       });
-      $$(".catcard", d).forEach(function (t) {
-        // Switching folders re-renders the detail with the new active folder.
-        t.addEventListener("click", function () {
-          active = t.getAttribute("data-folder");
-          // Name the folder in the URL (no history entry per hop).
-          try { history.replaceState(null, "", location.pathname + location.search + productHash(p, active)); } catch (e) {}
-          render();
-          // render() replaced the clicked card; keep keyboard focus on its twin
-          // and bring it into view in the phone rail instead of jumping to the start.
-          var same = $$(".catcard", d).filter(function (x) { return x.getAttribute("data-folder") === active; })[0];
-          if (same) { same.focus({ preventScroll: true }); revealInRail(same); }
-        });
-      });
-      // Phones show the folder cards as a swipeable rail: say so whenever it
-      // actually overflows (not by card count), and show the open folder's card.
-      var rail = $("#asset-nav", d), hint = $(".catgrid-hint", d);
-      if (rail) {
-        if (hint) hint.classList.toggle("is-off", rail.scrollWidth <= rail.clientWidth + 2);
-        revealInRail($(".catcard.on", rail));
-      }
       syncSelection();
+      // Deep link: bring the requested folder into view once it's rendered.
+      if (jumpTo) {
+        var target = isSalesFolder(jumpTo) ? $("#sales-head", d) : $("#fpanel", d);
+        if (target) target.scrollIntoView({ block: "start" });
+        jumpTo = null;
+      }
     }
     render();
   }
 
-  // Scroll a folder card into view inside its horizontal rail (phones) without
-  // moving the page vertically.
-  function revealInRail(card) {
-    var rail = card && card.parentNode; if (!rail) return;
-    if (rail.scrollWidth <= rail.clientWidth + 2) return;
-    var r = card.getBoundingClientRect(), rr = rail.getBoundingClientRect();
-    if (r.left < rr.left || r.right > rr.right) rail.scrollLeft += r.left - rr.left - 16;
-  }
+  // The product page's open folder panel, re-placed under its card's row when
+  // the column count changes.
+  var placeOpenPanel = null;
+  window.addEventListener("resize", function () { if (placeOpenPanel) placeOpenPanel(); });
   // Packaging visuals: retail outer box + (for POP products) the POP display.
   // The materials to show for a product: its own "In-Store Marketing" folder if it
   // has any, otherwise the generic brand-level pieces as placeholders.
@@ -2531,11 +2585,12 @@
   function overviewFactsHTML(p) {
     var info = infoOf(p);
     var faq = info.faqUrl || BRANDS[p.brand].faqUrl;
+    var manual = helpPageUrl(p) || info.manual;
     var factItems =
       (info.msrp ? '<div class="ov-fact">' + icon("tag") + '<div class="ov-fact-t"><div class="ov-fact-l">' + tr("MSRP") + '</div><div class="ov-fact-v">' + info.msrp + "</div></div></div>" : "") +
       (info.warranty ? '<div class="ov-fact">' + icon("shield") + '<div class="ov-fact-t"><div class="ov-fact-l">' + tr("Warranty") + '</div><div class="ov-fact-v">' + info.warranty + "</div></div></div>" : "");
     var ctas =
-      (info.manual ? '<a class="btn ghost sm" href="' + info.manual + '" target="_blank" rel="noopener noreferrer">' + icon("file") + " " + tr("Product Manual") + "</a>" : "") +
+      (manual ? '<a class="btn ghost sm" href="' + escapeHTML(manual) + '" target="_blank" rel="noopener noreferrer">' + icon("file") + " " + tr("Product Manual") + "</a>" : "") +
       (faq ? '<a class="btn ghost sm" href="' + faq + '" target="_blank" rel="noopener noreferrer">' + icon("info") + " " + tr("Product FAQs") + "</a>" : "") +
       (info.productUrl ? '<a class="btn ghost sm" href="' + info.productUrl + '" target="_blank" rel="noopener noreferrer">' + icon("link") + " " + tr("View on site") + "</a>" : "");
     if (!factItems && !ctas) return "";
@@ -2728,10 +2783,11 @@
     if (ov) { var v = $("video", ov); if (v) v.pause(); ov.remove(); modalClose(); }
   }
 
-  function renderGallery(p, folder, selected, onToggle, onChange) {
+  function renderGallery(p, folder, selected, onToggle, onChange, el) {
+    var g = el;
     var files = p.folders[folder] || [];
     if (!files.length) {
-      $("#gallery").innerHTML = '<div class="gallery-empty">' + icon("photo") +
+      g.innerHTML = '<div class="gallery-empty">' + icon("photo") +
         "<p>" + tr("Assets are coming soon — check back shortly.") + "</p></div>";
       if (onChange) onChange();
       return;
@@ -2741,7 +2797,7 @@
     // Show every file in the folder (thumbnails are lazy-loaded, so even large
     // folders stay responsive).
     var shown = files;
-    $("#gallery").innerHTML = shown.map(function (file) {
+    g.innerHTML = shown.map(function (file) {
       var key = fileKey(folder, file);
       var on = selected && selected[key];
       var ext = isExtVideo(file);   // YouTube (or other external) video link
@@ -2781,16 +2837,16 @@
         "</div>"
       );
     }).join("");
-    $$(".gthumb", $("#gallery")).forEach(function (t) {
+    $$(".gthumb", g).forEach(function (t) {
       var idx = t.getAttribute("data-lbidx");
       if (idx === null) return;
       clickKey(t, function () { openLightbox(items, +idx); });
     });
-    $$(".gthumb[data-yt]", $("#gallery")).forEach(function (t) {
+    $$(".gthumb[data-yt]", g).forEach(function (t) {
       clickKey(t, function () { downloadOne(t.getAttribute("data-yt")); });
     });
     // per-asset selection checkboxes (with Dropbox-style shift-click range)
-    $$(".gcell", $("#gallery")).forEach(function (cell, idx) {
+    $$(".gcell", g).forEach(function (cell, idx) {
       var file = shown[idx];
       var cb = $(".gcheck", cell);
       var label = $(".gselect", cell);
@@ -2808,13 +2864,13 @@
         onChange();
       });
     });
-    $$("[data-dl]", $("#gallery")).forEach(function (b) {
+    $$("[data-dl]", g).forEach(function (b) {
       clickKey(b, function () {
         if (b.getAttribute("data-direct")) directDownload(b.getAttribute("data-dl"), b.getAttribute("data-name"));
         else downloadOne(b.getAttribute("data-dl"));
       });
     });
-    $$("[data-copy]", $("#gallery")).forEach(function (b) {
+    $$("[data-copy]", g).forEach(function (b) {
       clickKey(b, function () {
         var url = b.getAttribute("data-copy");
         if (!url || url === "#") { toast(tr("No link yet")); return; }
