@@ -267,6 +267,7 @@ window.PORTAL_I18N.pt = {
     "Download all logos": "Baixar todos os logotipos",
     "Photo / Video Assets": "Materiais de foto / vídeo",
     "Sales Assets": "Materiais de vendas",
+    "Other": "Outros",
     "Download coming soon": "Download em breve",
     "Download folder": "Baixar pasta",
     "Download logo files": "Baixar arquivos de logotipo",

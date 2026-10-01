@@ -265,6 +265,7 @@ window.PORTAL_I18N.it = {
     "Download all logos": "Scarica tutti i loghi",
     "Photo / Video Assets": "Asset foto / video",
     "Sales Assets": "Asset di vendita",
+    "Other": "Altro",
     "Download coming soon": "Download in arrivo",
     "Download folder": "Scarica cartella",
     "Download logo files": "Scarica i file logo",

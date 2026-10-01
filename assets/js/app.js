@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20261001a";   // bump with the other asset tokens
+  var LANG_VER = "20261001b";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -561,6 +561,20 @@
   // The Documents folder (manual + regional one-sheets) is its own "Sales assets"
   // section on the product page, not one of the photo/video folder cards.
   function isSalesFolder(f) { return f === "Documents" || f === "Misc"; }
+  // Photo / video folder cards are grouped Photos → Videos → Other, each group in
+  // its own fixed order. Legacy products' colorway folders ("Black / Videos",
+  // "Cookies / Renders"…) fall into a group by name; anything else is Other.
+  var FOLDER_GROUPS = [
+    { label: "Photos", order: ["Product Photos", "E-Comm Render Photos", "Lifestyle Photos", "Web Banners", "Packaging"] },
+    { label: "Videos", order: ["Social Videos", "TV Screen Videos"] },
+    { label: "Other",  order: ["Logos", INSTORE_FOLDER] },
+  ];
+  function folderGroup(f) {
+    for (var i = 0; i < FOLDER_GROUPS.length; i++) if (FOLDER_GROUPS[i].order.indexOf(f) !== -1) return i;
+    if (/video|reel|tv screen/i.test(f)) return 1;
+    if (/photo|render|lifestyle|banner|packag|carton/i.test(f)) return 0;
+    return 2;
+  }
 
   function buildQuery() {
     var parts = [];
@@ -2171,34 +2185,41 @@
     function fillGallery(f, el) {
       renderGallery(p, f, selected, function (x, on) { toggle(f, x, on); }, syncSelection, el);
     }
-    // Square folder cards, the first photo/video frame as the image. The open
-    // folder's files sit in a full-width panel placed straight after its row.
+    // Square folder cards, the first photo/video frame cropped to fill each one,
+    // in three labeled groups. The open folder's files sit in a full-width panel
+    // placed straight after its card's row, inside that card's group.
+    function cardHTML(f) {
+      var files = p.folders[f], on = f === active;
+      var first = files.filter(function (x) { return x.thumb; })[0];
+      // Folder names come from Dropbox — untrusted. getAttribute() decodes the
+      // escaped data-folder, so the round-trip back to p.folders[...] matches.
+      return '<button type="button" class="fcard' + (on ? " on" : "") + '" data-folder="' + escapeHTML(f) + '" aria-expanded="' + on + '"' + (on ? ' aria-controls="fpanel"' : "") + ">" +
+        '<span class="fcard-img' + (first ? "" : " no-img") + '">' +
+          (first ? '<img src="' + escapeHTML(first.thumb) + '" alt="" loading="lazy" decoding="async" onerror="this.parentNode.classList.add(\'no-img\');this.remove()"/>' : "") +
+          '<span class="fcard-fb">' + icon(folderIcon(f)) + "</span>" +
+        "</span>" +
+        '<span class="fcard-cap"><span class="fcard-tx"><span class="fcard-name">' + escapeHTML(typeLabel(f)) + '</span><span class="fcard-c">' + countLabel(files.length) + "</span></span>" +
+          '<span class="fcard-chev">' + icon("chevronDown") + "</span></span>" +
+      "</button>";
+    }
     function cardsHTML() {
-      return '<div class="fcards" id="fcards">' + cardFolders.map(function (f) {
-        var files = p.folders[f], on = f === active;
-        var first = files.filter(function (x) { return x.thumb; })[0];
-        // Lifestyle shots and video frames are full-bleed; renders, logos and
-        // packaging are shown whole.
-        var cover = /lifestyle|video|reel|tv screen/i.test(f) ? " is-cover" : "";
-        // Folder names come from Dropbox — untrusted. getAttribute() decodes the
-        // escaped data-folder, so the round-trip back to p.folders[...] matches.
-        return '<button type="button" class="fcard' + (on ? " on" : "") + cover + '" data-folder="' + escapeHTML(f) + '" aria-expanded="' + on + '"' + (on ? ' aria-controls="fpanel"' : "") + ">" +
-          '<span class="fcard-img' + (first ? "" : " no-img") + '">' +
-            (first ? '<img src="' + escapeHTML(first.thumb) + '" alt="" loading="lazy" decoding="async" onerror="this.parentNode.classList.add(\'no-img\');this.remove()"/>' : "") +
-            '<span class="fcard-fb">' + icon(folderIcon(f)) + "</span>" +
-          "</span>" +
-          '<span class="fcard-cap"><span class="fcard-tx"><span class="fcard-name">' + escapeHTML(typeLabel(f)) + '</span><span class="fcard-c">' + countLabel(files.length) + "</span></span>" + icon("chevronDown") + "</span>" +
-        "</button>";
-      }).join("") +
-      (active ? '<div class="fpanel" id="fpanel" role="region" aria-label="' + escapeHTML(typeLabel(active)) + '">' +
-        folderToolsHTML(active, false) + '<div class="gallery" data-gallery></div></div>' : "") +
-      "</div>";
+      return FOLDER_GROUPS.map(function (g, gi) {
+        var fs = cardFolders.filter(function (f) { return folderGroup(f) === gi; });
+        if (!fs.length) return "";
+        var rank = function (f) { var i = g.order.indexOf(f); return i < 0 ? 99 : i; };
+        fs.sort(function (a, b) { return rank(a) - rank(b); });   // stable: ties keep page order
+        return '<div class="section-head sub fgroup-head"><h3>' + tr(g.label) + "</h3></div>" +
+          '<div class="fcards">' + fs.map(cardHTML).join("") +
+          (fs.indexOf(active) !== -1 ? '<div class="fpanel" id="fpanel" role="region" aria-label="' + escapeHTML(typeLabel(active)) + '">' +
+            folderToolsHTML(active, false) + '<div class="gallery" data-gallery></div></div>' : "") +
+          "</div>";
+      }).join("");
     }
     // Move the open panel to just after the last card on its card's row, so it
     // opens under the card at any column count (re-run on resize).
     function placePanel() {
-      var grid = $("#fcards", d), panel = $("#fpanel", d), on = grid && $(".fcard.on", grid);
-      if (!panel || !on) return;
+      var panel = $("#fpanel", d), grid = panel && panel.parentNode, on = grid && $(".fcard.on", grid);
+      if (!on) return;
       var last = on;
       $$(".fcard", grid).forEach(function (c) { if (c.offsetTop === on.offsetTop) last = c; });
       if (last.nextSibling !== panel) grid.insertBefore(panel, last.nextSibling);
@@ -2265,11 +2286,11 @@
         // both stay put — restore by uncommenting this one line.
         // faqHTML(p) +
         // ---- Photo / video assets: one square card per folder, all collapsed ----
-        '<div class="section-head" id="docs-head"><h2 class="caps">' + tr("Photo / Video Assets") + '</h2><span class="badge">' + countLabel(pvTotal) + "</span></div>" +
+        '<div class="section-head" id="docs-head"><h2>' + tr("Photo / Video Assets") + '</h2><span class="badge">' + countLabel(pvTotal) + "</span></div>" +
         (cardFolders.length ? '<div id="pv-assets"></div>'
           : '<div class="gallery"><div class="gallery-empty">' + icon("photo") + "<p>" + tr("Assets are coming soon — check back shortly.") + "</p></div></div>") +
         // ---- Sales assets: the Documents folder (manual, one-sheets), open ----
-        (docTotal ? '<div class="section-head sales-head" id="sales-head"><h2 class="caps">' + tr("Sales Assets") + '</h2><span class="badge">' + countLabel(docTotal) + "</span></div>" +
+        (docTotal ? '<div class="section-head sales-head" id="sales-head"><h2>' + tr("Sales Assets") + '</h2><span class="badge">' + countLabel(docTotal) + "</span></div>" +
           docFolders.map(function (f) {
             return '<div class="sales-folder">' + folderToolsHTML(f, docFolders.length > 1) + '<div class="gallery" data-docs="' + escapeHTML(f) + '"></div></div>';
           }).join("") : "") +

@@ -678,31 +678,36 @@ button.pkg-media { width: 100%; border: 0; padding: 0; font: inherit; }
 .vlb-close { position: absolute; top: 22px; right: 22px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.12); border: none; display: flex; align-items: center; justify-content: center; }
 .vlb-close svg { width: 20px; height: 20px; stroke: #fff; }
 
-/* product-page folder cards: square, led by the folder's first image. One opens
-   at a time, as a full-width panel the JS places right after the card's row. */
-.fcards { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; margin: -2px 0 8px; }
-.fcard { position: relative; display: flex; flex-direction: column; aspect-ratio: 1 / 1; min-width: 0; padding: 0; border: 1px solid var(--hair); border-radius: var(--radius); background: var(--paper); color: var(--ink); overflow: hidden; text-align: left; font-family: inherit; cursor: pointer; transition: border-color 0.14s, box-shadow 0.14s; }
-.fcard:hover { border-color: var(--ink); }
-.fcard:focus-visible { outline: 2px solid var(--gold-ink); outline-offset: 2px; }
-.fcard.on { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
-.fcard-img { position: relative; flex: 1 1 auto; min-height: 0; background: var(--mist); display: flex; align-items: center; justify-content: center; overflow: hidden; }
-.fcard-img img { width: 100%; height: 100%; object-fit: contain; padding: 12px; box-sizing: border-box; transition: transform 0.3s; }
-.fcard.is-cover .fcard-img img { object-fit: cover; padding: 0; }
-.fcard:hover .fcard-img img { transform: scale(1.03); }
-.fcard-fb { display: none; color: #c8c8c3; }
+/* product-page folder cards: large squares, the folder's first image cropped to
+   fill (never letterboxed), name + count over a bottom scrim. Three groups
+   (Photos / Videos / Other); one folder opens at a time, as a full-width panel
+   the JS places right after the open card's row. 3 / 2 / 1 per row. */
+.fgroup-head { margin: 8px 0 14px; }
+.fgroup-head h3 { font-size: 17px; }
+.fcards + .fgroup-head { margin-top: 30px; }
+.fcards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.fcard { position: relative; display: block; aspect-ratio: 1 / 1; min-width: 0; padding: 0; border: 1px solid var(--hair); border-radius: var(--radius); background: var(--mist); color: #fff; overflow: hidden; text-align: left; font-family: inherit; cursor: pointer; transition: box-shadow 0.14s; }
+.fcard:focus-visible { outline: 3px solid var(--gold-ink); outline-offset: 3px; }
+.fcard.on { border-color: var(--ink); box-shadow: 0 0 0 2px var(--ink); }
+.fcard-img { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.fcard-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.35s; }
+.fcard:hover .fcard-img img { transform: scale(1.04); }
+.fcard-fb { display: none; color: #c8c8c3; margin-bottom: 22%; }
 .fcard-img.no-img .fcard-fb { display: flex; }
-.fcard-fb svg { width: 34px; height: 34px; }
-.fcard-cap { flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--hair); background: var(--paper); }
-.fcard.on .fcard-cap { background: var(--ink); color: #fff; border-top-color: var(--ink); }
-.fcard-tx { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; }
-.fcard-name { font-size: 13.5px; font-weight: 700; }
-.fcard-c { font-size: 10px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--stone); margin-top: 2px; }
-.fcard.on .fcard-c { color: rgba(255, 255, 255, 0.72); }
-.fcard-cap > svg { flex: 0 0 auto; width: 16px; height: 16px; transition: transform 0.18s; }
-.fcard.on .fcard-cap > svg { transform: rotate(180deg); }
+.fcard-fb svg { width: 48px; height: 48px; }
+.fcard-cap { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; padding: 60px 20px 18px; background: linear-gradient(to top, rgba(10, 10, 10, 0.82) 0%, rgba(10, 10, 10, 0.5) 55%, rgba(10, 10, 10, 0) 100%); }
+.fcard-tx { display: flex; flex-direction: column; gap: 4px; min-width: 0; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35); }
+.fcard-name { font-family: var(--serif); font-size: 24px; font-weight: 800; line-height: 1.1; letter-spacing: -0.015em; }
+.fcard-c { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255, 255, 255, 0.82); }
+.fcard-chev { flex: 0 0 auto; width: 36px; height: 36px; border-radius: 50%; background: rgba(255, 255, 255, 0.18); display: flex; align-items: center; justify-content: center; transition: background 0.14s; }
+.fcard-chev svg { width: 18px; height: 18px; transition: transform 0.18s; }
+.fcard:hover .fcard-chev { background: rgba(255, 255, 255, 0.3); }
+.fcard.on .fcard-chev { background: var(--gold); color: var(--ink); }
+.fcard.on .fcard-chev svg { transform: rotate(180deg); }
 .fpanel { grid-column: 1 / -1; min-width: 0; border: 1px solid var(--hair); border-radius: var(--radius); background: var(--mist); padding: 16px; scroll-margin-top: 84px; }
 .fpanel .folder-toolbar { justify-content: flex-end; }
-.section-head h2.caps { text-transform: uppercase; letter-spacing: 0.01em; }
+@media (max-width: 900px) { .fcards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; } .fcard-name { font-size: 21px; } }
+@media (max-width: 560px) { .fcards { grid-template-columns: minmax(0, 1fr); } .fcard-name { font-size: 24px; } }
 .sales-head { margin-top: 36px; scroll-margin-top: 84px; }
 .sales-folder + .sales-folder { margin-top: 22px; }
 /* Active-folder row above the gallery */
@@ -944,9 +949,6 @@ a.logo-tile { cursor: pointer; }
   .hero-logo.sg { height: 26px; }
   .grid { grid-template-columns: repeat(2, 1fr); gap: 13px; }
   .sku-row { flex-direction: column; align-items: flex-start; gap: 4px; }
-  .fcards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .fcard-cap { padding: 9px 10px; }
-  .fcard-name { font-size: 13px; }
   .fpanel { padding: 12px; }
   .fpanel .folder-toolbar { justify-content: flex-start; }
   .toggle button { padding: 9px 16px; }
