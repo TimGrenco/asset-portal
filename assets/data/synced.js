@@ -2127,6 +2127,14 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "Micro II POV Park Sept",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/m8fwd2f49cmg3rr860i5r/Micro-II-POV-Park-Sept.MP4?rlkey=1n3k9sg5yzj6vzx5b4izycgr3&dl=0",
+          "thumb": "assets/synced/micro-ii/7201638f699a7a54651dbf01ca5462f09cdd8e21b189c1d3f481169834913445.jpg",
+          "file": null
+        },
+        {
           "name": "Micro II Product Page",
           "type": "video",
           "format": "MP4",
@@ -2140,6 +2148,14 @@ window.PORTAL_SYNCED = {
           "format": "MP4",
           "url": "https://www.dropbox.com/scl/fi/23k41ocgrx9eotodztyrp/Micro-II-Reels-Color.mp4?rlkey=bv1dyne7jzsixqoi62xik48t1&dl=0",
           "thumb": "assets/synced/micro-ii/9ecbccc4034110db131939a0208f42a2d475303bd6f6164b9ceb433eacfe3b58.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro II Sidecar POV Park Sept",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/8taz1d3veamvbewanum4s/Micro-II-Sidecar-POV-Park-Sept.MP4?rlkey=ata94c74uptxbl0y48p5cukva&dl=0",
+          "thumb": "assets/synced/micro-ii/346332c2d8291e2518c5dd1f34e8ba86b1165f5c9d490d1ef8e3b9ddbc1f08fe.jpg",
           "file": null
         },
         {
@@ -2402,7 +2418,7 @@ window.PORTAL_SYNCED = {
       "Documents": "https://www.dropbox.com/scl/fo/hbm79asz0sz5voe6e9nsi/AFYenSbkUK4Rat7-wFI0T9c?rlkey=ozc1dplsp1bdcam3mvz9m9d0l&dl=1",
       "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/wpkywovfwqzht61fi3iy7/AD1h_pWNcg3PtII1wxhJnGo?rlkey=x5ilflreeyywtx9y7uh47i95e&dl=1"
     },
-    "updated": "2026-09-25"
+    "updated": "2026-09-30"
   },
   "Slim 3-Piece Grinder": {
     "folders": {
