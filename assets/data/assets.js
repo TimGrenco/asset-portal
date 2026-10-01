@@ -1272,3 +1272,15 @@ window.PORTAL_HELP_PAGES = {
   "510 Original":         "510-original",
   "510 Original — Retro": "510-original",
 };
+
+
+/* =============================================================================
+   FOLDER CARD COVERS — the image on a product page's folder card is normally the
+   folder's first file. List a file here (product name → folder → synced file
+   name, no extension) to feature a hand-picked one instead; if that file is
+   renamed or removed, the card falls back to the first file.
+   ========================================================================== */
+window.PORTAL_FOLDER_COVERS = {
+  "Dash II":      { "User Generated Content": "Dash II UGC_01" },        // "G Pen unboxing"
+  "510 Original": { "User Generated Content": "UGC 510 Original_01" },   // "Smallest battery check!"
+};

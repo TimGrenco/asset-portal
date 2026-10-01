@@ -266,6 +266,7 @@ window.PORTAL_I18N.it = {
     "Photo / Video Assets": "Asset foto / video",
     "Sales Assets": "Asset di vendita",
     "Other": "Altro",
+    "User Generated Content": "Contenuti generati dagli utenti",
     "Download coming soon": "Download in arrivo",
     "Download folder": "Scarica cartella",
     "Download logo files": "Scarica i file logo",

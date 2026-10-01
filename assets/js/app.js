@@ -25,7 +25,7 @@
      translated. To revise a language, edit only its pack — no code change. */
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20261001b";   // bump with the other asset tokens
+  var LANG_VER = "20261001c";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -346,7 +346,7 @@
   // names and colorway/type names like "Black / Renders").
   function folderIcon(f) {
     var s = String(f).toLowerCase();
-    if (/video|reel|tv screen/.test(s)) return "video";
+    if (/video|reel|tv screen|user generated/.test(s)) return "video";
     if (/logo|brand/.test(s)) return "vector";
     if (/packag|carton|box/.test(s)) return "stack";
     if (/banner/.test(s)) return "photo";
@@ -377,6 +377,7 @@
   // Folder name for a product's own in-store materials (declared up here so the
   // stats pass can de-dupe it before counting — see below).
   var INSTORE_FOLDER = "In Store Marketing Materials";
+  var UGC_FOLDER = "User Generated Content";
   // Curated display name + print size for each in-store material, keyed by its
   // synced filename. Declared before the stats loop because instoreOwn() (called
   // there) uses it to rescue labeled pieces from the hash-name filter.
@@ -407,6 +408,25 @@
     "4afa24fe8551c06556ca9247a80e68dee51dbdc452bc7057ed0b7fdc49c400a9":
                                       { name: "Dash II Table Tent",            dim: '4" L × 6" W', sku: "GMK-003-APZZ" },
   };
+  // Creator (UGC) videos sync in mixed with the brand's own Social Videos. They
+  // get their own "User Generated Content" folder card, spelled out, in the
+  // Videos group. It has no Dropbox folder of its own: Download folder pulls its
+  // files one by one, and Copy folder link shares the folder they came from.
+  function splitUGC(p) {
+    if (!p.folders || p.folders[UGC_FOLDER]) return;
+    var moved = [], from = {};
+    Object.keys(p.folders).forEach(function (f) {
+      var keep = [];
+      (p.folders[f] || []).forEach(function (x) {
+        if (x.type === "video" && /(^|[^a-z])ugc([^a-z]|$)/i.test(x.name || "")) { moved.push(x); from[f] = (from[f] || 0) + 1; }
+        else keep.push(x);
+      });
+      p.folders[f] = keep;
+    });
+    if (!moved.length) return;
+    p.folders[UGC_FOLDER] = moved;
+    p.ugcFrom = Object.keys(from).sort(function (a, b) { return from[b] - from[a]; })[0];
+  }
   PRODUCTS.forEach(function (p) {
     // The sync canonicalizes renamed in-store folders ("POS", "In Store
     // Materials", "In-Store Marketing"…) to "In-Store Marketing". Fold that into
@@ -419,6 +439,7 @@
     // De-dupe the in-store folder up front (drops PNG-vs-white-bg doubles and
     // hash-named files) so p.total matches the count the product page shows.
     if (p.folders && (p.folders[INSTORE_FOLDER] || []).length) p.folders[INSTORE_FOLDER] = instoreOwn(p);
+    splitUGC(p);
     var total = 0, fmts = {};
     Object.keys(p.folders).forEach(function (f) {
       p.folders[f].forEach(function (file) { total++; if (file.format) fmts[file.format] = 1; });
@@ -465,14 +486,10 @@
     return String(s).toLowerCase().replace(/ü/g, "u").replace(/\+/g, " plus ")
       .replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
   }
-  // "?f=<folder>" after the product slug names the open folder, so a copied link,
-  // a refresh or a language switch lands on the folder you were looking at.
+  // "?f=<folder>" after the product slug is only written by in-page jumps to a
+  // folder (search results). Loading a page ignores it: folders always open
+  // collapsed, and older links that carry one still land on the product.
   function productHash(p, folder) { return "#" + p.brand + "/" + slugify(p.name) + (folder ? "?f=" + encodeURIComponent(folder) : ""); }
-  function folderFromHash() {
-    var m = location.hash.match(/\?f=([^&]*)/);
-    if (!m) return null;
-    try { return decodeURIComponent(m[1]); } catch (e) { return null; }
-  }
   function productFromHash() {
     var h = location.hash.replace(/^#/, "").replace(/\?.*$/, "");
     if (!h) return null;
@@ -517,7 +534,7 @@
       return;
     }
     var p = productFromHash();
-    if (p) openDetail(p, folderFromHash()); else renderHome();
+    if (p) openDetail(p); else renderHome();
   }
 
   // ---- clipboard -----------------------------------------------------------
@@ -556,7 +573,7 @@
     });
   }
   // Canonical Digital Assets tab order (matches the Dropbox-sync FOLDER_ORDER).
-  var FOLDER_TAB_ORDER = ["Product Photos", "E-Comm Render Photos", "Lifestyle Photos", "Web Banners", "Logos", "Social Videos", "TV Screen Videos", "Packaging", "Documents", "Misc"];
+  var FOLDER_TAB_ORDER = ["Product Photos", "E-Comm Render Photos", "Lifestyle Photos", "Web Banners", "Logos", "Social Videos", "TV Screen Videos", "User Generated Content", "Packaging", "Documents", "Misc"];
   function folderRank(f) { var i = FOLDER_TAB_ORDER.indexOf(f); return i < 0 ? 99 : i; }
   // The Documents folder (manual + regional one-sheets) is its own "Sales assets"
   // section on the product page, not one of the photo/video folder cards.
@@ -566,12 +583,12 @@
   // "Cookies / Renders"…) fall into a group by name; anything else is Other.
   var FOLDER_GROUPS = [
     { label: "Photos", order: ["Product Photos", "E-Comm Render Photos", "Lifestyle Photos", "Web Banners", "Packaging"] },
-    { label: "Videos", order: ["Social Videos", "TV Screen Videos"] },
+    { label: "Videos", order: ["Social Videos", "TV Screen Videos", UGC_FOLDER] },
     { label: "Other",  order: ["Logos", INSTORE_FOLDER] },
   ];
   function folderGroup(f) {
     for (var i = 0; i < FOLDER_GROUPS.length; i++) if (FOLDER_GROUPS[i].order.indexOf(f) !== -1) return i;
-    if (/video|reel|tv screen/i.test(f)) return 1;
+    if (/video|reel|tv screen|user generated/i.test(f)) return 1;
     if (/photo|render|lifestyle|banner|packag|carton/i.test(f)) return 0;
     return 2;
   }
@@ -2127,8 +2144,9 @@
     // Photo / video folders are cards; the Documents folder is "Sales assets".
     var cardFolders = folderNames.filter(function (f) { return !isSalesFolder(f); });
     var docFolders = folderNames.filter(isSalesFolder);
-    // Every card starts collapsed. A deep link (?f=…, e.g. from a file search
-    // result) opens that folder, or for a sales document scrolls to that section.
+    // Every card starts collapsed on page load, shared links and reloads included.
+    // Only an in-page jump to a folder (a file search result, "Browse all logo
+    // files") opens it, or for a sales document scrolls to that section.
     var active = (initialFolder && cardFolders.indexOf(initialFolder) !== -1) ? initialFolder : null;
     var jumpTo = (initialFolder && folderNames.indexOf(initialFolder) !== -1) ? initialFolder : null;
     var selected = {};   // fileKey -> file object; persists while opening/closing folders
@@ -2188,9 +2206,23 @@
     // Square folder cards, the first photo/video frame cropped to fill each one,
     // in three labeled groups. The open folder's files sit in a full-width panel
     // placed straight after its card's row, inside that card's group.
+    // The card's image: a hand-picked file (PORTAL_FOLDER_COVERS), else the first
+    // file with a thumbnail. TV Screen Videos never leads with a how-to, cleaning
+    // or tutorial video while the folder has another one.
+    function folderCover(f) {
+      var withThumb = (p.folders[f] || []).filter(function (x) { return x.thumb; });
+      var pick = ((window.PORTAL_FOLDER_COVERS || {})[p.name] || {})[f];
+      var chosen = pick && withThumb.filter(function (x) { return x.name === pick; })[0];
+      if (chosen) return chosen;
+      if (/tv screen/i.test(f)) {
+        var promo = withThumb.filter(function (x) { return !/how.?to|tutorial|clean/i.test(x.name || ""); });
+        if (promo.length) return promo[0];
+      }
+      return withThumb[0];
+    }
     function cardHTML(f) {
       var files = p.folders[f], on = f === active;
-      var first = files.filter(function (x) { return x.thumb; })[0];
+      var first = folderCover(f);
       // Folder names come from Dropbox — untrusted. getAttribute() decodes the
       // escaped data-folder, so the round-trip back to p.folders[...] matches.
       return '<button type="button" class="fcard' + (on ? " on" : "") + '" data-folder="' + escapeHTML(f) + '" aria-expanded="' + on + '"' + (on ? ' aria-controls="fpanel"' : "") + ">" +
@@ -2206,7 +2238,9 @@
       return FOLDER_GROUPS.map(function (g, gi) {
         var fs = cardFolders.filter(function (f) { return folderGroup(f) === gi; });
         if (!fs.length) return "";
-        var rank = function (f) { var i = g.order.indexOf(f); return i < 0 ? 99 : i; };
+        // User Generated Content always closes the Videos group, after the brand's
+        // own videos (legacy colorway folders included).
+        var rank = function (f) { var i = g.order.indexOf(f); return f === UGC_FOLDER ? 999 : i < 0 ? 99 : i; };
         fs.sort(function (a, b) { return rank(a) - rank(b); });   // stable: ties keep page order
         return '<div class="section-head sub fgroup-head"><h3>' + tr(g.label) + "</h3></div>" +
           '<div class="fcards">' + fs.map(cardHTML).join("") +
@@ -2233,8 +2267,9 @@
         c.addEventListener("click", function () {
           var f = c.getAttribute("data-folder");
           active = active === f ? null : f;
-          // Name the open folder in the URL (no history entry per click).
-          try { history.replaceState(null, "", location.pathname + location.search + productHash(p, active)); } catch (e) {}
+          // Keep the address bar on the plain product link: a page always opens
+          // with every folder collapsed, so a folder in the URL would mislead.
+          try { history.replaceState(null, "", location.pathname + location.search + productHash(p)); } catch (e) {}
           renderCards();
           // renderCards() replaced the clicked card; keep keyboard focus on its twin.
           var same = $$(".fcard", box).filter(function (x) { return x.getAttribute("data-folder") === f; })[0];
@@ -2350,7 +2385,7 @@
       if (heroCover) heroCover.addEventListener("click", function () { openLightbox([{ src: p.cover, name: fullName, url: p.cover }], 0); });
       $("#dl-all").addEventListener("click", function () { downloadAll(p); });
       $("#copy-link").addEventListener("click", function () {
-        var url = location.origin + location.pathname + langQS() + productHash(p, active);
+        var url = location.origin + location.pathname + langQS() + productHash(p);
         copyText(url, tr("Link copied"));
       });
       var copyDesc = $("#copy-desc");
@@ -3080,7 +3115,8 @@
   }
   // Copy a shareable link to one category folder (Product Photos, Logos, …).
   function copyFolderLink(p, folderName) {
-    var link = (p.folderLinks && p.folderLinks[folderName]) || p.dropbox;
+    var link = (p.folderLinks && p.folderLinks[folderName]) ||
+      (folderName === UGC_FOLDER && p.folderLinks && p.folderLinks[p.ugcFrom]) || p.dropbox;
     if (!link) { toast(tr("No shareable link for this folder yet")); return; }
     copyText(dropboxViewUrl(link), tr("Copied link to {folder}").replace("{folder}", typeLabel(folderName)));
   }

@@ -266,6 +266,7 @@ window.PORTAL_I18N.es = {
     "Photo / Video Assets": "Recursos de foto / video",
     "Sales Assets": "Recursos de ventas",
     "Other": "Otros",
+    "User Generated Content": "Contenido generado por usuarios",
     "Download coming soon": "Descarga próximamente",
     "Download folder": "Descargar carpeta",
     "Download logo files": "Descargar archivos de logo",
