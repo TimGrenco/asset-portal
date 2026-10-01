@@ -70,7 +70,7 @@ window.PORTAL_BRANDS = {
       { network: "YouTube", handle: "Grenco Science", url: "https://www.youtube.com/user/GrencoScience" },
     ],
     faqUrl: "https://www.gpen.com/pages/faq",
-    warrantyUrl: "https://www.gpen.com/pages/warranty",
+    warrantyUrl: "https://gpen.com/pages/warranty",
   },
 };
 
@@ -129,7 +129,7 @@ window.PORTAL_PRODUCTS = [
     // Transparent PNG built from the synced "Micro 2-34" shot (background removed
     // by edge flood-fill from the border only, so the lit display and the G logo
     // keep their whites), sized so the device fills 88% of the square canvas.
-    cover: "assets/img/micro-ii.png?v=20260826i",
+    cover: "assets/img/micro-ii.webp?v=20261001",
     // Durable rlkey link (expiring st= token stripped).
     dropbox: "https://www.dropbox.com/scl/fo/spharop9yvc7bnk5g3w4z/AKUC7ALBupRa8e039bvfNr4?rlkey=5560kr7brds1hco7tgeiafsbx&dl=0",
     folders: {},   // real files + thumbnails come from synced.js (Dropbox sync)
@@ -141,7 +141,7 @@ window.PORTAL_PRODUCTS = [
     // Transparent PNG so the tile matches the other products (the Shopify shot is
     // a JPEG on solid white, which shows as a white square inside the grey card).
     // Background removed by edge flood-fill, which preserves the white G on the lid.
-    cover: "assets/img/grinder-slim-3pc.png?v=20260810a",
+    cover: "assets/img/grinder-slim-3pc.webp?v=20261001",
     added: "2026-08-10",
     newBadge: true,
     oneSheet: "#",
@@ -285,7 +285,6 @@ var PRODUCT_VIDEOS = {
       thumb: "https://i.vimeocdn.com/video/2177906524-733183136a1db2dfcc9ed48d879ceab3e629f9c532fac0c33f64912854df7815-d_640?region=us" },
   ],
   "Roam": [
-    ["l6QSb4Obox4", "G Pen x Lemonnade Roam"],
   ],
   // How-to-use / how-to-clean tutorials pulled from the gpen.com product pages
   // (Vimeo). Placeholders until Dropbox MP4s arrive so they can be downloaded.
@@ -338,7 +337,6 @@ var PRODUCT_VIDEOS = {
       mp4: "https://www.dropbox.com/scl/fi/dl8q275uioal7vdu6phey/Dash-How-to-Clean.mp4?rlkey=10jzsg9wg7bvhk3skqgpxxy7d&dl=0" },
   ],
   "Hyer": [
-    ["L5pIGbmtLU8", "Tyson 2.0 x G Pen Hyer"],
   ],
   // Official Grenco Science tutorials (YouTube).
   "Elite II": [
@@ -420,7 +418,7 @@ var PRODUCT_INFO = {
   // ---- G Pen ----
   "Dash II": {
     description: "The next evolution of the best-selling Dash — a pocket-sized dry herb vaporizer upgraded across the board with faster heat-up, improved airflow, and refined temperature control.",
-    highlights: ["Pocket Sized Dry Herb Vaporizer", "30-second heat-up", "Precise temperature control", "OLED display", "Upgraded 0.4g ceramic chamber (easier loading)", "Pick Tool", "1,100mAh battery", "USB-C pass-through charging"],
+    highlights: ["Pocket-sized dry herb vaporizer", "30-second heat-up", "Precise temperature control", "OLED display", "Upgraded 0.4g ceramic chamber (easier loading)", "Pick Tool", "1,100mAh battery", "USB-C pass-through charging"],
     warranty: "6-month limited warranty, extended to 1 year if registered",
     manual: "https://cdn.shopify.com/s/files/1/0185/1576/files/20260309_GPen_Dash2_Manual.pdf?v=1773074467",
     faqUrl: "https://gpen.com/pages/dash-ii-faq",
@@ -436,7 +434,6 @@ var PRODUCT_INFO = {
       "Three temperature settings + extended draw mode",
     ],
     warranty: "1-year limited warranty",
-    productUrl: "https://www.gpen.com/products/g-pen-connect",
   },
   "Roam": {
     description: "An all-in-one portable e-rig delivering water-filtered concentrate vaporization on the go, with a spill-resistant borosilicate glass hydrotube and full quartz tank.",
@@ -448,7 +445,6 @@ var PRODUCT_INFO = {
     description: "A dual-use portable e-nail for concentrates or dried herb that pairs with any glass-on-glass water piece, built around a full quartz heating element.",
     highlights: ["Dual-use: concentrates or dry herb", "Full quartz heating element", "Pairs with any glass-on-glass piece", "Portable e-nail design"],
     warranty: "2-year limited warranty",
-    productUrl: "https://www.gpen.com/products/g-pen-hyer-vaporizer",
   },
   "510 Original": {
     description: "The smallest and most affordable G Pen battery ever, the 510 Original reimagines Grenco's very first 2012 battery with modern breath-activated, ultra-portable performance for 510 cartridges.",
@@ -466,19 +462,20 @@ var PRODUCT_INFO = {
   },
   "Hydout": {
     description: "The G Pen Hydout is a compact, discreet 510 cartridge battery with a hidden magnetic mouthpiece cover, adjustable voltage, and LED display for smooth, customizable low-key sessions.",
-    highlights: ["Hidden magnetic mouthpiece cover", "5 heat settings (2.4V – 3.8V)", "1.8V preheat mode", "400mAh rechargeable battery", "Bright LED display", "USB-C charging", "Fits 510 carts up to 2g", "90 × 37.5 × 18.5 mm"],
+    highlights: ["Hidden magnetic mouthpiece cover", "5 heat settings (2.4V – 3.8V)", "1.8V preheat mode", "400mAh rechargeable battery", "Bright LED display", "USB-C pass-through charging", "Fits 510 carts up to 2g", "Breath activation"],
     warranty: "Limited warranty — see policy",
     manual: "https://cdn.shopify.com/s/files/1/0185/1576/files/20250528_GPen_Hydout_Manual.pdf?v=1749240232",
     productUrl: "https://www.gpen.com/products/g-pen-hydout",
   },
   "Hydout — Retro": {
-    description: "The Retro edition of the G Pen Hydout brings a see-through, 90s-inspired translucent finish to the discreet 510 cartridge battery, adding breath activation alongside variable voltage and USB-C charging.",
+    description: "The Retro edition of the G Pen Hydout brings a see-through, 90s-inspired translucent finish to the discreet 510 cartridge battery, with breath activation, variable voltage and USB-C pass-through charging.",
     highlights: ["See-through 90s-inspired finish", "Breath activation", "Adjustable variable voltage", "1.8V preheat mode", "400mAh rechargeable battery", "USB-C pass-through charging", "Fits most 510 cartridges", "Hidden magnetic mouthpiece cover"],
     warranty: "Limited warranty — see policy",
     manual: "https://cdn.shopify.com/s/files/1/0185/1576/files/GPEN_Retro_Hydout_Manual.pdf?v=1765208154",
     productUrl: "https://www.gpen.com/products/g-pen-hydout-purple-translucent",
   },
   "Micro II": {
+    productUrl: "https://gpen.com/products/g-pen-micro-ii-vaporizer",
     // SKU data from G-Pen-SKU-Details-Template-7.xlsx (rows 9-10).
     // MSRP + every highlight below come from the official one-sheet in the
     // product's own Dropbox Documents folder ("G Pen - One Sheet - Micro II"),
@@ -652,7 +649,7 @@ var PRODUCT_INFO = {
     popSku: "GPM-001-APZZ-Inner Pack",
     popUpc: "10811736020340",
     dimensions: "105 × 35 × 28 mm",
-    unitWeight: "0.1 kg",
+    unitWeight: "100 g",
     innerPack: "10",
     masterCarton: "160",
     caseWeight: "16.8 kg",
@@ -660,6 +657,7 @@ var PRODUCT_INFO = {
     htsCode: "8543.70.9940",
   },
   "Slim 3-Piece Grinder": {
+    productUrl: "https://gpen.com/products/g-pen-grinder-3-pc-aluminum",
     description:
       "A slim, screenless 3-piece grinder with micro-rounded teeth that gently separate flower into a consistent grind — built to pair with the Dash II and Dash+.",
     highlights: [
@@ -685,7 +683,7 @@ var PRODUCT_INFO = {
     popSku: "GPA-001-APSC-INNER PACK",
     popUpc: "10811736020685",
     dimensions: "65 × 65 × 31 mm",
-    unitWeight: "0.11 kg",
+    unitWeight: "110 g",
     innerPack: "10",
     masterCarton: "150",
     caseWeight: "18.2 kg",
@@ -771,22 +769,21 @@ var PRODUCT_DESCRIPTION = {
     "US 10,321,721 B2",
     "US 10,327,470 B2",
     "*This Product is Not For Use With Tobacco, Nicotine-Containing E-liquids, or Any Synthetic Nicotine or Nicotine Substitute.",
-    "\"@context\": \"https://schema.org\",",
   ],
   "Roam": [
     "Introducing the G Pen Roam, an all-in-one portable vaporizer intuitively designed to provide water-filtered concentrate vaporization on-the-go. Featuring a spill-resistant, self-contained borosilicate glass hydrotube, a fully Quartz tank, and powerful 1,300mAh Lithium-Ion Battery, the G Pen Roam heats to temperature within seconds of activation to deliver smooth and flavorful draws with ease.",
-    "The G Pen Roam tailors to each user’s flavor and heat preferences through a digital temperature control and LED display ranging from 400° - 800°+F (204° - 427°+C), along with a haptic feedback feature that indicates when the device is ready for use. Designed with strict attention to discrete portability, the Roam is encased within a light yet durable aluminum alloy shell which fully shelters the Quartz tank and glass water tube. Passthrough technology allows for the device to be used while plugged in, and all parts in connection to the vapor air path can be easily disassembled and cleaned.",
-    "Each G Pen Roam complete kit comes standard within a Hemp Travel Case, with room for two concentrates jars and a pocket for accessories which include a micro USB Charging Cable and G Pen Tool for loading of concentrates.",
+    "The G Pen Roam tailors to each user’s flavor and heat preferences through a digital temperature control and LED display ranging from 400° - 800°+F (204° - 427°+C), along with a haptic feedback feature that indicates when the device is ready for use. Designed with strict attention to discreet portability, the Roam is encased within a light yet durable aluminum alloy shell which fully shelters the Quartz tank and glass water tube. Passthrough technology allows for the device to be used while plugged in, and all parts in connection to the vapor air path can be easily disassembled and cleaned.",
+    "Each G Pen Roam complete kit comes standard within a Hemp Travel Case, with room for two concentrate jars and a pocket for accessories which include a micro USB Charging Cable and G Pen Tool for loading of concentrates.",
     "*This Product is Not For Use With Tobacco, Nicotine-Containing E-liquids, or Any Synthetic Nicotine or Nicotine Substitute.",
   ],
   "Hyer": [
-    "The G Pen Hyer®️ is an intuitively designed, dual-use, portable enail that works with concentrates or dried herb and pairs with any glass-on-glass water piece. Manufactured with the highest quality materials, including a full quartz heating element, the G Pen Hyer features smart heating technology with constant temperature output to deliver best-in-class flavor and vapor production.",
+    "The G Pen Hyer® is an intuitively designed, dual-use, portable e-nail that works with concentrates or dried herb and pairs with any glass-on-glass water piece. Manufactured with the highest quality materials, including a full quartz heating element, the G Pen Hyer features smart heating technology with constant temperature output to deliver best-in-class flavor and vapor production.",
     "Featuring a 6,000mAh rechargeable lithium-ion battery with rapid, pass-through charging via USB-C, in a lightweight and durable, anodized aluminum casing, the G Pen Hyer redefines the limits of sheer power and portability. Utilizing a simple three-button operation and five-LED user interface, the G Pen Hyer allows for easy set-up and activation while delivering an uncompromising experience.",
     "A premium braided power cable with durable snap-in magnetic attachments connects the battery to a lightweight, anodized aluminum tank housing, in which the G Pen Hyer Quartz Tank for Concentrates or Dry Herb Tank* can be easily threaded in and out. The Concentrates Tank is heated by a custom-stamped stainless steel heating element and features a full Quartz chamber and internal up-stem that provides maximum surface area for heating, efficient airflow, and an optimal vaporization of concentrate materials.",
     "The final component in the superior performance of the G Pen Hyer Quartz Tank for Concentrates is the Concentrates Tank Cap, magnetically attached and made of anodized aluminum with a built-in ceramic liner and dual airflow holes for smooth, rotary functionality. The included stainless steel wax tool can also be attached to the top or side of the tank cap for easy placement and accessibility.",
     "Each G Pen Hyer Vaporizer kit comes with a 14mm male glass adapter (10mm and 18mm glass adapters sold separately). All kit components come neatly packed in an included hemp travel case with a mesh pocket for additional accessories.",
     "*G Pen Hyer Dry Herb Tank sold separately.",
-    "﻿*The durability index of the G Pen Hyer Quartz Tank carries a minimum of 200 power cycles. It is recommended to replace your tank once this number of power cycles has been reached for optimal performance.",
+    "*The durability index of the G Pen Hyer Quartz Tank carries a minimum of 200 power cycles. It is recommended to replace your tank once this number of power cycles has been reached for optimal performance.",
     "*This Product is Not For Use With Tobacco, Nicotine-Containing E-liquids, or Any Synthetic Nicotine or Nicotine Substitute.",
   ],
   "510 Original": [
@@ -796,7 +793,7 @@ var PRODUCT_DESCRIPTION = {
     "At just $12.95, it’s also the most affordable G Pen battery ever—proof that premium tech doesn’t have to come with a premium price tag.",
     "Simple. Reliable. Iconic. The original is back.",
     "*510 Cartridge Not Included",
-    "** USB C Charger Not Included",
+    "**USB-C Charger Not Included",
   ],
   "510 Original — Retro": [
     "Original. Upgraded. Retro.",
@@ -881,7 +878,7 @@ var PRODUCT_BOX = {
   },
   "Dash II": {
     image: CDN + "dash2_thumb_011.jpg?v=1772834595",
-    contents: ["G Pen Dash II Dry Herb Vape", "Built in loading tool", "Silicone Mouthpiece Sleeve", "*USB-C Charging Cable Not Included"],
+    contents: ["G Pen Dash II Dry Herb Vape", "Built-in loading tool", "Silicone Mouthpiece Sleeve", "*USB-C Charging Cable Not Included"],
   },
   "Dash+": {
     image: CDN + "dash_what_inc.png?v=1692903153",
@@ -889,15 +886,15 @@ var PRODUCT_BOX = {
   },
   "Melt Hot Knife": {
     image: CDN + "Melt_thumb_02.jpg?v=1772808678",
-    contents: ["G Pen Melt Hot Knife", "Protective Travel Cap", "*USB C Charging Cable Not Included"],
+    contents: ["G Pen Melt Hot Knife", "Protective Travel Cap", "*USB-C Charging Cable Not Included"],
   },
   "510 Original": {
     image: CDN + "510_thumb_01.jpg?v=1765987884",
-    contents: ["G Pen 510 Original Battery", "*USB C Charger Not Included", "*510 Cartridge Not Included"],
+    contents: ["G Pen 510 Original Battery", "*USB-C Charger Not Included", "*510 Cartridge Not Included"],
   },
   "510 Original — Retro": {
     image: CDN + "Purple510O_thumb_01.jpg?v=1779898107",
-    contents: ["G Pen 510 Original Battery", "*USB C Charger Not Included", "*510 Cartridge Not Included"],
+    contents: ["G Pen 510 Original Battery", "*USB-C Charger Not Included", "*510 Cartridge Not Included"],
   },
   "Hydout": {
     image: CDN + "Hydout_vape_thumb_02.jpg?v=1762461585",
@@ -1157,13 +1154,13 @@ window.PORTAL_INSTORE_GENERAL = (function () {
     { name: "Channel Letter", type: "image", format: "PNG", dim: "12\" L × 12\" W × 2\" D",
       thumb: "assets/materials/thumbs/channel-letter.jpg", url: "assets/materials/channel-letter.png", file: "assets/materials/channel-letter.png" },
     { name: "Die-Cut Window Cling", type: "image", format: "PNG", dim: "8\" L × 8\" W",
-      thumb: "assets/materials/thumbs/die-cut-window-cling.png", url: "assets/materials/die-cut-window-cling.png", file: "assets/materials/die-cut-window-cling.png" },
+      thumb: "assets/materials/thumbs/die-cut-window-cling.jpg", url: "assets/materials/die-cut-window-cling.png", file: "assets/materials/die-cut-window-cling.png" },
     { name: "Fridge Magnet", type: "image", format: "PNG", dim: "2.5\" L × 2.5\" W",
-      thumb: "assets/materials/thumbs/fridge-magnet.png", url: "assets/materials/fridge-magnet.png", file: "assets/materials/fridge-magnet.png" },
+      thumb: "assets/materials/thumbs/fridge-magnet.jpg", url: "assets/materials/fridge-magnet.png", file: "assets/materials/fridge-magnet.png" },
     { name: "Lanyard", type: "image", format: "PNG", dim: "With vape holder",
-      thumb: "assets/materials/thumbs/lanyard.png", url: "assets/materials/lanyard.png", file: "assets/materials/lanyard.png" },
+      thumb: "assets/materials/thumbs/lanyard.jpg", url: "assets/materials/lanyard.png", file: "assets/materials/lanyard.png" },
     { name: "Sticky Notes", type: "image", format: "PNG", dim: "2.5\" L × 2.5\" W · 25 notes per pad",
-      thumb: "assets/materials/thumbs/sticky-notes.png", url: "assets/materials/sticky-notes.png", file: "assets/materials/sticky-notes.png" },
+      thumb: "assets/materials/thumbs/sticky-notes.jpg", url: "assets/materials/sticky-notes.png", file: "assets/materials/sticky-notes.png" },
     { name: "G Pen Floor Rug", type: "image", format: "PNG", dim: "3ft Circular", sku: "GMK-010-ANZZ",
       thumb: "assets/materials/thumbs/g-pen-floor-rug.jpg", url: "assets/materials/g-pen-floor-rug.png", file: "assets/materials/g-pen-floor-rug.png" },
     // (Dash II Table Tent removed — superseded by the synced "Dash II Postcard".)

@@ -10,7 +10,8 @@
   <script>
     (function () {
       var hash = window.location.hash || "";
-      window.location.replace("/" + hash);
+      // Keep ?lang= (and any ?q=) so a translated link to a bad path stays translated.
+      window.location.replace("/" + (window.location.search || "") + hash);
     })();
   </script>
   <style>

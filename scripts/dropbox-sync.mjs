@@ -302,6 +302,35 @@ function grayThumb(src, out, e) {
   } catch (err) { warnOnce("gray", "gray thumb failed: " + err.message); return false; }
 }
 
+// Sidecar / OS files that are never assets (Lightroom .xmp, macOS ._ forks…).
+const JUNK = /(\.xmp|\.ds_store|^thumbs\.db|^desktop\.ini)$|^\._/i;
+
+// A thumbnail that came out one flat color (white art on a white artboard, an
+// empty Illustrator render, a black first video frame) reads as a broken tile.
+// Measured once per thumbnail and cached in _links.json under "blank:<name>".
+function isBlank(file, cache) {
+  const k = "blank:" + file.split("/").pop();
+  if (k in cache) return cache[k];
+  let flat = false;
+  try {
+    const out = execFileSync("convert", [file, "-colorspace", "gray", "-format", "%[fx:maxima-minima]", "info:"], { encoding: "utf8" });
+    flat = parseFloat(out) < 0.04;
+  } catch { flat = false; }
+  cache[k] = flat; return flat;
+}
+
+// A 360px copy of each JPEG thumbnail for the folder file grid (cells are
+// ~150px; the 640px thumb stays for covers and the lightbox). ~14 KB vs ~70 KB.
+function smallThumb(dir, tn) {
+  const sn = tn.replace(/\.jpg$/, "-s.jpg");
+  if (sn === tn) return null;
+  if (!existsSync(join(dir, sn))) {
+    try { execFileSync("convert", [join(dir, tn), "-resize", "360x360>", "-strip", "-quality", "78", "-interlace", "Plane", join(dir, sn)], { stdio: "ignore" }); }
+    catch (err) { warnOnce("small", "small thumb failed: " + err.message); }
+  }
+  return existsSync(join(dir, sn)) ? sn : null;
+}
+
 const tok = await getToken();
 const synced = {};
 
@@ -404,6 +433,7 @@ for (const p of PRODUCTS) {
     files.sort((a, b) => (a.displayName || a.name).localeCompare(b.displayName || b.name, undefined, { numeric: true }));
     const out = [];
     for (const f of files) {
+      if (JUNK.test(f.name)) continue;
       const e = ext(f.name), type = typeOf(e), path = f.relPath || (spec.prefix + "/" + f.name);
       const hash = f.content_hash, size = f.size || 0;
       let thumb = null, fileRel = null;
@@ -467,7 +497,26 @@ for (const p of PRODUCTS) {
           }
           if (existsSync(join(dir, tn))) { thumb = `assets/synced/${p.slug}/${tn}`; keep.add(tn); }
         }
+        // Blank thumbnail: retry once on gray (white art in a file not named
+        // "white"), else drop it so the tile shows its file-type icon.
+        if (thumb && /\.jpg$/.test(thumb) && isBlank(thumb, linkCache)) {
+          let fixed = false;
+          if (!/-lt2\.jpg$/.test(thumb) && type !== "video") {
+            const tn = hash + "-lt2.jpg";
+            if (!existsSync(join(dir, tn))) {
+              const src = localOrig || (await downloadFile(tok, p.link, path, tmp + "." + e) ? tmp + "." + e : null);
+              if (src) { grayThumb(src, join(dir, tn), e); if (src === tmp + "." + e) unlinkSync(src); }
+            }
+            if (existsSync(join(dir, tn)) && !isBlank(join(dir, tn), linkCache)) { thumb = `assets/synced/${p.slug}/${tn}`; keep.add(tn); fixed = true; }
+          }
+          if (!fixed) thumb = null;
+        }
       } catch (err) { warnOnce("gen-" + type, "asset error (" + f.name + "): " + err.message); }
+      let thumbS = null;
+      if (thumb && /\.jpg$/.test(thumb)) {
+        const sn = smallThumb(dir, thumb.split("/").pop());
+        if (sn) { thumbS = `assets/synced/${p.slug}/${sn}`; keep.add(sn); }
+      }
 
       // Per-file download link (cached). Every file downloads straight from
       // Dropbox; if the link can't be made, fall back to the folder link.
@@ -477,7 +526,7 @@ for (const p of PRODUCTS) {
         if (dlUrl) linkCache[f.id] = dlUrl;
       }
 
-      out.push({ name: f.displayName || f.name.replace(/\.[^.]+$/, ""), type, format: e.toUpperCase(), url: dlUrl || p.link, thumb, file: fileRel });
+      out.push({ name: f.displayName || f.name.replace(/\.[^.]+$/, ""), type, format: e.toUpperCase(), url: dlUrl || p.link, thumb, ...(thumbS ? { thumbS } : {}), file: fileRel });
     }
     if (out.length) folders[spec.name] = (folders[spec.name] || []).concat(out);  // concat so aliased names merge
   }

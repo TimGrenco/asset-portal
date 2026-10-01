@@ -35,23 +35,29 @@
   <link rel="preconnect" href="https://cdn.shopify.com" />
 
   <!-- Favicon: official G Pen brandmark (adapts: black on light tabs, white on dark) -->
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=2" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=3" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <meta name="theme-color" content="#ffffff" />
 
-  <link rel="stylesheet" href="assets/css/styles.css?v=20261001g" />
+  <!-- Until app.js renders the first view, hide the page body so a deep link
+       (#gpen/…, #materials) never paints the home hero first and then jumps
+       (layout shift up to 0.9). If a script fails, the page is revealed after 15s; only
+       app.js lifts "deep" (which hides the home hero/search on a deep link). -->
+  <script>document.documentElement.classList.add("booting");if(location.hash.length>1)document.documentElement.classList.add("deep");setTimeout(function(){document.documentElement.classList.remove("booting")},15000);</script>
+  <link rel="stylesheet" href="assets/css/styles.css?v=20261001h" />
 </head>
 <body>
+  <a class="skip-link" href="#main" data-i18n>Skip to content</a>
   <h1 class="sr-only" id="site-h1">G Pen Brand Assets Portal</h1>
 
   <!-- NAV -->
   <header class="nav">
     <div class="wrap nav-inner">
-      <div class="brandmark" id="home-link" role="button" tabindex="0" aria-label="Back to home" data-i18n-aria>
-        <span class="sq"><img src="assets/img/gpen-g-white.png" alt="" width="728" height="722" decoding="async" /></span>
+      <div class="brandmark" id="home-link" role="button" tabindex="0" aria-label="G Pen Brand Assets Portal">
+        <span class="sq"><img src="assets/img/gpen-g-white-96.png" alt="" width="96" height="95" decoding="async" /></span>
         <span class="lib">G Pen Brand Assets Portal</span>
       </div>
-      <div class="nav-actions">
+      <nav class="nav-actions" aria-label="Primary">
         <!-- Language selector. The globe makes it read as *language* at a glance;
              a bare code would look like a filter. Menu is built by app.js. -->
         <div class="langsel" id="lang-select">
@@ -68,8 +74,8 @@
         </div>
         <button class="nav-link" id="nav-catalogs" data-i18n>Catalogs</button>
         <button class="nav-link" id="nav-guides" data-i18n>Logos &amp; assets</button>
-        <a class="req-link req-mail" href="#"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span data-i18n>Request an asset</span></a>
-      </div>
+        <a class="req-link req-mail" href="#" aria-label="Request an asset" title="Request an asset" data-i18n-aria data-i18n-title><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span data-i18n>Request an asset</span></a>
+      </nav>
     </div>
   </header>
 
@@ -94,7 +100,7 @@
   <section class="hero" id="hero">
     <div class="wrap">
       <div class="hero-brands">
-        <img class="hero-logo gpen" src="assets/img/gpen-g-black.png" alt="G Pen" width="728" height="722" fetchpriority="high" decoding="async" />
+        <img class="hero-logo gpen" src="assets/img/gpen-g-black-200.png" alt="G Pen" width="200" height="198" fetchpriority="high" decoding="async" />
       </div>
       <div class="hero-eyebrow" data-i18n>Official Brand &amp; Product Assets</div>
       <p id="hero-tagline" data-i18n>Everything you need, in one place.</p>
@@ -116,11 +122,11 @@
   </section>
 
   <!-- BODY -->
-  <main class="wrap body">
+  <main class="wrap body" id="main" tabindex="-1">
     <div id="home">
       <div class="filterbar" id="active-filters"></div>
 
-      <div class="section-head">
+      <div class="section-head" id="home-head">
         <h2 id="all-title">Current products</h2>
         <span class="badge" id="count-badge">0</span>
         <div class="viewmode" id="view-mode" role="group" aria-label="Layout" data-i18n-aria>
@@ -241,7 +247,7 @@
   </button>
 
   <script src="assets/data/synced.js?v=1790889528871"></script>
-  <script src="assets/data/assets.js?v=20261001g"></script>
-  <script src="assets/js/app.js?v=20261001g"></script>
+  <script src="assets/data/assets.js?v=20261001h"></script>
+  <script src="assets/js/app.js?v=20261001h"></script>
 </body>
 </html>

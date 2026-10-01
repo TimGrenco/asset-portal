@@ -26,7 +26,7 @@
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)",
                 sv: "Svenska", pl: "Polski", da: "Dansk" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20261001g";   // bump with the other asset tokens
+  var LANG_VER = "20261001h";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -114,6 +114,7 @@
     $("#lang-bar-txt").textContent = c.q;
     $("#lang-bar-yes").textContent = c.yes;
     $("#lang-bar-no").textContent = c.no;
+    bar.setAttribute("lang", l);   // screen readers pronounce the offer in its own language
     bar.hidden = false;
     bar.classList.add("show");
     // Asked once: mark it the moment we SHOW the bar, so ignoring it (navigating
@@ -180,6 +181,7 @@
       if (my !== langSeq) return;   // superseded by a later click
       if (!ok && l !== "en") { toast("Couldn’t load that language — staying in " + LANGS[state.lang]); return; }
       applyLang(l);
+      var lb = $("#lang-btn"); if (lb) lb.focus({ preventScroll: true });   // the re-render dropped focus to <body>
     });
   }
   function applyLang(l) {
@@ -195,6 +197,8 @@
     applyStaticI18n();
     labelLightbox();
     _fileIndex = null;   // its haystacks embed translated text — rebuild in the new language
+    var dv = $("#detail");
+    keepDetail = (detailState && dv && dv.style.display !== "none") ? detailState() : null;
     route();   // re-render whatever view is open, in the new language
     syncURL();  // route() only rewrites the URL on the home view — without this a stale
                 // ?lang= survives on product/order pages and wins on the next load
@@ -271,7 +275,7 @@
   function syncLangToggle() {
     var lbl = $("#lang-btn-code"); if (lbl) lbl.textContent = state.lang.toUpperCase();
     var b = $("#lang-btn");
-    if (b) b.setAttribute("aria-label", "Language: " + LANGS[state.lang]);
+    if (b) b.setAttribute("aria-label", state.lang.toUpperCase() + " — " + tr("Language") + ": " + LANGS[state.lang]);
     renderLangMenu();
   }
   // Static copy that lives in index.html (nav, hero, section headings, support
@@ -530,25 +534,53 @@
   // (which exists for browser back/forward + external deep links) skips a
   // redundant re-render.
   var ignoreHash = false;
+  // Where the reader was on the home list, so Back (browser or "Back to library")
+  // returns to that spot instead of the top.
+  var homeScroll = null;
+  function rememberHome() { var h = $("#home"); if (h && h.style.display !== "none") homeScroll = window.pageYOffset; }
+  function restoreHome() {
+    if (homeScroll == null) return;
+    var y = homeScroll;
+    requestAnimationFrame(function () { window.scrollTo({ top: y, behavior: "instant" }); });
+  }
+  // After a view change, move focus to its heading so keyboard and screen-reader
+  // users start at the new content (not on <body>). Never on first load.
+  var booted = false;
+  function focusView(el) {
+    if (!booted || !el) return;
+    var h = $("h1", el) || el;
+    if (!h.hasAttribute("tabindex")) h.setAttribute("tabindex", "-1");
+    try { h.focus({ preventScroll: true }); } catch (e) {}
+  }
   function navTo(p) {
+    rememberHome();
     openDetail(p);
+    focusView($("#detail"));
     var h = productHash(p);
     if (location.hash !== h) { ignoreHash = true; location.hash = h; }
   }
-  function navHome() {
+  // restore: true when the reader is going BACK to the list (not "start over").
+  function navHome(restore) {
     renderHome();
-    if (location.hash) { ignoreHash = true; location.hash = ""; }
+    if (restore === true) restoreHome();
+    focusView($("#site-h1") && $("#site-h1").parentNode === document.body ? document.body : $("#home"));
+    // pushState, not location.hash = "", which leaves a bare "#" in the address bar.
+    if (location.hash) { try { history.pushState(null, "", location.pathname + location.search); } catch (e) { ignoreHash = true; location.hash = ""; } }
   }
-  function route() {
+  // fromHistory: a hashchange (browser Back/Forward) — the only time the home
+  // list's remembered scroll position should be put back.
+  function route(fromHistory) {
     var parts = location.hash.replace(/^#/, "").split("/");
     var mp = $("#materials-page"); if (mp && parts[0] !== "materials") mp.style.display = "none";
     var lp = $("#locator-page"); if (lp && parts[0] !== "locator") lp.style.display = "none";
-    if (parts[0] !== "catalog") closeCatalog();
+    if (parts[0] !== "catalog") { catPushed = false; closeCatalog(); }
     // Transient overlays are not routes, so a hash change (or browser Back) used
     // to leave a full-screen lightbox/video stranded over a different page.
     cancelDropboxPulls();
-    closeVideoModal();
-    if ($("#lightbox") && $("#lightbox").classList.contains("open")) closeLightbox();
+    modalPushed = false;   // the page moved on; its overlay's history entry is just a past page now
+    closeVideoModal(true);
+    if ($("#lightbox") && $("#lightbox").classList.contains("open")) closeLightbox(true);
+    document.body.classList.remove("has-selection");   // openDetail re-adds it if files stay ticked
     // Shared catalog deep link: render home behind it, then open the viewer.
     if (parts[0] === "catalog" && parts[1]) { renderHome(); openCatalog(parts[1]); return; }
     if (parts[0] === "style" && own(BRANDS, parts[1])) { openStyleGuide(parts[1]); return; }
@@ -564,7 +596,16 @@
       return;
     }
     var p = productFromHash();
-    if (p) openDetail(p); else renderHome();
+    if (p) { openDetail(p); focusView($("#detail")); return; }
+    // A link to a page that doesn't exist (a renamed product, a typo) lands on the
+    // product list with a word of explanation, not silently under a bogus URL.
+    if (location.hash.length > 1 && parts[0] !== "") {
+      try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+      if (booted) toast(tr("Page not found — showing all products"));
+      else setTimeout(function () { toast(tr("Page not found — showing all products")); }, 400);
+    }
+    renderHome();
+    if (fromHistory === true) restoreHome();
   }
 
   // ---- clipboard -----------------------------------------------------------
@@ -755,10 +796,14 @@
     pic: ["photo", "png", "jpg"], pics: ["photo", "png", "jpg"], picture: ["photo"],
     photos: ["photo"], image: ["photo", "png", "jpg"], images: ["photo"],
     vid: ["video", "mp4"], vids: ["video", "mp4"], videos: ["video"], movie: ["video", "mp4"],
-    vector: ["svg", "ai", "eps"], vectors: ["svg", "ai", "eps"], logos: ["logo"],
+    // Format aliases are "fmt:" tokens, matched only against a file's format —
+    // a bare "ai" matched "det-ai-l", "Ret-ai-l" and "r-ai-nbow", so "vector" returned 700 photos.
+    vector: ["fmt:svg", "fmt:ai", "fmt:eps"], vectors: ["fmt:svg", "fmt:ai", "fmt:eps"], logos: ["logo"],
+    onesheet: ["one sheet"], onesheets: ["one sheet"], sellsheet: ["one sheet"], spec: ["one sheet", "spec"],
+    ugc: ["user generated", "ugc"], creator: ["user generated"], creators: ["user generated"],
     doc: ["document", "pdf"], docs: ["document", "pdf"], catalogue: ["catalog"], catalogs: ["catalog"],
     packshot: ["packaging"], pack: ["packaging"], lifestyle: ["lifestyle", "hero"],
-    jpeg: ["jpg"], transparent: ["png", "transparent"], gpen: ["g pen"],
+    jpeg: ["fmt:jpg"], transparent: ["fmt:png", "transparent"], gpen: ["g pen"],
   };
   // Expand one query term into itself + any synonyms (deduped).
   function termAliases(t) {
@@ -779,8 +824,9 @@
   // Lower-case and strip accents, so "catalogo" finds "catálogo" and a
   // Portuguese keyboard's "vídeo" finds "video".
   function fold(s) { return String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); }
+  // Hyphens and underscores split words, so "one-sheet" finds "One Sheet".
   function queryTerms(q) {
-    return fold(q).split(/\s+/).filter(Boolean);
+    return fold(q).replace(/[-_]+/g, " ").split(/\s+/).filter(Boolean);
   }
   // Pre-expand a query into alias groups once, for reuse across every candidate.
   function queryAliasGroups(q) { return queryTerms(q).map(termAliases); }
@@ -814,10 +860,15 @@
           out.push({
             product: p, brand: p.brand, folder: folder, file: file,
             label: fileLabel(file), kind: facetOf(folder, file),
-            subFn: function () { return p.name + " · " + folderLabel(folder); },
+            subFn: function () {
+              var os = /one.?sheet/i.test(file.name || "");
+              return p.name + " · " + (isSalesFolder(folder) ? tr("Sales Assets") : folderLabel(folder)) + (os ? " · " + oneSheetRegion(file.name) : "");
+            },
             // English names AND the active language's (folder label, kind, product,
             // category), so "embalagem" or "Produktfotos" finds what "packaging" does.
-            hay: fold(fileLabel(file) + " " + folder + " " + folderLabel(folder) + " " + tr(facetOf(folder, file)) + " " + (file.format || "") + " " +
+            // " fmt:<format>" is what format aliases ("vector", "jpeg") match.
+            hay: fold(fileLabel(file).replace(/[-_]+/g, " ") + " " + folder + " " + folderLabel(folder) + " " + tr(facetOf(folder, file)) + " " + (file.format || "") + " fmt:" + (file.format || "") + " " +
+              (isSalesFolder(folder) || /one.?sheet/i.test(file.name || "") ? tr("Sales Assets") + " " + tr("One Sheet") + " one sheet sell sheet sales sheet " : "") +
               p.name + " " + tr(p.name) + " " + p.category + " " + tr(p.category || "") + " " + BRANDS[p.brand].name)
           });
         });
@@ -828,7 +879,7 @@
           file: { name: v.title, format: "Video", thumb: v.thumb, url: v.url, type: "video" },
           label: v.title, kind: "Videos",
           subFn: function () { return p.name + " · " + tr("How-to video"); },
-          hay: fold(v.title + " video how to " + tr("Videos") + " " + tr("How-to video") + " " + p.name + " " + BRANDS[p.brand].name)
+          hay: fold(v.title + " " + tr(v.title) + " video how to " + tr("Videos") + " " + tr("How-to video") + " " + p.name + " " + BRANDS[p.brand].name)
         });
       });
     });
@@ -920,6 +971,7 @@
       if (r.brand !== bk) return;
       if (!matchTerms(r.hay, groups)) return;
       r._score = relScore(r.label, r.hay, groups, rawQ);
+      if (r.product && r.product.isLogo) r._score += 8;   // the master brand marks lead a logo query
       hits.push(r);
     });
     hits.sort(function (a, b) { return b._score - a._score || a.label.localeCompare(b.label); });
@@ -942,7 +994,7 @@
     if (/[?&]width=/.test(url)) return url.replace(/([?&]width=)\d+/, "$1" + w);
     return url + (url.indexOf("?") === -1 ? "?" : "&") + "width=" + w;
   }
-  function coverHTML(p) {
+  function coverHTML(p, eager) {
     if (p.cover) {
       // `safe` lands in two different contexts: an alt="" attribute AND a
       // single-quoted JS string inside onerror="…__fallback(this,'…')". Stripping
@@ -956,7 +1008,9 @@
       var srcset = /cdn\.shopify\.com/.test(p.cover)
         ? ' srcset="' + coverSrc(p.cover, 350) + " 350w, " + coverSrc(p.cover, 700) + " 700w, " + coverSrc(p.cover, 1050) + ' 1050w" sizes="(max-width: 640px) 45vw, 265px"'
         : "";
-      return '<img src="' + coverSrc(p.cover, 700) + '"' + srcset + ' alt="' + safe + '" loading="lazy" decoding="async" onerror="window.__fallback(this,\'' + safe + '\')"/>';
+      // The product page's hero is its largest paint: load it first, not lazily.
+      var load = eager ? ' loading="eager" fetchpriority="high"' : ' loading="lazy"';
+      return '<img src="' + coverSrc(p.cover, 700) + '"' + srcset + ' alt="' + safe + '"' + load + ' decoding="async" onerror="window.__fallback(this,\'' + safe + '\')"/>';
     }
     if (p.isLogo) return '<div class="logo-tile"><span>' + BRANDS[p.brand].wordmark + "</span></div>";
     return fallbackHTML(p.name);
@@ -969,7 +1023,7 @@
   // ---- shared wiring helpers (swatches / style links / socials / logos) ----
   function wireSwatches(ctx) {
     $$("[data-hex]", ctx).forEach(function (s) {
-      s.addEventListener("click", function () { var h = s.getAttribute("data-hex"); copyText(h, "Copied " + h); });
+      s.addEventListener("click", function () { var h = s.getAttribute("data-hex"); copyText(h, tr("Copied") + " " + h); });
     });
   }
   function wireLogoLinks(ctx) {
@@ -996,7 +1050,7 @@
           '<span class="social-ic">' + socialIcon(s.network) + "</span>" +
           '<span class="social-meta"><span class="social-net">' + s.network + '</span><span class="social-handle">' + s.handle + "</span></span>" +
         "</a>" +
-        '<button class="social-copy" data-copylink="' + s.url + '" title="Copy link" aria-label="Copy ' + s.network + ' link">' + icon("link") + "</button>" +
+        '<button class="social-copy" data-copylink="' + s.url + '" title="' + tr("Copy link") + '" aria-label="' + escapeHTML(tr("Copy link") + " — " + s.network) + '">' + icon("link") + "</button>" +
       "</div>";
     }).join("") + "</div>";
   }
@@ -1004,7 +1058,7 @@
     var box = $("#social-hub"); if (!box) return;
     var bk = state.view;
     box.innerHTML =
-      '<div class="section-head"><h2>' + tr("Follow " + BRANDS[bk].name + " On Socials") + '</h2><span class="badge">' + tr("Official accounts") + '</span></div>' +
+      '<div class="section-head"><h2>' + tr("Follow {brand} on socials").replace("{brand}", BRANDS[bk].name) + '</h2><span class="badge">' + tr("Official accounts") + '</span></div>' +
       '<div class="hub-wrap"><div class="hub-brand">' + socialListHTML(bk) + "</div></div>";
     wireSocial(box);
   }
@@ -1034,7 +1088,7 @@
     var tiles = preview.map(function (x) {
       var dark = /white|reverse/i.test(x.name);
       var media = x.thumb ? '<img src="' + x.thumb + '" alt="' + x.name.replace(/"/g, "") + '" loading="lazy" decoding="async"/>' : window.__icon("photo");
-      return '<button class="logo-tile' + (dark ? " dark" : "") + '" data-logodl="' + escapeHTML(x.file || "#") + '" data-logoname="' + escapeHTML(fileLabel(x)) + '" title="' + escapeHTML(tr("Download") + " " + fileLabel(x)) + '">' +
+      return '<button class="logo-tile' + (dark ? " dark" : "") + '" data-logodl="' + escapeHTML(x.file || "#") + '" data-logourl="' + escapeHTML(x.url || "") + '" data-logoname="' + escapeHTML(fileLabel(x)) + '" title="' + escapeHTML(tr("Download") + " " + fileLabel(x)) + '">' +
         media + "</button>";
     }).join("");
 
@@ -1061,7 +1115,9 @@
     $$("[data-logodl]", box).forEach(function (btn) {
       btn.addEventListener("click", function () {
         var f = btn.getAttribute("data-logodl");
+        var u = btn.getAttribute("data-logourl");
         if (f && f !== "#") directDownload(f, btn.getAttribute("data-logoname"));
+        else if (u) downloadOne(u);   // the tile says "Download", so download — from Dropbox
         else navTo(logoP);
       });
     });
@@ -1070,7 +1126,7 @@
   // ---- brand style guide page ----------------------------------------------
   function swatchBigHTML(c) {
     var rgb = hexToRgb(c.hex).join(", ");
-    return '<button class="sw-big" data-hex="' + c.hex + '" title="Copy ' + c.hex + '">' +
+    return '<button class="sw-big" data-hex="' + c.hex + '" title="' + tr("Copy") + " " + c.hex + '">' +
       '<span class="sw-big-chip" style="background:' + c.hex + '"></span>' +
       '<span class="sw-big-meta">' +
         '<span class="sw-big-name">' + c.name + "</span>" +
@@ -1090,6 +1146,7 @@
   function openStyleGuide(bk) {
     var b = own(BRANDS, bk) ? BRANDS[bk] : null;
     if (!b) { renderHome(); return; }
+    rememberHome();
     $("#home").style.display = "none"; siteH1(false);
     $("#detail").style.display = "none";
     var sgBrowse = $("#browse"); if (sgBrowse) sgBrowse.style.display = "none";
@@ -1101,6 +1158,14 @@
     // The key is stored HTML-escaped for the <h1>; a tab title is plain text.
     setTitle(tr("Brand &amp; Style Guide").replace(/&amp;/g, "&"));
     window.scrollTo(0, 0);
+    // The type specimens name the brand's display/body faces; load them so the
+    // samples are set in those faces, not in a system fallback.
+    if (!document.getElementById("sg-fonts")) {
+      var fl = document.createElement("link");
+      fl.id = "sg-fonts"; fl.rel = "stylesheet";
+      fl.href = "https://fonts.googleapis.com/css2?family=Kanit:wght@600;700&family=Lato:wght@400;700&display=swap";
+      document.head.appendChild(fl);
+    }
 
     sg.innerHTML =
       '<button class="back" id="sg-back">' + icon("arrowLeft") + " " + tr("Back to library") + "</button>" +
@@ -1119,13 +1184,13 @@
       '<div class="sg-fonts">' + (b.fonts || []).map(fontSpecimenHTML).join("") + "</div>" +
       '<div class="section-head"><h2>' + tr("Logos") + '</h2></div>' +
       '<div class="sg-logos">' +
-        '<div class="sg-logo-tile"><span>' + b.wordmark + "</span></div>" +
+        '<div class="sg-logo-tile"><img src="assets/img/gpen-g-black-200.png" alt="' + escapeHTML(b.name) + '" width="96" height="95" decoding="async"/></div>' +
         (b.logoProduct ? '<button class="btn ghost" data-logo="' + b.logoProduct + '">' + icon("download") + " " + tr("Download logo files") + "</button>" : "") +
       "</div>" +
-      '<div class="section-head"><h2>' + tr("Follow " + b.name + " On Socials") + '</h2></div>' +
+      '<div class="section-head"><h2>' + tr("Follow {brand} on socials").replace("{brand}", b.name) + '</h2></div>' +
       socialListHTML(bk);
 
-    $("#sg-back").addEventListener("click", navHome);
+    $("#sg-back").addEventListener("click", function () { navHome(true); });
     $$("[data-view-brand]", sg).forEach(function (x) {
       x.addEventListener("click", function () { state.view = x.getAttribute("data-view-brand"); syncControls(); navHome(); });
     });
@@ -1166,7 +1231,7 @@
           '<div class="row-sub">' + (p.isLogo ? p.total + " " + trn("logo files", p.total) : p.total + " " + trn("assets", p.total) + (p.label ? "" : " · " + tr(p.category))) + "</div>" +
         "</div>" +
         (showBrand ? '<span class="row-brand">' + BRANDS[p.brand].name + "</span>" : "") +
-        '<button class="row-dl" data-act="download" title="Download all">' + icon("download") + "</button>" +
+        '<button class="row-dl" data-act="download" title="' + tr("Download all") + '" aria-label="' + escapeHTML(tr("Download all") + " — " + p.name) + '">' + icon("download") + "</button>" +
       "</article>"
     );
   }
@@ -1254,6 +1319,7 @@
 
     $("#search-files").innerHTML = "";
     $("#search-files").style.display = "none";
+    var hh = $("#home-head"); if (hh) hh.style.display = "";
 
     // Featured products in scope (brand), logos excluded.
     var vis = visibleProducts().filter(function (p) { return !p.isLogo; });
@@ -1328,6 +1394,8 @@
     var allGrid = $("#all-grid");
     allGrid.className = state.layout === "list" ? "grid list" : "grid";
     allGrid.innerHTML = prods.length ? prods.map(function (p) { return cardHTML(p, state.layout); }).join("") : "";
+    // Only files matched: the products header (count, layout and sort toggles) has nothing to head.
+    var ph = $("#home-head"); if (ph) ph.style.display = (prods.length || !total) ? "" : "none";
     bindCards($("#home"));
 
     var sf = $("#search-files");
@@ -1360,7 +1428,7 @@
             escapeHTML(tr(fc.kind)) + " <span>" + fc.n + "</span></button>";
         }).join("") + "</div>";
     }
-    var tiles = fileRes.items.map(searchFileTile).join("");
+    var tiles = fileRes.items.map(function (r, i) { return searchFileTile(r, i); }).join("");
     var more = fileRes.shownTotal > fileRes.items.length
       ? '<p class="sf-more">' + tr("Showing the top {n} of {total} files — add a word to narrow it down.").replace("{n}", fileRes.items.length).replace("{total}", fileRes.shownTotal) + "</p>"
       : "";
@@ -1375,7 +1443,7 @@
   // once and reused, so baking tr() output into it froze search results in
   // whichever language happened to load first.
   function subOf(r) { return r.subFn ? r.subFn() : (r.sub || ""); }
-  function searchFileTile(r) {
+  function searchFileTile(r, idx) {
     var f = r.file, isVid = f.type === "video";
     var safe = escapeHTML(r.label.replace(/"/g, ""));
     // Download filename WITH extension — catalogs/in-store entries carry a bare
@@ -1384,18 +1452,19 @@
     var media = f.thumb
       ? '<img src="' + escapeHTML(f.thumb) + '" alt="' + safe + '" loading="lazy" decoding="async"/>'
       : icon(typeIcon[f.type] || "photo");
-    var dl = !isVid ? (f.file || f.url || "") : "";
+    // Videos synced from Dropbox download like any file; how-to links (Vimeo/YouTube) don't.
+    var dl = !isVid ? (f.file || f.url || "") : (/dropbox\.com/.test(f.url || "") ? f.url : "");
     var openAttr = r.openHash
       ? ' data-open="' + escapeHTML(r.openHash) + '"'
-      : ' data-pid="' + pid(r.product) + '" data-folder="' + escapeHTML(r.folder) + '"';
+      : ' data-pid="' + pid(r.product) + '" data-folder="' + escapeHTML(r.folder) + '" data-idx="' + idx + '"';
     var title = r.openHash ? tr("Open") + " " + safe : tr("Open in") + " " + escapeHTML((subOf(r) || r.label).replace(/"/g, ""));
     return '<div class="sf-cell">' +
         '<button class="sf-open"' + openAttr + ' title="' + title + '">' +
           '<span class="sf-thumb' + (isVid ? " is-video" : "") + '">' + media + (isVid ? '<span class="sf-play">' + icon("play") + "</span>" : "") + "</span>" +
-          '<span class="sf-meta"><span class="sf-name">' + highlight(r.label, state.query) + "</span>" +
+          '<span class="sf-meta"><span class="sf-name" title="' + safe + '">' + highlight(r.label, state.query) + "</span>" +
             '<span class="sf-sub">' + highlight(subOf(r), state.query) + (f.format ? ' · <span class="sf-fmt">' + escapeHTML(f.format) + "</span>" : "") + "</span></span>" +
         "</button>" +
-        (dl ? '<button class="sf-dl" data-sfdl="' + escapeHTML(dl) + '" data-sfname="' + dlName + '"' + (f.file ? ' data-direct="1"' : "") + ' title="Download">' + icon("download") + "</button>" : "") +
+        (dl ? '<button class="sf-dl" data-sfdl="' + escapeHTML(dl) + '" data-sfname="' + dlName + '"' + (f.file ? ' data-direct="1"' : "") + ' title="' + tr("Download") + '" aria-label="' + escapeHTML(tr("Download {name}").replace("{name}", dlName)) + '">' + icon("download") + "</button>" : "") +
       "</div>";
   }
   function bindSearchFiles(ctx) {
@@ -1417,7 +1486,8 @@
       b.addEventListener("click", function () {
         var h = b.getAttribute("data-open");
         if (h) { location.hash = h; return; }
-        navToFile(b.getAttribute("data-pid"), b.getAttribute("data-folder"));
+        var it = _lastSearch && _lastSearch.fileRes && _lastSearch.fileRes.items[+b.getAttribute("data-idx")];
+        navToFile(b.getAttribute("data-pid"), b.getAttribute("data-folder"), it && it.file);
       });
     });
     $$(".sf-dl", ctx).forEach(function (b) {
@@ -1437,13 +1507,15 @@
     if (items && items.length) {
       var r = items[0];
       if (r.openHash) { location.hash = r.openHash; return; }
-      navToFile(pid(r.product), r.folder);
+      navToFile(pid(r.product), r.folder, r.file);
     }
   }
-  function navToFile(pidStr, folder) {
+  function navToFile(pidStr, folder, file) {
     var p = PRODUCTS.filter(function (x) { return pid(x) === pidStr; })[0];
     if (!p) return;
-    openDetail(p, folder);
+    rememberHome();
+    openDetail(p, folder, file);
+    focusView($("#detail"));
     var h = productHash(p, folder);
     if (location.hash !== h) { ignoreHash = true; location.hash = h; }
   }
@@ -1546,11 +1618,11 @@
   function catalogCard(f) {
     var c = f.primary, alt = escapeHTML(f.title);
     var cover = c.thumb
-      ? '<img class="cat-img" src="' + c.thumb + '" alt="' + alt + ' cover" loading="lazy" decoding="async"/>'
+      ? '<img class="cat-img" src="' + c.thumb + '" alt="' + alt + ' cover" loading="lazy" decoding="async" onload="if(this.naturalWidth>this.naturalHeight)this.parentNode.classList.add(\'landscape\')"/>'
       : window.__icon("file");
     var multi = f.variants.length > 1;
     var regions = multi
-      ? '<div class="cat-pills" role="group" aria-label="Region for ' + alt + '">' +
+      ? '<div class="cat-pills" role="group" aria-label="' + escapeHTML(tr("Region")) + " — " + alt + '">' +
           f.variants.map(function (v) {
             var on = v === c;
             return '<button class="cat-pill' + (on ? " on" : "") + '" data-slug="' + v.slug + '"' +
@@ -1559,7 +1631,7 @@
           }).join("") + "</div>"
       : (c.region ? '<div class="cat-pills"><span class="cat-region">' + escapeHTML(c.region) + "</span></div>" : "");
     return '<div class="cat-card" data-cur="' + c.slug + '">' +
-      '<div class="cat-cover" role="button" tabindex="0" data-catopen aria-label="View ' + alt + '">' +
+      '<div class="cat-cover" role="button" tabindex="0" data-catopen aria-label="' + escapeHTML(tr("View")) + " " + alt + '">' +
         cover + '<span class="cat-view">' + icon("eye") + " " + tr("View") + "</span></div>" +
       '<div class="cat-meta"><span class="cat-grp">' + escapeHTML(tr(f.group)) + "</span>" +
         '<span class="cat-title">' + escapeHTML(f.title) + "</span></div>" +
@@ -1597,7 +1669,7 @@
           var t = p.getAttribute("data-thumb");
           if (img && t) img.src = t;
           var c = cur();
-          if (c && cover) cover.setAttribute("aria-label", "View " + c.title + " — " + c.region);
+          if (c && cover) cover.setAttribute("aria-label", tr("View") + " " + c.title + " — " + c.region);
         });
       });
       var dl = $("[data-catdl]", card);
@@ -1624,12 +1696,25 @@
     modalClose();   // restores scroll + returns focus to what opened it
   }
   // The user actually closing the viewer: tear down AND drop the catalog route.
+  // True when this session opened the viewer by pushing a #catalog/ entry, so
+  // closing can step back over it (no dead Back press afterwards).
+  var catPushed = false, catLastSlug = null;
   function closeCatalog() {
     if (!document.getElementById("catlb")) return;
     teardownCatalog();
-    // Keep location.search — dropping it wiped the user's ?q=/?t= filters (and
-    // ?lang=) just because they closed a catalog.
-    if (/^#catalog\//.test(location.hash)) history.replaceState(null, "", location.pathname + location.search);
+    setTitle("");
+    if (/^#catalog\//.test(location.hash)) {
+      if (catPushed) { catPushed = false; history.back(); }
+      // Keep location.search — dropping it wiped the user's ?q=/?t= filters (and
+      // ?lang=) just because they closed a catalog.
+      else history.replaceState(null, "", location.pathname + location.search);
+    }
+    // The card that opened it was re-rendered behind the viewer; return focus to its twin.
+    var slug = catLastSlug;
+    setTimeout(function () {
+      var card = slug && document.querySelector('.cat-card[data-cur="' + slug + '"] .cat-cover');
+      if (card && (!document.activeElement || document.activeElement === document.body)) card.focus({ preventScroll: true });
+    }, 60);
   }
 
   // Open a catalog by routing through the hash, so the URL is the source of truth.
@@ -1637,8 +1722,9 @@
   // language) would drop the user back to the homepage, and the open catalog
   // couldn't be shared or survive a refresh.
   function navCatalog(slug) {
+    rememberHome();
     var h = "#catalog/" + slug;
-    if (location.hash !== h) location.hash = h;   // hashchange → route() → openCatalog
+    if (location.hash !== h) { catPushed = true; location.hash = h; }   // hashchange → route() → openCatalog
     else openCatalog(slug);
   }
   function openCatalog(slug) {
@@ -1646,6 +1732,8 @@
     if (!c) { toast(tr("Catalog not found")); return; }
     if (!c.file) { catalogDownload(c); return; }   // not committed yet → Dropbox
     teardownCatalog();   // replace any open viewer, but keep the #catalog/ route
+    catLastSlug = slug;
+    setTitle(c.title + (c.region ? " (" + c.region + ")" : ""));
     var ov = document.createElement("div");
     ov.className = "catlb"; ov.id = "catlb";
     ov.innerHTML =
@@ -1739,12 +1827,13 @@
     // If the viewer can't come up (blocked script, bad PDF, slow device), don't sit
     // on "Loading catalog…" forever — hand the user the PDF instead.
     var settled = false;
-    var giveUp = setTimeout(function () {
+    function giveUpNow() {
       if (settled || doc) return;
       settled = true;
       toast(tr("Viewer is taking too long — downloading instead"));
       catalogDownload(c); closeCatalog();
-    }, 20000);
+    }
+    var giveUp = setTimeout(giveUpNow, 20000);
     // Closing the viewer mid-load must stop BOTH the load and the 20s give-up
     // timer — otherwise a slow load later fires a surprise download, or closes
     // whatever catalog the user opened next.
@@ -1763,7 +1852,11 @@
       if (!lib) return bail(tr("Viewer unavailable — downloading instead"));
       // isEvalSupported:false closes CVE-2024-4367 in this pdf.js build (a crafted
       // font in a PDF could otherwise run script on the portal's origin).
-      task = lib.getDocument({ url: c.file, isEvalSupported: false });
+      // Range requests, no background prefetch: page 1 of a 4–5 MB catalog shows
+      // after its own bytes arrive instead of after the whole file (≈20 s on
+      // slow 4G). A load that is still making progress is never abandoned.
+      task = lib.getDocument({ url: c.file, isEvalSupported: false, disableStream: true, disableAutoFetch: true });
+      task.onProgress = function () { clearTimeout(giveUp); giveUp = setTimeout(giveUpNow, 20000); };
       task.promise.then(function (d) {
         if (settled) { try { d.destroy(); } catch (e) {} return; }
         settled = true; clearTimeout(giveUp);
@@ -1803,6 +1896,7 @@
 
   // Dedicated page listing a brand's legacy products.
   function openAdditional(bk) {
+    rememberHome();
     if (!own(BRANDS, bk)) { renderHome(); return; }
     $("#home").style.display = "none"; siteH1(false);
     $("#detail").style.display = "none";
@@ -1820,7 +1914,7 @@
       '<div class="section-head"><h1>' + tr("Additional " + BRANDS[bk].name + " Products") + '</h1><span class="badge">' + legacy.length + " " + plural(legacy.length, "product", "products") + "</span></div>" +
       '<p class="additional-note">' + tr("Products we no longer sell — assets kept here for partners who still need them.") + "</p>" +
       '<div class="grid">' + legacy.map(function (p) { return cardHTML(p, "grid"); }).join("") + "</div>";
-    $("#add-back").addEventListener("click", navHome);
+    $("#add-back").addEventListener("click", function () { navHome(true); });
     bindCards(ad);
   }
   function navToAdditional(bk) {
@@ -1855,6 +1949,7 @@
     return out;
   }
   function openMaterials() {
+    rememberHome();
     $("#home").style.display = "none"; siteH1(false);
     $("#detail").style.display = "none";
     $("#styleguide").style.display = "none";
@@ -1870,13 +1965,13 @@
     var mats = availableMaterials();
     var head = '<button class="back" id="mat-back">' + icon("arrowLeft") + " " + tr("Back to library") + "</button>" +
       '<div class="section-head"><h1>' + tr("In-Store Marketing Materials") + '</h1>' +
-        (mats.length ? '<span class="badge">' + mats.length + " " + tr("available") + "</span>" : "") + "</div>";
+        (mats.length ? '<span class="badge">' + mats.length + " " + trn("available", mats.length) + "</span>" : "") + "</div>";
 
     if (!mats.length) {
       pg.innerHTML = head +
         '<div class="instore-empty"><p>' + tr("Orderable in-store marketing materials will be listed here soon. In the meantime, reach out and we’ll let you know what’s available.") + '</p>' +
         '<a class="btn ghost sm" href="mailto:' + CFG.orderEmail + "?subject=" + encodeURIComponent("Marketing Material Request") + '">' + icon("mail") + " " + tr("Contact us") + "</a></div>";
-      $("#mat-back").addEventListener("click", navHome);
+      $("#mat-back").addEventListener("click", function () { navHome(true); });
       return;
     }
 
@@ -1888,33 +1983,36 @@
         // Enlarge with the FULL-RES image (thumb is now a downscaled grid preview).
         // Dropbox links can't be shown inline, so those fall back to the thumb.
         var full = (m.url && /^assets\//.test(m.url)) ? m.url : m.thumb;
-        lbItems.push({ src: full, name: m.name, url: m.url || m.thumb });
+        var local = (m.url && /^assets\//.test(m.url)) ? m.url : null;
+        var ext = ((local || "").match(/\.(png|jpe?g|pdf)$/i) || ["", ""])[1].toLowerCase();
+        // A same-origin file downloads (with a real filename); a Dropbox one opens its page.
+        lbItems.push({ src: full, name: m.name + (ext ? "." + ext : ""), url: m.url || m.thumb, file: local });
         thumb = '<button class="mat-thumb mat-thumb-zoom" data-lbi="' + li + '" title="' + tr("Click preview to enlarge") + '" aria-label="' + tr("Enlarge") + " " + m.name.replace(/"/g, "") + '">' +
           '<img src="' + m.thumb + '" alt="' + m.name.replace(/"/g, "") + '" loading="lazy" decoding="async"/>' +
           '<span class="mat-zoom-badge">' + icon("search") + "</span></button>";
       } else {
         thumb = '<div class="mat-thumb">' + window.__icon("photo") + "</div>";
       }
-      return '<div class="mat-row">' + thumb +
+      return '<div class="mat-row" data-matname="' + escapeHTML(m.name) + '">' + thumb +
         '<div class="mat-info"><div class="mat-name">' + escapeHTML(m.name) + "</div>" +
           (m.dim || m.sku ? '<div class="mat-dim">' + [m.dim ? tr(m.dim) : "", m.sku ? tr("SKU") + " " + m.sku : ""].filter(Boolean).join(" · ") + "</div>" : "") + "</div>" +
-        '<div class="mat-qty"><button class="mat-step" data-step="-1" aria-label="' + tr("Decrease") + '">–</button>' +
-          '<input type="number" min="0" value="0" data-mat="' + i + '" aria-label="' + tr("Quantity for") + " " + m.name.replace(/"/g, "") + '"/>' +
-          '<button class="mat-step" data-step="1" aria-label="' + tr("Increase") + '">+</button></div>' +
+        '<div class="mat-qty"><button class="mat-step" data-step="-1" aria-label="' + escapeHTML(tr("Decrease") + ": " + m.name) + '">–</button>' +
+          '<input type="number" min="0" step="1" inputmode="numeric" value="0" data-mat="' + i + '" aria-label="' + tr("Quantity for") + " " + m.name.replace(/"/g, "") + '"/>' +
+          '<button class="mat-step" data-step="1" aria-label="' + escapeHTML(tr("Increase") + ": " + m.name) + '">+</button></div>' +
       "</div>";
     }).join("");
 
     pg.innerHTML = head +
       '<p class="mat-lead">' + icon("info") + " " + tr("Set a quantity for each item, add your store details, then send your request.") +
-        (lbItems.length ? " " + tr("Click a preview to enlarge it.") : "") + "</p>" +
+        (lbItems.length ? " " + tr("Select a preview to enlarge it.") : "") + "</p>" +
       '<div class="mat-layout">' +
         '<div class="mat-list">' + rows + "</div>" +
         '<aside class="mat-side">' +
           '<div class="mat-side-h">' + tr("Your details") + '</div>' +
           '<div class="mat-fields">' +
-            '<label class="mat-field"><span>' + tr("Store Name") + '</span><input type="text" id="mat-store-name" placeholder="' + tr("Store name") + '"/></label>' +
-            '<label class="mat-field"><span>' + tr("Mailing Address") + '</span><input type="text" id="mat-store-address" placeholder="' + tr("Street, City, State, ZIP") + '"/></label>' +
-            '<label class="mat-field"><span>' + tr("Email Address") + '</span><input type="email" id="mat-store-email" placeholder="you@store.com"/></label>' +
+            '<label class="mat-field"><span>' + tr("Store Name") + '</span><input type="text" id="mat-store-name" autocomplete="organization" aria-required="true" placeholder="' + tr("Store name") + '"/></label>' +
+            '<label class="mat-field"><span>' + tr("Mailing Address") + '</span><input type="text" id="mat-store-address" autocomplete="street-address" aria-required="true" placeholder="' + tr("Street, City, Postal code") + '"/></label>' +
+            '<label class="mat-field"><span>' + tr("Email Address") + '</span><input type="email" id="mat-store-email" autocomplete="email" inputmode="email" aria-required="true" placeholder="you@store.com"/></label>' +
           "</div>" +
           '<button class="btn lg mat-order-btn" id="mat-order">' + icon("mail") + " " + tr("Order Materials") + '<span id="mat-count"></span></button>' +
           '<p class="mat-side-note">' + tr("You’ll confirm and send from your email app.") + '</p>' +
@@ -1926,7 +2024,7 @@
       $$("[data-mat]", pg).forEach(function (inp) { n += Math.max(0, parseInt(inp.value, 10) || 0); });
       var c = $("#mat-count"); if (c) c.textContent = n ? " · " + n : "";
     }
-    $("#mat-back").addEventListener("click", navHome);
+    $("#mat-back").addEventListener("click", function () { navHome(true); });
     $$(".mat-step", pg).forEach(function (b) {
       b.addEventListener("click", function () {
         var inp = b.parentNode.querySelector("input");
@@ -1934,12 +2032,34 @@
         updateMatCount();
       });
     });
-    $$("[data-mat]", pg).forEach(function (inp) { inp.addEventListener("input", updateMatCount); });
+    $$("[data-mat]", pg).forEach(function (inp) {
+      inp.addEventListener("input", updateMatCount);
+      // The field shows exactly what will be ordered: whole, non-negative numbers.
+      inp.addEventListener("change", function () { inp.value = Math.max(0, parseInt(inp.value, 10) || 0); updateMatCount(); });
+    });
     $$("[data-lbi]", pg).forEach(function (t) {
       t.addEventListener("click", function () { openLightbox(lbItems, +t.getAttribute("data-lbi")); });
     });
     $("#mat-order").addEventListener("click", function () { submitMaterialOrder(mats); });
+    // Arrived from a product page's "Order" tile: that piece is set to 1 and in view.
+    if (pendingMat) {
+      var row = $$(".mat-row", pg).filter(function (r) { return r.getAttribute("data-matname") === pendingMat; })[0];
+      pendingMat = null;
+      if (row) {
+        var q = $("[data-mat]", row);
+        if (q && !(parseInt(q.value, 10) > 0)) q.value = 1;
+        updateMatCount();
+        row.classList.add("mat-row-hl");
+        row.scrollIntoView({ block: "center", behavior: "instant" });
+        setTimeout(function () { row.classList.remove("mat-row-hl"); }, 2400);
+      }
+    }
   }
+  var pendingMat = null;
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest && e.target.closest("[data-matpick]");
+    if (t) pendingMat = t.getAttribute("data-matpick");
+  }, true);
   // Contact details on the two outbound forms are required in spirit — the phone
   // field is even labelled "(optional)", implying the rest are not — but nothing
   // enforced it, so an order could reach marketing@ with no store name, address
@@ -1949,14 +2069,20 @@
     return null;
   }
   function validEmail(s) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(s); }
+  // Empty required fields are marked invalid (red border + aria-invalid) until typed in.
+  function markInvalid(el) {
+    el.setAttribute("aria-invalid", "true");
+    if (!el.__inv) { el.__inv = true; el.addEventListener("input", function () { el.removeAttribute("aria-invalid"); }); }
+  }
   function requireFields(ids, msg) {
+    ids.forEach(function (id) { var el = $(id); if (el && !el.value.trim()) markInvalid(el); });
     var miss = firstEmpty(ids);
     if (miss) { toast(tr(msg), true); miss.focus(); return false; }
     return true;
   }
   function requireEmail(id) {
     var el = $(id);
-    if (el && !validEmail(el.value.trim())) { toast(tr("Enter a valid email address"), true); el.focus(); return false; }
+    if (el && !validEmail(el.value.trim())) { markInvalid(el); toast(tr("Enter a valid email address"), true); el.focus(); return false; }
     return true;
   }
 
@@ -2032,16 +2158,17 @@
           '<button class="loc-remove" data-remove title="' + tr("Remove this store") + '">' + icon("trash") + " " + tr("Remove") + "</button>" +
         "</div>" +
         '<div class="loc-fields">' +
-          '<label class="mat-field loc-wide"><span>' + tr("Store Name") + '</span><input type="text" data-f="name" placeholder="' + tr("Store name") + '"/></label>' +
-          '<label class="mat-field loc-wide"><span>' + tr("Address") + '</span><input type="text" data-f="address" placeholder="' + tr("123 Main St, City, State ZIP") + '"/></label>' +
+          '<label class="mat-field loc-wide"><span>' + tr("Store Name") + '</span><input type="text" data-f="name" autocomplete="organization" aria-required="true" placeholder="' + tr("Store name") + '"/></label>' +
+          '<label class="mat-field loc-wide"><span>' + tr("Address") + '</span><input type="text" data-f="address" autocomplete="street-address" aria-required="true" placeholder="' + tr("Street, City, Postal code") + '"/></label>' +
           '<div class="loc-row">' +
-            '<label class="mat-field"><span>' + tr("Phone") + '</span><input type="tel" data-f="phone" placeholder="(555) 555-5555"/></label>' +
-            '<label class="mat-field"><span>' + tr("Website") + '</span><input type="text" data-f="website" placeholder="yourstore.com"/></label>' +
+            '<label class="mat-field"><span>' + tr("Phone") + '</span><input type="tel" data-f="phone" autocomplete="tel" placeholder="(555) 555-5555"/></label>' +
+            '<label class="mat-field"><span>' + tr("Website") + '</span><input type="url" data-f="website" autocomplete="url" placeholder="yourstore.com"/></label>' +
           "</div>" +
         "</div>" +
       "</div>";
   }
   function openLocator() {
+    rememberHome();
     $("#home").style.display = "none"; siteH1(false);
     $("#detail").style.display = "none";
     $("#styleguide").style.display = "none";
@@ -2068,9 +2195,9 @@
         '<aside class="mat-side">' +
           '<div class="mat-side-h">' + tr("Your contact info") + '</div>' +
           '<div class="mat-fields">' +
-            '<label class="mat-field"><span>' + tr("Your Name") + '</span><input type="text" id="loc-contact-name" placeholder="' + tr("Full name") + '"/></label>' +
-            '<label class="mat-field"><span>' + tr("Email Address") + '</span><input type="email" id="loc-contact-email" placeholder="you@company.com"/></label>' +
-            '<label class="mat-field"><span>' + tr("Phone") + ' <em>' + tr("(optional)") + '</em></span><input type="tel" id="loc-contact-phone" placeholder="(555) 555-5555"/></label>' +
+            '<label class="mat-field"><span>' + tr("Your Name") + '</span><input type="text" id="loc-contact-name" autocomplete="name" aria-required="true" placeholder="' + tr("Full name") + '"/></label>' +
+            '<label class="mat-field"><span>' + tr("Email Address") + '</span><input type="email" id="loc-contact-email" autocomplete="email" inputmode="email" aria-required="true" placeholder="you@company.com"/></label>' +
+            '<label class="mat-field"><span>' + tr("Phone") + ' <em>' + tr("(optional)") + '</em></span><input type="tel" id="loc-contact-phone" autocomplete="tel" placeholder="(555) 555-5555"/></label>' +
           "</div>" +
           '<button class="btn lg mat-order-btn" id="loc-submit">' + icon("mail") + " " + tr("Submit Request") + '<span id="loc-count"></span></button>' +
           '<p class="mat-side-note">' + tr("You’ll confirm and send from your email app.") + '</p>' +
@@ -2111,25 +2238,38 @@
 
     bindRemove(stores);
     renumber();
-    $("#loc-back").addEventListener("click", navHome);
+    $("#loc-back").addEventListener("click", function () { navHome(true); });
     $("#loc-submit").addEventListener("click", submitLocatorRequest);
   }
   function submitLocatorRequest() {
     var stores = $$("#loc-stores .loc-store");
-    var blocks = [], valid = 0;
-    stores.forEach(function (s, i) {
-      var g = function (f) { var el = s.querySelector('[data-f="' + f + '"]'); return el ? el.value.trim() : ""; };
+    var blocks = [], valid = 0, bad = null;
+    stores.forEach(function (s) {
+      var field = function (f) { return s.querySelector('[data-f="' + f + '"]'); };
+      var g = function (f) { var el = field(f); return el ? el.value.trim() : ""; };
       var name = g("name"), address = g("address"), phone = g("phone"), website = g("website");
-      if (name || address || phone || website) valid++;
+      if (!(name || address || phone || website)) return;   // an untouched extra block is skipped, not sent empty
+      // A listing needs a name and an address to be findable on the map.
+      if (!name || !address) {
+        ["name", "address"].forEach(function (f) { if (!g(f)) markInvalid(field(f)); });
+        if (!bad) bad = !name ? field("name") : field("address");
+        return;
+      }
+      valid++;
       blocks.push(
-        "Store " + (i + 1) + ":" +
+        "Store " + valid + ":" +
         "\n  Store Name: " + name +
         "\n  Address: " + address +
         "\n  Phone: " + phone +
         "\n  Website: " + website
       );
     });
-    if (!valid) { toast(tr("Add at least one store's details first"), true); return; }
+    if (bad) { toast(tr("Add a name and address for each store"), true); bad.focus(); return; }
+    if (!valid) {
+      var first = $("#loc-stores .loc-store [data-f=\"name\"]");
+      if (first) { markInvalid(first); first.focus(); }
+      toast(tr("Add at least one store's details first"), true); return;
+    }
     // Phone is explicitly "(optional)" in the UI; name + email are not, and without
     // them there is no way to reply about the listing request.
     if (!requireFields(["#loc-contact-name", "#loc-contact-email"],
@@ -2171,7 +2311,7 @@
   }
 
   // ---- rendering: detail ---------------------------------------------------
-  function openDetail(p, initialFolder) {
+  function openDetail(p, initialFolder, initialFile) {
     $("#home").style.display = "none"; siteH1(false);
     $("#styleguide").style.display = "none";
     var dBrowse = $("#browse"); if (dBrowse) dBrowse.style.display = "none";
@@ -2208,6 +2348,13 @@
     var active = (initialFolder && cardFolders.indexOf(initialFolder) !== -1) ? initialFolder : null;
     var jumpTo = (initialFolder && folderNames.indexOf(initialFolder) !== -1) ? initialFolder : null;
     var selected = {};   // fileKey -> file object; persists while opening/closing folders
+    // A language switch re-renders the page: put back the open folder and the
+    // ticked files instead of collapsing everything under the reader.
+    if (keepDetail && keepDetail.name === p.name) {
+      if (cardFolders.indexOf(keepDetail.active) !== -1) active = keepDetail.active;
+      selected = keepDetail.selected || {};
+    }
+    keepDetail = null;
     // Sales Assets: each Documents folder's one-sheets as one card, USD first.
     var oneSheets = {}, osRegion = {};
     docFolders.forEach(function (f) {
@@ -2215,6 +2362,12 @@
       oneSheets[f] = g;
       osRegion[f] = ONE_SHEET_REGIONS.filter(function (r) { return g.files[r]; })[0];
     });
+    // Arriving from a search hit on one edition (e.g. the CAD sheet): show that one.
+    if (initialFile && oneSheets[initialFolder]) {
+      var hitRegion = oneSheetRegion(initialFile.name);
+      if (oneSheets[initialFolder].files[hitRegion] === initialFile) osRegion[initialFolder] = hitRegion;
+    }
+    detailState = function () { return { name: p.name, active: active, selected: selected }; };
     // What a folder's Select all covers: for Sales Assets, the files on show plus
     // the one-sheet in the region picked (not the three hidden editions).
     function visibleFiles(f) {
@@ -2269,9 +2422,9 @@
         '<div class="onesheet-info">' +
           '<h3 class="onesheet-title">' + tr("One Sheet") + "</h3>" +
           '<p class="onesheet-sub">' + escapeHTML(title) + "</p>" +
-          '<div class="onesheet-regions" role="radiogroup" aria-label="' + tr("Region") + '">' +
+          '<div class="onesheet-regions" role="group" aria-label="' + tr("Region") + '">' +
             regs.map(function (k) {
-              return '<button type="button" role="radio" aria-checked="' + (k === r) + '"' + (k === r ? ' class="on"' : "") + ' data-region="' + k + '">' + k + "</button>";
+              return '<button type="button" aria-pressed="' + (k === r) + '"' + (k === r ? ' class="on"' : "") + ' data-region="' + k + '">' + k + "</button>";
             }).join("") +
           "</div>" +
           '<div class="onesheet-acts">' +
@@ -2288,7 +2441,12 @@
       $$("[data-region]", card).forEach(function (b) {
         b.addEventListener("click", function () {
           if (osRegion[f] === b.getAttribute("data-region")) return;
+          // A ticked sheet stays ticked across the switch — as the new region's file,
+          // so "Download selected" sends the edition on screen.
+          var was = !!selected[fileKey(f, cur())];
+          if (was) toggle(f, cur(), false);
           osRegion[f] = b.getAttribute("data-region");
+          if (was) toggle(f, cur(), true);
           var tmp = document.createElement("div"); tmp.innerHTML = oneSheetHTML(f, title);
           var fresh = tmp.firstChild; card.parentNode.replaceChild(fresh, card);
           wireOneSheet(fresh, title); syncSelection();
@@ -2353,7 +2511,10 @@
         var promo = withThumb.filter(function (x) { return !/how.?to|tutorial|clean/i.test(x.name || ""); });
         if (promo.length) return promo[0];
       }
-      return withThumb[0];
+      // Illustrator/EPS/PDF renders are the least reliable previews (blank on
+      // white artboards); a PNG/JPG/SVG of the same art is the better cover.
+      var raster = withThumb.filter(function (x) { return !/^(AI|EPS|PDF)$/i.test(x.format || ""); });
+      return raster[0] || withThumb[0];
     }
     function cardHTML(f) {
       var files = p.folders[f], on = f === active;
@@ -2362,7 +2523,7 @@
       // escaped data-folder, so the round-trip back to p.folders[...] matches.
       return '<button type="button" class="fcard' + (on ? " on" : "") + '" data-folder="' + escapeHTML(f) + '" aria-expanded="' + on + '"' + (on ? ' aria-controls="fpanel"' : "") + ">" +
         '<span class="fcard-img' + (first ? "" : " no-img") + '">' +
-          (first ? '<img src="' + escapeHTML(first.thumb) + '" alt="" loading="lazy" decoding="async" onerror="this.parentNode.classList.add(\'no-img\');this.remove()"/>' : "") +
+          (first ? '<img src="' + escapeHTML(first.thumb) + '" alt="" loading="lazy" decoding="async" onerror="window.__thumbRetry(this,\'card\')"/>' : "") +
           '<span class="fcard-fb">' + icon(folderIcon(f)) + "</span>" +
         "</span>" +
         '<span class="fcard-cap"><span class="fcard-tx"><span class="fcard-name">' + escapeHTML(typeLabel(f)) + '</span><span class="fcard-c">' + countLabel(files.length) + "</span></span>" +
@@ -2377,7 +2538,9 @@
         // own videos (legacy colorway folders included).
         var rank = function (f) { var i = g.order.indexOf(f); return f === UGC_FOLDER ? 999 : i < 0 ? 99 : i; };
         fs.sort(function (a, b) { return rank(a) - rank(b); });   // stable: ties keep page order
-        return '<div class="section-head sub fgroup-head"><h3>' + tr(g.label) + "</h3></div>" +
+        // A product whose folders all fall in one group (the Logos page) needs no group header.
+        var groups = FOLDER_GROUPS.filter(function (gg, gj) { return cardFolders.some(function (x) { return folderGroup(x) === gj; }); }).length;
+        return (groups > 1 ? '<div class="section-head sub fgroup-head"><h3>' + tr(g.label) + "</h3></div>" : "") +
           '<div class="fcards">' + fs.map(cardHTML).join("") +
           (fs.indexOf(active) !== -1 ? '<div class="fpanel" id="fpanel" role="region" aria-label="' + escapeHTML(typeLabel(active)) + '">' +
             folderToolsHTML(active, false) + '<div class="gallery" data-gallery></div></div>' : "") +
@@ -2399,16 +2562,26 @@
       box.innerHTML = cardsHTML();
       if (active) { fillGallery(active, $("[data-gallery]", box)); wireTools(box); placePanel(); }
       $$(".fcard", box).forEach(function (c) {
-        c.addEventListener("click", function () {
+        c.addEventListener("click", function (ev) {
           var f = c.getAttribute("data-folder");
-          active = active === f ? null : f;
+          var opening = active !== f, before = c.getBoundingClientRect().top;
+          active = opening ? f : null;
           // Keep the address bar on the plain product link: a page always opens
           // with every folder collapsed, so a folder in the URL would mislead.
           try { history.replaceState(null, "", location.pathname + location.search + productHash(p)); } catch (e) {}
           renderCards();
-          // renderCards() replaced the clicked card; keep keyboard focus on its twin.
+          // renderCards() rebuilt the grid (closing a panel ABOVE this card shifts it
+          // up by thousands of px on a phone). Put the tapped card back where it was,
+          // then, if it opened low on screen, bring it and its files into view.
           var same = $$(".fcard", box).filter(function (x) { return x.getAttribute("data-folder") === f; })[0];
-          if (same) same.focus({ preventScroll: true });
+          if (!same) return;
+          var delta = same.getBoundingClientRect().top - before;
+          if (Math.abs(delta) > 1) window.scrollBy({ top: delta, behavior: "instant" });
+          var panel = opening && $("#fpanel", box);
+          if (panel && panel.getBoundingClientRect().top > window.innerHeight * 0.7) same.scrollIntoView({ block: "start", behavior: "instant" });
+          // Keyboard users land on the opened folder's controls, not back on the card.
+          var sa = panel && ev.detail === 0 && $(".sel-all", panel);
+          (sa || same).focus({ preventScroll: true });
         });
       });
       syncSelection();
@@ -2434,7 +2607,7 @@
       d.innerHTML =
         '<button class="back" id="back-btn">' + icon("arrowLeft") + " " + tr("Back to library") + "</button>" +
         '<div class="detail-hero">' +
-          '<div class="detail-cover-lg' + (p.cover ? " clickable" : "") + '"' + (p.cover ? ' id="hero-cover"' : "") + ">" + coverHTML(p) + "</div>" +
+          '<div class="detail-cover-lg' + (p.cover ? " clickable" : "") + '"' + (p.cover ? ' id="hero-cover" role="button" tabindex="0" aria-label="' + escapeHTML(tr("Enlarge {name}").replace("{name}", fullName)) + '"' : "") + ">" + coverHTML(p, true) + "</div>" +
           '<div class="detail-info">' +
             '<div class="detail-eyebrow">' + typeLine + "</div>" +
             "<h1>" + fullName + "</h1>" +
@@ -2456,7 +2629,7 @@
         // both stay put — restore by uncommenting this one line.
         // faqHTML(p) +
         // ---- Photo / video assets: one square card per folder, all collapsed ----
-        '<div class="section-head" id="docs-head"><h2>' + tr("Photo / Video Assets") + '</h2><span class="badge">' + countLabel(pvTotal) + "</span></div>" +
+        '<div class="section-head" id="docs-head"><h2>' + tr(p.isLogo ? "Logo files" : "Photo / Video Assets") + '</h2><span class="badge">' + countLabel(pvTotal) + "</span></div>" +
         (cardFolders.length ? '<div id="pv-assets"></div>'
           : '<div class="gallery"><div class="gallery-empty">' + icon("photo") + "<p>" + tr("Assets are coming soon — check back shortly.") + "</p></div></div>") +
         // ---- Sales assets: the Documents folder (manual, one-sheets), open ----
@@ -2495,7 +2668,7 @@
       $$(".sales-folder", d).forEach(wireTools);
       renderCards();
       $$("[data-play]", d).forEach(function (el) {
-        el.addEventListener("click", function () {
+        clickKey(el, function () {
           openVideoModal(el.getAttribute("data-play"), el.getAttribute("data-title"), el.getAttribute("data-dl"), el.getAttribute("data-dlname"), el.getAttribute("data-share"));
         });
       });
@@ -2509,22 +2682,15 @@
       $$("[data-lbimg]", d).forEach(function (b) {
         b.addEventListener("click", function () {
           var u = b.getAttribute("data-lbimg"), dl = b.getAttribute("data-lbdl") || u;
-          openLightbox([{ src: u, name: b.getAttribute("data-lbname"), url: dl, file: dl }], 0);
+          openLightbox([{ src: u, name: b.getAttribute("data-lbname"), url: b.getAttribute("data-lbshare") || dl, file: dl }], 0);
         });
       });
       $$("[data-pkgdl]", d).forEach(function (b) {
         b.addEventListener("click", function (e) { e.stopPropagation(); directDownload(b.getAttribute("data-pkgdl"), b.getAttribute("data-pkgname")); });
       });
-      // In-store marketing tiles → enlarge in the lightbox.
-      var ismItems = inStoreItems(p).items.map(function (x) {
-        return { src: x.thumb || x.file || x.url, name: fileLabel(x), url: x.file || x.url || "#" };
-      });
-      $$("[data-ism]", d).forEach(function (t) {
-        t.addEventListener("click", function () { openLightbox(ismItems, +t.getAttribute("data-ism")); });
-      });
-      $("#back-btn").addEventListener("click", navHome);
+      $("#back-btn").addEventListener("click", function () { navHome(true); });
       var heroCover = $("#hero-cover");
-      if (heroCover) heroCover.addEventListener("click", function () { openLightbox([{ src: p.cover, name: fullName, url: p.cover }], 0); });
+      if (heroCover) clickKey(heroCover, function () { openLightbox([{ src: p.cover, name: fullName, url: p.cover }], 0); });
       $("#dl-all").addEventListener("click", function () { downloadAll(p); });
       $("#copy-link").addEventListener("click", function () {
         var url = location.origin + location.pathname + langQS() + productHash(p);
@@ -2547,7 +2713,7 @@
         // "Select all → Download selected" on an all-Dropbox folder: one folder .zip
         // is far more reliable than N hidden-iframe pulls (browsers gate those after
         // the first). Route the whole-folder case to the zip when we have the link.
-        var allRemote = sel.length && sel.every(function (f) { return !f.file && f.url; });
+        var allRemote = sel.length && sel.every(function (f) { return f.url && f.url.indexOf("dropbox.com") !== -1; });
         // Match on IDENTITY, not just count, so only a selection that is exactly
         // this one folder gets the folder's zip.
         var key = function (f) { return f.url || f.file || f.name; };
@@ -2572,6 +2738,21 @@
   // The product page's open folder panel, re-placed under its card's row when
   // the column count changes.
   var placeOpenPanel = null;
+  // The open product page's folder + ticked files (set by openDetail), carried
+  // across a language switch's re-render via keepDetail.
+  var detailState = null, keepDetail = null;
+  // A thumbnail that fails once (a transient 503) gets one retry before the
+  // file-type icon replaces it for good.
+  window.__thumbRetry = function (img, kind) {
+    if (!img.getAttribute("data-retried")) {
+      img.setAttribute("data-retried", "1");
+      var u = img.src;
+      setTimeout(function () { img.src = u.split("?")[0] + "?r=" + (+new Date()); }, 1500);
+      return;
+    }
+    if (kind === "card") { img.parentNode.classList.add("no-img"); img.remove(); }
+    else img.parentNode.innerHTML = window.__icon(img.getAttribute("data-icon") || "file");
+  };
   window.addEventListener("resize", function () { if (placeOpenPanel) placeOpenPanel(); });
   // Packaging visuals: retail outer box + (for POP products) the POP display.
   // The materials to show for a product: its own "In-Store Marketing" folder if it
@@ -2587,6 +2768,8 @@
   function inStoreHTML(p) {
     if (p.isLogo) return "";
     var r = inStoreItems(p), items = r.items;
+    // Discontinued products won't get new printed pieces — don't promise them.
+    if (!items.length && !isCurrentName(p.brand, p.name)) return "";
     var head = '<div class="section-head"><h2>' + tr("In-Store Marketing Materials") + '</h2>' +
       (items.length ? '<span class="badge">' + items.length + " " + plural(items.length, "item", "items") + "</span>" : "") + "</div>";
     if (!items.length) {
@@ -2597,13 +2780,13 @@
       "</div>";
     }
     var prodName = p.name.indexOf(BRANDS[p.brand].name) === 0 ? p.name : BRANDS[p.brand].name + " " + p.name;
-    var note = '<p class="pkg-note">' + tr("{brand} specific in-store materials.").replace("{brand}", prodName) + "</p>";
+    var note = '<p class="pkg-note">' + tr("{brand}-specific in-store materials.").replace("{brand}", prodName) + "</p>";
     var tiles = items.map(function (x) {
       var media = x.thumb ? '<img src="' + x.thumb + '" alt="' + fileLabel(x).replace(/"/g, "") + '" loading="lazy" decoding="async"/>' : window.__icon("photo");
       var lbl = instoreLabel(x);
       var cap = lbl ? '<span class="instore-tile-cap"><span class="instore-tile-nm">' + escapeHTML(lbl.name) +
-        "</span><span class=\"instore-tile-dim\">" + escapeHTML([lbl.dim, lbl.sku ? tr("SKU") + " " + lbl.sku : ""].filter(Boolean).join(" · ")) + "</span></span>" : "";
-      return '<a class="instore-tile' + (lbl ? " has-cap" : "") + '" href="#materials" title="' + tr("Order") + " " + fileLabel(x).replace(/"/g, "") + '">' +
+        "</span><span class=\"instore-tile-dim\">" + escapeHTML(lbl.dim || "") + (lbl.sku ? (lbl.dim ? " · " : "") + '<span class="nowrap">' + escapeHTML(tr("SKU") + " " + lbl.sku) + "</span>" : "") + "</span></span>" : "";
+      return '<a class="instore-tile' + (lbl ? " has-cap" : "") + '" href="#materials" data-matpick="' + escapeHTML(lbl ? lbl.name : fileLabel(x)) + '" title="' + tr("Order") + " " + fileLabel(x).replace(/"/g, "") + '">' +
         '<span class="instore-tile-media">' + media + '<span class="instore-tile-order">' + icon("mail") + " " + tr("Order") + "</span></span>" +
         cap + "</a>";
     }).join("");
@@ -2611,7 +2794,7 @@
       '<div class="instore-order"><a class="btn" href="#materials">' + icon("mail") + " " + tr("Order marketing materials") + "</a></div>";
   }
 
-  function pkgCard(label, url, dlUrl) {
+  function pkgCard(label, url, dlUrl, prod) {
     if (!url) return "";   // no placeholder — only show packaging cards that have an image
     // Dropbox file links → raw for inline display, dl=1 for download. dlUrl lets
     // us show a same-origin thumbnail but download the full-res Dropbox file.
@@ -2619,17 +2802,19 @@
     var src = dbox ? dropboxRaw(url) : url;
     var dsrc = dlUrl || url;
     var dl = /dropbox\.com/.test(dsrc) ? dropboxZipUrl(dsrc) : dsrc;
-    var name = label.replace(/[^\w.-]+/g, "_") + (/\.png/i.test(dsrc) ? ".png" : /\.jpe?g/i.test(dsrc) ? ".jpg" : "");
+    var name = ((prod ? prod + " - " : "") + label).replace(/[^\w.-]+/g, "_") + (/\.png/i.test(dsrc) ? ".png" : /\.jpe?g/i.test(dsrc) ? ".jpg" : "");
+    var share = /dropbox\.com/.test(dsrc) ? escapeHTML(dsrc) : "";
     var L = escapeHTML(label);
     src = escapeHTML(src); dl = escapeHTML(dl);
     return '<div class="pkg-card">' +
-      '<button class="pkg-media pkg-zoom" data-lbimg="' + src + '" data-lbname="' + L + '" data-lbdl="' + dl + '" title="' + tr("Click preview to enlarge") + '">' +
+      '<button class="pkg-media pkg-zoom" data-lbimg="' + src + '" data-lbname="' + escapeHTML(name) + '" data-lbdl="' + dl + '"' + (share ? ' data-lbshare="' + share + '"' : "") + ' title="' + tr("Click preview to enlarge") + '">' +
         '<img src="' + src + '" alt="' + L + '" loading="lazy" decoding="async"/></button>' +
       '<div class="pkg-label"><span>' + L + "</span>" +
         '<button class="pkg-dl" data-pkgdl="' + dl + '" data-pkgname="' + escapeHTML(name) + '" title="' + escapeHTML(tr("Download") + " " + label) + '">' + icon("download") + "</button>" +
       "</div></div>";
   }
   function packagingHTML(p) {
+    var pk = function (label, url, dl) { return pkgCard(label, url, dl, p.name); };   // downloads named for the product
     if (p.isLogo) return "";
     var info = infoOf(p);
     // Auto-detect the single-box shot vs the POP-display shot from the product's
@@ -2658,8 +2843,8 @@
     // Card image: explicit material override (info.boxImg/popImg) wins; else the
     // synced file — thumbnail for display, full-res Dropbox file for download.
     function boxCard(label, override, overrideDl, file) {
-      if (override) return pkgCard(label, override, overrideDl);
-      if (file) return pkgCard(label, file.thumb, file.url);
+      if (override) return pk(label, override, overrideDl);
+      if (file) return pk(label, file.thumb, file.url);
       return "";
     }
     // Multi-colour collections (Retro) list one retail box per colourway.
@@ -2671,7 +2856,7 @@
       COLORS.forEach(function (cp) {
         var pool = nonpop.filter(function (f) { return cp[1].test(f.name); });
         pool.sort(function (a, b) { return s(b) - s(a); });
-        if (pool[0]) out += pkgCard(tr("Single Retail Packaging") + " — " + tr(cp[0]), pool[0].thumb, pool[0].url);
+        if (pool[0]) out += pk(tr("Single Retail Packaging") + " — " + tr(cp[0]), pool[0].thumb, pool[0].url);
       });
       return out;
     }
@@ -2682,17 +2867,17 @@
     if (colorCards) {
       // Retro collection: one retail box per colourway, then the collection POP display.
       cards = colorCards + boxCard(popLabel, info.popImg, info.popImgDl, popFile) +
-        pkgCard(tr("Master carton"), info.cartonImg);
+        pk(tr("Master carton"), info.cartonImg);
       note = tr("Ships in a retail-ready POP display — one retail box shown per colorway. See SKU details for inner-pack &amp; master-carton quantities.");
     } else if (info.pop) {
       // Ships in a retail-ready POP display. Label the POP card with its pack count.
       cards = boxCard(tr("Single Retail Packaging"), info.boxImg, info.boxImgDl, boxFile) +
         boxCard(popLabel, info.popImg, info.popImgDl, popFile) +
-        pkgCard(tr("Master carton"), info.cartonImg);
+        pk(tr("Master carton"), info.cartonImg);
       note = tr("Ships in a retail-ready POP display — see SKU details for inner-pack &amp; master-carton quantities.");
     } else {
       // Ships in single retail boxes — no POP display for this product.
-      cards = boxCard(tr("Single Retail Packaging"), info.boxImg, info.boxImgDl, boxFile) + pkgCard(tr("Master carton"), info.cartonImg);
+      cards = boxCard(tr("Single Retail Packaging"), info.boxImg, info.boxImgDl, boxFile) + pk(tr("Master carton"), info.cartonImg);
       note = tr("Ships in single retail boxes — no POP display. See SKU details for master-carton quantities.");
     }
     return '<div class="section-head"><h2>' + tr("Packaging") + '</h2>' + (info.pop ? '<span class="badge">' + tr("Ships in POP display") + '</span>' : "") + "</div>" +
@@ -2733,7 +2918,7 @@
     var th = state.lang === "fr" ? "\u00a0" : ".";
     return v
       .replace(/(\d),(\d{3})(?=\s?mAh\b)/g, "$1\u0001$2")
-      .replace(/(\d)\.(\d+)(?=\s?(?:mAh|mm|cm|kg|g|lbs?|oz|in|V|W|Ω|°|×|x\b|\s?\/))/g, "$1,$2")
+      .replace(/(\d)\.(\d+)(?=\s?(?:mm|cm|kg|g|lbs?|oz|in|V|W|Ω|°|×|x\b|\s?\/))/g, "$1,$2")
       .replace(/\u0001/g, th);
   }
   function skuHTML(p) {
@@ -2766,8 +2951,8 @@
         ? row("Retail POP Display SKU", info.popSku) +
           row("Retail POP Display UPC", info.popUpc)
         : "") +
-      row("Product Dimensions", localNum(info.dimensions)) +
-      row("Unit Weight", localNum(info.unitWeight)) +
+      row("Packaged Unit Dimensions", localNum(info.dimensions)) +
+      row("Packaged Unit Weight", localNum(info.unitWeight)) +
       row("Ships In Retail POP Display", info.pop === true ? tr("Yes") : info.pop === false ? tr("No") : "") +
       row("Units Per POP Display", localNum(perPop)) +
       row("Units Per Master Case", localNum(info.masterCarton)) +
@@ -2782,11 +2967,14 @@
   // MSRP / warranty facts + FAQ/site CTAs (sits in the hero info column).
   function overviewFactsHTML(p) {
     var info = infoOf(p);
-    var faq = info.faqUrl || BRANDS[p.brand].faqUrl;
+    var faq = p.isLogo ? null : (info.faqUrl || BRANDS[p.brand].faqUrl);
     var manual = helpPageUrl(p) || info.manual;
     var factItems =
-      (info.msrp ? '<div class="ov-fact">' + icon("tag") + '<div class="ov-fact-t"><div class="ov-fact-l">' + tr("MSRP") + '</div><div class="ov-fact-v">' + info.msrp + "</div></div></div>" : "") +
-      (info.warranty ? '<div class="ov-fact">' + icon("shield") + '<div class="ov-fact-t"><div class="ov-fact-l">' + tr("Warranty") + '</div><div class="ov-fact-v">' + info.warranty + "</div></div></div>" : "");
+      (info.msrp ? '<div class="ov-fact">' + icon("tag") + '<div class="ov-fact-t"><div class="ov-fact-l">' + tr("MSRP (USD)") + '</div><div class="ov-fact-v">' + info.msrp + "</div></div></div>" : "") +
+      (info.warranty ? '<div class="ov-fact">' + icon("shield") + '<div class="ov-fact-t"><div class="ov-fact-l">' + tr("Warranty") + '</div><div class="ov-fact-v">' +
+        // "…see policy" names a page — link it.
+        (BRANDS[p.brand].warrantyUrl ? '<a class="ov-fact-link" href="' + BRANDS[p.brand].warrantyUrl + '" target="_blank" rel="noopener noreferrer">' + info.warranty + "</a>" : info.warranty) +
+        "</div></div></div>" : "");
     var ctas =
       (manual ? '<a class="btn ghost sm" href="' + escapeHTML(manual) + '" target="_blank" rel="noopener noreferrer">' + icon("file") + " " + tr("Product Manual") + "</a>" : "") +
       (faq ? '<a class="btn ghost sm" href="' + faq + '" target="_blank" rel="noopener noreferrer">' + icon("info") + " " + tr("Product FAQs") + "</a>" : "") +
@@ -2891,7 +3079,7 @@
 
       var thumb = '<div class="vthumb' + (playSrc ? " vplay" : "") + '"' +
         (playSrc ? ' data-play="' + playSrc + '" data-title="' + escapeHTML(shown) + '"' + (dl ? ' data-dl="' + dl + '" data-dlname="' + dlname + '"' : "") + (share ? ' data-share="' + escapeHTML(share) + '"' : "") + ' role="button" tabindex="0" aria-label="' + escapeHTML(tr("Watch") + " " + shown) + '"' : "") + ">" +
-        poster + '<span class="play-badge">' + icon("play") + "</span>" + (playSrc ? '<span class="vthumb-hint">' + tr("Click to watch") + "</span>" : "") + "</div>";
+        poster + '<span class="play-badge">' + icon("play") + "</span>" + (playSrc ? '<span class="vthumb-hint">' + tr("Watch video") + "</span>" : "") + "</div>";
 
       // Only offer a download when there's a real downloadable file; watch-only
       // tutorials (YouTube/Vimeo) just show Watch + the YouTube link.
@@ -2910,7 +3098,7 @@
       "</div>";
     }).join("");
     return '<div class="section-head"><h2>' + tr("How to use videos") + '</h2><span class="badge">' + p.videos.length + " " + plural(p.videos.length, "video", "videos") + "</span></div>" +
-      '<p class="vhub-note">' + icon("eye") + " " + tr("Click a video to watch it, and download it or open it on YouTube where available.") + "</p>" +
+      '<p class="vhub-note">' + icon("eye") + " " + tr("Select a video to watch it, then download it or open it on YouTube where available.") + "</p>" +
       '<div class="vhub">' + cards + "</div>";
   }
   // Dropbox shared-file link → inline-streamable URL (raw=1) for <video>.
@@ -2950,7 +3138,7 @@
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   }
   function openVideoModal(src, title, dlUrl, dlName, shareUrl) {
-    closeVideoModal();
+    closeVideoModal(true);   // a replaced player reuses the open one's history entry
     var ov = document.createElement("div");
     ov.className = "vlb"; ov.id = "vlb";
     // Vimeo/YouTube embeds play in an iframe; real MP4s use a <video> element.
@@ -2969,6 +3157,7 @@
         "</span></div>";
     document.body.appendChild(ov);
     modalOpen(ov, title || tr("Video player"), $(".vlb-close", ov));
+    pushModalState();
     ov.addEventListener("click", function (e) { if (e.target === ov || e.target.classList.contains("vlb-stage")) closeVideoModal(); });
     $(".vlb-close", ov).addEventListener("click", closeVideoModal);
     var dlBtn = $(".vlb-dl", ov);
@@ -2976,10 +3165,29 @@
     var cpBtn = $(".vlb-copy", ov);
     if (cpBtn) cpBtn.addEventListener("click", function () { copyText(shareUrl, tr("Link copied")); });
   }
-  function closeVideoModal() {
+  function closeVideoModal(fromPop) {
     var ov = $("#vlb");
-    if (ov) { var v = $("video", ov); if (v) v.pause(); ov.remove(); modalClose(); }
+    if (ov) { var v = $("video", ov); if (v) v.pause(); ov.remove(); modalClose(); if (fromPop !== true) popModalState(); }
   }
+  // An open lightbox / video is one history entry, so Back (the Android back
+  // gesture) closes it instead of leaving the page. The entry keeps the same URL,
+  // so no hashchange fires and the router never sees it.
+  var modalPushed = false;
+  function pushModalState() {
+    if (modalPushed) return;
+    try { history.pushState({ portalModal: 1 }, "", location.href); modalPushed = true; } catch (e) {}
+  }
+  function popModalState() {
+    if (!modalPushed) return;
+    modalPushed = false;
+    if (history.state && history.state.portalModal) history.back();
+  }
+  window.addEventListener("popstate", function () {
+    if (!modalPushed) return;
+    modalPushed = false;
+    if (lbOpen()) closeLightbox(true);
+    if ($("#vlb")) closeVideoModal(true);
+  });
 
   function renderGallery(p, folder, selected, onToggle, onChange, el, only) {
     var g = el;
@@ -3020,14 +3228,17 @@
                      type: file.type, format: file.format });
       }
       var thumb = hasImg
-        ? '<img src="' + escapeHTML(file.thumb) + '" alt="' + escapeHTML(file.name) + '" loading="lazy" decoding="async" onerror="this.parentNode.innerHTML=window.__icon(\'' + (typeIcon[file.type] || "file") + '\')"/>' + badge
+        ? '<img src="' + escapeHTML(file.thumbS || file.thumb) + '" alt="' + escapeHTML(file.name) + '" loading="lazy" decoding="async" data-icon="' + (typeIcon[file.type] || "file") + '" onerror="window.__thumbRetry(this,\'cell\')"/>' + badge
         : window.__icon(typeIcon[file.type] || "file");
       return (
         '<div class="gcell' + (on ? " sel" : "") + '" data-key="' + escapeHTML(key) + '">' +
           '<label class="gselect"><input type="checkbox" class="gcheck"' + (on ? " checked" : "") + ' aria-label="' + tr("Select {name}").replace("{name}", nm) + '"/></label>' +
           '<div class="gthumb' + (ext || vid ? " is-video" : "") + '" role="button" tabindex="0" aria-label="' + tr(ext || vid ? "Play {name}" : "Enlarge {name}").replace("{name}", nm) + '"' + lbAttr + ytAttr + ">" + thumb +
             (file.format ? '<span class="gfmt">' + fmt + "</span>" : "") + "</div>" +
-          '<div class="gbar"><span class="gn">' + nm + '</span>' +
+          // The format tag on the thumbnail already says JPG/PNG/MP4, so the visible
+          // name drops the extension (and stops "_ALF2043.j/pg" splitting); the
+          // tooltip, aria label and download keep the full filename.
+          '<div class="gbar"><span class="gn" title="' + nm + '">' + (file.format ? escapeHTML(file.name) : nm) + '</span>' +
           '<span class="ga">' +
             '<span role="button" tabindex="0" data-copy="' + escapeHTML(file.url || "#") + '" aria-label="' + tr("Copy link to {name}").replace("{name}", nm) + '" title="' + tr("Copy link") + '">' + icon("link") + "</span>" +
             '<span role="button" tabindex="0" data-dl="' + escapeHTML(file.file || file.url || "#") + '" data-name="' + nm + '"' + (file.file ? ' data-direct="1"' : "") +  ' aria-label="' + tr(ext ? "Watch {name}" : "Download {name}").replace("{name}", nm) + '" title="' + tr(ext ? "Watch on YouTube" : "Download") + '">' + icon(ext ? "play" : "download") + "</span>" +
@@ -3173,7 +3384,7 @@
           var href = URL.createObjectURL(blob);
           directDownload(href, String(label || "assets").replace(/[^\w.-]+/g, "_") + ".zip");
           setTimeout(function () { URL.revokeObjectURL(href); }, 8000);
-          toast(tr("Downloaded") + " " + committed.length + " " + trn("files", committed.length) +
+          toast(trn(committed.length === 1 ? "Downloaded {n} file" : "Downloaded {n} files", committed.length).replace("{n}", committed.length) +
             (alsoFromDropbox ? " · " + tr("{n} more coming from Dropbox").replace("{n}", alsoFromDropbox) : ""));
         })
         .catch(function () { toast(tr("Couldn’t build the zip")); });
@@ -3217,7 +3428,7 @@
       // Partial all-Dropbox selection: can't zip cross-origin, so each file pulls
       // separately. Browsers ask permission for multiple downloads — say so, and
       // point at the folder .zip for grabbing everything in one go.
-      toast(tr("{n} downloads starting — allow multiple if your browser asks, or use “Download all”.").replace("{n}", remote.length));
+      toast(tr("{n} downloads starting — allow multiple if your browser asks, or use “Download folder”.").replace("{n}", remote.length));
     }
   }
   // A whole category folder: prefer the folder's Dropbox share link (one .zip);
@@ -3290,7 +3501,8 @@
     showLb();
     var wasOpen = lbOpen();
     $("#lightbox").classList.add("open");
-    if (!wasOpen) modalOpen($("#lightbox"), tr("Asset preview"), $("#lb-close"));
+    document.body.classList.add("lb-open");
+    if (!wasOpen) { modalOpen($("#lightbox"), tr("Asset preview"), $("#lb-close")); pushModalState(); }
   }
   function lbCurrent() { return lbItems[lbIdx] || {}; }
   // A synced asset the lightbox should PLAY rather than show as a still.
@@ -3321,6 +3533,8 @@
       lbImg.removeAttribute("src");
       lbImg.hidden = true;
       if (it.src) vid.poster = it.src;      // the synced thumbnail is the poster frame
+      vid.classList.remove("tall");
+      vid.onloadedmetadata = function () { vid.classList.toggle("tall", vid.videoHeight > vid.videoWidth); };
       vid.src = dropboxRaw(it.url);
       vid.hidden = false;
       // Autoplay can be refused (browser policy, or a codec the browser will not
@@ -3333,6 +3547,7 @@
       if (it.src) lbImg.src = it.src; else lbImg.removeAttribute("src");
     }
     $("#lb-name").textContent = it.name || "";
+    if (lbImg) lbImg.alt = it.name || "";
     $("#lb-count").textContent = lbItems.length > 1 ? (lbIdx + 1) + " / " + lbItems.length : "";
     var multi = lbItems.length > 1 ? "flex" : "none";
     $("#lb-prev").style.display = multi;
@@ -3344,12 +3559,15 @@
     showLb();
   }
   // removeAttribute, not src="" — an empty src makes the browser re-request the page URL.
-  function closeLightbox() {
+  function closeLightbox(fromPop) {
+    if (!lbOpen()) return;
     $("#lightbox").classList.remove("open");
+    document.body.classList.remove("lb-open");
     $("#lightbox img").removeAttribute("src");
     lbResetVideo();
     lbItems = [];
     modalClose();
+    if (fromPop !== true) popModalState();
   }
   function lbOpen() { return $("#lightbox").classList.contains("open"); }
 
@@ -3362,7 +3580,8 @@
     var t = $("#toast");
     t.setAttribute("aria-live", urgent ? "assertive" : "polite");
     t.textContent = msg; t.classList.add("show");
-    clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.classList.remove("show"); }, 2200);
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.classList.remove("show"); }, Math.min(6000, Math.max(2200, String(msg).length * 55)));
   }
 
   // ---- wire up the static shell -------------------------------------------
@@ -3383,21 +3602,30 @@
     });
 
     // nav "Catalogs" link scrolls to the catalogs & brand documents section.
+    // The header shortcuts always land on the full home page, even mid-search
+    // (the search results view hides those sections).
+    function clearSearch() {
+      var se = $("#search"); if (se) se.value = "";
+      state.query = ""; state.fileFacet = "";
+      var ce = $("#search-clear"); if (ce) ce.classList.remove("show");
+    }
     var navCatalogs = $("#nav-catalogs");
     if (navCatalogs) navCatalogs.addEventListener("click", function () {
+      clearSearch();
       navHome();
       var s = $("#catalogs-section"); if (s) s.scrollIntoView({ behavior: "smooth", block: "start" });
     });
     // nav "Logos & assets" link scrolls down to the de-emphasized resources strip.
     var navGuides = $("#nav-guides");
     if (navGuides) navGuides.addEventListener("click", function () {
+      clearSearch();
       navHome();
       var r = $("#resources"); if (r) r.scrollIntoView({ behavior: "smooth", block: "start" });
     });
     var homeLink = $("#home-link");
     if (homeLink) {
-      homeLink.addEventListener("click", navHome);
-      homeLink.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); navHome(); } });
+      homeLink.addEventListener("click", function () { clearSearch(); navHome(); window.scrollTo({ top: 0, behavior: "instant" }); });
+      homeLink.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); clearSearch(); navHome(); window.scrollTo({ top: 0, behavior: "instant" }); } });
     }
 
     // sort toggle
@@ -3437,7 +3665,7 @@
       suggestEl.innerHTML =
         '<div class="ss-label">' + tr("Popular searches") + '</div>' +
         '<div class="ss-chips">' + SUGGESTIONS.map(function (s) {
-          return '<button type="button" class="ss-chip" data-q="' + s + '">' + s + "</button>";
+          return '<button type="button" class="ss-chip" data-q="' + s + '">' + escapeHTML(tr(s)) + "</button>";
         }).join("") + "</div>" +
         '<div class="ss-hint">' + tr("Press <kbd>/</kbd> to search from anywhere · <kbd>Enter</kbd> opens the top result") + '</div>';
       host.appendChild(suggestEl);
@@ -3513,6 +3741,19 @@
       copyText(u, tr("Link copied"));
     });
     $("#lb-dl").addEventListener("click", function () { var it = lbCurrent(); if (it.file) directDownload(it.file, it.name); else downloadOne(it.url); });
+    var lbStage = $("#lightbox .lb-stage"), sx = null, sy = 0;
+    if (lbStage) {
+      lbStage.addEventListener("touchstart", function (e) {
+        if (e.touches.length !== 1 || e.target.id === "lb-video") { sx = null; return; }
+        sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+      }, { passive: true });
+      lbStage.addEventListener("touchend", function (e) {
+        if (sx == null) return;
+        var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+        sx = null;
+        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) lbStep(dx < 0 ? 1 : -1);
+      }, { passive: true });
+    }
     $("#lightbox").addEventListener("click", function (e) {
       if (e.target.id === "lightbox" || e.target.classList.contains("lb-stage")) closeLightbox();
     });
@@ -3533,7 +3774,13 @@
         else if (e.key === "ArrowRight") lbStep(1);
         return;
       }
-      if (e.key === "/" && !typing && !document.getElementById("vlb") && !document.getElementById("catlb")) { e.preventDefault(); var s = $("#search"); if (s) s.focus(); }
+      if (e.key === "/" && !typing && !document.getElementById("vlb") && !document.getElementById("catlb")) {
+        e.preventDefault();
+        // "from anywhere": off the home page, go home first (the search box lives there).
+        var br = $("#browse");
+        if (br && br.style.display === "none") navHome();
+        var s = $("#search"); if (s) { window.scrollTo({ top: 0, behavior: "instant" }); s.focus(); }
+      }
     });
 
     // floating scroll-to-top — shows once you're a screen or two down
@@ -3559,13 +3806,21 @@
       document.addEventListener("keydown", function (e) {
         if (e.key === "Escape" && langMenuOpen()) { closeLangMenu(); langBtn.focus(); }
       });
+      // Tabbing out of the menu closes it (it stayed open, aria-expanded=true, behind the focus).
+      var ls = $("#lang-select");
+      if (ls) ls.addEventListener("focusout", function (e) {
+        if (langMenuOpen() && (!e.relatedTarget || !ls.contains(e.relatedTarget))) closeLangMenu();
+      });
     }
     // restore filters from the URL (shareable views), then route to product/home
     parseURL();
     window.addEventListener("hashchange", function () {
       if (ignoreHash) { ignoreHash = false; return; }
-      route();
+      route(true);
     });
+    // The router restores the home list's place itself; the browser's own
+    // restore lands before the list is rendered and scrolls to the wrong spot.
+    try { history.scrollRestoration = "manual"; } catch (e) {}
 
     // A returning visitor's language must be ready BEFORE the first render —
     // otherwise the page paints English and then visibly flips. If the pack
@@ -3579,6 +3834,10 @@
       bindLangBar();
       maybeOfferLang();
       route();
+      // First render is in: reveal the page (index.html hides the shell until now
+      // so a deep link never flashes the home hero first).
+      document.documentElement.classList.remove("booting", "deep");
+      booted = true;
     });
   }
 
