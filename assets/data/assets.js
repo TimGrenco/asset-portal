@@ -275,9 +275,14 @@ var PRODUCT_VIDEOS = {
     ["NaBQ9rE5zTY", "G Pen Connect + Your Favorite Glass"],
     ["oNMAJFifIxs", "Connect to Favorite Glass"],
   ],
+  // How-to videos hosted on Vimeo (they play and share from there). `synced`
+  // names the same cut in the product's Dropbox "TV Screen Videos" folder, which
+  // becomes the Download.
   "Melt Hot Knife": [
-    ["nEDYSJqHk5o", "A Closer Look at the Melt"],
-    ["mgErvUJHYQU", "Melt — The Judge's Favorite"],
+    { title: "How to Use: G Pen Melt", vimeo: "1208556908", hash: "162aaa2dfa", synced: "G Pen Melt Tutorial",
+      thumb: "https://i.vimeocdn.com/video/2177905830-cb88bf2ac85d962f856159d9d5ed318e57ad41fd250964cc62840725d6466b5e-d_640?region=us" },
+    { title: "How to Clean: G Pen Melt", vimeo: "1208557447", hash: "7d62827d9d", synced: "G Pen Melt Cleaning",
+      thumb: "https://i.vimeocdn.com/video/2177906524-733183136a1db2dfcc9ed48d879ceab3e629f9c532fac0c33f64912854df7815-d_640?region=us" },
   ],
   "Roam": [
     ["l6QSb4Obox4", "G Pen x Lemonnade Roam"],
@@ -378,11 +383,12 @@ window.PORTAL_PRODUCTS.forEach(function (p) {
         thumb: "https://i.ytimg.com/vi/" + v[0] + "/hqdefault.jpg",
       };
     }
-    // Vimeo form: {title, vimeo:"id", hash?:"privacyhash", thumb:"url", youtube?:"ytid"}
-    // — plays in the modal via iframe (from gpen.com; download TBD via Dropbox).
+    // Vimeo form: {title, vimeo:"id", hash?:"privacyhash", thumb:"url", youtube?:"ytid",
+    // synced?:"<Dropbox filename>"} — plays in the modal via iframe; with `synced`, that
+    // Dropbox file is offered as the download (resolved after the sync merge).
     if (v.vimeo) {
       return {
-        title: v.title, thumb: v.thumb || null,
+        title: v.title, thumb: v.thumb || null, dlFrom: v.synced || null,
         embed: "https://player.vimeo.com/video/" + v.vimeo + "?" + (v.hash ? "h=" + v.hash + "&" : "") + "title=0&byline=0&portrait=0&dnt=1",
         url: "https://vimeo.com/" + v.vimeo + (v.hash ? "/" + v.hash : ""),
         youtube: yt(v.youtube),
@@ -947,6 +953,17 @@ window.PORTAL_PRODUCTS.forEach(function (p) {
 window.PORTAL_PRODUCTS.forEach(function (p) {
   if (!p.videos) return;
   p.videos = p.videos.filter(function (v) {
+    // A Vimeo video's download file: attach it if the file is there; the video
+    // still plays from Vimeo if it isn't.
+    if (v.dlFrom) {
+      var want0 = String(v.dlFrom).toLowerCase();
+      Object.keys(p.folders || {}).forEach(function (f) {
+        (p.folders[f] || []).forEach(function (x) {
+          if (!v.dlFile && x && x.type === "video" && x.url && String(x.name || "").toLowerCase() === want0) v.dlFile = x.url;
+        });
+      });
+      return true;
+    }
     if (!v.synced) return true;
     var want = String(v.synced).toLowerCase(), hit = null;
     Object.keys(p.folders || {}).forEach(function (f) {

@@ -26,7 +26,7 @@
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)",
                 sv: "Svenska", pl: "Polski", da: "Dansk" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20261001f";   // bump with the other asset tokens
+  var LANG_VER = "20261001g";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -2884,7 +2884,7 @@
       var dlname = safe.replace(/[^\w.-]+/g, "_") + ".mp4";
       // Play source: a real Dropbox MP4 takes priority; else the Vimeo/YouTube embed.
       var playSrc = v.mp4 ? dropboxRaw(v.mp4) : (v.embed || v.url || "");
-      var dl = v.mp4 ? dropboxZipUrl(v.mp4) : "";
+      var dl = v.mp4 ? dropboxZipUrl(v.mp4) : v.dlFile ? dropboxZipUrl(v.dlFile) : "";
       // Shareable link for the modal's Copy button: the original Dropbox share URL
       // (not the raw= playback variant), else the YouTube/Vimeo page.
       var share = v.mp4 || v.youtube || v.url || "";
@@ -2895,7 +2895,7 @@
 
       // Only offer a download when there's a real downloadable file; watch-only
       // tutorials (YouTube/Vimeo) just show Watch + the YouTube link.
-      var dlBtn = v.mp4
+      var dlBtn = dl
         ? '<button class="vbtn" data-vdl="' + dl + '" data-vname="' + dlname + '">' + icon("download") + " " + tr("Download") + "</button>"
         : "";
       var ytBtn = v.youtube
@@ -2909,7 +2909,7 @@
         "</div>" +
       "</div>";
     }).join("");
-    return '<div class="section-head"><h2>' + tr("How to use videos") + '</h2><span class="badge">' + p.videos.length + " video" + (p.videos.length > 1 ? "s" : "") + "</span></div>" +
+    return '<div class="section-head"><h2>' + tr("How to use videos") + '</h2><span class="badge">' + p.videos.length + " " + plural(p.videos.length, "video", "videos") + "</span></div>" +
       '<p class="vhub-note">' + icon("eye") + " " + tr("Click a video to watch it, and download it or open it on YouTube where available.") + "</p>" +
       '<div class="vhub">' + cards + "</div>";
   }
