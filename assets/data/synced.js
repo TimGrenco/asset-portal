@@ -601,30 +601,6 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
-          "name": "Dash II UGC_01",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/il0x2dkxeeca2u4j9l49e/Dash-II-UGC_01.mp4?rlkey=a9api2wvbw3c6up80wd3ttlc1&dl=0",
-          "thumb": "assets/synced/dash-ii/e3f2790dd161fbbc1c18c718e2c97a9ee1fc9890c7114f98014947ec3eee26f8.jpg",
-          "file": null
-        },
-        {
-          "name": "Dash II UGC_02",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/hkyzrsk7r5yv44muj0q90/Dash-II-UGC_02.mp4?rlkey=xxdmdaiw2da11ogdlnsh4x3pr&dl=0",
-          "thumb": "assets/synced/dash-ii/70f37e77f25f17051cf3f7883d986f03261773e7b399859b9a321ababea9c305.jpg",
-          "file": null
-        },
-        {
-          "name": "Dash II UGC_03",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/knkmp29lx8dygezjg85g7/Dash-II-UGC_03.mp4?rlkey=bmn58amhx6nu3izwqd15wiwxu&dl=0",
-          "thumb": "assets/synced/dash-ii/d87353288f46b5ef01a6bd574008c9051ef11b109b691dd90b891c8b2ca26911.jpg",
-          "file": null
-        },
-        {
           "name": "Dash II Unbox on white april",
           "type": "video",
           "format": "MP4",
@@ -904,6 +880,32 @@ window.PORTAL_SYNCED = {
           "thumb": "assets/synced/dash-ii/389b1b5cde9431893a577fc5bddd3c3e19784daba015fcca6e94c7447ccc9a01.jpg",
           "file": null
         }
+      ],
+      "UGC Videos": [
+        {
+          "name": "Dash II UGC_01",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/il0x2dkxeeca2u4j9l49e/Dash-II-UGC_01.mp4?rlkey=a9api2wvbw3c6up80wd3ttlc1&dl=0",
+          "thumb": "assets/synced/dash-ii/e3f2790dd161fbbc1c18c718e2c97a9ee1fc9890c7114f98014947ec3eee26f8.jpg",
+          "file": null
+        },
+        {
+          "name": "Dash II UGC_02",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/hkyzrsk7r5yv44muj0q90/Dash-II-UGC_02.mp4?rlkey=xxdmdaiw2da11ogdlnsh4x3pr&dl=0",
+          "thumb": "assets/synced/dash-ii/70f37e77f25f17051cf3f7883d986f03261773e7b399859b9a321ababea9c305.jpg",
+          "file": null
+        },
+        {
+          "name": "Dash II UGC_03",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/knkmp29lx8dygezjg85g7/Dash-II-UGC_03.mp4?rlkey=bmn58amhx6nu3izwqd15wiwxu&dl=0",
+          "thumb": "assets/synced/dash-ii/d87353288f46b5ef01a6bd574008c9051ef11b109b691dd90b891c8b2ca26911.jpg",
+          "file": null
+        }
       ]
     },
     "dropbox": "https://www.dropbox.com/scl/fo/5hz9ej94k16g5fdv87gtj/AKc2Ts1QEgWfRugLZ_GoFvM?rlkey=9ueqe3ucvu30dgp6hlgixclpq&dl=1",
@@ -915,9 +917,10 @@ window.PORTAL_SYNCED = {
       "TV Screen Videos": "https://www.dropbox.com/scl/fo/3jwmjghzmg4d0o7e93xwo/ANyqtbYR_sMlmWe8BeiWW80?rlkey=1hc8gbotkhe546myageh4a7z5&dl=1",
       "Packaging": "https://www.dropbox.com/scl/fo/j4l4996uts9ut6ex1bsvt/APEJJJdU-oGFf_TU0Bkn-H4?rlkey=gwbc64fzubwwt5cr0yx9ge7e0&dl=1",
       "Documents": "https://www.dropbox.com/scl/fo/vt7c8gwxyw3p8t2cr51tb/AP1rJU_rRyf43cXm12n_88g?rlkey=8eraicte8138ha2pkbeu780yx&dl=1",
-      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/3rc18jy9dpk2vdzwm0vzd/AJ-eyktmRpU3jcZaN3d8KY8?rlkey=ldbjknlj2qyo8danjifpabcmx&dl=1"
+      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/3rc18jy9dpk2vdzwm0vzd/AJ-eyktmRpU3jcZaN3d8KY8?rlkey=ldbjknlj2qyo8danjifpabcmx&dl=1",
+      "UGC Videos": "https://www.dropbox.com/scl/fo/pawdq6rfpzz2jhbj2pzga/AG86AfEwlY32C45vUeOvl-Q?rlkey=b9fj1mvhj3smity202papd6p6&dl=1"
     },
-    "updated": "2026-08-26"
+    "updated": "2026-10-01"
   },
   "Micro II": {
     "folders": {
@@ -2127,14 +2130,6 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
-          "name": "Micro II POV Park Sept",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/m8fwd2f49cmg3rr860i5r/Micro-II-POV-Park-Sept.MP4?rlkey=1n3k9sg5yzj6vzx5b4izycgr3&dl=0",
-          "thumb": "assets/synced/micro-ii/7201638f699a7a54651dbf01ca5462f09cdd8e21b189c1d3f481169834913445.jpg",
-          "file": null
-        },
-        {
           "name": "Micro II Product Page",
           "type": "video",
           "format": "MP4",
@@ -2172,6 +2167,14 @@ window.PORTAL_SYNCED = {
           "format": "MP4",
           "url": "https://www.dropbox.com/scl/fi/zeegyhhnpul0wjjt1yiv0/Micro-II-Unboxing-on-white.mp4?rlkey=7a9mzcr2pacf5daeti26p6mqy&dl=0",
           "thumb": "assets/synced/micro-ii/5b6ff0b372a6b00e48465ceda700c88c4e17febb0a8743a8d0480d2273e13a26.jpg",
+          "file": null
+        },
+        {
+          "name": "Micro II Unboxing Sept",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/3e6dnh0rr4zgr660mdvxb/Micro-II-Unboxing-Sept.mp4?rlkey=de4p2dlp6qb3hejjc4bhd9d5p&dl=0",
+          "thumb": "assets/synced/micro-ii/72db73e35de4589894d2fe7b3285360db6d4d650678061e6ede474ca3b125f7d.jpg",
           "file": null
         },
         {
@@ -2228,6 +2231,14 @@ window.PORTAL_SYNCED = {
           "format": "MP4",
           "url": "https://www.dropbox.com/scl/fi/oa3enlcw2hul5jzly87fe/Reels-How-to-Use-G-Pen-Micro-II.mp4?rlkey=lylmeqd33s85gbn3d8fmq1rs5&dl=0",
           "thumb": "assets/synced/micro-ii/ffb8be1c1b35ff2703f90f9258ab4ee1b4daf2ff39e6a66890ab0abf88e8588b.jpg",
+          "file": null
+        },
+        {
+          "name": "Sidecar Unboxing Sept",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/m5sk06k6whsf4arryqd2a/Sidecar-Unboxing-Sept.mp4?rlkey=yxt0ad5mp91p13gmy7kupultq&dl=0",
+          "thumb": "assets/synced/micro-ii/17b173a75b5b82a8c3453c46c574acd791b0193c805445f73881d3ffa95b0db3.jpg",
           "file": null
         }
       ],
@@ -2406,6 +2417,48 @@ window.PORTAL_SYNCED = {
           "thumb": "assets/synced/micro-ii/4b317c2f290b42fd5a169f55e9efdaac23c95e559da1ced6072c3f24b628ac40.jpg",
           "file": null
         }
+      ],
+      "UGC Videos": [
+        {
+          "name": "coco.bakesss_ micro 2 sept",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/t7pru3to4zuva7d3ixi96/coco.bakesss_-micro-2-sept.mp4?rlkey=h0auvq9a7yd3vu7brta2y86a1&dl=0",
+          "thumb": "assets/synced/micro-ii/bedc4776e5867ce43c8208f86a2b730af35002148754dce0e4e17db2b267eca8.jpg",
+          "file": null
+        },
+        {
+          "name": "highwithkay Micro II Sept",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/dlqbjaxf10j64i1la8rqp/highwithkay-Micro-II-Sept.mp4?rlkey=gcpb2h1a8sn50ot9d1ldppya3&dl=0",
+          "thumb": "assets/synced/micro-ii/486846b22f1f48f88f8a6d98e8e40b0a7b48942e6dd66610938822c6887a3a8a.jpg",
+          "file": null
+        },
+        {
+          "name": "Larry Micro II Rig Adapter Event Sept",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/j8fkzqub326kizwk6epl1/Larry-Micro-II-Rig-Adapter-Event-Sept.mp4?rlkey=kgktnhisu2w55n3z5qk1g8m9a&dl=0",
+          "thumb": "assets/synced/micro-ii/8be673a3c3683b097bbc58e91d63489dc1b503b55038d843a1a6b4292a294fd8.jpg",
+          "file": null
+        },
+        {
+          "name": "Larry Micro II September",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/f7x02jwv12kvo0nxgwbty/Larry-Micro-II-September.mp4?rlkey=s25727zt9y2hssqvifw22fjkg&dl=0",
+          "thumb": "assets/synced/micro-ii/076a3d6367fe3e1f5c0bcc2920ba2e78799a729917c7bef3da414fb75dc7867f.jpg",
+          "file": null
+        },
+        {
+          "name": "sum_stoned_chick micro 2",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/0v929a65t017echw3j27j/sum_stoned_chick-micro-2.mp4?rlkey=31j51ypnnljgcbtq7itb1mmf2&dl=0",
+          "thumb": "assets/synced/micro-ii/de79a768427380eae83b84423b2a883f72197b4a6619ccfc6e429bfef1c26383.jpg",
+          "file": null
+        }
       ]
     },
     "dropbox": "https://www.dropbox.com/scl/fo/spharop9yvc7bnk5g3w4z/AKUC7ALBupRa8e039bvfNr4?rlkey=5560kr7brds1hco7tgeiafsbx&dl=1",
@@ -2416,9 +2469,10 @@ window.PORTAL_SYNCED = {
       "TV Screen Videos": "https://www.dropbox.com/scl/fo/vn7o49d9jvrml058gem1t/ABNix1eTJ9SDLECY_EwtHSE?rlkey=a5axj9vhoglefntelaxfs4do6&dl=1",
       "Packaging": "https://www.dropbox.com/scl/fo/90lgonbxj7kjcxk1im3qx/AAffdm5A9PYCiG_-ASUssP4?rlkey=f6jcrqo5feghryxdzxy1uu74y&dl=1",
       "Documents": "https://www.dropbox.com/scl/fo/hbm79asz0sz5voe6e9nsi/AFYenSbkUK4Rat7-wFI0T9c?rlkey=ozc1dplsp1bdcam3mvz9m9d0l&dl=1",
-      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/wpkywovfwqzht61fi3iy7/AD1h_pWNcg3PtII1wxhJnGo?rlkey=x5ilflreeyywtx9y7uh47i95e&dl=1"
+      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/wpkywovfwqzht61fi3iy7/AD1h_pWNcg3PtII1wxhJnGo?rlkey=x5ilflreeyywtx9y7uh47i95e&dl=1",
+      "UGC Videos": "https://www.dropbox.com/scl/fo/urvini9ktpj70lajmdi7m/ADgh9jVSGzmpuaYZHebibj0?rlkey=jgkiorvg1ghy8anucm8dus18r&dl=1"
     },
-    "updated": "2026-09-30"
+    "updated": "2026-10-01"
   },
   "Slim 3-Piece Grinder": {
     "folders": {
@@ -2628,6 +2682,14 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "Grinder Unboxing Sept",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/83aph72vu1ryz0o91pjpu/Grinder-Unboxing-Sept.mp4?rlkey=c2kiwo2mjqpar540jeqd7yob3&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/ec0c3d73fdef788d5c93aeb4d0e0569fccb813dd61cedf5df30bfa3723ccce2c.jpg",
+          "file": null
+        },
+        {
           "name": "Larry Grinder Announcement",
           "type": "video",
           "format": "MP4",
@@ -2787,6 +2849,40 @@ window.PORTAL_SYNCED = {
           "thumb": "assets/synced/slim-3-piece-grinder/0f3a8a2ac597c600d2cad14b47a0632da851786a5a1d24fab3dc3cadd653994e.jpg",
           "file": null
         }
+      ],
+      "UGC Videos": [
+        {
+          "name": "_chronically_chloe Grinder aug",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/4bd943nomlzy0ru49z8hd/_chronically_chloe-Grinder-aug.mp4?rlkey=j57wwcbx193b25tal7k0id16l&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/e75938b3d40bc4c4b7a9df5d66da240a59755b82ed4ddf1bdb712a18fa691bc9.jpg",
+          "file": null
+        },
+        {
+          "name": "highwithkay Grinder Aug",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/4bgvfjo5pk6jflt6gmke3/highwithkay-Grinder-Aug.mp4?rlkey=h5gpsucauitzl80xdho0cgyk2&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/b2236f7dce5ac128c09aa21851847600130aacb9a13e5e603f7705551c19e0af.jpg",
+          "file": null
+        },
+        {
+          "name": "prettylillpotheadd Grinder on lake",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/ka19buf6ufjkfnbnobxwk/prettylillpotheadd-Grinder-on-lake.mp4?rlkey=day9ac1vdbjbssiidbndtthqf&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/3494ce7634ed855e182a23ae70a7ef6b981680f9b3a73b164b60d88b93a95d44.jpg",
+          "file": null
+        },
+        {
+          "name": "zach_tha_ripper Grinder trim",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/n3utfazfc8ctnlzxys2o6/zach_tha_ripper-Grinder-trim.mp4?rlkey=2mmiprirrpgw8wrk9tahuzuwl&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/4ad9cbc74c33082df0ccb873f1ba50fbbbf8952e3d841d6d79dd19e0570d23c8.jpg",
+          "file": null
+        }
       ]
     },
     "dropbox": "https://www.dropbox.com/scl/fo/8lfqlq0faeml5pqnvzoys/ADcfy5cYRTh2lHbK13o_I60?rlkey=4jjwd6s48mon6tcpis5uass3x&dl=1",
@@ -2797,9 +2893,10 @@ window.PORTAL_SYNCED = {
       "TV Screen Videos": "https://www.dropbox.com/scl/fo/zvzbkibqd2aosrqh4tuks/AIYbRk9vrspXYWZcA2fv-MA?rlkey=zqpbl2p0wslq04x0aix2mvdo2&dl=1",
       "Packaging": "https://www.dropbox.com/scl/fo/fxe11gkyjj90fs6k7u4pn/AA_u1kITmQyvG2jso3wRIPc?rlkey=hyv0pfcuzdl7w8bym69lgpdit&dl=1",
       "Documents": "https://www.dropbox.com/scl/fo/xa8fpu6byuxbn6bfz5dtf/ABlSIjG-tdSnIw04E6zD4bU?rlkey=ujcruu80zly1ehfhkcb6trrg1&dl=1",
-      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/eiroju8uf0q8ntzldvhh8/AChK_rv3bd7FHjp8YymEX5M?rlkey=eu289oru99vvqr8ucia5ba8jq&dl=1"
+      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/eiroju8uf0q8ntzldvhh8/AChK_rv3bd7FHjp8YymEX5M?rlkey=eu289oru99vvqr8ucia5ba8jq&dl=1",
+      "UGC Videos": "https://www.dropbox.com/scl/fo/3juvd5kglchxn6i4l14rr/ADq-xqFwZLgkBZVyzwlwJiY?rlkey=2983drldxo785ws5lvvhzjyqm&dl=1"
     },
-    "updated": "2026-09-28"
+    "updated": "2026-10-01"
   },
   "510 Original": {
     "folders": {
@@ -3193,38 +3290,6 @@ window.PORTAL_SYNCED = {
           "url": "https://www.dropbox.com/scl/fi/jjtjhkgpamuvduz5fptlh/Bianca-510-original-remix-A.mp4?rlkey=7ni5ayybkvwyf2qq36ou8ay12&dl=0",
           "thumb": "assets/synced/510-original/cbf973ef8f835799f8177e9b0cb8880c8df4c78fe87029b9e22a5719d55e20c7.jpg",
           "file": null
-        },
-        {
-          "name": "UGC 510 Original_01",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/xbgxr7a6hmiqxgikvd0t3/UGC-510-Original_01.mp4?rlkey=n2urdzs0qq2co0s1dh05b8k35&dl=0",
-          "thumb": "assets/synced/510-original/eeb5c364a919a21115f38329baa5898d53043bcf8b1b4ee1fe5a93edba535a3e.jpg",
-          "file": null
-        },
-        {
-          "name": "UGC 510 Original_02",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/fn517xynexfvitagfqmy1/UGC-510-Original_02.mp4?rlkey=3h89st9pwwwzt10z84s1v0neh&dl=0",
-          "thumb": "assets/synced/510-original/878ec3fab6d4aa68f395f963acd0e341460a50ae96bbacc44dcdef2c5e1415b7.jpg",
-          "file": null
-        },
-        {
-          "name": "UGC 510 Original_03",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/9v1taa6ylsr94f851b73o/UGC-510-Original_03.mp4?rlkey=4v5dogxjq7mbs9ylyl0yush53&dl=0",
-          "thumb": "assets/synced/510-original/a313e7ea3e94989022e94f5033ca6e608e3c8ce8698a97edab0e16aca8d56bff.jpg",
-          "file": null
-        },
-        {
-          "name": "UGC 510 Original_04",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/1gp5b3bcdg23pr1ri7lnf/UGC-510-Original_04.mp4?rlkey=9k0knszw6ud7o0r0ezyp2tclo&dl=0",
-          "thumb": "assets/synced/510-original/374aae017e1d4823285a72b4497c57a7f3dc9064a2c0510b42bf53268f6aa842.jpg",
-          "file": null
         }
       ],
       "TV Screen Videos": [
@@ -3402,6 +3467,40 @@ window.PORTAL_SYNCED = {
           "thumb": "assets/synced/510-original/cc90d1b30af7120c129f79f6dda7801a08903c32c32affde2300a37754295225.jpg",
           "file": null
         }
+      ],
+      "UGC Videos": [
+        {
+          "name": "UGC 510 Original_01",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/xbgxr7a6hmiqxgikvd0t3/UGC-510-Original_01.mp4?rlkey=n2urdzs0qq2co0s1dh05b8k35&dl=0",
+          "thumb": "assets/synced/510-original/eeb5c364a919a21115f38329baa5898d53043bcf8b1b4ee1fe5a93edba535a3e.jpg",
+          "file": null
+        },
+        {
+          "name": "UGC 510 Original_02",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/fn517xynexfvitagfqmy1/UGC-510-Original_02.mp4?rlkey=3h89st9pwwwzt10z84s1v0neh&dl=0",
+          "thumb": "assets/synced/510-original/878ec3fab6d4aa68f395f963acd0e341460a50ae96bbacc44dcdef2c5e1415b7.jpg",
+          "file": null
+        },
+        {
+          "name": "UGC 510 Original_03",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/9v1taa6ylsr94f851b73o/UGC-510-Original_03.mp4?rlkey=4v5dogxjq7mbs9ylyl0yush53&dl=0",
+          "thumb": "assets/synced/510-original/a313e7ea3e94989022e94f5033ca6e608e3c8ce8698a97edab0e16aca8d56bff.jpg",
+          "file": null
+        },
+        {
+          "name": "UGC 510 Original_04",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/1gp5b3bcdg23pr1ri7lnf/UGC-510-Original_04.mp4?rlkey=9k0knszw6ud7o0r0ezyp2tclo&dl=0",
+          "thumb": "assets/synced/510-original/374aae017e1d4823285a72b4497c57a7f3dc9064a2c0510b42bf53268f6aa842.jpg",
+          "file": null
+        }
       ]
     },
     "dropbox": "https://www.dropbox.com/scl/fo/mtuk2kb73ln5pv0qj68y5/AOnLPmrirA3wsvOdaA0v9rw?rlkey=e8svbeey6dql240rjqzch9qco&st=tvt2s0qf&dl=1",
@@ -3413,9 +3512,10 @@ window.PORTAL_SYNCED = {
       "TV Screen Videos": "https://www.dropbox.com/scl/fo/8rl000ytt7jxinh8zbj1u/AByQMtGRjwNFGQ_ntRhhK40?rlkey=5grh12c8l4kryrv3pa4g6r67n&dl=1",
       "Packaging": "https://www.dropbox.com/scl/fo/o8o1mmk7nr029a66z3sad/AE0gg5cFF3rJFkpNvXnHH70?rlkey=rt245v76qjnezw5ev0i8aex9t&dl=1",
       "Documents": "https://www.dropbox.com/scl/fo/o3atp3bw7zziy848vrxz3/ANZwAjN6-94KYmjH0ZDfO2Y?rlkey=4y1jny03913bgymoawt6obgoa&dl=1",
-      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/x329gmo76oo3jq87y6r9k/AI9oiFVm9G475ETKxDf3b6c?rlkey=9dvno9yxhbzafrmldxdnagh2e&dl=1"
+      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/x329gmo76oo3jq87y6r9k/AI9oiFVm9G475ETKxDf3b6c?rlkey=9dvno9yxhbzafrmldxdnagh2e&dl=1",
+      "UGC Videos": "https://www.dropbox.com/scl/fo/lfoo6ijkjsa6p719muc76/ACMdjBbS8l2G2lGM167vZ7A?rlkey=v26hp9jstrea9d9u5qzk0jcpo&dl=1"
     },
-    "updated": "2026-08-20"
+    "updated": "2026-10-01"
   },
   "510 Original — Retro": {
     "folders": {
@@ -4984,6 +5084,32 @@ window.PORTAL_SYNCED = {
           "thumb": "assets/synced/510-original-retro/ab5cce214e799303cf98a6e0657c19555f78eeca3b82375fb7114ed801b88639.jpg",
           "file": null
         }
+      ],
+      "UGC Videos": [
+        {
+          "name": "highnessmel Purple 510 Original",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/qqntv1dou0rxhsq1mhkjj/highnessmel-Purple-510-Original.mp4?rlkey=lux100kjwzxakiw7x5zwa5naf&dl=0",
+          "thumb": "assets/synced/510-original-retro/f3d7367ef216de6c87a1cf5b4d1aeb1bfa3b7c5901addd043b679e5244e852e1.jpg",
+          "file": null
+        },
+        {
+          "name": "irielogic420 retro 510 july",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/hmsna8xk8atnnyeszoyus/irielogic420-retro-510-july.mp4?rlkey=hji32t3eh2cyj5a7lby2vzdo9&dl=0",
+          "thumb": "assets/synced/510-original-retro/c680a655d01d5aa31f07398219f124237191d78cef8c6e4a96442376bbb45c9b.jpg",
+          "file": null
+        },
+        {
+          "name": "Jennsnuget green 510 original",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/vwyzdq9vnu0y1bco0f4l9/Jennsnuget-green-510-original.mp4?rlkey=nhkb32r59lee0oxb5o9slfi85&dl=0",
+          "thumb": "assets/synced/510-original-retro/524ac179e09c58581701f24c939fe328130e53ac1055284ff36c7861734ab049.jpg",
+          "file": null
+        }
       ]
     },
     "dropbox": "https://www.dropbox.com/scl/fo/shfo4arqn8cb0hgs7wbi5/AH9A3v7LBdLMtbzkJRi15zE?rlkey=4hyypo3a92gplotrlfp55rlxk&st=te4ygopg&dl=1",
@@ -4994,9 +5120,10 @@ window.PORTAL_SYNCED = {
       "TV Screen Videos": "https://www.dropbox.com/scl/fo/5o4mpm3mzotv7jr17wsme/AAyqFrrIhUhhR8_7mmMsUdY?rlkey=8q11mrt80gtv1629sjdc8tlni&dl=1",
       "Packaging": "https://www.dropbox.com/scl/fo/3x0ivw8f46sg5rea2ur1n/AM0zF2GfFoWmVlMXaOEIQN0?rlkey=wb6x26ol6bpez32hzmralzxl0&dl=1",
       "Documents": "https://www.dropbox.com/scl/fo/9j1vn1j2rhpoaezdppsq0/AAwzQ8Z0aXMg1RrfvqWKdLM?rlkey=ia8knrnxm5osphfyh2hddw3bk&dl=1",
-      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/dnm010ew08nacj5o8rtdv/AMHk1ucb2uw651uWoO5l468?rlkey=l6hw918fkxsfgojj2dy1k6l5j&dl=1"
+      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/dnm010ew08nacj5o8rtdv/AMHk1ucb2uw651uWoO5l468?rlkey=l6hw918fkxsfgojj2dy1k6l5j&dl=1",
+      "UGC Videos": "https://www.dropbox.com/scl/fo/y3kxsuvirr3vn03t4z80l/AKjgGyBc3I-KY8i3gqb7tlc?rlkey=trgjgnsrj9kattnpp70om07st&dl=1"
     },
-    "updated": "2026-09-22"
+    "updated": "2026-10-01"
   },
   "Dash+": {
     "folders": {
@@ -5448,30 +5575,6 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
-          "name": "Bentley Rolling Dash+ Review",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/g41kix5g9nj3gciwfvt05/Bentley-Rolling-Dash-Review.mp4?rlkey=mupj58b07nxlc8nicecf56eff&dl=0",
-          "thumb": "assets/synced/dash-plus/88cb61dc0b845bb06c72e59bd89b2e9483389b185dc475759ab618717e51ae25.jpg",
-          "file": null
-        },
-        {
-          "name": "Dabriela Dash+ outside",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/u83v29ebinajvy98xtlul/Dabriela-Dash-outside.mp4?rlkey=piacxh9w3yag1mldp6n5bdom2&dl=0",
-          "thumb": "assets/synced/dash-plus/6a7e7b846ae49f65dacf61d18a893434b69e8b8a10212b6f8a0efd84bbdd6791.jpg",
-          "file": null
-        },
-        {
-          "name": "Dabriela Dash+",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/tcp5bnhu7wz3edv8qhyos/Dabriela-Dash.mp4?rlkey=acnv4mn5hsuv6ttg0phc1wdg4&dl=0",
-          "thumb": "assets/synced/dash-plus/8e0c4d4a1b681815e2bb0816a5d7813674a353c24b5e478a935813f2ef4310e5.jpg",
-          "file": null
-        },
-        {
           "name": "Dash + Unboxing June",
           "type": "video",
           "format": "MP4",
@@ -5509,14 +5612,6 @@ window.PORTAL_SYNCED = {
           "format": "MP4",
           "url": "https://www.dropbox.com/scl/fi/g9npv2u77xj5o79yy3lw4/Dash-Brian_Couch_Reels.mp4?rlkey=cp8vrgj7mlbswv9oz17j1ywy4&dl=0",
           "thumb": "assets/synced/dash-plus/6cb94d0c6ef84b1a161c04ae92ca709dee9454221401693faeed10c9957838c6.jpg",
-          "file": null
-        },
-        {
-          "name": "Dash+ Brian_Couch",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/rrypzsnodyb7rbowqxq7q/Dash-Brian_Couch.mp4?rlkey=2bnz4r54fdby8da8sinpjdpfh&dl=0",
-          "thumb": "assets/synced/dash-plus/a005e8153d846e787770d91d8133eb147368d045d54f214208216659783172ce.jpg",
           "file": null
         },
         {
@@ -5632,14 +5727,6 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
-          "name": "Menandos Dash+ Air Balloon",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/iar16331i8ul7cluetuww/Menandos-Dash-Air-Balloon.mp4?rlkey=rkan98sqlkngjjvs5h2f4lv03&dl=0",
-          "thumb": "assets/synced/dash-plus/3e020d20fd82c6651617a594a050637d2c08cb7a7da31ef341d9b6def567b794.jpg",
-          "file": null
-        },
-        {
           "name": "Nancy Dash+ Pool Short",
           "type": "video",
           "format": "MP4",
@@ -5718,22 +5805,6 @@ window.PORTAL_SYNCED = {
           "url": "https://www.dropbox.com/scl/fi/2ryen6wniq2bkvziqkx2a/TheHighWoman-Dash-Dec.mp4?rlkey=fbty458pwzmbry9rdonjzrfz8&dl=0",
           "thumb": "assets/synced/dash-plus/2dbdc90a5b7beb201c8931b1541b278841bcbde61f107e572fd41a7b4ec3bf38.jpg",
           "file": null
-        },
-        {
-          "name": "TonyTLongboard_Dash+",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/fppqgy0cjsg1c8l7salw7/TonyTLongboard_Dash.mp4?rlkey=yx9l0w8v2rge18yeyvhylfyn9&dl=0",
-          "thumb": "assets/synced/dash-plus/fca7107e5f2f95a684f855e530b02df43745def1012c6bde012f156b54ce98f5.jpg",
-          "file": null
-        },
-        {
-          "name": "VapeGuide Dash+ Review",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/93kcxtgk5oqm2tbkt6x62/VapeGuide-Dash-Review.mp4?rlkey=86neanbcqlxf185rab85ihayg&dl=0",
-          "thumb": "assets/synced/dash-plus/f602fd8de8589a7bcfaa5095deaa6f9527206262fe59a783c9c0b733703c179a.jpg",
-          "file": null
         }
       ],
       "TV Screen Videos": [
@@ -5754,10 +5825,10 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
-          "name": "Dash+ Brian Wide",
+          "name": "Dash+ Brian_Couch",
           "type": "video",
           "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/q57s8z4w57agj04ea38ac/Dash-Brian-Wide.mp4?rlkey=6vcgoin2xfw55ogqwf2x7j56a&dl=0",
+          "url": "https://www.dropbox.com/scl/fi/rrypzsnodyb7rbowqxq7q/Dash-Brian_Couch.mp4?rlkey=2bnz4r54fdby8da8sinpjdpfh&dl=0",
           "thumb": "assets/synced/dash-plus/a005e8153d846e787770d91d8133eb147368d045d54f214208216659783172ce.jpg",
           "file": null
         },
@@ -5879,6 +5950,56 @@ window.PORTAL_SYNCED = {
           "thumb": "assets/synced/dash-plus/07eaff8ef619a36993b4cc8d22d10ad542be47dae18e767036b386d946d0bee6.jpg",
           "file": null
         }
+      ],
+      "UGC Videos": [
+        {
+          "name": "Bentley Rolling Dash+ Review",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/g41kix5g9nj3gciwfvt05/Bentley-Rolling-Dash-Review.mp4?rlkey=mupj58b07nxlc8nicecf56eff&dl=0",
+          "thumb": "assets/synced/dash-plus/88cb61dc0b845bb06c72e59bd89b2e9483389b185dc475759ab618717e51ae25.jpg",
+          "file": null
+        },
+        {
+          "name": "Dabriela Dash+ outside",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/u83v29ebinajvy98xtlul/Dabriela-Dash-outside.mp4?rlkey=piacxh9w3yag1mldp6n5bdom2&dl=0",
+          "thumb": "assets/synced/dash-plus/6a7e7b846ae49f65dacf61d18a893434b69e8b8a10212b6f8a0efd84bbdd6791.jpg",
+          "file": null
+        },
+        {
+          "name": "Dabriela Dash+",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/tcp5bnhu7wz3edv8qhyos/Dabriela-Dash.mp4?rlkey=acnv4mn5hsuv6ttg0phc1wdg4&dl=0",
+          "thumb": "assets/synced/dash-plus/8e0c4d4a1b681815e2bb0816a5d7813674a353c24b5e478a935813f2ef4310e5.jpg",
+          "file": null
+        },
+        {
+          "name": "Menandos Dash+ Air Balloon",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/iar16331i8ul7cluetuww/Menandos-Dash-Air-Balloon.mp4?rlkey=rkan98sqlkngjjvs5h2f4lv03&dl=0",
+          "thumb": "assets/synced/dash-plus/3e020d20fd82c6651617a594a050637d2c08cb7a7da31ef341d9b6def567b794.jpg",
+          "file": null
+        },
+        {
+          "name": "TonyTLongboard_Dash+",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/fppqgy0cjsg1c8l7salw7/TonyTLongboard_Dash.mp4?rlkey=yx9l0w8v2rge18yeyvhylfyn9&dl=0",
+          "thumb": "assets/synced/dash-plus/fca7107e5f2f95a684f855e530b02df43745def1012c6bde012f156b54ce98f5.jpg",
+          "file": null
+        },
+        {
+          "name": "VapeGuide Dash+ Review",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/93kcxtgk5oqm2tbkt6x62/VapeGuide-Dash-Review.mp4?rlkey=86neanbcqlxf185rab85ihayg&dl=0",
+          "thumb": "assets/synced/dash-plus/f602fd8de8589a7bcfaa5095deaa6f9527206262fe59a783c9c0b733703c179a.jpg",
+          "file": null
+        }
       ]
     },
     "dropbox": "https://www.dropbox.com/scl/fo/5wps4y20eqmpbzj0j4ijq/h?rlkey=5bna5as30dz79lmqumcml47x7&st=xt8upom3&dl=1",
@@ -5890,9 +6011,10 @@ window.PORTAL_SYNCED = {
       "TV Screen Videos": "https://www.dropbox.com/scl/fo/mzcgj8v9t8ybaj3xsmkpi/AC9TgAXxJlouCPt2QQ85qng?rlkey=4d63q6wee409artdignb2mnit&dl=1",
       "Packaging": "https://www.dropbox.com/scl/fo/e1ci8uad1eqkrtzlz24ib/AFfmiwFlTHe6KMykuwC2IbM?rlkey=ckhxvz6yp5vw5p5g05q1jeg09&dl=1",
       "Documents": "https://www.dropbox.com/scl/fo/e8f1pwhsmb4kglz4ikie3/ACinlb4iLIQ2cVHKqofKuZw?rlkey=g7ke7xpuzz3apbgdkfzts4xnw&dl=1",
-      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/p4ipqa1un5pexeb80tbdk/AOJcGN9Du8Sw_fK3ODVMYX8?rlkey=bey7o5p4faalwnfh2z3k1l4ki&dl=1"
+      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/p4ipqa1un5pexeb80tbdk/AOJcGN9Du8Sw_fK3ODVMYX8?rlkey=bey7o5p4faalwnfh2z3k1l4ki&dl=1",
+      "UGC Videos": "https://www.dropbox.com/scl/fo/6817exaevh7jdaklk25h9/APi3P67LqFUomPZKCTUHs-8?rlkey=yrlunr09bsk7qi35y03dssa3f&dl=1"
     },
-    "updated": "2026-08-26"
+    "updated": "2026-10-01"
   },
   "Hydout": {
     "folders": {
@@ -6464,14 +6586,6 @@ window.PORTAL_SYNCED = {
       ],
       "Social Videos": [
         {
-          "name": "AdeniaMariee Hydout Halloween",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/tjv78nwdxcun4sby2tnap/AdeniaMariee-Hydout-Halloween.mp4?rlkey=vlfmm7t3kgxiainfnjurjxxk9&dl=0",
-          "thumb": "assets/synced/hydout/c92a0bf9fd1103923b2f66997cef2e473de8779844e9ae85056617346896cd41.jpg",
-          "file": null
-        },
-        {
           "name": "Alyssa 510 Knock No Text",
           "type": "video",
           "format": "MP4",
@@ -6517,62 +6631,6 @@ window.PORTAL_SYNCED = {
           "format": "MP4",
           "url": "https://www.dropbox.com/scl/fi/0sq6ms9a0wts6g9k94iqr/Alyssa-Hydout-Speedramp-B.mp4?rlkey=apx3c6u8y3dxhg6ru1civb40m&dl=0",
           "thumb": "assets/synced/hydout/a19807f2cb9abb1c45e20596b43c4605ced4b531afa39961a11b2c731baab097.jpg",
-          "file": null
-        },
-        {
-          "name": "alyssasvibes brunch cafe hydout",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/4i4c8q2z7f3b9adfweu2e/alyssasvibes-brunch-cafe-hydout.mp4?rlkey=29u53v66h13owzotk6bmtnd2p&dl=0",
-          "thumb": "assets/synced/hydout/08938879899e5076657912bc85a003251912ba96adfd7bb38967791b27a956d8.jpg",
-          "file": null
-        },
-        {
-          "name": "audaciousmay hydout asmr trim",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/7g35ttlc600sndxsl7qo5/audaciousmay-hydout-asmr-trim.mp4?rlkey=ynhcq1bbv20l5wigjnsiudhjh&dl=0",
-          "thumb": "assets/synced/hydout/1df48b2fbe8902de5ad4d9f4651e1411b4e96a98b0a9232c6e8ff0c72ac45122.jpg",
-          "file": null
-        },
-        {
-          "name": "chrissperr hydout skin care aug",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/f4z00oyxz5rhsz6sqw37g/chrissperr-hydout-skin-care-aug.mp4?rlkey=3rd35iyzdrethd5ei9utbg6yi&dl=0",
-          "thumb": "assets/synced/hydout/3e9267a4a6056a35792f99f6bd8e6509be246407e60a1ceb83128ac20ba3b1a7.jpg",
-          "file": null
-        },
-        {
-          "name": "Grand Illumination Hydout lets_rhi.up",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/twrifnty6t1q0zprr25y7/Grand-Illumination-Hydout-lets_rhi.up.mp4?rlkey=ax8yy2k1i7r9qfm54kw1bhteb&dl=0",
-          "thumb": "assets/synced/hydout/85d72a0748f77e1e9b18147a77813e1f56d5a9800b387ba430848ac18b690fbf.jpg",
-          "file": null
-        },
-        {
-          "name": "high_im_winter hydout",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/4okmcsdrq6cxakikocspp/high_im_winter-hydout.mp4?rlkey=i06346kbb54jqr98aot0zjplb&dl=0",
-          "thumb": "assets/synced/hydout/c051b48c4a58386a22ed13bb552422f218ed642cbc235bc840f123700447c18d.jpg",
-          "file": null
-        },
-        {
-          "name": "highamericaizzi hydout november",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/5okrg73ed9s5wfcfrp918/highamericaizzi-hydout-november.mp4?rlkey=g5ybljnjhe81laa63w27o3yod&dl=0",
-          "thumb": "assets/synced/hydout/c9b63f056fdf6c22718bff721aa47234d285e21b79b14e01b49984cdb0050f61.jpg",
-          "file": null
-        },
-        {
-          "name": "highna415 Hydout Bathroom",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/1lk4f3ad6wrzeo745zcc2/highna415-Hydout-Bathroom.mp4?rlkey=57o7gj7ken2yt0bnhae80sbwy&dl=0",
-          "thumb": "assets/synced/hydout/6633dc2792e52f82a416b4c83cfbdedf6ab73033153cd5aeb8b7c71e7e68052f.jpg",
           "file": null
         },
         {
@@ -6624,14 +6682,6 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
-          "name": "lets_rhi.up hydout august",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/zia1fqkxnkq34he5f9sgs/lets_rhi.up-hydout-august.mp4?rlkey=m19f29wsc5avb8vs3wvk1b0l3&dl=0",
-          "thumb": "assets/synced/hydout/e83e76a80b0111085f75b3a9e8cd0dd667506a0ca0d6af22e1a72016f5aeaf3e.jpg",
-          "file": null
-        },
-        {
           "name": "Marty Archies Hydout Speedramp",
           "type": "video",
           "format": "MP4",
@@ -6648,27 +6698,11 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
-          "name": "Monika Speed Ramp Mall A (1)",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/wejqhfkczn78tg3itfvil/Monika-Speed-Ramp-Mall-A-1.mp4?rlkey=nnx5puipd21gcue4xtdnt09gy&dl=0",
-          "thumb": "assets/synced/hydout/6360c42abd1ac9117708eb7d4c59c0f1c0ec24d14c86c488079d61b969e63692.jpg",
-          "file": null
-        },
-        {
           "name": "Monika Speed Ramp Mall A",
           "type": "video",
           "format": "MP4",
           "url": "https://www.dropbox.com/scl/fi/p5tc9brk572adz99nqjl9/Monika-Speed-Ramp-Mall-A.mp4?rlkey=4733hc2tniz4d2gw9c2m9o1sm&dl=0",
           "thumb": "assets/synced/hydout/6360c42abd1ac9117708eb7d4c59c0f1c0ec24d14c86c488079d61b969e63692.jpg",
-          "file": null
-        },
-        {
-          "name": "nnnatalie.marie Hydout mall",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/nz5j4sk9g5aaymr2h1wwj/nnnatalie.marie-Hydout-mall.mp4?rlkey=juun0285g8pgfty4ax4uyi7ph&dl=0",
-          "thumb": "assets/synced/hydout/11aa9d598ed45c90cefc1f92326747425863bd134447c3f8991dc4f1a98bfdda.jpg",
           "file": null
         },
         {
@@ -6693,30 +6727,6 @@ window.PORTAL_SYNCED = {
           "format": "MP4",
           "url": "https://www.dropbox.com/scl/fi/tzh95ov8av310zilrzdmu/Peck-Hydout-Lake-B_02.mp4?rlkey=ulxiq4v5hr69a9orrlvf7cq9t&dl=0",
           "thumb": "assets/synced/hydout/12f570ea17cbec4b451611216bd6ba5d8fd9bf4d08901762238bfe190de0d870.jpg",
-          "file": null
-        },
-        {
-          "name": "red_eye_skye hydout xmas lights",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/w5xpbd3qj10swm9c1fzkn/red_eye_skye-hydout-xmas-lights.mp4?rlkey=n0u60qf804qr18szk6yoh5qqt&dl=0",
-          "thumb": "assets/synced/hydout/2f046034be1961e7dd4aec48a7895f6daffbb7b25881edd65e6ff32bd402300d.jpg",
-          "file": null
-        },
-        {
-          "name": "tblazeitt Pink Retro Hydout Puppy Chow",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/fzmh82ijsfxhs7jogr39b/tblazeitt-Pink-Retro-Hydout-Puppy-Chow.mp4?rlkey=lan0p0j3tygx87yorzpb90vgi&dl=0",
-          "thumb": "assets/synced/hydout/95cab407ed286b5312f2526bdb46578d6ca7e58ac301a45fb3d68916ffcf9b9f.jpg",
-          "file": null
-        },
-        {
-          "name": "tiaabunny hydout tombraider",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/4zj4ndlc4y9brbqec4veg/tiaabunny-hydout-tombraider.mp4?rlkey=9i3swmgfkg98cspfpwlrrblld&dl=0",
-          "thumb": "assets/synced/hydout/8e52dad34368114f289eabe85cf965bd6650a6c05ca17e1849cc578e84fb01fb.jpg",
           "file": null
         }
       ],
@@ -6871,6 +6881,112 @@ window.PORTAL_SYNCED = {
           "thumb": "assets/synced/hydout/2aef7f4e4b687cc705d5eb1985d6ad7c19a02a1296efa57f2a4abb279d3e1a4b.jpg",
           "file": null
         }
+      ],
+      "UGC Videos": [
+        {
+          "name": "AdeniaMariee Hydout Halloween",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/tjv78nwdxcun4sby2tnap/AdeniaMariee-Hydout-Halloween.mp4?rlkey=vlfmm7t3kgxiainfnjurjxxk9&dl=0",
+          "thumb": "assets/synced/hydout/c92a0bf9fd1103923b2f66997cef2e473de8779844e9ae85056617346896cd41.jpg",
+          "file": null
+        },
+        {
+          "name": "alyssasvibes brunch cafe hydout",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/4i4c8q2z7f3b9adfweu2e/alyssasvibes-brunch-cafe-hydout.mp4?rlkey=29u53v66h13owzotk6bmtnd2p&dl=0",
+          "thumb": "assets/synced/hydout/08938879899e5076657912bc85a003251912ba96adfd7bb38967791b27a956d8.jpg",
+          "file": null
+        },
+        {
+          "name": "audaciousmay hydout asmr trim",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/7g35ttlc600sndxsl7qo5/audaciousmay-hydout-asmr-trim.mp4?rlkey=ynhcq1bbv20l5wigjnsiudhjh&dl=0",
+          "thumb": "assets/synced/hydout/1df48b2fbe8902de5ad4d9f4651e1411b4e96a98b0a9232c6e8ff0c72ac45122.jpg",
+          "file": null
+        },
+        {
+          "name": "chrissperr hydout skin care aug",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/f4z00oyxz5rhsz6sqw37g/chrissperr-hydout-skin-care-aug.mp4?rlkey=3rd35iyzdrethd5ei9utbg6yi&dl=0",
+          "thumb": "assets/synced/hydout/3e9267a4a6056a35792f99f6bd8e6509be246407e60a1ceb83128ac20ba3b1a7.jpg",
+          "file": null
+        },
+        {
+          "name": "Grand Illumination Hydout lets_rhi.up",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/twrifnty6t1q0zprr25y7/Grand-Illumination-Hydout-lets_rhi.up.mp4?rlkey=ax8yy2k1i7r9qfm54kw1bhteb&dl=0",
+          "thumb": "assets/synced/hydout/85d72a0748f77e1e9b18147a77813e1f56d5a9800b387ba430848ac18b690fbf.jpg",
+          "file": null
+        },
+        {
+          "name": "high_im_winter hydout",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/4okmcsdrq6cxakikocspp/high_im_winter-hydout.mp4?rlkey=i06346kbb54jqr98aot0zjplb&dl=0",
+          "thumb": "assets/synced/hydout/c051b48c4a58386a22ed13bb552422f218ed642cbc235bc840f123700447c18d.jpg",
+          "file": null
+        },
+        {
+          "name": "highamericaizzi hydout november",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/5okrg73ed9s5wfcfrp918/highamericaizzi-hydout-november.mp4?rlkey=g5ybljnjhe81laa63w27o3yod&dl=0",
+          "thumb": "assets/synced/hydout/c9b63f056fdf6c22718bff721aa47234d285e21b79b14e01b49984cdb0050f61.jpg",
+          "file": null
+        },
+        {
+          "name": "highna415 Hydout Bathroom",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/1lk4f3ad6wrzeo745zcc2/highna415-Hydout-Bathroom.mp4?rlkey=57o7gj7ken2yt0bnhae80sbwy&dl=0",
+          "thumb": "assets/synced/hydout/6633dc2792e52f82a416b4c83cfbdedf6ab73033153cd5aeb8b7c71e7e68052f.jpg",
+          "file": null
+        },
+        {
+          "name": "lets_rhi.up hydout august",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/zia1fqkxnkq34he5f9sgs/lets_rhi.up-hydout-august.mp4?rlkey=m19f29wsc5avb8vs3wvk1b0l3&dl=0",
+          "thumb": "assets/synced/hydout/e83e76a80b0111085f75b3a9e8cd0dd667506a0ca0d6af22e1a72016f5aeaf3e.jpg",
+          "file": null
+        },
+        {
+          "name": "nnnatalie.marie Hydout mall",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/nz5j4sk9g5aaymr2h1wwj/nnnatalie.marie-Hydout-mall.mp4?rlkey=juun0285g8pgfty4ax4uyi7ph&dl=0",
+          "thumb": "assets/synced/hydout/11aa9d598ed45c90cefc1f92326747425863bd134447c3f8991dc4f1a98bfdda.jpg",
+          "file": null
+        },
+        {
+          "name": "red_eye_skye hydout xmas lights",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/w5xpbd3qj10swm9c1fzkn/red_eye_skye-hydout-xmas-lights.mp4?rlkey=n0u60qf804qr18szk6yoh5qqt&dl=0",
+          "thumb": "assets/synced/hydout/2f046034be1961e7dd4aec48a7895f6daffbb7b25881edd65e6ff32bd402300d.jpg",
+          "file": null
+        },
+        {
+          "name": "tblazeitt Pink Retro Hydout Puppy Chow",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/fzmh82ijsfxhs7jogr39b/tblazeitt-Pink-Retro-Hydout-Puppy-Chow.mp4?rlkey=lan0p0j3tygx87yorzpb90vgi&dl=0",
+          "thumb": "assets/synced/hydout/95cab407ed286b5312f2526bdb46578d6ca7e58ac301a45fb3d68916ffcf9b9f.jpg",
+          "file": null
+        },
+        {
+          "name": "tiaabunny hydout tombraider",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/4zj4ndlc4y9brbqec4veg/tiaabunny-hydout-tombraider.mp4?rlkey=9i3swmgfkg98cspfpwlrrblld&dl=0",
+          "thumb": "assets/synced/hydout/8e52dad34368114f289eabe85cf965bd6650a6c05ca17e1849cc578e84fb01fb.jpg",
+          "file": null
+        }
       ]
     },
     "dropbox": "https://www.dropbox.com/scl/fo/n9ddtzpx0x057qsdmfwoy/AHXmj-4gwaME5kQLZSmcBgw?rlkey=jy88uxm10tctjt6759gw015r4&st=frr8irpc&dl=1",
@@ -6882,9 +6998,10 @@ window.PORTAL_SYNCED = {
       "TV Screen Videos": "https://www.dropbox.com/scl/fo/hue93zwqoto5xiyrp6v8v/ABK8x96z_8l3CazUaHRL0dg?rlkey=ogd8zhxh8dlifbtw6utwgqhqb&dl=1",
       "Packaging": "https://www.dropbox.com/scl/fo/q71t1cdi882vijx2y6yl2/AN_q2Z7gviv3FZXBGPr2fWg?rlkey=8gecjmlgv76d33mnyfdaemk6f&dl=1",
       "Documents": "https://www.dropbox.com/scl/fo/aihjn42h0sicrlxfmgort/ACUA7vF5ICwgxGjJzM8C1bQ?rlkey=ric2rgozyhss6ybrkcr0y679b&dl=1",
-      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/exoxjg1o9c9ga7a00n2bs/APP-rGanWwPWI86XLGoPe5I?rlkey=zwz3xlmysbcawxiz2bcfvnvdi&dl=1"
+      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/exoxjg1o9c9ga7a00n2bs/APP-rGanWwPWI86XLGoPe5I?rlkey=zwz3xlmysbcawxiz2bcfvnvdi&dl=1",
+      "UGC Videos": "https://www.dropbox.com/scl/fo/7ix45feywehaq5qa9i0wt/AIBtIojXQ0RBZ9KPuziWwhQ?rlkey=8tuwleb3enk3lhye5ue5feeld&dl=1"
     },
-    "updated": "2026-08-26"
+    "updated": "2026-10-01"
   },
   "Hydout — Retro": {
     "folders": {
@@ -8024,22 +8141,6 @@ window.PORTAL_SYNCED = {
       ],
       "Social Videos": [
         {
-          "name": "coco.loco.crochet pink retro hydout june",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/9p0o4gexpfpdniu1ezmgt/coco.loco.crochet-pink-retro-hydout-june.mp4?rlkey=b0t0gy3dmy4scs96xhg9xms6a&dl=0",
-          "thumb": "assets/synced/hydout-retro/7e4dae59c12141a0e9b02ee0c767369fddecf62137ca4c4abc511bbeb969b944.jpg",
-          "file": null
-        },
-        {
-          "name": "dinglezz retro hydout",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/bihuk191wap85z5frui1w/dinglezz-retro-hydout.mp4?rlkey=6d3680c0v8cxmu399gwvbpre5&dl=0",
-          "thumb": "assets/synced/hydout-retro/52fca49273eb0164ac5145e42ff5a13df600236e1d138334748848dcc0007d4b.jpg",
-          "file": null
-        },
-        {
           "name": "GPEN_Retro_Hydout_VHS",
           "type": "video",
           "format": "MOV",
@@ -8061,14 +8162,6 @@ window.PORTAL_SYNCED = {
           "format": "MOV",
           "url": "https://www.dropbox.com/scl/fi/p1o4pk5u1cnf16znqqfce/hydout_retro_meta_16-9.mov?rlkey=pwwoxxxqplxz9xd130sndklir&dl=0",
           "thumb": "assets/synced/hydout-retro/5da5fd1c106965809a55414367ba7b3586e24e61bfe0bdf84414117bc7b06c9a.jpg",
-          "file": null
-        },
-        {
-          "name": "iproch Purple Hydout June",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/jv43mkt2ktso5z9z9mkge/iproch-Purple-Hydout-June.mp4?rlkey=enkua6cx3eg1lee8qxaf3yfn2&dl=0",
-          "thumb": "assets/synced/hydout-retro/049b7a08bf16fc26611b6744549aa19ab9e96f19a9e48cf19eec4efd7ac09df6.jpg",
           "file": null
         },
         {
@@ -8407,6 +8500,32 @@ window.PORTAL_SYNCED = {
           "thumb": "assets/synced/hydout-retro/2aef7f4e4b687cc705d5eb1985d6ad7c19a02a1296efa57f2a4abb279d3e1a4b.jpg",
           "file": null
         }
+      ],
+      "UGC Videos": [
+        {
+          "name": "coco.loco.crochet pink retro hydout june",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/9p0o4gexpfpdniu1ezmgt/coco.loco.crochet-pink-retro-hydout-june.mp4?rlkey=b0t0gy3dmy4scs96xhg9xms6a&dl=0",
+          "thumb": "assets/synced/hydout-retro/7e4dae59c12141a0e9b02ee0c767369fddecf62137ca4c4abc511bbeb969b944.jpg",
+          "file": null
+        },
+        {
+          "name": "dinglezz retro hydout",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/bihuk191wap85z5frui1w/dinglezz-retro-hydout.mp4?rlkey=6d3680c0v8cxmu399gwvbpre5&dl=0",
+          "thumb": "assets/synced/hydout-retro/52fca49273eb0164ac5145e42ff5a13df600236e1d138334748848dcc0007d4b.jpg",
+          "file": null
+        },
+        {
+          "name": "iproch Purple Hydout June",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/jv43mkt2ktso5z9z9mkge/iproch-Purple-Hydout-June.mp4?rlkey=enkua6cx3eg1lee8qxaf3yfn2&dl=0",
+          "thumb": "assets/synced/hydout-retro/049b7a08bf16fc26611b6744549aa19ab9e96f19a9e48cf19eec4efd7ac09df6.jpg",
+          "file": null
+        }
       ]
     },
     "dropbox": "https://www.dropbox.com/scl/fo/fnsys0ijwhl2059nu45u5/AEE18ADvSJZ1RYdf0EDDk0Q?rlkey=2cz8o729ku9u1c9unhewv55wr&st=5lrpymts&dl=1",
@@ -8418,9 +8537,10 @@ window.PORTAL_SYNCED = {
       "TV Screen Videos": "https://www.dropbox.com/scl/fo/93qcrpktdv64is5nj5i28/AB2mcbXJTNjGAMHLG28W5XA?rlkey=2a4mlyz12aosrk89nykj6m5nu&dl=1",
       "Packaging": "https://www.dropbox.com/scl/fo/25wwnw5dw2nqc450h69f3/ADt6mYq_iObLo13Balr7b-8?rlkey=nkvworwgmk0kgb5k1wyyn9eup&dl=1",
       "Documents": "https://www.dropbox.com/scl/fo/w4jlorkg87a7b4ctpyuc4/AIjD0tyD39HVigyzoElkCvY?rlkey=1pwev1fqvz1d25lcjyxycjat6&dl=1",
-      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/js0iplvvoapl4ciauih9l/AIhGt4o5N4BAJhR0ppoiTSs?rlkey=wotyti3ickyxnxitk0al1kez5&dl=1"
+      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/js0iplvvoapl4ciauih9l/AIhGt4o5N4BAJhR0ppoiTSs?rlkey=wotyti3ickyxnxitk0al1kez5&dl=1",
+      "UGC Videos": "https://www.dropbox.com/scl/fo/7fu70fxqpit89cero5ise/AOEUfZAYtjw3i6lAEsrLJew?rlkey=mb6dc3c1xn3fep5koaw8iclr7&dl=1"
     },
-    "updated": "2026-08-26"
+    "updated": "2026-10-01"
   },
   "Melt Hot Knife": {
     "folders": {
@@ -8760,139 +8880,11 @@ window.PORTAL_SYNCED = {
       ],
       "Social Videos": [
         {
-          "name": "420 bubba Melt Dec",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/c9c27atwymncbc3zg2zld/420-bubba-Melt-Dec.mp4?rlkey=6zi318z9l6oloj38v15wf1yfz&dl=0",
-          "thumb": "assets/synced/melt/ebb6515d6c51a3315905cc8e0c6ab411dc7e54b4252a8991fe37687e5c7b06fc.jpg",
-          "file": null
-        },
-        {
           "name": "Alyssa Green Dok Melt GG",
           "type": "video",
           "format": "MP4",
           "url": "https://www.dropbox.com/scl/fi/r8ob79ix3gza3uwdchbx4/Alyssa-Green-Dok-Melt-GG.mp4?rlkey=xte8fjwawhqancae22v7foz9u&dl=0",
           "thumb": "assets/synced/melt/0087c624650766d54730b021818ae7ade98e588a42ec2b740462cc8c3a8aa42b.jpg",
-          "file": null
-        },
-        {
-          "name": "amirblackstar melt jan",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/br60q874nnf75s6tz159v/amirblackstar-melt-jan.mp4?rlkey=efgvxvn2rbtzxzsm5o2oqkj04&dl=0",
-          "thumb": "assets/synced/melt/c8c43f462c390c6dc79659b7fc16ad4e9b9cbfd7c3edfc49e3afd5223ea14864.jpg",
-          "file": null
-        },
-        {
-          "name": "bblungz710 Melt Jan short",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/bbe97gd2knqhzuebin4k5/bblungz710-Melt-Jan-short.mp4?rlkey=zuv4te74x4sosjj5zw527qsw5&dl=0",
-          "thumb": "assets/synced/melt/343a79f958bd4c0e1a0f371948aac3c9f2c6e25656b21e97a78649d11403aace.jpg",
-          "file": null
-        },
-        {
-          "name": "blazzedange melt jar march",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/9yxxsr5x0e54lnjfoyvz8/blazzedange-melt-jar-march.mp4?rlkey=1mmld0bndhtjvq630f4vbulfi&dl=0",
-          "thumb": "assets/synced/melt/14bb57eb8c3c16ca05054a7ad922710bfa881a9a0c414ef6f3c01f93e87c4207.jpg",
-          "file": null
-        },
-        {
-          "name": "Feekadab Melt April A",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/plmuz2ooiwr8foq55s5jz/Feekadab-Melt-April-A.mp4?rlkey=fkbdbpdd1voi2ur8uy629e1dc&dl=0",
-          "thumb": "assets/synced/melt/77e3a5f178c4f7a8501391b5818a8ce9265cf091040208cc4cc12a91e9e804b8.jpg",
-          "file": null
-        },
-        {
-          "name": "Feekadab Melt April B",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/fi9hz3jfla8hyzr1ya2d3/Feekadab-Melt-April-B.mp4?rlkey=2rgy4x74dd3ebqoeahsul40jv&dl=0",
-          "thumb": "assets/synced/melt/07e72613bcafb8978f707beb27e0b434d643b40fd31cb7b489ed6760789992e0.jpg",
-          "file": null
-        },
-        {
-          "name": "feekadab melt feb",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/qpb37uqhpz3q8rhacq02q/feekadab-melt-feb.mp4?rlkey=8dmlo24yn0yj0ksqtvc0az6qp&dl=0",
-          "thumb": "assets/synced/melt/960e9375c3675ad07409ee8951c3257f389dbc9807a83c7561d120fd03d96917.jpg",
-          "file": null
-        },
-        {
-          "name": "Feekadab melt globs feb 2_trim",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/ri3j4j2k8f955z58oqtrd/Feekadab-melt-globs-feb-2_trim.mp4?rlkey=7rauhxjk6ffwrbxvaszci9egu&dl=0",
-          "thumb": "assets/synced/melt/ff144fa6d8e9aa83f0f53200b06145fd1522a7b9a130e7cb731d5aa1fd6910e2.jpg",
-          "file": null
-        },
-        {
-          "name": "Feekadab Melt Jiggle",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/0eb4rpqge8wumawblgopm/Feekadab-Melt-Jiggle.mp4?rlkey=cm8ippajjliquojp4lbojinse&dl=0",
-          "thumb": "assets/synced/melt/452849cbcf8504e9d6c16be5b88845b371a04e442aefbd882f93fc5513f31d95.jpg",
-          "file": null
-        },
-        {
-          "name": "Freekadabbs Melt",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/ust4egkdxg44yne0zv6e9/Freekadabbs-Melt.mp4?rlkey=00hwxd3d7dx4x041ngjbvpq2i&dl=0",
-          "thumb": "assets/synced/melt/fd0b6dfb9d8d443872bcdaafe40098ee4129e0735d74e4aef1890a8ac8c18384.jpg",
-          "file": null
-        },
-        {
-          "name": "glitzndabs melt feb",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/ngbdt6rxhl1yms8wfitjs/glitzndabs-melt-feb.mp4?rlkey=xemcbhxgudwdv1gb05rsbxy7l&dl=0",
-          "thumb": "assets/synced/melt/7e507dd92847bb688e059471185798fae05fe849fae61842f853e653becf9f2d.jpg",
-          "file": null
-        },
-        {
-          "name": "Glitzndabz Melt last dab",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/esq1zpxa6d822a9amkh7t/Glitzndabz-Melt-last-dab.mp4?rlkey=vpqo2sie9iae4bgxcnhmpq5l7&dl=0",
-          "thumb": "assets/synced/melt/1aa2ebfb0de942a6b647d3f186890b3708e76ffedf9f4c690e12dc49edb218bb.jpg",
-          "file": null
-        },
-        {
-          "name": "irielogic420 melt Dec",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/2namzdygxjx13ljnc1ubz/irielogic420-melt-Dec.mp4?rlkey=unmlqebc7xdcfyhxo7et4npb7&dl=0",
-          "thumb": "assets/synced/melt/d29235f5fde697ac378f414a3ea92b54687c425f65d23fb7c6d0d6839a420d0c.jpg",
-          "file": null
-        },
-        {
-          "name": "jennsnugget420_melt feb",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/pbmie50doudg0daqr4ru4/jennsnugget420_melt-feb.mp4?rlkey=1z5t5kz5bud2o45jvdcknsehe&dl=0",
-          "thumb": "assets/synced/melt/dc71eeeddef68af0d41f2852a4aea1e7657e8d39685776d7747b4f72f1f6d751.jpg",
-          "file": null
-        },
-        {
-          "name": "Jeocentric Connect Melt Time to Dab Jan",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/gd3b097barep4ahpvtex7/Jeocentric-Connect-Melt-Time-to-Dab-Jan.mp4?rlkey=w4iyzh8jzi76zdsbjgvs0p4cl&dl=0",
-          "thumb": "assets/synced/melt/40214d72be97abd5227a6030d2b566f52c3bb67e68ecf25cf5a96ce20a63ed75.jpg",
-          "file": null
-        },
-        {
-          "name": "Larry Melt Champs trim",
-          "type": "video",
-          "format": "MOV",
-          "url": "https://www.dropbox.com/scl/fi/ultga5idoqgvzq0ozchvb/Larry-Melt-Champs-trim.mov?rlkey=myxocr40bixoqgdklhmlyuygm&dl=0",
-          "thumb": "assets/synced/melt/bcc275de3c348b18d0891becfd9cf50e87222c279dd7e52801fd9c5f18f8e867.jpg",
           "file": null
         },
         {
@@ -8952,14 +8944,6 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
-          "name": "rachelrosebuds micro+ hydout melt jan",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/sr0p3tcqjzw13025dmyk7/rachelrosebuds-micro-hydout-melt-jan.mp4?rlkey=aosem0uxsw2yg9c1puyo0jcjb&dl=0",
-          "thumb": "assets/synced/melt/636d074bdf3ff365805e781b3d28ce426d727582481f097ca418b036b0f3371c.jpg",
-          "file": null
-        },
-        {
           "name": "Reels Melt Cleaning",
           "type": "video",
           "format": "MP4",
@@ -8973,54 +8957,6 @@ window.PORTAL_SYNCED = {
           "format": "MP4",
           "url": "https://www.dropbox.com/scl/fi/gpeprn7lrnotb61f7n7nu/Reels-Melt-Tutorial.mp4?rlkey=tdsgjotlkf34q1iqiqekj0ec1&dl=0",
           "thumb": "assets/synced/melt/2cf37ab1b5c5b8dfcaff20a360c15b19dcd1656eef0c8fa1f91421d14e2e8589.jpg",
-          "file": null
-        },
-        {
-          "name": "shortandst0ned melt dec",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/oxe51hfybbwv6qu8x6rg1/shortandst0ned-melt-dec.mp4?rlkey=91rkgey3dsu155hwma0fkz1c8&dl=0",
-          "thumb": "assets/synced/melt/ef8b25bba53cecc9b3226e592ce6a15c5a097b4c9440bcc45294ba15292adc04.jpg",
-          "file": null
-        },
-        {
-          "name": "Snappernickel hyer melt march trim",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/7t0mxhx5dqqv6nf6ngho8/Snappernickel-hyer-melt-march-trim.mp4?rlkey=f2ez7oytzsurccj8prv16ghzr&dl=0",
-          "thumb": "assets/synced/melt/4c3d173616cd3919e2548066fff942bc5c170c6c075afabf599c1782577c7140.jpg",
-          "file": null
-        },
-        {
-          "name": "stickyy7sixx0 melt Jan trim",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/vdinffq66e0q9yfbu696n/stickyy7sixx0-melt-Jan-trim.mp4?rlkey=8ef9l5ak9hxca8a97i0t63dnq&dl=0",
-          "thumb": "assets/synced/melt/bc96a629f6b643c4ac2d8120c812d07d6220a306dcd1fc5ee067087ef9e5ed57.jpg",
-          "file": null
-        },
-        {
-          "name": "stickyy7sixx0_Melt_June A",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/a2o5aaxsqzayxxej5q3b6/stickyy7sixx0_Melt_June-A.mp4?rlkey=d7z88igx8jbccweajlcfz7i3s&dl=0",
-          "thumb": "assets/synced/melt/220c5079990f2b21a2776aeef015c983d225bff840d875b1c57465bf14a8663f.jpg",
-          "file": null
-        },
-        {
-          "name": "thehighhousedutchess Melt trim",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/i1067s5fej24pvc5b1gvi/thehighhousedutchess-Melt-trim.mp4?rlkey=1vki1m75ttoxzmcpw7bvqbsno&dl=0",
-          "thumb": "assets/synced/melt/44fdbf141497535bae99ca3c05323c6031f5b6fd996dbd07a1630f1a32516b1d.jpg",
-          "file": null
-        },
-        {
-          "name": "Weedaker3.0 Melt dec",
-          "type": "video",
-          "format": "MP4",
-          "url": "https://www.dropbox.com/scl/fi/mc8x43vrl852e8jna703d/Weedaker3.0-Melt-dec.mp4?rlkey=hviz3tlkdjt8i7dapwmxf0ab7&dl=0",
-          "thumb": "assets/synced/melt/1fbfb7999925c4a85b69c279f72160330e6f63c18a3e63c302eebade6f740e98.jpg",
           "file": null
         }
       ],
@@ -9207,6 +9143,192 @@ window.PORTAL_SYNCED = {
           "thumb": "assets/synced/melt/7a9086c992d85d4bac15e29cd8fc7b2b2216784289ea6af23d32a9430a4a498f.jpg",
           "file": null
         }
+      ],
+      "UGC Videos": [
+        {
+          "name": "420 bubba Melt Dec",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/c9c27atwymncbc3zg2zld/420-bubba-Melt-Dec.mp4?rlkey=6zi318z9l6oloj38v15wf1yfz&dl=0",
+          "thumb": "assets/synced/melt/ebb6515d6c51a3315905cc8e0c6ab411dc7e54b4252a8991fe37687e5c7b06fc.jpg",
+          "file": null
+        },
+        {
+          "name": "amirblackstar melt jan",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/br60q874nnf75s6tz159v/amirblackstar-melt-jan.mp4?rlkey=efgvxvn2rbtzxzsm5o2oqkj04&dl=0",
+          "thumb": "assets/synced/melt/c8c43f462c390c6dc79659b7fc16ad4e9b9cbfd7c3edfc49e3afd5223ea14864.jpg",
+          "file": null
+        },
+        {
+          "name": "bblungz710 Melt Jan short",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/bbe97gd2knqhzuebin4k5/bblungz710-Melt-Jan-short.mp4?rlkey=zuv4te74x4sosjj5zw527qsw5&dl=0",
+          "thumb": "assets/synced/melt/343a79f958bd4c0e1a0f371948aac3c9f2c6e25656b21e97a78649d11403aace.jpg",
+          "file": null
+        },
+        {
+          "name": "blazzedange melt jar march",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/9yxxsr5x0e54lnjfoyvz8/blazzedange-melt-jar-march.mp4?rlkey=1mmld0bndhtjvq630f4vbulfi&dl=0",
+          "thumb": "assets/synced/melt/14bb57eb8c3c16ca05054a7ad922710bfa881a9a0c414ef6f3c01f93e87c4207.jpg",
+          "file": null
+        },
+        {
+          "name": "Feekadab Melt April A",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/plmuz2ooiwr8foq55s5jz/Feekadab-Melt-April-A.mp4?rlkey=fkbdbpdd1voi2ur8uy629e1dc&dl=0",
+          "thumb": "assets/synced/melt/77e3a5f178c4f7a8501391b5818a8ce9265cf091040208cc4cc12a91e9e804b8.jpg",
+          "file": null
+        },
+        {
+          "name": "Feekadab Melt April B",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/fi9hz3jfla8hyzr1ya2d3/Feekadab-Melt-April-B.mp4?rlkey=2rgy4x74dd3ebqoeahsul40jv&dl=0",
+          "thumb": "assets/synced/melt/07e72613bcafb8978f707beb27e0b434d643b40fd31cb7b489ed6760789992e0.jpg",
+          "file": null
+        },
+        {
+          "name": "feekadab melt feb",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/qpb37uqhpz3q8rhacq02q/feekadab-melt-feb.mp4?rlkey=8dmlo24yn0yj0ksqtvc0az6qp&dl=0",
+          "thumb": "assets/synced/melt/960e9375c3675ad07409ee8951c3257f389dbc9807a83c7561d120fd03d96917.jpg",
+          "file": null
+        },
+        {
+          "name": "Feekadab melt globs feb 2_trim",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/ri3j4j2k8f955z58oqtrd/Feekadab-melt-globs-feb-2_trim.mp4?rlkey=7rauhxjk6ffwrbxvaszci9egu&dl=0",
+          "thumb": "assets/synced/melt/ff144fa6d8e9aa83f0f53200b06145fd1522a7b9a130e7cb731d5aa1fd6910e2.jpg",
+          "file": null
+        },
+        {
+          "name": "Feekadab Melt Jiggle",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/0eb4rpqge8wumawblgopm/Feekadab-Melt-Jiggle.mp4?rlkey=cm8ippajjliquojp4lbojinse&dl=0",
+          "thumb": "assets/synced/melt/452849cbcf8504e9d6c16be5b88845b371a04e442aefbd882f93fc5513f31d95.jpg",
+          "file": null
+        },
+        {
+          "name": "Freekadabbs Melt",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/ust4egkdxg44yne0zv6e9/Freekadabbs-Melt.mp4?rlkey=00hwxd3d7dx4x041ngjbvpq2i&dl=0",
+          "thumb": "assets/synced/melt/fd0b6dfb9d8d443872bcdaafe40098ee4129e0735d74e4aef1890a8ac8c18384.jpg",
+          "file": null
+        },
+        {
+          "name": "glitzndabs melt feb",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/ngbdt6rxhl1yms8wfitjs/glitzndabs-melt-feb.mp4?rlkey=xemcbhxgudwdv1gb05rsbxy7l&dl=0",
+          "thumb": "assets/synced/melt/7e507dd92847bb688e059471185798fae05fe849fae61842f853e653becf9f2d.jpg",
+          "file": null
+        },
+        {
+          "name": "Glitzndabz Melt last dab",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/esq1zpxa6d822a9amkh7t/Glitzndabz-Melt-last-dab.mp4?rlkey=vpqo2sie9iae4bgxcnhmpq5l7&dl=0",
+          "thumb": "assets/synced/melt/1aa2ebfb0de942a6b647d3f186890b3708e76ffedf9f4c690e12dc49edb218bb.jpg",
+          "file": null
+        },
+        {
+          "name": "irielogic420 melt Dec",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/2namzdygxjx13ljnc1ubz/irielogic420-melt-Dec.mp4?rlkey=unmlqebc7xdcfyhxo7et4npb7&dl=0",
+          "thumb": "assets/synced/melt/d29235f5fde697ac378f414a3ea92b54687c425f65d23fb7c6d0d6839a420d0c.jpg",
+          "file": null
+        },
+        {
+          "name": "jennsnugget420_melt feb",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/pbmie50doudg0daqr4ru4/jennsnugget420_melt-feb.mp4?rlkey=1z5t5kz5bud2o45jvdcknsehe&dl=0",
+          "thumb": "assets/synced/melt/dc71eeeddef68af0d41f2852a4aea1e7657e8d39685776d7747b4f72f1f6d751.jpg",
+          "file": null
+        },
+        {
+          "name": "Jeocentric Connect Melt Time to Dab Jan",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/gd3b097barep4ahpvtex7/Jeocentric-Connect-Melt-Time-to-Dab-Jan.mp4?rlkey=w4iyzh8jzi76zdsbjgvs0p4cl&dl=0",
+          "thumb": "assets/synced/melt/40214d72be97abd5227a6030d2b566f52c3bb67e68ecf25cf5a96ce20a63ed75.jpg",
+          "file": null
+        },
+        {
+          "name": "Larry Melt Champs trim",
+          "type": "video",
+          "format": "MOV",
+          "url": "https://www.dropbox.com/scl/fi/ultga5idoqgvzq0ozchvb/Larry-Melt-Champs-trim.mov?rlkey=myxocr40bixoqgdklhmlyuygm&dl=0",
+          "thumb": "assets/synced/melt/bcc275de3c348b18d0891becfd9cf50e87222c279dd7e52801fd9c5f18f8e867.jpg",
+          "file": null
+        },
+        {
+          "name": "rachelrosebuds micro+ hydout melt jan",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/sr0p3tcqjzw13025dmyk7/rachelrosebuds-micro-hydout-melt-jan.mp4?rlkey=aosem0uxsw2yg9c1puyo0jcjb&dl=0",
+          "thumb": "assets/synced/melt/636d074bdf3ff365805e781b3d28ce426d727582481f097ca418b036b0f3371c.jpg",
+          "file": null
+        },
+        {
+          "name": "shortandst0ned melt dec",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/oxe51hfybbwv6qu8x6rg1/shortandst0ned-melt-dec.mp4?rlkey=91rkgey3dsu155hwma0fkz1c8&dl=0",
+          "thumb": "assets/synced/melt/ef8b25bba53cecc9b3226e592ce6a15c5a097b4c9440bcc45294ba15292adc04.jpg",
+          "file": null
+        },
+        {
+          "name": "Snappernickel hyer melt march trim",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/7t0mxhx5dqqv6nf6ngho8/Snappernickel-hyer-melt-march-trim.mp4?rlkey=f2ez7oytzsurccj8prv16ghzr&dl=0",
+          "thumb": "assets/synced/melt/4c3d173616cd3919e2548066fff942bc5c170c6c075afabf599c1782577c7140.jpg",
+          "file": null
+        },
+        {
+          "name": "stickyy7sixx0 melt Jan trim",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/vdinffq66e0q9yfbu696n/stickyy7sixx0-melt-Jan-trim.mp4?rlkey=8ef9l5ak9hxca8a97i0t63dnq&dl=0",
+          "thumb": "assets/synced/melt/bc96a629f6b643c4ac2d8120c812d07d6220a306dcd1fc5ee067087ef9e5ed57.jpg",
+          "file": null
+        },
+        {
+          "name": "stickyy7sixx0_Melt_June A",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/a2o5aaxsqzayxxej5q3b6/stickyy7sixx0_Melt_June-A.mp4?rlkey=d7z88igx8jbccweajlcfz7i3s&dl=0",
+          "thumb": "assets/synced/melt/220c5079990f2b21a2776aeef015c983d225bff840d875b1c57465bf14a8663f.jpg",
+          "file": null
+        },
+        {
+          "name": "thehighhousedutchess Melt trim",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/i1067s5fej24pvc5b1gvi/thehighhousedutchess-Melt-trim.mp4?rlkey=1vki1m75ttoxzmcpw7bvqbsno&dl=0",
+          "thumb": "assets/synced/melt/44fdbf141497535bae99ca3c05323c6031f5b6fd996dbd07a1630f1a32516b1d.jpg",
+          "file": null
+        },
+        {
+          "name": "Weedaker3.0 Melt dec",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/mc8x43vrl852e8jna703d/Weedaker3.0-Melt-dec.mp4?rlkey=hviz3tlkdjt8i7dapwmxf0ab7&dl=0",
+          "thumb": "assets/synced/melt/1fbfb7999925c4a85b69c279f72160330e6f63c18a3e63c302eebade6f740e98.jpg",
+          "file": null
+        }
       ]
     },
     "dropbox": "https://www.dropbox.com/scl/fo/qvw93szg11i4ka3d9yuaq/AC8I-n2z09RvRGiA__rNYEs?rlkey=a0yhcy2ok0j1l4dnmk6ktwcoy&st=zx3371he&dl=1",
@@ -9218,9 +9340,10 @@ window.PORTAL_SYNCED = {
       "TV Screen Videos": "https://www.dropbox.com/scl/fo/7wex0bihhedbhkbxy096b/AGugHcwteO4kMvxD4IUiuYo?rlkey=my992ahs1dchliw31yfd6pb2a&dl=1",
       "Packaging": "https://www.dropbox.com/scl/fo/3dixucbe75rggzfb67e23/AGg3BDqBDYQbQUf5JJDxbXk?rlkey=z3x745eumkrkhrcdk2jyl7xdl&dl=1",
       "Documents": "https://www.dropbox.com/scl/fo/nuubnhqd8d0eq0ne2vdrd/AAf562CAZcnMVr72B6NvyuE?rlkey=2wxclel98k6c3cxwuoqeiz8li&dl=1",
-      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/ba61fxdq8janqa07o4q2y/AC3law8SSuhKq58KyUsaeY4?rlkey=ptqh04v7y6osfcupkcahy63eu&dl=1"
+      "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/ba61fxdq8janqa07o4q2y/AC3law8SSuhKq58KyUsaeY4?rlkey=ptqh04v7y6osfcupkcahy63eu&dl=1",
+      "UGC Videos": "https://www.dropbox.com/scl/fo/91ubz4w43bu0li81xj1g8/ALKzJrgzEPtMgCDTjl8tG7U?rlkey=hu2w89ezyv6fapmbrfd9uxo00&dl=1"
     },
-    "updated": "2026-08-20"
+    "updated": "2026-10-01"
   },
   "Connect": {
     "folders": {
