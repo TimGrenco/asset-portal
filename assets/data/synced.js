@@ -2954,6 +2954,15 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "Grinder Brocoli Sept",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/q6ny043g3hilvb367j1rk/Grinder-Brocoli-Sept.mp4?rlkey=cnvl2loeithbs4t8v79f9utji&dl=0",
+          "thumb": "assets/synced/slim-3-piece-grinder/3d7f755f3890478f8697c605958df6dac15cf44912d82e09042703e3cef3c38d.jpg",
+          "thumbS": "assets/synced/slim-3-piece-grinder/3d7f755f3890478f8697c605958df6dac15cf44912d82e09042703e3cef3c38d-s.jpg",
+          "file": null
+        },
+        {
           "name": "Grinder Dash II Larry Venice",
           "type": "video",
           "format": "MP4",
@@ -3228,7 +3237,7 @@ window.PORTAL_SYNCED = {
       "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/eiroju8uf0q8ntzldvhh8/AChK_rv3bd7FHjp8YymEX5M?rlkey=eu289oru99vvqr8ucia5ba8jq&dl=1",
       "UGC Videos": "https://www.dropbox.com/scl/fo/3juvd5kglchxn6i4l14rr/ADq-xqFwZLgkBZVyzwlwJiY?rlkey=2983drldxo785ws5lvvhzjyqm&dl=1"
     },
-    "updated": "2026-10-01"
+    "updated": "2026-10-02"
   },
   "510 Original": {
     "folders": {
@@ -9950,6 +9959,15 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
+          "name": "Melt Unboxing Sept",
+          "type": "video",
+          "format": "MP4",
+          "url": "https://www.dropbox.com/scl/fi/jcx45fmfgss1klkeu8ufx/Melt-Unboxing-Sept.mp4?rlkey=i6h9weyw6z6n0cifem1vij9ps&dl=0",
+          "thumb": "assets/synced/melt/4f43ad398cc98f473bb1c0fb49b4316aa151e351fd5d7fbc9b47c29c0fd087df.jpg",
+          "thumbS": "assets/synced/melt/4f43ad398cc98f473bb1c0fb49b4316aa151e351fd5d7fbc9b47c29c0fd087df-s.jpg",
+          "file": null
+        },
+        {
           "name": "Modül DTS POV Melt Feb",
           "type": "video",
           "format": "MP4",
@@ -10396,7 +10414,7 @@ window.PORTAL_SYNCED = {
       "In Store Marketing Materials": "https://www.dropbox.com/scl/fo/ba61fxdq8janqa07o4q2y/AC3law8SSuhKq58KyUsaeY4?rlkey=ptqh04v7y6osfcupkcahy63eu&dl=1",
       "UGC Videos": "https://www.dropbox.com/scl/fo/91ubz4w43bu0li81xj1g8/ALKzJrgzEPtMgCDTjl8tG7U?rlkey=hu2w89ezyv6fapmbrfd9uxo00&dl=1"
     },
-    "updated": "2026-10-01"
+    "updated": "2026-10-02"
   },
   "Connect": {
     "folders": {
