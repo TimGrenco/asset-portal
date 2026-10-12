@@ -118,14 +118,31 @@ function typeOf(e) {
   return "file";
 }
 
+// The token call gets the same retry as rpc() below: on 2026-10-12 the 06:40
+// scheduled run died on a single 500 from the OAuth endpoint before syncing anything.
 async function getToken() {
-  const r = await fetch("https://api.dropbox.com/oauth2/token", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded", Authorization: "Basic " + Buffer.from(`${APP_KEY}:${APP_SECRET}`).toString("base64") },
-    body: new URLSearchParams({ grant_type: "refresh_token", refresh_token: REFRESH }),
-  });
-  if (!r.ok) throw new Error("token " + r.status + " " + (await r.text()));
-  return (await r.json()).access_token;
+  let last;
+  for (let attempt = 1; attempt <= RPC_TRIES; attempt++) {
+    let r;
+    try {
+      r = await fetch("https://api.dropbox.com/oauth2/token", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded", Authorization: "Basic " + Buffer.from(`${APP_KEY}:${APP_SECRET}`).toString("base64") },
+        body: new URLSearchParams({ grant_type: "refresh_token", refresh_token: REFRESH }),
+      });
+    } catch (e) {
+      last = new Error("token network error: " + e.message);
+      if (attempt === RPC_TRIES) break;
+      await sleep(backoffMs(attempt));
+      continue;
+    }
+    if (r.ok) return (await r.json()).access_token;
+    last = new Error("token " + r.status + " " + (await r.text()));
+    if (!(r.status >= 500 || r.status === 429) || attempt === RPC_TRIES) break;
+    console.warn(`  token ${r.status} — retry ${attempt}/${RPC_TRIES - 1}`);
+    await sleep(backoffMs(attempt));
+  }
+  throw last;
 }
 
 // A full sync makes a few thousand RPC calls. Dropbox intermittently answers one
