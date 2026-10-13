@@ -17653,15 +17653,6 @@ window.PORTAL_SYNCED = {
           "file": null
         },
         {
-          "name": "2400x2000 · Tyson_Hyer_Web_Case_Closed",
-          "type": "image",
-          "format": "PNG",
-          "url": "https://www.dropbox.com/scl/fi/ya0gaars1qepuwvht4bsz/Tyson_Hyer_Web_Case_Closed.png?rlkey=nkh1hpjb6gwntexwfgm7o6o9u&dl=0",
-          "thumb": "assets/synced/hyer/b529eba9aeba31362f67718bf17e9e4f72a096c05d2f6d9b728a2422eaf7c027.jpg",
-          "thumbS": "assets/synced/hyer/b529eba9aeba31362f67718bf17e9e4f72a096c05d2f6d9b728a2422eaf7c027-s.jpg",
-          "file": null
-        },
-        {
           "name": "2400x2000 · Tyson_Hyer_Web_Case_Front",
           "type": "image",
           "format": "PNG",
