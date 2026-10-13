@@ -26,7 +26,7 @@
   var LANGS = { en: "English", es: "Español", de: "Deutsch", it: "Italiano", fr: "Français", pt: "Português (Brasil)",
                 sv: "Svenska", pl: "Polski", da: "Dansk" };
   function isLang(l) { return Object.prototype.hasOwnProperty.call(LANGS, l); }
-  var LANG_VER = "20261001h";   // bump with the other asset tokens
+  var LANG_VER = "20261013a";   // bump with the other asset tokens
   // Load a language pack once. English is a no-op (it IS the source).
   var _langLoading = {};
   function loadLangPack(l, cb) {
@@ -3807,10 +3807,20 @@
         if (e.key === "Escape" && langMenuOpen()) { closeLangMenu(); langBtn.focus(); }
       });
       // Tabbing out of the menu closes it (it stayed open, aria-expanded=true, behind the focus).
-      var ls = $("#lang-select");
-      if (ls) ls.addEventListener("focusout", function (e) {
-        if (langMenuOpen() && (!e.relatedTarget || !ls.contains(e.relatedTarget))) closeLangMenu();
-      });
+      // Safari and Firefox on Mac (and iOS) don't focus a button on click, so pressing a
+      // language blurs the menu with no relatedTarget — closing then hid the item before the
+      // click landed, and the selector did nothing. Ignore focus loss mid-press; clicks
+      // outside are still closed by the document click handler above.
+      var ls = $("#lang-select"), langPress = false;
+      if (ls) {
+        ls.addEventListener("pointerdown", function () { langPress = true; });
+        document.addEventListener("pointerup", function () { setTimeout(function () { langPress = false; }, 0); }, true);
+        document.addEventListener("pointercancel", function () { langPress = false; }, true);
+        ls.addEventListener("focusout", function (e) {
+          if (langPress) return;
+          if (langMenuOpen() && (!e.relatedTarget || !ls.contains(e.relatedTarget))) closeLangMenu();
+        });
+      }
     }
     // restore filters from the URL (shareable views), then route to product/home
     parseURL();
